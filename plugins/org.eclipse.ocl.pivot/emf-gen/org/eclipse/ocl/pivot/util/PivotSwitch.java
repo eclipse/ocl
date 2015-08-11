@@ -13,6 +13,7 @@ package org.eclipse.ocl.pivot.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.ocl.pivot.AbstractIfExp;
 import org.eclipse.ocl.pivot.Annotation;
 import org.eclipse.ocl.pivot.AnyType;
 import org.eclipse.ocl.pivot.AssociationClass;
@@ -34,8 +35,6 @@ import org.eclipse.ocl.pivot.CompleteModel;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.ConnectionPointReference;
 import org.eclipse.ocl.pivot.Constraint;
-import org.eclipse.ocl.pivot.ShadowExp;
-import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Detail;
 import org.eclipse.ocl.pivot.DynamicBehavior;
@@ -53,6 +52,7 @@ import org.eclipse.ocl.pivot.Feature;
 import org.eclipse.ocl.pivot.FeatureCallExp;
 import org.eclipse.ocl.pivot.FinalState;
 import org.eclipse.ocl.pivot.IfExp;
+import org.eclipse.ocl.pivot.IfPatternExp;
 import org.eclipse.ocl.pivot.Import;
 import org.eclipse.ocl.pivot.InstanceSpecification;
 import org.eclipse.ocl.pivot.IntegerLiteralExp;
@@ -89,6 +89,11 @@ import org.eclipse.ocl.pivot.OrphanCompletePackage;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.ParameterType;
 import org.eclipse.ocl.pivot.ParameterableElement;
+import org.eclipse.ocl.pivot.PatternClass;
+import org.eclipse.ocl.pivot.PatternExp;
+import org.eclipse.ocl.pivot.PatternLiteral;
+import org.eclipse.ocl.pivot.PatternProperty;
+import org.eclipse.ocl.pivot.PatternValue;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.PrimitiveCompletePackage;
@@ -106,6 +111,8 @@ import org.eclipse.ocl.pivot.SelfType;
 import org.eclipse.ocl.pivot.SendSignalAction;
 import org.eclipse.ocl.pivot.SequenceType;
 import org.eclipse.ocl.pivot.SetType;
+import org.eclipse.ocl.pivot.ShadowExp;
+import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.Signal;
 import org.eclipse.ocl.pivot.Slot;
 import org.eclipse.ocl.pivot.StandardLibrary;
@@ -113,6 +120,7 @@ import org.eclipse.ocl.pivot.State;
 import org.eclipse.ocl.pivot.StateExp;
 import org.eclipse.ocl.pivot.StateMachine;
 import org.eclipse.ocl.pivot.Stereotype;
+import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.StringLiteralExp;
 import org.eclipse.ocl.pivot.TemplateBinding;
 import org.eclipse.ocl.pivot.TemplateParameter;
@@ -126,7 +134,6 @@ import org.eclipse.ocl.pivot.TupleLiteralPart;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypeExp;
-import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.pivot.UnspecifiedValueExp;
@@ -202,6 +209,20 @@ public class PivotSwitch<T> extends Switch<T> {
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID)
 		{
+			case PivotPackage.ABSTRACT_IF_EXP:
+			{
+				AbstractIfExp abstractIfExp = (AbstractIfExp)theEObject;
+				T result = caseAbstractIfExp(abstractIfExp);
+				if (result == null) result = caseOCLExpression(abstractIfExp);
+				if (result == null) result = caseTypedElement(abstractIfExp);
+				if (result == null) result = caseParameterableElement(abstractIfExp);
+				if (result == null) result = caseNamedElement(abstractIfExp);
+				if (result == null) result = caseElement(abstractIfExp);
+				if (result == null) result = caseNameable(abstractIfExp);
+				if (result == null) result = caseVisitable(abstractIfExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case PivotPackage.ANNOTATION:
 			{
 				Annotation annotation = (Annotation)theEObject;
@@ -720,6 +741,7 @@ public class PivotSwitch<T> extends Switch<T> {
 			{
 				IfExp ifExp = (IfExp)theEObject;
 				T result = caseIfExp(ifExp);
+				if (result == null) result = caseAbstractIfExp(ifExp);
 				if (result == null) result = caseOCLExpression(ifExp);
 				if (result == null) result = caseTypedElement(ifExp);
 				if (result == null) result = caseParameterableElement(ifExp);
@@ -727,6 +749,21 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = caseElement(ifExp);
 				if (result == null) result = caseNameable(ifExp);
 				if (result == null) result = caseVisitable(ifExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.IF_PATTERN_EXP:
+			{
+				IfPatternExp ifPatternExp = (IfPatternExp)theEObject;
+				T result = caseIfPatternExp(ifPatternExp);
+				if (result == null) result = caseAbstractIfExp(ifPatternExp);
+				if (result == null) result = caseOCLExpression(ifPatternExp);
+				if (result == null) result = caseTypedElement(ifPatternExp);
+				if (result == null) result = caseParameterableElement(ifPatternExp);
+				if (result == null) result = caseNamedElement(ifPatternExp);
+				if (result == null) result = caseElement(ifPatternExp);
+				if (result == null) result = caseNameable(ifPatternExp);
+				if (result == null) result = caseVisitable(ifPatternExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1270,6 +1307,54 @@ public class PivotSwitch<T> extends Switch<T> {
 				T result = caseParameterableElement(parameterableElement);
 				if (result == null) result = caseElement(parameterableElement);
 				if (result == null) result = caseVisitable(parameterableElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.PATTERN_CLASS:
+			{
+				PatternClass patternClass = (PatternClass)theEObject;
+				T result = casePatternClass(patternClass);
+				if (result == null) result = casePatternValue(patternClass);
+				if (result == null) result = caseElement(patternClass);
+				if (result == null) result = caseVisitable(patternClass);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.PATTERN_EXP:
+			{
+				PatternExp patternExp = (PatternExp)theEObject;
+				T result = casePatternExp(patternExp);
+				if (result == null) result = caseElement(patternExp);
+				if (result == null) result = caseVisitable(patternExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.PATTERN_LITERAL:
+			{
+				PatternLiteral patternLiteral = (PatternLiteral)theEObject;
+				T result = casePatternLiteral(patternLiteral);
+				if (result == null) result = casePatternValue(patternLiteral);
+				if (result == null) result = caseElement(patternLiteral);
+				if (result == null) result = caseVisitable(patternLiteral);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.PATTERN_PROPERTY:
+			{
+				PatternProperty patternProperty = (PatternProperty)theEObject;
+				T result = casePatternProperty(patternProperty);
+				if (result == null) result = casePatternValue(patternProperty);
+				if (result == null) result = caseElement(patternProperty);
+				if (result == null) result = caseVisitable(patternProperty);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.PATTERN_VALUE:
+			{
+				PatternValue patternValue = (PatternValue)theEObject;
+				T result = casePatternValue(patternValue);
+				if (result == null) result = caseElement(patternValue);
+				if (result == null) result = caseVisitable(patternValue);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1940,6 +2025,22 @@ public class PivotSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract If Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract If Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAbstractIfExp(AbstractIfExp object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Annotation</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -2284,6 +2385,22 @@ public class PivotSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseIfExp(IfExp object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>If Pattern Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>If Pattern Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfPatternExp(IfPatternExp object)
+	{
 		return null;
 	}
 
@@ -3567,6 +3684,86 @@ public class PivotSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseParameterableElement(ParameterableElement object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Pattern Class</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Pattern Class</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePatternClass(PatternClass object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Pattern Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Pattern Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePatternExp(PatternExp object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Pattern Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Pattern Literal</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePatternLiteral(PatternLiteral object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Pattern Property</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Pattern Property</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePatternProperty(PatternProperty object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Pattern Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Pattern Value</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePatternValue(PatternValue object)
 	{
 		return null;
 	}

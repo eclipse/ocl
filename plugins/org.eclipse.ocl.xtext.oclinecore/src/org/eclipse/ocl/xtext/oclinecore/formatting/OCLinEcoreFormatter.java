@@ -48,10 +48,10 @@ public class OCLinEcoreFormatter extends AbstractEssentialOCLFormatter {
 		configureCollectionLiteralExpCS(c, f.getCollectionLiteralExpCSAccess());
 		configureCollectionTypeCS(c, f.getCollectionTypeCSAccess());
 		configureCurlyBracketedClauseCS(c, f.getCurlyBracketedClauseCSAccess());
-		configureElseIfThenExpCS(c, f.getElseIfThenExpCSAccess());
 	    configureEssentialOCLNavigationOperatorCS(c, f.getEssentialOCLNavigationOperatorNameAccess());
 		configureExpCS(c, f.getExpCSAccess());
 		configureIfExpCS(c, f.getIfExpCSAccess());
+		configureIfThenExpCS(c, f.getIfThenExpCSAccess());
 	    configureLambdaTypeCS(c, f.getLambdaTypeCSAccess());
 		configureLetExpCS(c, f.getLetExpCSAccess());
 	    configureMapTypeCS(c, f.getMapTypeCSAccess());

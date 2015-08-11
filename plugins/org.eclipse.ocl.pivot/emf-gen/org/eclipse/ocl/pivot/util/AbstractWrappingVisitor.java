@@ -83,6 +83,18 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
+	public @Nullable R visitAbstractIfExp(@NonNull org.eclipse.ocl.pivot.AbstractIfExp object) {
+		P prologue = preVisit(object);
+		try {
+			R result = delegate.visitAbstractIfExp(object);
+			return postVisit(object, prologue, result);
+		}
+		catch (Throwable e) {
+			return badVisit(object, prologue, e);
+		}
+	}
+
+	@Override
 	public @Nullable R visitAnnotation(@NonNull org.eclipse.ocl.pivot.Annotation object) {
 		P prologue = preVisit(object);
 		try {
@@ -551,6 +563,18 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
+	public @Nullable R visitIfPatternExp(@NonNull org.eclipse.ocl.pivot.IfPatternExp object) {
+		P prologue = preVisit(object);
+		try {
+			R result = delegate.visitIfPatternExp(object);
+			return postVisit(object, prologue, result);
+		}
+		catch (Throwable e) {
+			return badVisit(object, prologue, e);
+		}
+	}
+
+	@Override
 	public @Nullable R visitImport(@NonNull org.eclipse.ocl.pivot.Import object) {
 		P prologue = preVisit(object);
 		try {
@@ -987,6 +1011,66 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 		P prologue = preVisit(object);
 		try {
 			R result = delegate.visitParameterableElement(object);
+			return postVisit(object, prologue, result);
+		}
+		catch (Throwable e) {
+			return badVisit(object, prologue, e);
+		}
+	}
+
+	@Override
+	public @Nullable R visitPatternClass(@NonNull org.eclipse.ocl.pivot.PatternClass object) {
+		P prologue = preVisit(object);
+		try {
+			R result = delegate.visitPatternClass(object);
+			return postVisit(object, prologue, result);
+		}
+		catch (Throwable e) {
+			return badVisit(object, prologue, e);
+		}
+	}
+
+	@Override
+	public @Nullable R visitPatternExp(@NonNull org.eclipse.ocl.pivot.PatternExp object) {
+		P prologue = preVisit(object);
+		try {
+			R result = delegate.visitPatternExp(object);
+			return postVisit(object, prologue, result);
+		}
+		catch (Throwable e) {
+			return badVisit(object, prologue, e);
+		}
+	}
+
+	@Override
+	public @Nullable R visitPatternLiteral(@NonNull org.eclipse.ocl.pivot.PatternLiteral object) {
+		P prologue = preVisit(object);
+		try {
+			R result = delegate.visitPatternLiteral(object);
+			return postVisit(object, prologue, result);
+		}
+		catch (Throwable e) {
+			return badVisit(object, prologue, e);
+		}
+	}
+
+	@Override
+	public @Nullable R visitPatternProperty(@NonNull org.eclipse.ocl.pivot.PatternProperty object) {
+		P prologue = preVisit(object);
+		try {
+			R result = delegate.visitPatternProperty(object);
+			return postVisit(object, prologue, result);
+		}
+		catch (Throwable e) {
+			return badVisit(object, prologue, e);
+		}
+	}
+
+	@Override
+	public @Nullable R visitPatternValue(@NonNull org.eclipse.ocl.pivot.PatternValue object) {
+		P prologue = preVisit(object);
+		try {
+			R result = delegate.visitPatternValue(object);
 			return postVisit(object, prologue, result);
 		}
 		catch (Throwable e) {

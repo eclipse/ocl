@@ -44,7 +44,7 @@
 ']'=67
 'and'=27
 'else'=73
-'elseif'=75
+'elseif'=72
 'endif'=74
 'extends'=82
 'false'=61
@@ -58,7 +58,7 @@
 'or'=28
 'pre'=65
 'self'=77
-'then'=72
+'then'=75
 'true'=60
 'xor'=29
 '{'=55

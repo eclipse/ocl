@@ -233,7 +233,7 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 				sequence_IfExpCS(context, (IfExpCS) semanticObject); 
 				return; 
 			case EssentialOCLCSPackage.IF_THEN_EXP_CS:
-				sequence_ElseIfThenExpCS(context, (IfThenExpCS) semanticObject); 
+				sequence_IfThenExpCS(context, (IfThenExpCS) semanticObject); 
 				return; 
 			case EssentialOCLCSPackage.INFIX_EXP_CS:
 				sequence_ExpCS(context, (InfixExpCS) semanticObject); 
@@ -429,15 +429,6 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 	
 	/**
 	 * Constraint:
-	 *     (ownedCondition=ExpCS ownedThenExpression=ExpCS)
-	 */
-	protected void sequence_ElseIfThenExpCS(EObject context, IfThenExpCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
 	 *     (ownedLeft=ExpCS_InfixExpCS_0_1_0 name=BinaryOperatorName ownedRight=ExpCS)
 	 */
 	protected void sequence_ExpCS(EObject context, InfixExpCS semanticObject) {
@@ -447,14 +438,18 @@ public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemantic
 	
 	/**
 	 * Constraint:
-	 *     (
-	 *         (ownedCondition=ExpCS | ownedCondition=PatternExpCS) 
-	 *         ownedThenExpression=ExpCS 
-	 *         ownedIfThenExpressions+=ElseIfThenExpCS* 
-	 *         ownedElseExpression=ExpCS
-	 *     )
+	 *     (ownedIfThenExpressions+=IfThenExpCS ownedIfThenExpressions+=IfThenExpCS* ownedElseExpression=ExpCS)
 	 */
 	protected void sequence_IfExpCS(EObject context, IfExpCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (ownedPattern=PatternExpCS? ownedCondition=ExpCS ownedThenExpression=ExpCS)
+	 */
+	protected void sequence_IfThenExpCS(EObject context, IfThenExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

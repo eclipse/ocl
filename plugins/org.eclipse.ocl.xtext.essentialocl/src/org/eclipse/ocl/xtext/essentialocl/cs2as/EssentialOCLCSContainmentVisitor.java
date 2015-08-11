@@ -32,6 +32,7 @@ import org.eclipse.ocl.pivot.CollectionRange;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.IfExp;
+import org.eclipse.ocl.pivot.IfPatternExp;
 import org.eclipse.ocl.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.pivot.LambdaLiteralExp;
 import org.eclipse.ocl.pivot.LanguageExpression;
@@ -39,6 +40,7 @@ import org.eclipse.ocl.pivot.MapLiteralExp;
 import org.eclipse.ocl.pivot.MapLiteralPart;
 import org.eclipse.ocl.pivot.NullLiteralExp;
 import org.eclipse.ocl.pivot.OCLExpression;
+import org.eclipse.ocl.pivot.PatternClass;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Property;
@@ -94,6 +96,7 @@ import org.eclipse.ocl.xtext.essentialoclcs.NestedExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.NullLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.NumberLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.PathExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.PatternExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.PrefixExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.PrimitiveLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.RoundBracketedClauseCS;
@@ -296,15 +299,19 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 
 	@Override
 	public Continuation<?> visitIfExpCS(@NonNull IfExpCS csElement) {
-		IfExp asIfExp = context.refreshModelElement(IfExp.class, PivotPackage.Literals.IF_EXP, csElement);
-		asIfExp.setIsElseIf(false);
+//		IfExp asIfExp = context.refreshModelElement(IfExp.class, PivotPackage.Literals.IF_EXP, csElement);
+//		asIfExp.setIsElseIf(false);
 		return null;
 	}
 
 	@Override
 	public Continuation<?> visitIfThenExpCS(@NonNull IfThenExpCS csElement) {
-		IfExp asIfExp = context.refreshModelElement(IfExp.class, PivotPackage.Literals.IF_EXP, csElement);
-		asIfExp.setIsElseIf(true);
+		if (csElement.getOwnedPattern() == null) {
+			context.refreshModelElement(IfExp.class, PivotPackage.Literals.IF_EXP, csElement);
+		}
+		else {
+			context.refreshModelElement(IfPatternExp.class, PivotPackage.Literals.IF_PATTERN_EXP, csElement);
+		}
 		return null;
 	}
 
@@ -436,6 +443,12 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 		PathNameCS pathName = csElement.getOwnedPathName();
 		assert pathName != null;
 		CS2AS.setElementType(pathName, PivotPackage.Literals.TYPE, csElement, null);
+		return null;
+	}
+
+	@Override
+	public @Nullable Continuation<?> visitPatternExpCS(@NonNull PatternExpCS csElement) {
+		context.refreshModelElement(PatternClass.class, PivotPackage.Literals.PATTERN_CLASS, csElement);
 		return null;
 	}
 

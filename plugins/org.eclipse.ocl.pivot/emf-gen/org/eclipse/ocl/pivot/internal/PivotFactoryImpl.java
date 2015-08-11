@@ -38,8 +38,6 @@ import org.eclipse.ocl.pivot.CompleteModel;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.ConnectionPointReference;
 import org.eclipse.ocl.pivot.Constraint;
-import org.eclipse.ocl.pivot.ShadowExp;
-import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Detail;
 import org.eclipse.ocl.pivot.DynamicBehavior;
@@ -54,6 +52,7 @@ import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.FinalState;
 import org.eclipse.ocl.pivot.IfExp;
+import org.eclipse.ocl.pivot.IfPatternExp;
 import org.eclipse.ocl.pivot.Import;
 import org.eclipse.ocl.pivot.InstanceSpecification;
 import org.eclipse.ocl.pivot.IntegerLiteralExp;
@@ -81,6 +80,10 @@ import org.eclipse.ocl.pivot.OrderedSetType;
 import org.eclipse.ocl.pivot.OrphanCompletePackage;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.ParameterType;
+import org.eclipse.ocl.pivot.PatternClass;
+import org.eclipse.ocl.pivot.PatternExp;
+import org.eclipse.ocl.pivot.PatternLiteral;
+import org.eclipse.ocl.pivot.PatternProperty;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Precedence;
@@ -98,6 +101,8 @@ import org.eclipse.ocl.pivot.SelfType;
 import org.eclipse.ocl.pivot.SendSignalAction;
 import org.eclipse.ocl.pivot.SequenceType;
 import org.eclipse.ocl.pivot.SetType;
+import org.eclipse.ocl.pivot.ShadowExp;
+import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.Signal;
 import org.eclipse.ocl.pivot.Slot;
 import org.eclipse.ocl.pivot.StandardLibrary;
@@ -105,6 +110,7 @@ import org.eclipse.ocl.pivot.State;
 import org.eclipse.ocl.pivot.StateExp;
 import org.eclipse.ocl.pivot.StateMachine;
 import org.eclipse.ocl.pivot.Stereotype;
+import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.StringLiteralExp;
 import org.eclipse.ocl.pivot.TemplateBinding;
 import org.eclipse.ocl.pivot.TemplateParameter;
@@ -117,7 +123,6 @@ import org.eclipse.ocl.pivot.TupleLiteralExp;
 import org.eclipse.ocl.pivot.TupleLiteralPart;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.TypeExp;
-import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.pivot.UnspecifiedValueExp;
 import org.eclipse.ocl.pivot.Variable;
@@ -212,6 +217,7 @@ public class PivotFactoryImpl
 			case PivotPackage.EXPRESSION_IN_OCL: return createExpressionInOCL();
 			case PivotPackage.FINAL_STATE: return createFinalState();
 			case PivotPackage.IF_EXP: return createIfExp();
+			case PivotPackage.IF_PATTERN_EXP: return createIfPatternExp();
 			case PivotPackage.IMPORT: return createImport();
 			case PivotPackage.INSTANCE_SPECIFICATION: return createInstanceSpecification();
 			case PivotPackage.INTEGER_LITERAL_EXP: return createIntegerLiteralExp();
@@ -240,6 +246,10 @@ public class PivotFactoryImpl
 			case PivotPackage.PACKAGE: return createPackage();
 			case PivotPackage.PARAMETER: return createParameter();
 			case PivotPackage.PARAMETER_TYPE: return createParameterType();
+			case PivotPackage.PATTERN_CLASS: return createPatternClass();
+			case PivotPackage.PATTERN_EXP: return createPatternExp();
+			case PivotPackage.PATTERN_LITERAL: return createPatternLiteral();
+			case PivotPackage.PATTERN_PROPERTY: return createPatternProperty();
 			case PivotPackage.PRECEDENCE: return createPrecedence();
 			case PivotPackage.PRIMITIVE_COMPLETE_PACKAGE: return createPrimitiveCompletePackage();
 			case PivotPackage.PRIMITIVE_TYPE: return createPrimitiveType();
@@ -540,6 +550,54 @@ public class PivotFactoryImpl
 	{
 		ParameterTypeImpl parameterType = new ParameterTypeImpl();
 		return parameterType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public PatternClass createPatternClass()
+	{
+		PatternClassImpl patternClass = new PatternClassImpl();
+		return patternClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public PatternExp createPatternExp()
+	{
+		PatternExpImpl patternExp = new PatternExpImpl();
+		return patternExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public PatternLiteral createPatternLiteral()
+	{
+		PatternLiteralImpl patternLiteral = new PatternLiteralImpl();
+		return patternLiteral;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public PatternProperty createPatternProperty()
+	{
+		PatternPropertyImpl patternProperty = new PatternPropertyImpl();
+		return patternProperty;
 	}
 
 	/**
@@ -906,6 +964,18 @@ public class PivotFactoryImpl
 	public IfExp createIfExp() {
 		IfExpImpl ifExp = new IfExpImpl();
 		return ifExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public IfPatternExp createIfPatternExp()
+	{
+		IfPatternExpImpl ifPatternExp = new IfPatternExpImpl();
+		return ifPatternExp;
 	}
 
 	/**

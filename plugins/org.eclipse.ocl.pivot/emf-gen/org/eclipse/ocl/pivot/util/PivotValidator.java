@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.ocl.pivot.AbstractIfExp;
 import org.eclipse.ocl.pivot.Annotation;
 import org.eclipse.ocl.pivot.AnyType;
 import org.eclipse.ocl.pivot.AssociationClass;
@@ -40,8 +41,6 @@ import org.eclipse.ocl.pivot.CompleteModel;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.ConnectionPointReference;
 import org.eclipse.ocl.pivot.Constraint;
-import org.eclipse.ocl.pivot.ShadowExp;
-import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Detail;
 import org.eclipse.ocl.pivot.DynamicBehavior;
@@ -59,6 +58,7 @@ import org.eclipse.ocl.pivot.Feature;
 import org.eclipse.ocl.pivot.FeatureCallExp;
 import org.eclipse.ocl.pivot.FinalState;
 import org.eclipse.ocl.pivot.IfExp;
+import org.eclipse.ocl.pivot.IfPatternExp;
 import org.eclipse.ocl.pivot.Import;
 import org.eclipse.ocl.pivot.InstanceSpecification;
 import org.eclipse.ocl.pivot.IntegerLiteralExp;
@@ -95,6 +95,11 @@ import org.eclipse.ocl.pivot.OrphanCompletePackage;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.ParameterType;
 import org.eclipse.ocl.pivot.ParameterableElement;
+import org.eclipse.ocl.pivot.PatternClass;
+import org.eclipse.ocl.pivot.PatternExp;
+import org.eclipse.ocl.pivot.PatternLiteral;
+import org.eclipse.ocl.pivot.PatternProperty;
+import org.eclipse.ocl.pivot.PatternValue;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.PrimitiveCompletePackage;
@@ -113,6 +118,8 @@ import org.eclipse.ocl.pivot.SelfType;
 import org.eclipse.ocl.pivot.SendSignalAction;
 import org.eclipse.ocl.pivot.SequenceType;
 import org.eclipse.ocl.pivot.SetType;
+import org.eclipse.ocl.pivot.ShadowExp;
+import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.Signal;
 import org.eclipse.ocl.pivot.Slot;
 import org.eclipse.ocl.pivot.StandardLibrary;
@@ -120,6 +127,7 @@ import org.eclipse.ocl.pivot.State;
 import org.eclipse.ocl.pivot.StateExp;
 import org.eclipse.ocl.pivot.StateMachine;
 import org.eclipse.ocl.pivot.Stereotype;
+import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.StringLiteralExp;
 import org.eclipse.ocl.pivot.TemplateBinding;
 import org.eclipse.ocl.pivot.TemplateParameter;
@@ -134,7 +142,6 @@ import org.eclipse.ocl.pivot.TupleLiteralPart;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypeExp;
-import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.pivot.UnspecifiedValueExp;
@@ -803,6 +810,8 @@ public class PivotValidator
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		switch (classifierID)
 		{
+			case PivotPackage.ABSTRACT_IF_EXP:
+				return validateAbstractIfExp((AbstractIfExp)value, diagnostics, context);
 			case PivotPackage.ANNOTATION:
 				return validateAnnotation((Annotation)value, diagnostics, context);
 			case PivotPackage.ANY_TYPE:
@@ -881,6 +890,8 @@ public class PivotValidator
 				return validateFinalState((FinalState)value, diagnostics, context);
 			case PivotPackage.IF_EXP:
 				return validateIfExp((IfExp)value, diagnostics, context);
+			case PivotPackage.IF_PATTERN_EXP:
+				return validateIfPatternExp((IfPatternExp)value, diagnostics, context);
 			case PivotPackage.IMPORT:
 				return validateImport((Import)value, diagnostics, context);
 			case PivotPackage.INSTANCE_SPECIFICATION:
@@ -959,6 +970,16 @@ public class PivotValidator
 				return validateParameterType((ParameterType)value, diagnostics, context);
 			case PivotPackage.PARAMETERABLE_ELEMENT:
 				return validateParameterableElement((ParameterableElement)value, diagnostics, context);
+			case PivotPackage.PATTERN_CLASS:
+				return validatePatternClass((PatternClass)value, diagnostics, context);
+			case PivotPackage.PATTERN_EXP:
+				return validatePatternExp((PatternExp)value, diagnostics, context);
+			case PivotPackage.PATTERN_LITERAL:
+				return validatePatternLiteral((PatternLiteral)value, diagnostics, context);
+			case PivotPackage.PATTERN_PROPERTY:
+				return validatePatternProperty((PatternProperty)value, diagnostics, context);
+			case PivotPackage.PATTERN_VALUE:
+				return validatePatternValue((PatternValue)value, diagnostics, context);
 			case PivotPackage.PIVOTABLE:
 				return validatePivotable((Pivotable)value, diagnostics, context);
 			case PivotPackage.PRECEDENCE:
@@ -1088,6 +1109,27 @@ public class PivotValidator
 			default:
 				return true;
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateAbstractIfExp(AbstractIfExp abstractIfExp, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		if (!validate_NoCircularContainment(abstractIfExp, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(abstractIfExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(abstractIfExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(abstractIfExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(abstractIfExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(abstractIfExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(abstractIfExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(abstractIfExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(abstractIfExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(abstractIfExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(abstractIfExp, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -1565,6 +1607,56 @@ public class PivotValidator
 	public boolean validateParameterableElement(ParameterableElement parameterableElement, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(parameterableElement, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePatternClass(PatternClass patternClass, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint(patternClass, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePatternExp(PatternExp patternExp, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint(patternExp, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePatternLiteral(PatternLiteral patternLiteral, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint(patternLiteral, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePatternProperty(PatternProperty patternProperty, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint(patternProperty, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePatternValue(PatternValue patternValue, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint(patternValue, diagnostics, context);
 	}
 
 	/**
@@ -2505,6 +2597,27 @@ public class PivotValidator
 	public boolean validateIfExp_validateConditionTypeIsBoolean(IfExp ifExp, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return ifExp.validateConditionTypeIsBoolean(diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateIfPatternExp(IfPatternExp ifPatternExp, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		if (!validate_NoCircularContainment(ifPatternExp, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(ifPatternExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(ifPatternExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(ifPatternExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(ifPatternExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(ifPatternExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(ifPatternExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(ifPatternExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(ifPatternExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotNull(ifPatternExp, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTypedElement_validateTypeIsNotOclInvalid(ifPatternExp, diagnostics, context);
+		return result;
 	}
 
 	/**

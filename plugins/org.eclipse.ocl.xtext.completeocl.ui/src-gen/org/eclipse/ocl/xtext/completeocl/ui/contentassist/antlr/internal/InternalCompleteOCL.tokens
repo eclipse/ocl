@@ -52,9 +52,9 @@
 'context'=60
 'def'=65
 'derive'=72
-'else'=87
-'elseif'=89
-'endif'=88
+'else'=86
+'elseif'=88
+'endif'=87
 'endpackage'=71
 'extends'=92
 'false'=98
@@ -76,7 +76,7 @@
 'pre'=67
 'self'=91
 'static'=94
-'then'=86
+'then'=89
 'true'=97
 'xor'=45
 '{'=75

@@ -283,6 +283,18 @@
       <packagedElement xmi:type="uml:Association" xmi:id="_kOeEUBzOEeSIos3S87O_rg" name="A_specification_owningConstraint" memberEnd="_QcxJMBlREeSM9LreJtBwBg _bRneEBzOEeSIos3S87O_rg"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="OCL-OCL_Expressions" name="OCL_Expressions">
+      <packagedElement xmi:type="uml:Class" xmi:id="_LJj2gEAzEeWQHP9WDFQu4g" name="AbstractIfExp" isAbstract="true">
+        <generalization xmi:id="_LJj2gUAzEeWQHP9WDFQu4g" general="OCL-OCL_Expressions-OCLExpression"/>
+        <ownedAttribute xmi:id="_LJj2g0AzEeWQHP9WDFQu4g" name="ownedThen" type="OCL-OCL_Expressions-OCLExpression" aggregation="composite"/>
+        <ownedAttribute xmi:id="_LJj2hEAzEeWQHP9WDFQu4g" name="ownedElse" type="OCL-OCL_Expressions-OCLExpression" aggregation="composite"/>
+        <ownedAttribute xmi:id="_LJj2hUAzEeWQHP9WDFQu4g" name="isElseIf" type="OCL-OCL_PrimitiveTypes-Boolean">
+          <ownedComment xmi:id="_LJj2hkAzEeWQHP9WDFQu4g">
+            <body>True if this IfExp corresponds to an 'elseif' in the OCL source, false if it corresponds to an 'if'. This attribute has no semantic significance; it merely supports more faithful reconstruction of the OCL source by a pretty printer. </body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_LJj2h0AzEeWQHP9WDFQu4g" value="1"/>
+          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_LJj2iEAzEeWQHP9WDFQu4g"/>
+        </ownedAttribute>
+      </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-AssociationClassCallExp" name="AssociationClassCallExp">
         <generalization xmi:id="_XpnTLH7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-NavigationCallExp"/>
         <ownedAttribute xmi:id="OCL-OCL_Expressions-AssociationClassCallExp-referredAssociationClass" name="referredAssociationClass" type="OCL-OCL_Associations-AssociationClass">
@@ -336,17 +348,8 @@
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-IfExp" name="IfExp">
-        <generalization xmi:id="_XpnTFn7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-OCLExpression"/>
+        <generalization xmi:id="_XpnTFn7VEeOu79LxSz8Ylw" general="_LJj2gEAzEeWQHP9WDFQu4g"/>
         <ownedAttribute xmi:id="OCL-OCL_Expressions-IfExp-condition" name="ownedCondition" type="OCL-OCL_Expressions-OCLExpression" aggregation="composite"/>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-IfExp-thenExpression" name="ownedThen" type="OCL-OCL_Expressions-OCLExpression" aggregation="composite"/>
-        <ownedAttribute xmi:id="OCL-OCL_Expressions-IfExp-elseExpression" name="ownedElse" type="OCL-OCL_Expressions-OCLExpression" aggregation="composite"/>
-        <ownedAttribute xmi:id="_8kbLoDXKEeWLrLq3b6D2xg" name="isElseIf" type="OCL-OCL_PrimitiveTypes-Boolean">
-          <ownedComment xmi:id="_BsU5kDXLEeWLrLq3b6D2xg">
-            <body>True if this IfExp corresponds to an 'elseif' in the OCL source, false if it corresponds to an 'if'. This attribute has no semantic significance; it merely supports more faithful reconstruction of the OCL source by a pretty printer. </body>
-          </ownedComment>
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8kbysDXKEeWLrLq3b6D2xg" value="1"/>
-          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_8kbysTXKEeWLrLq3b6D2xg"/>
-        </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-IntegerLiteralExp" name="IntegerLiteralExp">
         <generalization xmi:id="_XpnTHX7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-NumericLiteralExp"/>
@@ -619,6 +622,67 @@
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Types-Signal" name="Signal">
         <generalization xmi:id="_XpnTBn7VEeOu79LxSz8Ylw" general="_-5qQIBsDEeSM9LreJtBwBg"/>
       </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_N0CpIEAaEeWQHP9WDFQu4g" name="OCL_Patterns">
+      <packagedElement xmi:type="uml:Class" xmi:id="_VGh18EAzEeWQHP9WDFQu4g" name="AbstractIfExp" isAbstract="true"/>
+      <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_i7GD8EAxEeWQHP9WDFQu4g" name="Boolean"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_YNO7cEAjEeWQHP9WDFQu4g" name="Class"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Li7TYEAgEeWQHP9WDFQu4g" name="Element" isAbstract="true"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_WRVlkEAaEeWQHP9WDFQu4g" name="IfPatternExp">
+        <generalization xmi:id="_zg9qAEAxEeWQHP9WDFQu4g" general="_VGh18EAzEeWQHP9WDFQu4g"/>
+        <ownedAttribute xmi:id="_bA1g8EAiEeWQHP9WDFQu4g" name="ownedPattern" type="_FzuC8EAiEeWQHP9WDFQu4g" aggregation="composite">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bA1g8UAiEeWQHP9WDFQu4g" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bA1g8kAiEeWQHP9WDFQu4g" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_gxCAIEAxEeWQHP9WDFQu4g" name="ownedSource" type="_lbBhgEAaEeWQHP9WDFQu4g" aggregation="composite"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_7Bc3YEAaEeWQHP9WDFQu4g" name="IteratorExp">
+        <ownedAttribute xmi:id="_gkcTcEAiEeWQHP9WDFQu4g" name="ownedPattern" type="_FzuC8EAiEeWQHP9WDFQu4g" aggregation="composite">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gkcTcUAiEeWQHP9WDFQu4g"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_gkcTckAiEeWQHP9WDFQu4g" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_lbBhgEAaEeWQHP9WDFQu4g" name="OCLExpression" isAbstract="true"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_xHfg8EAgEeWQHP9WDFQu4g" name="PatternClass">
+        <generalization xmi:id="_xHfg8UAgEeWQHP9WDFQu4g" general="_e-nQAEAgEeWQHP9WDFQu4g"/>
+        <ownedAttribute xmi:id="_rsDzAEAgEeWQHP9WDFQu4g" name="ownedProperties" type="_G9gAYEAgEeWQHP9WDFQu4g" isOrdered="true" aggregation="composite">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_uufCMEAgEeWQHP9WDFQu4g"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_rsDzAUAgEeWQHP9WDFQu4g" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_XUKlcEAjEeWQHP9WDFQu4g" name="referredClass" type="_YNO7cEAjEeWQHP9WDFQu4g"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_FzuC8EAiEeWQHP9WDFQu4g" name="PatternExp">
+        <generalization xmi:id="_FzuC8UAiEeWQHP9WDFQu4g" general="_Li7TYEAgEeWQHP9WDFQu4g"/>
+        <ownedAttribute xmi:id="_FzuC8kAiEeWQHP9WDFQu4g" name="ownedPattern" type="_e-nQAEAgEeWQHP9WDFQu4g" aggregation="composite"/>
+        <ownedAttribute xmi:id="_FzuC80AiEeWQHP9WDFQu4g" name="ownedVariables" type="_v8EeYEAaEeWQHP9WDFQu4g" isOrdered="true" aggregation="composite">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_FzuC9EAiEeWQHP9WDFQu4g" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_5W1g8EAgEeWQHP9WDFQu4g" name="PatternLiteral">
+        <generalization xmi:id="_5W1g8UAgEeWQHP9WDFQu4g" general="_e-nQAEAgEeWQHP9WDFQu4g"/>
+        <ownedAttribute xmi:id="_X6eCYEAhEeWQHP9WDFQu4g" name="ownedExpression" type="_lbBhgEAaEeWQHP9WDFQu4g" aggregation="composite">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_X6eCYUAhEeWQHP9WDFQu4g" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_X6eCYkAhEeWQHP9WDFQu4g" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_G9gAYEAgEeWQHP9WDFQu4g" name="PatternProperty">
+        <generalization xmi:id="_G9gAYUAgEeWQHP9WDFQu4g" general="_e-nQAEAgEeWQHP9WDFQu4g"/>
+        <ownedAttribute xmi:id="_HnOLcEAjEeWQHP9WDFQu4g" name="ownedElements" type="_e-nQAEAgEeWQHP9WDFQu4g" aggregation="composite">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HnOLcUAjEeWQHP9WDFQu4g"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_HnOLckAjEeWQHP9WDFQu4g" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ijOe4EAjEeWQHP9WDFQu4g" name="ownedRest" type="_e-nQAEAgEeWQHP9WDFQu4g" aggregation="composite">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ijOe4UAjEeWQHP9WDFQu4g"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ijOe4kAjEeWQHP9WDFQu4g" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_G9gAYkAgEeWQHP9WDFQu4g" name="referredProperty" type="_TqyyYEAgEeWQHP9WDFQu4g"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_e-nQAEAgEeWQHP9WDFQu4g" name="PatternValue" isAbstract="true">
+        <generalization xmi:id="_e-nQAUAgEeWQHP9WDFQu4g" general="_Li7TYEAgEeWQHP9WDFQu4g"/>
+        <ownedAttribute xmi:id="_xHfg8kAgEeWQHP9WDFQu4g" name="referredVariable" type="_v8EeYEAaEeWQHP9WDFQu4g"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_TqyyYEAgEeWQHP9WDFQu4g" name="Property"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_v8EeYEAaEeWQHP9WDFQu4g" name="Variable"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="OCL-OCL_PrimitiveTypes" name="OCL_PrimitiveTypes">
       <packagedElement xmi:type="uml:PrimitiveType" xmi:id="OCL-OCL_PrimitiveTypes-Boolean" name="Boolean"/>

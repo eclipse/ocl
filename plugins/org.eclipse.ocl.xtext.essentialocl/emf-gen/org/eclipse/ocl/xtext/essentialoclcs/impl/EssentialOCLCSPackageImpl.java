@@ -1871,7 +1871,7 @@ public class EssentialOCLCSPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EReference getIfExpCS_OwnedCondition()
+	public EReference getIfExpCS_OwnedIfThenExpressions()
 	{
 		return (EReference)ifExpCSEClass.getEStructuralFeatures().get(1);
 	}
@@ -1882,42 +1882,9 @@ public class EssentialOCLCSPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EReference getIfExpCS_OwnedThenExpression()
-	{
-		return (EReference)ifExpCSEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getIfExpCS_OwnedIfThenExpressions()
-	{
-		return (EReference)ifExpCSEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getIfExpCS_OwnedElseExpression()
 	{
-		return (EReference)ifExpCSEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getIfExpCS_IsImplicit()
-	{
-		return (EAttribute)ifExpCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)ifExpCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1948,9 +1915,20 @@ public class EssentialOCLCSPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EReference getIfThenExpCS_OwnedThenExpression()
+	public EReference getIfThenExpCS_OwnedPattern()
 	{
 		return (EReference)ifThenExpCSEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getIfThenExpCS_OwnedThenExpression()
+	{
+		return (EReference)ifThenExpCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -2137,14 +2115,12 @@ public class EssentialOCLCSPackageImpl
 		createEReference(expSpecificationCSEClass, EXP_SPECIFICATION_CS__OWNED_EXPRESSION);
 
 		ifExpCSEClass = createEClass(IF_EXP_CS);
-		createEAttribute(ifExpCSEClass, IF_EXP_CS__IS_IMPLICIT);
-		createEReference(ifExpCSEClass, IF_EXP_CS__OWNED_CONDITION);
 		createEReference(ifExpCSEClass, IF_EXP_CS__OWNED_ELSE_EXPRESSION);
 		createEReference(ifExpCSEClass, IF_EXP_CS__OWNED_IF_THEN_EXPRESSIONS);
-		createEReference(ifExpCSEClass, IF_EXP_CS__OWNED_THEN_EXPRESSION);
 
 		ifThenExpCSEClass = createEClass(IF_THEN_EXP_CS);
 		createEReference(ifThenExpCSEClass, IF_THEN_EXP_CS__OWNED_CONDITION);
+		createEReference(ifThenExpCSEClass, IF_THEN_EXP_CS__OWNED_PATTERN);
 		createEReference(ifThenExpCSEClass, IF_THEN_EXP_CS__OWNED_THEN_EXPRESSION);
 
 		infixExpCSEClass = createEClass(INFIX_EXP_CS);
@@ -2436,15 +2412,13 @@ public class EssentialOCLCSPackageImpl
 		initEReference(getExpSpecificationCS_OwnedExpression(), this.getExpCS(), null, "ownedExpression", null, 0, 1, ExpSpecificationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(ifExpCSEClass, IfExpCS.class, "IfExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getIfExpCS_IsImplicit(), ecorePackage.getEBoolean(), "isImplicit", "false", 0, 1, IfExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEReference(getIfExpCS_OwnedCondition(), this.getExpCS(), null, "ownedCondition", null, 0, 1, IfExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getIfExpCS_OwnedElseExpression(), this.getExpCS(), null, "ownedElseExpression", null, 0, 1, IfExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getIfExpCS_OwnedIfThenExpressions(), this.getIfThenExpCS(), null, "ownedIfThenExpressions", null, 0, -1, IfExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getIfExpCS_OwnedThenExpression(), this.getExpCS(), null, "ownedThenExpression", null, 0, 1, IfExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getIfExpCS_OwnedElseExpression(), this.getExpCS(), null, "ownedElseExpression", null, 1, 1, IfExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getIfExpCS_OwnedIfThenExpressions(), this.getIfThenExpCS(), null, "ownedIfThenExpressions", null, 1, -1, IfExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(ifThenExpCSEClass, IfThenExpCS.class, "IfThenExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getIfThenExpCS_OwnedCondition(), this.getExpCS(), null, "ownedCondition", null, 0, 1, IfThenExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getIfThenExpCS_OwnedThenExpression(), this.getExpCS(), null, "ownedThenExpression", null, 0, 1, IfThenExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getIfThenExpCS_OwnedCondition(), this.getExpCS(), null, "ownedCondition", null, 1, 1, IfThenExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getIfThenExpCS_OwnedPattern(), this.getPatternExpCS(), null, "ownedPattern", null, 0, 1, IfThenExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getIfThenExpCS_OwnedThenExpression(), this.getExpCS(), null, "ownedThenExpression", null, 1, 1, IfThenExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(infixExpCSEClass, InfixExpCS.class, "InfixExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getInfixExpCS_Argument(), this.getExpCS(), null, "argument", null, 0, 1, InfixExpCS.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

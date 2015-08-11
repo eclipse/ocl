@@ -141,14 +141,14 @@ def : ast() : ocl::ExpressionInOCL =
 context IfExpCS
 def : ast() : ocl::IfExp =
 	ocl::IfExp {
-		ownedCondition = ownedCondition.ast(),
-		ownedThen = ownedThenExpression.ast(),
+		ownedCondition = ownedIfThenExpressions->first().ownedCondition.ast(),
+		ownedThen = ownedIfThenExpressions->first().ownedThenExpression.ast(),
 		ownedElse = ownedElseExpression.ast()
 --		type = commonType(ownedThenExpression.ast().type, ownedElseExpression.ast().ast)
 --		isImplicit = isImplicit
 	}
 inv ElseIfHasBeenFlattened: ownedIfThenExpressions->isEmpty()
-	
+
 context InvalidLiteralExpCS
 def : ast() : ocl::InvalidLiteralExp = 
 	ocl::InvalidLiteralExp {

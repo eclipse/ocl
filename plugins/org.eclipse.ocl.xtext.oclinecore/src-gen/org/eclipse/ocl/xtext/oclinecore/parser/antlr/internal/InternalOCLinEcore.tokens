@@ -68,7 +68,7 @@
 'derived'=27
 'documentation'=72
 'else'=128
-'elseif'=130
+'elseif'=127
 'endif'=129
 'enum'=28
 'extends'=29
@@ -105,7 +105,7 @@
 'serializable'=70
 'static'=46
 'sysml'=78
-'then'=127
+'then'=130
 'throws'=47
 'transient'=48
 'true'=116

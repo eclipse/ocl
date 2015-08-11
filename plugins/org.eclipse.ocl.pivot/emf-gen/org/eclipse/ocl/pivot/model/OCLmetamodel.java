@@ -158,6 +158,7 @@ public class OCLmetamodel extends ASResourceImpl
 			root.getOwnedImports().add(createImport(null, _ocl));
 		}
 		
+		private final @NonNull Class _AbstractIfExp = createClass(PivotPackage.Literals.ABSTRACT_IF_EXP);
 		private final @NonNull Class _Annotation = createClass(PivotPackage.Literals.ANNOTATION);
 		private final @NonNull Class _AnyType = createClass(PivotPackage.Literals.ANY_TYPE);
 		private final @NonNull Class _AssociationClass = createClass(PivotPackage.Literals.ASSOCIATION_CLASS);
@@ -197,6 +198,7 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull Class _FeatureCallExp = createClass(PivotPackage.Literals.FEATURE_CALL_EXP);
 		private final @NonNull Class _FinalState = createClass(PivotPackage.Literals.FINAL_STATE);
 		private final @NonNull Class _IfExp = createClass(PivotPackage.Literals.IF_EXP);
+		private final @NonNull Class _IfPatternExp = createClass(PivotPackage.Literals.IF_PATTERN_EXP);
 		private final @NonNull Class _Import = createClass(PivotPackage.Literals.IMPORT);
 		private final @NonNull Class _InstanceSpecification = createClass(PivotPackage.Literals.INSTANCE_SPECIFICATION);
 		private final @NonNull Class _IntegerLiteralExp = createClass(PivotPackage.Literals.INTEGER_LITERAL_EXP);
@@ -238,6 +240,11 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull Class _Parameter = createClass(PivotPackage.Literals.PARAMETER);
 		private final @NonNull Class _ParameterType = createClass(PivotPackage.Literals.PARAMETER_TYPE);
 		private final @NonNull Class _ParameterableElement = createClass(PivotPackage.Literals.PARAMETERABLE_ELEMENT);
+		private final @NonNull Class _PatternClass = createClass(PivotPackage.Literals.PATTERN_CLASS);
+		private final @NonNull Class _PatternExp = createClass(PivotPackage.Literals.PATTERN_EXP);
+		private final @NonNull Class _PatternLiteral = createClass(PivotPackage.Literals.PATTERN_LITERAL);
+		private final @NonNull Class _PatternProperty = createClass(PivotPackage.Literals.PATTERN_PROPERTY);
+		private final @NonNull Class _PatternValue = createClass(PivotPackage.Literals.PATTERN_VALUE);
 		private final @NonNull Class _Pivotable = createClass(PivotPackage.Literals.PIVOTABLE);
 		private final @NonNull Class _Precedence = createClass(PivotPackage.Literals.PRECEDENCE);
 		private final @NonNull Class _PrimitiveCompletePackage = createClass(PivotPackage.Literals.PRIMITIVE_COMPLETE_PACKAGE);
@@ -342,6 +349,9 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull BagType _Bag_OppositePropertyCallExp = createBagType(_Bag, _OppositePropertyCallExp);
 		private final @NonNull BagType _Bag_Package = createBagType(_Bag, _Package);
 		private final @NonNull BagType _Bag_ParameterType = createBagType(_Bag, _ParameterType);
+		private final @NonNull BagType _Bag_PatternClass = createBagType(_Bag, _PatternClass);
+		private final @NonNull BagType _Bag_PatternProperty = createBagType(_Bag, _PatternProperty);
+		private final @NonNull BagType _Bag_PatternValue = createBagType(_Bag, _PatternValue);
 		private final @NonNull BagType _Bag_PrimitiveType = createBagType(_Bag, _PrimitiveType);
 		private final @NonNull BagType _Bag_Property = createBagType(_Bag, _Property);
 		private final @NonNull BagType _Bag_PropertyCallExp = createBagType(_Bag, _PropertyCallExp);
@@ -396,6 +406,9 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull CollectionType _Collection_Package = createCollectionType(_Collection, _Package);
 		private final @NonNull CollectionType _Collection_Parameter = createCollectionType(_Collection, _Parameter);
 		private final @NonNull CollectionType _Collection_ParameterType = createCollectionType(_Collection, _ParameterType);
+		private final @NonNull CollectionType _Collection_PatternClass = createCollectionType(_Collection, _PatternClass);
+		private final @NonNull CollectionType _Collection_PatternProperty = createCollectionType(_Collection, _PatternProperty);
+		private final @NonNull CollectionType _Collection_PatternValue = createCollectionType(_Collection, _PatternValue);
 		private final @NonNull CollectionType _Collection_Precedence = createCollectionType(_Collection, _Precedence);
 		private final @NonNull CollectionType _Collection_PrimitiveType = createCollectionType(_Collection, _PrimitiveType);
 		private final @NonNull CollectionType _Collection_ProfileApplication = createCollectionType(_Collection, _ProfileApplication);
@@ -435,6 +448,7 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull CollectionType _OrderedCollection_Operation = createCollectionType(_OrderedCollection, _Operation);
 		private final @NonNull CollectionType _OrderedCollection_Parameter = createCollectionType(_OrderedCollection, _Parameter);
 		private final @NonNull CollectionType _OrderedCollection_ParameterType = createCollectionType(_OrderedCollection, _ParameterType);
+		private final @NonNull CollectionType _OrderedCollection_PatternProperty = createCollectionType(_OrderedCollection, _PatternProperty);
 		private final @NonNull CollectionType _OrderedCollection_Precedence = createCollectionType(_OrderedCollection, _Precedence);
 		private final @NonNull CollectionType _OrderedCollection_Property = createCollectionType(_OrderedCollection, _Property);
 		private final @NonNull CollectionType _OrderedCollection_ShadowPart = createCollectionType(_OrderedCollection, _ShadowPart);
@@ -453,6 +467,7 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull OrderedSetType _OrderedSet_Operation_NullFree = createOrderedSetType(_OrderedSet, _Operation);
 		private final @NonNull OrderedSetType _OrderedSet_Parameter_NullFree = createOrderedSetType(_OrderedSet, _Parameter);
 		private final @NonNull OrderedSetType _OrderedSet_ParameterType_NullFree = createOrderedSetType(_OrderedSet, _ParameterType);
+		private final @NonNull OrderedSetType _OrderedSet_PatternProperty_NullFree = createOrderedSetType(_OrderedSet, _PatternProperty);
 		private final @NonNull OrderedSetType _OrderedSet_Precedence_NullFree = createOrderedSetType(_OrderedSet, _Precedence);
 		private final @NonNull OrderedSetType _OrderedSet_Property_NullFree = createOrderedSetType(_OrderedSet, _Property);
 		private final @NonNull OrderedSetType _OrderedSet_ShadowPart_NullFree = createOrderedSetType(_OrderedSet, _ShadowPart);
@@ -460,6 +475,7 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull OrderedSetType _OrderedSet_TupleLiteralPart_NullFree = createOrderedSetType(_OrderedSet, _TupleLiteralPart);
 		private final @NonNull OrderedSetType _OrderedSet_ValueSpecification_NullFree = createOrderedSetType(_OrderedSet, _ValueSpecification);
 		private final @NonNull OrderedSetType _OrderedSet_Variable_NullFree = createOrderedSetType(_OrderedSet, _Variable);
+		private final @NonNull OrderedSetType _OrderedSet_Variable_NullFree_1 = createOrderedSetType(_OrderedSet, _Variable);
 		private final @NonNull SequenceType _Sequence_String_1 = createSequenceType(_Sequence, _String);
 		private final @NonNull SetType _Set_Behavior_NullFree = createSetType(_Set, _Behavior);
 		private final @NonNull SetType _Set_Class_NullFree = createSetType(_Set, _Class);
@@ -476,6 +492,7 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull SetType _Set_Model_NullFree = createSetType(_Set, _Model);
 		private final @NonNull SetType _Set_Operation_NullFree = createSetType(_Set, _Operation);
 		private final @NonNull SetType _Set_Package_NullFree = createSetType(_Set, _Package);
+		private final @NonNull SetType _Set_PatternValue_NullFree = createSetType(_Set, _PatternValue);
 		private final @NonNull SetType _Set_ProfileApplication_NullFree = createSetType(_Set, _ProfileApplication);
 		private final @NonNull SetType _Set_Property_NullFree = createSetType(_Set, _Property);
 		private final @NonNull SetType _Set_Pseudostate_NullFree = createSetType(_Set, _Pseudostate);
@@ -513,6 +530,8 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull CollectionType _UniqueCollection_Package = createCollectionType(_UniqueCollection, _Package);
 		private final @NonNull CollectionType _UniqueCollection_Parameter = createCollectionType(_UniqueCollection, _Parameter);
 		private final @NonNull CollectionType _UniqueCollection_ParameterType = createCollectionType(_UniqueCollection, _ParameterType);
+		private final @NonNull CollectionType _UniqueCollection_PatternProperty = createCollectionType(_UniqueCollection, _PatternProperty);
+		private final @NonNull CollectionType _UniqueCollection_PatternValue = createCollectionType(_UniqueCollection, _PatternValue);
 		private final @NonNull CollectionType _UniqueCollection_Precedence = createCollectionType(_UniqueCollection, _Precedence);
 		private final @NonNull CollectionType _UniqueCollection_ProfileApplication = createCollectionType(_UniqueCollection, _ProfileApplication);
 		private final @NonNull CollectionType _UniqueCollection_Property = createCollectionType(_UniqueCollection, _Property);
@@ -540,6 +559,9 @@ public class OCLmetamodel extends ASResourceImpl
 			Class type;
 		
 			ownedClasses = pivot.getOwnedClasses();
+			ownedClasses.add(type = _AbstractIfExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OCLExpression);
 			ownedClasses.add(type = _Annotation);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_NamedElement);
@@ -661,7 +683,10 @@ public class OCLmetamodel extends ASResourceImpl
 			superClasses.add(_State);
 			ownedClasses.add(type = _IfExp);
 			superClasses = type.getSuperClasses();
-			superClasses.add(_OCLExpression);
+			superClasses.add(_AbstractIfExp);
+			ownedClasses.add(type = _IfPatternExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_AbstractIfExp);
 			ownedClasses.add(type = _Import);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_NamedElement);
@@ -793,6 +818,21 @@ public class OCLmetamodel extends ASResourceImpl
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Element);
 			ownedClasses.add(type = _ParameterableElement);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Element);
+			ownedClasses.add(type = _PatternClass);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_PatternValue);
+			ownedClasses.add(type = _PatternExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Element);
+			ownedClasses.add(type = _PatternLiteral);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_PatternValue);
+			ownedClasses.add(type = _PatternProperty);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_PatternValue);
+			ownedClasses.add(type = _PatternValue);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Element);
 			ownedClasses.add(type = _Pivotable);
@@ -1084,6 +1124,15 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedClasses.add(type = _Bag_ParameterType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_ParameterType);
+			ownedClasses.add(type = _Bag_PatternClass);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Collection_PatternClass);
+			ownedClasses.add(type = _Bag_PatternProperty);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Collection_PatternProperty);
+			ownedClasses.add(type = _Bag_PatternValue);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Collection_PatternValue);
 			ownedClasses.add(type = _Bag_PrimitiveType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_PrimitiveType);
@@ -1246,6 +1295,15 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedClasses.add(type = _Collection_ParameterType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
+			ownedClasses.add(type = _Collection_PatternClass);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclElement);
+			ownedClasses.add(type = _Collection_PatternProperty);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclElement);
+			ownedClasses.add(type = _Collection_PatternValue);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclElement);
 			ownedClasses.add(type = _Collection_Precedence);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
@@ -1363,6 +1421,9 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedClasses.add(type = _OrderedCollection_ParameterType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_ParameterType);
+			ownedClasses.add(type = _OrderedCollection_PatternProperty);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Collection_PatternProperty);
 			ownedClasses.add(type = _OrderedCollection_Precedence);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Precedence);
@@ -1437,6 +1498,11 @@ public class OCLmetamodel extends ASResourceImpl
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OrderedCollection_ParameterType);
 			superClasses.add(_UniqueCollection_ParameterType);
+			ownedClasses.add(type = _OrderedSet_PatternProperty_NullFree);
+			type.setIsNullFree(true);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OrderedCollection_PatternProperty);
+			superClasses.add(_UniqueCollection_PatternProperty);
 			ownedClasses.add(type = _OrderedSet_Precedence_NullFree);
 			type.setIsNullFree(true);
 			superClasses = type.getSuperClasses();
@@ -1470,6 +1536,12 @@ public class OCLmetamodel extends ASResourceImpl
 			superClasses.add(_UniqueCollection_ValueSpecification);
 			ownedClasses.add(type = _OrderedSet_Variable_NullFree);
 			type.setIsNullFree(true);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OrderedCollection_Variable);
+			superClasses.add(_UniqueCollection_Variable);
+			ownedClasses.add(type = _OrderedSet_Variable_NullFree_1);
+			type.setIsNullFree(true);
+			type.setLower(1);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OrderedCollection_Variable);
 			superClasses.add(_UniqueCollection_Variable);
@@ -1536,6 +1608,10 @@ public class OCLmetamodel extends ASResourceImpl
 			type.setIsNullFree(true);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_Package);
+			ownedClasses.add(type = _Set_PatternValue_NullFree);
+			type.setIsNullFree(true);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_UniqueCollection_PatternValue);
 			ownedClasses.add(type = _Set_ProfileApplication_NullFree);
 			type.setIsNullFree(true);
 			superClasses = type.getSuperClasses();
@@ -1664,6 +1740,12 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedClasses.add(type = _UniqueCollection_ParameterType);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_ParameterType);
+			ownedClasses.add(type = _UniqueCollection_PatternProperty);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Collection_PatternProperty);
+			ownedClasses.add(type = _UniqueCollection_PatternValue);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Collection_PatternValue);
 			ownedClasses.add(type = _UniqueCollection_Precedence);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Precedence);
@@ -1910,6 +1992,9 @@ public class OCLmetamodel extends ASResourceImpl
 			operation.setIsRequired(false);
 		}
 		
+		private final @NonNull Property pr_AbstractIfExp_isElseIf = createProperty(PivotPackage.Literals.ABSTRACT_IF_EXP__IS_ELSE_IF, _Boolean);
+		private final @NonNull Property pr_AbstractIfExp_ownedElse = createProperty(PivotPackage.Literals.ABSTRACT_IF_EXP__OWNED_ELSE, _OCLExpression);
+		private final @NonNull Property pr_AbstractIfExp_ownedThen = createProperty(PivotPackage.Literals.ABSTRACT_IF_EXP__OWNED_THEN, _OCLExpression);
 		private final @NonNull Property pr_Annotation_ownedContents = createProperty(PivotPackage.Literals.ANNOTATION__OWNED_CONTENTS, _OrderedSet_Element_NullFree);
 		private final @NonNull Property pr_Annotation_ownedDetails = createProperty(PivotPackage.Literals.ANNOTATION__OWNED_DETAILS, _OrderedSet_Detail_NullFree);
 		private final @NonNull Property pr_Annotation_references = createProperty(PivotPackage.Literals.ANNOTATION__REFERENCES, _OrderedSet_Element_NullFree);
@@ -1942,6 +2027,7 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull Property pr_Class_CompleteClass_partialClasses = createProperty("CompleteClass", _Bag_CompleteClass);
 		private final @NonNull Property pr_Class_DataType_behavioralClass = createProperty("DataType", _Bag_DataType);
 		private final @NonNull Property pr_Class_InstanceSpecification_classes = createProperty("InstanceSpecification", _Bag_InstanceSpecification);
+		private final @NonNull Property pr_Class_PatternClass_referredClass = createProperty("PatternClass", _Bag_PatternClass);
 		private final @NonNull Property pr_Class_TemplateParameter_constrainingClasses = createProperty("TemplateParameter", _Bag_TemplateParameter);
 		private final @NonNull Property pr_CollectionItem_ownedItem = createProperty(PivotPackage.Literals.COLLECTION_ITEM__OWNED_ITEM, _OCLExpression);
 		private final @NonNull Property pr_CollectionLiteralExp_kind = createProperty(PivotPackage.Literals.COLLECTION_LITERAL_EXP__KIND, _CollectionKind);
@@ -2019,10 +2105,9 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull Property pr_Feature_implementationClass = createProperty(PivotPackage.Literals.FEATURE__IMPLEMENTATION_CLASS, _String);
 		private final @NonNull Property pr_Feature_isStatic = createProperty(PivotPackage.Literals.FEATURE__IS_STATIC, _Boolean);
 		private final @NonNull Property pr_FeatureCallExp_isPre = createProperty(PivotPackage.Literals.FEATURE_CALL_EXP__IS_PRE, _Boolean);
-		private final @NonNull Property pr_IfExp_isElseIf = createProperty(PivotPackage.Literals.IF_EXP__IS_ELSE_IF, _Boolean);
 		private final @NonNull Property pr_IfExp_ownedCondition = createProperty(PivotPackage.Literals.IF_EXP__OWNED_CONDITION, _OCLExpression);
-		private final @NonNull Property pr_IfExp_ownedElse = createProperty(PivotPackage.Literals.IF_EXP__OWNED_ELSE, _OCLExpression);
-		private final @NonNull Property pr_IfExp_ownedThen = createProperty(PivotPackage.Literals.IF_EXP__OWNED_THEN, _OCLExpression);
+		private final @NonNull Property pr_IfPatternExp_ownedPattern = createProperty(PivotPackage.Literals.IF_PATTERN_EXP__OWNED_PATTERN, _PatternExp);
+		private final @NonNull Property pr_IfPatternExp_ownedSource = createProperty(PivotPackage.Literals.IF_PATTERN_EXP__OWNED_SOURCE, _OCLExpression);
 		private final @NonNull Property pr_Import_importedNamespace = createProperty(PivotPackage.Literals.IMPORT__IMPORTED_NAMESPACE, _Namespace);
 		private final @NonNull Property pr_Import_Model_ownedImports = createProperty("Model", _Model);
 		private final @NonNull Property pr_InstanceSpecification_classes = createProperty(PivotPackage.Literals.INSTANCE_SPECIFICATION__CLASSES, _Set_Class_NullFree);
@@ -2034,6 +2119,7 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull Property pr_Iteration_ownedAccumulators = createProperty(PivotPackage.Literals.ITERATION__OWNED_ACCUMULATORS, _OrderedSet_Parameter_NullFree);
 		private final @NonNull Property pr_Iteration_ownedIterators = createProperty(PivotPackage.Literals.ITERATION__OWNED_ITERATORS, _OrderedSet_Parameter_NullFree);
 		private final @NonNull Property pr_Iteration_LoopExp_referredIteration = createProperty("LoopExp", _Bag_LoopExp);
+		private final @NonNull Property pr_IteratorExp_ownedPattern = createProperty(PivotPackage.Literals.ITERATOR_EXP__OWNED_PATTERN, _PatternExp);
 		private final @NonNull Property pr_LambdaCallExp_ownedArguments = createProperty(PivotPackage.Literals.LAMBDA_CALL_EXP__OWNED_ARGUMENTS, _OrderedSet_OCLExpression_NullFree);
 		private final @NonNull Property pr_LambdaLiteralExp_ownedBody = createProperty(PivotPackage.Literals.LAMBDA_LITERAL_EXP__OWNED_BODY, _OCLExpression);
 		private final @NonNull Property pr_LambdaLiteralExp_ownedParameters = createProperty(PivotPackage.Literals.LAMBDA_LITERAL_EXP__OWNED_PARAMETERS, _OrderedSet_Parameter_NullFree);
@@ -2074,14 +2160,15 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull Property pr_NavigationCallExp_navigationSource = createProperty(PivotPackage.Literals.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE, _Property);
 		private final @NonNull Property pr_NavigationCallExp_qualifiers = createProperty(PivotPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIERS, _OrderedSet_OCLExpression_NullFree);
 		private final @NonNull Property pr_OCLExpression_typeValue = createProperty(PivotPackage.Literals.OCL_EXPRESSION__TYPE_VALUE, _Type);
+		private final @NonNull Property pr_OCLExpression_AbstractIfExp_ownedElse = createProperty("AbstractIfExp", _AbstractIfExp);
+		private final @NonNull Property pr_OCLExpression_AbstractIfExp_ownedThen = createProperty("AbstractIfExp", _AbstractIfExp);
 		private final @NonNull Property pr_OCLExpression_CallExp_ownedSource = createProperty("CallExp", _CallExp);
 		private final @NonNull Property pr_OCLExpression_CollectionItem_ownedItem = createProperty("CollectionItem", _CollectionItem);
 		private final @NonNull Property pr_OCLExpression_CollectionRange_ownedFirst = createProperty("CollectionRange", _CollectionRange);
 		private final @NonNull Property pr_OCLExpression_CollectionRange_ownedLast = createProperty("CollectionRange", _CollectionRange);
 		private final @NonNull Property pr_OCLExpression_ExpressionInOCL_ownedBody = createProperty("ExpressionInOCL", _ExpressionInOCL);
 		private final @NonNull Property pr_OCLExpression_IfExp_ownedCondition = createProperty("IfExp", _IfExp);
-		private final @NonNull Property pr_OCLExpression_IfExp_ownedElse = createProperty("IfExp", _IfExp);
-		private final @NonNull Property pr_OCLExpression_IfExp_ownedThen = createProperty("IfExp", _IfExp);
+		private final @NonNull Property pr_OCLExpression_IfPatternExp_ownedSource = createProperty("IfPatternExp", _IfPatternExp);
 		private final @NonNull Property pr_OCLExpression_LambdaCallExp_ownedArguments = createProperty("LambdaCallExp", _LambdaCallExp);
 		private final @NonNull Property pr_OCLExpression_LambdaLiteralExp_ownedBody = createProperty("LambdaLiteralExp", _LambdaLiteralExp);
 		private final @NonNull Property pr_OCLExpression_LetExp_ownedIn = createProperty("LetExp", _LetExp);
@@ -2092,6 +2179,7 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull Property pr_OCLExpression_MessageExp_ownedTarget = createProperty("MessageExp", _MessageExp);
 		private final @NonNull Property pr_OCLExpression_NavigationCallExp_qualifiers = createProperty("NavigationCallExp", _Bag_NavigationCallExp);
 		private final @NonNull Property pr_OCLExpression_OperationCallExp_ownedArguments = createProperty("OperationCallExp", _OperationCallExp);
+		private final @NonNull Property pr_OCLExpression_PatternLiteral_ownedExpression = createProperty("PatternLiteral", _PatternLiteral);
 		private final @NonNull Property pr_OCLExpression_ShadowPart_ownedInit = createProperty("ShadowPart", _ShadowPart);
 		private final @NonNull Property pr_OCLExpression_TupleLiteralPart_ownedInit = createProperty("TupleLiteralPart", _TupleLiteralPart);
 		private final @NonNull Property pr_OCLExpression_Variable_ownedInit = createProperty("Variable", _Variable);
@@ -2140,6 +2228,21 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull Property pr_ParameterableElement_TemplateParameter_ownedDefault = createProperty("TemplateParameter", _TemplateParameter);
 		private final @NonNull Property pr_ParameterableElement_TemplateParameterSubstitution_actual = createProperty("TemplateParameterSubstitution", _Bag_TemplateParameterSubstitution);
 		private final @NonNull Property pr_ParameterableElement_TemplateParameterSubstitution_ownedActual = createProperty("TemplateParameterSubstitution", _TemplateParameterSubstitution);
+		private final @NonNull Property pr_PatternClass_ownedProperties = createProperty(PivotPackage.Literals.PATTERN_CLASS__OWNED_PROPERTIES, _OrderedSet_PatternProperty_NullFree);
+		private final @NonNull Property pr_PatternClass_referredClass = createProperty(PivotPackage.Literals.PATTERN_CLASS__REFERRED_CLASS, _Class);
+		private final @NonNull Property pr_PatternExp_ownedPattern = createProperty(PivotPackage.Literals.PATTERN_EXP__OWNED_PATTERN, _PatternValue);
+		private final @NonNull Property pr_PatternExp_ownedVariables = createProperty(PivotPackage.Literals.PATTERN_EXP__OWNED_VARIABLES, _OrderedSet_Variable_NullFree_1);
+		private final @NonNull Property pr_PatternExp_IfPatternExp_ownedPattern = createProperty("IfPatternExp", _IfPatternExp);
+		private final @NonNull Property pr_PatternExp_IteratorExp_ownedPattern = createProperty("IteratorExp", _IteratorExp);
+		private final @NonNull Property pr_PatternLiteral_ownedExpression = createProperty(PivotPackage.Literals.PATTERN_LITERAL__OWNED_EXPRESSION, _OCLExpression);
+		private final @NonNull Property pr_PatternProperty_ownedElements = createProperty(PivotPackage.Literals.PATTERN_PROPERTY__OWNED_ELEMENTS, _Set_PatternValue_NullFree);
+		private final @NonNull Property pr_PatternProperty_ownedRest = createProperty(PivotPackage.Literals.PATTERN_PROPERTY__OWNED_REST, _PatternValue);
+		private final @NonNull Property pr_PatternProperty_referredProperty = createProperty(PivotPackage.Literals.PATTERN_PROPERTY__REFERRED_PROPERTY, _Property);
+		private final @NonNull Property pr_PatternProperty_PatternClass_ownedProperties = createProperty("PatternClass", _PatternClass);
+		private final @NonNull Property pr_PatternValue_referredVariable = createProperty(PivotPackage.Literals.PATTERN_VALUE__REFERRED_VARIABLE, _Variable);
+		private final @NonNull Property pr_PatternValue_PatternExp_ownedPattern = createProperty("PatternExp", _PatternExp);
+		private final @NonNull Property pr_PatternValue_PatternProperty_ownedElements = createProperty("PatternProperty", _PatternProperty);
+		private final @NonNull Property pr_PatternValue_PatternProperty_ownedRest = createProperty("PatternProperty", _PatternProperty);
 		private final @NonNull Property pr_Precedence_associativity = createProperty(PivotPackage.Literals.PRECEDENCE__ASSOCIATIVITY, _AssociativityKind);
 		private final @NonNull Property pr_Precedence_order = createProperty(PivotPackage.Literals.PRECEDENCE__ORDER, _Integer);
 		private final @NonNull Property pr_Precedence_Library_ownedPrecedences = createProperty("Library", _Library);
@@ -2172,6 +2275,7 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull Property pr_Property_DynamicProperty_referredProperty = createProperty("DynamicProperty", _Bag_DynamicProperty);
 		private final @NonNull Property pr_Property_NavigationCallExp_navigationSource = createProperty("NavigationCallExp", _Bag_NavigationCallExp);
 		private final @NonNull Property pr_Property_OppositePropertyCallExp_referredProperty = createProperty("OppositePropertyCallExp", _Bag_OppositePropertyCallExp);
+		private final @NonNull Property pr_Property_PatternProperty_referredProperty = createProperty("PatternProperty", _Bag_PatternProperty);
 		private final @NonNull Property pr_Property_Property_keys = createProperty("Property", _Bag_Property);
 		private final @NonNull Property pr_Property_Property_opposite = createProperty("Property", _Bag_Property);
 		private final @NonNull Property pr_Property_Property_redefinedProperties = createProperty("Property", _Bag_Property);
@@ -2290,6 +2394,8 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull Property pr_Variable_IterateExp_ownedResult = createProperty("IterateExp", _IterateExp);
 		private final @NonNull Property pr_Variable_LetExp_ownedVariable = createProperty("LetExp", _LetExp);
 		private final @NonNull Property pr_Variable_LoopExp_ownedIterators = createProperty("LoopExp", _LoopExp);
+		private final @NonNull Property pr_Variable_PatternExp_ownedVariables = createProperty("PatternExp", _PatternExp);
+		private final @NonNull Property pr_Variable_PatternValue_referredVariable = createProperty("PatternValue", _Bag_PatternValue);
 		private final @NonNull Property pr_VariableDeclaration_typeValue = createProperty(PivotPackage.Literals.VARIABLE_DECLARATION__TYPE_VALUE, _Type);
 		private final @NonNull Property pr_VariableDeclaration_VariableExp_referredVariable = createProperty("VariableExp", _Bag_VariableExp);
 		private final @NonNull Property pr_VariableExp_isImplicit = createProperty(PivotPackage.Literals.VARIABLE_EXP__IS_IMPLICIT, _Boolean);
@@ -2304,6 +2410,19 @@ public class OCLmetamodel extends ASResourceImpl
 		private void installProperties() {
 			List<Property> ownedProperties;
 			Property property;
+		
+			ownedProperties = _AbstractIfExp.getOwnedProperties();
+			ownedProperties.add(property = pr_AbstractIfExp_isElseIf);
+			property.setIsResolveProxies(true);
+			property.setDefaultValueString("false");
+			ownedProperties.add(property = pr_AbstractIfExp_ownedElse);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_OCLExpression_AbstractIfExp_ownedElse);
+			ownedProperties.add(property = pr_AbstractIfExp_ownedThen);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_OCLExpression_AbstractIfExp_ownedThen);
 		
 			ownedProperties = _Annotation.getOwnedProperties();
 			ownedProperties.add(property = pr_Annotation_ownedContents);
@@ -2441,6 +2560,10 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_InstanceSpecification_classes);
+			ownedProperties.add(property = pr_Class_PatternClass_referredClass);
+			property.setIsImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_PatternClass_referredClass);
 			ownedProperties.add(property = pr_Class_TemplateParameter_constrainingClasses);
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
@@ -2786,21 +2909,20 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setDefaultValueString("false");
 		
 			ownedProperties = _IfExp.getOwnedProperties();
-			ownedProperties.add(property = pr_IfExp_isElseIf);
-			property.setIsResolveProxies(true);
-			property.setDefaultValueString("false");
 			ownedProperties.add(property = pr_IfExp_ownedCondition);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_OCLExpression_IfExp_ownedCondition);
-			ownedProperties.add(property = pr_IfExp_ownedElse);
+		
+			ownedProperties = _IfPatternExp.getOwnedProperties();
+			ownedProperties.add(property = pr_IfPatternExp_ownedPattern);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_OCLExpression_IfExp_ownedElse);
-			ownedProperties.add(property = pr_IfExp_ownedThen);
+			property.setOpposite(pr_PatternExp_IfPatternExp_ownedPattern);
+			ownedProperties.add(property = pr_IfPatternExp_ownedSource);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_OCLExpression_IfExp_ownedThen);
+			property.setOpposite(pr_OCLExpression_IfPatternExp_ownedSource);
 		
 			ownedProperties = _Import.getOwnedProperties();
 			ownedProperties.add(property = pr_Import_importedNamespace);
@@ -2853,6 +2975,13 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_LoopExp_referredIteration);
+		
+			ownedProperties = _IteratorExp.getOwnedProperties();
+			ownedProperties.add(property = pr_IteratorExp_ownedPattern);
+			property.setIsComposite(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_PatternExp_IteratorExp_ownedPattern);
 		
 			ownedProperties = _LambdaCallExp.getOwnedProperties();
 			ownedProperties.add(property = pr_LambdaCallExp_ownedArguments);
@@ -3048,6 +3177,16 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedProperties.add(property = pr_OCLExpression_typeValue);
 			property.setIsRequired(false);
 			property.setIsTransient(true);
+			ownedProperties.add(property = pr_OCLExpression_AbstractIfExp_ownedElse);
+			property.setIsImplicit(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_AbstractIfExp_ownedElse);
+			ownedProperties.add(property = pr_OCLExpression_AbstractIfExp_ownedThen);
+			property.setIsImplicit(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_AbstractIfExp_ownedThen);
 			ownedProperties.add(property = pr_OCLExpression_CallExp_ownedSource);
 			property.setIsImplicit(true);
 			property.setIsRequired(false);
@@ -3078,16 +3217,11 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_IfExp_ownedCondition);
-			ownedProperties.add(property = pr_OCLExpression_IfExp_ownedElse);
+			ownedProperties.add(property = pr_OCLExpression_IfPatternExp_ownedSource);
 			property.setIsImplicit(true);
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
-			property.setOpposite(pr_IfExp_ownedElse);
-			ownedProperties.add(property = pr_OCLExpression_IfExp_ownedThen);
-			property.setIsImplicit(true);
-			property.setIsRequired(false);
-			property.setIsResolveProxies(true);
-			property.setOpposite(pr_IfExp_ownedThen);
+			property.setOpposite(pr_IfPatternExp_ownedSource);
 			ownedProperties.add(property = pr_OCLExpression_LambdaCallExp_ownedArguments);
 			property.setIsImplicit(true);
 			property.setIsRequired(false);
@@ -3137,6 +3271,11 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_OperationCallExp_ownedArguments);
+			ownedProperties.add(property = pr_OCLExpression_PatternLiteral_ownedExpression);
+			property.setIsImplicit(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_PatternLiteral_ownedExpression);
 			ownedProperties.add(property = pr_OCLExpression_ShadowPart_ownedInit);
 			property.setIsImplicit(true);
 			property.setIsRequired(false);
@@ -3345,6 +3484,80 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TemplateParameterSubstitution_ownedActual);
 		
+			ownedProperties = _PatternClass.getOwnedProperties();
+			ownedProperties.add(property = pr_PatternClass_ownedProperties);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_PatternProperty_PatternClass_ownedProperties);
+			ownedProperties.add(property = pr_PatternClass_referredClass);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Class_PatternClass_referredClass);
+		
+			ownedProperties = _PatternExp.getOwnedProperties();
+			ownedProperties.add(property = pr_PatternExp_ownedPattern);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_PatternValue_PatternExp_ownedPattern);
+			ownedProperties.add(property = pr_PatternExp_ownedVariables);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Variable_PatternExp_ownedVariables);
+			ownedProperties.add(property = pr_PatternExp_IfPatternExp_ownedPattern);
+			property.setIsImplicit(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_IfPatternExp_ownedPattern);
+			ownedProperties.add(property = pr_PatternExp_IteratorExp_ownedPattern);
+			property.setIsImplicit(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_IteratorExp_ownedPattern);
+		
+			ownedProperties = _PatternLiteral.getOwnedProperties();
+			ownedProperties.add(property = pr_PatternLiteral_ownedExpression);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_OCLExpression_PatternLiteral_ownedExpression);
+		
+			ownedProperties = _PatternProperty.getOwnedProperties();
+			ownedProperties.add(property = pr_PatternProperty_ownedElements);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_PatternValue_PatternProperty_ownedElements);
+			ownedProperties.add(property = pr_PatternProperty_ownedRest);
+			property.setIsComposite(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_PatternValue_PatternProperty_ownedRest);
+			ownedProperties.add(property = pr_PatternProperty_referredProperty);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Property_PatternProperty_referredProperty);
+			ownedProperties.add(property = pr_PatternProperty_PatternClass_ownedProperties);
+			property.setIsImplicit(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_PatternClass_ownedProperties);
+		
+			ownedProperties = _PatternValue.getOwnedProperties();
+			ownedProperties.add(property = pr_PatternValue_referredVariable);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Variable_PatternValue_referredVariable);
+			ownedProperties.add(property = pr_PatternValue_PatternExp_ownedPattern);
+			property.setIsImplicit(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_PatternExp_ownedPattern);
+			ownedProperties.add(property = pr_PatternValue_PatternProperty_ownedElements);
+			property.setIsImplicit(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_PatternProperty_ownedElements);
+			ownedProperties.add(property = pr_PatternValue_PatternProperty_ownedRest);
+			property.setIsImplicit(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_PatternProperty_ownedRest);
+		
 			ownedProperties = _Precedence.getOwnedProperties();
 			ownedProperties.add(property = pr_Precedence_associativity);
 			property.setIsRequired(false);
@@ -3468,6 +3681,10 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_OppositePropertyCallExp_referredProperty);
+			ownedProperties.add(property = pr_Property_PatternProperty_referredProperty);
+			property.setIsImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_PatternProperty_referredProperty);
 			ownedProperties.add(property = pr_Property_Property_keys);
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
@@ -4003,6 +4220,15 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsRequired(false);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_LoopExp_ownedIterators);
+			ownedProperties.add(property = pr_Variable_PatternExp_ownedVariables);
+			property.setIsImplicit(true);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_PatternExp_ownedVariables);
+			ownedProperties.add(property = pr_Variable_PatternValue_referredVariable);
+			property.setIsImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_PatternValue_referredVariable);
 		
 			ownedProperties = _VariableDeclaration.getOwnedProperties();
 			ownedProperties.add(property = pr_VariableDeclaration_typeValue);
@@ -4104,6 +4330,12 @@ public class OCLmetamodel extends ASResourceImpl
 				createTemplateParameterSubstitution(_Bag_T, _Package)));
 			_Bag_ParameterType.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _ParameterType)));
+			_Bag_PatternClass.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(_Bag_T, _PatternClass)));
+			_Bag_PatternProperty.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(_Bag_T, _PatternProperty)));
+			_Bag_PatternValue.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(_Bag_T, _PatternValue)));
 			_Bag_PrimitiveType.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _PrimitiveType)));
 			_Bag_PropertyCallExp.getOwnedBindings().add(createTemplateBinding(
@@ -4214,6 +4446,12 @@ public class OCLmetamodel extends ASResourceImpl
 				createTemplateParameterSubstitution(_Collection_T, _ParameterType)));
 			_Collection_Parameter.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _Parameter)));
+			_Collection_PatternClass.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(_Collection_T, _PatternClass)));
+			_Collection_PatternProperty.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(_Collection_T, _PatternProperty)));
+			_Collection_PatternValue.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(_Collection_T, _PatternValue)));
 			_Collection_Precedence.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _Precedence)));
 			_Collection_PrimitiveType.getOwnedBindings().add(createTemplateBinding(
@@ -4292,6 +4530,8 @@ public class OCLmetamodel extends ASResourceImpl
 				createTemplateParameterSubstitution(_OrderedCollection_T, _ParameterType)));
 			_OrderedCollection_Parameter.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedCollection_T, _Parameter)));
+			_OrderedCollection_PatternProperty.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(_OrderedCollection_T, _PatternProperty)));
 			_OrderedCollection_Precedence.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedCollection_T, _Precedence)));
 			_OrderedCollection_Property.getOwnedBindings().add(createTemplateBinding(
@@ -4326,6 +4566,8 @@ public class OCLmetamodel extends ASResourceImpl
 				createTemplateParameterSubstitution(_OrderedSet_T, _ParameterType)));
 			_OrderedSet_Parameter_NullFree.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedSet_T, _Parameter)));
+			_OrderedSet_PatternProperty_NullFree.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(_OrderedSet_T, _PatternProperty)));
 			_OrderedSet_Precedence_NullFree.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedSet_T, _Precedence)));
 			_OrderedSet_Property_NullFree.getOwnedBindings().add(createTemplateBinding(
@@ -4339,6 +4581,8 @@ public class OCLmetamodel extends ASResourceImpl
 			_OrderedSet_ValueSpecification_NullFree.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedSet_T, _ValueSpecification)));
 			_OrderedSet_Variable_NullFree.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(_OrderedSet_T, _Variable)));
+			_OrderedSet_Variable_NullFree_1.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_OrderedSet_T, _Variable)));
 			_Sequence_String_1.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Sequence_T, _String)));
@@ -4372,6 +4616,8 @@ public class OCLmetamodel extends ASResourceImpl
 				createTemplateParameterSubstitution(_Set_T, _Operation)));
 			_Set_Package_NullFree.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _Package)));
+			_Set_PatternValue_NullFree.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(_Set_T, _PatternValue)));
 			_Set_ProfileApplication_NullFree.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Set_T, _ProfileApplication)));
 			_Set_Property_NullFree.getOwnedBindings().add(createTemplateBinding(
@@ -4446,6 +4692,10 @@ public class OCLmetamodel extends ASResourceImpl
 				createTemplateParameterSubstitution(_UniqueCollection_T, _ParameterType)));
 			_UniqueCollection_Parameter.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Parameter)));
+			_UniqueCollection_PatternProperty.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(_UniqueCollection_T, _PatternProperty)));
+			_UniqueCollection_PatternValue.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(_UniqueCollection_T, _PatternValue)));
 			_UniqueCollection_Precedence.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_UniqueCollection_T, _Precedence)));
 			_UniqueCollection_ProfileApplication.getOwnedBindings().add(createTemplateBinding(
@@ -4489,6 +4739,7 @@ public class OCLmetamodel extends ASResourceImpl
 		}
 		
 		private void installComments() {
+			installComment(pr_AbstractIfExp_isElseIf, "True if this IfExp corresponds to an \'elseif\' in the OCL source, false if it corresponds to an \'if\'. This attribute has no semantic significance; it merely supports more faithful reconstruction of the OCL source by a pretty printer.");
 			installComment(_AssociationClass, "A link is a tuple of values that refer to typed objects.  An Association classifies a set of links, each of which is an instance of the Association.  Each value in the link refers to an instance of the type of the corresponding end of the Association.\n\nA model element that has both Association and Class properties. An AssociationClass can be seen as an Association that also has Class properties, or as a Class that also has Association properties. It not only connects a set of Classifiers but also defines a set of Features that belong to the Association itself and not to any of the associated Classifiers.");
 			installComment(_Behavior, "Behavior is a specification of how its context BehavioredClassifier changes state over time. This specification may be either a definition of possible behavior execution or emergent behavior, or a selective illustration of an interesting subset of possible executions. The latter form is typically used for capturing examples, such as a trace of a particular execution.");
 			installComment(_Class, "A Class classifies a set of objects and specifies the features that characterize the structure and behavior of those objects.  A Class may have an internal structure and Ports.\n\nA Classifier represents a classification of instances according to their Features.\n\nStructuredClassifiers may contain an internal structure of connected elements each of which plays a role in the overall Behavior modeled by the StructuredClassifier.");
@@ -4523,7 +4774,6 @@ public class OCLmetamodel extends ASResourceImpl
 			installComment(_Feature, "A Feature declares a behavioral or structural characteristic of Classifiers.");
 			installComment(pr_Feature_isStatic, "Specifies whether this Feature characterizes individual instances classified by the Classifier (false) or the Classifier itself (true).");
 			installComment(_FinalState, "A special kind of State, which, when entered, signifies that the enclosing Region has completed. If the enclosing Region is directly contained in a StateMachine and all other Regions in that StateMachine also are completed, then it means that the entire StateMachine behavior is completed.");
-			installComment(pr_IfExp_isElseIf, "True if this IfExp corresponds to an \'elseif\' in the OCL source, false if it corresponds to an \'if\'. This attribute has no semantic significance; it merely supports more faithful reconstruction of the OCL source by a pretty printer.");
 			installComment(_InstanceSpecification, "An InstanceSpecification is a model element that represents an instance in a modeled system. An InstanceSpecification can act as a DeploymentTarget in a Deployment relationship, in the case that it represents an instance of a Node. It can also act as a DeployedArtifact, if it represents an instance of an Artifact.");
 			installComment(pr_InstanceSpecification_classes, "The Classifier or Classifiers of the represented instance. If multiple Classifiers are specified, the instance is classified by all of them.");
 			installComment(pr_InstanceSpecification_ownedSlots, "A Slot giving the value or values of a StructuralFeature of the instance. An InstanceSpecification can have one Slot per StructuralFeature of its Classifiers, including inherited features. It is not necessary to model a Slot for every StructuralFeature, in which case the InstanceSpecification is a partial description.");

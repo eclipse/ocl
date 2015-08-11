@@ -21,6 +21,7 @@ package org.eclipse.ocl.xtext.essentialoclcs;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.IfThenExpCS#getOwnedCondition <em>Owned Condition</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.IfThenExpCS#getOwnedPattern <em>Owned Pattern</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.IfThenExpCS#getOwnedThenExpression <em>Owned Then Expression</em>}</li>
  * </ul>
  *
@@ -41,7 +42,7 @@ public interface IfThenExpCS extends ExpCS
 	 * @return the value of the '<em>Owned Condition</em>' containment reference.
 	 * @see #setOwnedCondition(ExpCS)
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getIfThenExpCS_OwnedCondition()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	ExpCS getOwnedCondition();
@@ -57,6 +58,32 @@ public interface IfThenExpCS extends ExpCS
 	void setOwnedCondition(ExpCS value);
 
 	/**
+	 * Returns the value of the '<em><b>Owned Pattern</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Pattern</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Pattern</em>' containment reference.
+	 * @see #setOwnedPattern(PatternExpCS)
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getIfThenExpCS_OwnedPattern()
+	 * @model containment="true"
+	 * @generated
+	 */
+	PatternExpCS getOwnedPattern();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.xtext.essentialoclcs.IfThenExpCS#getOwnedPattern <em>Owned Pattern</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Pattern</em>' containment reference.
+	 * @see #getOwnedPattern()
+	 * @generated
+	 */
+	void setOwnedPattern(PatternExpCS value);
+
+	/**
 	 * Returns the value of the '<em><b>Owned Then Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -67,7 +94,7 @@ public interface IfThenExpCS extends ExpCS
 	 * @return the value of the '<em>Owned Then Expression</em>' containment reference.
 	 * @see #setOwnedThenExpression(ExpCS)
 	 * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage#getIfThenExpCS_OwnedThenExpression()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	ExpCS getOwnedThenExpression();

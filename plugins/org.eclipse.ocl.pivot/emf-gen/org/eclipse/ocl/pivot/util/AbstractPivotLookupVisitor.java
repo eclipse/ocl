@@ -11,6 +11,7 @@ package org.eclipse.ocl.pivot.util;
 
 import java.util.Iterator;
 import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -58,8 +59,6 @@ import org.eclipse.ocl.pivot.library.numeric.NumericMinusOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableGreaterThanOperation;
 import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibTables;
-import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
-import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.BagValue;

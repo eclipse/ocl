@@ -87,14 +87,12 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//ExpSpecificationCS/ownedExpression"/>
     </genClasses>
     <genClasses ecoreClass="EssentialOCLCS.ecore#//IfExpCS">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EssentialOCLCS.ecore#//IfExpCS/isImplicit"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//IfExpCS/ownedCondition"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//IfExpCS/ownedElseExpression"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//IfExpCS/ownedIfThenExpressions"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//IfExpCS/ownedThenExpression"/>
     </genClasses>
     <genClasses ecoreClass="EssentialOCLCS.ecore#//IfThenExpCS">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//IfThenExpCS/ownedCondition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//IfThenExpCS/ownedPattern"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EssentialOCLCS.ecore#//IfThenExpCS/ownedThenExpression"/>
     </genClasses>
     <genClasses ecoreClass="EssentialOCLCS.ecore#//InfixExpCS">

@@ -53,7 +53,7 @@
 'def'=25
 'derive'=37
 'else'=94
-'elseif'=96
+'elseif'=93
 'endif'=95
 'endpackage'=36
 'extends'=101
@@ -76,7 +76,7 @@
 'pre'=32
 'self'=98
 'static'=24
-'then'=93
+'then'=96
 'true'=82
 'xor'=62
 '{'=77

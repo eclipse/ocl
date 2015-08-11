@@ -18,9 +18,11 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.AbstractIfExp;
 import org.eclipse.ocl.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.CollectionItem;
@@ -36,6 +38,7 @@ import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.FeatureCallExp;
 import org.eclipse.ocl.pivot.IfExp;
+import org.eclipse.ocl.pivot.IfPatternExp;
 import org.eclipse.ocl.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.pivot.InvalidType;
@@ -59,6 +62,9 @@ import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.ParameterType;
+import org.eclipse.ocl.pivot.PatternClass;
+import org.eclipse.ocl.pivot.PatternExp;
+import org.eclipse.ocl.pivot.PatternValue;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PrimitiveType;
@@ -140,6 +146,7 @@ import org.eclipse.ocl.xtext.essentialoclcs.NestedExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.NullLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.NumberLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.OperatorExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.PatternExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.PrefixExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.RoundBracketedClauseCS;
 import org.eclipse.ocl.xtext.essentialoclcs.SelfExpCS;
@@ -1470,6 +1477,33 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		}
 	}
 
+	protected @Nullable PatternExp resolvePatternExp(@Nullable PatternExp asPatternExp, @Nullable ExpCS csPattern) {
+		if (csPattern == null) {
+			return null;
+		}
+		if (asPatternExp == null) {
+			asPatternExp = PivotFactory.eINSTANCE.createPatternExp();
+			assert asPatternExp != null;
+		}
+		PatternValue asPatternValue = context.visitLeft2Right(PatternValue.class, csPattern);
+		asPatternExp.setOwnedPattern(asPatternValue);
+		List<Variable> asPatternVariables = new ArrayList<Variable>();
+		for (TreeIterator<EObject> tit = asPatternExp.eAllContents(); tit.hasNext(); ) {
+			EObject eObject = tit.next();
+			if (eObject instanceof PatternValue) {
+				Variable asVariable = ((PatternValue) eObject).getReferredVariable();
+				if (!asPatternVariables.contains(asVariable)) {
+					asPatternVariables.add(asVariable);
+				}
+			}
+			else {
+				tit.prune();
+			}
+		}
+		PivotUtilInternal.refreshList(asPatternExp.getOwnedVariables(), asPatternVariables);
+		return asPatternExp;
+	}
+
 	protected @NonNull CallExp resolvePropertyCallExp(@NonNull OCLExpression sourceExp, @NonNull NameExpCS csNameExp, @NonNull Property property) {
 		NavigationCallExp callExp;
 		if (property.isIsImplicit()) {
@@ -1760,21 +1794,48 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 
 	@Override
 	public Element visitIfExpCS(@NonNull IfExpCS csIfExp) {
-		IfExp ifExpression = PivotUtil.getPivot(IfExp.class, csIfExp);
 		ExpCS csElse = csIfExp.getOwnedElseExpression();
-		if ((ifExpression != null) && (csElse != null)) {
-			OCLExpression elseExpression = context.visitLeft2Right(OCLExpression.class, csElse);
-			List<IfThenExpCS> csIfThens = csIfExp.getOwnedIfThenExpressions();
-			for (int i = csIfThens.size(); --i >= 0; ) {
-				IfThenExpCS csIfThen = csIfThens.get(i);
-				IfExp elseIfExpression = PivotUtil.getPivot(IfExp.class, csIfThen);
-				if (elseIfExpression != null) {
-					elseExpression = doIfThenElse(elseIfExpression, csIfThen.getOwnedCondition(), csIfThen.getOwnedThenExpression(), elseExpression);
-				}
-			}
-			doIfThenElse(ifExpression, csIfExp.getOwnedCondition(), csIfExp.getOwnedThenExpression(), elseExpression);
+		if (csElse == null) {
+			return PivotUtil.getPivot(IfExp.class, csIfExp);
 		}
-		return ifExpression;
+		OCLExpression asElse = context.visitLeft2Right(OCLExpression.class, csElse);
+		List<IfThenExpCS> csIfThens = csIfExp.getOwnedIfThenExpressions();
+		for (int i = csIfThens.size(); --i >= 0; ) {
+			IfThenExpCS csIfThen = csIfThens.get(i);
+			AbstractIfExp asAbstractIf = PivotUtil.getPivot(AbstractIfExp.class, csIfThen);
+			if (asAbstractIf != null) {
+				asAbstractIf.setIsElseIf(i > 0);
+				ExpCS csCondition = csIfThen.getOwnedCondition();
+				ExpCS csThen = csIfThen.getOwnedThenExpression();
+				if ((csCondition != null) && (csThen != null)) {
+					if (asAbstractIf instanceof IfPatternExp) {
+						IfPatternExp asIfPatternExp = (IfPatternExp)asAbstractIf;
+						asIfPatternExp.setOwnedPattern(resolvePatternExp(asIfPatternExp.getOwnedPattern(), csIfThen.getOwnedPattern()));
+						asIfPatternExp.setOwnedSource(context.visitLeft2Right(OCLExpression.class, csCondition));
+					}
+					else {
+						IfExp asIfExp = (IfExp)asAbstractIf;
+						asIfExp.setOwnedCondition(context.visitLeft2Right(OCLExpression.class, csCondition));
+					}
+					OCLExpression asThen = context.visitLeft2Right(OCLExpression.class, csThen);
+					asAbstractIf.setOwnedThen(asThen);
+					asAbstractIf.setOwnedElse(asElse);
+					Type thenType = asThen != null ? asThen.getType() : null;
+					Type elseType = asElse != null ? asElse.getType() : null;
+					Type thenTypeValue = asThen != null ? asThen.getTypeValue() : null;
+					Type elseTypeValue = asElse != null ? asElse.getTypeValue() : null;
+					Type commonType = (thenType != null) && (elseType != null) ? metamodelManager.getCommonType(thenType, TemplateParameterSubstitutions.EMPTY, elseType, TemplateParameterSubstitutions.EMPTY) : null;
+					Type commonTypeValue = (thenTypeValue != null) && (elseTypeValue != null) ? metamodelManager.getCommonType(thenTypeValue, TemplateParameterSubstitutions.EMPTY, elseTypeValue, TemplateParameterSubstitutions.EMPTY) : null;
+					boolean isRequired = ((asThen != null) && asThen.isIsRequired()) && ((asElse != null) && asElse.isIsRequired());
+					context.setType(asAbstractIf, commonType, isRequired, commonTypeValue);
+				}
+				asElse = asAbstractIf;
+			}
+		}
+		if (asElse != null) {
+			context.installPivotUsage(csIfExp, asElse);
+		}
+		return asElse;
 	}
 
 	@Override
@@ -1807,24 +1868,6 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 //			context.installPivotUsage(csInfixExp, pivot);
 //		}
 		return pivot;
-	}
-
-	protected @NonNull OCLExpression doIfThenElse(@NonNull IfExp expression, @Nullable ExpCS csCondition, @Nullable ExpCS csThen, @Nullable OCLExpression elseExpression) {
-		if ((csCondition != null) && (csThen != null)) {
-			expression.setOwnedCondition(context.visitLeft2Right(OCLExpression.class, csCondition));
-			OCLExpression thenExpression = context.visitLeft2Right(OCLExpression.class, csThen);
-			expression.setOwnedThen(thenExpression);
-			expression.setOwnedElse(elseExpression);
-			Type thenType = thenExpression != null ? thenExpression.getType() : null;
-			Type elseType = elseExpression != null ? elseExpression.getType() : null;
-			Type thenTypeValue = thenExpression != null ? thenExpression.getTypeValue() : null;
-			Type elseTypeValue = elseExpression != null ? elseExpression.getTypeValue() : null;
-			Type commonType = (thenType != null) && (elseType != null) ? metamodelManager.getCommonType(thenType, TemplateParameterSubstitutions.EMPTY, elseType, TemplateParameterSubstitutions.EMPTY) : null;
-			Type commonTypeValue = (thenTypeValue != null) && (elseTypeValue != null) ? metamodelManager.getCommonType(thenTypeValue, TemplateParameterSubstitutions.EMPTY, elseTypeValue, TemplateParameterSubstitutions.EMPTY) : null;
-			boolean isRequired = ((thenExpression != null) && thenExpression.isIsRequired()) && ((elseExpression != null) && elseExpression.isIsRequired());
-			context.setType(expression, commonType, isRequired, commonTypeValue);
-		}
-		return expression;
 	}
 
 	protected @NonNull OCLExpression doVisitBinaryOperatorCS(@NonNull InfixExpCS csOperator) {
@@ -2214,6 +2257,20 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 			context.setType(expression, standardLibrary.getRealType(), true, null);
 		}
 		return expression;
+	}
+
+	@Override
+	public Element visitPatternExpCS(@NonNull PatternExpCS csElement) {
+		PatternClass asPatternClass = PivotUtil.getPivot(PatternClass.class, csElement);
+		if (asPatternClass != null) {
+			org.eclipse.ocl.pivot.Class asClass = PivotUtil.getPivot(org.eclipse.ocl.pivot.Class.class, csElement.getOwnedPatternType());
+			if (asClass != null) {
+				asPatternClass.setReferredClass(asClass);
+				Variable asVariable = PivotUtil.createVariable(csElement.getPatternVariableName(), asClass, true, null);
+				asPatternClass.setReferredVariable(asVariable);
+			}
+		}
+		return asPatternClass;
 	}
 
 	@Override

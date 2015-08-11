@@ -422,8 +422,13 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		if (!asIfExp.isIsElseIf()) {
 			IfExpCS csIfExp = EssentialOCLCSFactory.eINSTANCE.createIfExpCS();
 			csIfExp.setPivot(asIfExp);
-			csIfExp.setOwnedCondition(createExpCS(asIfExp.getOwnedCondition()));
-			csIfExp.setOwnedThenExpression(createExpCS(asIfExp.getOwnedThen()));
+			IfThenExpCS csIfThenExp = EssentialOCLCSFactory.eINSTANCE.createIfThenExpCS();
+			csIfThenExp.setPivot(asIfExp);
+			csIfThenExp.setOwnedCondition(createExpCS(asIfExp.getOwnedCondition()));
+			csIfThenExp.setOwnedThenExpression(createExpCS(asIfExp.getOwnedThen()));
+			csIfExp.getOwnedIfThenExpressions().add(csIfThenExp);
+//			setOwnedCondition(createExpCS(asIfExp.getOwnedCondition()));
+//			csIfExp.setOwnedThenExpression(createExpCS(asIfExp.getOwnedThen()));
 			OCLExpression asElse = asIfExp.getOwnedElse();
 			ExpCS csElse = createExpCS(asElse);
 			while ((asElse instanceof IfExp) && (((IfExp)asElse).isIsElseIf())) {

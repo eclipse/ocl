@@ -57,6 +57,11 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 	}
 
 	@Override
+	public @Nullable R visitAbstractIfExp(@NonNull org.eclipse.ocl.pivot.AbstractIfExp object) {
+		return delegate.visitAbstractIfExp(object);
+	}
+
+	@Override
 	public @Nullable R visitAnnotation(@NonNull org.eclipse.ocl.pivot.Annotation object) {
 		return delegate.visitAnnotation(object);
 	}
@@ -252,6 +257,11 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 	}
 
 	@Override
+	public @Nullable R visitIfPatternExp(@NonNull org.eclipse.ocl.pivot.IfPatternExp object) {
+		return delegate.visitIfPatternExp(object);
+	}
+
+	@Override
 	public @Nullable R visitImport(@NonNull org.eclipse.ocl.pivot.Import object) {
 		return delegate.visitImport(object);
 	}
@@ -434,6 +444,31 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R>>
 	@Override
 	public @Nullable R visitParameterableElement(@NonNull org.eclipse.ocl.pivot.ParameterableElement object) {
 		return delegate.visitParameterableElement(object);
+	}
+
+	@Override
+	public @Nullable R visitPatternClass(@NonNull org.eclipse.ocl.pivot.PatternClass object) {
+		return delegate.visitPatternClass(object);
+	}
+
+	@Override
+	public @Nullable R visitPatternExp(@NonNull org.eclipse.ocl.pivot.PatternExp object) {
+		return delegate.visitPatternExp(object);
+	}
+
+	@Override
+	public @Nullable R visitPatternLiteral(@NonNull org.eclipse.ocl.pivot.PatternLiteral object) {
+		return delegate.visitPatternLiteral(object);
+	}
+
+	@Override
+	public @Nullable R visitPatternProperty(@NonNull org.eclipse.ocl.pivot.PatternProperty object) {
+		return delegate.visitPatternProperty(object);
+	}
+
+	@Override
+	public @Nullable R visitPatternValue(@NonNull org.eclipse.ocl.pivot.PatternValue object) {
+		return delegate.visitPatternValue(object);
 	}
 
 	@Override

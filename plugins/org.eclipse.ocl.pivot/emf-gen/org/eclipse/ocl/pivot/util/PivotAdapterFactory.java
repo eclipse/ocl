@@ -14,6 +14,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.pivot.AbstractIfExp;
 import org.eclipse.ocl.pivot.Annotation;
 import org.eclipse.ocl.pivot.AnyType;
 import org.eclipse.ocl.pivot.AssociationClass;
@@ -35,8 +36,6 @@ import org.eclipse.ocl.pivot.CompleteModel;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.ConnectionPointReference;
 import org.eclipse.ocl.pivot.Constraint;
-import org.eclipse.ocl.pivot.ShadowExp;
-import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Detail;
 import org.eclipse.ocl.pivot.DynamicBehavior;
@@ -54,6 +53,7 @@ import org.eclipse.ocl.pivot.Feature;
 import org.eclipse.ocl.pivot.FeatureCallExp;
 import org.eclipse.ocl.pivot.FinalState;
 import org.eclipse.ocl.pivot.IfExp;
+import org.eclipse.ocl.pivot.IfPatternExp;
 import org.eclipse.ocl.pivot.Import;
 import org.eclipse.ocl.pivot.InstanceSpecification;
 import org.eclipse.ocl.pivot.IntegerLiteralExp;
@@ -90,6 +90,11 @@ import org.eclipse.ocl.pivot.OrphanCompletePackage;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.ParameterType;
 import org.eclipse.ocl.pivot.ParameterableElement;
+import org.eclipse.ocl.pivot.PatternClass;
+import org.eclipse.ocl.pivot.PatternExp;
+import org.eclipse.ocl.pivot.PatternLiteral;
+import org.eclipse.ocl.pivot.PatternProperty;
+import org.eclipse.ocl.pivot.PatternValue;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.PrimitiveCompletePackage;
@@ -107,6 +112,8 @@ import org.eclipse.ocl.pivot.SelfType;
 import org.eclipse.ocl.pivot.SendSignalAction;
 import org.eclipse.ocl.pivot.SequenceType;
 import org.eclipse.ocl.pivot.SetType;
+import org.eclipse.ocl.pivot.ShadowExp;
+import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.Signal;
 import org.eclipse.ocl.pivot.Slot;
 import org.eclipse.ocl.pivot.StandardLibrary;
@@ -114,6 +121,7 @@ import org.eclipse.ocl.pivot.State;
 import org.eclipse.ocl.pivot.StateExp;
 import org.eclipse.ocl.pivot.StateMachine;
 import org.eclipse.ocl.pivot.Stereotype;
+import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.StringLiteralExp;
 import org.eclipse.ocl.pivot.TemplateBinding;
 import org.eclipse.ocl.pivot.TemplateParameter;
@@ -127,7 +135,6 @@ import org.eclipse.ocl.pivot.TupleLiteralPart;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypeExp;
-import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.pivot.UnspecifiedValueExp;
@@ -203,6 +210,11 @@ public class PivotAdapterFactory
 	 */
 	protected PivotSwitch<Adapter> modelSwitch = new PivotSwitch<Adapter>()
 		{
+			@Override
+			public Adapter caseAbstractIfExp(AbstractIfExp object)
+			{
+				return createAbstractIfExpAdapter();
+			}
 			@Override
 			public Adapter caseAnnotation(Annotation object)
 			{
@@ -399,6 +411,11 @@ public class PivotAdapterFactory
 				return createIfExpAdapter();
 			}
 			@Override
+			public Adapter caseIfPatternExp(IfPatternExp object)
+			{
+				return createIfPatternExpAdapter();
+			}
+			@Override
 			public Adapter caseImport(Import object)
 			{
 				return createImportAdapter();
@@ -592,6 +609,31 @@ public class PivotAdapterFactory
 			public Adapter caseParameterableElement(ParameterableElement object)
 			{
 				return createParameterableElementAdapter();
+			}
+			@Override
+			public Adapter casePatternClass(PatternClass object)
+			{
+				return createPatternClassAdapter();
+			}
+			@Override
+			public Adapter casePatternExp(PatternExp object)
+			{
+				return createPatternExpAdapter();
+			}
+			@Override
+			public Adapter casePatternLiteral(PatternLiteral object)
+			{
+				return createPatternLiteralAdapter();
+			}
+			@Override
+			public Adapter casePatternProperty(PatternProperty object)
+			{
+				return createPatternPropertyAdapter();
+			}
+			@Override
+			public Adapter casePatternValue(PatternValue object)
+			{
+				return createPatternValueAdapter();
 			}
 			@Override
 			public Adapter casePivotable(Pivotable object)
@@ -866,6 +908,21 @@ public class PivotAdapterFactory
 	@Override
 	public Adapter createAdapter(Notifier target) {
 		return modelSwitch.doSwitch((EObject)target);
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.AbstractIfExp <em>Abstract If Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.pivot.AbstractIfExp
+	 * @generated
+	 */
+	public Adapter createAbstractIfExpAdapter()
+	{
+		return null;
 	}
 
 	/**
@@ -1190,6 +1247,21 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createIfExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.IfPatternExp <em>If Pattern Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.pivot.IfPatternExp
+	 * @generated
+	 */
+	public Adapter createIfPatternExpAdapter()
+	{
 		return null;
 	}
 
@@ -2388,6 +2460,81 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createParameterableElementAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.PatternClass <em>Pattern Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.pivot.PatternClass
+	 * @generated
+	 */
+	public Adapter createPatternClassAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.PatternExp <em>Pattern Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.pivot.PatternExp
+	 * @generated
+	 */
+	public Adapter createPatternExpAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.PatternLiteral <em>Pattern Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.pivot.PatternLiteral
+	 * @generated
+	 */
+	public Adapter createPatternLiteralAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.PatternProperty <em>Pattern Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.pivot.PatternProperty
+	 * @generated
+	 */
+	public Adapter createPatternPropertyAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.pivot.PatternValue <em>Pattern Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.pivot.PatternValue
+	 * @generated
+	 */
+	public Adapter createPatternValueAdapter()
 	{
 		return null;
 	}

@@ -131,6 +131,25 @@ public class EvaluateConstructsTest4 extends PivotTestSuite
 		ocl.dispose();
 	}
 
+	@Test public void testConstruct_IfPattern() {
+		BaseLinkingService.DEBUG_RETRY.setState(true);
+		if (useCodeGen) { return; }					// FIXME
+		TestOCL ocl = createOCL();
+//		ocl.assertQueryEquals(null, 18, "Lambda(a : Integer[1]) : Integer[1] {2+a}(9)");
+		ocl.assertQueryEquals(ocl.getStandardLibrary().getLibraryType("Package"), 6, "if n:NamedElement{}=self\n then n else null endif");
+//		ocl.assertQueryEquals(null, 6, "let x : Real = 5.0 in if t:Integer{} then t+1 else x endif");
+		ocl.dispose();
+	}
+
+	@Test public void testConstruct_LoopPattern() {
+		BaseLinkingService.DEBUG_RETRY.setState(true);
+		if (useCodeGen) { return; }					// FIXME
+		TestOCL ocl = createOCL();
+//		ocl.assertQueryEquals(null, 18, "Lambda(a : Integer[1]) : Integer[1] {2+a}(9)");
+		ocl.assertQueryResults(null, "Bag{6}", "let x : Real = 5.0 in x->collect(t:Integer{} | t+1)");
+		ocl.dispose();
+	}
+
 	/**
 	 * Confirm that the lack of support for ordered properties in LambdaValueIml is justified.
 	 */

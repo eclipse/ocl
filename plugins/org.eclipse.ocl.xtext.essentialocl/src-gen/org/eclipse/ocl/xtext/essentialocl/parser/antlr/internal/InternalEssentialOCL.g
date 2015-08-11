@@ -4399,105 +4399,69 @@ ruleIfExpCS returns [EObject current=null]
     }
 (
 (
-(
 		{ 
-	        newCompositeNode(grammarAccess.getIfExpCSAccess().getOwnedConditionExpCSParserRuleCall_1_0_0()); 
+	        newCompositeNode(grammarAccess.getIfExpCSAccess().getOwnedIfThenExpressionsIfThenExpCSParserRuleCall_1_0()); 
 	    }
-		lv_ownedCondition_1_1=ruleExpCS		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getIfExpCSRule());
-	        }
-       		set(
-       			$current, 
-       			"ownedCondition",
-        		lv_ownedCondition_1_1, 
-        		"ExpCS");
-	        afterParserOrEnumRuleCall();
-	    }
-
-    |		{ 
-	        newCompositeNode(grammarAccess.getIfExpCSAccess().getOwnedConditionPatternExpCSParserRuleCall_1_0_1()); 
-	    }
-		lv_ownedCondition_1_2=rulePatternExpCS		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getIfExpCSRule());
-	        }
-       		set(
-       			$current, 
-       			"ownedCondition",
-        		lv_ownedCondition_1_2, 
-        		"PatternExpCS");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-
-)
-)	otherlv_2='then' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getIfExpCSAccess().getThenKeyword_2());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getIfExpCSAccess().getOwnedThenExpressionExpCSParserRuleCall_3_0()); 
-	    }
-		lv_ownedThenExpression_3_0=ruleExpCS		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getIfExpCSRule());
-	        }
-       		set(
-       			$current, 
-       			"ownedThenExpression",
-        		lv_ownedThenExpression_3_0, 
-        		"ExpCS");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getIfExpCSAccess().getOwnedIfThenExpressionsElseIfThenExpCSParserRuleCall_4_0()); 
-	    }
-		lv_ownedIfThenExpressions_4_0=ruleElseIfThenExpCS		{
+		lv_ownedIfThenExpressions_1_0=ruleIfThenExpCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getIfExpCSRule());
 	        }
        		add(
        			$current, 
        			"ownedIfThenExpressions",
-        		lv_ownedIfThenExpressions_4_0, 
-        		"ElseIfThenExpCS");
+        		lv_ownedIfThenExpressions_1_0, 
+        		"IfThenExpCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)*	otherlv_5='else' 
+)(	otherlv_2='elseif' 
     {
-    	newLeafNode(otherlv_5, grammarAccess.getIfExpCSAccess().getElseKeyword_5());
+    	newLeafNode(otherlv_2, grammarAccess.getIfExpCSAccess().getElseifKeyword_2_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getIfExpCSAccess().getOwnedElseExpressionExpCSParserRuleCall_6_0()); 
+	        newCompositeNode(grammarAccess.getIfExpCSAccess().getOwnedIfThenExpressionsIfThenExpCSParserRuleCall_2_1_0()); 
 	    }
-		lv_ownedElseExpression_6_0=ruleExpCS		{
+		lv_ownedIfThenExpressions_3_0=ruleIfThenExpCS		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getIfExpCSRule());
+	        }
+       		add(
+       			$current, 
+       			"ownedIfThenExpressions",
+        		lv_ownedIfThenExpressions_3_0, 
+        		"IfThenExpCS");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))*	otherlv_4='else' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getIfExpCSAccess().getElseKeyword_3());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getIfExpCSAccess().getOwnedElseExpressionExpCSParserRuleCall_4_0()); 
+	    }
+		lv_ownedElseExpression_5_0=ruleExpCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getIfExpCSRule());
 	        }
        		set(
        			$current, 
        			"ownedElseExpression",
-        		lv_ownedElseExpression_6_0, 
+        		lv_ownedElseExpression_5_0, 
         		"ExpCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_7='endif' 
+)	otherlv_6='endif' 
     {
-    	newLeafNode(otherlv_7, grammarAccess.getIfExpCSAccess().getEndifKeyword_7());
+    	newLeafNode(otherlv_6, grammarAccess.getIfExpCSAccess().getEndifKeyword_5());
     }
 )
 ;
@@ -4506,59 +4470,77 @@ ruleIfExpCS returns [EObject current=null]
 
 
 
-// Entry rule entryRuleElseIfThenExpCS
-entryRuleElseIfThenExpCS returns [EObject current=null] 
+// Entry rule entryRuleIfThenExpCS
+entryRuleIfThenExpCS returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getElseIfThenExpCSRule()); }
-	 iv_ruleElseIfThenExpCS=ruleElseIfThenExpCS 
-	 { $current=$iv_ruleElseIfThenExpCS.current; } 
+	{ newCompositeNode(grammarAccess.getIfThenExpCSRule()); }
+	 iv_ruleIfThenExpCS=ruleIfThenExpCS 
+	 { $current=$iv_ruleIfThenExpCS.current; } 
 	 EOF 
 ;
 
-// Rule ElseIfThenExpCS
-ruleElseIfThenExpCS returns [EObject current=null] 
+// Rule IfThenExpCS
+ruleIfThenExpCS returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(	otherlv_0='elseif' 
-    {
-    	newLeafNode(otherlv_0, grammarAccess.getElseIfThenExpCSAccess().getElseifKeyword_0());
-    }
-(
+(((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getElseIfThenExpCSAccess().getOwnedConditionExpCSParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getIfThenExpCSAccess().getOwnedPatternPatternExpCSParserRuleCall_0_0_0()); 
 	    }
-		lv_ownedCondition_1_0=ruleExpCS		{
+		lv_ownedPattern_0_0=rulePatternExpCS		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getElseIfThenExpCSRule());
+	            $current = createModelElementForParent(grammarAccess.getIfThenExpCSRule());
+	        }
+       		set(
+       			$current, 
+       			"ownedPattern",
+        		lv_ownedPattern_0_0, 
+        		"PatternExpCS");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_1='=' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getIfThenExpCSAccess().getEqualsSignKeyword_0_1());
+    }
+)?(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getIfThenExpCSAccess().getOwnedConditionExpCSParserRuleCall_1_0()); 
+	    }
+		lv_ownedCondition_2_0=ruleExpCS		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getIfThenExpCSRule());
 	        }
        		set(
        			$current, 
        			"ownedCondition",
-        		lv_ownedCondition_1_0, 
+        		lv_ownedCondition_2_0, 
         		"ExpCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_2='then' 
+)	otherlv_3='then' 
     {
-    	newLeafNode(otherlv_2, grammarAccess.getElseIfThenExpCSAccess().getThenKeyword_2());
+    	newLeafNode(otherlv_3, grammarAccess.getIfThenExpCSAccess().getThenKeyword_2());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getElseIfThenExpCSAccess().getOwnedThenExpressionExpCSParserRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getIfThenExpCSAccess().getOwnedThenExpressionExpCSParserRuleCall_3_0()); 
 	    }
-		lv_ownedThenExpression_3_0=ruleExpCS		{
+		lv_ownedThenExpression_4_0=ruleExpCS		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getElseIfThenExpCSRule());
+	            $current = createModelElementForParent(grammarAccess.getIfThenExpCSRule());
 	        }
        		set(
        			$current, 
        			"ownedThenExpression",
-        		lv_ownedThenExpression_3_0, 
+        		lv_ownedThenExpression_4_0, 
         		"ExpCS");
 	        afterParserOrEnumRuleCall();
 	    }

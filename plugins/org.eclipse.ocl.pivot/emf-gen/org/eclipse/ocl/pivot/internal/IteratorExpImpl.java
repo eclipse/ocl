@@ -11,24 +11,34 @@
 package org.eclipse.ocl.pivot.internal;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CollectionType;
+import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.ElementExtension;
+import org.eclipse.ocl.pivot.Iteration;
 import org.eclipse.ocl.pivot.IteratorExp;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.ParameterableElement;
+import org.eclipse.ocl.pivot.PatternExp;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.ReferringElement;
@@ -72,11 +82,27 @@ import org.eclipse.ocl.pivot.values.TemplateParameterSubstitutions;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Iterator Exp</b></em>'.
  * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.IteratorExpImpl#getOwnedPattern <em>Owned Pattern</em>}</li>
+ * </ul>
  *
  * @generated
  */
 public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 {
+	/**
+	 * The cached value of the '{@link #getOwnedPattern() <em>Owned Pattern</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedPattern()
+	 * @generated
+	 * @ordered
+	 */
+	protected PatternExp ownedPattern;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -96,6 +122,56 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	protected EClass eStaticClass()
 	{
 		return PivotPackage.Literals.ITERATOR_EXP;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public PatternExp getOwnedPattern()
+	{
+		return ownedPattern;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwnedPattern(PatternExp newOwnedPattern, NotificationChain msgs)
+	{
+		PatternExp oldOwnedPattern = ownedPattern;
+		ownedPattern = newOwnedPattern;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.ITERATOR_EXP__OWNED_PATTERN, oldOwnedPattern, newOwnedPattern);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwnedPattern(PatternExp newOwnedPattern)
+	{
+		if (newOwnedPattern != ownedPattern)
+		{
+			NotificationChain msgs = null;
+			if (ownedPattern != null)
+				msgs = ((InternalEObject)ownedPattern).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.ITERATOR_EXP__OWNED_PATTERN, null, msgs);
+			if (newOwnedPattern != null)
+				msgs = ((InternalEObject)newOwnedPattern).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.ITERATOR_EXP__OWNED_PATTERN, null, msgs);
+			msgs = basicSetOwnedPattern(newOwnedPattern, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.ITERATOR_EXP__OWNED_PATTERN, newOwnedPattern, newOwnedPattern));
 	}
 
 	/**
@@ -1823,6 +1899,254 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 	public Element getReferredElement()
 	{
 		return getReferredIteration();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case PivotPackage.ITERATOR_EXP__ANNOTATING_COMMENTS:
+				return ((InternalEList<?>)getAnnotatingComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ITERATOR_EXP__OWNED_ANNOTATIONS:
+				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ITERATOR_EXP__OWNED_COMMENTS:
+				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ITERATOR_EXP__OWNED_EXTENSIONS:
+				return ((InternalEList<?>)getOwnedExtensions()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ITERATOR_EXP__OWNED_SOURCE:
+				return basicSetOwnedSource(null, msgs);
+			case PivotPackage.ITERATOR_EXP__OWNED_BODY:
+				return basicSetOwnedBody(null, msgs);
+			case PivotPackage.ITERATOR_EXP__OWNED_ITERATORS:
+				return ((InternalEList<?>)getOwnedIterators()).basicRemove(otherEnd, msgs);
+			case PivotPackage.ITERATOR_EXP__OWNED_PATTERN:
+				return basicSetOwnedPattern(null, msgs);
+		}
+		return eDynamicInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+	{
+		switch (featureID)
+		{
+			case PivotPackage.ITERATOR_EXP__ANNOTATING_COMMENTS:
+				return getAnnotatingComments();
+			case PivotPackage.ITERATOR_EXP__OWNED_ANNOTATIONS:
+				return getOwnedAnnotations();
+			case PivotPackage.ITERATOR_EXP__OWNED_COMMENTS:
+				return getOwnedComments();
+			case PivotPackage.ITERATOR_EXP__OWNED_EXTENSIONS:
+				return getOwnedExtensions();
+			case PivotPackage.ITERATOR_EXP__NAME:
+				return getName();
+			case PivotPackage.ITERATOR_EXP__IS_MANY:
+				return isIsMany();
+			case PivotPackage.ITERATOR_EXP__IS_REQUIRED:
+				return isIsRequired();
+			case PivotPackage.ITERATOR_EXP__TYPE:
+				if (resolve) return getType();
+				return basicGetType();
+			case PivotPackage.ITERATOR_EXP__TYPE_VALUE:
+				return getTypeValue();
+			case PivotPackage.ITERATOR_EXP__IS_IMPLICIT:
+				return isIsImplicit();
+			case PivotPackage.ITERATOR_EXP__IS_SAFE:
+				return isIsSafe();
+			case PivotPackage.ITERATOR_EXP__OWNED_SOURCE:
+				return getOwnedSource();
+			case PivotPackage.ITERATOR_EXP__OWNED_BODY:
+				return getOwnedBody();
+			case PivotPackage.ITERATOR_EXP__OWNED_ITERATORS:
+				return getOwnedIterators();
+			case PivotPackage.ITERATOR_EXP__REFERRED_ITERATION:
+				if (resolve) return getReferredIteration();
+				return basicGetReferredIteration();
+			case PivotPackage.ITERATOR_EXP__OWNED_PATTERN:
+				return getOwnedPattern();
+		}
+		return eDynamicGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue)
+	{
+		switch (featureID)
+		{
+			case PivotPackage.ITERATOR_EXP__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				getAnnotatingComments().addAll((Collection<? extends Comment>)newValue);
+				return;
+			case PivotPackage.ITERATOR_EXP__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				getOwnedAnnotations().addAll((Collection<? extends Element>)newValue);
+				return;
+			case PivotPackage.ITERATOR_EXP__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
+				return;
+			case PivotPackage.ITERATOR_EXP__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				getOwnedExtensions().addAll((Collection<? extends ElementExtension>)newValue);
+				return;
+			case PivotPackage.ITERATOR_EXP__NAME:
+				setName((String)newValue);
+				return;
+			case PivotPackage.ITERATOR_EXP__IS_REQUIRED:
+				setIsRequired((Boolean)newValue);
+				return;
+			case PivotPackage.ITERATOR_EXP__TYPE:
+				setType((Type)newValue);
+				return;
+			case PivotPackage.ITERATOR_EXP__TYPE_VALUE:
+				setTypeValue((Type)newValue);
+				return;
+			case PivotPackage.ITERATOR_EXP__IS_IMPLICIT:
+				setIsImplicit((Boolean)newValue);
+				return;
+			case PivotPackage.ITERATOR_EXP__IS_SAFE:
+				setIsSafe((Boolean)newValue);
+				return;
+			case PivotPackage.ITERATOR_EXP__OWNED_SOURCE:
+				setOwnedSource((OCLExpression)newValue);
+				return;
+			case PivotPackage.ITERATOR_EXP__OWNED_BODY:
+				setOwnedBody((OCLExpression)newValue);
+				return;
+			case PivotPackage.ITERATOR_EXP__OWNED_ITERATORS:
+				getOwnedIterators().clear();
+				getOwnedIterators().addAll((Collection<? extends Variable>)newValue);
+				return;
+			case PivotPackage.ITERATOR_EXP__REFERRED_ITERATION:
+				setReferredIteration((Iteration)newValue);
+				return;
+			case PivotPackage.ITERATOR_EXP__OWNED_PATTERN:
+				setOwnedPattern((PatternExp)newValue);
+				return;
+		}
+		eDynamicSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID)
+	{
+		switch (featureID)
+		{
+			case PivotPackage.ITERATOR_EXP__ANNOTATING_COMMENTS:
+				getAnnotatingComments().clear();
+				return;
+			case PivotPackage.ITERATOR_EXP__OWNED_ANNOTATIONS:
+				getOwnedAnnotations().clear();
+				return;
+			case PivotPackage.ITERATOR_EXP__OWNED_COMMENTS:
+				getOwnedComments().clear();
+				return;
+			case PivotPackage.ITERATOR_EXP__OWNED_EXTENSIONS:
+				getOwnedExtensions().clear();
+				return;
+			case PivotPackage.ITERATOR_EXP__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case PivotPackage.ITERATOR_EXP__IS_REQUIRED:
+				setIsRequired(IS_REQUIRED_EDEFAULT);
+				return;
+			case PivotPackage.ITERATOR_EXP__TYPE:
+				setType((Type)null);
+				return;
+			case PivotPackage.ITERATOR_EXP__TYPE_VALUE:
+				setTypeValue((Type)null);
+				return;
+			case PivotPackage.ITERATOR_EXP__IS_IMPLICIT:
+				setIsImplicit(IS_IMPLICIT_EDEFAULT);
+				return;
+			case PivotPackage.ITERATOR_EXP__IS_SAFE:
+				setIsSafe(IS_SAFE_EDEFAULT);
+				return;
+			case PivotPackage.ITERATOR_EXP__OWNED_SOURCE:
+				setOwnedSource((OCLExpression)null);
+				return;
+			case PivotPackage.ITERATOR_EXP__OWNED_BODY:
+				setOwnedBody((OCLExpression)null);
+				return;
+			case PivotPackage.ITERATOR_EXP__OWNED_ITERATORS:
+				getOwnedIterators().clear();
+				return;
+			case PivotPackage.ITERATOR_EXP__REFERRED_ITERATION:
+				setReferredIteration((Iteration)null);
+				return;
+			case PivotPackage.ITERATOR_EXP__OWNED_PATTERN:
+				setOwnedPattern((PatternExp)null);
+				return;
+		}
+		eDynamicUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID)
+	{
+		switch (featureID)
+		{
+			case PivotPackage.ITERATOR_EXP__ANNOTATING_COMMENTS:
+				return annotatingComments != null && !annotatingComments.isEmpty();
+			case PivotPackage.ITERATOR_EXP__OWNED_ANNOTATIONS:
+				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+			case PivotPackage.ITERATOR_EXP__OWNED_COMMENTS:
+				return ownedComments != null && !ownedComments.isEmpty();
+			case PivotPackage.ITERATOR_EXP__OWNED_EXTENSIONS:
+				return ownedExtensions != null && !ownedExtensions.isEmpty();
+			case PivotPackage.ITERATOR_EXP__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PivotPackage.ITERATOR_EXP__IS_MANY:
+				return isIsMany() != IS_MANY_EDEFAULT;
+			case PivotPackage.ITERATOR_EXP__IS_REQUIRED:
+				return ((eFlags & IS_REQUIRED_EFLAG) != 0) != IS_REQUIRED_EDEFAULT;
+			case PivotPackage.ITERATOR_EXP__TYPE:
+				return type != null;
+			case PivotPackage.ITERATOR_EXP__TYPE_VALUE:
+				return typeValue != null;
+			case PivotPackage.ITERATOR_EXP__IS_IMPLICIT:
+				return ((eFlags & IS_IMPLICIT_EFLAG) != 0) != IS_IMPLICIT_EDEFAULT;
+			case PivotPackage.ITERATOR_EXP__IS_SAFE:
+				return ((eFlags & IS_SAFE_EFLAG) != 0) != IS_SAFE_EDEFAULT;
+			case PivotPackage.ITERATOR_EXP__OWNED_SOURCE:
+				return ownedSource != null;
+			case PivotPackage.ITERATOR_EXP__OWNED_BODY:
+				return ownedBody != null;
+			case PivotPackage.ITERATOR_EXP__OWNED_ITERATORS:
+				return ownedIterators != null && !ownedIterators.isEmpty();
+			case PivotPackage.ITERATOR_EXP__REFERRED_ITERATION:
+				return referredIteration != null;
+			case PivotPackage.ITERATOR_EXP__OWNED_PATTERN:
+				return ownedPattern != null;
+		}
+		return eDynamicIsSet(featureID);
 	}
 
 	/**

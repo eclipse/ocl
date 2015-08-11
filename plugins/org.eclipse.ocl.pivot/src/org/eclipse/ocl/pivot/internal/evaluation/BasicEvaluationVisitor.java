@@ -34,6 +34,7 @@ import org.eclipse.ocl.pivot.EnumLiteralExp;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.IfExp;
+import org.eclipse.ocl.pivot.IfPatternExp;
 import org.eclipse.ocl.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.pivot.IterateExp;
@@ -52,6 +53,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.pivot.Parameter;
+import org.eclipse.ocl.pivot.PatternExp;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.PropertyCallExp;
 import org.eclipse.ocl.pivot.RealLiteralExp;
@@ -350,6 +352,46 @@ public class BasicEvaluationVisitor extends AbstractEvaluationVisitor
 			expression = ifExp.getOwnedElse();
 		}
 		return expression.accept(undecoratedVisitor);
+	}
+
+	/**
+	 * Callback for an IfPatternExp visit.
+	 */
+	@Override
+    public Object visitIfPatternExp(@NonNull IfPatternExp ifPatternExp) {
+		OCLExpression source = ifPatternExp.getOwnedSource();
+		Object acceptedValue = source.accept(undecoratedVisitor);
+		@SuppressWarnings("null")@NonNull PatternExp asPattern = ifPatternExp.getOwnedPattern();
+		Map<Variable, Object> patternVariable2matchedValue = findMatch(asPattern, acceptedValue);
+		if (patternVariable2matchedValue != null) {
+			@SuppressWarnings("null")@NonNull OCLExpression expression = ifPatternExp.getOwnedThen();
+			EvaluationEnvironment nestedEvaluationEnvironment = context.pushEvaluationEnvironment(expression, ifPatternExp);
+			for (@SuppressWarnings("null")@NonNull Variable patternVariable : asPattern.getOwnedVariables()) {
+				Object matchedValue = patternVariable2matchedValue.get(patternVariable);
+				if (matchedValue != ValueUtil.NOT_A_VALUE) {
+					nestedEvaluationEnvironment.add(patternVariable, matchedValue);
+				}
+			}
+			try {
+				return expression.accept(undecoratedVisitor);
+			}
+			finally {
+				context.popEvaluationEnvironment();
+//				nestedVisitor.dispose();
+			}
+		}
+		else {
+			return ifPatternExp.getOwnedElse().accept(undecoratedVisitor);
+		}
+	}
+
+	private @Nullable Map<Variable, Object> findMatch(@NonNull PatternExp asPattern, Object acceptedValue) {
+		Map<Variable, Object> patternVariable2matchedValue = new HashMap<Variable, Object>();
+		for (Variable patternVariable : asPattern.getOwnedVariables()) {
+			patternVariable2matchedValue.put(patternVariable, ValueUtil.NOT_A_VALUE);
+		}
+		
+		return patternVariable2matchedValue;
 	}
 
 	/**

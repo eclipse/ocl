@@ -315,19 +315,12 @@ NavigatingArgExpCS returns ExpCS: // Intended to be overridden
 ;
 
 IfExpCS returns IfExpCS:
-	'if' ownedCondition=(ExpCS|PatternExpCS)
-	'then' ownedThenExpression=ExpCS
-//	ifThenExpressions+=IfThenExpCS
-	(ownedIfThenExpressions+=ElseIfThenExpCS)*
+	'if' ownedIfThenExpressions+=IfThenExpCS
+	('elseif' ownedIfThenExpressions+=IfThenExpCS)*
 	'else' ownedElseExpression=ExpCS
 	'endif';
-//IfThenExpCS returns IfThenExpCS:
-//	'if' condition=ExpCS
-//	'then' thenExpression=ExpCS
-//;
-ElseIfThenExpCS returns IfThenExpCS:
-	'elseif' ownedCondition=ExpCS
-	'then' ownedThenExpression=ExpCS
+IfThenExpCS returns IfThenExpCS:
+	(ownedPattern=PatternExpCS '=')? ownedCondition=ExpCS 'then' ownedThenExpression=ExpCS
 ;
 
 LetExpCS returns LetExpCS:

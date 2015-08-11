@@ -40,6 +40,7 @@ public interface Visitor<R>
 	 */
 	@Nullable R visiting(@NonNull org.eclipse.ocl.pivot.util.Visitable visitable);
 
+	@Nullable R visitAbstractIfExp(@NonNull org.eclipse.ocl.pivot.AbstractIfExp object);
 	@Nullable R visitAnnotation(@NonNull org.eclipse.ocl.pivot.Annotation object);
 	@Nullable R visitAnyType(@NonNull org.eclipse.ocl.pivot.AnyType object);
 	@Nullable R visitAssociationClass(@NonNull org.eclipse.ocl.pivot.AssociationClass object);
@@ -79,6 +80,7 @@ public interface Visitor<R>
 	@Nullable R visitFeatureCallExp(@NonNull org.eclipse.ocl.pivot.FeatureCallExp object);
 	@Nullable R visitFinalState(@NonNull org.eclipse.ocl.pivot.FinalState object);
 	@Nullable R visitIfExp(@NonNull org.eclipse.ocl.pivot.IfExp object);
+	@Nullable R visitIfPatternExp(@NonNull org.eclipse.ocl.pivot.IfPatternExp object);
 	@Nullable R visitImport(@NonNull org.eclipse.ocl.pivot.Import object);
 	@Nullable R visitInstanceSpecification(@NonNull org.eclipse.ocl.pivot.InstanceSpecification object);
 	@Nullable R visitIntegerLiteralExp(@NonNull org.eclipse.ocl.pivot.IntegerLiteralExp object);
@@ -116,6 +118,11 @@ public interface Visitor<R>
 	@Nullable R visitParameter(@NonNull org.eclipse.ocl.pivot.Parameter object);
 	@Nullable R visitParameterType(@NonNull org.eclipse.ocl.pivot.ParameterType object);
 	@Nullable R visitParameterableElement(@NonNull org.eclipse.ocl.pivot.ParameterableElement object);
+	@Nullable R visitPatternClass(@NonNull org.eclipse.ocl.pivot.PatternClass object);
+	@Nullable R visitPatternExp(@NonNull org.eclipse.ocl.pivot.PatternExp object);
+	@Nullable R visitPatternLiteral(@NonNull org.eclipse.ocl.pivot.PatternLiteral object);
+	@Nullable R visitPatternProperty(@NonNull org.eclipse.ocl.pivot.PatternProperty object);
+	@Nullable R visitPatternValue(@NonNull org.eclipse.ocl.pivot.PatternValue object);
 	@Nullable R visitPrecedence(@NonNull org.eclipse.ocl.pivot.Precedence object);
 	@Nullable R visitPrimitiveCompletePackage(@NonNull org.eclipse.ocl.pivot.PrimitiveCompletePackage object);
 	@Nullable R visitPrimitiveLiteralExp(@NonNull org.eclipse.ocl.pivot.PrimitiveLiteralExp object);

@@ -2585,98 +2585,91 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "IfExpCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cIfKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cOwnedConditionAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final Alternatives cOwnedConditionAlternatives_1_0 = (Alternatives)cOwnedConditionAssignment_1.eContents().get(0);
-		private final RuleCall cOwnedConditionExpCSParserRuleCall_1_0_0 = (RuleCall)cOwnedConditionAlternatives_1_0.eContents().get(0);
-		private final RuleCall cOwnedConditionPatternExpCSParserRuleCall_1_0_1 = (RuleCall)cOwnedConditionAlternatives_1_0.eContents().get(1);
-		private final Keyword cThenKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cOwnedThenExpressionAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cOwnedThenExpressionExpCSParserRuleCall_3_0 = (RuleCall)cOwnedThenExpressionAssignment_3.eContents().get(0);
-		private final Assignment cOwnedIfThenExpressionsAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cOwnedIfThenExpressionsElseIfThenExpCSParserRuleCall_4_0 = (RuleCall)cOwnedIfThenExpressionsAssignment_4.eContents().get(0);
-		private final Keyword cElseKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Assignment cOwnedElseExpressionAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cOwnedElseExpressionExpCSParserRuleCall_6_0 = (RuleCall)cOwnedElseExpressionAssignment_6.eContents().get(0);
-		private final Keyword cEndifKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Assignment cOwnedIfThenExpressionsAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cOwnedIfThenExpressionsIfThenExpCSParserRuleCall_1_0 = (RuleCall)cOwnedIfThenExpressionsAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cElseifKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cOwnedIfThenExpressionsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cOwnedIfThenExpressionsIfThenExpCSParserRuleCall_2_1_0 = (RuleCall)cOwnedIfThenExpressionsAssignment_2_1.eContents().get(0);
+		private final Keyword cElseKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cOwnedElseExpressionAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cOwnedElseExpressionExpCSParserRuleCall_4_0 = (RuleCall)cOwnedElseExpressionAssignment_4.eContents().get(0);
+		private final Keyword cEndifKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//IfExpCS:
-		//	"if" ownedCondition=(ExpCS | PatternExpCS) "then" ownedThenExpression=ExpCS //	ifThenExpressions+=IfThenExpCS
-		//
-		//	ownedIfThenExpressions+=ElseIfThenExpCS* "else" ownedElseExpression=ExpCS "endif";
+		//	"if" ownedIfThenExpressions+=IfThenExpCS ("elseif" ownedIfThenExpressions+=IfThenExpCS)* "else"
+		//	ownedElseExpression=ExpCS "endif";
 		@Override public ParserRule getRule() { return rule; }
 
-		//"if" ownedCondition=(ExpCS | PatternExpCS) "then" ownedThenExpression=ExpCS //	ifThenExpressions+=IfThenExpCS
-		//
-		//ownedIfThenExpressions+=ElseIfThenExpCS* "else" ownedElseExpression=ExpCS "endif"
+		//"if" ownedIfThenExpressions+=IfThenExpCS ("elseif" ownedIfThenExpressions+=IfThenExpCS)* "else"
+		//ownedElseExpression=ExpCS "endif"
 		public Group getGroup() { return cGroup; }
 
 		//"if"
 		public Keyword getIfKeyword_0() { return cIfKeyword_0; }
 
-		//ownedCondition=(ExpCS | PatternExpCS)
-		public Assignment getOwnedConditionAssignment_1() { return cOwnedConditionAssignment_1; }
+		//ownedIfThenExpressions+=IfThenExpCS
+		public Assignment getOwnedIfThenExpressionsAssignment_1() { return cOwnedIfThenExpressionsAssignment_1; }
 
-		//ExpCS | PatternExpCS
-		public Alternatives getOwnedConditionAlternatives_1_0() { return cOwnedConditionAlternatives_1_0; }
+		//IfThenExpCS
+		public RuleCall getOwnedIfThenExpressionsIfThenExpCSParserRuleCall_1_0() { return cOwnedIfThenExpressionsIfThenExpCSParserRuleCall_1_0; }
 
-		//ExpCS
-		public RuleCall getOwnedConditionExpCSParserRuleCall_1_0_0() { return cOwnedConditionExpCSParserRuleCall_1_0_0; }
+		//("elseif" ownedIfThenExpressions+=IfThenExpCS)*
+		public Group getGroup_2() { return cGroup_2; }
 
-		//PatternExpCS
-		public RuleCall getOwnedConditionPatternExpCSParserRuleCall_1_0_1() { return cOwnedConditionPatternExpCSParserRuleCall_1_0_1; }
+		//"elseif"
+		public Keyword getElseifKeyword_2_0() { return cElseifKeyword_2_0; }
 
-		//"then"
-		public Keyword getThenKeyword_2() { return cThenKeyword_2; }
+		//ownedIfThenExpressions+=IfThenExpCS
+		public Assignment getOwnedIfThenExpressionsAssignment_2_1() { return cOwnedIfThenExpressionsAssignment_2_1; }
 
-		//ownedThenExpression=ExpCS
-		public Assignment getOwnedThenExpressionAssignment_3() { return cOwnedThenExpressionAssignment_3; }
-
-		//ExpCS
-		public RuleCall getOwnedThenExpressionExpCSParserRuleCall_3_0() { return cOwnedThenExpressionExpCSParserRuleCall_3_0; }
-
-		//ownedIfThenExpressions+=ElseIfThenExpCS*
-		public Assignment getOwnedIfThenExpressionsAssignment_4() { return cOwnedIfThenExpressionsAssignment_4; }
-
-		//ElseIfThenExpCS
-		public RuleCall getOwnedIfThenExpressionsElseIfThenExpCSParserRuleCall_4_0() { return cOwnedIfThenExpressionsElseIfThenExpCSParserRuleCall_4_0; }
+		//IfThenExpCS
+		public RuleCall getOwnedIfThenExpressionsIfThenExpCSParserRuleCall_2_1_0() { return cOwnedIfThenExpressionsIfThenExpCSParserRuleCall_2_1_0; }
 
 		//"else"
-		public Keyword getElseKeyword_5() { return cElseKeyword_5; }
+		public Keyword getElseKeyword_3() { return cElseKeyword_3; }
 
 		//ownedElseExpression=ExpCS
-		public Assignment getOwnedElseExpressionAssignment_6() { return cOwnedElseExpressionAssignment_6; }
+		public Assignment getOwnedElseExpressionAssignment_4() { return cOwnedElseExpressionAssignment_4; }
 
 		//ExpCS
-		public RuleCall getOwnedElseExpressionExpCSParserRuleCall_6_0() { return cOwnedElseExpressionExpCSParserRuleCall_6_0; }
+		public RuleCall getOwnedElseExpressionExpCSParserRuleCall_4_0() { return cOwnedElseExpressionExpCSParserRuleCall_4_0; }
 
 		//"endif"
-		public Keyword getEndifKeyword_7() { return cEndifKeyword_7; }
+		public Keyword getEndifKeyword_5() { return cEndifKeyword_5; }
 	}
 
-	public class ElseIfThenExpCSElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ElseIfThenExpCS");
+	public class IfThenExpCSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "IfThenExpCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cElseifKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
+		private final Assignment cOwnedPatternAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
+		private final RuleCall cOwnedPatternPatternExpCSParserRuleCall_0_0_0 = (RuleCall)cOwnedPatternAssignment_0_0.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
 		private final Assignment cOwnedConditionAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cOwnedConditionExpCSParserRuleCall_1_0 = (RuleCall)cOwnedConditionAssignment_1.eContents().get(0);
 		private final Keyword cThenKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cOwnedThenExpressionAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cOwnedThenExpressionExpCSParserRuleCall_3_0 = (RuleCall)cOwnedThenExpressionAssignment_3.eContents().get(0);
 		
-		////IfThenExpCS returns IfThenExpCS:
-		// //	'if' condition=ExpCS
-		// //	'then' thenExpression=ExpCS
-		// //;
-		// ElseIfThenExpCS
-		//returns IfThenExpCS:
-		//	"elseif" ownedCondition=ExpCS "then" ownedThenExpression=ExpCS;
+		//IfThenExpCS:
+		//	(ownedPattern=PatternExpCS "=")? ownedCondition=ExpCS "then" ownedThenExpression=ExpCS;
 		@Override public ParserRule getRule() { return rule; }
 
-		//"elseif" ownedCondition=ExpCS "then" ownedThenExpression=ExpCS
+		//(ownedPattern=PatternExpCS "=")? ownedCondition=ExpCS "then" ownedThenExpression=ExpCS
 		public Group getGroup() { return cGroup; }
 
-		//"elseif"
-		public Keyword getElseifKeyword_0() { return cElseifKeyword_0; }
+		//(ownedPattern=PatternExpCS "=")?
+		public Group getGroup_0() { return cGroup_0; }
+
+		//ownedPattern=PatternExpCS
+		public Assignment getOwnedPatternAssignment_0_0() { return cOwnedPatternAssignment_0_0; }
+
+		//PatternExpCS
+		public RuleCall getOwnedPatternPatternExpCSParserRuleCall_0_0_0() { return cOwnedPatternPatternExpCSParserRuleCall_0_0_0; }
+
+		//"="
+		public Keyword getEqualsSignKeyword_0_1() { return cEqualsSignKeyword_0_1; }
 
 		//ownedCondition=ExpCS
 		public Assignment getOwnedConditionAssignment_1() { return cOwnedConditionAssignment_1; }
@@ -2941,7 +2934,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	private final NavigatingSemiArgCSElements pNavigatingSemiArgCS;
 	private final NavigatingArgExpCSElements pNavigatingArgExpCS;
 	private final IfExpCSElements pIfExpCS;
-	private final ElseIfThenExpCSElements pElseIfThenExpCS;
+	private final IfThenExpCSElements pIfThenExpCS;
 	private final LetExpCSElements pLetExpCS;
 	private final LetVariableCSElements pLetVariableCS;
 	private final NestedExpCSElements pNestedExpCS;
@@ -3020,7 +3013,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pNavigatingSemiArgCS = new NavigatingSemiArgCSElements();
 		this.pNavigatingArgExpCS = new NavigatingArgExpCSElements();
 		this.pIfExpCS = new IfExpCSElements();
-		this.pElseIfThenExpCS = new ElseIfThenExpCSElements();
+		this.pIfThenExpCS = new IfThenExpCSElements();
 		this.pLetExpCS = new LetExpCSElements();
 		this.pLetVariableCS = new LetVariableCSElements();
 		this.pNestedExpCS = new NestedExpCSElements();
@@ -3757,9 +3750,8 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//IfExpCS:
-	//	"if" ownedCondition=(ExpCS | PatternExpCS) "then" ownedThenExpression=ExpCS //	ifThenExpressions+=IfThenExpCS
-	//
-	//	ownedIfThenExpressions+=ElseIfThenExpCS* "else" ownedElseExpression=ExpCS "endif";
+	//	"if" ownedIfThenExpressions+=IfThenExpCS ("elseif" ownedIfThenExpressions+=IfThenExpCS)* "else"
+	//	ownedElseExpression=ExpCS "endif";
 	public IfExpCSElements getIfExpCSAccess() {
 		return pIfExpCS;
 	}
@@ -3768,19 +3760,14 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getIfExpCSAccess().getRule();
 	}
 
-	////IfThenExpCS returns IfThenExpCS:
-	// //	'if' condition=ExpCS
-	// //	'then' thenExpression=ExpCS
-	// //;
-	// ElseIfThenExpCS
-	//returns IfThenExpCS:
-	//	"elseif" ownedCondition=ExpCS "then" ownedThenExpression=ExpCS;
-	public ElseIfThenExpCSElements getElseIfThenExpCSAccess() {
-		return pElseIfThenExpCS;
+	//IfThenExpCS:
+	//	(ownedPattern=PatternExpCS "=")? ownedCondition=ExpCS "then" ownedThenExpression=ExpCS;
+	public IfThenExpCSElements getIfThenExpCSAccess() {
+		return pIfThenExpCS;
 	}
 	
-	public ParserRule getElseIfThenExpCSRule() {
-		return getElseIfThenExpCSAccess().getRule();
+	public ParserRule getIfThenExpCSRule() {
+		return getIfThenExpCSAccess().getRule();
 	}
 
 	//LetExpCS:

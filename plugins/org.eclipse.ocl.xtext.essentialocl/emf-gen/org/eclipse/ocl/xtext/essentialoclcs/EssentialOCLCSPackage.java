@@ -2074,31 +2074,13 @@ public interface EssentialOCLCSPackage
 	int IF_EXP_CS__PRECEDENCE = EXP_CS__PRECEDENCE;
 
 	/**
-	 * The feature id for the '<em><b>Is Implicit</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IF_EXP_CS__IS_IMPLICIT = EXP_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owned Condition</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IF_EXP_CS__OWNED_CONDITION = EXP_CS_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Owned Else Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IF_EXP_CS__OWNED_ELSE_EXPRESSION = EXP_CS_FEATURE_COUNT + 2;
+	int IF_EXP_CS__OWNED_ELSE_EXPRESSION = EXP_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned If Then Expressions</b></em>' containment reference list.
@@ -2107,16 +2089,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IF_EXP_CS__OWNED_IF_THEN_EXPRESSIONS = EXP_CS_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Owned Then Expression</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IF_EXP_CS__OWNED_THEN_EXPRESSION = EXP_CS_FEATURE_COUNT + 4;
+	int IF_EXP_CS__OWNED_IF_THEN_EXPRESSIONS = EXP_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>If Exp CS</em>' class.
@@ -2125,7 +2098,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IF_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 5;
+	int IF_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.IfThenExpCSImpl <em>If Then Exp CS</em>}' class.
@@ -2255,13 +2228,22 @@ public interface EssentialOCLCSPackage
 	int IF_THEN_EXP_CS__OWNED_CONDITION = EXP_CS_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Owned Pattern</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_THEN_EXP_CS__OWNED_PATTERN = EXP_CS_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Owned Then Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IF_THEN_EXP_CS__OWNED_THEN_EXPRESSION = EXP_CS_FEATURE_COUNT + 1;
+	int IF_THEN_EXP_CS__OWNED_THEN_EXPRESSION = EXP_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>If Then Exp CS</em>' class.
@@ -2270,7 +2252,7 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IF_THEN_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 2;
+	int IF_THEN_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.OperatorExpCSImpl <em>Operator Exp CS</em>}' class.
@@ -8371,28 +8353,6 @@ public interface EssentialOCLCSPackage
 	EClass getIfExpCS();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.xtext.essentialoclcs.IfExpCS#getOwnedCondition <em>Owned Condition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Condition</em>'.
-	 * @see org.eclipse.ocl.xtext.essentialoclcs.IfExpCS#getOwnedCondition()
-	 * @see #getIfExpCS()
-	 * @generated
-	 */
-	EReference getIfExpCS_OwnedCondition();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.xtext.essentialoclcs.IfExpCS#getOwnedThenExpression <em>Owned Then Expression</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Then Expression</em>'.
-	 * @see org.eclipse.ocl.xtext.essentialoclcs.IfExpCS#getOwnedThenExpression()
-	 * @see #getIfExpCS()
-	 * @generated
-	 */
-	EReference getIfExpCS_OwnedThenExpression();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.xtext.essentialoclcs.IfExpCS#getOwnedIfThenExpressions <em>Owned If Then Expressions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8415,17 +8375,6 @@ public interface EssentialOCLCSPackage
 	EReference getIfExpCS_OwnedElseExpression();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.xtext.essentialoclcs.IfExpCS#isIsImplicit <em>Is Implicit</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Implicit</em>'.
-	 * @see org.eclipse.ocl.xtext.essentialoclcs.IfExpCS#isIsImplicit()
-	 * @see #getIfExpCS()
-	 * @generated
-	 */
-	EAttribute getIfExpCS_IsImplicit();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.xtext.essentialoclcs.IfThenExpCS <em>If Then Exp CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8445,6 +8394,17 @@ public interface EssentialOCLCSPackage
 	 * @generated
 	 */
 	EReference getIfThenExpCS_OwnedCondition();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.xtext.essentialoclcs.IfThenExpCS#getOwnedPattern <em>Owned Pattern</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Owned Pattern</em>'.
+	 * @see org.eclipse.ocl.xtext.essentialoclcs.IfThenExpCS#getOwnedPattern()
+	 * @see #getIfThenExpCS()
+	 * @generated
+	 */
+	EReference getIfThenExpCS_OwnedPattern();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.xtext.essentialoclcs.IfThenExpCS#getOwnedThenExpression <em>Owned Then Expression</em>}'.
@@ -9687,22 +9647,6 @@ public interface EssentialOCLCSPackage
 		EClass IF_EXP_CS = eINSTANCE.getIfExpCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Condition</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference IF_EXP_CS__OWNED_CONDITION = eINSTANCE.getIfExpCS_OwnedCondition();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Then Expression</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference IF_EXP_CS__OWNED_THEN_EXPRESSION = eINSTANCE.getIfExpCS_OwnedThenExpression();
-
-		/**
 		 * The meta object literal for the '<em><b>Owned If Then Expressions</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -9717,14 +9661,6 @@ public interface EssentialOCLCSPackage
 		 * @generated
 		 */
 		EReference IF_EXP_CS__OWNED_ELSE_EXPRESSION = eINSTANCE.getIfExpCS_OwnedElseExpression();
-
-		/**
-		 * The meta object literal for the '<em><b>Is Implicit</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute IF_EXP_CS__IS_IMPLICIT = eINSTANCE.getIfExpCS_IsImplicit();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.xtext.essentialoclcs.impl.IfThenExpCSImpl <em>If Then Exp CS</em>}' class.
@@ -9743,6 +9679,14 @@ public interface EssentialOCLCSPackage
 		 * @generated
 		 */
 		EReference IF_THEN_EXP_CS__OWNED_CONDITION = eINSTANCE.getIfThenExpCS_OwnedCondition();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Pattern</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference IF_THEN_EXP_CS__OWNED_PATTERN = eINSTANCE.getIfThenExpCS_OwnedPattern();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Then Expression</b></em>' containment reference feature.

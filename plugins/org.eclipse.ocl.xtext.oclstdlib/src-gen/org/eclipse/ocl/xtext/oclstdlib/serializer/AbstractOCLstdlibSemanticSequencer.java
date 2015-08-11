@@ -294,7 +294,7 @@ public abstract class AbstractOCLstdlibSemanticSequencer extends EssentialOCLSem
 				sequence_IfExpCS(context, (IfExpCS) semanticObject); 
 				return; 
 			case EssentialOCLCSPackage.IF_THEN_EXP_CS:
-				sequence_ElseIfThenExpCS(context, (IfThenExpCS) semanticObject); 
+				sequence_IfThenExpCS(context, (IfThenExpCS) semanticObject); 
 				return; 
 			case EssentialOCLCSPackage.INFIX_EXP_CS:
 				sequence_ExpCS(context, (InfixExpCS) semanticObject); 

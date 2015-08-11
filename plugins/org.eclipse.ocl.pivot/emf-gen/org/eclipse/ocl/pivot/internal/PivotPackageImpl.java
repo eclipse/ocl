@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.ocl.pivot.AbstractIfExp;
 import org.eclipse.ocl.pivot.Annotation;
 import org.eclipse.ocl.pivot.AnyType;
 import org.eclipse.ocl.pivot.AssociationClass;
@@ -43,8 +44,6 @@ import org.eclipse.ocl.pivot.CompleteModel;
 import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.ConnectionPointReference;
 import org.eclipse.ocl.pivot.Constraint;
-import org.eclipse.ocl.pivot.ShadowExp;
-import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Detail;
 import org.eclipse.ocl.pivot.DynamicBehavior;
@@ -62,6 +61,7 @@ import org.eclipse.ocl.pivot.Feature;
 import org.eclipse.ocl.pivot.FeatureCallExp;
 import org.eclipse.ocl.pivot.FinalState;
 import org.eclipse.ocl.pivot.IfExp;
+import org.eclipse.ocl.pivot.IfPatternExp;
 import org.eclipse.ocl.pivot.Import;
 import org.eclipse.ocl.pivot.InstanceSpecification;
 import org.eclipse.ocl.pivot.IntegerLiteralExp;
@@ -98,6 +98,11 @@ import org.eclipse.ocl.pivot.OrphanCompletePackage;
 import org.eclipse.ocl.pivot.Parameter;
 import org.eclipse.ocl.pivot.ParameterType;
 import org.eclipse.ocl.pivot.ParameterableElement;
+import org.eclipse.ocl.pivot.PatternClass;
+import org.eclipse.ocl.pivot.PatternExp;
+import org.eclipse.ocl.pivot.PatternLiteral;
+import org.eclipse.ocl.pivot.PatternProperty;
+import org.eclipse.ocl.pivot.PatternValue;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Precedence;
@@ -117,6 +122,8 @@ import org.eclipse.ocl.pivot.SelfType;
 import org.eclipse.ocl.pivot.SendSignalAction;
 import org.eclipse.ocl.pivot.SequenceType;
 import org.eclipse.ocl.pivot.SetType;
+import org.eclipse.ocl.pivot.ShadowExp;
+import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.Signal;
 import org.eclipse.ocl.pivot.Slot;
 import org.eclipse.ocl.pivot.StandardLibrary;
@@ -124,6 +131,7 @@ import org.eclipse.ocl.pivot.State;
 import org.eclipse.ocl.pivot.StateExp;
 import org.eclipse.ocl.pivot.StateMachine;
 import org.eclipse.ocl.pivot.Stereotype;
+import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.StringLiteralExp;
 import org.eclipse.ocl.pivot.TemplateBinding;
 import org.eclipse.ocl.pivot.TemplateParameter;
@@ -138,7 +146,6 @@ import org.eclipse.ocl.pivot.TupleLiteralPart;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypeExp;
-import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.pivot.UnspecifiedValueExp;
@@ -165,6 +172,13 @@ import org.eclipse.ocl.pivot.utilities.Pivotable;
 public class PivotPackageImpl
 		extends EPackageImpl
 		implements PivotPackage  {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass abstractIfExpEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -333,6 +347,13 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	private EClass ifExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass ifPatternExpEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -913,6 +934,41 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass patternClassEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass patternExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass patternLiteralEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass patternPropertyEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass patternValueEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass variableDeclarationEClass = null;
 
 	/**
@@ -1224,6 +1280,50 @@ public class PivotPackageImpl
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(PivotPackage.eNS_URI, thePivotPackage);
 		return thePivotPackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getAbstractIfExp()
+	{
+		return abstractIfExpEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getAbstractIfExp_IsElseIf()
+	{
+		return (EAttribute)abstractIfExpEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getAbstractIfExp_OwnedElse()
+	{
+		return (EReference)abstractIfExpEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getAbstractIfExp_OwnedThen()
+	{
+		return (EReference)abstractIfExpEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -2174,42 +2274,9 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EAttribute getIfExp_IsElseIf()
-	{
-		return (EAttribute)ifExpEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getIfExp_OwnedCondition()
 	{
-		return (EReference)ifExpEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getIfExp_OwnedElse()
-	{
-		return (EReference)ifExpEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getIfExp_OwnedThen()
-	{
-		return (EReference)ifExpEClass.getEStructuralFeatures().get(3);
+		return (EReference)ifExpEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -2243,6 +2310,39 @@ public class PivotPackageImpl
 	public EOperation getIfExp__ValidateConditionTypeIsBoolean__DiagnosticChain_Map()
 	{
 		return ifExpEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getIfPatternExp()
+	{
+		return ifPatternExpEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getIfPatternExp_OwnedPattern()
+	{
+		return (EReference)ifPatternExpEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getIfPatternExp_OwnedSource()
+	{
+		return (EReference)ifPatternExpEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -2579,6 +2679,17 @@ public class PivotPackageImpl
 	public EClass getIteratorExp()
 	{
 		return iteratorExpEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getIteratorExp_OwnedPattern()
+	{
+		return (EReference)iteratorExpEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -5911,6 +6022,160 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	@Override
+	public EClass getPatternClass()
+	{
+		return patternClassEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getPatternClass_OwnedProperties()
+	{
+		return (EReference)patternClassEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getPatternClass_ReferredClass()
+	{
+		return (EReference)patternClassEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getPatternExp()
+	{
+		return patternExpEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getPatternExp_OwnedPattern()
+	{
+		return (EReference)patternExpEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getPatternExp_OwnedVariables()
+	{
+		return (EReference)patternExpEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getPatternLiteral()
+	{
+		return patternLiteralEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getPatternLiteral_OwnedExpression()
+	{
+		return (EReference)patternLiteralEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getPatternProperty()
+	{
+		return patternPropertyEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getPatternProperty_OwnedElements()
+	{
+		return (EReference)patternPropertyEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getPatternProperty_OwnedRest()
+	{
+		return (EReference)patternPropertyEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getPatternProperty_ReferredProperty()
+	{
+		return (EReference)patternPropertyEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getPatternValue()
+	{
+		return patternValueEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getPatternValue_ReferredVariable()
+	{
+		return (EReference)patternValueEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getVariableDeclaration() {
 		return variableDeclarationEClass;
 	}
@@ -6873,6 +7138,11 @@ public class PivotPackageImpl
 		isCreated = true;
 
 		// Create classes and their features
+		abstractIfExpEClass = createEClass(ABSTRACT_IF_EXP);
+		createEAttribute(abstractIfExpEClass, ABSTRACT_IF_EXP__IS_ELSE_IF);
+		createEReference(abstractIfExpEClass, ABSTRACT_IF_EXP__OWNED_ELSE);
+		createEReference(abstractIfExpEClass, ABSTRACT_IF_EXP__OWNED_THEN);
+
 		annotationEClass = createEClass(ANNOTATION);
 		createEReference(annotationEClass, ANNOTATION__OWNED_CONTENTS);
 		createEReference(annotationEClass, ANNOTATION__OWNED_DETAILS);
@@ -7062,13 +7332,14 @@ public class PivotPackageImpl
 		finalStateEClass = createEClass(FINAL_STATE);
 
 		ifExpEClass = createEClass(IF_EXP);
-		createEAttribute(ifExpEClass, IF_EXP__IS_ELSE_IF);
 		createEReference(ifExpEClass, IF_EXP__OWNED_CONDITION);
-		createEReference(ifExpEClass, IF_EXP__OWNED_ELSE);
-		createEReference(ifExpEClass, IF_EXP__OWNED_THEN);
 		createEOperation(ifExpEClass, IF_EXP___VALIDATE_COMPATIBLE_ELSE_TYPE__DIAGNOSTICCHAIN_MAP);
 		createEOperation(ifExpEClass, IF_EXP___VALIDATE_COMPATIBLE_THEN_TYPE__DIAGNOSTICCHAIN_MAP);
 		createEOperation(ifExpEClass, IF_EXP___VALIDATE_CONDITION_TYPE_IS_BOOLEAN__DIAGNOSTICCHAIN_MAP);
+
+		ifPatternExpEClass = createEClass(IF_PATTERN_EXP);
+		createEReference(ifPatternExpEClass, IF_PATTERN_EXP__OWNED_PATTERN);
+		createEReference(ifPatternExpEClass, IF_PATTERN_EXP__OWNED_SOURCE);
 
 		importEClass = createEClass(IMPORT);
 		createEReference(importEClass, IMPORT__IMPORTED_NAMESPACE);
@@ -7103,6 +7374,7 @@ public class PivotPackageImpl
 		createEReference(iterationEClass, ITERATION__OWNED_ITERATORS);
 
 		iteratorExpEClass = createEClass(ITERATOR_EXP);
+		createEReference(iteratorExpEClass, ITERATOR_EXP__OWNED_PATTERN);
 		createEOperation(iteratorExpEClass, ITERATOR_EXP___VALIDATE_ANY_BODY_TYPE_IS_BOOLEAN__DIAGNOSTICCHAIN_MAP);
 		createEOperation(iteratorExpEClass, ITERATOR_EXP___VALIDATE_ANY_HAS_ONE_ITERATOR__DIAGNOSTICCHAIN_MAP);
 		createEOperation(iteratorExpEClass, ITERATOR_EXP___VALIDATE_ANY_TYPE_IS_SOURCE_ELEMENT_TYPE__DIAGNOSTICCHAIN_MAP);
@@ -7264,6 +7536,25 @@ public class PivotPackageImpl
 		createEOperation(parameterableElementEClass, PARAMETERABLE_ELEMENT___AS_TEMPLATE_PARAMETER);
 		createEOperation(parameterableElementEClass, PARAMETERABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT);
 		createEOperation(parameterableElementEClass, PARAMETERABLE_ELEMENT___IS_TEMPLATE_PARAMETER);
+
+		patternClassEClass = createEClass(PATTERN_CLASS);
+		createEReference(patternClassEClass, PATTERN_CLASS__OWNED_PROPERTIES);
+		createEReference(patternClassEClass, PATTERN_CLASS__REFERRED_CLASS);
+
+		patternExpEClass = createEClass(PATTERN_EXP);
+		createEReference(patternExpEClass, PATTERN_EXP__OWNED_PATTERN);
+		createEReference(patternExpEClass, PATTERN_EXP__OWNED_VARIABLES);
+
+		patternLiteralEClass = createEClass(PATTERN_LITERAL);
+		createEReference(patternLiteralEClass, PATTERN_LITERAL__OWNED_EXPRESSION);
+
+		patternPropertyEClass = createEClass(PATTERN_PROPERTY);
+		createEReference(patternPropertyEClass, PATTERN_PROPERTY__OWNED_ELEMENTS);
+		createEReference(patternPropertyEClass, PATTERN_PROPERTY__OWNED_REST);
+		createEReference(patternPropertyEClass, PATTERN_PROPERTY__REFERRED_PROPERTY);
+
+		patternValueEClass = createEClass(PATTERN_VALUE);
+		createEReference(patternValueEClass, PATTERN_VALUE__REFERRED_VARIABLE);
 
 		pivotableEClass = createEClass(PIVOTABLE);
 
@@ -7558,6 +7849,7 @@ public class PivotPackageImpl
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		abstractIfExpEClass.getESuperTypes().add(this.getOCLExpression());
 		annotationEClass.getESuperTypes().add(this.getNamedElement());
 		anyTypeEClass.getESuperTypes().add(this.getClass_());
 		associationClassEClass.getESuperTypes().add(this.getClass_());
@@ -7601,7 +7893,8 @@ public class PivotPackageImpl
 		featureEClass.getESuperTypes().add(this.getTypedElement());
 		featureCallExpEClass.getESuperTypes().add(this.getCallExp());
 		finalStateEClass.getESuperTypes().add(this.getState());
-		ifExpEClass.getESuperTypes().add(this.getOCLExpression());
+		ifExpEClass.getESuperTypes().add(this.getAbstractIfExp());
+		ifPatternExpEClass.getESuperTypes().add(this.getAbstractIfExp());
 		importEClass.getESuperTypes().add(this.getNamedElement());
 		instanceSpecificationEClass.getESuperTypes().add(this.getNamedElement());
 		integerLiteralExpEClass.getESuperTypes().add(this.getNumericLiteralExp());
@@ -7649,6 +7942,11 @@ public class PivotPackageImpl
 		parameterEClass.getESuperTypes().add(this.getParameterableElement());
 		parameterTypeEClass.getESuperTypes().add(this.getElement());
 		parameterableElementEClass.getESuperTypes().add(this.getElement());
+		patternClassEClass.getESuperTypes().add(this.getPatternValue());
+		patternExpEClass.getESuperTypes().add(this.getElement());
+		patternLiteralEClass.getESuperTypes().add(this.getPatternValue());
+		patternPropertyEClass.getESuperTypes().add(this.getPatternValue());
+		patternValueEClass.getESuperTypes().add(this.getElement());
 		precedenceEClass.getESuperTypes().add(this.getNamedElement());
 		primitiveCompletePackageEClass.getESuperTypes().add(this.getCompletePackage());
 		primitiveLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
@@ -7706,6 +8004,11 @@ public class PivotPackageImpl
 		wildcardTypeEClass.getESuperTypes().add(this.getClass_());
 
 		// Initialize classes, features, and operations; add parameters
+		initEClass(abstractIfExpEClass, AbstractIfExp.class, "AbstractIfExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getAbstractIfExp_IsElseIf(), ecorePackage.getEBoolean(), "isElseIf", "false", 1, 1, AbstractIfExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEReference(getAbstractIfExp_OwnedElse(), this.getOCLExpression(), null, "ownedElse", null, 1, 1, AbstractIfExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getAbstractIfExp_OwnedThen(), this.getOCLExpression(), null, "ownedThen", null, 1, 1, AbstractIfExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
 		initEClass(annotationEClass, Annotation.class, "Annotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getAnnotation_OwnedContents(), this.getElement(), null, "ownedContents", null, 0, -1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getAnnotation_OwnedDetails(), this.getDetail(), null, "ownedDetails", null, 0, -1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -8036,10 +8339,7 @@ public class PivotPackageImpl
 		initEClass(finalStateEClass, FinalState.class, "FinalState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(ifExpEClass, IfExp.class, "IfExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getIfExp_IsElseIf(), ecorePackage.getEBoolean(), "isElseIf", "false", 1, 1, IfExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEReference(getIfExp_OwnedCondition(), this.getOCLExpression(), null, "ownedCondition", null, 1, 1, IfExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getIfExp_OwnedElse(), this.getOCLExpression(), null, "ownedElse", null, 1, 1, IfExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getIfExp_OwnedThen(), this.getOCLExpression(), null, "ownedThen", null, 1, 1, IfExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		op = initEOperation(getIfExp__ValidateCompatibleElseType__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateCompatibleElseType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -8067,6 +8367,10 @@ public class PivotPackageImpl
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(ifPatternExpEClass, IfPatternExp.class, "IfPatternExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getIfPatternExp_OwnedPattern(), this.getPatternExp(), null, "ownedPattern", null, 1, 1, IfPatternExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getIfPatternExp_OwnedSource(), this.getOCLExpression(), null, "ownedSource", null, 1, 1, IfPatternExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(importEClass, Import.class, "Import", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getImport_ImportedNamespace(), this.getNamespace(), null, "importedNamespace", null, 1, 1, Import.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -8166,6 +8470,7 @@ public class PivotPackageImpl
 		initEReference(getIteration_OwnedIterators(), this.getParameter(), null, "ownedIterators", null, 0, -1, Iteration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(iteratorExpEClass, IteratorExp.class, "IteratorExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getIteratorExp_OwnedPattern(), this.getPatternExp(), null, "ownedPattern", null, 0, 1, IteratorExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		op = initEOperation(getIteratorExp__ValidateAnyBodyTypeIsBoolean__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateAnyBodyTypeIsBoolean", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -8585,6 +8890,25 @@ public class PivotPackageImpl
 		addEParameter(op, this.getParameterableElement(), "p", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEOperation(getParameterableElement__IsTemplateParameter(), ecorePackage.getEBoolean(), "isTemplateParameter", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(patternClassEClass, PatternClass.class, "PatternClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getPatternClass_OwnedProperties(), this.getPatternProperty(), null, "ownedProperties", null, 0, -1, PatternClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getPatternClass_ReferredClass(), this.getClass_(), null, "referredClass", null, 1, 1, PatternClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(patternExpEClass, PatternExp.class, "PatternExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getPatternExp_OwnedPattern(), this.getPatternValue(), null, "ownedPattern", null, 1, 1, PatternExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getPatternExp_OwnedVariables(), this.getVariable(), null, "ownedVariables", null, 1, -1, PatternExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(patternLiteralEClass, PatternLiteral.class, "PatternLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getPatternLiteral_OwnedExpression(), this.getOCLExpression(), null, "ownedExpression", null, 1, 1, PatternLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(patternPropertyEClass, PatternProperty.class, "PatternProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getPatternProperty_OwnedElements(), this.getPatternValue(), null, "ownedElements", null, 0, -1, PatternProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getPatternProperty_OwnedRest(), this.getPatternValue(), null, "ownedRest", null, 0, 1, PatternProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getPatternProperty_ReferredProperty(), this.getProperty(), null, "referredProperty", null, 1, 1, PatternProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(patternValueEClass, PatternValue.class, "PatternValue", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getPatternValue_ReferredVariable(), this.getVariable(), null, "referredVariable", null, 1, 1, PatternValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(pivotableEClass, Pivotable.class, "Pivotable", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
@@ -9444,6 +9768,27 @@ public class PivotPackageImpl
 		   });	
 		addAnnotation
 		  (getPackage_OwnedProfileApplications(), 
+		   source, 
+		   new String[] 
+		   {
+			 "nullFree", "true" //$NON-NLS-1$ //$NON-NLS-2$
+		   });	
+		addAnnotation
+		  (getPatternClass_OwnedProperties(), 
+		   source, 
+		   new String[] 
+		   {
+			 "nullFree", "true" //$NON-NLS-1$ //$NON-NLS-2$
+		   });	
+		addAnnotation
+		  (getPatternExp_OwnedVariables(), 
+		   source, 
+		   new String[] 
+		   {
+			 "nullFree", "true" //$NON-NLS-1$ //$NON-NLS-2$
+		   });	
+		addAnnotation
+		  (getPatternProperty_OwnedElements(), 
 		   source, 
 		   new String[] 
 		   {

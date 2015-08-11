@@ -2136,9 +2136,8 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//IfExpCS:
-	//	"if" ownedCondition=(ExpCS | PatternExpCS) "then" ownedThenExpression=ExpCS //	ifThenExpressions+=IfThenExpCS
-	//
-	//	ownedIfThenExpressions+=ElseIfThenExpCS* "else" ownedElseExpression=ExpCS "endif";
+	//	"if" ownedIfThenExpressions+=IfThenExpCS ("elseif" ownedIfThenExpressions+=IfThenExpCS)* "else"
+	//	ownedElseExpression=ExpCS "endif";
 	public EssentialOCLGrammarAccess.IfExpCSElements getIfExpCSAccess() {
 		return gaEssentialOCL.getIfExpCSAccess();
 	}
@@ -2147,19 +2146,14 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getIfExpCSAccess().getRule();
 	}
 
-	////IfThenExpCS returns IfThenExpCS:
-	// //	'if' condition=ExpCS
-	// //	'then' thenExpression=ExpCS
-	// //;
-	// ElseIfThenExpCS
-	//returns IfThenExpCS:
-	//	"elseif" ownedCondition=ExpCS "then" ownedThenExpression=ExpCS;
-	public EssentialOCLGrammarAccess.ElseIfThenExpCSElements getElseIfThenExpCSAccess() {
-		return gaEssentialOCL.getElseIfThenExpCSAccess();
+	//IfThenExpCS:
+	//	(ownedPattern=PatternExpCS "=")? ownedCondition=ExpCS "then" ownedThenExpression=ExpCS;
+	public EssentialOCLGrammarAccess.IfThenExpCSElements getIfThenExpCSAccess() {
+		return gaEssentialOCL.getIfThenExpCSAccess();
 	}
 	
-	public ParserRule getElseIfThenExpCSRule() {
-		return getElseIfThenExpCSAccess().getRule();
+	public ParserRule getIfThenExpCSRule() {
+		return getIfThenExpCSAccess().getRule();
 	}
 
 	//LetExpCS:

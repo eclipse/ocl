@@ -39,6 +39,11 @@ public abstract class AbstractExtendingVisitor<R, C>
 	}	
 
 	@Override
+	public @Nullable R visitAbstractIfExp(@NonNull org.eclipse.ocl.pivot.AbstractIfExp object) {
+		return visitOCLExpression(object);
+	}
+
+	@Override
 	public @Nullable R visitAnnotation(@NonNull org.eclipse.ocl.pivot.Annotation object) {
 		return visitNamedElement(object);
 	}
@@ -230,7 +235,12 @@ public abstract class AbstractExtendingVisitor<R, C>
 
 	@Override
 	public @Nullable R visitIfExp(@NonNull org.eclipse.ocl.pivot.IfExp object) {
-		return visitOCLExpression(object);
+		return visitAbstractIfExp(object);
+	}
+
+	@Override
+	public @Nullable R visitIfPatternExp(@NonNull org.eclipse.ocl.pivot.IfPatternExp object) {
+		return visitAbstractIfExp(object);
 	}
 
 	@Override
@@ -415,6 +425,31 @@ public abstract class AbstractExtendingVisitor<R, C>
 
 	@Override
 	public @Nullable R visitParameterableElement(@NonNull org.eclipse.ocl.pivot.ParameterableElement object) {
+		return visitElement(object);
+	}
+
+	@Override
+	public @Nullable R visitPatternClass(@NonNull org.eclipse.ocl.pivot.PatternClass object) {
+		return visitPatternValue(object);
+	}
+
+	@Override
+	public @Nullable R visitPatternExp(@NonNull org.eclipse.ocl.pivot.PatternExp object) {
+		return visitElement(object);
+	}
+
+	@Override
+	public @Nullable R visitPatternLiteral(@NonNull org.eclipse.ocl.pivot.PatternLiteral object) {
+		return visitPatternValue(object);
+	}
+
+	@Override
+	public @Nullable R visitPatternProperty(@NonNull org.eclipse.ocl.pivot.PatternProperty object) {
+		return visitPatternValue(object);
+	}
+
+	@Override
+	public @Nullable R visitPatternValue(@NonNull org.eclipse.ocl.pivot.PatternValue object) {
 		return visitElement(object);
 	}
 

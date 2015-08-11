@@ -176,6 +176,42 @@ public interface PivotFactory
 	ParameterType createParameterType();
 
 	/**
+	 * Returns a new object of class '<em>Pattern Class</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Pattern Class</em>'.
+	 * @generated
+	 */
+	PatternClass createPatternClass();
+
+	/**
+	 * Returns a new object of class '<em>Pattern Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Pattern Exp</em>'.
+	 * @generated
+	 */
+	PatternExp createPatternExp();
+
+	/**
+	 * Returns a new object of class '<em>Pattern Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Pattern Literal</em>'.
+	 * @generated
+	 */
+	PatternLiteral createPatternLiteral();
+
+	/**
+	 * Returns a new object of class '<em>Pattern Property</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Pattern Property</em>'.
+	 * @generated
+	 */
+	PatternProperty createPatternProperty();
+
+	/**
 	 * Returns a new object of class '<em>Opposite Property Call Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -462,6 +498,15 @@ public interface PivotFactory
 	 * @generated
 	 */
 	IfExp createIfExp();
+
+	/**
+	 * Returns a new object of class '<em>If Pattern Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>If Pattern Exp</em>'.
+	 * @generated
+	 */
+	IfPatternExp createIfPatternExp();
 
 	/**
 	 * Returns a new object of class '<em>Import</em>'.

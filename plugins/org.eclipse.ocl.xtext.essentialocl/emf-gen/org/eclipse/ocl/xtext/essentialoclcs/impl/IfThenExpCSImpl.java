@@ -21,6 +21,7 @@ import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.xtext.essentialoclcs.ExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.IfThenExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.PatternExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor;
 
 /**
@@ -32,6 +33,7 @@ import org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.IfThenExpCSImpl#getOwnedCondition <em>Owned Condition</em>}</li>
+ *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.IfThenExpCSImpl#getOwnedPattern <em>Owned Pattern</em>}</li>
  *   <li>{@link org.eclipse.ocl.xtext.essentialoclcs.impl.IfThenExpCSImpl#getOwnedThenExpression <em>Owned Then Expression</em>}</li>
  * </ul>
  *
@@ -48,6 +50,16 @@ public class IfThenExpCSImpl extends ExpCSImpl implements IfThenExpCS
 	 * @ordered
 	 */
 	protected ExpCS ownedCondition;
+
+	/**
+	 * The cached value of the '{@link #getOwnedPattern() <em>Owned Pattern</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedPattern()
+	 * @generated
+	 * @ordered
+	 */
+	protected PatternExpCS ownedPattern;
 
 	/**
 	 * The cached value of the '{@link #getOwnedThenExpression() <em>Owned Then Expression</em>}' containment reference.
@@ -136,6 +148,56 @@ public class IfThenExpCSImpl extends ExpCSImpl implements IfThenExpCS
 	 * @generated
 	 */
 	@Override
+	public PatternExpCS getOwnedPattern()
+	{
+		return ownedPattern;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwnedPattern(PatternExpCS newOwnedPattern, NotificationChain msgs)
+	{
+		PatternExpCS oldOwnedPattern = ownedPattern;
+		ownedPattern = newOwnedPattern;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.IF_THEN_EXP_CS__OWNED_PATTERN, oldOwnedPattern, newOwnedPattern);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwnedPattern(PatternExpCS newOwnedPattern)
+	{
+		if (newOwnedPattern != ownedPattern)
+		{
+			NotificationChain msgs = null;
+			if (ownedPattern != null)
+				msgs = ((InternalEObject)ownedPattern).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.IF_THEN_EXP_CS__OWNED_PATTERN, null, msgs);
+			if (newOwnedPattern != null)
+				msgs = ((InternalEObject)newOwnedPattern).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSPackage.IF_THEN_EXP_CS__OWNED_PATTERN, null, msgs);
+			msgs = basicSetOwnedPattern(newOwnedPattern, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSPackage.IF_THEN_EXP_CS__OWNED_PATTERN, newOwnedPattern, newOwnedPattern));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public ExpCS getOwnedThenExpression()
 	{
 		return ownedThenExpression;
@@ -192,6 +254,8 @@ public class IfThenExpCSImpl extends ExpCSImpl implements IfThenExpCS
 		{
 			case EssentialOCLCSPackage.IF_THEN_EXP_CS__OWNED_CONDITION:
 				return basicSetOwnedCondition(null, msgs);
+			case EssentialOCLCSPackage.IF_THEN_EXP_CS__OWNED_PATTERN:
+				return basicSetOwnedPattern(null, msgs);
 			case EssentialOCLCSPackage.IF_THEN_EXP_CS__OWNED_THEN_EXPRESSION:
 				return basicSetOwnedThenExpression(null, msgs);
 		}
@@ -210,6 +274,8 @@ public class IfThenExpCSImpl extends ExpCSImpl implements IfThenExpCS
 		{
 			case EssentialOCLCSPackage.IF_THEN_EXP_CS__OWNED_CONDITION:
 				return getOwnedCondition();
+			case EssentialOCLCSPackage.IF_THEN_EXP_CS__OWNED_PATTERN:
+				return getOwnedPattern();
 			case EssentialOCLCSPackage.IF_THEN_EXP_CS__OWNED_THEN_EXPRESSION:
 				return getOwnedThenExpression();
 		}
@@ -228,6 +294,9 @@ public class IfThenExpCSImpl extends ExpCSImpl implements IfThenExpCS
 		{
 			case EssentialOCLCSPackage.IF_THEN_EXP_CS__OWNED_CONDITION:
 				setOwnedCondition((ExpCS)newValue);
+				return;
+			case EssentialOCLCSPackage.IF_THEN_EXP_CS__OWNED_PATTERN:
+				setOwnedPattern((PatternExpCS)newValue);
 				return;
 			case EssentialOCLCSPackage.IF_THEN_EXP_CS__OWNED_THEN_EXPRESSION:
 				setOwnedThenExpression((ExpCS)newValue);
@@ -249,6 +318,9 @@ public class IfThenExpCSImpl extends ExpCSImpl implements IfThenExpCS
 			case EssentialOCLCSPackage.IF_THEN_EXP_CS__OWNED_CONDITION:
 				setOwnedCondition((ExpCS)null);
 				return;
+			case EssentialOCLCSPackage.IF_THEN_EXP_CS__OWNED_PATTERN:
+				setOwnedPattern((PatternExpCS)null);
+				return;
 			case EssentialOCLCSPackage.IF_THEN_EXP_CS__OWNED_THEN_EXPRESSION:
 				setOwnedThenExpression((ExpCS)null);
 				return;
@@ -268,6 +340,8 @@ public class IfThenExpCSImpl extends ExpCSImpl implements IfThenExpCS
 		{
 			case EssentialOCLCSPackage.IF_THEN_EXP_CS__OWNED_CONDITION:
 				return ownedCondition != null;
+			case EssentialOCLCSPackage.IF_THEN_EXP_CS__OWNED_PATTERN:
+				return ownedPattern != null;
 			case EssentialOCLCSPackage.IF_THEN_EXP_CS__OWNED_THEN_EXPRESSION:
 				return ownedThenExpression != null;
 		}
