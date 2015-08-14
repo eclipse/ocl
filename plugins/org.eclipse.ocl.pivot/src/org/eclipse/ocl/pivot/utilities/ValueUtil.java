@@ -1045,9 +1045,9 @@ public abstract class ValueUtil
 		if (aValue == null) {
 			stringValue = NULL_STRING;
 		}
-//		else if (aValue instanceof Value) {
-//			return ((Value)aValue).toString();
-//		}
+		else if (aValue instanceof Value) {							// Needed for Iterable Values such as CollectionValue 
+			stringValue = ((Value)aValue).toString();
+		}
 		else if (aValue instanceof String) {
 			stringValue = "'" + StringUtil.convertToOCLString((String)aValue) + "'";
 		}
@@ -1065,10 +1065,10 @@ public abstract class ValueUtil
 			stringValue = LabelUtil.getLabel(aValue);
 		}
 		else if (aValue.getClass().isArray()) {
-			throw new UnsupportedOperationException();			// Must invoke DomainStandardLibrary.valueOf() for aggregates
+			throw new UnsupportedOperationException();			// Must invoke IdResolver.boxedValueOf() for aggregates
 		}
 		else if (aValue instanceof Iterable<?>) {
-			throw new UnsupportedOperationException();			// Must invoke DomainStandardLibrary.valueOf() for aggregates
+			throw new UnsupportedOperationException();			// Must invoke IdResolver.boxedValueOf() for aggregates
 		}
 		else {
 			stringValue = String.valueOf(aValue);

@@ -134,6 +134,20 @@ public class ConsoleTests extends AbstractConsoleTests
 		}
 	}
 
+	public void testConsole_printCollections_474933() {
+		// plain collections
+		assertConsoleResult(consolePage, null, "Set{}", "");
+		assertConsoleResult(consolePage, null, "Set{1}", "1\n");
+		assertConsoleResult(consolePage, null, "OrderedSet{1, 2, 3}", "1\n2\n3\n");
+		// nested collections
+		assertConsoleResult(consolePage, null, "Set{Set{}}", "Set{}\n");
+		assertConsoleResult(consolePage, null, "Sequence{OrderedSet{42, 314}, OrderedSet{271}}",
+			"OrderedSet{42,314}\nOrderedSet{271}\n");
+		assertConsoleResult(consolePage, null,
+			"OrderedSet{Sequence{Bag{2, 2}, Bag{3}, Bag{4, 4, 4}}, Sequence{Bag{5}}, Sequence{Bag{}, Bag{5, 5}}, Sequence{Bag{4}}}",
+			"Sequence{Bag{2,2},Bag{3},Bag{4,4,4}}\nSequence{Bag{5}}\nSequence{Bag{},Bag{5,5}}\nSequence{Bag{4}}\n");
+	}
+
 	private void checkPosition(@NonNull IThread vmThread, int lineNumber, int charStart, int charEnd) throws DebugException {
 		IStackFrame topStackFrame = vmThread.getTopStackFrame();
 		assertEquals("lineNumber", lineNumber, topStackFrame.getLineNumber());
