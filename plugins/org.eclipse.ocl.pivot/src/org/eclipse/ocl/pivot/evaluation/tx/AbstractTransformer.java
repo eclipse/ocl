@@ -410,6 +410,8 @@ public abstract class AbstractTransformer implements Transformer
 		public void remove() {
 			prev.next = next;
 			next.prev = prev;
+			prev = this;
+			next = this;
 		}
 	}
 	
@@ -530,6 +532,8 @@ public abstract class AbstractTransformer implements Transformer
 								propertyState = new PropertyState(eObject, eFeature, ecoreValue);
 							}
 						}
+					} else {
+						propertyState = new PropertyState(eObject, eFeature, ecoreValue);
 					}
 				}
 				else {
