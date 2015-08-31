@@ -399,7 +399,7 @@ public abstract class AbstractTransformer implements Transformer
 		@Override
 		public void insertAfter(@NonNull Invocation predecessor) {
 			@NonNull AbstractInvocation castPredecessor = (AbstractInvocation)predecessor;
-			@Nullable AbstractInvocation successor = castPredecessor.next;
+			@NonNull AbstractInvocation successor = castPredecessor.next;
 			successor.prev = this;
 			next = successor;
 			castPredecessor.next = this;
@@ -528,15 +528,10 @@ public abstract class AbstractTransformer implements Transformer
 							else if ((ecoreValue != null) || isIncremental()) {
 								propertyState = OneToOnePropertyState.create(this, eObject, eReference, eOppositeReference, (EObject)ecoreValue);
 							}
-							else {
-								propertyState = new PropertyState(eObject, eFeature, ecoreValue);
-							}
 						}
-					} else {
-						propertyState = new PropertyState(eObject, eFeature, ecoreValue);
 					}
 				}
-				else {
+				if (propertyState == null) {
 					propertyState = new PropertyState(eObject, eFeature, ecoreValue);
 				}
 				objectState.put(eFeature, propertyState);
