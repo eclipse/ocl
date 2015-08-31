@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.build.utilities;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.codegen.merge.java.JControlModel;
@@ -50,10 +51,9 @@ public final class StandaloneASTFacadeHelper extends ASTFacadeHelper { // Workar
 	 * @see JavaCore#getOptions()
 	 * @see JControlModel#getLeadingTabReplacement()
 	 */
-	@SuppressWarnings("unchecked")
 	private Map<?, ?> getDefaultJavaCoreOptions() {
 		String compilerCompliance = JavaCore.VERSION_1_5;
-		Map<Object, String> javaCoreOptions = JavaCore.getOptions();
+		Map<Object, String> javaCoreOptions = new HashMap<Object, String>(JavaCore.getOptions());	// BUG 476208: workaround return type change in Mars M1.
 
 		// Set of options that we want to copy from the current definition
 		javaCoreOptions.put(JavaCore.COMPILER_COMPLIANCE, compilerCompliance);
