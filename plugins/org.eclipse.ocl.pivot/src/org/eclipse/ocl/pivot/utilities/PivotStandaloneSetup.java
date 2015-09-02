@@ -26,6 +26,7 @@ import org.eclipse.ocl.pivot.internal.scoping.PivotScoping;
 import org.eclipse.ocl.pivot.labels.ILabelGenerator;
 import org.eclipse.ocl.pivot.labels.LabelGeneratorRegistry;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
+import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.util.PivotValidator;
 
 import com.google.inject.Guice;
@@ -52,7 +53,8 @@ public class PivotStandaloneSetup //implements ISetup
 		OCLDelegateDomain.lazyInitializeGlobals(PivotConstants.OCL_DELEGATE_URI_PIVOT, false);
 		OCLstdlib.lazyInstall();
 		EcoreASResourceFactory.getInstance();
-		OCLASResourceFactory.getInstance();
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
+		    ASResource.FILE_EXTENSION, OCLASResourceFactory.getInstance());
 		EcorePackage.eINSTANCE.getClass();
 		PivotScoping.init();
 		ToStringVisitor.FACTORY.getClass();
