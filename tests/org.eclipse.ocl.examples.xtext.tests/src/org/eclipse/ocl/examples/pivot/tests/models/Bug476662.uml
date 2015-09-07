@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:ocl4uml="http://www.eclipse.org/ocl/2015/OCLforUML/1" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="_CltPMFGDEeWBoKMzagzTig" name="RootElement">
+    <packageImport xmi:id="_C4WeYFGDEeWBoKMzagzTig">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Eq4L8FGDEeWBoKMzagzTig" name="Class1">
+      <ownedRule xmi:id="_FAZI8FGDEeWBoKMzagzTig" name="Constraint1">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_YteXkFGDEeWBoKMzagzTig">
+          <language>OCL</language>
+          <body>self.Attribute1 &lt;> false</body>
+        </specification>
+      </ownedRule>
+      <ownedRule xmi:id="_LGLsQFMUEeWBxaxOQqaR2Q" name="Constraint2">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_VmiFkFMUEeWBxaxOQqaR2Q">
+          <language>OCL</language>
+          <body>self.Attribute2 = Enumeration1::EnumerationLiteral1</body>
+        </specification>
+      </ownedRule>
+      <ownedAttribute xmi:id="_WtxJoFGDEeWBoKMzagzTig" name="Attribute1" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_IyTlIFMUEeWBxaxOQqaR2Q" name="Attribute2" visibility="public" type="_GI1BcFMUEeWBxaxOQqaR2Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_39JYQFGGEeWS6c63VUJKEg" name="InstanceSpecification1" classifier="_Eq4L8FGDEeWBoKMzagzTig">
+      <slot xmi:id="_49vSkFGGEeWS6c63VUJKEg" definingFeature="_WtxJoFGDEeWBoKMzagzTig">
+        <value xmi:type="uml:LiteralBoolean" xmi:id="_Ama7MFGHEeWS6c63VUJKEg" value="true"/>
+      </slot>
+      <slot xmi:id="_NKcqEFMUEeWBxaxOQqaR2Q" definingFeature="_IyTlIFMUEeWBxaxOQqaR2Q">
+        <value xmi:type="uml:InstanceValue" xmi:id="_SarNkFMUEeWBxaxOQqaR2Q" instance="_GZIuUFMUEeWBxaxOQqaR2Q"/>
+      </slot>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_GI1BcFMUEeWBxaxOQqaR2Q" name="Enumeration1">
+      <ownedLiteral xmi:id="_GZIuUFMUEeWBxaxOQqaR2Q" name="EnumerationLiteral1"/>
+    </packagedElement>
+    <profileApplication xmi:id="_Tl0LoFUwEeWMeN2bDLYrUQ">
+      <eAnnotations xmi:id="_Tl2n4FUwEeWMeN2bDLYrUQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/ocl/2015/OCLforUML/1#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://OCL_PROFILES/OCLforUML.profile.uml#_0"/>
+    </profileApplication>
+  </uml:Model>
+  <ocl4uml:Validation xmi:id="_WsAggFUwEeWMeN2bDLYrUQ" base_InstanceSpecification="_39JYQFGGEeWS6c63VUJKEg" validate="true"/>
+</xmi:XMI>
