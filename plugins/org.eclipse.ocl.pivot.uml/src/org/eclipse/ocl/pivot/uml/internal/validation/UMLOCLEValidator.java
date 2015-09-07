@@ -240,33 +240,7 @@ public class UMLOCLEValidator implements EValidator
 			allOk = validateOpaqueElement(languages, bodies, opaqueExpression, diagnostics, context);
 		}
 		else if (eObject instanceof InstanceSpecification) {
-			Boolean validationEnabled = null;
-			InstanceSpecification umlInstanceSpecification = (InstanceSpecification) eObject;
-			org.eclipse.uml2.uml.Stereotype validationStereotype = umlInstanceSpecification.getAppliedStereotype("OCLforUML::Validation");
-			if (validationStereotype != null) {
-				Object object = umlInstanceSpecification.getValue(validationStereotype, "validate");
-				if (object instanceof Boolean) {
-					validationEnabled = (Boolean)object;
-				}
-			}
-			if (validationEnabled == null) {
-				for (EObject eContainer = eObject; (eContainer = eContainer.eContainer()) != null; ) {
-					if (eContainer instanceof org.eclipse.uml2.uml.Package) {
-						org.eclipse.uml2.uml.Package umlPackage = (org.eclipse.uml2.uml.Package)eContainer;
-						org.eclipse.uml2.uml.Stereotype validationsStereotype = umlPackage.getAppliedStereotype("OCLforUML::Validations");
-						if (validationsStereotype != null) {
-							Object object = umlPackage.getValue(validationsStereotype, "validateInstanceSpecifications");
-							if (object instanceof Boolean) {
-								validationEnabled = (Boolean)object;
-								break;
-							}
-						}
-					}
-				}
-			}
-			if  (validationEnabled == Boolean.TRUE) {
-				allOk = validateInstanceSpecification((InstanceSpecification)eObject, diagnostics, context);
-			}
+			allOk = validateInstanceSpecification((InstanceSpecification)eObject, diagnostics, context);
 		}
 		try {
 			if (eObject instanceof org.eclipse.uml2.uml.Element) {
@@ -383,20 +357,46 @@ public class UMLOCLEValidator implements EValidator
 	 */
 	public boolean validateInstanceSpecification(@NonNull InstanceSpecification instanceSpecification,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		HashSet<Classifier> allClassifiers = new HashSet<Classifier>();
-		HashSet<Constraint> allConstraints = new HashSet<Constraint>();
-		for (Classifier classifier : instanceSpecification.getClassifiers()) {
-			if (classifier != null) {
-				gatherClassifiers(allClassifiers, allConstraints, classifier);
+		Boolean validationEnabled = null;
+		InstanceSpecification umlInstanceSpecification = instanceSpecification;
+		org.eclipse.uml2.uml.Stereotype validationStereotype = umlInstanceSpecification.getAppliedStereotype("OCLforUML::Validation");
+		if (validationStereotype != null) {
+			Object object = umlInstanceSpecification.getValue(validationStereotype, "validate");
+			if (object instanceof Boolean) {
+				validationEnabled = (Boolean)object;
+			}
+		}
+		if (validationEnabled == null) {
+			for (EObject eContainer = instanceSpecification; (eContainer = eContainer.eContainer()) != null; ) {
+				if (eContainer instanceof org.eclipse.uml2.uml.Package) {
+					org.eclipse.uml2.uml.Package umlPackage = (org.eclipse.uml2.uml.Package)eContainer;
+					org.eclipse.uml2.uml.Stereotype validationsStereotype = umlPackage.getAppliedStereotype("OCLforUML::Validations");
+					if (validationsStereotype != null) {
+						Object object = umlPackage.getValue(validationsStereotype, "validateInstanceSpecifications");
+						if (object instanceof Boolean) {
+							validationEnabled = (Boolean)object;
+							break;
+						}
+					}
+				}
 			}
 		}
 		boolean allOk = true;
-		for (Constraint constraint : allConstraints) {
-			ValueSpecification specification = constraint.getSpecification();
-			if (specification instanceof org.eclipse.uml2.uml.OpaqueExpression) {
-				org.eclipse.uml2.uml.OpaqueExpression opaqueExpression = (org.eclipse.uml2.uml.OpaqueExpression)specification;
-				if (!validateInstance(instanceSpecification, opaqueExpression, diagnostics, context) && (diagnostics == null))
-					allOk = false;
+		if  (validationEnabled == Boolean.TRUE) {
+			HashSet<Classifier> allClassifiers = new HashSet<Classifier>();
+			HashSet<Constraint> allConstraints = new HashSet<Constraint>();
+			for (Classifier classifier : instanceSpecification.getClassifiers()) {
+				if (classifier != null) {
+					gatherClassifiers(allClassifiers, allConstraints, classifier);
+				}
+			}
+			for (Constraint constraint : allConstraints) {
+				ValueSpecification specification = constraint.getSpecification();
+				if (specification instanceof org.eclipse.uml2.uml.OpaqueExpression) {
+					org.eclipse.uml2.uml.OpaqueExpression opaqueExpression = (org.eclipse.uml2.uml.OpaqueExpression)specification;
+					if (!validateInstance(instanceSpecification, opaqueExpression, diagnostics, context) && (diagnostics == null))
+						allOk = false;
+				}
 			}
 		}
 		return allOk;
