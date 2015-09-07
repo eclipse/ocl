@@ -64,7 +64,7 @@ public class InstanceSlotNavigationProperty extends AbstractProperty
 					if (collectionTypeId2 != null) {
 						List<Object> unboxedValues = new ArrayList<Object>(size);
 						for (ValueSpecification value : values) {
-							unboxedValues.add(valueOf(value));
+							unboxedValues.add(valueOf(executor, value));
 						}
 						IdResolver idResolver = executor.getIdResolver();
 						return idResolver.createCollectionOfAll(collectionTypeId2, unboxedValues);
@@ -88,7 +88,7 @@ public class InstanceSlotNavigationProperty extends AbstractProperty
 							}
 						}
 						else {
-							return valueOf(valueSpecification);
+							return valueOf(executor, valueSpecification);
 						}
 					}
 					else {
@@ -100,7 +100,7 @@ public class InstanceSlotNavigationProperty extends AbstractProperty
 		return null;
 	}
 
-	private @Nullable Object valueOf(@Nullable ValueSpecification valueSpecification) {
+	private @Nullable Object valueOf(@NonNull Executor executor, @Nullable ValueSpecification valueSpecification) {
 		if (valueSpecification == null) {
 			throw new InvalidValueException("null ValueSpecification in Slot");
 		}
@@ -124,7 +124,8 @@ public class InstanceSlotNavigationProperty extends AbstractProperty
 			return unlimitedValue < 0 ? ValueUtil.UNLIMITED_VALUE : ValueUtil.integerValueOf(unlimitedValue);
 		}
 		if (valueSpecification instanceof InstanceValue) {
-			return ((InstanceValue)valueSpecification).getInstance();
+			InstanceSpecification ecoreInstance = ((InstanceValue)valueSpecification).getInstance();
+			return ecoreInstance != null ? executor.getIdResolver().boxedValueOf(ecoreInstance) : null;
 		}
 		throw new UnsupportedOperationException(getClass().getSimpleName() + ".valueOf " + valueSpecification.eClass().getName());
 	}
