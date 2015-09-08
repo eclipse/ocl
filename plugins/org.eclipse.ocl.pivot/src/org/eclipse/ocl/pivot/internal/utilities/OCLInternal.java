@@ -43,6 +43,10 @@ public class OCLInternal extends OCL
 			}
 			EnvironmentFactoryInternal environmentFactory = ASResourceFactoryRegistry.INSTANCE.createEnvironmentFactory(projectMap, resourceSet);
 			adapter = EnvironmentFactoryAdapter.find(notifier);
+			if (adapter == null) {
+				adapter = new EnvironmentFactoryAdapter(environmentFactory, notifier);
+				eAdapters.add(adapter);
+			}
 			assert adapter != null;
 			assert adapter.getEnvironmentFactory() == environmentFactory;
 		}
