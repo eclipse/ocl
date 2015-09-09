@@ -12,18 +12,22 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.pivot.tests;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.net.MalformedURLException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -106,6 +110,7 @@ import company.Bug418716;
 import company.CompanyFactory;
 import company.CompanyPackage;
 import company.util.CompanyValidator;
+import junit.framework.TestCase;
 import noreflectioncompany.NoreflectioncompanyFactory;
 import noreflectioncompany.NoreflectioncompanyPackage;
 import noreflectioncompany.util.NoreflectioncompanyValidator;
@@ -1278,6 +1283,41 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 		GlobalEnvironmentFactory.disposeInstance();
 	}
 
+	public void testDelegates_Import_476968() {
+		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {			// No test files standalone, this is a standalone test so just bypass it.
+			GlobalEnvironmentFactory environmentFactory = GlobalEnvironmentFactory.getInstance();
+			OCL ocl = environmentFactory.createOCL();
+			//
+			//	Projects on classpath should be accessible as platform:/plugin or platform:/project
+			//
+			URI uri1 = URI.createPlatformPluginURI("org.eclipse.ocl.examples.project.royalandloyal/oclsrc/RoyalAndLoyal/RoyalAndLoyal.ecore", true);
+			Resource resource1 = ocl.getResourceSet().getResource(uri1, true);
+			assertNotNull(resource1);
+			URI uri2 = URI.createPlatformResourceURI("org.eclipse.ocl.examples.project.royalandloyal/oclsrc/RoyalAndLoyal/RoyalAndLoyal.ecore", true);
+			Resource resource2 = ocl.getResourceSet().getResource(uri2, true);
+			assertNotNull(resource2);
+			//
+			//	Projects not on classpath should not be accessible as platform:/plugin or platform:/project
+			//
+			try {
+				URI uri8 = URI.createPlatformPluginURI("org.eclipse.ocl.examples.project.oclinecoretutorial/model/Tutorial.ecore", true);
+				ocl.getResourceSet().getResource(uri8, true);
+				TestCase.fail("Should have thrown a MalformedURLException");	// unknown protocol: platform
+			}
+			catch (WrappedException e) {
+				assertTrue(e.getCause() instanceof MalformedURLException);
+			}
+			try {
+				URI uri9 = URI.createPlatformResourceURI("org.eclipse.ocl.examples.project.oclinecoretutorial/model/Tutorial.ecore", true);
+				ocl.getResourceSet().getResource(uri9, true);
+				TestCase.fail("Should have thrown an IOException");				// The path '/org.eclipse.ocl.examples.project.oclinecoretutorial/model/Tutorial.ecore' is unmapped
+			}
+			catch (WrappedException e) {
+				assertTrue(e.getCause() instanceof IOException);
+			}
+		}
+	}
+	
 	public void validateTutorial(@NonNull String ecoreURI, @NonNull String message) {
 		ResourceSet resourceSet = createResourceSet();
 		OCL ocl = OCL.newInstance(getProjectMap(), resourceSet);

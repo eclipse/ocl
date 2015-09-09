@@ -488,7 +488,7 @@ public interface ProjectManager extends Adapter
 
 	IPackageDescriptor getPackageDescriptor(@NonNull URI ecoreURI);
 
-	void initializeResourceSet(@NonNull ResourceSet resourceSet);
+	void initializeResourceSet(@Nullable ResourceSet resourceSet);
 
 	boolean isGlobal();
 

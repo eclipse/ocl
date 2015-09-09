@@ -13,6 +13,7 @@ package org.eclipse.ocl.pivot.utilities;
 
 import java.util.Map;
 
+import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -53,8 +54,10 @@ public class PivotStandaloneSetup //implements ISetup
 		OCLDelegateDomain.lazyInitializeGlobals(PivotConstants.OCL_DELEGATE_URI_PIVOT, false);
 		OCLstdlib.lazyInstall();
 		EcoreASResourceFactory.getInstance();
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
-		    ASResource.FILE_EXTENSION, OCLASResourceFactory.getInstance());
+		OCLASResourceFactory theOCLASResourceFactory = OCLASResourceFactory.getInstance();
+		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
+			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(ASResource.FILE_EXTENSION, theOCLASResourceFactory);
+		}
 		EcorePackage.eINSTANCE.getClass();
 		PivotScoping.init();
 		ToStringVisitor.FACTORY.getClass();

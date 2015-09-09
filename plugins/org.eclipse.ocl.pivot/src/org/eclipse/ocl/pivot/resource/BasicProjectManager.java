@@ -11,10 +11,10 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.resource;
 
+import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
@@ -30,11 +30,11 @@ import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 public class BasicProjectManager extends AdapterImpl implements ProjectManager
 {
 	public static @NonNull ProjectManager createDefaultProjectManager() { 
-		return EcorePlugin.IS_ECLIPSE_RUNNING ? new ProjectMap(false) : new StandaloneProjectMap(false);
+		return EMFPlugin.IS_ECLIPSE_RUNNING ? new ProjectMap(false) : new StandaloneProjectMap(false);
 	}
 	
 	public static @NonNull ProjectManager createGlobalProjectManager() { 
-		return EcorePlugin.IS_ECLIPSE_RUNNING ? new ProjectMap(true) : new StandaloneProjectMap(true);
+		return EMFPlugin.IS_ECLIPSE_RUNNING ? new ProjectMap(true) : new StandaloneProjectMap(true);
 	}
 	
 	/**
@@ -64,7 +64,7 @@ public class BasicProjectManager extends AdapterImpl implements ProjectManager
 	}
 
 	@Override
-	public void initializeResourceSet(@NonNull ResourceSet resourceSet) {
+	public void initializeResourceSet(@Nullable ResourceSet resourceSet) {
 	}
 
 	@Override

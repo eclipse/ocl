@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentMap;
 
+import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.URI;
@@ -150,6 +151,10 @@ public class GlobalEnvironmentFactory extends AbstractEnvironmentFactory
 
     private GlobalEnvironmentFactory() {
 		super(ProjectManager.CLASS_PATH, createGlobalResourceSet());
+		System.out.println("GlobalEnvironmentFactory()");
+		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
+			getProjectManager().initializeResourceSet(null);
+		}
 	}
 
 	@Override
