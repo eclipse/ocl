@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.lookup;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -30,7 +29,6 @@ public class SingleResultLookupEnvironment extends LookupEnvironmentImpl impleme
 	
 	
 	private static final Logger logger = Logger.getLogger(SingleResultLookupEnvironment.class);
-	private @NonNull List<NamedElement> elements = new ArrayList<NamedElement>();
 	private @NonNull String name; 
 	private @NonNull Executor executor;
 	
@@ -50,7 +48,8 @@ public class SingleResultLookupEnvironment extends LookupEnvironmentImpl impleme
 	public LookupEnvironment addElement(@Nullable NamedElement namedElement) {
 		if (namedElement != null) {
 			if (name.equals(namedElement.getName())) {
-				if (!elements.contains(namedElement)) { 	// FIXME use a set ?
+				List<NamedElement> elements = getNamedElements();
+				if (!elements.contains(namedElement)) {
 					elements.add(namedElement);
 				}
 			}
@@ -76,6 +75,7 @@ public class SingleResultLookupEnvironment extends LookupEnvironmentImpl impleme
 	@Override
 	@Nullable
 	public NamedElement getSingleResult() {
+		List<NamedElement> elements = getNamedElements();
 		int contentsSize = elements.size();
 		if (contentsSize > 1) {
 			logger.warn("Unhandled ambiguous content for '" + name + "'");
@@ -83,17 +83,18 @@ public class SingleResultLookupEnvironment extends LookupEnvironmentImpl impleme
 		return  contentsSize == 0 ? null : elements.get(0);
 	}
 
+	@SuppressWarnings("null")
 	@Override
 	@NonNull
 	public List<NamedElement> getAllResults() {
-		return elements;
+		return getNamedElements();
 	}
 	
 	
 	@Override
 	public boolean hasFinalResult() {
 		// Not thing found is not a final result
-		return elements.size() == 0 ? false : true;
+		return getNamedElements().size() == 0 ? false : true;
 	}
 	
 	@Override
