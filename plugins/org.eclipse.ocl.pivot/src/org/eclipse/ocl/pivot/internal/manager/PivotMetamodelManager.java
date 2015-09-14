@@ -443,7 +443,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 		for (int i = 0; i < candidateParameters.size(); i++) {
 			Parameter referenceParameter = referenceParameters.get(i);
 			Parameter candidateParameter = candidateParameters.get(i);
-			if ((referenceParameter == null) || (candidateParameter == null)) {					// Doesn't happen (just a supurious NPE guard)
+			if ((referenceParameter == null) || (candidateParameter == null)) {					// Doesn't happen (just a spurious NPE guard)
 				referenceConformsToCandidate = false;
 				candidateConformsToReference = false;
 			}
@@ -1157,6 +1157,9 @@ public class PivotMetamodelManager implements MetamodelManagerInternal, Adapter.
 		}
 		org.eclipse.ocl.pivot.Class thisOppositeClass;
 		org.eclipse.ocl.pivot.Package thatPackage = thatClass.getOwningPackage();
+		assert thatPackage != null;
+		completeModel.getCompletePackage(thatPackage);
+//		completeModel.getCompleteClass(thatClass);		// FIXME BUG 477342 uncommenting this gives intermirttent dispose() ISEs
 		List<org.eclipse.ocl.pivot.Package> thesePackages = thisModel.getOwnedPackages();
 		String thatPackageName = ClassUtil.nonNullModel(thatPackage.getName());
 		org.eclipse.ocl.pivot.Package thisOppositePackage = NameUtil.getNameable(thesePackages, thatPackageName);

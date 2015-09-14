@@ -31,6 +31,9 @@ import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.Bag;
 import org.eclipse.ocl.pivot.values.Value;
 
+import bug477283.a.Bug477283APackage;
+import bug477283.b.Bug477283BPackage;
+
 /**
  * Tests that load a model and verify that there are no unresolved proxies as a result.
  */
@@ -484,6 +487,19 @@ public class ImportTests extends XtextTestCase
 		Model root = (Model) resource.getContents().get(0);
 		assertEquals(1, root.getOwnedImports().size());
 		assertNotNull(root.getOwnedImports().get(0));
+		ocl.dispose();
+	}
+	
+	public void testImport_CompleteOCL_NestedPackage_477283() throws Exception {
+		Bug477283APackage.eINSTANCE.getClass();
+		Bug477283BPackage.eINSTANCE.getClass();
+		TestOCL ocl = createOCL();
+		String testFile =
+				"import 'http://www.eclipse.org/ocl/Bug477283b'\n" +
+				"import 'http://www.eclipse.org/ocl/Bug477283asubsub'\n" +
+				"context b::B\n" +
+				"def: x(y : asubsub::ASubSub) : Boolean = true\n";
+		doLoadFromString(ocl, "Bug477283.ocl", testFile);
 		ocl.dispose();
 	}
 }
