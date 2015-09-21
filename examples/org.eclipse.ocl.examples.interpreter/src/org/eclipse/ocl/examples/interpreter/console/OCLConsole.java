@@ -14,6 +14,7 @@ package org.eclipse.ocl.examples.interpreter.console;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ocl.examples.interpreter.OCLExamplePlugin;
 import org.eclipse.ocl.examples.interpreter.internal.l10n.OCLInterpreterMessages;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.console.AbstractConsole;
 import org.eclipse.ui.console.ConsolePlugin;
 import org.eclipse.ui.console.IConsole;
@@ -29,6 +30,7 @@ public class OCLConsole
 
 	private static OCLConsole instance;
 	private OCLConsolePage page;
+	private boolean disposed = false;
 	
 	/**
 	 * Initializes me.
@@ -39,6 +41,12 @@ public class OCLConsole
 			ImageDescriptor.createFromURL(
 				OCLExamplePlugin.getDefault().getBundle().getEntry(
 					"/icons/ocl.gif"))); //$NON-NLS-1$
+	}
+
+	@Override
+	protected void dispose() {
+		disposed = true;
+		super.dispose();
 	}
 
 	/**
@@ -61,8 +69,19 @@ public class OCLConsole
 		return page;
 	}
 	
-	public void setTargetMetamodel(TargetMetamodel metamodel) {
-	    page.setTargetMetamodel(metamodel);
+	public void setTargetMetamodel(final TargetMetamodel metamodel) {
+		if (!disposed && (instance != null)) {
+			if (page == null) {
+				Display.getCurrent().timerExec(1000, new Runnable() {
+					public void run() {
+						setTargetMetamodel(metamodel);
+					}
+				});
+			}
+			else {
+		    	page.setTargetMetamodel(metamodel);
+		    }
+		}
 	}
 	
 	/**
