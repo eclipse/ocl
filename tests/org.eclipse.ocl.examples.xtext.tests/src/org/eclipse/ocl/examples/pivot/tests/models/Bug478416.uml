@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Bug478416="http:///schemas/Bug478416/" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/Bug478416/ Bug478416.profile.uml#_fxweUGN5EeWqefutJv6cmw">
+  <uml:Model xmi:id="_Z-6igGNkEeWGE7N7_CAoTg" name="MyModel">
+    <packagedElement xmi:type="uml:Package" xmi:id="_ihx7cGNkEeWGE7N7_CAoTg" name="MyMom">
+      <ownedRule xmi:type="uml:Constraint" xmi:id="_jLwaoGNmEeWGE7N7_CAoTg" name="MyConstraint" constrainedElement="_c1Z8kGNmEeWGE7N7_CAoTg">
+        <specification xmi:type="uml:OpaqueExpression" xmi:id="_jLy24GNmEeWGE7N7_CAoTg">
+          <language>Optionality</language>
+          <body>if-feature ConstraintTest</body>
+        </specification>
+      </ownedRule>
+      <packagedElement xmi:type="uml:Class" xmi:id="_iiAk8GNkEeWGE7N7_CAoTg" name="MyMoClass">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_iiGrkGNkEeWGE7N7_CAoTg" name="myKeyAttr" visibility="public" isUnique="false" isReadOnly="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_iiRDoGNkEeWGE7N7_CAoTg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_iiRqsGNkEeWGE7N7_CAoTg" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_t9rXAGNkEeWGE7N7_CAoTg" name="myWritableAttr" visibility="public" type="_pJ8iQGNkEeWGE7N7_CAoTg" isUnique="false">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_t-KfMGNkEeWGE7N7_CAoTg"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_t-LGQGNkEeWGE7N7_CAoTg" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Enumeration" xmi:id="_pJ8iQGNkEeWGE7N7_CAoTg" name="MyEnum">
+        <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_pKUVsGNkEeWGE7N7_CAoTg" name="ONE" visibility="public">
+          <specification xmi:type="uml:LiteralInteger" xmi:id="_pKn3sGNkEeWGE7N7_CAoTg" value="1"/>
+        </ownedLiteral>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_c1Z8kGNmEeWGE7N7_CAoTg" name="Root_To_Class" memberEnd="_c1c_4GNmEeWGE7N7_CAoTg _c1dm8GNmEeWGE7N7_CAoTg">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_c1c_4GNmEeWGE7N7_CAoTg" name="myRoot" visibility="public" type="_UErGwGNmEeWGE7N7_CAoTg" association="_c1Z8kGNmEeWGE7N7_CAoTg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_c1dm9GNmEeWGE7N7_CAoTg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_c1dm82NmEeWGE7N7_CAoTg" value="1"/>
+        </ownedEnd>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_c1dm8GNmEeWGE7N7_CAoTg" name="myClass" visibility="public" type="_iiAk8GNkEeWGE7N7_CAoTg" aggregation="composite" association="_c1Z8kGNmEeWGE7N7_CAoTg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_c1hRUGNmEeWGE7N7_CAoTg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_c1gqQGNmEeWGE7N7_CAoTg" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_UEZZ8GNmEeWGE7N7_CAoTg" name="RootMom">
+      <packagedElement xmi:type="uml:Class" xmi:id="_UErGwGNmEeWGE7N7_CAoTg" name="RootClass">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_UEwmUGNmEeWGE7N7_CAoTg" name="rootKey" visibility="public" isUnique="false" isReadOnly="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UE2F4GNmEeWGE7N7_CAoTg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UE2F4WNmEeWGE7N7_CAoTg" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_6VREIGN3EeWqefutJv6cmw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_hLDzkmN5EeWqefutJv6cmw" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hLDzk2N5EeWqefutJv6cmw" key="Version" value="0.0.2"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hLDzlGN5EeWqefutJv6cmw" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hLDzlWN5EeWqefutJv6cmw" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hLDzlmN5EeWqefutJv6cmw" key="Date" value="2015-09-25"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hLDzl2N5EeWqefutJv6cmw" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_6VREIWN3EeWqefutJv6cmw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="Bug478416.profile.uml#_fxweUGN5EeWqefutJv6cmw"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="Bug478416.profile.uml#_mtkTgGNxEeW3evcLE7Y9sA"/>
+    </profileApplication>
+  </uml:Model>
+  <Bug478416:MyClass xmi:id="__HWTEGN3EeWqefutJv6cmw" base_Class="_iiAk8GNkEeWGE7N7_CAoTg"/>
+  <Bug478416:MyEnumeration xmi:id="___YuUGN3EeWqefutJv6cmw" base_Enumeration="_pJ8iQGNkEeWGE7N7_CAoTg"/>
+</xmi:XMI>
