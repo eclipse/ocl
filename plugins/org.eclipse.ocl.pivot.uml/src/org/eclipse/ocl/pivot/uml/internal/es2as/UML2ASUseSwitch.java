@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.AssociationClass;
 import org.eclipse.ocl.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
@@ -78,6 +79,38 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 //	}
 
 	@Override
+	public Object caseAssociation(org.eclipse.uml2.uml.Association umlAssociation) {
+		assert umlAssociation != null;
+		AssociationClass asAssociationClass = converter.getCreated(AssociationClass.class, umlAssociation);
+		if (asAssociationClass == null) {
+			org.eclipse.uml2.uml.Element owner = umlAssociation.getOwner();
+			if (owner != null) {
+				org.eclipse.ocl.pivot.Package asPackage = converter.getCreated(org.eclipse.ocl.pivot.Package.class, owner);
+				if (asPackage != null) {
+					asAssociationClass = PivotFactory.eINSTANCE.createAssociationClass();
+					asAssociationClass.setName(umlAssociation.getName());
+//			 		pivotElement.setIsImplicit(true);
+					for (@SuppressWarnings("null")@NonNull org.eclipse.uml2.uml.Property umlProperty : umlAssociation.getMemberEnds()) {
+						Property asProperty = converter.getCreated(Property.class, umlProperty);
+						if (asProperty != null) {
+							asAssociationClass.getUnownedAttributes().add(asProperty);
+						}
+					}
+					org.eclipse.ocl.pivot.Class oclElementType = standardLibrary.getOclElementType();
+					asAssociationClass.getSuperClasses().add(oclElementType);
+					asPackage.getOwnedClasses().add(asAssociationClass);
+				}
+			}
+		}
+		if (asAssociationClass != null) {
+			List<org.eclipse.uml2.uml.Constraint> invariants = umlAssociation.getOwnedRules();
+			doSwitchAll(Constraint.class, asAssociationClass.getOwnedInvariants(), invariants);
+			copyConstraints(asAssociationClass, umlAssociation, invariants);
+		}
+		return asAssociationClass;
+	}
+
+	@Override
 	public org.eclipse.ocl.pivot.Class caseClass(org.eclipse.uml2.uml.Class umlClass) {
 		assert umlClass != null;
 		org.eclipse.ocl.pivot.Class pivotElement = converter.getCreated(org.eclipse.ocl.pivot.Class.class, umlClass);
@@ -113,7 +146,7 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 			doSwitchAll(Constraint.class, pivotElement.getOwnedInvariants(), invariants);
 			copyConstraints(pivotElement, umlClassifier, invariants);
 		}
-		return umlClassifier;
+		return pivotElement;
 	}
 
 	@Override
