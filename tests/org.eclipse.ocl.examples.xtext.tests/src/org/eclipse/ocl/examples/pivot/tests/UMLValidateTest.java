@@ -476,4 +476,23 @@ public class UMLValidateTest extends AbstractValidateTests
 			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Stereotype2", "Constraint2", "«Stereotype2»" + DomainUtil.getLabel(xx)));
 		ocl.dispose();
 	}
+	
+	public void test_umlValidation_Bug478416() throws IOException {
+		resetRegistries();
+		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		if (EcorePlugin.IS_ECLIPSE_RUNNING) {
+			new CommonPreferenceInitializer().initializeDefaultPreferences();
+		}
+		ResourceSet resourceSet = createResourceSet();
+		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
+		OCLDelegateDomain.initializePivotOnlyDiagnosticianResourceSet(resourceSet);
+		OCL ocl = OCL.newInstance();
+		@SuppressWarnings("null")@NonNull Resource umlResource = doLoadUML(ocl, "Bug478416");
+		assertNoResourceErrors("Loading", umlResource);
+		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
+		OCLDelegateDomain.initializePivotOnlyDiagnosticianContext(validationContext);
+		assertValidationDiagnostics("Loading", umlResource, validationContext);
+		assertUMLOCLValidationDiagnostics(ocl, "UML Load", umlResource);
+		ocl.dispose();
+	}
 }
