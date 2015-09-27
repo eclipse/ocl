@@ -163,7 +163,7 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 //		else {
 //			pivotElement.getConstrainedElement().clear();
 //		}
-		doSwitchAll(Element.class, pivotElement.getConstrainedElements(), umlConstraint.getConstrainedElements());
+		doSwitchAllOptional(Element.class, pivotElement.getConstrainedElements(), umlConstraint.getConstrainedElements());
 		return pivotElement;
 	}
 
@@ -532,6 +532,34 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 					if (doneWarnings.add(eClass)) {
 						logger.warn("Failed to create a pivot representation of a UML '" + eClass.getName() + "'");
 					}
+				}
+			}
+		}
+	}
+	private <T extends Element> void doSwitchAllOptional(@NonNull Class<T> pivotClass, /*@NonNull*/ Collection<T> pivotElements, /*@NonNull*/ List<? extends EObject> eObjects) {
+		assert pivotElements != null;
+		assert eObjects != null;
+		for (EObject eObject : eObjects) {
+			if (eObject != null) {
+				T pivotElement = converter.getCreated(pivotClass, eObject);
+				if (pivotElement == null) {
+					Resource eResource = eObject.eResource();
+					if (eResource != null) {
+						External2AS adapter = UML2AS.findAdapter(eResource, environmentFactory);
+						if (adapter != null) {
+							pivotElement = adapter.getCreated(pivotClass, eObject);
+						}
+					}
+				}
+				if (pivotElement == null) {
+					if (!(eObject instanceof org.eclipse.uml2.uml.Constraint)) {
+						System.out.println("Use switching " + eObject);
+					}
+					@SuppressWarnings("unchecked")T doSwitchResult = (T) doSwitch(eObject);
+					pivotElement = doSwitchResult;
+				}
+				if (pivotElement != null) {
+					pivotElements.add(pivotElement);
 				}
 			}
 		}
