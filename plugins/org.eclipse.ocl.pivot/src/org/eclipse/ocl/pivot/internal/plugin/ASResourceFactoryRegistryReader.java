@@ -31,7 +31,7 @@ public class ASResourceFactoryRegistryReader extends RegistryReader
 	static final @NonNull String TAG_FACTORY = "factory";
 	static final @NonNull String ATT_CONTENT_TYPE = "contentType";
 	static final @NonNull String ATT_EXTENSION = "extension";
-	static final @NonNull String ATT_PRIORITY = "priority";
+	static final @NonNull String ATT_PRIORITY = "externalPriority";
 	static final @NonNull String ATT_RESOURCE_CLASS = "resourceClass";
 	static final @NonNull String ATT_CLASS = "class";
 
