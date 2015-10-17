@@ -59,7 +59,6 @@ import org.eclipse.ocl.pivot.internal.resource.OCLAdapter;
 import org.eclipse.ocl.pivot.internal.scoping.Attribution;
 import org.eclipse.ocl.pivot.internal.scoping.NullAttribution;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.Pivotable;
@@ -195,9 +194,9 @@ public class PivotUtilInternal //extends PivotUtil
 		return type;
 	}
 
-	@Deprecated // Use getType
-	public static @NonNull Type getBehavioralType(@NonNull TypedElement element) {
-		return PivotUtilInternal.getBehavioralType(ClassUtil.nonNullState(element.getType()));
+	public static @Nullable Type getBehavioralType(@Nullable TypedElement element) {
+		Type type = getType(element);
+		return type != null ? getBehavioralType(type) : null;
 	}
 
 	/**

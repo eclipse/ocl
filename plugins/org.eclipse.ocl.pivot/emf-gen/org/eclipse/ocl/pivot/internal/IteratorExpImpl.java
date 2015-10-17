@@ -169,6 +169,7 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp
 				boolean isOk = false;
 				if (bodyType != null) {
 					PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+					specializedBodyType = specializedBodyType != null ? PivotUtilInternal.getBehavioralType(specializedBodyType) : null;
 					if ((specializedBodyType != null) && metamodelManager.conformsTo(specializedBodyType, TemplateParameterSubstitutions.EMPTY, oclComparableType, TemplateParameterSubstitutions.EMPTY)) {
 						isOk = true;
 					}

@@ -17,7 +17,6 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.CompleteInheritance;
-import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.Property;
@@ -64,8 +63,8 @@ public class CompleteInheritanceImpl extends ReflectiveInheritance implements Co
 	public CompleteInheritanceImpl(@NonNull CompleteClassInternal completeClass) {
 		super(ClassUtil.nonNullModel(completeClass.getName()), computeFlags(completeClass.getPrimaryClass()));
 		this.completeClass = completeClass;
-		org.eclipse.ocl.pivot.Class pivotClass = completeClass.getPrimaryClass();
-		assert !(pivotClass instanceof DataType) || (((DataType)pivotClass).getBehavioralClass() == null);	// DataTypes must use the inheritance of their behavioral class
+//		org.eclipse.ocl.pivot.Class pivotClass = completeClass.getPrimaryClass();
+//		assert !(pivotClass instanceof DataType) || (((DataType)pivotClass).getBehavioralClass() == null);	// DataTypes must use the inheritance of their behavioral class
 	}
 
 	@Override

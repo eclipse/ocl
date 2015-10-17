@@ -281,11 +281,11 @@ public abstract class AbstractOperationMatcher
 				if (expression == null) {
 					return null;
 				}
-				Type candidateType = PivotUtilInternal.getType(candidateParameter);
+				Type candidateType = PivotUtilInternal.getBehavioralType(candidateParameter);
 				if (candidateType == null) {
 					return null;
 				}
-				Type expressionType = PivotUtilInternal.getType(expression);
+				Type expressionType = PivotUtilInternal.getBehavioralType(expression);
 				if (expressionType == null) {
 					return null;
 				}

@@ -448,8 +448,8 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 				candidateConformsToReference = false;
 			}
 			else {
-				Type referenceType = PivotUtilInternal.getBehavioralType(referenceParameter);
-				Type candidateType = PivotUtilInternal.getBehavioralType(candidateParameter);
+				Type referenceType = ClassUtil.nonNullState(PivotUtilInternal.getBehavioralType(referenceParameter));
+				Type candidateType = ClassUtil.nonNullState(PivotUtilInternal.getBehavioralType(candidateParameter));
 				Type specializedReferenceType = completeModel.getSpecializedType(referenceType, referenceBindings);
 				Type specializedCandidateType = completeModel.getSpecializedType(candidateType, candidateBindings);
 				if (referenceType != candidateType) {

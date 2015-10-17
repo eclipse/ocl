@@ -31,7 +31,6 @@ import org.eclipse.ocl.pivot.Class;
 import org.eclipse.ocl.pivot.CompleteClass;
 import org.eclipse.ocl.pivot.CompleteInheritance;
 import org.eclipse.ocl.pivot.CompletePackage;
-import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.InheritanceFragment;
@@ -57,8 +56,8 @@ import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.ids.ParametersId;
 import org.eclipse.ocl.pivot.internal.ClassImpl;
 import org.eclipse.ocl.pivot.internal.CompleteClassImpl;
-import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.Orphanage;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.util.DerivedConstants;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
@@ -443,18 +442,8 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 		CompleteInheritanceImpl completeInheritance2 = completeInheritance;
 		if (completeInheritance2 == null) {
 			CompleteClassInternal completeClass = getCompleteClass();
-			org.eclipse.ocl.pivot.Class pivotClass = completeClass.getPrimaryClass();
-			if (pivotClass instanceof DataType) {
-				org.eclipse.ocl.pivot.Class behavioralClass = ((DataType)pivotClass).getBehavioralClass();
-				if (behavioralClass != null) {
-					completeClass = getCompleteModel().getCompleteClass(behavioralClass);
-					completeInheritance2 = completeClass.getCompleteInheritance();
-				}
-			}
-			if (completeInheritance2 == null) {
-				CompletePackageInternal completePackage = completeClass.getOwningCompletePackage();
-				completeInheritance2 = completePackage.getCompleteInheritance(completeClass);
-			}
+			CompletePackageInternal completePackage = completeClass.getOwningCompletePackage();
+			completeInheritance2 = completePackage.getCompleteInheritance(completeClass);
 			completeInheritance = completeInheritance2;
 		}
 		return completeInheritance2;
