@@ -78,7 +78,7 @@ public abstract class TemplateParameterSubstitutionHelper
 			LoopExp loopExp = (LoopExp)callExp;
 			OCLExpression body = loopExp.getOwnedBody();
 			Type asType = body != null ? body.getType() : null;
-			Type bodyType = asType != null ? PivotUtilInternal.getType(asType) : null;
+			Type bodyType = asType != null ? PivotUtilInternal.getNonLambdaType(asType) : null;
 			if (bodyType != null) {
 				@NonNull Type elementType = bodyType;
 //				if (bodyType instanceof CollectionType) {
@@ -99,7 +99,7 @@ public abstract class TemplateParameterSubstitutionHelper
 			LoopExp loopExp = (LoopExp)callExp;
 			OCLExpression body = loopExp.getOwnedBody();
 			Type asType = body != null ? body.getType() : null;
-			Type bodyType = asType != null ? PivotUtilInternal.getType(asType) : null;
+			Type bodyType = asType != null ? PivotUtilInternal.getNonLambdaType(asType) : null;
 			if (bodyType != null) {
 				@NonNull Type elementType = bodyType;
 //				if (bodyType instanceof CollectionType) {

@@ -184,7 +184,6 @@ public class PivotUtilInternal //extends PivotUtil
 		}
 	}
 
-	@Deprecated // Use getType
 	public static @NonNull Type getBehavioralType(@NonNull Type type) {		// FIXME fold this into normal code
 		if (type instanceof DataType) {
 			DataType dataType = (DataType)type;
@@ -280,6 +279,19 @@ public class PivotUtilInternal //extends PivotUtil
 	public static @NonNull URI getNonASURI(@NonNull URI uri) {
 		assert isASURI(uri);
 		return uri.trimFileExtension();
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	public static @NonNull Type getNonLambdaType(@NonNull Type type) {
+		if (type instanceof LambdaType) {
+			Type resultType = ((LambdaType)type).getResultType();
+			if (resultType != null) {
+				type = resultType;
+			}
+		}
+		return type;
 	}
 
 	public static @NonNull <T extends Element> T getNonNullAst(@NonNull Class<T> pivotClass, @NonNull Pivotable pivotableElement) {
@@ -451,7 +463,8 @@ public class PivotUtilInternal //extends PivotUtil
 		if (type == null) {
 			return null;
 		}
-		type = getType(type);
+//		type = getType(type);
+		type = getNonLambdaType(type);
 		if (type instanceof SelfType) {
 			if (typedElement instanceof Parameter) {
 				Operation operation = ((Parameter)typedElement).getOwningOperation();
@@ -467,18 +480,8 @@ public class PivotUtilInternal //extends PivotUtil
 	}
 
 	public static @NonNull Type getType(@NonNull Type type) {
-		if (type instanceof LambdaType) {
-			Type resultType = ((LambdaType)type).getResultType();
-			if (resultType != null) {
-				type = resultType;
-			}
-		}
-		else if (type instanceof DataType) {
-			Type behavioralType = ((DataType)type).getBehavioralClass();
-			if (behavioralType != null) {
-				type = behavioralType;
-			}
-		}
+		type = getNonLambdaType(type);
+		type = getBehavioralType(type);
 		return type;
 	}
 
