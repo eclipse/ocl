@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Comment;
-import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ElementExtension;
 import org.eclipse.ocl.pivot.OCLExpression;
@@ -470,21 +469,10 @@ public class PropertyCallExpImpl
 		    Executor executor = PivotUtilInternal.getExecutor(this);
 			TemplateSpecialisation templateSpecialization = new TemplateSpecialisation(executor.getCompleteEnvironment());
 			Type resultType = getType();
-//			boolean isMetaclass = resultType instanceof DomainMetaclass;
-//			if (isMetaclass) {
-//				resultType = ((DomainMetaclass)resultType).getInstanceType();
-//			}
 			templateSpecialization.installEquivalence(resultType, referredProperty.getType());
 			specializedType = templateSpecialization.getSpecialisation(referencedType);
-//			if (isMetaclass && (specializedType != null)) {
-//				specializedType = PivotTables.LIBRARY.getMetaclass(specializedType);
-//			}
 		}
-		if (specializedType instanceof DataType) {
-			org.eclipse.ocl.pivot.Class behavioralType = ((DataType)specializedType).getBehavioralClass();
-			return behavioralType != null ? behavioralType : (DataType)specializedType;
-		}
-		else if (specializedType instanceof org.eclipse.ocl.pivot.Class) {
+		if (specializedType instanceof org.eclipse.ocl.pivot.Class) {
 			return (org.eclipse.ocl.pivot.Class)specializedType;
 		}
 		else {

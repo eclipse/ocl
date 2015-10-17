@@ -1287,7 +1287,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		if (property.isIsStatic() && (actualType.isTemplateParameter() != null)) {
 			actualType = metamodelManager.getMetaclass(actualType);
 		}
-		return PivotUtilInternal.getType(actualType);
+		return actualType;
 	}
 	
 	protected Element resolveRoundBracketedTerm(@NonNull RoundBracketedClauseCS csRoundBracketedClause) {
