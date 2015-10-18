@@ -12,21 +12,16 @@ package org.eclipse.ocl.pivot.internal.resource;
 
 import java.util.Map;
 
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.XMLSave;
 import org.eclipse.emf.ecore.xmi.impl.XMIHelperImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Model;
-import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
-import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
-import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.utilities.XMIUtil;
 
@@ -41,16 +36,6 @@ public class ASResourceImpl extends XMIResourceImpl implements ASResource
 		super(uri);
 		this.asResourceFactory = asResourceFactory;
 //		PivotUtilInternal.debugPrintln("Create " + NameUtil.debugSimpleName(this));	
-	}
-
-	@Override
-	public NotificationChain basicSetResourceSet(ResourceSet resourceSet, NotificationChain notifications) {
-		if (resourceSet != null) {
-			PivotMetamodelManager metamodelManager = PivotMetamodelManager.findAdapter(resourceSet);
-			EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.findEnvironmentFactory(resourceSet);
-			assert (metamodelManager != null) || (environmentFactory == null);
-		}
-		return super.basicSetResourceSet(resourceSet, notifications);
 	}
 
 	@Override
