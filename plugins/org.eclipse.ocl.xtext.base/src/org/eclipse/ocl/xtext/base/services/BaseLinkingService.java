@@ -29,7 +29,6 @@ import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.linking.impl.DefaultLinkingService;
 import org.eclipse.xtext.linking.impl.IllegalNodeException;
-import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.nodemodel.ILeafNode;
 import org.eclipse.xtext.nodemodel.INode;
@@ -44,9 +43,6 @@ public class BaseLinkingService extends DefaultLinkingService
 	public static final @NonNull TracingOption DEBUG_RETRY = new TracingOption("org.eclipse.ocl.xtext.base", "debug/retry");
 	
 	private static int depth = -1;
-	
-	@Inject
-	private IQualifiedNameConverter qualifiedNameConverter;
 	
 	@Inject
 	private IValueConverterService valueConverterService;
@@ -73,7 +69,7 @@ public class BaseLinkingService extends DefaultLinkingService
 			if (scope == null) {
 				return Collections.emptyList();
 			}
-			QualifiedName qualifiedName = qualifiedNameConverter.toQualifiedName(text);
+			QualifiedName qualifiedName = QualifiedName.create(text);
 			List<EObject> linkedObjects = lookUp(scope, qualifiedName);
 			if ((linkedObjects.size() <= 0) && text.startsWith("_")) {				// Deprecated compatibility
 				linkedObjects = lookUp(scope, QualifiedName.create(text.substring(1)));
