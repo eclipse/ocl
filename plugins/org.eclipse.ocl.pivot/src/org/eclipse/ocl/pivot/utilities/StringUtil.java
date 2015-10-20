@@ -223,6 +223,10 @@ public class StringUtil
 						outBuffer.append('\\');
 						outBuffer.append('\'');
 						break;
+					case '\\':
+						outBuffer.append('\\');
+						outBuffer.append('\\');
+						break;
 	//				case '"':
 	//					outBuffer.append('\\');
 	//					outBuffer.append('"');
