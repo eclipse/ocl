@@ -551,6 +551,9 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		List<OCLExpression> asArguments = asOperationCallExp.getOwnedArguments();
 		OCLExpression asSource = asOperationCallExp.getOwnedSource();
 		if ((asPrecedence == null) || (asSource == null)) {
+			if (asOperationCallExp.isIsImplicit()) {			// oclAsSet
+				return createExpCS(asSource);
+			}
 			NameExpCS csNameExp = createNameExpCS(asOperationCallExp.getReferredOperation());
 			csNameExp.setPivot(asOperationCallExp);
 			RoundBracketedClauseCS csRoundBracketedClause = EssentialOCLCSFactory.eINSTANCE.createRoundBracketedClauseCS();
