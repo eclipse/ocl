@@ -201,8 +201,6 @@ public class AS2EcoreDeclarationVisitor
 		copyNamedElement(eClassifier, pivotType);
 		@SuppressWarnings("null")@NonNull List<ETypeParameter> eTypeParameters = eClassifier.getETypeParameters();
 		copyTemplateSignature(eTypeParameters, pivotType);
-		@SuppressWarnings("null")@NonNull List<EAnnotation> eAnnotations = eClassifier.getEAnnotations();
-		safeVisitAll(eAnnotations, pivotType.getOwnedAnnotations());
 		if (pivotType.eIsSet(PivotPackage.Literals.CLASS__INSTANCE_CLASS_NAME)) {
 			eClassifier.setInstanceClassName(pivotType.getInstanceClassName());
 		}
@@ -268,6 +266,8 @@ public class AS2EcoreDeclarationVisitor
 			}
 		}
 		eNamedElement.setName(name);
+		@SuppressWarnings("null")@NonNull List<EAnnotation> eAnnotations = eNamedElement.getEAnnotations();
+		safeVisitAll(eAnnotations, pivotNamedElement.getOwnedAnnotations());
 	}
 
 	protected void copyTemplateSignature(@NonNull List<ETypeParameter> eTypeParameters, TemplateableElement pivotElement) {
@@ -280,8 +280,6 @@ public class AS2EcoreDeclarationVisitor
 
 	protected void copyTypedElement(@NonNull ETypedElement eTypedElement, @NonNull TypedElement pivotTypedElement) {
 		copyNamedElement(eTypedElement, pivotTypedElement);
-		@SuppressWarnings("null")@NonNull List<EAnnotation> eAnnotations = eTypedElement.getEAnnotations();
-		safeVisitAll(eAnnotations, pivotTypedElement.getOwnedAnnotations());
 		context.defer(pivotTypedElement);		// Defer type/multiplicity setting
 	}
 
@@ -756,8 +754,6 @@ public class AS2EcoreDeclarationVisitor
 		@SuppressWarnings("null")
 		@NonNull EPackage ePackage = EcoreFactory.eINSTANCE.createEPackage();
 		copyNamedElement(ePackage, pivotPackage);
-		@SuppressWarnings("null")@NonNull List<EAnnotation> eAnnotations = ePackage.getEAnnotations();
-		safeVisitAll(eAnnotations, pivotPackage.getOwnedAnnotations());
 		context.defer(pivotPackage);		// Defer delegate annotation analysis
 		if (pivotPackage.eIsSet(PivotPackage.Literals.PACKAGE__NS_PREFIX)) {
 			ePackage.setNsPrefix(pivotPackage.getNsPrefix());

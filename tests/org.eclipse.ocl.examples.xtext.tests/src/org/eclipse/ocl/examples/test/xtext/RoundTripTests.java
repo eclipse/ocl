@@ -432,6 +432,26 @@ public class RoundTripTests extends XtextTestCase
 		ocl.dispose();
 	}
 
+	public void testAnnotationsRoundTrip_480635() throws IOException, InterruptedException {
+		String testFile = 
+				"package b : bb = 'bbb'\n" +
+				"{\n" +
+				"enum Parameter_kind { serializable }\n" + 
+				"{\n" + 
+				"   literal DB_BOOLEAN { annotation documentation\n" + 
+				"   (doc = 'test');\n" + 
+				"   } \n" + 
+				"   literal ENUMERATED = 1;\n" + 
+				"   literal INT8 = 2;\n" + 
+				"   literal INT16 = 3;\n" + 
+				"}\n" + 
+				"}\n";
+		createOCLinEcoreFile("Annotations.oclinecore", testFile);
+		OCLInternal ocl = OCLInternal.newInstance(getProjectMap(), null);
+		doRoundTripFromOCLinEcore(ocl, "Annotations");
+		ocl.dispose();
+	}
+
 	public void testCardinalityRoundTrip_402767() throws IOException, InterruptedException {
 		String testFile = 
 				"package b : bb = 'bbb'\n" +
