@@ -58,6 +58,7 @@ import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.common.internal.options.CommonOptions;
 import org.eclipse.ocl.examples.xtext.tests.TestCaseAppender;
 import org.eclipse.ocl.examples.xtext.tests.TestUtil;
+import org.eclipse.ocl.examples.xtext.tests.XtextVersionUtil;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Operation;
@@ -719,9 +720,10 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 		ResourceSet resourceSet = createResourceSet();
 		initModelWithErrors(resourceSet);
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
+		String location = XtextVersionUtil.hasXtextSyntaxDiagnosticColumn() ? "1:9" : "1";
 		getWithException(badClassInstance, "attributeParsingToSyntacticError",
 			getErrorsInMessage(badClassInstance.eClass().getName(), "attributeParsingToSyntacticError", "invalid null") +
-			StringUtil.bind("1: extraneous input ''{0}'' expecting EOF", "null"));
+			StringUtil.bind(location + ": extraneous input ''{0}'' expecting EOF", "null"));
 	}
 
 	/**
@@ -1014,8 +1016,9 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 		ResourceSet resourceSet = createResourceSet();
 		initModelWithErrors(resourceSet);
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
+		String location = XtextVersionUtil.hasXtextSyntaxDiagnosticColumn() ? "1:1" : "1";
 		invokeWithException(badClassInstance, "operationParsingToLexicalError",
-			getErrorsInMessage(badClassInstance.eClass().getName(), "operationParsingToLexicalError", "@@") + StringUtil.bind("1: no viable alternative at input ''{0}''", "@"));
+			getErrorsInMessage(badClassInstance.eClass().getName(), "operationParsingToLexicalError", "@@") + StringUtil.bind(location + ": no viable alternative at input ''{0}''", "@"));
 	}
 
 	public void test_operationParsingToSemanticError() throws InvocationTargetException {
@@ -1030,8 +1033,9 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 		ResourceSet resourceSet = createResourceSet();
 		initModelWithErrors(resourceSet);
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
+		String location = XtextVersionUtil.hasXtextSyntaxDiagnosticColumn() ? "1:5" : "1";
 		invokeWithException(badClassInstance, "operationParsingToSyntacticError",
-			getErrorsInMessage(badClassInstance.eClass().getName(), "operationParsingToSyntacticError", "let in") + StringUtil.bind("1: no viable alternative at input ''{0}''", "in"));
+			getErrorsInMessage(badClassInstance.eClass().getName(), "operationParsingToSyntacticError", "let in") + StringUtil.bind(location + ": no viable alternative at input ''{0}''", "in"));
 	}
 
 	/**
@@ -1235,9 +1239,10 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 	public void test_validationParsingToLexicalError() {
 		ResourceSet resourceSet = createResourceSet();
 		initModelWithErrors(resourceSet);
+		String location = XtextVersionUtil.hasXtextSyntaxDiagnosticColumn() ? "1:1" : "1";
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationParsingToLexicalError"), null);
 		validateWithDelegationSeverity("parsingToLexicalError", Diagnostic.ERROR, badClassInstance, "'part",
-			SemanticException.class, "1: Invalid token {0}", "'part");
+			SemanticException.class, location + ": Invalid token {0}", "'part");
 	}
 	
 	public void test_validationParsingToSemanticError() {
@@ -1252,8 +1257,9 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 		ResourceSet resourceSet = createResourceSet();
 		initModelWithErrors(resourceSet);
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationParsingToSyntacticError"), null);
+		String location = XtextVersionUtil.hasXtextSyntaxDiagnosticColumn() ? "1:1" : "1";
 		validateWithDelegationSeverity("parsingToSyntacticError", Diagnostic.ERROR, badClassInstance, "else", 
-			SemanticException.class, "1: no viable alternative at input ''{0}''", "else");
+			SemanticException.class, location + ": no viable alternative at input ''{0}''", "else");
 	}
 	
 	public void test_validationWithMessage() {
