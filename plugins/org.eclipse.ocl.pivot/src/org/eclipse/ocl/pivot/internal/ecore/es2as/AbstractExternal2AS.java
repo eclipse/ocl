@@ -29,9 +29,10 @@ import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.internal.utilities.AbstractConversion;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.External2AS;
+import org.eclipse.ocl.pivot.internal.utilities.External2AS.External2ASExtension;
 import org.eclipse.ocl.pivot.internal.utilities.PivotConstantsInternal;
 
-public abstract class AbstractExternal2AS extends AbstractConversion implements External2AS, PivotConstantsInternal
+public abstract class AbstractExternal2AS extends AbstractConversion implements External2ASExtension, PivotConstantsInternal
 {
 	public static @Nullable External2AS findAdapter(@NonNull Resource resource, @NonNull EnvironmentFactoryInternal environmentFactory) {
 		External2AS es2as = environmentFactory.getMetamodelManager().getES2AS(resource);
@@ -83,7 +84,15 @@ public abstract class AbstractExternal2AS extends AbstractConversion implements 
 		return true;
 	}
 
+	/* @deprecated use Ecore2ASReferenceSwitch argument but still used for UML2AS */
 	public abstract void queueReference(@NonNull EObject eObject);
+
+	/**
+	 * @since 1.1
+	 */
+	public void queueReference(@NonNull EObject eObject, @NonNull Ecore2ASReferenceSwitch ecore2asReferenceSwitch) {
+		queueReference(eObject);	// Should be abstract once API, UML2AS implementation permit
+	}
 
 	public @NonNull <T extends NamedElement> T refreshElement(@NonNull Class<T> pivotClass, /*@NonNull*/ EClass pivotEClass, @NonNull EModelElement eModelElement) {
 		assert pivotEClass != null;

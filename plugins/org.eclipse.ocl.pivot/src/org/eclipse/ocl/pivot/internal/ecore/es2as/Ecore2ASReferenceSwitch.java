@@ -73,11 +73,11 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
     public static final Object PROPERTY_OPPOSITE_ROLE_LOWER_KEY = "Property.oppositeLower"; //$NON-NLS-1$
     public static final Object PROPERTY_OPPOSITE_ROLE_UPPER_KEY = "Property.oppositeUpper"; //$NON-NLS-1$
 
-    protected final @NonNull Ecore2AS converter;
+    protected final @NonNull AbstractExternal2AS converter;
 	protected final @NonNull PivotMetamodelManager metamodelManager;
 	protected final @NonNull StandardLibraryInternal standardLibrary;
 	
-	public Ecore2ASReferenceSwitch(@NonNull Ecore2AS converter) {
+	public Ecore2ASReferenceSwitch(@NonNull AbstractExternal2AS converter) {
 		this.converter = converter;
 		this.metamodelManager = converter.getMetamodelManager();
 		this.standardLibrary = metamodelManager.getStandardLibrary();
@@ -508,10 +508,33 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 		return false;
 	}
 
-	public Object doInPackageSwitch(EObject eObject) {
-		int classifierID = eObject.eClass().getClassifierID();
-		return doSwitch(classifierID, eObject);
-	}
+/*	public Object doInPackageSwitch(EObject eObject) {
+		EClass eClass = eObject.eClass();
+		EPackage ePackage = eClass.getEPackage();
+		if (ePackage == EcorePackage.eINSTANCE) {
+			int classifierID = eClass.getClassifierID();
+			return doSwitch(classifierID, eObject);
+		}
+		if (ePackage != null) {
+			Map<EPackage, InPackageSwitch> ePackage2switch2 = ePackage2switch;
+			if (ePackage2switch2 == null) {
+				ePackage2switch = ePackage2switch2 = new HashMap<EPackage, InPackageSwitch>();
+			}
+			InPackageSwitch ecoreSwitch = ePackage2switch2.get(ePackage);
+			if (ecoreSwitch == null) {
+				Ecore2ASHelper ecore2ASContribution = converter.getEcore2ASHelper(ePackage);
+				if (ecore2ASContribution != null) {
+					ecoreSwitch = ecore2ASContribution.createEcore2ASReferenceSwitch(converter);
+					ePackage2switch2.put(ePackage, ecoreSwitch);
+				}
+			}
+			if (ecoreSwitch != null) {
+				return ecoreSwitch.doInPackageSwitch(eObject);
+			}
+		}
+		converter.error("Non Ecore " + eClass.getName() + " for Ecore2ASDeclarationSwitch");
+		return null;
+	} */
 
 	public <T extends Element> void doSwitchAll(Class<T> pivotClass, Collection<T> pivotElements, List<? extends EObject> eObjects) {
 		@SuppressWarnings("null") @NonNull Class<T> pivotClass2 = pivotClass;

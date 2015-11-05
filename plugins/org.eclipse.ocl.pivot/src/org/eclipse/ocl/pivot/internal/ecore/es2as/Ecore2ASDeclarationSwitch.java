@@ -106,13 +106,22 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 	protected final @NonNull AbstractExternal2AS converter;
 	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
 	protected final @NonNull Technology technology;
+	private @NonNull Ecore2ASReferenceSwitch ecore2asReferenceSwitch;
 	
 	public Ecore2ASDeclarationSwitch(@NonNull AbstractExternal2AS converter) {
+		this(converter, new Ecore2ASReferenceSwitch(converter));
+	}
+	
+	/**
+	 * @since 1.1
+	 */
+	protected Ecore2ASDeclarationSwitch(@NonNull AbstractExternal2AS converter, @NonNull Ecore2ASReferenceSwitch ecore2ASReferenceSwitch) {
 		this.converter = converter;
 		this.environmentFactory = converter.getEnvironmentFactory();
 		this.technology = environmentFactory.getTechnology();
+		this.ecore2asReferenceSwitch = ecore2ASReferenceSwitch;
 	}
-	
+
 	@Override
 	public Object caseEAnnotation(EAnnotation eObject) {
 		String source = eObject.getSource();
@@ -132,7 +141,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 			}
 		}
 		if (!eObject.getReferences().isEmpty()) {
-			converter.queueReference(eObject);
+			queueReference(eObject);
 		}
 		return pivotElement;
 	}
@@ -206,12 +215,12 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 						Operation pivotOperation = (Operation) doSwitch(eContent);
 						pivotOperations.add(pivotOperation);
 					}
-					converter.queueReference(eContent);				// For redefinition
+					queueReference(eContent);				// For redefinition
 				}
 				else if (eContent instanceof EStructuralFeature) {
 					Property pivotProperty = (Property) doSwitch(eContent);
 					pivotProperties.add(pivotProperty);
-					converter.queueReference(eContent);				// For redefinition
+					queueReference(eContent);				// For redefinition
 				}
 				else if (eContent instanceof EAnnotation) {
 				}
@@ -220,7 +229,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 				}
 			}
 		}
-		converter.queueReference(eObject2);				// For superclasses
+		queueReference(eObject2);				// For superclasses
 		return pivotElement;
 	}
 
@@ -282,7 +291,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 				}
 				else {
 					instanceClass.getDeclaredMethod("compareTo", instanceClass);
-					converter.queueReference(eObject2);			// Defer synthesis till supertypes resolved
+					queueReference(eObject2);			// Defer synthesis till supertypes resolved
 				}
 			} catch (Exception e) {
 			}
@@ -451,7 +460,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 		if ((eObject2.getEOpposite() != null)
 		 || (excludedAnnotations != null)
 		 || !eObject2.getEKeys().isEmpty()) {
-			converter.queueReference(eObject2);	// Defer
+			queueReference(eObject2);	// Defer
 		}
 		return pivotElement;
 	}
@@ -471,7 +480,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 		List<EGenericType> eBounds = eObject2.getEBounds();
 		if (!eBounds.isEmpty()) {
 			doSwitchAll(eBounds);
-			converter.queueReference(eObject2);
+			queueReference(eObject2);
 		}
 		return pivotElement;
 	}
@@ -514,7 +523,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 		@SuppressWarnings("null") @NonNull List<ETypeParameter> eTypeParameters = eOperation.getETypeParameters();
 		copyTemplateSignature(pivotElement,eTypeParameters);
 		doSwitchAll(eOperation.getEGenericExceptions());
-		converter.queueReference(eOperation);				// For superclasses
+		queueReference(eOperation);				// For superclasses
 		return pivotElement;
 	}
 
@@ -746,7 +755,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 		EGenericType eGenericType = eTypedElement.getEGenericType();
 		if (eGenericType != null) {
 			doInPackageSwitch(eGenericType);
-			converter.queueReference(eTypedElement);
+			queueReference(eTypedElement);
 		}
 	}
 
@@ -756,22 +765,43 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 		return null;
 	}
 
-	public Object doInPackageSwitch(EObject eObject) {
-		EClass eClass = eObject.eClass();
-		if (eClass.getEPackage() != EcorePackage.eINSTANCE) {
-			converter.error("Non Ecore " + eClass.getName() + " for Ecore2ASDeclarationSwitch");
-			return null;
+	public Object doInPackageSwitch(@NonNull EObject eObject) {
+		return doSwitch(eObject);
+/*		EClass eClass = eObject.eClass();
+		EPackage ePackage = eClass.getEPackage();
+		if (ePackage == EcorePackage.eINSTANCE) {
+			int classifierID = eClass.getClassifierID();
+			return doSwitch(classifierID, eObject);
 		}
-		int classifierID = eClass.getClassifierID();
-		return doSwitch(classifierID, eObject);
+		if ((converter instanceof Ecore2AS) && (ePackage != null)) {
+			Map<EPackage, Switch<Object>> ePackage2switch2 = ePackage2switch;
+			if (ePackage2switch2 == null) {
+				ePackage2switch = ePackage2switch2 = new HashMap<EPackage, Switch<Object>>();
+			}
+			Switch<Object> ecoreSwitch = ePackage2switch2.get(ePackage);
+			if (ecoreSwitch == null) {
+				Ecore2ASHelper ecore2ASHelper = ((Ecore2AS)converter).getEcore2ASHelper(ePackage);
+				if (ecore2ASHelper != null) {
+					ecoreSwitch = ecore2ASHelper.createEcore2ASDeclarationSwitch(converter);
+					ePackage2switch2.put(ePackage, ecoreSwitch);
+				}
+			}
+			if (ecoreSwitch != null) {
+				return ecoreSwitch.doSwitch(eObject);
+			}
+		}
+		converter.error("Non Ecore " + eClass.getName() + " for Ecore2ASDeclarationSwitch");
+		return null; */
 	}
 
 	public <T extends Element> void doSwitchAll(List<T> pivotObjects, List<? extends EObject> eObjects) {
 		List<T> newList = new ArrayList<T>();
-		for (EObject eObject : eObjects) {
+		for (@SuppressWarnings("null")@NonNull EObject eObject : eObjects) {
 			@SuppressWarnings("unchecked")
 			T pivotObject = (T) doSwitch(eObject);
-			newList.add(pivotObject);
+			if (pivotObject != null) {
+				newList.add(pivotObject);
+			}
 		}
 		PivotUtilInternal.refreshList(pivotObjects, newList);
 	}
@@ -780,6 +810,27 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 		for (EObject eObject : eObjects) {
 			doSwitch(eObject);
 		}
+	}
+	
+	/**
+	 * @since 1.1
+	 */
+	public @NonNull AbstractExternal2AS getConverter() {
+		return converter;
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	public @NonNull Ecore2ASReferenceSwitch getEcore2ASReferenceSwitch() {
+		return ecore2asReferenceSwitch;
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	protected void queueReference(@NonNull EObject eObject) {
+		converter.queueReference(eObject, ecore2asReferenceSwitch);
 	}
 
 	protected List<EAnnotation> refreshTypeConstraints(@NonNull org.eclipse.ocl.pivot.Class pivotElement, @NonNull EClassifier eClassifier, @Nullable List<EAnnotation> excludedAnnotations) {

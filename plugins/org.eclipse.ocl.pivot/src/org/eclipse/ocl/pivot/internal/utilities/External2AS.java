@@ -19,10 +19,19 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 
 public interface External2AS
 {
+	/**
+	 * @since 1.1
+	 */
+	public interface External2ASExtension extends External2AS
+	{
+		@Nullable <T extends Element> T getASElement(@NonNull Class<T> requiredClass, @NonNull EObject eObject);
+		@Nullable Type getASType(@NonNull EObject eObject);
+	}
 	void dispose();
 	@NonNull Model getASModel() throws ParserException;
 	@Nullable <T extends Element> T getCreated(@NonNull Class<T> requiredClass, @NonNull EObject eObject);

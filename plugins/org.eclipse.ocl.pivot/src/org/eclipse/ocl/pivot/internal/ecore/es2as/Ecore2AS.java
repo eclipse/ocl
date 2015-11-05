@@ -63,6 +63,7 @@ import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.Ecore2ASHelper;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
@@ -182,7 +183,7 @@ public class Ecore2AS extends AbstractExternal2AS
 	/**
 	 * Set of all Ecore objects requiring further work during the reference pass.
 	 */
-	private Set<EObject> referencers = null;
+	private Map<EObject, Ecore2ASReferenceSwitch> referencers = null;
 	
 	/**
 	 * Set of all converters used during session.
@@ -199,8 +200,9 @@ public class Ecore2AS extends AbstractExternal2AS
 	protected final @NonNull Resource ecoreResource;
 	
 	protected Model pivotModel = null;						// Set by importResource
-	protected final Ecore2ASDeclarationSwitch declarationPass = new Ecore2ASDeclarationSwitch(this);	
-	protected final Ecore2ASReferenceSwitch referencePass = new Ecore2ASReferenceSwitch(this);
+	protected final @NonNull Ecore2ASDeclarationSwitch declarationPass = new Ecore2ASDeclarationSwitch(this);
+	/* @deprecated only used for API compatibility */
+	protected final @NonNull Ecore2ASReferenceSwitch referencePass = new Ecore2ASReferenceSwitch(this);
 	private HashMap<EClassifier, Type> ecore2asMap = null;
 	private URI ecoreURI = null;
 	
@@ -280,6 +282,7 @@ public class Ecore2AS extends AbstractExternal2AS
 		errors.add(new XMIException(message));
 	}
 
+	@Override
 	public <T extends Element> T getASElement(@NonNull Class<T> requiredClass, @NonNull EObject eObject) {
 		if (pivotModel == null) {
 			getASModel();
@@ -349,6 +352,7 @@ public class Ecore2AS extends AbstractExternal2AS
 		return castElement;
 	}
 
+	@Override
 	public Type getASType(@NonNull EObject eObject) {
 			Element pivotElement = newCreateMap.get(eObject);
 			if (pivotElement == null) {
@@ -414,6 +418,23 @@ public class Ecore2AS extends AbstractExternal2AS
 	@Override
 	public @Nullable Map<EObject, Element> getCreatedMap() {
 		return newCreateMap;
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	public @Nullable Ecore2ASHelper getEcore2ASHelper(@NonNull EPackage ePackage) {
+//		new Ecore2ASHelperRegistryReader().readRegistry();
+		// TODO Auto-generated method stub
+		String nsURI = ePackage.getNsURI();
+		if (nsURI == null) {
+			return null;
+		}
+		Ecore2ASHelperContribution ecore2asHelperContribution = Ecore2ASHelperRegistry.INSTANCE.getMetamodelHelper(nsURI);
+		if (ecore2asHelperContribution == null) {
+			return null;
+		}
+		return ecore2asHelperContribution.getEcore2ASHelper();
 	}
 
 	public @NonNull Map<EClassifier, Type> getEcore2ASMap() {
@@ -642,7 +663,12 @@ public class Ecore2AS extends AbstractExternal2AS
 
 	@Override
 	public void queueReference(@NonNull EObject eObject) {
-		referencers.add(eObject);
+		referencers.put(eObject, referencePass);
+	}
+
+	@Override
+	public void queueReference(@NonNull EObject eObject, @NonNull Ecore2ASReferenceSwitch ecore2asReferenceSwitch) {
+		referencers.put(eObject, ecore2asReferenceSwitch);
 	}
 
 /*	protected void refreshAnnotation(NamedElement pivotElement, String key, String value) {
@@ -678,8 +704,11 @@ public class Ecore2AS extends AbstractExternal2AS
 			}
 		}
 		if (pivotElement == null) {
-			EFactory eFactoryInstance = pivotEClass.getEPackage().getEFactoryInstance();
-			pivotElement = eFactoryInstance.create(pivotEClass);
+			pivotElement = newCreateMap.get(eModelElement);
+			if (pivotElement == null) {
+				EFactory eFactoryInstance = pivotEClass.getEPackage().getEFactoryInstance();
+				pivotElement = eFactoryInstance.create(pivotEClass);
+			}
 		}
 		if (!pivotClass.isAssignableFrom(pivotElement.getClass())) {
 			throw new ClassCastException();
@@ -687,7 +716,7 @@ public class Ecore2AS extends AbstractExternal2AS
 		@SuppressWarnings("unchecked")
 		T castElement = (T) pivotElement;
 		Element oldElement = newCreateMap.put(eModelElement, castElement);
-		assert oldElement == null;
+		assert (oldElement == null) || (oldElement == castElement);
 		return castElement;
 	}
 	
@@ -809,17 +838,28 @@ public class Ecore2AS extends AbstractExternal2AS
 
 	public void update(@NonNull Resource asResource, @NonNull Collection<EObject> ecoreContents) {
 		newCreateMap = new HashMap<EObject, Element>();
-		referencers = new HashSet<EObject>();
+		referencers = new HashMap<EObject, Ecore2ASReferenceSwitch>();
 		genericTypes = new ArrayList<EGenericType>();
 		PivotUtilInternal.refreshList(asResource.getContents(), Collections.singletonList(pivotModel));
 		List<org.eclipse.ocl.pivot.Package> newPackages = new ArrayList<org.eclipse.ocl.pivot.Package>();
 		for (EObject eObject : ecoreContents) {
+			Ecore2ASDeclarationSwitch ecore2ASDeclarationSwitch = declarationPass;
+			if (eObject instanceof EPackage) {					// Support per-model variation in order to read Classic Ecore-based OCL oclstdlib.ecore
+				String nsURI = ((EPackage)eObject).getNsURI();
+				if (nsURI != null) {
+					Ecore2ASHelperContribution modelHelper = Ecore2ASHelperRegistry.INSTANCE.getModelHelper(nsURI);
+					if (modelHelper != null) {
+						Ecore2ASHelper ecore2asHelper = modelHelper.getEcore2ASHelper();
+						ecore2ASDeclarationSwitch = ecore2asHelper.createEcore2ASDeclarationSwitch(this);
+					}
+				}
+			}
 			EClass eClass = eObject.eClass();
 			if (eClass.getEPackage() != EcorePackage.eINSTANCE) {
 				error("Non Ecore " + eClass.getName() + " for Ecore2AS.update");
 			}
 			else {
-				Object pivotElement = declarationPass.doInPackageSwitch(eObject);
+				Object pivotElement = ecore2ASDeclarationSwitch.doSwitch(eObject);
 				if (pivotElement instanceof org.eclipse.ocl.pivot.Package) {
 					newPackages.add((org.eclipse.ocl.pivot.Package) pivotElement);
 				}
@@ -836,10 +876,12 @@ public class Ecore2AS extends AbstractExternal2AS
 				newCreateMap.put(eGenericType, pivotType);
 			}
 		}
-		for (EObject eObject : referencers) {
-			referencePass.doInPackageSwitch(eObject);
+		for (Map.Entry<EObject, Ecore2ASReferenceSwitch> entry : referencers.entrySet()) {
+			EObject eObject = entry.getKey();
+			Ecore2ASReferenceSwitch referenceSwitch = entry.getValue();
+			referenceSwitch.doSwitch(eObject);
 		}
-		for (EObject eObject : referencers) {
+		for (EObject eObject : referencers.keySet()) {
 			if (eObject instanceof EReference) {
 				Property pivotElement = getCreated(Property.class, eObject);
 				if (pivotElement != null) {

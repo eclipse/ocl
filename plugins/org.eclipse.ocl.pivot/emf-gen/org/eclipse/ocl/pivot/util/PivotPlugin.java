@@ -35,6 +35,10 @@ public final class PivotPlugin extends EMFPlugin
 	public static final @NonNull String PLUGIN_ID = "org.eclipse.ocl.pivot";
 
 	public static final @NonNull String AS_RESOURCE_FACTORY_PPID = "as_resource_factory";
+	/**
+	 * @since 1.1
+	 */
+	public static final @NonNull String ECORE2AS_HELPER_PPID = "ecore2as_helper";
 	public static final @NonNull String LABEL_GENERATOR_PPID = "label_generator";
 	public static final @NonNull String STANDARD_LIBRARY_PPID = "standard_library";
 	public static final @NonNull String COMPLETE_OCL_REGISTRY_PID = "complete_ocl_registry";

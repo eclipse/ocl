@@ -71,4 +71,10 @@ public class OrderedSetTypeImpl
 	public boolean isUnique() {
 		return true;
 	}
+
+	@Override
+	public void setName(String newName) {
+		// TODO Auto-generated method stub
+		super.setName(newName);
+	}
 } //OrderedSetTypeImpl

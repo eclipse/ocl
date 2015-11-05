@@ -53,6 +53,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.AbstractExternal2AS;
+import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2ASReferenceSwitch;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.internal.utilities.AliasAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
@@ -382,6 +383,11 @@ public abstract class UML2AS extends AbstractExternal2AS
 		@Override
 		public void queueReference(@NonNull EObject umlElement) {
 			root.queueReference(umlElement);
+		}
+
+		@Override
+		public void queueReference(@NonNull EObject eObject, @NonNull Ecore2ASReferenceSwitch ecore2asReferenceSwitch) {
+			root.queueReference(eObject, ecore2asReferenceSwitch);
 		}
 
 		@Override
@@ -861,6 +867,11 @@ public abstract class UML2AS extends AbstractExternal2AS
 		}
 
 		@Override
+		public void queueReference(@NonNull EObject eObject, @NonNull Ecore2ASReferenceSwitch ecore2asReferenceSwitch) {
+			referencers.add(eObject);//, ecore2asReferenceSwitch);
+		}
+
+		@Override
 		public void queueUse(@NonNull EObject umlElement) {
 			users.add(umlElement);
 		}
@@ -1008,8 +1019,11 @@ public abstract class UML2AS extends AbstractExternal2AS
 	
 	@Override
 	public abstract void error(@NonNull String message);
-	
-	public abstract @Nullable Type getASType(@NonNull EObject eObject);
+
+	@Override
+	public @Nullable <T extends Element> T getASElement(@NonNull Class<T> requiredClass, @NonNull EObject eObject) {
+		return null;		// FIXME ??
+	}
 
 	public abstract @NonNull UML2ASDeclarationSwitch getDeclarationPass();
 	

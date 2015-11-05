@@ -25,6 +25,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.xtext.tests.TestUtil;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.ecoreocl.EcoreOCL2ASHelper;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerInternal;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
@@ -499,6 +500,16 @@ public class SerializeTests extends XtextTestCase
 	public void testSerialize_OCL() throws Exception {
 		doSerialize(ocl, "OCL");
 	} */
+
+	public void testSerialize_oclstdlib() throws Exception {
+		EcoreOCL2ASHelper.getModelInstance();
+		org.eclipse.ocl.ecore.EcorePackage.eINSTANCE.getName();
+		OCL ocl = OCL.newInstance(getProjectMap());
+		URI uri = URI.createPlatformResourceURI("/org.eclipse.ocl.ecore/model/oclstdlib.ecore", true);
+		@SuppressWarnings("null")@NonNull String stem = uri.trimFileExtension().lastSegment();
+		doSerialize(ocl, uri, stem, uri, null, false, true);		// FIXME URIs don't quite compare
+		ocl.dispose();
+	}
 
 	public void testSerialize_BaseCST() throws Exception {
 		OCL ocl = OCL.newInstance(getProjectMap());
