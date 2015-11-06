@@ -19,7 +19,7 @@
   <setupTask
       xsi:type="setup:VariableTask"
       name="eclipse.target.platform"
-      defaultValue="Mars"
+      defaultValue="Neon"
       storageURI="scope://Workspace"/>
   <setupTask
       xsi:type="git:GitCloneTask"
@@ -87,6 +87,13 @@
             name="org.objectweb.asm"
             versionRange="[3.0.0,4.0.0)"/>
         <repositoryList
+            name="Neon">
+          <repository
+              url="http://download.eclipse.org/releases/neon"/>
+          <repository
+              url="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/milestones/1.2"/>
+        </repositoryList>
+        <repositoryList
             name="Mars">
           <repository
               url="http://download.eclipse.org/releases/mars"/>
@@ -121,11 +128,7 @@
           name="org.eclipse.ocl.examples.feature.group"/>
       <requirement
           name="org.eclipse.m2m.qvt.oml.sdk.feature.group"/>
-      <description>
-        Mandatory IDE for OCL Developers
-
-        Note: Eclipse project repository is temporarily included due to Bug 455557. Remove after Mars M5
-      </description>
+      <description>Mandatory IDE for OCL Developers</description>
     </setupTask>
   </setupTask>
   <setupTask
@@ -194,9 +197,9 @@
         userID="${bugzilla.id}"
         password="${eclipse.user.password}">
       <buildPlan
-          name="ocl-mars-master"/>
+          name="ocl-neon-master"/>
       <buildPlan
-          name="ocl-luna-maintenance"/>
+          name="ocl-mars-maintenance"/>
       <buildPlan
           name="buckminster-ocl-branch-tests"/>
     </setupTask>
@@ -387,15 +390,15 @@
         remoteURI="${ocl.git.clone.location|uri}/releng/org.eclipse.ocl.oomph/ApiBaseLine/ApiBaseLine-Mars.zip"/>
     <stream
         name="master"
-        label="Master (Mars)">
+        label="Master (Neon)">
       <setupTask
           xsi:type="setup:VariableTask"
           name="emf.branch"
           value="master"/>
     </stream>
     <stream
-        name="maintenance/R5_0"
-        label="Maintenance (Luna)">
+        name="maintenance/R6_0"
+        label="Maintenance (Mars)">
       <setupTask
           xsi:type="setup:VariableTask"
           name="emf.branch"
@@ -468,7 +471,7 @@
     </setupTask>
     <stream
         name="master"
-        label="Master (Mars)">
+        label="Master (Neon)">
       <setupTask
           xsi:type="setup:VariableTask"
           name="simrel.branch"
@@ -476,7 +479,7 @@
     </stream>
     <stream
         name="maintenance/R5_0"
-        label="Maintenance (Luna)">
+        label="Maintenance (Mars)">
       <setupTask
           xsi:type="setup:VariableTask"
           name="simrel.branch"
