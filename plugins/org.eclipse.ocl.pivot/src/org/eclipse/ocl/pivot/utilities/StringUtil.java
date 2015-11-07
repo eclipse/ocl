@@ -168,84 +168,84 @@ public class StringUtil
 	}
 
 	/**
-		 * Mostly copied from {@link java.util.Properties#saveConvert} via
-		 * {@link org.eclipse.xtext.util.Strings#convertToJavaString}
-		 */
-		public static String convertToOCLString(String theString) {
-			if (theString == null) {
-				return null;
-			}
-			int len = theString.length();
-			int bufLen = len * 2;
-			if (bufLen < 0) {
-				bufLen = Integer.MAX_VALUE;
-			}
-			StringBuilder outBuffer = new StringBuilder(bufLen);
-	
-			for (int x = 0; x < len; x++) {
-				char aChar = theString.charAt(x);
-				// Handle common case first, selecting largest block that
-				// avoids the specials below
-				if ((aChar > 61) && (aChar < 127)) {
-					if (aChar == '\\') {
-						outBuffer.append('\\');
-						outBuffer.append('\\');
-						continue;
-					}
-					outBuffer.append(aChar);
+	 * Mostly copied from {@link java.util.Properties#saveConvert} via
+	 * {@link org.eclipse.xtext.util.Strings#convertToJavaString}
+	 */
+	public static String convertToOCLString(String theString) {
+		if (theString == null) {
+			return null;
+		}
+		int len = theString.length();
+		int bufLen = len * 2;
+		if (bufLen < 0) {
+			bufLen = Integer.MAX_VALUE;
+		}
+		StringBuilder outBuffer = new StringBuilder(bufLen);
+
+		for (int x = 0; x < len; x++) {
+			char aChar = theString.charAt(x);
+			// Handle common case first, selecting largest block that
+			// avoids the specials below
+			if ((aChar > 61) && (aChar < 127)) {
+				if (aChar == '\\') {
+					outBuffer.append('\\');
+					outBuffer.append('\\');
 					continue;
 				}
-				switch (aChar) {
-					case ' ':
-						outBuffer.append(' ');
-						break;
-					case '\t':
-						outBuffer.append('\\');
-						outBuffer.append('t');
-						break;
-					case '\n':
-						outBuffer.append('\\');
-						outBuffer.append('n');
-						break;
-					case '\r':
-						outBuffer.append('\\');
-						outBuffer.append('r');
-						break;
-					case '\f':
-						outBuffer.append('\\');
-						outBuffer.append('f');
-						break;
-					case '\b':
-						outBuffer.append('\\');
-						outBuffer.append('b');
-						break;
-					case '\'':
-						outBuffer.append('\\');
-						outBuffer.append('\'');
-						break;
-					case '\\':
-						outBuffer.append('\\');
-						outBuffer.append('\\');
-						break;
-	//				case '"':
-	//					outBuffer.append('\\');
-	//					outBuffer.append('"');
-	//					break;
-					default:
-						if (((aChar < 0x0020) || (aChar > 0x007e))) {
-							outBuffer.append('\\');
-							outBuffer.append('u');
-							outBuffer.append(toHex((aChar >> 12) & 0xF));
-							outBuffer.append(toHex((aChar >> 8) & 0xF));
-							outBuffer.append(toHex((aChar >> 4) & 0xF));
-							outBuffer.append(toHex(aChar & 0xF));
-						} else {
-							outBuffer.append(aChar);
-						}
-				}
+				outBuffer.append(aChar);
+				continue;
 			}
-			return outBuffer.toString();
+			switch (aChar) {
+				case ' ':
+					outBuffer.append(' ');
+					break;
+				case '\t':
+					outBuffer.append('\\');
+					outBuffer.append('t');
+					break;
+				case '\n':
+					outBuffer.append('\\');
+					outBuffer.append('n');
+					break;
+				case '\r':
+					outBuffer.append('\\');
+					outBuffer.append('r');
+					break;
+				case '\f':
+					outBuffer.append('\\');
+					outBuffer.append('f');
+					break;
+				case '\b':
+					outBuffer.append('\\');
+					outBuffer.append('b');
+					break;
+				case '\'':
+					outBuffer.append('\\');
+					outBuffer.append('\'');
+					break;
+				case '\\':
+					outBuffer.append('\\');
+					outBuffer.append('\\');
+					break;
+//				case '"':
+//					outBuffer.append('\\');
+//					outBuffer.append('"');
+//					break;
+				default:
+					if (((aChar < 0x0020) || (aChar > 0x007e))) {
+						outBuffer.append('\\');
+						outBuffer.append('u');
+						outBuffer.append(toHex((aChar >> 12) & 0xF));
+						outBuffer.append(toHex((aChar >> 8) & 0xF));
+						outBuffer.append(toHex((aChar >> 4) & 0xF));
+						outBuffer.append(toHex(aChar & 0xF));
+					} else {
+						outBuffer.append(aChar);
+					}
+			}
 		}
+		return outBuffer.toString();
+	}
 
 	public static @NonNull Number createNumberFromString(@NonNull String aValue) throws NumberFormatException {
 		if ("*".equals(aValue)) {
