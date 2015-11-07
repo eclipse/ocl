@@ -57,6 +57,34 @@ import org.eclipse.xtext.util.Strings;
  */
 public class JavaStream
 {
+	/**
+	 * Return an encoding of theString that is suitable for use as a Java Identifier.
+	 * Awkward characters are replaced by an underscore prefixed decimal string.
+	 * The first character and the character following a decimal string may not be a decimal.
+	 */
+	public static String convertToJavaIdentifier(@NonNull String theString) {
+		int len = theString.length();
+		int bufLen = len * 2;
+		if (bufLen < 0) {
+			bufLen = Integer.MAX_VALUE;
+		}
+		StringBuilder outBuffer = new StringBuilder(bufLen);
+		boolean isStart = true;
+		for (int x = 0; x < len; x++) {
+			char aChar = theString.charAt(x);
+			if (/*(aChar != '_') &&*/ isStart ? Character.isJavaIdentifierStart(aChar) : Character.isJavaIdentifierPart(aChar)) {
+				outBuffer.append(aChar);
+				isStart = false;
+			}
+			else {
+				outBuffer.append("_");
+				outBuffer.append((int)aChar);
+				isStart = true;
+			}
+		}
+		return outBuffer.toString();
+	}
+
 	public static @NonNull PrettyPrintOptions.Global createOptions(@NonNull Visitable element) {
 		Namespace scope = null;
 		if (element instanceof EObject) {
