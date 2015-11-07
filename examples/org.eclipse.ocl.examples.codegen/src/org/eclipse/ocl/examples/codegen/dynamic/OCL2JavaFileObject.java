@@ -36,7 +36,9 @@ public class OCL2JavaFileObject extends SimpleJavaFileObject
 	
 	private static @Nullable JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
 	private static @Nullable StandardJavaFileManager stdFileManager = compiler != null ? compiler.getStandardFileManager(null, Locale.getDefault(), null) : null;
-	private static List<String> compilationOptions = Arrays.asList("-d", "bin", "-source", "1.5", "-target", "1.5", "-g");
+//	private static List<String> compilationOptions = Arrays.asList("-d", "bin", "-source", "1.5", "-target", "1.5", "-g");
+//	private static List<String> compilationOptions = Arrays.asList("-d", "bin", "-source", "1.6", "-target", "1.6", "-g");
+	private static List<String> compilationOptions = Arrays.asList("-d", "bin", "-g");
 	
 	/** @deprecated use saveClass/some-class-loader-loadClass */
 	@Deprecated
