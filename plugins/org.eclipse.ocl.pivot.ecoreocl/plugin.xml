@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension point="org.eclipse.ocl.pivot.ecore2as_helper">
+      <metamodel class="org.eclipse.ocl.pivot.ecoreocl.EcoreOCL2ASHelper"
+            uri="http://www.eclipse.org/ocl/1.1.0/Ecore"/>
+      <model class="org.eclipse.ocl.pivot.ecoreocl.EcoreOCL2ASHelper"
+            uri="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore"/>
+   </extension>
+
+</plugin>
