@@ -19,6 +19,14 @@
    <extension point="org.eclipse.ocl.pivot.label_generator">
       <generator for="org.eclipse.ocl.xtext.basecs.NamedElementCS"
       	class="org.eclipse.ocl.xtext.base.utilities.NamedElementCSLabelGenerator"/>
+      <generator for="org.eclipse.xtext.AbstractElement"
+      	class="org.eclipse.ocl.xtext.base.utilities.XtextAbstractElementLabelGenerator"/>
+      <generator for="org.eclipse.xtext.AbstractMetamodelDeclaration"
+      	class="org.eclipse.ocl.xtext.base.utilities.XtextAbstractMetamodelDeclarationLabelGenerator"/>
+      <generator for="org.eclipse.xtext.AbstractRule"
+      	class="org.eclipse.ocl.xtext.base.utilities.XtextAbstractRuleLabelGenerator"/>
+      <generator for="org.eclipse.xtext.Grammar"
+      	class="org.eclipse.ocl.xtext.base.utilities.XtextGrammarLabelGenerator"/>
    </extension>
 
 </plugin>
