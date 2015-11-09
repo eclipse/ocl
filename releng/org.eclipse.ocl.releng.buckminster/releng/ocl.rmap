@@ -157,7 +157,7 @@
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" resolutionFilter="(&amp;(build.type=M)(resolve.target.platform=true))" readerType="p2" source="false" mutable="false">
       <rm:property key="buckminster.source" value="false"/>
       <rm:property key="buckminster.mutable" value="false"/>
-      <rm:uri format="{0}/modeling/emf/emf/updates/2.11.x">
+      <rm:uri format="{0}/modeling/emf/emf/updates/2.12milestones">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
