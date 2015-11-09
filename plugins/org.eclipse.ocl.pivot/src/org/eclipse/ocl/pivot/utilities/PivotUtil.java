@@ -49,6 +49,7 @@ import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Namespace;
+import org.eclipse.ocl.pivot.NavigationCallExp;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
@@ -76,6 +77,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.VoidType;
+import org.eclipse.ocl.pivot.ids.OperationId;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.internal.PackageImpl;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
@@ -334,6 +336,27 @@ public class PivotUtil
 		T pivotModel = (T) pivotEClass.getEPackage().getEFactoryInstance().create(pivotEClass);
 		pivotModel.setExternalURI(externalURI);
 		return pivotModel;
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	public static @NonNull NavigationCallExp createNavigationCallExp(@NonNull OCLExpression asSource, @NonNull Property asProperty) {
+		NavigationCallExp asNavigationCallExp;
+		if (asProperty.isIsImplicit()) {
+			OppositePropertyCallExp asCallExp = PivotFactory.eINSTANCE.createOppositePropertyCallExp();
+			asCallExp.setReferredProperty(asProperty.getOpposite());
+			asNavigationCallExp = asCallExp;
+		}
+		else {
+			PropertyCallExp asCallExp = PivotFactory.eINSTANCE.createPropertyCallExp();
+			asCallExp.setReferredProperty(asProperty);
+			asNavigationCallExp = asCallExp;
+		}
+		asNavigationCallExp.setOwnedSource(asSource);
+		asNavigationCallExp.setType(asProperty.getType());
+		asNavigationCallExp.setIsRequired(asProperty.isIsRequired());
+		return asNavigationCallExp;
 	}
 
 	public static @NonNull Operation createOperation(@NonNull String name, @NonNull Type type, @Nullable String implementationClass, @Nullable LibraryFeature implementation) {
@@ -873,15 +896,31 @@ public class PivotUtil
 		return feature;
 	}
 
-	public static Operation getReferredOperation(CallExp callExp) {
-		Operation operation = null;
+	public static @NonNull Operation getReferredOperation(@NonNull CallExp callExp) {
 		if (callExp instanceof LoopExp) {
-			operation = ((LoopExp)callExp).getReferredIteration();
+			return ClassUtil.nonNullState(((LoopExp)callExp).getReferredIteration());
 		}
 		else if (callExp instanceof OperationCallExp) {
-			operation = ((OperationCallExp)callExp).getReferredOperation();
+			return ClassUtil.nonNullState(((OperationCallExp)callExp).getReferredOperation());
 		}
-		return operation;
+		else {
+			throw new IllegalStateException();
+		}
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	public static @NonNull Property getReferredProperty(@NonNull NavigationCallExp navigationCallExp) {
+		if (navigationCallExp instanceof PropertyCallExp) {
+			return ClassUtil.nonNullState(((PropertyCallExp)navigationCallExp).getReferredProperty());
+		}
+		else if (navigationCallExp instanceof OppositePropertyCallExp) {
+			return ClassUtil.nonNullState(((OppositePropertyCallExp)navigationCallExp).getReferredProperty().getOpposite());
+		}
+		else {
+			throw new IllegalStateException();
+		}
 	}
 
 	public static @NonNull <T extends TemplateableElement> T getUnspecializedTemplateableElement(@NonNull T templateableElement) {
@@ -931,6 +970,22 @@ public class PivotUtil
 	public static boolean isSafeNavigationOperator(/*@NonNull*/ String operatorName) {
 		return PivotConstants.SAFE_AGGREGATE_NAVIGATION_OPERATOR.equals(operatorName)
 				|| PivotConstants.SAFE_OBJECT_NAVIGATION_OPERATOR.equals(operatorName);
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	public static boolean isSameOperation(@NonNull OperationId operationId1, @NonNull OperationId operationId2) {
+		if (operationId1 == operationId2) {
+			return true;
+		}
+		if (!operationId1.getName().equals(operationId2.getName())) {
+			return false;
+		}
+		if (!operationId1.getParametersId().equals(operationId2.getParametersId())) {
+			return false;
+		}
+		return true;
 	}
 
 	/**
