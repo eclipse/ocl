@@ -162,7 +162,6 @@ import org.eclipse.ocl.pivot.internal.library.TuplePartProperty;
 import org.eclipse.ocl.pivot.internal.manager.FinalAnalysis;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
-import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
 import org.eclipse.ocl.pivot.library.LibraryIteration;
 import org.eclipse.ocl.pivot.library.LibraryOperation;
@@ -1076,7 +1075,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 
 	protected void setAst(@NonNull CGTypedElement cgElement, @NonNull TypedElement asElement) {
 		cgElement.setAst(asElement);
-		TypeId asTypeId = PivotUtilInternal.getBehavioralType(asElement.getType()).getTypeId();
+		TypeId asTypeId = asElement.getType().getTypeId();
 		cgElement.setTypeId(context.getTypeId(asTypeId));
 		cgElement.setName(asElement.getName());
 	}

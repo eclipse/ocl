@@ -220,6 +220,9 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 			else if (Byte.class.getName().equals(instanceClassName)) {
 				return new PrimitiveValueDescriptor(id, IntegerValue.class, Byte.class);
 			}
+			else if (Character.class.getName().equals(instanceClassName)) {
+				return new PrimitiveValueDescriptor(id, IntegerValue.class, Character.class);
+			}
 			else if (Double.class.getName().equals(instanceClassName)) {
 				return new PrimitiveValueDescriptor(id, RealValue.class, Double.class);
 			}
@@ -235,6 +238,9 @@ public class Id2BoxedDescriptorVisitor implements IdVisitor<BoxedDescriptor>
 			else if (Short.class.getName().equals(instanceClassName)) {
 				return new PrimitiveValueDescriptor(id, IntegerValue.class, Short.class);
 			}
+//			else if (boolean.class.getName().equals(instanceClassName)) {
+//				return new PrimitiveValueDescriptor(id, Boolean.class, boolean.class);
+//			}
 			else if (byte.class.getName().equals(instanceClassName)) {
 				return new PrimitiveValueDescriptor(id, IntegerValue.class, byte.class);
 			}
