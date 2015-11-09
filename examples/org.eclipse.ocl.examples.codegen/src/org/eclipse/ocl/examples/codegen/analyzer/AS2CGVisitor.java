@@ -1075,7 +1075,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 
 	protected void setAst(@NonNull CGTypedElement cgElement, @NonNull TypedElement asElement) {
 		cgElement.setAst(asElement);
-		TypeId asTypeId = asElement.getType().getTypeId();
+		TypeId asTypeId = asElement.getTypeId();
 		cgElement.setTypeId(context.getTypeId(asTypeId));
 		cgElement.setName(asElement.getName());
 	}
