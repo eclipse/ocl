@@ -843,6 +843,14 @@ type OclElement conformsTo OclAny {
 	Returns the composed contents of self.
 	*/
 	operation oclContents() : Set(OclElement[*|1]) => 'org.eclipse.ocl.pivot.library.classifier.ClassifierOclContentsOperation';
+	/**
+	Evaluates to the type of the collection elements.
+	**/
+	property oclContainer : OclElement[?] => 'org.eclipse.ocl.pivot.library.oclany.OclElementOclContainerProperty';
+	/**
+	Returns the composed contents of self.
+	*/
+	property oclContents : Set(OclElement[*|1]) => 'org.eclipse.ocl.pivot.library.oclany.OclElementOclContentsProperty';
 }
 
 /**

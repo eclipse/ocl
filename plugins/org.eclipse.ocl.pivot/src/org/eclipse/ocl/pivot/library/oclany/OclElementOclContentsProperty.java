@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2011, 2014 Willink Transformations and others.
+ * Copyright (c) 2010, 2014 Willink Transformations and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.pivot.library.classifier;
+package org.eclipse.ocl.pivot.library.oclany;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -19,19 +19,17 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.library.AbstractUnaryOperation;
+import org.eclipse.ocl.pivot.library.AbstractProperty;
 import org.eclipse.ocl.pivot.values.SetValue;
 
 /**
- * ClassifierOclContentsOperation realises the Classifier::oclContents() library operation.
+ * OclElementOclContentsProperty realizes the OclElement::oclContents library property.
+ * @since 1.1
  */
-public class ClassifierOclContentsOperation extends AbstractUnaryOperation
+public class OclElementOclContentsProperty extends AbstractProperty
 {
-	public static final @NonNull ClassifierOclContentsOperation INSTANCE = new ClassifierOclContentsOperation();
+	public static final @NonNull OclElementOclContentsProperty INSTANCE = new OclElementOclContentsProperty();
 
-	/**
-	 * @since 1.1
-	 */
 	@Override
 	public @NonNull SetValue evaluate(@NonNull Executor executor, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		EObject object = asNavigableObject(sourceValue, "oclContents()", executor); //$NON-NLS-1$
