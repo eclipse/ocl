@@ -146,6 +146,14 @@ public class EvaluateClassifierOperationsTest extends PivotTestSuite
 			ocl.assertQueryResults(ocl.root, "null", "oclContainer()");
 			ocl.assertQueryEquals(ocl.pkg2, ocl.pkg1, "oclContainer()");
 			ocl.assertSemanticErrorQuery(classType, "1.oclContainer()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Integer", "oclContainer");
+			//
+			ocl.assertSemanticErrorQuery(classType, "invalid.oclContainer", PivotMessagesInternal.UnresolvedProperty_ERROR_, "OclInvalid", "oclContainer");
+			ocl.assertQueryInvalid(ocl.pkg2, "let s : OclElement = invalid in s.oclContainer");
+			ocl.assertSemanticErrorQuery(classType, "null.oclContainer", PivotMessagesInternal.UnresolvedProperty_ERROR_, "OclVoid", "oclContainer");
+			ocl.assertQueryInvalid(ocl.pkg2, "let s : OclElement = null in s.oclContainer");
+			ocl.assertQueryResults(ocl.root, "null", "oclContainer");
+			ocl.assertQueryEquals(ocl.pkg2, ocl.pkg1, "oclContainer");
+			ocl.assertSemanticErrorQuery(classType, "1.oclContainer", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Integer", "oclContainer");
 		} finally {
 			ocl.dispose();
 		}
@@ -170,6 +178,15 @@ public class EvaluateClassifierOperationsTest extends PivotTestSuite
 			ocl.assertQueryEquals(ocl.pkg2, idResolver.createSetOfEach(typeId, ocl.jim), "oclContents()");
 			ocl.assertQueryEquals(ocl.george, idResolver.createSetOfEach(typeId), "oclContents()");
 			ocl.assertSemanticErrorQuery(classType, "1.oclContents()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "Integer", "oclContents");
+			//
+			ocl.assertSemanticErrorQuery(classType, "invalid.oclContents", PivotMessagesInternal.UnresolvedProperty_ERROR_, "OclInvalid", "oclContents");
+			ocl.assertQueryInvalid(ocl.pkg2, "let s : OclElement = invalid in s.oclContents");
+			ocl.assertSemanticErrorQuery(classType, "null.oclContents", PivotMessagesInternal.UnresolvedProperty_ERROR_, "OclVoid", "oclContents");
+			ocl.assertQueryInvalid(ocl.pkg2, "let s : OclElement = null in s.oclContents");
+			ocl.assertQueryEquals(ocl.pkg1, idResolver.createSetOfEach(typeId, ocl.bob, ocl.pkg2, ocl.pkg3), "oclContents");
+			ocl.assertQueryEquals(ocl.pkg2, idResolver.createSetOfEach(typeId, ocl.jim), "oclContents");
+			ocl.assertQueryEquals(ocl.george, idResolver.createSetOfEach(typeId), "oclContents");
+			ocl.assertSemanticErrorQuery(classType, "1.oclContents", PivotMessagesInternal.UnresolvedProperty_ERROR_, "Integer", "oclContents");
 		} finally {
 			ocl.dispose();
 		}

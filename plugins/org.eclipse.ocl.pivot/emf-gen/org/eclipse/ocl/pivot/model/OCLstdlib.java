@@ -373,6 +373,7 @@ public class OCLstdlib extends ASResourceImpl
 		private final @NonNull BagType _Bag_Collection_T = createBagType(_Bag_Bag_T, tp_Collection_T);
 		private final @NonNull BagType _Bag_Enumeration = createBagType(_Bag_Bag_T, _Enumeration);
 		private final @NonNull BagType _Bag_Map_V = createBagType(_Bag_Bag_T, tp_Map_V);
+		private final @NonNull BagType _Bag_OclElement = createBagType(_Bag_Bag_T, _OclElement);
 		private final @NonNull BagType _Bag_Set_collectNested_V = createBagType(_Bag_Bag_T, tp_Set_collectNested_V);
 		private final @NonNull BagType _Bag_Set_collect_V = createBagType(_Bag_Bag_T, tp_Set_collect_V);
 		private final @NonNull CollectionType _Collection_Integer = createCollectionType(_Collection_Collection_T, _Integer);
@@ -628,6 +629,9 @@ public class OCLstdlib extends ASResourceImpl
 			ownedClasses.add(type = _Bag_Map_V);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Map_V);
+			ownedClasses.add(type = _Bag_OclElement);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Collection_OclElement);
 			ownedClasses.add(type = _Bag_Set_collectNested_V);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Set_collectNested_V);
@@ -2435,6 +2439,10 @@ public class OCLstdlib extends ASResourceImpl
 		private final @NonNull Property pr_EnumerationLiteral_Enumeration_allLiterals = createProperty("Enumeration", _Bag_Enumeration);
 		private final @NonNull Property pr_Map_keyType = createProperty("keyType", tp_Map_K);
 		private final @NonNull Property pr_Map_valueType = createProperty("valueType", tp_Map_V);
+		private final @NonNull Property pr_OclElement_oclContainer = createProperty("oclContainer", _OclElement);
+		private final @NonNull Property pr_OclElement_oclContents = createProperty("oclContents", _Set_OclElement_NullFree);
+		private final @NonNull Property pr_OclElement_OclElement_oclContainer = createProperty("OclElement", _Bag_OclElement);
+		private final @NonNull Property pr_OclElement_OclElement_oclContents = createProperty("OclElement", _Bag_OclElement);
 		
 		private void installProperties() {
 			List<Property> ownedProperties;
@@ -2484,6 +2492,27 @@ public class OCLstdlib extends ASResourceImpl
 			property.setIsStatic(true);
 			property.setImplementationClass("org.eclipse.ocl.pivot.library.map.MapValueTypeProperty");
 			property.setImplementation(org.eclipse.ocl.pivot.library.map.MapValueTypeProperty.INSTANCE);
+		
+			ownedProperties = _OclElement.getOwnedProperties();
+			ownedProperties.add(property = pr_OclElement_oclContainer);
+			property.setIsRequired(false);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_OclElement_OclElement_oclContainer);
+			property.setImplementationClass("org.eclipse.ocl.pivot.library.oclany.OclElementOclContainerProperty");
+			property.setImplementation(org.eclipse.ocl.pivot.library.oclany.OclElementOclContainerProperty.INSTANCE);
+			ownedProperties.add(property = pr_OclElement_oclContents);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_OclElement_OclElement_oclContents);
+			property.setImplementationClass("org.eclipse.ocl.pivot.library.oclany.OclElementOclContentsProperty");
+			property.setImplementation(org.eclipse.ocl.pivot.library.oclany.OclElementOclContentsProperty.INSTANCE);
+			ownedProperties.add(property = pr_OclElement_OclElement_oclContainer);
+			property.setIsImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_OclElement_oclContainer);
+			ownedProperties.add(property = pr_OclElement_OclElement_oclContents);
+			property.setIsImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_OclElement_oclContents);
 		}
 		
 		private void installTemplateBindings() {
@@ -2503,6 +2532,8 @@ public class OCLstdlib extends ASResourceImpl
 				createTemplateParameterSubstitution(tp_Bag_T, _Enumeration)));
 			_Bag_Map_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Bag_T, tp_Map_V)));
+			_Bag_OclElement.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(tp_Bag_T, _OclElement)));
 			_Bag_Set_collectNested_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Bag_T, tp_Set_collectNested_V)));
 			_Bag_Set_collect_V.getOwnedBindings().add(createTemplateBinding(
@@ -3011,7 +3042,9 @@ public class OCLstdlib extends ASResourceImpl
 			installComment(op_OclComparable_compareTo, "Return -ve, 0, +ve according to whether self is less than, equal to , or greater than that.\n\nThe compareTo operation should be commutative.");
 			installComment(_OclElement, "The type OclElement is the implicit supertype of any user-defined type that has no explicit supertypes. Operations defined\nfor OclElement are therefore applicable to all user-defined types.");
 			installComment(op_OclElement_allInstances, "Return a set of all instances of the type and derived types of self.");
+			installComment(pr_OclElement_oclContainer, "Evaluates to the type of the collection elements.");
 			installComment(op_OclElement_oclContainer, "Returns the object for which self is a composed content or null if there is no such object.");
+			installComment(pr_OclElement_oclContents, "Returns the composed contents of self.");
 			installComment(op_OclElement_oclContents, "Returns the composed contents of self.");
 			installComment(_OclInvalid, "The type OclInvalid is a type that conforms to all other types.\nIt has one single instance, identified as  oclText[invalid].\nAny property call applied on invalid results in oclText[invalid], except for the operations oclIsUndefined() and oclIsInvalid().\nOclInvalid is itself an instance of the metatype InvalidType.");
 			installComment(op_OclInvalid__lt__gt_, "Returns oclText[invalid].");

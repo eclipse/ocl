@@ -477,13 +477,33 @@ public class OCLstdlibPackage extends EPackageImpl {
 	public static final int OCL_COMPARABLE_FEATURE_COUNT = OCL_ANY_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Ocl Container</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * @since 1.1
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int OCL_ELEMENT__OCL_CONTAINER = OCL_ANY_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Ocl Contents</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * @since 1.1
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int OCL_ELEMENT__OCL_CONTENTS = OCL_ANY_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Ocl Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	public static final int OCL_ELEMENT_FEATURE_COUNT = OCL_ANY_FEATURE_COUNT + 0;
+	public static final int OCL_ELEMENT_FEATURE_COUNT = OCL_ANY_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link java.util.Collection <em>Ordered Collection</em>}' class.
@@ -557,6 +577,26 @@ public class OCLstdlibPackage extends EPackageImpl {
 	 * @ordered
 	 */
 	public static final int OCL_TUPLE_FEATURE_COUNT = OCL_ANY_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Ocl Container</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * @since 1.1
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int OCL_TYPE__OCL_CONTAINER = OCL_ELEMENT__OCL_CONTAINER;
+
+	/**
+	 * The feature id for the '<em><b>Ocl Contents</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * @since 1.1
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int OCL_TYPE__OCL_CONTENTS = OCL_ELEMENT__OCL_CONTENTS;
 
 	/**
 	 * The number of structural features of the '<em>Ocl Type</em>' class.
@@ -913,6 +953,36 @@ public class OCLstdlibPackage extends EPackageImpl {
 
 
 	/**
+	 * Returns the meta object for the reference '{@link java.lang.Object#getOclContainer <em>Ocl Container</em>}'.
+	 * <!-- begin-user-doc -->
+		 * @since 1.1
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Ocl Container</em>'.
+	 * @see java.lang.Object#getOclContainer()
+	 * @see #getOclElement()
+	 * @generated
+	 */
+	public EReference getOclElement_OclContainer() {
+		return (EReference)oclElementEClass.getEStructuralFeatures().get(0);
+	}
+
+
+	/**
+	 * Returns the meta object for the reference list '{@link java.lang.Object#getOclContents <em>Ocl Contents</em>}'.
+	 * <!-- begin-user-doc -->
+		 * @since 1.1
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Ocl Contents</em>'.
+	 * @see java.lang.Object#getOclContents()
+	 * @see #getOclElement()
+	 * @generated
+	 */
+	public EReference getOclElement_OclContents() {
+		return (EReference)oclElementEClass.getEStructuralFeatures().get(1);
+	}
+
+
+	/**
 	 * Returns the meta object for class '{@link java.lang.Object <em>Ocl Any</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1144,10 +1214,11 @@ public class OCLstdlibPackage extends EPackageImpl {
 	}
 
 	/**
-	 * Returns the meta object for the reference '<em>Element Type</em>'.
+	 * Returns the meta object for the reference '{@link java.util.Collection#getElementType <em>Element Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Element Type</em>'.
+	 * @see java.util.Collection#getElementType()
 	 * @see #getCollection()
 	 * @generated
 	 */
@@ -1157,10 +1228,11 @@ public class OCLstdlibPackage extends EPackageImpl {
 
 
 	/**
-	 * Returns the meta object for the attribute '<em>Lower</em>'.
+	 * Returns the meta object for the attribute '{@link java.util.Collection#getLower <em>Lower</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Lower</em>'.
+	 * @see java.util.Collection#getLower()
 	 * @see #getCollection()
 	 * @generated
 	 */
@@ -1170,10 +1242,11 @@ public class OCLstdlibPackage extends EPackageImpl {
 
 
 	/**
-	 * Returns the meta object for the attribute '<em>Upper</em>'.
+	 * Returns the meta object for the attribute '{@link java.util.Collection#getUpper <em>Upper</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Upper</em>'.
+	 * @see java.util.Collection#getUpper()
 	 * @see #getCollection()
 	 * @generated
 	 */
@@ -1276,6 +1349,8 @@ public class OCLstdlibPackage extends EPackageImpl {
 		oclComparableEClass = createEClass(OCL_COMPARABLE);
 
 		oclElementEClass = createEClass(OCL_ELEMENT);
+		createEReference(oclElementEClass, OCL_ELEMENT__OCL_CONTAINER);
+		createEReference(oclElementEClass, OCL_ELEMENT__OCL_CONTENTS);
 
 		oclInvalidEClass = createEClass(OCL_INVALID);
 
@@ -1400,6 +1475,8 @@ public class OCLstdlibPackage extends EPackageImpl {
 		initEClass(oclComparableEClass, Object.class, "OclComparable", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(oclElementEClass, Object.class, "OclElement", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getOclElement_OclContainer(), this.getOclElement(), null, "oclContainer", null, 0, 1, Object.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getOclElement_OclContents(), this.getOclElement(), null, "oclContents", null, 0, -1, Object.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(oclInvalidEClass, Object.class, "OclInvalid", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
@@ -1440,6 +1517,8 @@ public class OCLstdlibPackage extends EPackageImpl {
 		// Create annotations
 		// http://www.eclipse.org/OCL/ASLibrary
 		createASLibraryAnnotations();
+		// http://www.eclipse.org/OCL/Collection
+		createCollectionAnnotations();
 	}
 
 	/**
@@ -1454,6 +1533,23 @@ public class OCLstdlibPackage extends EPackageImpl {
 		  (this, 
 		   source, 
 		   new String[] {
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/OCL/Collection</b>.
+	 * <!-- begin-user-doc -->
+		 * @since 1.1
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createCollectionAnnotations() {
+		String source = "http://www.eclipse.org/OCL/Collection"; //$NON-NLS-1$	
+		addAnnotation
+		  (getOclElement_OclContents(), 
+		   source, 
+		   new String[] {
+			 "nullFree", "true" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 
@@ -1489,6 +1585,24 @@ public class OCLstdlibPackage extends EPackageImpl {
 		 * @generated
 		 */
 		public static final EClass OCL_ELEMENT = eINSTANCE.getOclElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Ocl Container</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * @since 1.1
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EReference OCL_ELEMENT__OCL_CONTAINER = eINSTANCE.getOclElement_OclContainer();
+
+		/**
+		 * The meta object literal for the '<em><b>Ocl Contents</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * @since 1.1
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EReference OCL_ELEMENT__OCL_CONTENTS = eINSTANCE.getOclElement_OclContents();
 
 		/**
 		 * The meta object literal for the '{@link java.lang.Object <em>Ocl Any</em>}' class.
