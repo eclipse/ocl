@@ -88,8 +88,8 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 	@SuppressWarnings("null")
 	private static final @NonNull Logger logger = Logger.getLogger(UML2ASDeclarationSwitch.class);
 
-	protected final @NonNull Ecore2ASDeclarationSwitch ecoreSwitch;
 	protected final @NonNull UML2AS converter;
+	protected final @NonNull Ecore2ASDeclarationSwitch ecoreSwitch;
 	protected final @NonNull PivotMetamodelManager metamodelManager;
 	protected final @NonNull StandardLibraryInternal standardLibrary;
 	

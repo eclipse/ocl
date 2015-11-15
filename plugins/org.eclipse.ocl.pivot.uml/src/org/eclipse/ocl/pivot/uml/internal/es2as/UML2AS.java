@@ -340,6 +340,11 @@ public abstract class UML2AS extends AbstractExternal2AS
 		}	
 
 		@Override
+		public <T extends Element> T getASElement(@NonNull Class<T> requiredClass, @NonNull EObject eObject) {
+			return root.getASElement(requiredClass, eObject);
+		}
+
+		@Override
 		public @NonNull Model getASModel() throws ParserException {
 			Model pivotModel2 = pivotModel;
 			if (pivotModel2 == null) {
@@ -570,6 +575,40 @@ public abstract class UML2AS extends AbstractExternal2AS
 			}
 			return otherEnd;
 		} */
+
+		@Override
+		public <T extends Element> T getASElement(@NonNull Class<T> requiredClass, @NonNull EObject eObject) {
+			Element pivotElement = createMap.get(eObject);
+			if (pivotElement == null) {
+				Resource resource = eObject.eResource();
+				if ((resource != umlResource) && (resource != null)) {
+					UML2AS converter = getAdapter(resource, environmentFactory);
+					if (allConverters.add(converter)) {
+						try {
+							converter.getASModel();
+						} catch (ParserException e) {
+							@SuppressWarnings("null") @NonNull String message = e.getMessage();
+							error(message);
+						}
+//						allEClassifiers.addAll(converter.allEClassifiers);
+//						allNames.addAll(converter.allNames);
+//						for (Map.Entry<EModelElement, Element> entry : converter.createMap.entrySet()) {
+//							createMap.put(entry.getKey(), entry.getValue());
+//						}
+					}
+				}
+				pivotElement = createMap.get(eObject);
+			}
+			if (pivotElement == null) {
+				error("Unresolved " + eObject);
+			}
+			else if (!requiredClass.isAssignableFrom(pivotElement.getClass())) {
+				throw new ClassCastException(pivotElement.getClass().getName() + " is not assignable to " + requiredClass.getName());
+			}
+			@SuppressWarnings("unchecked")
+			T castElement = (T) pivotElement;
+			return castElement;
+		}
 
 		@Override
 		public @NonNull Model getASModel() throws ParserException {

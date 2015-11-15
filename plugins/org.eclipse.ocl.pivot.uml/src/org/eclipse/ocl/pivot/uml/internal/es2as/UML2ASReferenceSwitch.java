@@ -18,8 +18,12 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.ETypedElement;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -34,6 +38,7 @@ import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
+import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2ASReferenceSwitch;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.External2AS;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -48,12 +53,28 @@ public class UML2ASReferenceSwitch extends UMLSwitch<Object>
 	private static final Logger logger = Logger.getLogger(UML2ASReferenceSwitch.class);
 
 	protected final @NonNull UML2AS converter;
+	protected final @NonNull Ecore2ASReferenceSwitch ecoreSwitch;
 	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
 	protected final @NonNull StandardLibraryInternal standardLibrary;
 	private Set<EClass> doneWarnings = null;
 	
 	public UML2ASReferenceSwitch(@NonNull UML2AS converter) {
 		this.converter = converter;
+		this.ecoreSwitch = new Ecore2ASReferenceSwitch(converter)
+		{
+
+			@Override
+			public Object caseEAnnotation(EAnnotation eObject) {
+				return this;
+			}
+
+			@Override
+			public TypedElement caseETypedElement(ETypedElement eObject) {
+				// TODO Auto-generated method stub
+				return super.caseETypedElement(eObject);
+			}
+			
+		};
 		this.environmentFactory = converter.getEnvironmentFactory();
 		this.standardLibrary = converter.getStandardLibrary();
 	}
@@ -235,6 +256,20 @@ public class UML2ASReferenceSwitch extends UMLSwitch<Object>
 	public Object doInPackageSwitch(EObject eObject) {
 		int classifierID = eObject.eClass().getClassifierID();
 		return doSwitch(classifierID, eObject);
+	}
+
+	@Override
+	public Object doSwitch(EObject eObject) {
+		EClass eClass = eObject.eClass();
+		EPackage ePackage = eClass.getEPackage();
+		if (ePackage == EcorePackage.eINSTANCE) {
+			if (eObject.eContainer() instanceof org.eclipse.uml2.uml.Profile) {
+				return null;
+			}
+			Object result = ecoreSwitch.doInPackageSwitch(eObject);
+			return result != ecoreSwitch ? result : null;
+		}
+		return super.doSwitch(eObject);
 	}
 
 	public <T extends Element> void doSwitchAll(@NonNull Class<T> pivotClass, /*@NonNull*/ Collection<T> pivotElements, /*@NonNull*/ List<? extends EObject> eObjects) {

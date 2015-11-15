@@ -13,6 +13,7 @@ package org.eclipse.ocl.pivot.internal.ecore.es2as;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EModelElement;
@@ -26,6 +27,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.NamedElement;
+import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.utilities.AbstractConversion;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.External2AS;
@@ -101,5 +103,19 @@ public abstract class AbstractExternal2AS extends AbstractConversion implements 
 		T castElement = refreshElement(pivotClass, pivotEClass, eNamedElement);
 		castElement.setName(environmentFactory.getTechnology().getOriginalName(eNamedElement));
 		return castElement;
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	public Type getASType(@NonNull EObject eObject) {
+		throw new UnsupportedOperationException();		// Not abstra t to preserve 'internal' APPI compatibility
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	public <T extends Element> T getASElement(@NonNull Class<T> requiredClass, @NonNull EObject eObject) {
+		throw new UnsupportedOperationException();		// Not abstra t to preserve 'internal' APPI compatibility
 	}
 }

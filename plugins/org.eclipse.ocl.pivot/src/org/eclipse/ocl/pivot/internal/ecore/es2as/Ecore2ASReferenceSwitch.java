@@ -74,11 +74,18 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
     public static final Object PROPERTY_OPPOSITE_ROLE_LOWER_KEY = "Property.oppositeLower"; //$NON-NLS-1$
     public static final Object PROPERTY_OPPOSITE_ROLE_UPPER_KEY = "Property.oppositeUpper"; //$NON-NLS-1$
 
-    protected final @NonNull Ecore2AS converter;
+    protected final @NonNull AbstractExternal2AS converter;
 	protected final @NonNull PivotMetamodelManager metamodelManager;
 	protected final @NonNull StandardLibraryInternal standardLibrary;
 	
 	public Ecore2ASReferenceSwitch(@NonNull Ecore2AS converter) {
+		this((AbstractExternal2AS)converter);
+	}
+	
+	/**
+	 * @since 1.1
+	 */
+	public Ecore2ASReferenceSwitch(@NonNull AbstractExternal2AS converter) {
 		this.converter = converter;
 		this.metamodelManager = converter.getMetamodelManager();
 		this.standardLibrary = metamodelManager.getStandardLibrary();
@@ -184,6 +191,9 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 	@Override
 	public Object caseEReference(EReference eObject) {
 //		Property pivotElement = converter.getCreated(Property.class, eObject);		
+		if ("base_Class".equals(eObject.getName())) {
+			Property pivotElement = converter.getCreated(Property.class, eObject);		
+		}
 		Property pivotElement = caseEStructuralFeature(eObject);
 		doSwitchAll(Property.class, ClassUtil.nullFree(pivotElement.getKeys()), eObject.getEKeys());
 		Property oppositeProperty = null;

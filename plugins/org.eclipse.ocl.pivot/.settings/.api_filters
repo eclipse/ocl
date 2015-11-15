@@ -468,4 +468,12 @@
             </message_arguments>
         </filter>
     </resource>
+    <resource path="src/org/eclipse/ocl/pivot/internal/ecore/es2as/Ecore2ASReferenceSwitch.java" type="org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2ASReferenceSwitch">
+        <filter id="388161617">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2ASReferenceSwitch"/>
+                <message_argument value="converter"/>
+            </message_arguments>
+        </filter>
+    </resource>
 </component>

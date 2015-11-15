@@ -1708,4 +1708,26 @@ public class PropertyImpl
 		}
 		setType(null);				// Easier to set them all than just the base_xxx ones
 	}
+
+	@Override
+	public void setName(String newName) {
+		if ("base_Class".equals(newName)) {
+			super.setName(newName);
+		}
+		else {
+			super.setName(newName);
+		}
+	}
+
+	@Override
+	public void setType(Type newType) {
+		if ("base_Class".equals(getName())) {
+			super.setType(newType);
+		}
+		else {
+			super.setType(newType);
+		}
+	}
+	
+	
 } //PropertyImpl
