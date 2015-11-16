@@ -114,7 +114,7 @@ public class UMLIdResolver extends PivotIdResolver
 				
 			} catch (ParserException e) {
 				// TODO Auto-generated catch block
-//				e.printStackTrace();
+				e.printStackTrace();
 			}
 			org.eclipse.ocl.pivot.Class metaType = UML2ASUtil.getMetaType(metamodelManager.getEnvironmentFactory(), (org.eclipse.uml2.uml.Element)value);
 			if (metaType != null) {
