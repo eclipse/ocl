@@ -515,9 +515,9 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 					}
 				}
 				if (pivotElement == null) {
-					if (!(eObject instanceof org.eclipse.uml2.uml.Constraint)) {
-						System.out.println("Use switching " + eObject);
-					}
+//					if (!(eObject instanceof org.eclipse.uml2.uml.Constraint)) {
+//						System.out.println("Use switching " + eObject);
+//					}
 					@SuppressWarnings("unchecked")T doSwitchResult = (T) doSwitch(eObject);
 					pivotElement = doSwitchResult;
 				}
@@ -552,9 +552,9 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 					}
 				}
 				if (pivotElement == null) {
-					if (!(eObject instanceof org.eclipse.uml2.uml.Constraint)) {
-						System.out.println("Use switching " + eObject);
-					}
+//					if (!(eObject instanceof org.eclipse.uml2.uml.Constraint)) {
+//						System.out.println("Use switching " + eObject);
+//					}
 					@SuppressWarnings("unchecked")T doSwitchResult = (T) doSwitch(eObject);
 					pivotElement = doSwitchResult;
 				}

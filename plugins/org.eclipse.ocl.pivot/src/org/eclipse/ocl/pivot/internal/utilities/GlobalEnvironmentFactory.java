@@ -151,7 +151,7 @@ public class GlobalEnvironmentFactory extends AbstractEnvironmentFactory
 
     private GlobalEnvironmentFactory() {
 		super(ProjectManager.CLASS_PATH, createGlobalResourceSet());
-		System.out.println("GlobalEnvironmentFactory()");
+//		System.out.println("GlobalEnvironmentFactory()");
 		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
 			getProjectManager().initializeResourceSet(null);
 		}
