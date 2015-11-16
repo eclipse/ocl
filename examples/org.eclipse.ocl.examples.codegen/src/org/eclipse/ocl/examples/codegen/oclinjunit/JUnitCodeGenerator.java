@@ -34,7 +34,6 @@ import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 /**
  * JUnitCodeGenerator supports generation of an ExpressionInOCL for execution in a JUNit test.
