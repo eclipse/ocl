@@ -144,8 +144,8 @@
         transient="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningPathName" lowerBound="1"
         eType="#//PathNameCS" eOpposite="#//PathNameCS/ownedPathElements"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="referredElement" lowerBound="1"
-        eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Element"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referredElement" eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Element"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PathElementWithURICS" eSuperTypes="#//PathElementCS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="uri" eType="ecore:EDataType ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//String"
@@ -156,8 +156,7 @@
         transient="true" unsettable="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPathElements" lowerBound="1"
         upperBound="-1" eType="#//PathElementCS" containment="true" eOpposite="#//PathElementCS/owningPathName"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="referredElement" lowerBound="1"
-        eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Element"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referredElement" eType="ecore:EClass ../../org.eclipse.ocl.pivot/model/Pivot.ecore#//Element"
         changeable="false" volatile="true" transient="true" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="scopeFilter" eType="#//ScopeFilter"
         transient="true"/>
