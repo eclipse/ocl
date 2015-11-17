@@ -73,7 +73,7 @@ public abstract class AbstractDescriptor implements TypeDescriptor
 		TypeId typeId = unboxedValue.getASTypeId();
 		js.appendDeclaration(cgBoxExp);
 		js.append(" = ");
-		if (!unboxedValue.isNonNull()) {
+		if (!unboxedValue.isNonNull() && !js.isPrimitive(unboxedValue)) {
 			js.appendReferenceTo(unboxedValue);
 			js.append(" == null ? null : ");
 		}
