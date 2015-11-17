@@ -37,8 +37,10 @@ import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.ids.PropertyId;
 import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.util.PivotPlugin;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
+import org.eclipse.ocl.pivot.utilities.TracingOption;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 /**
@@ -51,6 +53,7 @@ public abstract class AbstractTransformer implements Transformer
 {	
 	private static final @SuppressWarnings("null")@NonNull List<Integer> EMPTY_INDEX_LIST = Collections.emptyList();
 	private static final @SuppressWarnings("null")@NonNull List<EObject> EMPTY_EOBJECT_LIST = Collections.emptyList();
+	public static final @NonNull TracingOption INVOCATIONS = new TracingOption(PivotPlugin.PLUGIN_ID, "tx/invocations");
 
 	@SuppressWarnings("serial")
 	public static class InvocationFailedException extends RuntimeException
@@ -59,6 +62,11 @@ public abstract class AbstractTransformer implements Transformer
 		
 		public InvocationFailedException(@NonNull PropertyState propertyState) {
 			this.propertyState = propertyState;
+		}
+
+		@Override
+		public String toString() {
+			return propertyState.toString();
 		}
 	}
 	
@@ -137,6 +145,11 @@ public abstract class AbstractTransformer implements Transformer
 			return mode == PropertyMode.ASSIGNED;
 		}
 		
+//		@Override
+//		public String toString() {
+//			return super.toString();
+//		}
+
 		protected synchronized void unblock(@NonNull ObjectManager objectManager) {
 			final Object blockedInvocations2 = blockedInvocations;
 			if (blockedInvocations2 instanceof Invocation) {
@@ -440,6 +453,7 @@ public abstract class AbstractTransformer implements Transformer
 				castInvocation.insertAfter(blockedInvocations2.prev);
 			}
    			propertyState.block(invocation);
+			INVOCATIONS.println("block " + invocation + " for " + propertyState);
 		}
 			
 	    public void flush() throws ReflectiveOperationException {
@@ -457,6 +471,7 @@ public abstract class AbstractTransformer implements Transformer
 	    			}
 	    		}
 	    		if (invocation != null) {
+	    			INVOCATIONS.println("re-invoke " + invocation);
 	        		invoke(invocation);
 	    		}
 	    	}
@@ -465,6 +480,7 @@ public abstract class AbstractTransformer implements Transformer
 	    public <T extends Invocation> void invoke(@NonNull Invocation invocation) throws ReflectiveOperationException {
     		try {
     			invocation.execute();
+    			INVOCATIONS.println("done " + invocation);
     			flush();
     		}
     		catch (InvocationFailedException e) {
@@ -473,6 +489,7 @@ public abstract class AbstractTransformer implements Transformer
 	    }
 	    
 		public synchronized void unblock(@NonNull Invocation invocation) {
+			INVOCATIONS.println("unblock " + invocation);
 			AbstractInvocation castInvocation = (AbstractInvocation) invocation;
 			if (blockedInvocations == castInvocation) {
 				blockedInvocations = castInvocation.next;
@@ -501,6 +518,7 @@ public abstract class AbstractTransformer implements Transformer
 		
 		public synchronized void assigned(@NonNull EObject eObject, /*@NonNull*/ EStructuralFeature eFeature, @Nullable Object ecoreValue) {
 			assert eFeature != null;
+			INVOCATIONS.println("assigned " + eFeature.getContainerClass().getName() + "::" + eFeature.getName() + " for " + eObject);
 			Map<EStructuralFeature, PropertyState> objectState = getObjectState(eObject);
 			PropertyState propertyState = objectState.get(eFeature);
 			if (propertyState != null) {
@@ -538,10 +556,11 @@ public abstract class AbstractTransformer implements Transformer
 			}
 		}
 
-		public synchronized <G,S> G get(@NonNull EObject eObject, /*@NonNull*/ EStructuralFeature eFeature) {
+		public synchronized <G,S> G get(@NonNull Object eObject, /*@NonNull*/ EStructuralFeature eFeature) {
 			assert eFeature != null;
-			PropertyState propertyState = getPropertyState(eObject, eFeature);
-			return propertyState.get(this, eObject, eFeature);
+			INVOCATIONS.println("get for " + eFeature.getContainerClass().getName() + "::" + eFeature.getName() + " for " + eObject);
+			PropertyState propertyState = getPropertyState((EObject) eObject, eFeature);
+			return propertyState.get(this, (EObject) eObject, eFeature);
 		}
 
 		public synchronized @NonNull PropertyState getPropertyState(@NonNull EObject eObject, @NonNull EStructuralFeature eFeature) {
@@ -1091,6 +1110,7 @@ public abstract class AbstractTransformer implements Transformer
      */
     public <T extends Invocation> void invoke(@NonNull Constructor<T> constructor, @NonNull Object... boundValues) throws ReflectiveOperationException {
     	@SuppressWarnings("null")@NonNull Invocation invocation = constructor.newInstance(this, boundValues);
+		INVOCATIONS.println("invoke " + invocation);
     	invocationManager.invoke(invocation);
     }
 	
@@ -1102,6 +1122,7 @@ public abstract class AbstractTransformer implements Transformer
     public <T extends Invocation> void invokeOnce(@NonNull Constructor<T> constructor, @NonNull Object... boundValues) throws ReflectiveOperationException {
     	Invocation invocation = createFirst(constructor, boundValues);
     	if (invocation != null) {
+    		INVOCATIONS.println("invokeOnce " + invocation);
     		invocationManager.invoke(invocation);
     	}
     }

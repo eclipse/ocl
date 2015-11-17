@@ -1062,6 +1062,10 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 		assert currentClass == null;
 		currentClass = cgClass;
 	}
+	
+	protected void setAst(@NonNull CGNamedElement cgElement, @NonNull Element asElement) {
+		cgElement.setAst(asElement);
+	}
 
 	protected void setAst(@NonNull CGNamedElement cgElement, @NonNull NamedElement asElement) {
 		cgElement.setAst(asElement);

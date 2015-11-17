@@ -51,6 +51,9 @@ org.eclipse.ocl.pivot/partialModels=false
 # Trace maintenance of PartialPackages 
 org.eclipse.ocl.pivot/partialPackages=false
 
+# Trace transformation invocations 
+org.eclipse.ocl.pivot/tx.invocations=false
+
 # Trace validation of InstanceSpecifications 
 org.eclipse.ocl.pivot/validate/instance=false
 
