@@ -22,6 +22,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -37,6 +38,7 @@ import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.ids.PropertyId;
 import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
@@ -138,17 +140,22 @@ public abstract class AbstractTransformer implements Transformer
 				case ASSIGNED:
 					break;
 			}
-			return (G) eObject.eGet(eFeature);
+			if (eFeature == OCLstdlibPackage.Literals.OCL_ELEMENT__OCL_CONTAINER) {
+				return (G) eObject.eContainer();
+			}
+			else {
+				return (G) eObject.eGet(eFeature);
+			}
 		}
 
 		protected boolean isAssigned() {
 			return mode == PropertyMode.ASSIGNED;
 		}
-		
-//		@Override
-//		public String toString() {
-//			return super.toString();
-//		}
+
+		@Override
+		public String toString() {
+			return getClass().getSimpleName() + "@" + Integer.toHexString(System.identityHashCode(this)) + "[" + debug_eFeature.getContainerClass().getName() + "::" + debug_eFeature.getName() + " for " + debug_eObject + "]";
+		}
 
 		protected synchronized void unblock(@NonNull ObjectManager objectManager) {
 			final Object blockedInvocations2 = blockedInvocations;
@@ -167,25 +174,93 @@ public abstract class AbstractTransformer implements Transformer
 	}
 	
 	/**
-	 * PropertyState describing an M:N Object navigation.
-	 */
-	private static class ManyToManyPropertyState extends PropertyState
-	{	
+	 * PropertyState describing the contained element side of a 1:N Object navigation.
+	 * A single OneToManyContainedPropertyState is shared by each of the possible containing features and also the
+	 * generic OCLstdlibPackage.Literals.OCL_ELEMENT__OCL_CONTAINER corresponding to eContainer().
+	 * The eGet() must therefore check not only that the proprty is assigned but also that it is
+	 * assigned to the containing feature of interest.
+	 * <br>
+	 * Lifecycle (read first, write later):
+	 * Create due to
+	 * - get of an aggregator => ASSIGNABLE, blocked
+	 * Unblock
+	 * - assign of possibly null aggregator for the element, ASSIGNABLE, blocked => ASSIGNED, not blocked
+	 * - non-null aggregator is notified to unblock 
+	 * Thereafter
+	 * - get of aggregator ASSIGNED => ASSIGNED
+	 * <br>
+	 * Lifecycle (write first):
+	 * Create due to
+	 * - assign of a possibly null aggregator => ASSIGNED, unblocked
+	 * - non-null aggregator is notified to unblock 
+	 * Thereafter
+	 * - get of aggregator ASSIGNED => ASSIGNED
+	 *
+	private static class ContainedPropertyState extends PropertyState
+	{
 		public static @NonNull PropertyState create(@NonNull ObjectManager objectManager,
-				@NonNull EObject eObject, @NonNull EReference eFeature, @NonNull EReference eOppositeFeature) {
-			throw new UnsupportedOperationException();
+				@NonNull EObject eObject, @NonNull EReference eFeature, @Nullable EReference eOppositeFeature, @Nullable EObject eContainer) {
+			if (eOppositeFeature == null) {
+				eOppositeFeature = OCLstdlibPackage.Literals.OCL_ELEMENT__OCL_CONTAINER;
+				assert eOppositeFeature != null;
+			}
+			if (eContainer != null) {
+				ContainerPropertyState aggregatorPropertyState = (ContainerPropertyState) objectManager.getPropertyState(eContainer, eOppositeFeature);
+				aggregatorPropertyState.assignedElement(objectManager, eContainer, eOppositeFeature, eObject);
+			}
+			return new ContainedPropertyState(eObject, eFeature, eContainer);
 		}
 		
-		public ManyToManyPropertyState(@NonNull EObject eObject, @NonNull EStructuralFeature eFeature) {
+		public ContainedPropertyState(@NonNull EObject eObject, @NonNull EReference eFeature) {
 			super(eObject, eFeature);
-			throw new UnsupportedOperationException();
+			assert !eFeature.isMany();
+			if (eFeature != OCLstdlibPackage.Literals.OCL_ELEMENT__OCL_CONTAINER) {	// FIXME ensure oclContainer() composes
+				assert eFeature.isContainment();
+				assert eFeature.getEOpposite() != null;
+			}
+//			assert eFeature.getEOpposite().isMany();
+		}
+		
+		private ContainedPropertyState(@NonNull EObject eObject, @NonNull EReference eFeature, @Nullable EObject eContainer) {
+			super(eObject, eFeature, eContainer);
+			assert !eFeature.isMany();
+			if (eFeature != OCLstdlibPackage.Literals.OCL_ELEMENT__OCL_CONTAINER) {	// FIXME ensure oclContainer() composes
+				assert eFeature.isContainment();
+			}
+//			assert eFeature.getEOpposite().isMany();
+			assert eObject.eContainer() == eContainer;
 		}
 
 		@Override
 		public synchronized void assigned(@NonNull ObjectManager objectManager, @NonNull EObject eObject, @NonNull EStructuralFeature eFeature, @Nullable Object ecoreValue) {
-			throw new UnsupportedOperationException();
+			if (!isAssigned() && (ecoreValue != null)) {
+				EObject eOpposite = (EObject) ecoreValue;
+				EReference eOppositeReference = ((EReference)eFeature).getEOpposite();
+				assert eOppositeReference != null;
+				ContainerPropertyState aggregatorPropertyState = (ContainerPropertyState) objectManager.getPropertyState(eOpposite, eOppositeReference);
+				aggregatorPropertyState.assignedElement(objectManager, eOpposite, eOppositeReference, eObject);
+			}
+			super.assigned(objectManager, eObject, eFeature, ecoreValue);
 		}
-	}
+		
+		@Override
+		@SuppressWarnings("unchecked")
+		public synchronized @Nullable <G> G get(@NonNull ObjectManager objectManager, @NonNull EObject eObject, @NonNull EStructuralFeature eFeature) {
+			switch (mode) {
+				case ASSIGNABLE:
+					throw new InvocationFailedException(this);
+				case ASSIGNED:
+					break;
+			}
+			if (eFeature != OCLstdlibPackage.Literals.OCL_ELEMENT__OCL_CONTAINER) {
+				EStructuralFeature eContainingFeature = eObject.eContainingFeature();
+				if (eContainingFeature != eFeature) {
+					return null;
+				}
+			}
+			return (G) eObject.eContainer();
+		}
+	} */
 	
 	/**
 	 * PropertyState describing the container side of a 1:N Object navigation.
@@ -214,17 +289,145 @@ public abstract class AbstractTransformer implements Transformer
 	 * Thereafter
 	 * - get of either end ASSIGNED => ASSIGNED
 	 * - (assign of either end is an ignored error)
-	 */
-	private static class OneToManyContainerPropertyState extends PropertyState
+	 *
+	private static class ContainerPropertyState extends PropertyState
 	{
-		public OneToManyContainerPropertyState(@NonNull EObject eContainer, @NonNull EStructuralFeature eFeature) {
+		public static @NonNull PropertyState create(@NonNull ObjectManager objectManager,
+				@NonNull EObject eObject, @NonNull EReference eFeature, @NonNull EReference eOppositeFeature, @Nullable EObject eContent) {
+			if (eContent != null) {
+				ContainedPropertyState containedPropertyState = (ContainedPropertyState) objectManager.getPropertyState(eContent, eOppositeFeature);
+				containedPropertyState.assigned(objectManager, eContent, eOppositeFeature, eObject);
+			}
+			return new ContainerPropertyState(eObject, eFeature, eContent);
+		}
+		
+		public ContainerPropertyState(@NonNull EObject eContainer, @NonNull EReference eFeature) {
+			super(eContainer, eFeature);
+			assert eFeature.isContainer();
+//			assert eFeature.isMany();
+//			assert eFeature.getEOpposite() != null;
+//			assert eFeature.getEOpposite().isMany();
+		}
+
+		public ContainerPropertyState(@NonNull EObject eContainer, @NonNull EReference eFeature, @Nullable Object elements) {
+			super(eContainer, eFeature, elements);
+			assert eFeature.isContainer();
+//			assert eFeature.isMany();
+//			assert eFeature.getEOpposite() != null;
+//			assert eFeature.getEOpposite().isMany();
+			assert eContainer.eGet(eFeature) == eContainer;
+		}
+
+		@Override
+		public synchronized void assigned(@NonNull ObjectManager objectManager, @NonNull EObject eObject, @NonNull EStructuralFeature eFeature, @Nullable Object ecoreValue) {
+			assert ecoreValue != null;
+			@SuppressWarnings("unchecked")
+			List<? extends EObject> ecoreValues = (List<? extends EObject>)ecoreValue;
+			EReference eOppositeReference = ((EReference)eFeature).getEOpposite();
+			for (EObject element : ecoreValues) {
+				if (element != null) {
+					Map<EStructuralFeature, PropertyState> elementObjectState = objectManager.getObjectState(element);
+					elementObjectState.put(eOppositeReference, this);
+				}
+			}
+			super.assigned(objectManager, eObject, eFeature, ecoreValue);
+
+		}
+		
+		public void assignedElement(@NonNull ObjectManager objectManager,
+				@NonNull EObject eContainer, @NonNull EReference eReference, EObject eObject) {
+			super.assigned(objectManager, eContainer, eReference, eObject);
+		}
+		
+		@Override
+		@SuppressWarnings("unchecked")
+		public synchronized @Nullable <G> G get(@NonNull ObjectManager objectManager, @NonNull EObject eObject, @NonNull EStructuralFeature eFeature) {
+			switch (mode) {
+				case ASSIGNABLE:
+					mode = PropertyMode.ASSIGNED;
+					unblock(objectManager);
+					break;
+				case ASSIGNED:
+					break;
+			}
+			return (G) eObject.eGet(eFeature);
+		}
+	} */
+	
+	/**
+	 * PropertyState describing an M:N Object navigation.
+	 */
+	private static class ManyToManyPropertyState extends PropertyState
+	{	
+		public static @NonNull PropertyState create(@NonNull ObjectManager objectManager,
+				@NonNull EObject eObject, @NonNull EReference eFeature, @NonNull EReference eOppositeFeature) {
+			throw new UnsupportedOperationException();
+		}
+		
+		public ManyToManyPropertyState(@NonNull EObject eObject, @NonNull EStructuralFeature eFeature) {
+			super(eObject, eFeature);
+			throw new UnsupportedOperationException();
+		}
+
+		@Override
+		public synchronized void assigned(@NonNull ObjectManager objectManager, @NonNull EObject eObject, @NonNull EStructuralFeature eFeature, @Nullable Object ecoreValue) {
+			throw new UnsupportedOperationException();
+		}
+	}
+	
+	/**
+	 * PropertyState describing the aggregator side of a 1:N Object navigation.
+	 * <br>
+	 * Lifecycle:
+	 * Create due to
+	 * - get of all elements => ASSIGNABLE, blocked
+	 * NO: - get of an aggregator => ASSIGNABLE, blocked
+	 * Create due to
+	 * - assign of all elements => ASSIGNABLE => ASSIGNED, not blocked
+	 * - assign of a first element to the aggregator => ASSIGNABLE, not blocked
+	 * Update due to
+	 * - assign of a further element to the aggregator => ASSIGNABLE => ASSIGNABLE
+	 * Unblock due to
+	 * - get of an aggregator ASSIGNABLE => ASSIGNED
+	 * - get of all elements ASSIGNABLE => ASSIGNED
+	 * Thereafter
+	 * - get of an aggregator ASSIGNED => ASSIGNED
+	 * - get of all elements ASSIGNED => ASSIGNED
+	 * <br>
+	 * Lifecycle 2: read first
+	 * Create due to
+	 * - get of elements => ASSIGNABLE, blocked
+	 * Unblock due to
+	 * - assign of an element to the aggregator => ASSIGNABLE => ASSIGNED, not blocked
+	 * Thereafter
+	 * - get of either end ASSIGNED => ASSIGNED
+	 * - (assign of either end is an ignored error)
+	 */
+	private static class OneToManyAggregatorPropertyState extends PropertyState
+	{
+
+//		public static @NonNull  PropertyState create(@NonNull ObjectManager objectManager,
+//				EObject eObject, @NonNull EReference eFeature, EReference eOppositeReference, Object ecoreValue) {
+//			// TODO Auto-generated method stub
+//			return null;
+//		}
+		public static @NonNull PropertyState create(@NonNull ObjectManager objectManager,
+				@NonNull EObject eObject, @NonNull EReference eFeature, @NonNull EReference eOppositeFeature, @Nullable EObject eContent) {
+			if (eContent != null) {
+				PropertyState containedPropertyState = objectManager.getPropertyState(eContent, eOppositeFeature);
+				containedPropertyState.assigned(objectManager, eContent, eOppositeFeature, eObject);
+			}
+			return new OneToManyAggregatorPropertyState(eObject, eFeature, eContent);
+		}
+		
+		public OneToManyAggregatorPropertyState(@NonNull EObject eContainer, @NonNull EStructuralFeature eFeature) {
 			super(eContainer, eFeature);
 			assert eFeature.isMany();
 //			assert eFeature.getEOpposite() != null;
 //			assert eFeature.getEOpposite().isMany();
 		}
 
-		public OneToManyContainerPropertyState(@NonNull EObject eContainer, @NonNull EStructuralFeature eFeature, @Nullable Object elements) {
+		private OneToManyAggregatorPropertyState(@NonNull EObject eContainer, @NonNull EStructuralFeature eFeature, @Nullable Object elements) {
 			super(eContainer, eFeature, elements);
 			assert eFeature.isMany();
 //			assert eFeature.getEOpposite() != null;
@@ -273,26 +476,26 @@ public abstract class AbstractTransformer implements Transformer
 	 * <br>
 	 * Lifecycle (read first, write later):
 	 * Create due to
-	 * - get of a container => ASSIGNABLE, blocked
+	 * - get of an aggregator => ASSIGNABLE, blocked
 	 * Unblock
-	 * - assign of possibly null container for the element, ASSIGNABLE, blocked => ASSIGNED, not blocked
-	 * - non-null container is notified to unblock 
+	 * - assign of possibly null aggregator for the element, ASSIGNABLE, blocked => ASSIGNED, not blocked
+	 * - non-null aggregator is notified to unblock 
 	 * Thereafter
-	 * - get of container ASSIGNED => ASSIGNED
+	 * - get of aggregator ASSIGNED => ASSIGNED
 	 * <br>
 	 * Lifecycle (write first):
 	 * Create due to
-	 * - assign of a possibly null container => ASSIGNED, unblocked
-	 * - non-null container is notified to unblock 
+	 * - assign of a possibly null aggregator => ASSIGNED, unblocked
+	 * - non-null aggregator is notified to unblock 
 	 * Thereafter
-	 * - get of container ASSIGNED => ASSIGNED
+	 * - get of aggregator ASSIGNED => ASSIGNED
 	 */
 	private static class OneToManyElementPropertyState extends PropertyState
 	{
 		public static @NonNull PropertyState create(@NonNull ObjectManager objectManager,
 				@NonNull EObject eObject, @NonNull EReference eFeature, @NonNull EReference eOppositeFeature, @NonNull EObject eContainer) {
-			OneToManyContainerPropertyState containerPropertyState = (OneToManyContainerPropertyState) objectManager.getPropertyState(eContainer, eOppositeFeature);
-			containerPropertyState.assignedElement(objectManager, eContainer, eOppositeFeature, eObject);
+			OneToManyAggregatorPropertyState aggregatorPropertyState = (OneToManyAggregatorPropertyState) objectManager.getPropertyState(eContainer, eOppositeFeature);
+			aggregatorPropertyState.assignedElement(objectManager, eContainer, eOppositeFeature, eObject);
 			return new OneToManyElementPropertyState(eObject, eFeature, eContainer);
 		}
 		
@@ -317,8 +520,8 @@ public abstract class AbstractTransformer implements Transformer
 				EObject eOpposite = (EObject) ecoreValue;
 				EReference eOppositeReference = ((EReference)eFeature).getEOpposite();
 				assert eOppositeReference != null;
-				OneToManyContainerPropertyState containerPropertyState = (OneToManyContainerPropertyState) objectManager.getPropertyState(eOpposite, eOppositeReference);
-				containerPropertyState.assignedElement(objectManager, eOpposite, eOppositeReference, eObject);
+				OneToManyAggregatorPropertyState aggregatorPropertyState = (OneToManyAggregatorPropertyState) objectManager.getPropertyState(eOpposite, eOppositeReference);
+				aggregatorPropertyState.assignedElement(objectManager, eOpposite, eOppositeReference, eObject);
 			}
 			super.assigned(objectManager, eObject, eFeature, ecoreValue);
 		}
@@ -339,7 +542,7 @@ public abstract class AbstractTransformer implements Transformer
 	 * Create due to
 	 * - get of other end => ASSIGNABLE_BLOCKED
 	 * Unblock due to
-	 * - assign of a further element to the container => ASSIGNABLE_BLOCKED => ASSIGNED
+	 * - assign of a further element to the aggregator => ASSIGNABLE_BLOCKED => ASSIGNED
 	 * Thereafter
 	 * - get of either end ASSIGNED => ASSIGNED
 	 * - (assign of either end is an ignored error)
@@ -347,8 +550,24 @@ public abstract class AbstractTransformer implements Transformer
 	private static class OneToOnePropertyState extends PropertyState
 	{
 		public static @NonNull <G,S> PropertyState create(@NonNull ObjectManager objectManager,
-				@NonNull EObject eObject, @NonNull EReference eFeature,
-				@NonNull EReference eOppositeFeature, @Nullable EObject eOpposite) {
+				@NonNull EObject eObject, @NonNull EReference eFeature, @NonNull EReference eOppositeFeature, @Nullable EObject eOpposite) {
+			Map<EStructuralFeature, PropertyState> oppositeObjectState = null;
+			if (eOpposite != null) {
+				oppositeObjectState = objectManager.getObjectState(eOpposite);
+				PropertyState propertyState = oppositeObjectState.get(eOppositeFeature);
+				if (propertyState != null) {
+					return propertyState;
+				}
+			}
+			PropertyState propertyState = new OneToOnePropertyState(eObject, eFeature, eOpposite);
+			if (oppositeObjectState != null) {
+				oppositeObjectState.put(eOppositeFeature, propertyState);
+			}
+			return propertyState;
+		}
+
+/*		public static @NonNull <G,S> PropertyState createContainer(@NonNull ObjectManager objectManager,
+				@NonNull EObject eObject, @NonNull EReference eFeature, @Nullable EReference eOppositeFeature, @Nullable EObject eOpposite) {
 			Map<EStructuralFeature, PropertyState> oppositeObjectState = null;
 			if (eOpposite != null) {
 				oppositeObjectState = objectManager.getObjectState(eObject);
@@ -362,21 +581,42 @@ public abstract class AbstractTransformer implements Transformer
 				oppositeObjectState.put(eOppositeFeature, propertyState);
 			}
 			return propertyState;
-		}
+		} */
 		
 		public OneToOnePropertyState(@NonNull EObject eObject, @NonNull EReference eFeature) {
 			super(eObject, eFeature);
 			assert !eFeature.isMany();
-			assert eFeature.getEOpposite() != null;
-			assert !eFeature.getEOpposite().isMany();
+			if (eFeature.isContainer()) {
+//				assert eObject.eContainer() == eOpposite;
+			}
+			else if (eFeature.isContainment()) {
+//				assert eOpposite != null;
+//				assert eObject == eOpposite.eContainer();
+			}
+			else if (eFeature == OCLstdlibPackage.Literals.OCL_ELEMENT__OCL_CONTAINER) {
+//				propertyState = new OneToOnePropertyState(eObject, eReference);
+			}
+			else {
+				assert eFeature.getEOpposite() != null;
+				assert !eFeature.getEOpposite().isMany();
+			}
 		}
 
 		private OneToOnePropertyState(@NonNull EObject eObject, @NonNull EReference eFeature, @Nullable EObject eOpposite) {
 			super(eObject, eFeature, eOpposite);
 			assert !eFeature.isMany();
-			assert eFeature.getEOpposite() != null;
-			assert !eFeature.getEOpposite().isMany();
-			assert eObject.eGet(eFeature) == eOpposite;
+			if (eFeature.isContainer()) {
+				assert eObject.eContainer() == eOpposite;
+			}
+			else if (eFeature.isContainment()) {
+				assert eOpposite != null;
+				assert eObject == eOpposite.eContainer();
+			}
+			else {
+				assert eFeature.getEOpposite() != null;
+				assert !eFeature.getEOpposite().isMany();
+				assert eObject.eGet(eFeature) == eOpposite;
+			}
 		}
 	}
 	
@@ -408,6 +648,7 @@ public abstract class AbstractTransformer implements Transformer
 	{
 		private @NonNull AbstractInvocation prev = this;
 		private @NonNull AbstractInvocation next = this;
+		public @Nullable PropertyState debug_blockedBy = null;
 		
 		@Override
 		public void insertAfter(@NonNull Invocation predecessor) {
@@ -425,6 +666,11 @@ public abstract class AbstractTransformer implements Transformer
 			next.prev = prev;
 			prev = this;
 			next = this;
+		}
+
+		@Override
+		public String toString() {
+			return getClass().getSimpleName() + "@" + Integer.toHexString(System.identityHashCode(this));
 		}
 	}
 	
@@ -445,6 +691,8 @@ public abstract class AbstractTransformer implements Transformer
 	    
 		private synchronized void block(@NonNull Invocation invocation, @NonNull PropertyState propertyState) {
 			AbstractInvocation castInvocation = (AbstractInvocation) invocation;
+			assert castInvocation.debug_blockedBy == null;
+			castInvocation.debug_blockedBy = propertyState;
 			AbstractInvocation blockedInvocations2 = blockedInvocations;
 			if (blockedInvocations2 == null) {
 				blockedInvocations = castInvocation;
@@ -455,8 +703,22 @@ public abstract class AbstractTransformer implements Transformer
    			propertyState.block(invocation);
 			INVOCATIONS.println("block " + invocation + " for " + propertyState);
 		}
-			
-	    public void flush() throws ReflectiveOperationException {
+
+		public boolean flush() throws ReflectiveOperationException {
+			flushInternal();
+			AbstractInvocation blockedInvocation = blockedInvocations;
+			if (blockedInvocation == null) {
+				return true;
+			}
+			do {
+				INVOCATIONS.println("still blocked " + blockedInvocation + " by " + blockedInvocation.debug_blockedBy);
+				blockedInvocation = blockedInvocation.next;
+			}
+			while (blockedInvocation != blockedInvocations);
+			return false;
+		}
+		
+	    private void flushInternal() throws ReflectiveOperationException {
 			while (unblockedInvocations != null) {
 	    		AbstractInvocation invocation = null;
 	    		synchronized (this) {
@@ -472,16 +734,18 @@ public abstract class AbstractTransformer implements Transformer
 	    		}
 	    		if (invocation != null) {
 	    			INVOCATIONS.println("re-invoke " + invocation);
-	        		invoke(invocation);
+	        		invoke(invocation, false);
 	    		}
 	    	}
 	    }
 		
-	    public <T extends Invocation> void invoke(@NonNull Invocation invocation) throws ReflectiveOperationException {
+	    public <T extends Invocation> void invoke(@NonNull Invocation invocation, boolean doFlush) throws ReflectiveOperationException {
     		try {
     			invocation.execute();
     			INVOCATIONS.println("done " + invocation);
-    			flush();
+    			if (doFlush) {
+    				flushInternal();
+    			}
     		}
     		catch (InvocationFailedException e) {
      			block(invocation, e.propertyState);
@@ -491,6 +755,8 @@ public abstract class AbstractTransformer implements Transformer
 		public synchronized void unblock(@NonNull Invocation invocation) {
 			INVOCATIONS.println("unblock " + invocation);
 			AbstractInvocation castInvocation = (AbstractInvocation) invocation;
+			assert castInvocation.debug_blockedBy != null;
+			castInvocation.debug_blockedBy = null;
 			if (blockedInvocations == castInvocation) {
 				blockedInvocations = castInvocation.next;
 				if (blockedInvocations == castInvocation) {
@@ -518,38 +784,62 @@ public abstract class AbstractTransformer implements Transformer
 		
 		public synchronized void assigned(@NonNull EObject eObject, /*@NonNull*/ EStructuralFeature eFeature, @Nullable Object ecoreValue) {
 			assert eFeature != null;
-			INVOCATIONS.println("assigned " + eFeature.getContainerClass().getName() + "::" + eFeature.getName() + " for " + eObject);
+			INVOCATIONS.println("assigned " + eFeature.getContainerClass().getName() + "::" + eFeature.getName() + " for " + eObject + " = " + ecoreValue);
 			Map<EStructuralFeature, PropertyState> objectState = getObjectState(eObject);
 			PropertyState propertyState = objectState.get(eFeature);
 			if (propertyState != null) {
 				propertyState.assigned(this, eObject, eFeature, ecoreValue);		
 			}
+			else if (eFeature instanceof EAttribute) {
+				propertyState = new PropertyState(eObject, eFeature, ecoreValue);
+			}
 			else {
-				if (eFeature instanceof EReference) {
-					EReference eReference = (EReference)eFeature;
-					EReference eOppositeReference = eReference.getEOpposite();
-					if (eOppositeReference != null) {
-						if (eReference.isMany()) {
-							assert ecoreValue != null;
-							if (eOppositeReference.isMany()) {
-								propertyState = ManyToManyPropertyState.create(this, eObject, eReference, eOppositeReference);
-							}
-							else {
-								propertyState = new OneToManyContainerPropertyState(eObject, eOppositeReference, ecoreValue);
-							}
+				EReference eReference = (EReference)eFeature;
+				EReference eOppositeReference = eReference.getEOpposite();
+				if (eOppositeReference != null) {
+					if (ecoreValue != null) {
+						Map<EStructuralFeature, PropertyState> oppositeObjectState = getObjectState((EObject) ecoreValue);
+						PropertyState oppositePropertyState = oppositeObjectState.get(eOppositeReference);
+					}
+					if (eReference.isMany()) {
+						assert ecoreValue != null;
+						if (eOppositeReference.isMany()) {
+							propertyState = ManyToManyPropertyState.create(this, eObject, eReference, eOppositeReference);
 						}
 						else {
-							if (eOppositeReference.isMany()) {
-								assert ecoreValue != null;
-								propertyState = OneToManyElementPropertyState.create(this, eObject, eReference, eOppositeReference, (EObject)ecoreValue);
-							}
-							else if ((ecoreValue != null) || isIncremental()) {
-								propertyState = OneToOnePropertyState.create(this, eObject, eReference, eOppositeReference, (EObject)ecoreValue);
-							}
+							propertyState = OneToManyAggregatorPropertyState.create(this, eObject, eReference, eOppositeReference, (EObject)ecoreValue);
+						}
+					}
+					else {
+						if (eOppositeReference.isMany()) {
+							assert ecoreValue != null;
+							propertyState = OneToManyElementPropertyState.create(this, eObject, eReference, eOppositeReference, (EObject)ecoreValue);
+						}
+						else if ((ecoreValue != null) || isIncremental()) {
+							propertyState = OneToOnePropertyState.create(this, eObject, eReference, eOppositeReference, (EObject)ecoreValue);
 						}
 					}
 				}
-				if (propertyState == null) {
+				else if (eReference.isContainment()) {
+					assert ecoreValue != null;
+					eOppositeReference = OCLstdlibPackage.Literals.OCL_ELEMENT__OCL_CONTAINER;
+					assert eOppositeReference != null;
+					Map<EStructuralFeature, PropertyState> oppositeObjectState = getObjectState((EObject) ecoreValue);
+					propertyState = oppositeObjectState.get(eOppositeReference);
+					if (propertyState != null) {
+						propertyState.assigned(this, (EObject) ecoreValue, eOppositeReference, eObject);		
+					}
+					else if (eReference.isMany()) {
+						propertyState = OneToManyElementPropertyState.create(this, eObject, eReference, eOppositeReference, (EObject)ecoreValue);
+					}
+					else {
+						propertyState = OneToOnePropertyState.create(this, eObject, eReference, eOppositeReference, (EObject)ecoreValue);
+					}
+				}
+//				else if (eReference == OCLstdlibPackage.Literals.OCL_ELEMENT__OCL_CONTAINER) {
+//					propertyState = OneToOnePropertyState.create(this, eObject, eReference, eOppositeReference, (EObject)ecoreValue);
+//				}
+				else {						// Unidirectional non-containment EReference
 					propertyState = new PropertyState(eObject, eFeature, ecoreValue);
 				}
 				objectState.put(eFeature, propertyState);
@@ -558,9 +848,10 @@ public abstract class AbstractTransformer implements Transformer
 
 		public synchronized <G,S> G get(@NonNull Object eObject, /*@NonNull*/ EStructuralFeature eFeature) {
 			assert eFeature != null;
-			INVOCATIONS.println("get for " + eFeature.getContainerClass().getName() + "::" + eFeature.getName() + " for " + eObject);
 			PropertyState propertyState = getPropertyState((EObject) eObject, eFeature);
-			return propertyState.get(this, (EObject) eObject, eFeature);
+			G value = propertyState.get(this, (EObject) eObject, eFeature);
+			INVOCATIONS.println("get " + eFeature.getContainerClass().getName() + "::" + eFeature.getName() + " for " + eObject + " = " + value);
+			return value;
 		}
 
 		public synchronized @NonNull PropertyState getPropertyState(@NonNull EObject eObject, @NonNull EStructuralFeature eFeature) {
@@ -568,7 +859,10 @@ public abstract class AbstractTransformer implements Transformer
 			Map<EStructuralFeature, PropertyState> objectState = getObjectState(eObject);
 			PropertyState propertyState = objectState.get(eFeature);
 			if (propertyState == null) {
-				if (eFeature instanceof EReference) {
+				if (eFeature instanceof EAttribute) {
+					propertyState = new PropertyState(eObject, eFeature);
+				}
+				else {
 					EReference eReference = (EReference)eFeature;
 					EReference eOppositeReference = eReference.getEOpposite();			// FIXME there is always a Pivot opposite
 					if (eOppositeReference != null) {
@@ -577,7 +871,7 @@ public abstract class AbstractTransformer implements Transformer
 								propertyState = new ManyToManyPropertyState(eObject, eReference);
 							}
 							else {
-								propertyState = new OneToManyContainerPropertyState(eObject, eReference);
+								propertyState = new OneToManyAggregatorPropertyState(eObject, eReference);
 							}
 						}
 						else {
@@ -589,9 +883,20 @@ public abstract class AbstractTransformer implements Transformer
 							}
 						}
 					}
-				}
-				if (propertyState == null) {
-					propertyState = new PropertyState(eObject, eFeature);
+					else if (eReference.isContainment()) {
+						if (eReference.isMany()) {
+							propertyState = new OneToManyElementPropertyState(eObject, eReference);
+						}
+						else {
+							propertyState = new OneToOnePropertyState(eObject, eReference);
+						}
+					}
+					else if (eReference == OCLstdlibPackage.Literals.OCL_ELEMENT__OCL_CONTAINER) {
+						propertyState = new OneToOnePropertyState(eObject, eReference);
+					}
+					else {						// Unidirectional non-containment EReference
+						propertyState = new PropertyState(eObject, eFeature);
+					}
 				}
 				objectState.put(eFeature, propertyState);
 			}
@@ -1091,7 +1396,7 @@ public abstract class AbstractTransformer implements Transformer
 	}
 
 	/**
-     * Return all the containerless objects in the modelName model.
+     * Return all the container-less objects in the modelName model.
      */
     @Override
 	public @NonNull Collection<EObject> getRootObjects(@NonNull String modelName) {
@@ -1111,7 +1416,7 @@ public abstract class AbstractTransformer implements Transformer
     public <T extends Invocation> void invoke(@NonNull Constructor<T> constructor, @NonNull Object... boundValues) throws ReflectiveOperationException {
     	@SuppressWarnings("null")@NonNull Invocation invocation = constructor.newInstance(this, boundValues);
 		INVOCATIONS.println("invoke " + invocation);
-    	invocationManager.invoke(invocation);
+    	invocationManager.invoke(invocation, true);
     }
 	
     /**
@@ -1123,7 +1428,7 @@ public abstract class AbstractTransformer implements Transformer
     	Invocation invocation = createFirst(constructor, boundValues);
     	if (invocation != null) {
     		INVOCATIONS.println("invokeOnce " + invocation);
-    		invocationManager.invoke(invocation);
+    		invocationManager.invoke(invocation, true);
     	}
     }
 	
