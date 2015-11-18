@@ -173,6 +173,8 @@ import org.eclipse.ocl.pivot.library.oclany.OclAnyEqualOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyNotEqualOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsInvalidOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsUndefinedOperation;
+import org.eclipse.ocl.pivot.library.oclany.OclElementOclContainerProperty;
+import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -758,6 +760,11 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 			CGTuplePartCallExp cgTuplePartCallExp = CGModelFactory.eINSTANCE.createCGTuplePartCallExp();
 			cgTuplePartCallExp.setAstTuplePartId(((TuplePartImpl) asProperty).getTuplePartId());
 			cgPropertyCallExp = cgTuplePartCallExp;
+		}
+		else if (libraryProperty instanceof OclElementOclContainerProperty) {
+			CGEcorePropertyCallExp cgEcorePropertyCallExp = CGModelFactory.eINSTANCE.createCGEcorePropertyCallExp();
+			cgEcorePropertyCallExp.setEStructuralFeature(OCLstdlibPackage.Literals.OCL_ELEMENT__OCL_CONTAINER);
+			cgPropertyCallExp = cgEcorePropertyCallExp;
 		}
 		else {
 			CGLibraryPropertyCallExp cgLibraryPropertyCallExp = CGModelFactory.eINSTANCE.createCGLibraryPropertyCallExp();
