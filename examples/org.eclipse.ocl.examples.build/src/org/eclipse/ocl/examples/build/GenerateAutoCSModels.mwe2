@@ -92,9 +92,8 @@ Workflow {
 		// FIXME the following only work if the output project are in the same FS folder. Better use a projectName and improve generator 
 		javaFolder = "../org.eclipse.ocl.xtext.base/src-gen"
 		javaPackage = "org.eclipse.ocl.xtext.base.cs2as"
-		environmentClassName = "org.eclipse.ocl.pivot.lookup.SingleResultLookupEnvironment"
-		lookupVisitorClassName = "org.eclipse.ocl.pivot.lookup.PivotLookupVisitor"
-		namedElementItfName = "org.eclipse.ocl.pivot.NamedElement"
+		lookupSolverClassName = "org.eclipse.ocl.pivot.internal.lookup.util.PivotLookupSolver"
+		lookupResultItfName = "org.eclipse.ocl.pivot.internal.lookup.util.PivotLookupResult"
 		tracePropertyName = "pivot"
 	}
 }

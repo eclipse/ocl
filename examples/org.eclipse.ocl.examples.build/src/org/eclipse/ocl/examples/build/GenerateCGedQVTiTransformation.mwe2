@@ -24,11 +24,10 @@ var String oclFileURI
  */
 var ResourceSet resourceSet
 
-var String environmentClassName
 
-var String lookupVisitorClassName
+var String lookupSolverClassName
 
-var String namedElementItfName
+var String lookupResultItfName
 
 /**
  * Optional output 
@@ -46,10 +45,9 @@ Workflow {
 		resourceSet = resourceSet
 		oclDocURI = oclFileURI
 		javaFolder = javaFolder
-		javaPackage = javaPackage
-		environmentClassName = environmentClassName
-		lookupVisitorClassName = lookupVisitorClassName
-		namedElementItfName = namedElementItfName 
+		javaPackage = javaPackage		
+		lookupSolverClassName = lookupSolverClassName
+		lookupResultItfName = lookupResultItfName 
 		tracePropertyName = tracePropertyName
 	}
 }

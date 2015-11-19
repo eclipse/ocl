@@ -29,7 +29,7 @@ Workflow {
     	platformUri = ".."
     	scanClassPath = true
     }
-//    bean = EcoreGenModelSetup { resourceSet = resourceSet }
+    bean = EcoreGenModelSetup { resourceSet = resourceSet }
 //    bean = UMLGenModelSetup { resourceSet = resourceSet }
 //    component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
 //    	genModel = "/org.eclipse.ocl.xtext.markup/model/Markup.genmodel"
@@ -38,10 +38,10 @@ Workflow {
     	projectName = "org.eclipse.ocl.pivot"
     	modelName = "pivot"
     	projectPrefix = "Pivot"
-    	superProjectName = ""
-    	superModelName = ""
     	genModelFile = "model/Pivot.genmodel"
     	lookupFilePath = "model/PivotLookup.ocl"
+    	modelPackageName = "org.eclipse.ocl.pivot"
+    	lookupPackageName = "org.eclipse.ocl.pivot.internal.lookup"
 		visitorPackageName = "org.eclipse.ocl.pivot.util"
     }
 }

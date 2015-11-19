@@ -76,10 +76,7 @@ import org.eclipse.ocl.pivot.internal.manager.Orphanage;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
-import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
-import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.essentialocl.utilities.EssentialOCLASResourceFactory;
@@ -103,71 +100,32 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 			@Nullable String baseVisitorPackage) {
 		EPackage ePackage = genPackage.getEcorePackage();
 		assert ePackage != null;
-//		CommonSubexpressionEliminator.CSE_BUILD.setState(true);
-//		CommonSubexpressionEliminator.CSE_PLACES.setState(true);
-//		CommonSubexpressionEliminator.CSE_PRUNE.setState(true);
-//		CommonSubexpressionEliminator.CSE_PULL_UP.setState(true);
-//		CommonSubexpressionEliminator.CSE_PUSH_UP.setState(true);
-//		CommonSubexpressionEliminator.CSE_REWRITE.setState(true);
-	
+
 		AutoCG2StringVisitor.FACTORY.getClass();
-		
+
 		Resource eResource = ClassUtil.nonNullState(ePackage.eResource());
 		EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.getEnvironmentFactory(eResource);
-		URI projectResourceURI = URI.createPlatformResourceURI("/" + projectName + "/", true);
-		@SuppressWarnings("null")@NonNull URI nameResoURI = URI.createURI(lookupFilePath).resolve(projectResourceURI);
-		OCL ocl = environmentFactory.createOCL();
-//		Resource resource = metamodelManager.getResource(nameResoURI, CompleteOCL);
-		Resource resource = ClassUtil.nonNullState(ocl.parse(nameResoURI));
-//		Root root = (Root) resource.getContents().get(0);
-//		return root.getNestedPackage().get(0);
-//	}		
-		for (EObject root : resource.getContents()) {
-			if (root instanceof Model) {
-				org.eclipse.ocl.pivot.Package asPackage = ClassUtil.nonNullState(getPackage(genPackage, projectPrefix, environmentFactory));
-				for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Package oclDocPackage : ((Model)root).getOwnedPackages()) {
-					if (samePrimaryPackage(oclDocPackage, asPackage, environmentFactory)) { 
-						org.eclipse.ocl.pivot.Package asSuperPackage = null;
-						if (superProjectPrefix != null) {
-							asSuperPackage = getPackage(genPackage, superProjectPrefix, environmentFactory);
-							if (asSuperPackage == null) {
-								throw new IllegalStateException("No super-GenPackage found in UsedGenPackages for " + superProjectPrefix);
-							}
-						}
-						org.eclipse.ocl.pivot.Package basePackage = oclDocPackage;
-						if (baseProjectPrefix != null) {
-							basePackage = getPackage(genPackage, baseProjectPrefix, environmentFactory);
-							if (basePackage == null) {
-								throw new IllegalStateException("No super-GenPackage found in UsedGenPackages for " + superProjectPrefix);
-							}
-						}
-						AutoCodeGenerator autoCodeGenerator = new LookupCodeGenerator(environmentFactory, oclDocPackage, asSuperPackage, basePackage, genPackage, // superGenPackage,
-								projectPrefix, projectName, visitorPackage, visitorClass, visitableClass, superProjectPrefix, superProjectName, superVisitorClass,
-								baseProjectPrefix, baseVisitorPackage);
-						autoCodeGenerator.saveSourceFile();
-					}
+		
+		for (org.eclipse.ocl.pivot.Package oclDocPackage : LookupCGUtil.getTargetPackages(genPackage,environmentFactory, lookupFilePath, projectName, projectPrefix)){
+			org.eclipse.ocl.pivot.Package asSuperPackage = null;
+			if (superProjectPrefix != null) {
+				asSuperPackage = LookupCGUtil.getPackage(genPackage, superProjectPrefix, environmentFactory);
+				if (asSuperPackage == null) {
+					throw new IllegalStateException("No super-GenPackage found in UsedGenPackages for " + superProjectPrefix);
 				}
 			}
-		}
-	}
-	
-	
-	@Nullable
-	private static org.eclipse.ocl.pivot.Package getPackage(GenPackage genPackage, String packageName, EnvironmentFactory envFactory) {
-		MetamodelManager metaModelManager = envFactory.getMetamodelManager();
-		for (GenPackage gPackage : genPackage.getGenModel().getAllGenAndUsedGenPackagesWithClassifiers()) {
-			String name = gPackage.getPrefix();
-			if (name.startsWith(packageName)) { // FIXME startsWith ? Make this more robust
-				EPackage eSuperPackage = gPackage.getEcorePackage();
-				return metaModelManager.getASOfEcore(org.eclipse.ocl.pivot.Package.class, eSuperPackage);
+			org.eclipse.ocl.pivot.Package basePackage = oclDocPackage;
+			if (baseProjectPrefix != null) {
+				basePackage = LookupCGUtil.getPackage(genPackage, baseProjectPrefix, environmentFactory);
+				if (basePackage == null) {
+					throw new IllegalStateException("No super-GenPackage found in UsedGenPackages for " + superProjectPrefix);
+				}
 			}
+			AutoCodeGenerator autoCodeGenerator = new LookupCodeGenerator(environmentFactory, oclDocPackage, asSuperPackage, basePackage, genPackage, // superGenPackage,
+					projectPrefix, projectName, visitorPackage, visitorClass, visitableClass, superProjectPrefix, superProjectName, superVisitorClass,
+					baseProjectPrefix, baseVisitorPackage);
+			autoCodeGenerator.saveSourceFile();
 		}
-		return null;
-	}
-	
-	private static boolean samePrimaryPackage(@NonNull org.eclipse.ocl.pivot.Package p1, @NonNull org.eclipse.ocl.pivot.Package p2, @NonNull EnvironmentFactory envFactory) {
-		MetamodelManager mm = envFactory.getMetamodelManager();
-		return mm.getPrimaryPackage(p1).equals(mm.getPrimaryPackage(p2));
 	}
 	
 	protected final @NonNull String packageName;

@@ -40,8 +40,8 @@ public  class GenerateCGedQVTiTransformation extends AbstractWorkflowComponent
 	protected String javaFolder = "src-gen/";
 	protected String javaPackage = "";
 	protected String envClassName;
-	protected String visitorClassName;
-	protected String namedElementItfName;
+	protected String lookupSolverClassName;
+	protected String lookupResultItfName;
 	protected String traceabilityPropName = "ast";
 	protected Map<?, ?> savingOptions;
 
@@ -49,17 +49,13 @@ public  class GenerateCGedQVTiTransformation extends AbstractWorkflowComponent
 		if (!isDefined(oclFileURI)) {
 			issues.addError(this, "OCL document URI not specified.");
 		}
-		
-		if (!isDefined(envClassName)) {
-			issues.addError(this, "Fully qualified name of the Environment java class not specified.");
+				
+		if (!isDefined(lookupSolverClassName)) {
+			issues.addError(this, "Fully qualified name of the Lookup Solver java class not specified");
 		}
 		
-		if (!isDefined(visitorClassName)) {
-			issues.addError(this, "Fully qualified name of the Loookup Visitor java class not specified");
-		}
-		
-		if (!isDefined(namedElementItfName)) {
-			issues.addError(this, "Fully qualified name of the Named Element interface not specified");
+		if (!isDefined(lookupResultItfName)) {
+			issues.addError(this, "Fully qualified name of the Lookup Result java interface not specified");
 		}
 	}
 	
@@ -80,9 +76,8 @@ public  class GenerateCGedQVTiTransformation extends AbstractWorkflowComponent
 // FIXME	TransformationTechnology tx = OCL2QVTiTransformationTechnology.INSTANCE;
 			Map<String, Object> modelMap = new HashMap<String, Object>();
 			Map<String, Object> parametersMap = new HashMap<String, Object>();
-			parametersMap.put("envClassName", envClassName);
-			parametersMap.put("visitorClassName", visitorClassName);
-			parametersMap.put("namedElementItfName", namedElementItfName);
+			parametersMap.put("lookupSolverClassName", lookupSolverClassName);
+			parametersMap.put("lookupResultItfName", lookupResultItfName);
 			parametersMap.put("javaFolder", javaFolder);
 			parametersMap.put("javaPackage", javaPackage);
 			//
@@ -119,26 +114,19 @@ public  class GenerateCGedQVTiTransformation extends AbstractWorkflowComponent
 	public void setOclDocURI(final String oclDocURI) {
 		this.oclFileURI = oclDocURI;
 	}
-
+	
 	/**
-	 * (Mandatory) The fully qualified class name of the Environment java class  
+	 * (Mandatory) The fully qualified class name of the Lookup Solver java class  
 	 */
-	public void setEnvironmentClassName(final String envClassName) {
-		this.envClassName = envClassName;
+	public void setLookupSolverClassName(final String visitorClassName) {
+		this.lookupSolverClassName = visitorClassName;
 	}
 	
 	/**
-	 * (Mandatory) The fully qualified class name of the Lookup Visitor java class  
+	 * (Mandatory) The fully qualified interface name of the Lookup Result java class  
 	 */
-	public void setLookupVisitorClassName(final String visitorClassName) {
-		this.visitorClassName = visitorClassName;
-	}
-	
-	/**
-	 * (Mandatory) The fully qualified interface name of the NamedElement (itf which provides the "name" attribute)  
-	 */
-	public void setNamedElementItfName(final String namedElementItfName) {
-		this.namedElementItfName = namedElementItfName;
+	public void setLookupResultItfName(final String namedElementItfName) {
+		this.lookupResultItfName = namedElementItfName;
 	}
 	
 	/**
