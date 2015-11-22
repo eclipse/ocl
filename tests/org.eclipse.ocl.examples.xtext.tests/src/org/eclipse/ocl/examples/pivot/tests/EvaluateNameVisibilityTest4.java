@@ -519,6 +519,13 @@ public class EvaluateNameVisibilityTest4 extends PivotFruitTestSuite
 		ocl.assertQueryEquals(redApple, idResolver.createSetOfEach(null, redApple), "Fruit.allInstances()->oclAsType(Set(Apple))");		
         ocl.dispose();
 	}
+
+	@Test public void test_reservedNames() {
+		TestOCL ocl = createOCL();
+		ocl.assertQueryTrue(null, "Boolean.allInstances()->forAll(_'if' | _'if' <> null)");
+		ocl.assertQueryTrue(null, "let _'if' = true in _'if'");
+		ocl.dispose();
+    }
 	
 	/**
 	 * Tests construction of a type instance with property values

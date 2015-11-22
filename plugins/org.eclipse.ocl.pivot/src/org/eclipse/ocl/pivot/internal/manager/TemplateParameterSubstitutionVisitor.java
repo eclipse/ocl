@@ -187,7 +187,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 	}
 
 	/**
-	 * Exclude the current typed element whicxh may have a stale type.
+	 * Exclude the current typed element which may have a stale type.
 	 */
 	private void exclude(@NonNull TypedElement typedElement) {
 		assert excludedTarget == null;

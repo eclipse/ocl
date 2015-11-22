@@ -104,7 +104,6 @@ import org.eclipse.ocl.xtext.essentialoclcs.UnlimitedNaturalLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.VariableCS;
 import org.eclipse.ocl.xtext.essentialoclcs.util.AbstractEssentialOCLCSContainmentVisitor;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
-import org.eclipse.xtext.nodemodel.ILeafNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
 public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSContainmentVisitor
@@ -130,16 +129,13 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 			@NonNull Variable parameter = context.refreshModelElement(Variable.class, PivotPackage.Literals.VARIABLE, csName);
 			ICompositeNode node = NodeModelUtils.getNode(csName);
 			if (node != null) {
-				ILeafNode leafNode = ElementUtil.getLeafNode(node);
-				if (leafNode != null) {
-					String varName = leafNode.getText();
-					assert varName != null;
-					context.refreshName(parameter, varName);
-					List<PathElementCS> path = csPathName.getOwnedPathElements();
-					PathElementCS csPathElement = path.get(path.size()-1);
-					csPathElement.setReferredElement(parameter);	// Resolve the reference that is actually a definition
-					csPathElement.setElementType(null);		// Indicate a definition to the syntax colouring
-				}
+				String varName = ElementUtil.getTextName(csName);
+				assert varName != null;
+				context.refreshName(parameter, varName);
+				List<PathElementCS> path = csPathName.getOwnedPathElements();
+				PathElementCS csPathElement = path.get(path.size()-1);
+				csPathElement.setReferredElement(parameter);	// Resolve the reference that is actually a definition
+				csPathElement.setElementType(null);		// Indicate a definition to the syntax colouring
 			}
 		}
 	}
