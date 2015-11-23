@@ -53,6 +53,7 @@ import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
+import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal.EnvironmentFactoryInternalExtension;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.LibraryFeature;
 import org.eclipse.ocl.pivot.resource.ASResource;
@@ -102,6 +103,9 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		Resource resource = eObject.eResource();
 		if (resource instanceof ASResource) {
 			return ((ASResource)resource).getASResourceFactory().createTemplateParameterSubstitutionVisitor(environmentFactory, selfType, selfTypeValue);
+		}
+		else if (environmentFactory instanceof EnvironmentFactoryInternalExtension) {
+			return ((EnvironmentFactoryInternalExtension)environmentFactory).createTemplateParameterSubstitutionVisitor(selfType, selfTypeValue);
 		}
 		else {
 			return new TemplateParameterSubstitutionVisitor(environmentFactory, selfType, selfTypeValue);

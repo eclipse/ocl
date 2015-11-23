@@ -16,6 +16,7 @@ import org.eclipse.ocl.pivot.internal.utilities.AS2Moniker
 import org.eclipse.ocl.pivot.internal.utilities.AS2XMIid
 import org.eclipse.jdt.annotation.NonNull
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
+import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal
 
 public class GenerateASVisitors extends GenerateVisitorsXtend
 {
@@ -37,6 +38,7 @@ public class GenerateASVisitors extends GenerateVisitorsXtend
 			ePackage.generateAbstractGenericVisitor("ASSaverLocate", typeof(Object), typeof(ASSaver));
 			ePackage.generateAbstractGenericVisitor("ASSaverNormalize", typeof(Object), typeof(ASSaver));
 			ePackage.generateAbstractGenericVisitor("ASSaverResolve", typeof(Object), typeof(ASSaver));
+			ePackage.generateAbstractTemplateParameterSubstitutionVisitor("TemplateParameterSubstitution", typeof(Object), typeof(EnvironmentFactoryInternal));
 //			ePackage.generateAbstractGenericVisitor("Stepper", typeof(IStepper), typeof(Object));
 		}
 		/* ePackage.generateDecorableVisitorInterface("org.eclipse.ocl.pivot.util.Visitor"); */

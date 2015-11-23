@@ -41,6 +41,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
@@ -59,6 +60,7 @@ import org.eclipse.ocl.pivot.internal.evaluation.ExecutorInternal;
 import org.eclipse.ocl.pivot.internal.evaluation.PivotModelManager;
 import org.eclipse.ocl.pivot.internal.library.ImplementationManager;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.TemplateParameterSubstitutionVisitor;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
 import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
@@ -354,6 +356,15 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
     		}
         }
         return new ModelContext(this, null);
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	@Override
+	public @NonNull TemplateParameterSubstitutionVisitor createTemplateParameterSubstitutionVisitor(
+			@Nullable Type selfType, @Nullable Type selfTypeValue) {
+		return new TemplateParameterSubstitutionVisitor(this, selfType, selfTypeValue);
 	}
 
 	protected @NonNull HashMap<Object, StatusCodes.Severity> createValidationKey2severityMap() {

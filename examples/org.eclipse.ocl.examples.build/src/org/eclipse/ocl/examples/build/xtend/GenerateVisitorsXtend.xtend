@@ -15,6 +15,8 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.jdt.annotation.NonNull
+import org.eclipse.ocl.pivot.Type
+import org.eclipse.ocl.pivot.internal.manager.TemplateParameterSubstitutionVisitor
 
 public abstract class GenerateVisitorsXtend extends GenerateVisitors
 {
@@ -429,6 +431,61 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				«ENDIF»
 				public @Nullable R visit«eClass.name»(@NonNull «modelPackageName».«getTemplatedName(eClass)» object) {
 					return null;
+				}
+				«ENDFOR»
+			}
+		''');
+		writer.close();
+	}
+	/*
+	 * Abstract«projectPrefix»«generic»Visitor
+	 */
+	protected def void generateAbstractTemplateParameterSubstitutionVisitor(@NonNull EPackage ePackage, @NonNull String generic, @NonNull Class<?> returnClass, @NonNull Class<?> contextClass) {
+		var boolean isDerived = isDerived();
+		var boolean needsOverride = needsOverride();
+		var MergeWriter writer = new MergeWriter(outputFolder + "Abstract" + projectPrefix + generic + "Visitor.java");
+		writer.append('''
+			«ePackage.generateHeader(visitorPackageName)»
+			
+			import «returnClass.getName()»;
+			import org.eclipse.jdt.annotation.NonNull;
+			import org.eclipse.jdt.annotation.Nullable;
+			import «Type.getName()»;
+			import «contextClass.getName()»;
+			«IF isDerived && !superProjectPrefix.equals("")»import «superVisitorPackageName»ities.«superProjectPrefix»«generic»Visitor;«ENDIF»
+			«IF isDerived && superProjectPrefix.equals("")»import «TemplateParameterSubstitutionVisitor.getName()»;«ENDIF»
+			
+			/**
+			 * An Abstract«projectPrefix»«generic»Visitor provides a default implementation for each
+			 * visitXxx method that delegates to the visitYyy method of the first
+			 * super class, (or transitively its first super class' first super class
+			 * until a non-interface super-class is found). In the absence of any
+			 * suitable first super class, the method delegates to visiting().
+			 */
+			public abstract class Abstract«projectPrefix»«generic»Visitor
+				«IF isDerived»extends «superProjectPrefix»«generic»Visitor«ENDIF»
+				implements «visitorClassName»<«returnClass.getSimpleName()»>
+			{
+				/**
+				 * Initializes me with an initial value for my result.
+				 * 
+				 * @param context my initial result value
+				 */
+				protected Abstract«projectPrefix»«generic»Visitor(@NonNull «contextClass.getSimpleName()» environmentFactory, @Nullable Type selfType, @Nullable Type selfTypeValue) {
+					super(environmentFactory, selfType, selfTypeValue);
+				}	
+				«FOR eClass : getSortedEClasses(ePackage)»
+				«var EClass firstSuperClass = eClass.firstSuperClass(eClass)»
+			
+				«IF needsOverride»
+				@Override
+				«ENDIF»
+				public @Nullable «returnClass.getSimpleName()» visit«eClass.name»(@NonNull «modelPackageName».«getTemplatedName(eClass)» object) {
+					«IF firstSuperClass == eClass»
+					return visiting(object);
+					«ELSE»
+					return visit«firstSuperClass.name»(object);
+					«ENDIF»
 				}
 				«ENDFOR»
 			}

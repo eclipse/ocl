@@ -21,12 +21,14 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
 import org.eclipse.ocl.pivot.internal.complete.CompleteModelInternal;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.library.ImplementationManager;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
+import org.eclipse.ocl.pivot.internal.manager.TemplateParameterSubstitutionVisitor;
 import org.eclipse.ocl.pivot.internal.resource.ICSI2ASMapping;
 import org.eclipse.ocl.pivot.messages.StatusCodes;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
@@ -57,6 +59,12 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
 	 */
 	public interface EnvironmentFactoryInternalExtension extends EnvironmentFactoryInternal, EnvironmentFactoryExtension
 	{
+		/**
+		 * Create a visitor to resolve TemplateParameter specializations. The visitor is normally created
+		 * by the ASResourceFactory override of a relevant ASResource, but in the event that the ASResource is null,
+		 * this altrernative creation mechanism is available via an EnvironmentFactory override.
+		 */
+		@NonNull TemplateParameterSubstitutionVisitor createTemplateParameterSubstitutionVisitor(@Nullable Type selfType, @Nullable Type selfTypeValue);
 	}
 	
 	void addExternal2AS(@NonNull External2AS external2as);
