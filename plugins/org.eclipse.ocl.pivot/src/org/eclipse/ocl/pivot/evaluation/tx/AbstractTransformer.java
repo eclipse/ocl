@@ -803,10 +803,10 @@ public abstract class AbstractTransformer implements Transformer
 					EReference eReference = (EReference)eFeature;
 					EReference eOppositeReference = eReference.getEOpposite();
 					if (eOppositeReference != null) {
-						if (ecoreValue != null) {
-							Map<EStructuralFeature, PropertyState> oppositeObjectState = getObjectState((EObject) ecoreValue);
-							PropertyState oppositePropertyState = oppositeObjectState.get(eOppositeReference);
-						}
+//						if (ecoreValue != null) {
+//							Map<EStructuralFeature, PropertyState> oppositeObjectState = getObjectState((EObject) ecoreValue);
+//							PropertyState oppositePropertyState = oppositeObjectState.get(eOppositeReference);
+//						}
 						if (eReference.isMany()) {
 							assert ecoreValue != null;
 							if (eOppositeReference.isMany()) {
@@ -816,12 +816,11 @@ public abstract class AbstractTransformer implements Transformer
 								propertyState = OneToManyAggregatorPropertyState.create(this, eObject, eReference, eOppositeReference, (EObject)ecoreValue);
 							}
 						}
-						else {
+						else if (ecoreValue != null) {
 							if (eOppositeReference.isMany()) {
-								assert ecoreValue != null;
 								propertyState = OneToManyElementPropertyState.create(this, eObject, eReference, eOppositeReference, (EObject)ecoreValue);
 							}
-							else if ((ecoreValue != null) || isIncremental()) {
+							else if (isIncremental()) {
 								propertyState = OneToOnePropertyState.create(this, eObject, eReference, eOppositeReference, (EObject)ecoreValue);
 							}
 						}
@@ -893,7 +892,7 @@ public abstract class AbstractTransformer implements Transformer
 					}
 					else if (eReference.isContainment()) {
 						if (eReference.isMany()) {
-							propertyState = new OneToManyElementPropertyState(eObject, eReference);
+							propertyState = new OneToManyAggregatorPropertyState(eObject, eReference);
 						}
 						else {
 							propertyState = new OneToOnePropertyState(eObject, eReference);
