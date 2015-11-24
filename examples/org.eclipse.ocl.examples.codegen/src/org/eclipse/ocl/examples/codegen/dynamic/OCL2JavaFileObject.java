@@ -38,7 +38,7 @@ public class OCL2JavaFileObject extends SimpleJavaFileObject
 	private static @Nullable StandardJavaFileManager stdFileManager = compiler != null ? compiler.getStandardFileManager(null, Locale.getDefault(), null) : null;
 //	private static List<String> compilationOptions = Arrays.asList("-d", "bin", "-source", "1.5", "-target", "1.5", "-g");
 //	private static List<String> compilationOptions = Arrays.asList("-d", "bin", "-source", "1.6", "-target", "1.6", "-g");
-	private static List<String> compilationOptions = Arrays.asList("-d", "bin", "-g");
+//	private static List<String> compilationOptions = Arrays.asList("-d", "bin", "-g");
 	
 	/** @deprecated use saveClass/some-class-loader-loadClass */
 	@Deprecated
@@ -70,6 +70,10 @@ public class OCL2JavaFileObject extends SimpleJavaFileObject
 	}
 
 	public static void saveClass(@NonNull String qualifiedName, @NonNull String javaCodeSource) throws Exception {
+		saveClass("bin", qualifiedName, javaCodeSource);
+	}
+
+	public static void saveClass(@NonNull String explicitClassPath, @NonNull String qualifiedName, @NonNull String javaCodeSource) throws Exception {
 		JavaCompiler compiler2 = compiler;
 		if (compiler2 == null) {
 			throw new IllegalStateException("No JavaCompiler provided by the Java platform - you need to use a JDK rather than a JRE");
@@ -83,6 +87,8 @@ public class OCL2JavaFileObject extends SimpleJavaFileObject
 				new OCL2JavaFileObject(qualifiedName, javaCodeSource));
 		DiagnosticCollector<JavaFileObject> diagnostics = new DiagnosticCollector<JavaFileObject>();
 		
+		List<String> compilationOptions = Arrays.asList("-d", explicitClassPath, "-g");
+
 //		System.out.printf("%6.3f getTask\n", 0.001 * (System.currentTimeMillis()-base));
 		CompilationTask compilerTask = compiler2.getTask(null, stdFileManager2,
 				diagnostics, compilationOptions, null, compilationUnits);
