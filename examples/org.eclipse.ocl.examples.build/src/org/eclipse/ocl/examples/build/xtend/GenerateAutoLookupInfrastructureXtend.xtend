@@ -138,28 +138,29 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVis
 			writer.append('''
 	«ePackage.generateHeader(lookupArtifactsJavaPackage)»
 	
+	import java.util.ArrayList;
+	import java.util.List;
+	
 	import org.eclipse.emf.common.util.EList;
 	import org.eclipse.emf.ecore.EClass;
 	import org.eclipse.jdt.annotation.NonNull;
 	import org.eclipse.jdt.annotation.Nullable;
 	import org.eclipse.ocl.pivot.evaluation.Executor;
 	
+	import «modelPackageName».NamedElement;
 	import «lookupPackageName».LookupEnvironment;
 	import «lookupPackageName».impl.LookupEnvironmentImpl;
-	import «modelPackageName».NamedElement;
 	
 	public class «className» extends LookupEnvironmentImpl   {
 		
 		private @NonNull Executor executor;
 		private @NonNull String name;
 		private @NonNull EClass typeFilter;
-		private boolean isLocal;
 		
-		public «className»(@NonNull Executor executor, @NonNull EClass typeFilter, @NonNull String name, boolean isLocalLookup) {
+		public «className»(@NonNull Executor executor, @NonNull EClass typeFilter, @NonNull String name) {
 			this.executor = executor;
 			this.name = name;
 			this.typeFilter = typeFilter;
-			this.isLocal = isLocalLookup;
 		}
 		
 		@Override
@@ -170,9 +171,6 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVis
 		
 		@Override
 		public boolean hasFinalResult() {
-			if (isLocal) {
-				return true;
-			}
 			for (NamedElement element : getNamedElements()) {
 				if (name.equals(element.getName())) {
 					return true;
@@ -208,6 +206,17 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVis
 				}	
 			}
 			return this;
+		}
+		
+		@SuppressWarnings("unchecked")
+		public <NE extends NamedElement> List<NE> getNamedElementsByKind(Class<NE> class_) {
+			List<NE> result = new ArrayList<NE>(); 
+			for (NamedElement namedElement : getNamedElements()) {
+				if (class_.isAssignableFrom(namedElement.getClass())) {
+					result.add((NE)namedElement);
+				}
+			}
+			return result;
 		}
 	}
 			''');
@@ -250,15 +259,8 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVis
 		var MergeWriter writer = new MergeWriter(lookupArtifactsOutputFolder + className + ".java");
 		writer.append('''
 	«ePackage.generateHeader(lookupArtifactsJavaPackage)»
-			
-	import java.util.ArrayList;
-	import java.util.List;
 
 	import org.eclipse.ocl.pivot.evaluation.Executor;
-	import «modelPackageName».*;
-	import «lookupPackageName».LookupEnvironment;
-	import «lookupPackageName».util.*;
-	import «visitablePackageName».«visitableClassName»;	
 	«IF isDerived»import «superLookupPackageName».util.«superClassName»;«ENDIF»
 	
 	public class «className»«IF isDerived» extends «superClassName»«ENDIF» {
@@ -270,18 +272,17 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVis
 		}
 		
 		«FOR op : lookupOps»
-		«var typeName = op.type.name»
+		«var opName = op.name»
+		«var lookupVisitorName = op.getLookupVisitorName()»
 		«var typeFQName = getTypeFQName(op.type)»
 		«var typeLiteral = getTypeLiteral(op.type)»
 		
-		public «projectPrefix»LookupResult<«typeFQName»> lookup«typeName»(«visitableClassName» fromElement«FOR param:op.ownedParameters», «param.type.name» «param.name»«ENDFOR») {
-			LookupEnvironment _lookupEnv = new «projectPrefix»SingleResultLookupEnvironment(executor, «fqPackageItf».Literals.«typeLiteral»«FOR param:op.ownedParameters», «param.name»«ENDFOR»);
-			«projectPrefix»DefaultLookupVisitor _lookupVisitor = new «projectPrefix»DefaultLookupVisitor(_lookupEnv);
-			List<«typeFQName»> nLookupResults = new ArrayList<«typeFQName»>();
-			for (NamedElement ne : fromElement.accept(_lookupVisitor).getNamedElements()) {
-				nLookupResults.add((«typeFQName»)ne);
-			}
-			return new «projectPrefix»LookupResultImpl<«typeFQName»>(nLookupResults);
+		public «projectPrefix»LookupResult<«typeFQName»> «opName»(«getTypeFQName(op.owningClass)» fromElement«FOR param:op.ownedParameters», «param.type.name» «param.name»«ENDFOR») {
+			«projectPrefix»SingleResultLookupEnvironment _lookupEnv = new «projectPrefix»SingleResultLookupEnvironment(executor, «fqPackageItf».Literals.«typeLiteral»«FOR param:op.ownedParameters», «param.name»«ENDFOR»);
+			«lookupVisitorName» _lookupVisitor = new «lookupVisitorName»(_lookupEnv);
+			fromElement.accept(_lookupVisitor);
+			return new «projectPrefix»LookupResultImpl<«typeFQName»>
+					(_lookupEnv.getNamedElementsByKind(«typeFQName».class));
 		}
 		«ENDFOR»
 	}
@@ -326,7 +327,7 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVis
 		if (!op.name.startsWith("_lookup")) {
 			return false;
 		}
-		
+	
 		// ...which don't have the env parameter
 		// FIXME more robust check of the parameter
 		for (param : op.ownedParameters) {
@@ -352,5 +353,8 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVis
 		return genModel.getEcoreInterfaceName(type as Class)	
 	}
 	
-
+	private def String getLookupVisitorName(Operation op) {
+		if (op.name.contains("Qualified")) '''«projectPrefix»QualificationLookupVisitor'''
+			 else '''«projectPrefix»DefaultLookupVisitor''';	
+	}
 }
