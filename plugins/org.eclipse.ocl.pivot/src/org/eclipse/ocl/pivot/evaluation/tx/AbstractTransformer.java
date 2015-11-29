@@ -109,7 +109,7 @@ public abstract class AbstractTransformer implements Transformer
 					unblock(objectManager);
 					break;
 				case ASSIGNED:
-					System.out.println("Re-assignment");
+					System.out.println("Re-assignment of " + eFeature.getContainerClass().getName() + "::" + eFeature.getName() + " for " + eObject + " with " + ecoreValue);
 					break;
 			}
 		}
@@ -447,13 +447,21 @@ public abstract class AbstractTransformer implements Transformer
 					elementObjectState.put(eOppositeReference, this);
 				}
 			}
-			super.assigned(objectManager, eObject, eFeature, ecoreValue);
-
+//			super.assigned(objectManager, eObject, eFeature, ecoreValue);
+			assignedElement(objectManager, eObject, (EReference)eFeature, (EObject)ecoreValue);
 		}
 		
 		public void assignedElement(@NonNull ObjectManager objectManager,
 				@NonNull EObject eContainer, @NonNull EReference eReference, EObject eObject) {
-			super.assigned(objectManager, eContainer, eReference, eObject);
+//			super.assigned(objectManager, eContainer, eReference, eObject);
+			switch (mode) {
+				case ASSIGNABLE:
+					mode = PropertyMode.ASSIGNED;
+					unblock(objectManager);
+					break;
+				case ASSIGNED:
+					break;
+			}
 		}
 		
 		@Override
