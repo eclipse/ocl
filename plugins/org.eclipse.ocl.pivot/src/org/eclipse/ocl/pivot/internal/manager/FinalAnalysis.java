@@ -58,13 +58,13 @@ public class FinalAnalysis
 				String opName = domainOperation.getName();
 				ParametersId parametersId = domainOperation.getParametersId();
 				LibraryFeature domainImplementation = metamodelManager.getImplementation(domainOperation);
-				Set<Operation> overrides = null;
+				Set<Operation> overrides = operation2overrides.get(domainOperation);
 				for (CompleteClass subCompleteClass : subCompleteClasses) {
 					if (subCompleteClass != superCompleteClass) {
 						for (Operation subOperation : subCompleteClass.getOperations(null)) {
 							if (opName.equals(subOperation.getName()) && parametersId.equals(subOperation.getParametersId())) {
 								LibraryFeature subImplementation = metamodelManager.getImplementation(subOperation);
-								if (domainImplementation != subImplementation) {
+								if ((domainImplementation != subImplementation) || (domainOperation.getBodyExpression() != subOperation.getBodyExpression())) {
 									if (overrides == null) {
 										overrides = new HashSet<Operation>();
 										overrides.add(domainOperation);
@@ -81,6 +81,34 @@ public class FinalAnalysis
 //		StringBuilder s = new StringBuilder();
 //		print(s);
 //		System.out.println(s);
+	}
+	
+	/**
+	 * @since 1.1
+	 */
+	public @NonNull Iterable<Operation> getOverrides(@NonNull Operation operation) {
+		Set<Operation> overrides = operation2overrides.get(operation);
+		return overrides != null ? overrides : PivotMetamodelManager.EMPTY_OPERATION_LIST;
+	}
+	
+	/**
+	 * @since 1.1
+	 */
+	public @NonNull Iterable<Operation> getOverrides(@NonNull Operation operation, @NonNull CompleteClass completeClass) {
+		Set<Operation> overrides = operation2overrides.get(operation);
+		if (overrides == null) {
+			@SuppressWarnings("null")@NonNull List<Operation> singletonList = Collections.singletonList(operation);
+			return singletonList;
+		}
+		List<Operation> results = new ArrayList<Operation>();
+		StandardLibraryInternal standardLibrary = completeModel.getStandardLibrary();
+		for (Operation override : overrides) {
+			CompleteInheritance overrideInheritance = override.getInheritance(standardLibrary);
+			if ((overrideInheritance != null) && overrideInheritance.getPivotClass().conformsTo(standardLibrary, completeClass.getPrimaryClass())) {
+				results.add(override);
+			}
+		}
+		return results;
 	}
 	
 	public boolean isFinal(@NonNull CompleteClass completeClass) {
