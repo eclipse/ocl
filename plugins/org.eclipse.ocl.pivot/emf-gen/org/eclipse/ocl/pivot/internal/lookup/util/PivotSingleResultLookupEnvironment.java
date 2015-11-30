@@ -15,15 +15,18 @@
  *******************************************************************************/
 package	org.eclipse.ocl.pivot.internal.lookup.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.evaluation.Executor;
 
+import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment;
 import org.eclipse.ocl.pivot.internal.lookup.impl.LookupEnvironmentImpl;
-import org.eclipse.ocl.pivot.NamedElement;
 
 /**
  * @since 1.1
@@ -33,13 +36,11 @@ public class PivotSingleResultLookupEnvironment extends LookupEnvironmentImpl   
 	private @NonNull Executor executor;
 	private @NonNull String name;
 	private @NonNull EClass typeFilter;
-	private boolean isLocal;
 	
-	public PivotSingleResultLookupEnvironment(@NonNull Executor executor, @NonNull EClass typeFilter, @NonNull String name, boolean isLocalLookup) {
+	public PivotSingleResultLookupEnvironment(@NonNull Executor executor, @NonNull EClass typeFilter, @NonNull String name) {
 		this.executor = executor;
 		this.name = name;
 		this.typeFilter = typeFilter;
-		this.isLocal = isLocalLookup;
 	}
 	
 	@Override
@@ -50,9 +51,6 @@ public class PivotSingleResultLookupEnvironment extends LookupEnvironmentImpl   
 	
 	@Override
 	public boolean hasFinalResult() {
-		if (isLocal) {
-			return true;
-		}
 		for (NamedElement element : getNamedElements()) {
 			if (name.equals(element.getName())) {
 				return true;
@@ -87,5 +85,16 @@ public class PivotSingleResultLookupEnvironment extends LookupEnvironmentImpl   
 			}	
 		}
 		return this;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public <NE extends NamedElement> List<NE> getNamedElementsByKind(Class<NE> class_) {
+		List<NE> result = new ArrayList<NE>(); 
+		for (NamedElement namedElement : getNamedElements()) {
+			if (class_.isAssignableFrom(namedElement.getClass())) {
+				result.add((NE)namedElement);
+			}
+		}
+		return result;
 	}
 }

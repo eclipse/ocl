@@ -39,7 +39,7 @@ Workflow {
     	modelName = "pivot"
     	projectPrefix = "Pivot"
     	genModelFile = "model/Pivot.genmodel"
-    	lookupFilePath = "model/PivotLookup.ocl"
+    	lookupFilePath = "model/PivotCS2ASLookup.ocl"
     	modelPackageName = "org.eclipse.ocl.pivot"
     	lookupPackageName = "org.eclipse.ocl.pivot.internal.lookup"
 		visitorPackageName = "org.eclipse.ocl.pivot.util"
