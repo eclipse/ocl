@@ -21,11 +21,14 @@ import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.Import;
 import org.eclipse.ocl.pivot.IterateExp;
 import org.eclipse.ocl.pivot.IteratorExp;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.LetExp;
 import org.eclipse.ocl.pivot.Library;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Namespace;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
@@ -83,6 +86,7 @@ public class AbstractPivotLookupVisitor
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_ExpressionInOCL = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("ExpressionInOCL", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_ExpressionInOCL_0 = PACKid_$metamodel$.getClassId("ExpressionInOCL", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_IdResolver = PACKid_org_eclipse_ocl_pivot_ids.getClassId("IdResolver", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Import = PACKid_$metamodel$.getClassId("Import", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_IterateExp = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("IterateExp", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_IterateExp_0 = PACKid_$metamodel$.getClassId("IterateExp", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_IteratorExp = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("IteratorExp", 0);
@@ -93,8 +97,11 @@ public class AbstractPivotLookupVisitor
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Library = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("Library", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Library_0 = PACKid_$metamodel$.getClassId("Library", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_LookupEnvironment = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Lookup.getClassId("LookupEnvironment", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Namespace = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("Namespace", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Namespace_0 = PACKid_$metamodel$.getClassId("Namespace", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Model = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("Model", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Model_0 = PACKid_$metamodel$.getClassId("Model", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_NamedElement = PACKid_$metamodel$.getClassId("NamedElement", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Namespace = PACKid_$metamodel$.getClassId("Namespace", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Namespace_0 = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("Namespace", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_OCLExpression = PACKid_$metamodel$.getClassId("OCLExpression", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_OclElement = PACKid_$metamodel$.getClassId("OclElement", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Operation = PACKid_$metamodel$.getClassId("Operation", 0);
@@ -108,11 +115,16 @@ public class AbstractPivotLookupVisitor
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Variable = PACKid_$metamodel$.getClassId("Variable", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Variable_0 = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("Variable", 0);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_EnumerationLiteral = TypeId.ORDERED_SET.getSpecializedId(CLSSid_EnumerationLiteral);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Import = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Import);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_NamedElement = TypeId.ORDERED_SET.getSpecializedId(CLSSid_NamedElement);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Operation = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Operation);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Parameter = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Parameter);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Precedence = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Precedence);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Property = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Property);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Variable = TypeId.ORDERED_SET.getSpecializedId(CLSSid_Variable);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_CLSSid_LookupEnvironment = TypeId.SEQUENCE.getSpecializedId(CLSSid_LookupEnvironment);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_CLSSid_NamedElement = TypeId.SEQUENCE.getSpecializedId(CLSSid_NamedElement);
+    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_CLSSid_Namespace = TypeId.SEQUENCE.getSpecializedId(CLSSid_Namespace);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_CLSSid_Variable = TypeId.SEQUENCE.getSpecializedId(CLSSid_Variable);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Behavior = TypeId.SET.getSpecializedId(CLSSid_Behavior);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Class = TypeId.SET.getSpecializedId(CLSSid_Class_0);
@@ -743,13 +755,104 @@ public class AbstractPivotLookupVisitor
     }
     
     /**
+     * visitModel(element : Model[1]) : lookup::LookupEnvironment[?]
+     * 
+     * 
+     * this.parentEnv(element)
+     * .addElements(ownedPackages)
+     * .addElements(ownedImports.importedNamespace)
+     * .addElements(
+     *   ownedImports.importedNamespace._exported_env(element).namedElements)
+     */
+    @Override
+    public @Nullable /*@NonInvalid*/ LookupEnvironment visitModel(final @NonNull /*@NonInvalid*/ Model element_7) {
+        final @NonNull /*@Thrown*/ List<Import> ownedImports = element_7.getOwnedImports();
+        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedImports = idResolver.createOrderedSetOfAll(ORD_CLSSid_Import, ownedImports);
+        @NonNull /*@Thrown*/ SequenceValue.Accumulator accumulator = ValueUtil.createSequenceAccumulatorValue(SEQ_CLSSid_Namespace);
+        @Nullable Iterator<?> ITERATOR__1 = BOXED_ownedImports.iterator();
+        @NonNull /*@Thrown*/ SequenceValue collect;
+        while (true) {
+            if (!ITERATOR__1.hasNext()) {
+                collect = accumulator;
+                break;
+            }
+            @Nullable /*@NonInvalid*/ Import _1 = (Import)ITERATOR__1.next();
+            /**
+             * importedNamespace
+             */
+            if (_1 == null) {
+                throw new InvalidValueException("Null source for \'Import::importedNamespace\'");
+            }
+            @SuppressWarnings("null")
+            final @NonNull /*@Thrown*/ Namespace importedNamespace = _1.getImportedNamespace();
+            //
+            accumulator.add(importedNamespace);
+        }
+        final @Nullable /*@Thrown*/ LookupEnvironment parentEnv = this.parentEnv(element_7);
+        if (parentEnv == null) {
+            throw new InvalidValueException("Null source for \'lookup::LookupEnvironment::addElements(NE)(Collection(addElements.NE)) : lookup::LookupEnvironment[1]\'");
+        }
+        final @NonNull /*@Thrown*/ List<Package> ownedPackages = element_7.getOwnedPackages();
+        @SuppressWarnings("null")
+        final @NonNull /*@Thrown*/ LookupEnvironment addElements = parentEnv.addElements(ownedPackages);
+        final @NonNull /*@Thrown*/ List<Namespace> ECORE_collect = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Namespace.class, collect);
+        @SuppressWarnings("null")
+        final @NonNull /*@Thrown*/ LookupEnvironment addElements_0 = addElements.addElements(ECORE_collect);
+        @NonNull /*@Thrown*/ SequenceValue.Accumulator accumulator_0 = ValueUtil.createSequenceAccumulatorValue(SEQ_CLSSid_LookupEnvironment);
+        @NonNull Iterator<?> ITERATOR__1_1 = collect.iterator();
+        @NonNull /*@Thrown*/ SequenceValue collect_1;
+        while (true) {
+            if (!ITERATOR__1_1.hasNext()) {
+                collect_1 = accumulator_0;
+                break;
+            }
+            @SuppressWarnings("null")
+            @NonNull /*@NonInvalid*/ Namespace _1_1 = (Namespace)ITERATOR__1_1.next();
+            /**
+             * _'null' : lookup::LookupEnvironment[1]
+             */
+            final @NonNull /*@NonInvalid*/ Class TYP_lookup_c_c_LookupEnvironment_0 = idResolver.getClass(CLSSid_LookupEnvironment, null);
+            final @NonNull /*@NonInvalid*/ LookupEnvironment symbol_0 = (LookupEnvironment)TYP_lookup_c_c_LookupEnvironment_0.createInstance();
+            //
+            accumulator_0.add(symbol_0);
+        }
+        @NonNull /*@Thrown*/ SequenceValue.Accumulator accumulator_1 = ValueUtil.createSequenceAccumulatorValue(SEQ_CLSSid_NamedElement);
+        @Nullable Iterator<?> ITERATOR__1_2 = collect_1.iterator();
+        @NonNull /*@Thrown*/ SequenceValue collect_0;
+        while (true) {
+            if (!ITERATOR__1_2.hasNext()) {
+                collect_0 = accumulator_1;
+                break;
+            }
+            @Nullable /*@NonInvalid*/ LookupEnvironment _1_2 = (LookupEnvironment)ITERATOR__1_2.next();
+            /**
+             * namedElements
+             */
+            if (_1_2 == null) {
+                throw new InvalidValueException("Null source for \'\'http://www.eclipse.org/ocl/2015/Lookup\'::LookupEnvironment::namedElements\'");
+            }
+            @SuppressWarnings("null")
+            final @NonNull /*@Thrown*/ List<NamedElement> namedElements = _1_2.getNamedElements();
+            final @NonNull /*@Thrown*/ OrderedSetValue BOXED_namedElements = idResolver.createOrderedSetOfAll(ORD_CLSSid_NamedElement, namedElements);
+            //
+            for (Object value : BOXED_namedElements.flatten().getElements()) {
+                accumulator_1.add(value);
+            }
+        }
+        final @NonNull /*@Thrown*/ List<NamedElement> ECORE_collect_0 = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(NamedElement.class, collect_0);
+        @SuppressWarnings("null")
+        final @NonNull /*@Thrown*/ LookupEnvironment addElements_1 = addElements_0.addElements(ECORE_collect_0);
+        return addElements_1;
+    }
+    
+    /**
      * visitNamespace(element : Namespace[1]) : lookup::LookupEnvironment[?]
      * 
      * this.parentEnv(element)
      */
     @Override
-    public @Nullable /*@NonInvalid*/ LookupEnvironment visitNamespace(final @NonNull /*@NonInvalid*/ Namespace element_7) {
-        final @Nullable /*@Thrown*/ LookupEnvironment parentEnv = this.parentEnv(element_7);
+    public @Nullable /*@NonInvalid*/ LookupEnvironment visitNamespace(final @NonNull /*@NonInvalid*/ Namespace element_8) {
+        final @Nullable /*@Thrown*/ LookupEnvironment parentEnv = this.parentEnv(element_8);
         return parentEnv;
     }
     
@@ -781,13 +884,13 @@ public class AbstractPivotLookupVisitor
      * endif
      */
     @Override
-    public @Nullable /*@NonInvalid*/ LookupEnvironment visitOperation(final @NonNull /*@NonInvalid*/ Operation element_8) {
-        final @Nullable /*@Thrown*/ LanguageExpression bodyExpression = element_8.getBodyExpression();
+    public @Nullable /*@NonInvalid*/ LookupEnvironment visitOperation(final @NonNull /*@NonInvalid*/ Operation element_9) {
+        final @Nullable /*@Thrown*/ LanguageExpression bodyExpression = element_9.getBodyExpression();
         final @NonNull /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, SET_CLSSid_LanguageExpression, bodyExpression);
         final /*@Thrown*/ boolean includes = CollectionIncludesOperation.INSTANCE.evaluate(oclAsSet, child).booleanValue();
         @Nullable /*@Thrown*/ LookupEnvironment symbol_3;
         if (includes) {
-            final @NonNull /*@Thrown*/ List<Parameter> ownedParameters = element_8.getOwnedParameters();
+            final @NonNull /*@Thrown*/ List<Parameter> ownedParameters = element_9.getOwnedParameters();
             @SuppressWarnings("null")
             final @NonNull /*@Thrown*/ LookupEnvironment inner = context.addElements(ownedParameters);
             final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
@@ -796,19 +899,19 @@ public class AbstractPivotLookupVisitor
                 symbol_0 = inner;
             }
             else {
-                final @Nullable /*@Thrown*/ LookupEnvironment parentEnv = this.parentEnv(element_8);
+                final @Nullable /*@Thrown*/ LookupEnvironment parentEnv = this.parentEnv(element_9);
                 symbol_0 = parentEnv;
             }
             symbol_3 = symbol_0;
         }
         else {
             @SuppressWarnings("null")
-            final @NonNull /*@Thrown*/ List<Constraint> ownedPostconditions = element_8.getOwnedPostconditions();
+            final @NonNull /*@Thrown*/ List<Constraint> ownedPostconditions = element_9.getOwnedPostconditions();
             final @NonNull /*@Thrown*/ SetValue BOXED_ownedPostconditions = idResolver.createSetOfAll(SET_CLSSid_Constraint, ownedPostconditions);
             final /*@Thrown*/ boolean includes_0 = CollectionIncludesOperation.INSTANCE.evaluate(BOXED_ownedPostconditions, child).booleanValue();
             @Nullable /*@Thrown*/ LookupEnvironment symbol_2;
             if (includes_0) {
-                final @NonNull /*@Thrown*/ List<Parameter> ownedParameters_0 = element_8.getOwnedParameters();
+                final @NonNull /*@Thrown*/ List<Parameter> ownedParameters_0 = element_9.getOwnedParameters();
                 @SuppressWarnings("null")
                 final @NonNull /*@Thrown*/ LookupEnvironment inner_0 = context.addElements(ownedParameters_0);
                 final /*@Thrown*/ boolean hasFinalResult_0 = inner_0.hasFinalResult();
@@ -817,13 +920,13 @@ public class AbstractPivotLookupVisitor
                     symbol_1 = inner_0;
                 }
                 else {
-                    final @Nullable /*@Thrown*/ LookupEnvironment parentEnv_0 = this.parentEnv(element_8);
+                    final @Nullable /*@Thrown*/ LookupEnvironment parentEnv_0 = this.parentEnv(element_9);
                     symbol_1 = parentEnv_0;
                 }
                 symbol_2 = symbol_1;
             }
             else {
-                final @Nullable /*@Thrown*/ LookupEnvironment parentEnv_1 = this.parentEnv(element_8);
+                final @Nullable /*@Thrown*/ LookupEnvironment parentEnv_1 = this.parentEnv(element_9);
                 symbol_2 = parentEnv_1;
             }
             symbol_3 = symbol_2;
@@ -844,8 +947,8 @@ public class AbstractPivotLookupVisitor
      *   endif
      */
     @Override
-    public @Nullable /*@NonInvalid*/ LookupEnvironment visitPackage(final @NonNull /*@NonInvalid*/ Package element_9) {
-        final @NonNull /*@Thrown*/ List<Class> ownedClasses = element_9.getOwnedClasses();
+    public @Nullable /*@NonInvalid*/ LookupEnvironment visitPackage(final @NonNull /*@NonInvalid*/ Package element_10) {
+        final @NonNull /*@Thrown*/ List<Class> ownedClasses = element_10.getOwnedClasses();
         @SuppressWarnings("null")
         final @NonNull /*@Thrown*/ LookupEnvironment inner = context.addElements(ownedClasses);
         final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
@@ -854,7 +957,7 @@ public class AbstractPivotLookupVisitor
             symbol_0 = inner;
         }
         else {
-            final @Nullable /*@Thrown*/ LookupEnvironment parentEnv = this.parentEnv(element_9);
+            final @Nullable /*@Thrown*/ LookupEnvironment parentEnv = this.parentEnv(element_10);
             symbol_0 = parentEnv;
         }
         return symbol_0;
@@ -866,8 +969,8 @@ public class AbstractPivotLookupVisitor
      * this.parentEnv(element)
      */
     @Override
-    public @Nullable /*@NonInvalid*/ LookupEnvironment visitProperty(final @NonNull /*@NonInvalid*/ Property element_10) {
-        final @Nullable /*@Thrown*/ LookupEnvironment parentEnv = this.parentEnv(element_10);
+    public @Nullable /*@NonInvalid*/ LookupEnvironment visitProperty(final @NonNull /*@NonInvalid*/ Property element_11) {
+        final @Nullable /*@Thrown*/ LookupEnvironment parentEnv = this.parentEnv(element_11);
         return parentEnv;
     }
     
@@ -877,8 +980,8 @@ public class AbstractPivotLookupVisitor
      * this.parentEnv(element)
      */
     @Override
-    public @Nullable /*@NonInvalid*/ LookupEnvironment visitVariable(final @NonNull /*@NonInvalid*/ Variable element_11) {
-        final @Nullable /*@Thrown*/ LookupEnvironment parentEnv = this.parentEnv(element_11);
+    public @Nullable /*@NonInvalid*/ LookupEnvironment visitVariable(final @NonNull /*@NonInvalid*/ Variable element_12) {
+        final @Nullable /*@Thrown*/ LookupEnvironment parentEnv = this.parentEnv(element_12);
         return parentEnv;
     }
 }

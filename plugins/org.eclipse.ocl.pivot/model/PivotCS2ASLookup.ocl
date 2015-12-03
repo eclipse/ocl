@@ -12,6 +12,9 @@ def : env() : lookup::LookupEnvironment =
 def : _env(child : OclElement) : lookup::LookupEnvironment =
 	parentEnv()
 	
+def : _exported_env(from : OclElement) : lookup::LookupEnvironment =
+	lookup::LookupEnvironment { }
+	
 def : parentEnv() : lookup::LookupEnvironment =
 	let parent = oclContainer() in if parent = null then lookup::LookupEnvironment { } else parent._env(self) endif
 endpackage 
@@ -39,68 +42,14 @@ endpackage
 package as
 
 context Variable
-def : _qualification_env() : lookup::LookupEnvironment =
-		let env = lookup::LookupEnvironment{}
-		in env
-				
-
 def : _env(child : ocl::OclElement) : lookup::LookupEnvironment =
-	parentEnv()
+		parentEnv()
 context Namespace
-def : _lookupQualifiedClass(cName : String) : Class[?] =
-	let foundClass = _lookupClass(_qualification_env(), cName)
-	in  if foundClass->isEmpty()
-		then null
-		else foundClass->first()
-		endif
-	
-def : lookupQualifiedClass(aPathElementCS : cs::PathElementCS) : Class[?] =
-   _lookupQualifiedClass(aPathElementCS.name)
-   
-def : _lookupQualifiedPackage(pName : String) : Package[?] =
-	let foundPackage = _lookupPackage(_qualification_env(), pName)
-	in  if foundPackage->isEmpty()
-		then null
-		else foundPackage->first()
-		endif
-	
-def : lookupQualifiedPackage(aPathElementCS : cs::PathElementCS) : Package[?] =
-   _lookupQualifiedPackage(aPathElementCS.name)
-   
-def : _lookupQualifiedOperation(oName : String) : Operation[?] =
-	let foundOperation = _lookupOperation(_qualification_env(), oName)
-	in  if foundOperation->isEmpty()
-		then null
-		else foundOperation->first()
-		endif
-	
-def : lookupQualifiedOperation(aPathElementCS : cs::PathElementCS) : Operation[?] =
-   _lookupQualifiedOperation(aPathElementCS.name)
-   
-def : _lookupQualifiedProperty(pName : String) : Property[?] =
-	let foundProperty = _lookupProperty(_qualification_env(), pName)
-	in  if foundProperty->isEmpty()
-		then null
-		else foundProperty->first()
-		endif
-	
-def : lookupQualifiedProperty(aPathElementCS : cs::PathElementCS) : Property[?] =
-   _lookupQualifiedProperty(aPathElementCS.name)
-   
-def : _qualification_env() : lookup::LookupEnvironment =
-		let env = lookup::LookupEnvironment{}
-		in env
-			.addElements(invalid)
-.addElements(invalid)
-.addElements(invalid)
-.addElements(invalid)
-	
-
 def : _env(child : ocl::OclElement) : lookup::LookupEnvironment =
-	parentEnv()
+		parentEnv()
 context Class
 def : _lookupQualifiedProperty(pName : String) : Property[?] =
-	let foundProperty = _lookupProperty(_qualification_env(), pName)
+	let foundProperty = _lookupProperty(_qualified_env(), pName)
 	in  if foundProperty->isEmpty()
 		then null
 		else foundProperty->first()
@@ -110,7 +59,7 @@ def : lookupQualifiedProperty(aPathElementCS : cs::PathElementCS) : Property[?] 
    _lookupQualifiedProperty(aPathElementCS.name)
    
 def : _lookupQualifiedOperation(oName : String) : Operation[?] =
-	let foundOperation = _lookupOperation(_qualification_env(), oName)
+	let foundOperation = _lookupOperation(_qualified_env(), oName)
 	in  if foundOperation->isEmpty()
 		then null
 		else foundOperation->first()
@@ -119,81 +68,76 @@ def : _lookupQualifiedOperation(oName : String) : Operation[?] =
 def : lookupQualifiedOperation(aPathElementCS : cs::PathElementCS) : Operation[?] =
    _lookupQualifiedOperation(aPathElementCS.name)
    
-def : _qualification_env() : lookup::LookupEnvironment =
+def : _qualified_env() : lookup::LookupEnvironment =
 		let env = lookup::LookupEnvironment{}
 		in env
 			.addElements(ownedProperties)
 .addElements(ownedOperations)
 	
-
 def : _env(child : ocl::OclElement) : lookup::LookupEnvironment =
-	parentEnv().nestedEnv()
-		.addElements(ownedProperties->select(not isStatic)).addElements(ownedOperations->select(not isStatic)).addElements(ownedBehaviors)
+		parentEnv().nestedEnv()
+			.addElements(ownedProperties->select(not isStatic)).addElements(ownedOperations->select(not isStatic)).addElements(ownedBehaviors)
 context DataType
-
 def : _env(child : ocl::OclElement) : lookup::LookupEnvironment =
-	parentEnv().nestedEnv()
-		.addElements(ownedProperties->select(not isStatic)).addElements(ownedOperations->select(not isStatic))
+		parentEnv().nestedEnv()
+			.addElements(ownedProperties->select(not isStatic)).addElements(ownedOperations->select(not isStatic))
 context Enumeration
-
 def : _env(child : ocl::OclElement) : lookup::LookupEnvironment =
-	parentEnv().nestedEnv()
-		.addElements(ownedLiterals).addElements(ownedProperties->select(not isStatic)).addElements(ownedOperations->select(not isStatic)).addElements(ownedBehaviors)
+		parentEnv().nestedEnv()
+			.addElements(ownedLiterals).addElements(ownedProperties->select(not isStatic)).addElements(ownedOperations->select(not isStatic)).addElements(ownedBehaviors)
 context ExpressionInOCL
-
 def : _env(child : ocl::OclElement) : lookup::LookupEnvironment =
-	parentEnv().nestedEnv()
-		.addElements(ownedContext->asSequence()).addElements(ownedParameters).addElements(ownedResult->asSequence())
+		parentEnv().nestedEnv()
+			.addElements(ownedContext->asSequence()).addElements(ownedParameters).addElements(ownedResult->asSequence())
 context IterateExp
-
 def : _env(child : ocl::OclElement) : lookup::LookupEnvironment =
-	if ownedIterators->includes(child)	 
-	then parentEnv().nestedEnv()
-		.addElements(ownedResult->asSequence()).addElements(ownedIterators->select(x | self.ownedIterators->indexOf(x) < self.ownedIterators->indexOf(child)))
-	else parentEnv().nestedEnv()
-		.addElements(ownedIterators)
-	endif
+		if ownedIterators->includes(child)	 
+		then parentEnv().nestedEnv()
+			.addElements(ownedResult->asSequence()).addElements(ownedIterators->select(x | self.ownedIterators->indexOf(x) < self.ownedIterators->indexOf(child)))
+		else parentEnv().nestedEnv()
+			.addElements(ownedIterators)
+		endif
 context IteratorExp
-
 def : _env(child : ocl::OclElement) : lookup::LookupEnvironment =
-	if ownedIterators->includes(child)	 
-	then parentEnv().nestedEnv()
-		.addElements(ownedIterators->select(x | self.ownedIterators->indexOf(x) < self.ownedIterators->indexOf(child)))
-	else parentEnv().nestedEnv()
-		.addElements(ownedIterators)
-	endif
+		if ownedIterators->includes(child)	 
+		then parentEnv().nestedEnv()
+			.addElements(ownedIterators->select(x | self.ownedIterators->indexOf(x) < self.ownedIterators->indexOf(child)))
+		else parentEnv().nestedEnv()
+			.addElements(ownedIterators)
+		endif
 context LetExp
-
 def : _env(child : ocl::OclElement) : lookup::LookupEnvironment =
-	if ownedIn->includes(child)	 
-	then parentEnv().nestedEnv()
-		.addElements(ownedVariable->asSequence())
-	else parentEnv()
-	endif
+		if ownedIn->includes(child)	 
+		then parentEnv().nestedEnv()
+			.addElements(ownedVariable->asSequence())
+		else parentEnv()
+		endif
 context Library
-
 def : _env(child : ocl::OclElement) : lookup::LookupEnvironment =
-	parentEnv().nestedEnv()
-		.addElements(ownedPackages).addElements(ownedClasses).addElements(ownedPrecedences)
+		parentEnv().nestedEnv()
+			.addElements(ownedPackages).addElements(ownedClasses).addElements(ownedPrecedences)
+context Model
+def : _env(child : ocl::OclElement) : lookup::LookupEnvironment =
+		parentEnv()
+			.addElements(ownedPackages).addElements(ownedImports.importedNamespace).addElements(ownedImports.importedNamespace._exported_env(self).namedElements)
+def : _exported_env(from : ocl::OclElement) : lookup::LookupEnvironment =
+let env = lookup::LookupEnvironment {}
+in env
+	.addElements(ownedPackages)
 context Operation
-def : _qualification_env() : lookup::LookupEnvironment =
-		let env = lookup::LookupEnvironment{}
-		in env
-				
-
 def : _env(child : ocl::OclElement) : lookup::LookupEnvironment =
-	if bodyExpression->includes(child)	 
-	then parentEnv().nestedEnv()
-		.addElements(ownedParameters)
-	else if ownedPostconditions->includes(child)	 
-	then parentEnv().nestedEnv()
-		.addElements(ownedParameters)
-	else parentEnv()
-	endif
-	endif
+		if bodyExpression->includes(child)	 
+		then parentEnv().nestedEnv()
+			.addElements(ownedParameters)
+		else if ownedPostconditions->includes(child)	 
+		then parentEnv().nestedEnv()
+			.addElements(ownedParameters)
+		else parentEnv()
+		endif
+		endif
 context Package
 def : _lookupQualifiedClass(cName : String) : Class[?] =
-	let foundClass = _lookupClass(_qualification_env(), cName)
+	let foundClass = _lookupClass(_qualified_env(), cName)
 	in  if foundClass->isEmpty()
 		then null
 		else foundClass->first()
@@ -203,7 +147,7 @@ def : lookupQualifiedClass(aPathElementCS : cs::PathElementCS) : Class[?] =
    _lookupQualifiedClass(aPathElementCS.name)
    
 def : _lookupQualifiedPackage(pName : String) : Package[?] =
-	let foundPackage = _lookupPackage(_qualification_env(), pName)
+	let foundPackage = _lookupPackage(_qualified_env(), pName)
 	in  if foundPackage->isEmpty()
 		then null
 		else foundPackage->first()
@@ -212,24 +156,22 @@ def : _lookupQualifiedPackage(pName : String) : Package[?] =
 def : lookupQualifiedPackage(aPathElementCS : cs::PathElementCS) : Package[?] =
    _lookupQualifiedPackage(aPathElementCS.name)
    
-def : _qualification_env() : lookup::LookupEnvironment =
+def : _qualified_env() : lookup::LookupEnvironment =
 		let env = lookup::LookupEnvironment{}
 		in env
 			.addElements(ownedClasses)
 .addElements(ownedPackages)
 	
-
 def : _env(child : ocl::OclElement) : lookup::LookupEnvironment =
-	parentEnv().nestedEnv()
-		.addElements(ownedClasses)
+		parentEnv().nestedEnv()
+			.addElements(ownedClasses)
+def : _exported_env(from : ocl::OclElement) : lookup::LookupEnvironment =
+let env = lookup::LookupEnvironment {}
+in env
+	.addElements(ownedClasses)
 context Property
-def : _qualification_env() : lookup::LookupEnvironment =
-		let env = lookup::LookupEnvironment{}
-		in env
-				
-
 def : _env(child : ocl::OclElement) : lookup::LookupEnvironment =
-	parentEnv()
+		parentEnv()
 
 context Visitable
 -- Variable lookup
@@ -303,11 +245,7 @@ def : lookupClass(segments : OrderedSet(cs::PathElementCS)) : Class[?] =
    if segments->size() = 1
    then lookupClass(segments->first())
    else let qualifierSegments = segments->subOrderedSet(1,segments->size()-1),
-            qualifier = let qualifier2 = lookupNamespace(qualifierSegments->first())
-            in if qualifier2 = null
-               then lookupPackage(qualifierSegments) 
-               else qualifier2 
-               endif
+            qualifier = lookupPackage(qualifierSegments)
         in qualifier?.lookupQualifiedClass(segments->last())
    endif
 -- Operation lookup
@@ -339,11 +277,7 @@ def : lookupOperation(segments : OrderedSet(cs::PathElementCS)) : Operation[?] =
    if segments->size() = 1
    then lookupOperation(segments->first())
    else let qualifierSegments = segments->subOrderedSet(1,segments->size()-1),
-            qualifier = let qualifier2 = lookupNamespace(qualifierSegments->first())
-            in if qualifier2 = null
-               then lookupClass(qualifierSegments) 
-               else qualifier2 
-               endif
+            qualifier = lookupClass(qualifierSegments)
         in qualifier?.lookupQualifiedOperation(segments->last())
    endif
 -- Package lookup
@@ -375,11 +309,7 @@ def : lookupPackage(segments : OrderedSet(cs::PathElementCS)) : Package[?] =
    if segments->size() = 1
    then lookupPackage(segments->first())
    else let qualifierSegments = segments->subOrderedSet(1,segments->size()-1),
-            qualifier = let qualifier2 = lookupNamespace(qualifierSegments->first())
-            in if qualifier2 = null
-               then lookupPackage(qualifierSegments) 
-               else qualifier2 
-               endif
+            qualifier = lookupPackage(qualifierSegments)
         in qualifier?.lookupQualifiedPackage(segments->last())
    endif
 -- Property lookup
@@ -411,11 +341,7 @@ def : lookupProperty(segments : OrderedSet(cs::PathElementCS)) : Property[?] =
    if segments->size() = 1
    then lookupProperty(segments->first())
    else let qualifierSegments = segments->subOrderedSet(1,segments->size()-1),
-            qualifier = let qualifier2 = lookupNamespace(qualifierSegments->first())
-            in if qualifier2 = null
-               then lookupClass(qualifierSegments) 
-               else qualifier2 
-               endif
+            qualifier = lookupClass(qualifierSegments)
         in qualifier?.lookupQualifiedProperty(segments->last())
    endif
 

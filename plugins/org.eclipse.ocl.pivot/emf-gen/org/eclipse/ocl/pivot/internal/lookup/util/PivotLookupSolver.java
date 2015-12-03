@@ -17,6 +17,9 @@ package	org.eclipse.ocl.pivot.internal.lookup.util;
 
 import org.eclipse.ocl.pivot.evaluation.Executor;
 
+/**
+ * @since 1.1
+ */
 public class PivotLookupSolver {
 	
 	private Executor executor;
