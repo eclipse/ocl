@@ -74,14 +74,15 @@ nameresolution {
 	IterateExp{
 		for ownedIterators
 			nested-scope ownedResult->asSequence() /*FIXME*/, following ownedIterators;
-		nested-scope ownedIterators;
+		for all
+			nested-scope ownedIterators;
 	}
 	
 	IteratorExp {
 		for ownedIterators
 			nested-scope following ownedIterators;
-		-- for all
-		nested-scope ownedIterators;
+		for all
+			nested-scope ownedIterators;
 	}
 	
 	
@@ -105,8 +106,8 @@ nameresolution {
 	
 	Operation {
 		named-element;
-		for bodyExpression, ownedPostconditions, ownedPreconditions
-			nested-scope ownedParameters ;
+		for all excepting ownedParameters
+			nested-scope ownedParameters;
 	}
 	
 	Package {
