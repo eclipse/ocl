@@ -1,7 +1,6 @@
 source  cs : '/resource/org.eclipse.ocl.xtext.base/model/BaseCS.ecore#/'
 target  as : 'Pivot.ecore#/'
 
-
 mappings {
 	
 }
@@ -9,7 +8,6 @@ mappings {
 disambiguation {
 	
 }
-
 
 nameresolution {
 		
@@ -33,6 +31,9 @@ nameresolution {
 	/*FIXME Element {
 		same-scope	
 	}*/
+	
+	
+	
 	
 	Class {
 		named-element 
@@ -101,7 +102,7 @@ nameresolution {
 		same-scope ownedPackages, ownedImports.importedNamespace,
 			imported ownedImports.importedNamespace;
 		
-		exports ownedPackages;
+		exports Package using ownedPackages;
 	}
 	
 	Operation {
@@ -110,19 +111,17 @@ nameresolution {
 			nested-scope ownedParameters;
 	}
 	
+	
 	Package {
 		named-element 
 			qualifying Class using ownedClasses, 
 					   Package using ownedPackages;
 		/*for all*/
-		nested-scope ownedClasses;		
-		exports ownedClasses;
+		nested-scope ownedClasses;
+		exports Class using ownedClasses;
 	}
 	
 	Property {
 		named-element;
 	}
 }
-
-
-

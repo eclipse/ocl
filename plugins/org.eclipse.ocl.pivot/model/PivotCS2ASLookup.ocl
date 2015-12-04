@@ -149,6 +149,16 @@ def : _exported_env(from : ocl::OclElement) : lookup::LookupEnvironment =
 	in env
 		.addElements(ownedPackages)
 	
+def : _lookupExportedPackage(from : ocl::OclElement, pName : String) : Package[?] =
+	let foundPackage = _lookupPackage(_exported_env(from), pName)
+	in  if foundPackage->isEmpty()
+		then null
+		else foundPackage->first()
+		endif
+		
+def : lookupExportedPackage(from : ocl::OclElement, aPathElementCS : cs::PathElementCS) : Package[?] =
+	_lookupExportedPackage(from, aPathElementCS.name)
+	
 context Operation
 def : _env(child : ocl::OclElement) : lookup::LookupEnvironment =
 	if not (ownedParameters->includes(child)
@@ -193,6 +203,16 @@ def : _exported_env(from : ocl::OclElement) : lookup::LookupEnvironment =
 	in env
 		.addElements(ownedClasses)
 	
+def : _lookupExportedClass(from : ocl::OclElement, cName : String) : Class[?] =
+	let foundClass = _lookupClass(_exported_env(from), cName)
+	in  if foundClass->isEmpty()
+		then null
+		else foundClass->first()
+		endif
+		
+def : lookupExportedClass(from : ocl::OclElement, aPathElementCS : cs::PathElementCS) : Class[?] =
+	_lookupExportedClass(from, aPathElementCS.name)
+	
 context Property
 def : _env(child : ocl::OclElement) : lookup::LookupEnvironment =
 	parentEnv()
@@ -214,7 +234,6 @@ in  if foundVariable->isEmpty()
 	then null
 	else foundVariable->first() -- LookupVisitor will report ambiguous result
 	endif
-	
 def : lookupVariable(aPathElementCS : cs::PathElementCS) : Variable[?] =
    _lookupVariable(aPathElementCS.name)
    
@@ -235,7 +254,6 @@ in  if foundNamespace->isEmpty()
 	then null
 	else foundNamespace->first() -- LookupVisitor will report ambiguous result
 	endif
-	
 def : lookupNamespace(aPathElementCS : cs::PathElementCS) : Namespace[?] =
    _lookupNamespace(aPathElementCS.name)
    
@@ -256,7 +274,6 @@ in  if foundClass->isEmpty()
 	then null
 	else foundClass->first() -- LookupVisitor will report ambiguous result
 	endif
-	
 def : lookupClass(aPathElementCS : cs::PathElementCS) : Class[?] =
    _lookupClass(aPathElementCS.name)
    
@@ -271,6 +288,21 @@ def : lookupClass(segments : OrderedSet(cs::PathElementCS)) : Class[?] =
    else let qualifierSegments = segments->subOrderedSet(1,segments->size()-1),
             qualifier = lookupPackage(qualifierSegments)
         in qualifier?.lookupQualifiedClass(segments->last())
+   endif
+-- Model exports Package
+	
+def : lookupPackageFrom(exporter : Model, aPathElementCS : cs::PathElementCS) : Package[?] =
+	exporter.lookupExportedPackage(self, aPathElementCS)
+
+def : lookupPackageFrom(exporter : Model, aPathNameCS : cs::PathNameCS) : Package[?] =
+   lookupPackageFrom(exporter, aPathNameCS.ownedPathElements)
+
+def : lookupPackageFrom(exporter : Model, segments : OrderedSet(cs::PathElementCS)) : Package[?] =
+   if segments->size() = 1
+   then lookupPackageFrom(exporter, segments->first())
+   else let qualifierSegments = segments->subOrderedSet(1,segments->size()-1),
+            qualifier = lookupPackage(qualifierSegments)
+        in qualifier?.lookupQualifiedPackage(segments->last())
    endif
 -- Operation lookup
 def : _lookupOperation(env : lookup::LookupEnvironment, oName : String) : OrderedSet(Operation) =
@@ -288,7 +320,6 @@ in  if foundOperation->isEmpty()
 	then null
 	else foundOperation->first() -- LookupVisitor will report ambiguous result
 	endif
-	
 def : lookupOperation(aPathElementCS : cs::PathElementCS) : Operation[?] =
    _lookupOperation(aPathElementCS.name)
    
@@ -320,7 +351,6 @@ in  if foundPackage->isEmpty()
 	then null
 	else foundPackage->first() -- LookupVisitor will report ambiguous result
 	endif
-	
 def : lookupPackage(aPathElementCS : cs::PathElementCS) : Package[?] =
    _lookupPackage(aPathElementCS.name)
    
@@ -335,6 +365,21 @@ def : lookupPackage(segments : OrderedSet(cs::PathElementCS)) : Package[?] =
    else let qualifierSegments = segments->subOrderedSet(1,segments->size()-1),
             qualifier = lookupPackage(qualifierSegments)
         in qualifier?.lookupQualifiedPackage(segments->last())
+   endif
+-- Package exports Class
+	
+def : lookupClassFrom(exporter : Package, aPathElementCS : cs::PathElementCS) : Class[?] =
+	exporter.lookupExportedClass(self, aPathElementCS)
+
+def : lookupClassFrom(exporter : Package, aPathNameCS : cs::PathNameCS) : Class[?] =
+   lookupClassFrom(exporter, aPathNameCS.ownedPathElements)
+
+def : lookupClassFrom(exporter : Package, segments : OrderedSet(cs::PathElementCS)) : Class[?] =
+   if segments->size() = 1
+   then lookupClassFrom(exporter, segments->first())
+   else let qualifierSegments = segments->subOrderedSet(1,segments->size()-1),
+            qualifier = lookupPackage(qualifierSegments)
+        in qualifier?.lookupQualifiedClass(segments->last())
    endif
 -- Property lookup
 def : _lookupProperty(env : lookup::LookupEnvironment, pName : String) : OrderedSet(Property) =
@@ -352,7 +397,6 @@ in  if foundProperty->isEmpty()
 	then null
 	else foundProperty->first() -- LookupVisitor will report ambiguous result
 	endif
-	
 def : lookupProperty(aPathElementCS : cs::PathElementCS) : Property[?] =
    _lookupProperty(aPathElementCS.name)
    
@@ -368,6 +412,5 @@ def : lookupProperty(segments : OrderedSet(cs::PathElementCS)) : Property[?] =
             qualifier = lookupClass(qualifierSegments)
         in qualifier?.lookupQualifiedProperty(segments->last())
    endif
-
 
 endpackage
