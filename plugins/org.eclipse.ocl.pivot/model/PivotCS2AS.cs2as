@@ -106,7 +106,9 @@ nameresolution {
 	}
 	
 	Operation {
-		named-element;
+		named-element
+			filtered by argTypes : OrderedSet(Type) 
+				when matchesArgs(argTypes);
 		for all excepting ownedParameters
 			nested-scope ownedParameters;
 	}
@@ -124,4 +126,22 @@ nameresolution {
 	Property {
 		named-element;
 	}
+}
+
+helpers {
+	as::Operation {
+		matchesArgs(argTypes : OrderedSet(Type)) : Boolean :=
+			argTypes->size() = ownedParameters->size() 
+			and argTypes->forAll(x | x.conformsTo(ownedParameters->at(argTypes->indexOf(x)).type));
+	}
+	
+	as::Class {
+		conformsTo(anotherType : Class) : Boolean :=
+			_conformsTo(anotherType) or 
+			superClasses->exists(conformsTo(anotherType));
+
+		_conformsTo(anotherType : Class) : Boolean :=
+			self = anotherType;
+	}
+	
 }

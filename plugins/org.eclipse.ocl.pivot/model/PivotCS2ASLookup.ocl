@@ -1,6 +1,7 @@
 import  cs : '/resource/org.eclipse.ocl.xtext.base/model/BaseCS.ecore#/'
 import  as : 'Pivot.ecore#/'
 import 'Lookup.ecore'
+import 'PivotCS2ASHelpers.ocl'
 
 package ocl
 ---- Default Environment related functionality
@@ -62,14 +63,14 @@ def : lookupQualifiedProperty(aPathElementCS : cs::PathElementCS) : Property[?] 
    _lookupQualifiedProperty(aPathElementCS.name)
    
 	
-def : _lookupQualifiedOperation(oName : String) : Operation[?] =
-	let foundOperation = _lookupOperation(_qualified_env(), oName)
+def : _lookupQualifiedOperation(oName : String, argTypes : OrderedSet(Type)) : Operation[?] =
+	let foundOperation = _lookupOperation(_qualified_env(), oName, argTypes)
 	in  if foundOperation->isEmpty()
 		then null
 		else foundOperation->first()
 		endif
-def : lookupQualifiedOperation(aPathElementCS : cs::PathElementCS) : Operation[?] =
-   _lookupQualifiedOperation(aPathElementCS.name)
+def : lookupQualifiedOperation(aPathElementCS : cs::PathElementCS, argTypes : OrderedSet(Type)) : Operation[?] =
+   _lookupQualifiedOperation(aPathElementCS.name, argTypes)
    
 	
 def : _qualified_env() : lookup::LookupEnvironment =
@@ -305,35 +306,36 @@ def : lookupPackageFrom(exporter : Model, segments : OrderedSet(cs::PathElementC
         in qualifier?.lookupQualifiedPackage(segments->last())
    endif
 -- Operation lookup
-def : _lookupOperation(env : lookup::LookupEnvironment, oName : String) : OrderedSet(Operation) =
+def : _lookupOperation(env : lookup::LookupEnvironment, oName : String, argTypes : OrderedSet(Type)) : OrderedSet(Operation) =
 let foundOperation = env.namedElements->selectByKind(Operation)->select(name = oName)
+                                         ->select(matchesArgs(argTypes))
 in  if foundOperation->isEmpty() and not (env.parentEnv = null)
-	then _lookupOperation(env.parentEnv, oName)
+	then _lookupOperation(env.parentEnv, oName, argTypes)
 	else foundOperation
 	endif
 	
 -- Note: when calling this method, the source element of the argument passed to this method, will be the contextual 
 -- object on which error reports will be handled
-def : _lookupOperation(oName : String) : Operation[?] =
-let foundOperation = _lookupOperation(env(), oName)
+def : _lookupOperation(oName : String, argTypes : OrderedSet(Type)) : Operation[?] =
+let foundOperation = _lookupOperation(env(), oName, argTypes)
 in  if foundOperation->isEmpty()
 	then null
 	else foundOperation->first() -- LookupVisitor will report ambiguous result
 	endif
-def : lookupOperation(aPathElementCS : cs::PathElementCS) : Operation[?] =
-   _lookupOperation(aPathElementCS.name)
+def : lookupOperation(aPathElementCS : cs::PathElementCS, argTypes : OrderedSet(Type)) : Operation[?] =
+   _lookupOperation(aPathElementCS.name, argTypes)
    
 
 -- QN Operation lookup
-def : lookupOperation(aPathNameCS : cs::PathNameCS) : Operation[?] =
-   lookupOperation(aPathNameCS .ownedPathElements)
+def : lookupOperation(aPathNameCS : cs::PathNameCS, argTypes : OrderedSet(Type)) : Operation[?] =
+   lookupOperation(aPathNameCS .ownedPathElements, argTypes)
 
-def : lookupOperation(segments : OrderedSet(cs::PathElementCS)) : Operation[?] =
+def : lookupOperation(segments : OrderedSet(cs::PathElementCS), argTypes : OrderedSet(Type)) : Operation[?] =
    if segments->size() = 1
-   then lookupOperation(segments->first())
+   then lookupOperation(segments->first(), argTypes)
    else let qualifierSegments = segments->subOrderedSet(1,segments->size()-1),
             qualifier = lookupClass(qualifierSegments)
-        in qualifier?.lookupQualifiedOperation(segments->last())
+        in qualifier?.lookupQualifiedOperation(segments->last(), argTypes)
    endif
 -- Package lookup
 def : _lookupPackage(env : lookup::LookupEnvironment, pName : String) : OrderedSet(Package) =
@@ -412,5 +414,6 @@ def : lookupProperty(segments : OrderedSet(cs::PathElementCS)) : Property[?] =
             qualifier = lookupClass(qualifierSegments)
         in qualifier?.lookupQualifiedProperty(segments->last())
    endif
+
 
 endpackage
