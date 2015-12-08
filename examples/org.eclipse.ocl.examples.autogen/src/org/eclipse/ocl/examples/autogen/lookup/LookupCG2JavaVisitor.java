@@ -42,14 +42,42 @@ public class LookupCG2JavaVisitor extends AutoCG2JavaVisitor<LookupCodeGenerator
 		js.append(" " + LookupClassContext.CONTEXT_NAME + ") {\n");
 		js.pushIndentation(null);
 			js.append("super(" + LookupClassContext.CONTEXT_NAME + ");\n");
+		if (LookupCGUtil.isCommonVisitorClass(cgClass)) {
 			js.append("this." + JavaConstants.EXECUTOR_NAME + " = " + LookupClassContext.CONTEXT_NAME + ".getExecutor();\n");
 			js.append("this." + JavaConstants.ID_RESOLVER_NAME + " = " + JavaConstants.EXECUTOR_NAME + ".getIdResolver();\n");
+		}
 		js.popIndentation();
 		js.append("}\n");
 		
-		if (!isDerivedVisitor(cgClass)) {
+		if (LookupCGUtil.isUnqualifiedVisitorClass(cgClass) && !isDerivedVisitor(cgClass)) {
 			doEnvForChild(cgClass);
 			doParentEnv(cgClass);
+		}
+	}
+	
+	@Override
+	protected void doVisiting(@NonNull CGClass cgClass) {
+		if (LookupCGUtil.isUnqualifiedVisitorClass(cgClass)) {
+			js.append("\n");
+			js.append("@Override\n");
+			js.append("public ");
+			js.appendIsRequired(false);
+			js.append(" ");
+			js.appendClassReference(context.getVisitorResultClass());
+			js.append(" visiting(");
+			js.appendIsRequired(true);
+			js.append(" ");
+			js.appendClassReference(context.getVisitableClass());
+			js.append(" visitable) {\n");
+			js.pushIndentation(null);
+			js.append("return parentEnv((");
+			js.appendClassReference(EObject.class);
+			js.append(")");
+			js.append("visitable);\n");
+			js.popIndentation();
+			js.append("}\n");
+		} else {
+			super.doVisiting(cgClass);	
 		}
 	}
 
@@ -141,6 +169,7 @@ public class LookupCG2JavaVisitor extends AutoCG2JavaVisitor<LookupCodeGenerator
 		js.append("}\n");
 	}
 	
+	
 	/**
 	 * @param cgClass the cgClass representing the Visitor Class
 	 * @return another cgClass representing the visitor's context type
@@ -149,12 +178,18 @@ public class LookupCG2JavaVisitor extends AutoCG2JavaVisitor<LookupCodeGenerator
 	private @NonNull CGClass getVisitorContext(CGClass cgClass) {
 		
 		
-		if (isDerivedVisitor(cgClass)) {
-			CGClass extendingVisitorCG = cgClass.getSuperTypes().get(1); // The second one is the visitor's interface	
-			return extendingVisitorCG.getTemplateParameters().get(0); // The first one is the visitors result which will be the context	
+		if (LookupCGUtil.isCommonVisitorClass(cgClass)) {
+			CGClass extendingVisitorCG = cgClass.getSuperTypes().get(0); // The first one is the extended visitor
+			return extendingVisitorCG.getTemplateParameters().get(0); // The first one is the visitor result which will be the context
 		} else {
-			CGClass extendingVisitorCG = cgClass.getSuperTypes().get(0); // The second one is the extended visitor
-			return extendingVisitorCG.getTemplateParameters().get(0); // The first one is the specified context type
+			CGClass extendingVisitorCG = cgClass.getSuperTypes().get(1); // The second one is the visitor's interface	
+			return extendingVisitorCG.getTemplateParameters().get(0); // The first one is the visitor result which will be the context
 		}		
 	}
+	
+	@Override
+	protected boolean isDerivedVisitor(CGClass cgClass) {		
+		return LookupCGUtil.isDeriverdVisitorClass(cgClass);
+	}
+	
 }

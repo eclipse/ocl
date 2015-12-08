@@ -139,7 +139,7 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 
 	protected abstract @NonNull AutoCG2JavaVisitor<? extends AutoCodeGenerator> createCG2JavaVisitor(@NonNull CGPackage cgPackage, @Nullable List<CGValuedElement> sortedGlobals);
 
-	protected abstract @NonNull CGPackage createCGPackage() throws ParserException;
+	protected abstract @NonNull List<CGPackage> createCGPackages() throws ParserException;
 
 	@Override
 	public @NonNull AutoCGModelResourceFactory getCGResourceFactory() {
@@ -166,8 +166,8 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 		return AutoReferencesVisitor.INSTANCE;
 	}
 
-	public @NonNull String generateClassFile() throws ParserException {
-		CGPackage cgPackage = createCGPackage();
+	public @NonNull String generateClassFile(@NonNull CGPackage cgPackage) {
+		
 		optimize(cgPackage);
 		List<CGValuedElement> sortedGlobals = prepareGlobals();
 		AutoCG2JavaVisitor<?> generator = createCG2JavaVisitor(cgPackage, sortedGlobals);
@@ -241,8 +241,8 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 		}
 	}
 
-	public @NonNull String getSourceFileName() {
-		return genModel.getModelDirectory() + "/" + getVisitorPackageName(projectName).replace('.', '/') + "/" + getAutoVisitorClassName(projectPrefix) + ".java";
+	public @NonNull String getSourceFileName(String javaClassName) {
+		return genModel.getModelDirectory() + "/" + getVisitorPackageName(projectName).replace('.', '/') + "/" + javaClassName;
 	}
 
 	@SuppressWarnings("null")
@@ -281,21 +281,23 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 	}
 
 	public void saveSourceFile() {
-		// String utilDir = genModel.getModelDirectory() + "/" + genPackage.getBasePackage().replace('.', '/') +"/util/" + genPackage.getPrefix() + "AutoContainmentVisitor.java";
-		URI uri = URI.createPlatformResourceURI(getSourceFileName(), true);
-		String javaCodeSource;
 		try {
-			javaCodeSource = generateClassFile();
+			for (CGPackage cgPackage : createCGPackages()){
+				String className = cgPackage.getClasses().get(0).getName();
+				URI uri = URI.createPlatformResourceURI(getSourceFileName(className+".java"), true);
+				String javaCodeSource = generateClassFile(cgPackage);;
+				try {
+					
+					OutputStream outputStream = URIConverter.INSTANCE.createOutputStream(uri);
+					Writer writer = new OutputStreamWriter(outputStream);
+					writer.append(javaCodeSource);
+					writer.close();
+				} catch (IOException e) {
+					throw new IllegalStateException("Failed to save '" + uri + "'", e);
+				}
+			}
 		} catch (ParserException e) {
-			throw new IllegalStateException("Failed to process '" + uri + "'", e);
-		}
-		try {
-			OutputStream outputStream = URIConverter.INSTANCE.createOutputStream(uri);
-			Writer writer = new OutputStreamWriter(outputStream);
-			writer.append(javaCodeSource);
-			writer.close();
-		} catch (IOException e) {
-			throw new IllegalStateException("Failed to save '" + uri + "'", e);
+			throw new IllegalStateException("Failed to process '" + asPackage.getName() + "'", e);
 		}
 	}
 }

@@ -11,6 +11,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.autogen.cs2as;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenClass;
@@ -134,7 +135,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 	}
 
 	@Override
-	protected @NonNull CGPackage createCGPackage() throws ParserException {
+	protected @NonNull List<CGPackage> createCGPackages() throws ParserException {
 		// FIXME clean code removing unnecessary extra variables
 		// String prefix = genPackage.getPrefix();
 		// String trimmedPrefix = prefix.endsWith("CST") ? prefix.substring(0, prefix.length()-3) : "FIXME";
@@ -222,7 +223,10 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 				cgClass.getOperations().add(cgOperation);
 			}
 		}
-		return cgPackage;
+		
+		List<CGPackage> result = new ArrayList<CGPackage>();
+		result.add(cgPackage);
+		return result;
 	}
 	
 	@Override

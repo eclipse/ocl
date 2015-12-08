@@ -266,9 +266,9 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVis
 	
 	import org.eclipse.jdt.annotation.NonNull;
 	import «lookupPackageName».LookupEnvironment;
-	import «visitorPackageName».Abstract«projectPrefix»LookupVisitor;
+	import «visitorPackageName».Abstract«projectPrefix»UnqualifiedLookupVisitor;
 	
-	public class «className» extends Abstract«projectPrefix»LookupVisitor {
+	public class «className» extends Abstract«projectPrefix»UnqualifiedLookupVisitor {
 	
 		public «className»(@NonNull LookupEnvironment context) {
 			super(context);

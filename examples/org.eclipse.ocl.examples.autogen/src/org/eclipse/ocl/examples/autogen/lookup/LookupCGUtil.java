@@ -10,11 +10,15 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGClass;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGModel;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.MetamodelManager;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 
 public class LookupCGUtil {
@@ -61,5 +65,47 @@ public class LookupCGUtil {
 	private static boolean samePrimaryPackage(@NonNull org.eclipse.ocl.pivot.Package p1, @NonNull org.eclipse.ocl.pivot.Package p2, @NonNull EnvironmentFactory envFactory) {
 		MetamodelManager mm = envFactory.getMetamodelManager();
 		return mm.getPrimaryPackage(p1).equals(mm.getPrimaryPackage(p2));
+	}
+	
+	
+	public static boolean isCommonVisitorClass(@NonNull CGClass cgClass) {
+		return cgClass.getName().contains("Common"); // FIXME more robust check ?
+	}
+	
+	public static boolean isUnqualifiedVisitorClass(@NonNull CGClass cgClass) {
+		return cgClass.getName().contains("Unqualified"); // FIXME more robust check ?
+	}
+	
+	/**
+	 * A derived visitor class will considered as such, if it's not the commom visitor class
+	 * or it doesn't extend it
+	 * 
+	 * @param cgClass
+	 * @return true if this cgClass corresponds to derived visitor class generation
+	 */
+	@SuppressWarnings("null")
+	public static boolean isDeriverdVisitorClass(@NonNull CGClass cgClass) {
+		
+		if (isCommonVisitorClass(cgClass)) {
+			return false;
+		}
+		for (CGClass superClass : cgClass.getSuperTypes()) {
+			if (isCommonVisitorClass(superClass)) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public static CGClass getCommonVisitorClass(@NonNull CGClass cgClass, @NonNull  String commonVisitorClassName) {
+		
+		CGModel cgModel = (CGModel) cgClass.getContainingPackage().eContainer();
+		for (CGPackage cgPackg: cgModel.getPackages()) {
+			CGClass cgCommonClass = NameUtil.getNameable(cgPackg.getClasses(), commonVisitorClassName);
+			if (cgCommonClass != null) {
+				return cgCommonClass;
+			}
+		}
+		return null;
 	}
 }
