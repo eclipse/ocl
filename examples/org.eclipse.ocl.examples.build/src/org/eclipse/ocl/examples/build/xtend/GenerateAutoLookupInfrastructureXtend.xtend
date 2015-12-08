@@ -15,6 +15,7 @@ import java.util.List
 import org.eclipse.emf.codegen.ecore.genmodel.GenClassifier
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
 import org.eclipse.emf.ecore.EPackage
+import org.eclipse.emf.mwe.core.issues.Issues
 import org.eclipse.jdt.annotation.NonNull
 import org.eclipse.ocl.examples.autogen.lookup.LookupCGUtil
 import org.eclipse.ocl.examples.codegen.generator.AbstractGenModelHelper
@@ -26,7 +27,7 @@ import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal
 import org.eclipse.ocl.pivot.utilities.ClassUtil
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory
-import org.eclipse.emf.mwe.core.issues.Issues
+import org.eclipse.ocl.pivot.CollectionType
 
 public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVisitors
 {
@@ -129,6 +130,28 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVis
 		}
 	}
 	
+	protected def void generateAutoLookupFilter(@NonNull EPackage ePackage) {
+		val boolean isDerived = isDerived();
+		if (!isDerived) {
+			val itfName =  projectPrefix + "LookupFilter"
+			val MergeWriter writer = new MergeWriter(lookupArtifactsOutputFolder + itfName + ".java");
+			writer.append('''
+	«ePackage.generateHeader(lookupArtifactsJavaPackage)»
+	
+	import «modelPackageName».NamedElement;
+
+	/**
+	 * 
+	 */
+	public interface «itfName» {
+		
+		boolean matches(NamedElement namedElement);
+		
+	}
+			''');
+			writer.close();
+		}
+	}
 	protected def void generateSingleResultLookupEnvironment(@NonNull EPackage ePackage) { 
 		
 		var boolean isDerived = isDerived();
@@ -156,11 +179,17 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVis
 		private @NonNull Executor executor;
 		private @NonNull String name;
 		private @NonNull EClass typeFilter;
+		private @NonNull «projectPrefix»LookupFilter expFilter;
 		
-		public «className»(@NonNull Executor executor, @NonNull EClass typeFilter, @NonNull String name) {
+		public «className»(@NonNull Executor executor, @NonNull EClass typeFilter, @NonNull String name, «projectPrefix»LookupFilter expFilter) {
 			this.executor = executor;
 			this.name = name;
 			this.typeFilter = typeFilter;
+			this.expFilter = expFilter;
+		}
+	
+		public ClassesSingleResultLookupEnvironment(@NonNull Executor executor, @NonNull EClass typeFilter, @NonNull String name) {
+			this(executor,typeFilter, name, null);
 		}
 		
 		@Override
@@ -185,9 +214,11 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVis
 			if (namedElement != null) {
 				if (name.equals(namedElement.getName())) {
 					if (typeFilter.isInstance(namedElement)) {
-						EList<NamedElement> elements = getNamedElements();
-						if (!elements.contains(namedElement)) { 	// FIXME use a set ?
-							elements.add(namedElement);
+						if (expFilter == null || expFilter.matches(namedElement)) {
+							EList<NamedElement> elements = getNamedElements();
+							if (!elements.contains(namedElement)) { 	// FIXME use a set ?
+								elements.add(namedElement);
+							}
 						}
 					}
 				}
@@ -224,10 +255,10 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVis
 		}
 	}
 	
-		protected def void generateDefaultLookupVisitor(@NonNull EPackage ePackage) { 
+		protected def void generateUnqualifiedLookupVisitor(@NonNull EPackage ePackage) { 
 		
 		var boolean isDerived = isDerived();
-		var className = projectPrefix + "DefaultLookupVisitor";
+		var className = projectPrefix + "UnqualifiedLookupVisitor";
 		if (!isDerived) {
 			var MergeWriter writer = new MergeWriter(lookupArtifactsOutputFolder + className+ ".java");
 			writer.append('''
@@ -273,14 +304,19 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVis
 		
 		«FOR op : lookupOps»
 		«var opName = op.name»
-		«var lookupVisitorName = op.getLookupVisitorName()»
+		«var lookupVisitorName = op.getLookupVisitorName»
+		«var hasAdditionalFilter = op.hasAdditionalFilterArgs»
+		«val lookupVars = op.getLookupArgs»
 		«var typeFQName = getTypeFQName(op.type)»
 		«var typeLiteral = getTypeLiteral(op.type)»
 		
-		public «projectPrefix»LookupResult<«typeFQName»> «opName»(«getTypeFQName(op.owningClass)» fromElement«FOR param:op.ownedParameters», «param.type.name» «param.name»«ENDFOR») {
-			«projectPrefix»SingleResultLookupEnvironment _lookupEnv = new «projectPrefix»SingleResultLookupEnvironment(executor, «fqPackageItf».Literals.«typeLiteral»«FOR param:op.ownedParameters», «param.name»«ENDFOR»);
+		public «projectPrefix»LookupResult<«typeFQName»> «opName»(«getTypeFQName(op.owningClass)» context«FOR param:op.ownedParameters», «getTypeFQName(param.type)» «param.name»«ENDFOR») {
+			«IF hasAdditionalFilter»
+			«op.type.name»Filter filter = new «op.type.name»Filter(«op.getFilterArgs»);
+			«ENDIF»
+			«projectPrefix»SingleResultLookupEnvironment _lookupEnv = new «projectPrefix»SingleResultLookupEnvironment(executor, «fqPackageItf».Literals.«typeLiteral»«lookupVars»);
 			«lookupVisitorName» _lookupVisitor = new «lookupVisitorName»(_lookupEnv);
-			fromElement.accept(_lookupVisitor);
+			context.accept(_lookupVisitor);
 			return new «projectPrefix»LookupResultImpl<«typeFQName»>
 					(_lookupEnv.getNamedElementsByKind(«typeFQName».class));
 		}
@@ -302,7 +338,7 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVis
 		ePackage.generateAutoLookupResultClass;
 		ePackage.generateAutoLookupResultItf;
 		ePackage.generateSingleResultLookupEnvironment;
-		ePackage.generateDefaultLookupVisitor;
+		ePackage.generateUnqualifiedLookupVisitor;
 		genPackage.generateAutoLookupSolver;
 	}
 
@@ -339,6 +375,10 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVis
 		return true;
 	}
 	
+	private def boolean isExportedLookupOperation(Operation op) {
+		isLookupOperation(op) && op.name.contains("Exported") // FIXME more robust check?
+	}
+	
 	private def GenModelHelper createGenModelHelper(GenPackage genPackage) {
 		var PivotMetamodelManager mManager = PivotUtilInternal.getEnvironmentFactory(genPackage.getEcorePackage().eResource).metamodelManager;
 		return new AbstractGenModelHelper(mManager);
@@ -350,11 +390,42 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVis
 	}
 	
 	private def String getTypeFQName(Type type) {
-		return genModel.getEcoreInterfaceName(type as Class)	
+		return if (type instanceof CollectionType) '''java.util.List<«getTypeFQName(type.elementType)»>''' 
+			else genModel.getEcoreInterfaceName(type as Class)	
 	}
 	
 	private def String getLookupVisitorName(Operation op) {
-		if (op.name.contains("Qualified")) '''«projectPrefix»QualificationLookupVisitor'''
-			 else '''«projectPrefix»DefaultLookupVisitor''';	
+		if (op.name.contains("Qualified")) '''«projectPrefix»QualifiedLookupVisitor'''
+		else if (op.name.contains("Exported")) '''«projectPrefix»ExportedLookupVisitor'''
+		else '''«projectPrefix»UnqualifiedLookupVisitor''';	
 	}
+	
+	private def boolean hasAdditionalFilterArgs(Operation op) {
+		val params = op.ownedParameters;
+		if (op.isExportedLookupOperation) params.size() > 2 else params.size() > 1;
+	}
+	
+	private def String getLookupArgs(Operation op) {
+		val params = op.ownedParameters
+		val nameParam = if (op.isExportedLookupOperation) params.get(1) else params.get(0);
+		''',«nameParam.name»«IF op.hasAdditionalFilterArgs»,filter«ENDIF»'''
+	}
+	
+	// We assume we are dealing with the the exported element lookup op
+	private def String getFilterArgs(Operation op) {
+		val sb = new StringBuffer();
+		val filterArgsIndex = if (op.isExportedLookupOperation) 2 else 1;
+		val params = op.ownedParameters
+		var first=true;
+		for (var i = filterArgsIndex; i < params.size; i++) {
+			if (first) {
+				first = false
+			} else {
+				sb.append(',');	
+			}
+			sb.append('''«params.get(i).name»''');
+		}
+		sb.toString();
+	}
+	
 }
