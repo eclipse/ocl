@@ -145,7 +145,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 		String packageName = getVisitorPackageName(projectName); 
 		
 		//String className = prefix + "AutoContainmentVisitor";
-		String className = getAutoVisitorClassName(prefix);
+		String className = getAutoContainmentVisitorClassName(prefix);
 		AS2CGVisitor as2cgVisitor = createAS2CGVisitor();
 		CGPackage cgPackage = CGModelFactory.eINSTANCE.createCGPackage();
 		cgPackage.setName(packageName);
@@ -229,8 +229,7 @@ public class CS2ASCodeGenerator extends AutoCodeGenerator
 		return result;
 	}
 	
-	@Override
-	protected @NonNull String getAutoVisitorClassName(@NonNull String prefix) {
+	protected @NonNull String getAutoContainmentVisitorClassName(@NonNull String prefix) {
 		return "Auto" +  prefix + "ContainmentVisitor";
 	}
 

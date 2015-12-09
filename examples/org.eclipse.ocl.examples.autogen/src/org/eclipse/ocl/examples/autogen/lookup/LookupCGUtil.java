@@ -76,6 +76,10 @@ public class LookupCGUtil {
 		return cgClass.getName().contains("Unqualified"); // FIXME more robust check ?
 	}
 	
+	public static boolean isExportedVisitorClass(@NonNull CGClass cgClass) {
+		return cgClass.getName().contains("Exported"); // FIXME more robust check ?
+	}
+	
 	/**
 	 * A derived visitor class will considered as such, if it's not the commom visitor class
 	 * or it doesn't extend it

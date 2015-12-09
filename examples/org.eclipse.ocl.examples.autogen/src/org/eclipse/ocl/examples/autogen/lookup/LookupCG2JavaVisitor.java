@@ -39,25 +39,36 @@ public class LookupCG2JavaVisitor extends AutoCG2JavaVisitor<LookupCodeGenerator
 		js.appendIsRequired(true);
 		js.append(" ");
 		js.appendClassReference(getVisitorContext(cgClass)); 
-		js.append(" " + LookupClassContext.CONTEXT_NAME + ") {\n");
+		js.append(" " + LookupClassContext.CONTEXT_NAME);
+		if (LookupCGUtil.isExportedVisitorClass(cgClass)) {
+			js.append(", ");
+			js.appendIsRequired(true);
+			js.append(" ");
+			js.appendClassReference(Object.class);
+			js.append(" " + LookupClassContext.INMPORTER_NAME);
+		}
+		js.append(") {\n");
 		js.pushIndentation(null);
 			js.append("super(" + LookupClassContext.CONTEXT_NAME + ");\n");
 		if (LookupCGUtil.isCommonVisitorClass(cgClass)) {
 			js.append("this." + JavaConstants.EXECUTOR_NAME + " = " + LookupClassContext.CONTEXT_NAME + ".getExecutor();\n");
 			js.append("this." + JavaConstants.ID_RESOLVER_NAME + " = " + JavaConstants.EXECUTOR_NAME + ".getIdResolver();\n");
+		} else if (LookupCGUtil.isExportedVisitorClass(cgClass)) {
+			js.append("this." + LookupClassContext.INMPORTER_NAME + " = " +  LookupClassContext.INMPORTER_NAME + ";\n");
 		}
 		js.popIndentation();
 		js.append("}\n");
 		
 		if (LookupCGUtil.isUnqualifiedVisitorClass(cgClass) && !isDerivedVisitor(cgClass)) {
-			doEnvForChild(cgClass);
 			doParentEnv(cgClass);
 		}
 	}
 	
 	@Override
 	protected void doVisiting(@NonNull CGClass cgClass) {
-		if (LookupCGUtil.isUnqualifiedVisitorClass(cgClass)) {
+		if (LookupCGUtil.isCommonVisitorClass(cgClass)) {
+			super.doVisiting(cgClass);	// the default visiting method
+		} else if (LookupCGUtil.isUnqualifiedVisitorClass(cgClass)) {
 			js.append("\n");
 			js.append("@Override\n");
 			js.append("public ");
@@ -76,48 +87,9 @@ public class LookupCG2JavaVisitor extends AutoCG2JavaVisitor<LookupCodeGenerator
 			js.append("visitable);\n");
 			js.popIndentation();
 			js.append("}\n");
-		} else {
-			super.doVisiting(cgClass);	
-		}
+		} // else print nothing
 	}
 
-	/**
-	 * protected @Nullable Environment envForChild(@NonNull Element element, @Nullable Element child) {
-	 *    this.child = child;
-	 *    return element.accept(this);
-	 * }
-	 */
-	protected void doEnvForChild(@NonNull CGClass cgClass) {
-		js.append("\n");
-		js.append("/**\n");
-		js.append(" * Return the results of a lookup from the " + LookupClassContext.CHILD_NAME + " of " + LookupClassContext.ELEMENT_NAME + ".\n");
-		js.append(" */\n");
-		js.append("public ");
-		js.appendIsRequired(false);
-		js.append(" ");
-		js.appendClassReference(context.getEnvironmentClass());
-		js.append(" " + LookupClassContext.ENV_FOR_CHILD_NAME + "(");
-		js.appendIsRequired(true);
-		js.append(" ");
-		js.appendClassReference(Object.class);
-		js.append(" " + LookupClassContext.ELEMENT_NAME + ", ");
-		js.appendIsRequired(false);
-		js.append(" ");
-		js.appendClassReference(Object.class);
-		js.append(" " + LookupClassContext.CHILD_NAME + ") {\n");
-		js.pushIndentation(null);
-			js.append("this.");
-			js.appendReferenceTo(context.getChildVariable());
-			js.append(" = " + LookupClassContext.ELEMENT_NAME + ";\n");
-			js.append("return ((");
-			js.appendClassReference(context.getVisitableClass());
-			js.append(")");
-			js.append(LookupClassContext.ELEMENT_NAME);
-			js.append(")");
-			js.append(".accept(this);\n");
-		js.popIndentation();
-		js.append("}\n");
-	}
   	
 	/**
 	 * protected @Nullable Environment parentEnv(@NonNull EObject element) {

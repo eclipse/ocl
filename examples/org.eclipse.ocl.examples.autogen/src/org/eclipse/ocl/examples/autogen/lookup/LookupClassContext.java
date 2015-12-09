@@ -25,14 +25,16 @@ public class LookupClassContext extends JavaGlobalContext<LookupCodeGenerator>
 	public static final @NonNull String CONTEXT_NAME = "context";
 	public static final @NonNull String ELEMENT_NAME = "element";
 	public static final @NonNull String EMPTY_ENV_NAME = "emptyEnv";
-	public static final @NonNull String ENV_NAME = "_env";
-	public static final @NonNull String ENV_FOR_CHILD_NAME = "envForChild";
+	public static final @NonNull String ENV_NAME = "_env";	
+	public static final @NonNull String EXPORTED_ENV_NAME = "_exported_env";
 	public static final @NonNull String HAS_FINAL_RESULT_NAME = "hasFinalResult";
+	public static final @NonNull String INMPORTER_NAME = "importer";
 	public static final @NonNull String INNER_ENV_NAME = "innerEnv";
 	public static final @NonNull String NESTED_ENV_NAME = "nestedEnv";
 	public static final @NonNull String OUTER_ENV_NAME = "outerEnv";
 	public static final @NonNull String PARENT_NAME = "parent";
 	public static final @NonNull String PARENT_ENV_NAME = "parentEnv";
+	public static final @NonNull String QUALIFIED_ENV_NAME = "_qualified_env";
 	
 	public LookupClassContext(@NonNull LookupCodeGenerator codeGenerator, @NonNull org.eclipse.ocl.pivot.Package asPackage) {
 		super(codeGenerator);

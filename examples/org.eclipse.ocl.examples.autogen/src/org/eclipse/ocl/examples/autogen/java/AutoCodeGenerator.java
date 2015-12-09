@@ -181,8 +181,6 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 	public @NonNull AutoAnalyzer getAnalyzer() {
 		return cgAnalyzer;
 	}
-	
-	protected abstract @NonNull String getAutoVisitorClassName(@NonNull String prefix);
 
 	protected @NonNull CGClass getExternalClass(@NonNull Class<?> javaClass, CGClass... javaGenerics) {
 		String packageName = javaClass.getPackage().getName();

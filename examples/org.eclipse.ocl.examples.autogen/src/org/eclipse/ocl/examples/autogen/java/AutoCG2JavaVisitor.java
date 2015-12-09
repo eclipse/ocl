@@ -85,8 +85,7 @@ public abstract class AutoCG2JavaVisitor<CG extends AutoCodeGenerator> extends C
 		js.append(" visitable) {\n");
 		js.pushIndentation(null);
 		js.append("throw new UnsupportedOperationException(\"");
-		js.append(cgClass.getName());
-		js.append(" is not supported by \\\"\" + getClass().getName() + \"\\\"\"");
+		js.append("Visiting \"+visitable.toString()+\" is not supported by \\\"\" + getClass().getName() + \"\\\"\"");
 		js.append(");\n");
 		js.popIndentation();
 		js.append("}\n");

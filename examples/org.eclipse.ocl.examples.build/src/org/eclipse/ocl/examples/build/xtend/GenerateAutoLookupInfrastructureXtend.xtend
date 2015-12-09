@@ -255,7 +255,7 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVis
 		}
 	}
 	
-		protected def void generateUnqualifiedLookupVisitor(@NonNull EPackage ePackage) { 
+	protected def void generateUnqualifiedLookupVisitor(@NonNull EPackage ePackage) { 
 		
 		var boolean isDerived = isDerived();
 		var className = projectPrefix + "UnqualifiedLookupVisitor";
@@ -266,12 +266,62 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVis
 	
 	import org.eclipse.jdt.annotation.NonNull;
 	import «lookupPackageName».LookupEnvironment;
-	import «visitorPackageName».Abstract«projectPrefix»UnqualifiedLookupVisitor;
+	import «visitorPackageName».Abstract«className»;
 	
-	public class «className» extends Abstract«projectPrefix»UnqualifiedLookupVisitor {
+	public class «className» extends Abstract«className» {
 	
 		public «className»(@NonNull LookupEnvironment context) {
 			super(context);
+		}
+	
+	}
+			''');
+			writer.close();
+		}
+	}
+	
+	protected def void generateQualifiedLookupVisitor(@NonNull EPackage ePackage) { 
+		
+		var boolean isDerived = isDerived();
+		var className = projectPrefix + "QualifiedLookupVisitor";
+		if (!isDerived) {
+			var MergeWriter writer = new MergeWriter(lookupArtifactsOutputFolder + className+ ".java");
+			writer.append('''
+	«ePackage.generateHeader(lookupArtifactsJavaPackage)»
+	
+	import org.eclipse.jdt.annotation.NonNull;
+	import «lookupPackageName».LookupEnvironment;
+	import «visitorPackageName».Abstract«className»;
+	
+	public class «className» extends Abstract«className» {
+	
+		public «className»(@NonNull LookupEnvironment context) {
+			super(context);
+		}
+	
+	}
+			''');
+			writer.close();
+		}
+	}
+	
+	protected def void generateExportedLookupVisitor(@NonNull EPackage ePackage) { 
+		
+		var boolean isDerived = isDerived();
+		var className = projectPrefix + "ExportedLookupVisitor";
+		if (!isDerived) {
+			var MergeWriter writer = new MergeWriter(lookupArtifactsOutputFolder + className+ ".java");
+			writer.append('''
+	«ePackage.generateHeader(lookupArtifactsJavaPackage)»
+	
+	import org.eclipse.jdt.annotation.NonNull;
+	import «lookupPackageName».LookupEnvironment;
+	import «visitorPackageName».Abstract«className»;
+	
+	public class «className» extends Abstract«className» {
+	
+		public «className»(@NonNull LookupEnvironment context, @NonNull Object importer) {
+			super(context, importer);
 		}
 	
 	}
@@ -303,19 +353,20 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVis
 		}
 		
 		«FOR op : lookupOps»
-		«var opName = op.name»
-		«var lookupVisitorName = op.getLookupVisitorName»
-		«var hasAdditionalFilter = op.hasAdditionalFilterArgs»
+		«val opName = op.name»
+		«val isExportedLookup = op.exportedLookupOperation»
+		«val lookupVisitorName = op.getLookupVisitorName»
+		«val hasAdditionalFilter = op.hasAdditionalFilterArgs»
 		«val lookupVars = op.getLookupArgs»
-		«var typeFQName = getTypeFQName(op.type)»
-		«var typeLiteral = getTypeLiteral(op.type)»
+		«val typeFQName = getTypeFQName(op.type)»
+		«val typeLiteral = getTypeLiteral(op.type)»
 		
 		public «projectPrefix»LookupResult<«typeFQName»> «opName»(«getTypeFQName(op.owningClass)» context«FOR param:op.ownedParameters», «getTypeFQName(param.type)» «param.name»«ENDFOR») {
 			«IF hasAdditionalFilter»
 			«op.type.name»Filter filter = new «op.type.name»Filter(«op.getFilterArgs»);
 			«ENDIF»
 			«projectPrefix»SingleResultLookupEnvironment _lookupEnv = new «projectPrefix»SingleResultLookupEnvironment(executor, «fqPackageItf».Literals.«typeLiteral»«lookupVars»);
-			«lookupVisitorName» _lookupVisitor = new «lookupVisitorName»(_lookupEnv);
+			«lookupVisitorName» _lookupVisitor = new «lookupVisitorName»(_lookupEnv«IF isExportedLookup», importer«ENDIF»);
 			context.accept(_lookupVisitor);
 			return new «projectPrefix»LookupResultImpl<«typeFQName»>
 					(_lookupEnv.getNamedElementsByKind(«typeFQName».class));
@@ -339,6 +390,8 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVis
 		ePackage.generateAutoLookupResultItf;
 		ePackage.generateSingleResultLookupEnvironment;
 		ePackage.generateUnqualifiedLookupVisitor;
+		ePackage.generateQualifiedLookupVisitor;
+		ePackage.generateExportedLookupVisitor;
 		genPackage.generateAutoLookupSolver;
 	}
 
@@ -399,6 +452,7 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVis
 		else if (op.name.contains("Exported")) '''«projectPrefix»ExportedLookupVisitor'''
 		else '''«projectPrefix»UnqualifiedLookupVisitor''';	
 	}
+
 	
 	private def boolean hasAdditionalFilterArgs(Operation op) {
 		val params = op.ownedParameters;
