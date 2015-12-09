@@ -36,11 +36,17 @@ public class PivotSingleResultLookupEnvironment extends LookupEnvironmentImpl   
 	private @NonNull Executor executor;
 	private @NonNull String name;
 	private @NonNull EClass typeFilter;
+	private @Nullable PivotLookupFilter expFilter;
 	
-	public PivotSingleResultLookupEnvironment(@NonNull Executor executor, @NonNull EClass typeFilter, @NonNull String name) {
+	public PivotSingleResultLookupEnvironment(@NonNull Executor executor, @NonNull EClass typeFilter, @NonNull String name, @Nullable PivotLookupFilter expFilter) {
 		this.executor = executor;
 		this.name = name;
 		this.typeFilter = typeFilter;
+		this.expFilter = expFilter;
+	}
+
+	public PivotSingleResultLookupEnvironment(@NonNull Executor executor, @NonNull EClass typeFilter, @NonNull String name) {
+		this(executor,typeFilter, name, null);
 	}
 	
 	@Override
@@ -65,9 +71,11 @@ public class PivotSingleResultLookupEnvironment extends LookupEnvironmentImpl   
 		if (namedElement != null) {
 			if (name.equals(namedElement.getName())) {
 				if (typeFilter.isInstance(namedElement)) {
-					EList<NamedElement> elements = getNamedElements();
-					if (!elements.contains(namedElement)) { 	// FIXME use a set ?
-						elements.add(namedElement);
+					if (expFilter == null || (expFilter != null /*null analysis bug? */ && expFilter.matches(namedElement))) {
+						EList<NamedElement> elements = getNamedElements();
+						if (!elements.contains(namedElement)) { 	// FIXME use a set ?
+							elements.add(namedElement);
+						}
 					}
 				}
 			}

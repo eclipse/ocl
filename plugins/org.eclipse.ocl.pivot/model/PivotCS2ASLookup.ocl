@@ -13,7 +13,7 @@ def : env() : lookup::LookupEnvironment =
 def : _env(child : OclElement) : lookup::LookupEnvironment =
 	parentEnv()
 	
-def : _exported_env(from : OclElement) : lookup::LookupEnvironment =
+def : _exported_env(importer : OclElement) : lookup::LookupEnvironment =
 	lookup::LookupEnvironment { }
 	
 def : parentEnv() : lookup::LookupEnvironment =
@@ -21,23 +21,11 @@ def : parentEnv() : lookup::LookupEnvironment =
 endpackage 
 
 package lookup
-		
 context LookupEnvironment
 def : nestedEnv() : LookupEnvironment = 
 	LookupEnvironment {
 		parentEnv = self
-	}
-
-def : addElementsOf(element : ocl::OclElement) : LookupEnvironment =
-	let newEnv = element._env(null)
-	in LookupEnvironment {
-		namedElements = self.namedElements->including(newEnv.namedElements)
-	}
-
-def : addElementsOf(elements : Collection(ocl::OclElement)) : LookupEnvironment =
-	elements->iterate(element ; acc : LookupEnvironment = self 
-		| acc.addElementsOf(element))
-
+	}		
 endpackage
 
 package as
@@ -145,20 +133,20 @@ def : _env(child : ocl::OclElement) : lookup::LookupEnvironment =
 		.addElements(ownedPackages)
 		.addElements(ownedImports.importedNamespace)
 		.addElements(ownedImports.importedNamespace._exported_env(self).namedElements)
-def : _exported_env(from : ocl::OclElement) : lookup::LookupEnvironment =
+def : _exported_env(importer : ocl::OclElement) : lookup::LookupEnvironment =
 	let env = lookup::LookupEnvironment {}
 	in env
 		.addElements(ownedPackages)
 	
-def : _lookupExportedPackage(from : ocl::OclElement, pName : String) : Package[?] =
-	let foundPackage = _lookupPackage(_exported_env(from), pName)
+def : _lookupExportedPackage(importer : ocl::OclElement, pName : String) : Package[?] =
+	let foundPackage = _lookupPackage(_exported_env(importer), pName)
 	in  if foundPackage->isEmpty()
 		then null
 		else foundPackage->first()
 		endif
 		
-def : lookupExportedPackage(from : ocl::OclElement, aPathElementCS : cs::PathElementCS) : Package[?] =
-	_lookupExportedPackage(from, aPathElementCS.name)
+def : lookupExportedPackage(importer : ocl::OclElement, aPathElementCS : cs::PathElementCS) : Package[?] =
+	_lookupExportedPackage(importer, aPathElementCS.name)
 	
 context Operation
 def : _env(child : ocl::OclElement) : lookup::LookupEnvironment =
@@ -199,20 +187,20 @@ def : _qualified_env() : lookup::LookupEnvironment =
 def : _env(child : ocl::OclElement) : lookup::LookupEnvironment =
 	parentEnv().nestedEnv()
 		.addElements(ownedClasses)
-def : _exported_env(from : ocl::OclElement) : lookup::LookupEnvironment =
+def : _exported_env(importer : ocl::OclElement) : lookup::LookupEnvironment =
 	let env = lookup::LookupEnvironment {}
 	in env
 		.addElements(ownedClasses)
 	
-def : _lookupExportedClass(from : ocl::OclElement, cName : String) : Class[?] =
-	let foundClass = _lookupClass(_exported_env(from), cName)
+def : _lookupExportedClass(importer : ocl::OclElement, cName : String) : Class[?] =
+	let foundClass = _lookupClass(_exported_env(importer), cName)
 	in  if foundClass->isEmpty()
 		then null
 		else foundClass->first()
 		endif
 		
-def : lookupExportedClass(from : ocl::OclElement, aPathElementCS : cs::PathElementCS) : Class[?] =
-	_lookupExportedClass(from, aPathElementCS.name)
+def : lookupExportedClass(importer : ocl::OclElement, aPathElementCS : cs::PathElementCS) : Class[?] =
+	_lookupExportedClass(importer, aPathElementCS.name)
 	
 context Property
 def : _env(child : ocl::OclElement) : lookup::LookupEnvironment =

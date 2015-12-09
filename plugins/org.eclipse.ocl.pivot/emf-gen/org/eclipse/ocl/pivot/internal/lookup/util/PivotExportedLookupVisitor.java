@@ -17,15 +17,15 @@ package	org.eclipse.ocl.pivot.internal.lookup.util;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment;
-import org.eclipse.ocl.pivot.util.AbstractPivotLookupVisitor;
+import org.eclipse.ocl.pivot.util.AbstractPivotExportedLookupVisitor;
 
 /**
  * @since 1.1
  */
-public class PivotDefaultLookupVisitor extends AbstractPivotLookupVisitor {
+public class PivotExportedLookupVisitor extends AbstractPivotExportedLookupVisitor {
 
-	public PivotDefaultLookupVisitor(@NonNull LookupEnvironment context) {
-		super(context);
+	public PivotExportedLookupVisitor(@NonNull LookupEnvironment context, @NonNull Object importer) {
+		super(context, importer);
 	}
 
 }

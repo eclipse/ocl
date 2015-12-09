@@ -43,5 +43,6 @@ Workflow {
     	modelPackageName = "org.eclipse.ocl.pivot"
     	lookupPackageName = "org.eclipse.ocl.pivot.internal.lookup"
 		visitorPackageName = "org.eclipse.ocl.pivot.util"
+		visitorClassName = "Visitor"
     }
 }

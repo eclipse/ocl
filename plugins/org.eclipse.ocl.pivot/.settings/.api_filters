@@ -401,11 +401,4 @@
             </message_arguments>
         </filter>
     </resource>
-    <resource path="emf-gen/org/eclipse/ocl/pivot/util/AbstractPivotLookupVisitor.java" type="org.eclipse.ocl.pivot.util.AbstractPivotLookupVisitor">
-        <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="1110441988">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.pivot.util.AbstractPivotLookupVisitor"/>
-            </message_arguments>
-        </filter>
-    </resource>
 </component>

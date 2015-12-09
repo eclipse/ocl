@@ -11,12 +11,12 @@ package org.eclipse.ocl.pivot.util;
 
 import java.util.Iterator;
 import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Behavior;
 import org.eclipse.ocl.pivot.Class;
-import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Enumeration;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
@@ -24,7 +24,6 @@ import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.Import;
 import org.eclipse.ocl.pivot.IterateExp;
 import org.eclipse.ocl.pivot.IteratorExp;
-import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.LetExp;
 import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.Model;
@@ -38,7 +37,6 @@ import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Variable;
-import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.ClassId;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.IdManager;
@@ -54,8 +52,6 @@ import org.eclipse.ocl.pivot.library.collection.OrderedCollectionIndexOfOperatio
 import org.eclipse.ocl.pivot.library.logical.BooleanNotOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanOperation;
-import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
-import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -63,8 +59,12 @@ import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.pivot.values.SequenceValue;
 import org.eclipse.ocl.pivot.values.SetValue;
 
-public class AbstractPivotLookupVisitor
-	extends AbstractExtendingVisitor<LookupEnvironment, LookupEnvironment>
+/**
+ * @since 1.1
+ */
+public class AbstractPivotUnqualifiedLookupVisitor
+	extends AbstractPivotCommonLookupVisitor
+	implements Visitor<LookupEnvironment>
 {
     public static final @NonNull /*@NonInvalid*/ RootPackageId PACKid_$metamodel$ = IdManager.getRootPackageId("$metamodel$");
     public static final @NonNull /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Lookup = IdManager.getNsURIPackageId("http://www.eclipse.org/ocl/2015/Lookup", null, LookupPackage.eINSTANCE);
@@ -72,11 +72,10 @@ public class AbstractPivotLookupVisitor
     public static final @NonNull /*@NonInvalid*/ RootPackageId PACKid_java_c_s_s_org_eclipse_ocl_pivot_lookup = IdManager.getRootPackageId("java://org.eclipse.ocl.pivot.lookup");
     public static final @NonNull /*@NonInvalid*/ RootPackageId PACKid_org_eclipse_ocl_pivot_evaluation = IdManager.getRootPackageId("org.eclipse.ocl.pivot.evaluation");
     public static final @NonNull /*@NonInvalid*/ RootPackageId PACKid_org_eclipse_ocl_pivot_ids = IdManager.getRootPackageId("org.eclipse.ocl.pivot.ids");
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_AbstractPivotLookupVisitor = PACKid_java_c_s_s_org_eclipse_ocl_pivot_lookup.getClassId("AbstractPivotLookupVisitor", 0);
+    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_AbstractPivotUnqualifiedLookupVisitor = PACKid_java_c_s_s_org_eclipse_ocl_pivot_lookup.getClassId("AbstractPivotUnqualifiedLookupVisitor", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Behavior = PACKid_$metamodel$.getClassId("Behavior", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Class = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("Class", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Class_0 = PACKid_$metamodel$.getClassId("Class", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Constraint = PACKid_$metamodel$.getClassId("Constraint", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_DataType = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("DataType", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_DataType_0 = PACKid_$metamodel$.getClassId("DataType", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Enumeration = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("Enumeration", 0);
@@ -91,7 +90,6 @@ public class AbstractPivotLookupVisitor
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_IterateExp_0 = PACKid_$metamodel$.getClassId("IterateExp", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_IteratorExp = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("IteratorExp", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_IteratorExp_0 = PACKid_$metamodel$.getClassId("IteratorExp", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_LanguageExpression = PACKid_$metamodel$.getClassId("LanguageExpression", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_LetExp = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("LetExp", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_LetExp_0 = PACKid_$metamodel$.getClassId("LetExp", 0);
     public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Library = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("Library", 0);
@@ -128,28 +126,14 @@ public class AbstractPivotLookupVisitor
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_CLSSid_Variable = TypeId.SEQUENCE.getSpecializedId(CLSSid_Variable);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Behavior = TypeId.SET.getSpecializedId(CLSSid_Behavior);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Class = TypeId.SET.getSpecializedId(CLSSid_Class_0);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Constraint = TypeId.SET.getSpecializedId(CLSSid_Constraint);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_LanguageExpression = TypeId.SET.getSpecializedId(CLSSid_LanguageExpression);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_OCLExpression = TypeId.SET.getSpecializedId(CLSSid_OCLExpression);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Package = TypeId.SET.getSpecializedId(CLSSid_Package_0);
     public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Variable = TypeId.SET.getSpecializedId(CLSSid_Variable);
     
     protected @Nullable /*@Thrown*/ Object child;
-    protected final @NonNull /*@Thrown*/ Executor executor;
-    protected final @NonNull /*@Thrown*/ IdResolver idResolver;
     
-    public AbstractPivotLookupVisitor(@NonNull LookupEnvironment context) {
+    public AbstractPivotUnqualifiedLookupVisitor(@NonNull LookupEnvironment context) {
         super(context);
-        this.executor = context.getExecutor();
-        this.idResolver = executor.getIdResolver();
-    }
-    
-    /**
-     * Return the results of a lookup from the child of element.
-     */
-    public @Nullable LookupEnvironment envForChild(@NonNull Object element, @Nullable Object child) {
-        this.child = element;
-        return ((Visitable)element).accept(this);
     }
     
     /**
@@ -168,23 +152,13 @@ public class AbstractPivotLookupVisitor
     
     @Override
     public @Nullable LookupEnvironment visiting(@NonNull Visitable visitable) {
-        throw new UnsupportedOperationException("AbstractPivotLookupVisitor is not supported by \"" + getClass().getName() + "\"");
+        return parentEnv((EObject)visitable);
     }
     
     /**
      * visitClass(element : Class[1]) : lookup::LookupEnvironment[?]
      * 
-     * 
-     * let
-     *   inner : lookup::LookupEnvironment[1] = context.addElements(
-     *     ownedProperties->select(not isStatic))
-     *   .addElements(ownedOperations->select(not isStatic))
-     *   .addElements(ownedBehaviors)
-     * in
-     *   if inner.hasFinalResult()
-     *   then inner
-     *   else this.parentEnv(element)
-     *   endif
+     * _'null' : lookup::LookupEnvironment[?]
      */
     @Override
     public @Nullable /*@NonInvalid*/ LookupEnvironment visitClass(final @NonNull /*@NonInvalid*/ Class element) {
@@ -200,7 +174,7 @@ public class AbstractPivotLookupVisitor
             }
             @Nullable /*@NonInvalid*/ Property _1 = (Property)ITERATOR__1.next();
             /**
-             * not isStatic
+             * _'not' : Boolean[?]
              */
             if (_1 == null) {
                 throw new InvalidValueException("Null source for \'Feature::isStatic\'");
@@ -230,7 +204,7 @@ public class AbstractPivotLookupVisitor
             }
             @Nullable /*@NonInvalid*/ Operation _1_0 = (Operation)ITERATOR__1_0.next();
             /**
-             * not isStatic
+             * _'not' : Boolean[?]
              */
             if (_1_0 == null) {
                 throw new InvalidValueException("Null source for \'Feature::isStatic\'");
@@ -266,16 +240,7 @@ public class AbstractPivotLookupVisitor
     /**
      * visitDataType(element : DataType[1]) : lookup::LookupEnvironment[?]
      * 
-     * 
-     * let
-     *   inner : lookup::LookupEnvironment[1] = context.addElements(
-     *     ownedProperties->select(not isStatic))
-     *   .addElements(ownedOperations->select(not isStatic))
-     * in
-     *   if inner.hasFinalResult()
-     *   then inner
-     *   else this.parentEnv(element)
-     *   endif
+     * _'null' : lookup::LookupEnvironment[?]
      */
     @Override
     public @Nullable /*@NonInvalid*/ LookupEnvironment visitDataType(final @NonNull /*@NonInvalid*/ DataType element_0) {
@@ -291,7 +256,7 @@ public class AbstractPivotLookupVisitor
             }
             @Nullable /*@NonInvalid*/ Property _1 = (Property)ITERATOR__1.next();
             /**
-             * not isStatic
+             * _'not' : Boolean[?]
              */
             if (_1 == null) {
                 throw new InvalidValueException("Null source for \'Feature::isStatic\'");
@@ -321,7 +286,7 @@ public class AbstractPivotLookupVisitor
             }
             @Nullable /*@NonInvalid*/ Operation _1_0 = (Operation)ITERATOR__1_0.next();
             /**
-             * not isStatic
+             * _'not' : Boolean[?]
              */
             if (_1_0 == null) {
                 throw new InvalidValueException("Null source for \'Feature::isStatic\'");
@@ -354,17 +319,7 @@ public class AbstractPivotLookupVisitor
     /**
      * visitEnumeration(element : Enumeration[1]) : lookup::LookupEnvironment[?]
      * 
-     * 
-     * let
-     *   inner : lookup::LookupEnvironment[1] = context.addElements(ownedLiterals)
-     *   .addElements(ownedProperties->select(not isStatic))
-     *   .addElements(ownedOperations->select(not isStatic))
-     *   .addElements(ownedBehaviors)
-     * in
-     *   if inner.hasFinalResult()
-     *   then inner
-     *   else this.parentEnv(element)
-     *   endif
+     * _'null' : lookup::LookupEnvironment[?]
      */
     @Override
     public @Nullable /*@NonInvalid*/ LookupEnvironment visitEnumeration(final @NonNull /*@NonInvalid*/ Enumeration element_1) {
@@ -383,7 +338,7 @@ public class AbstractPivotLookupVisitor
             }
             @Nullable /*@NonInvalid*/ Property _1 = (Property)ITERATOR__1.next();
             /**
-             * not isStatic
+             * _'not' : Boolean[?]
              */
             if (_1 == null) {
                 throw new InvalidValueException("Null source for \'Feature::isStatic\'");
@@ -413,7 +368,7 @@ public class AbstractPivotLookupVisitor
             }
             @Nullable /*@NonInvalid*/ Operation _1_0 = (Operation)ITERATOR__1_0.next();
             /**
-             * not isStatic
+             * _'not' : Boolean[?]
              */
             if (_1_0 == null) {
                 throw new InvalidValueException("Null source for \'Feature::isStatic\'");
@@ -449,17 +404,7 @@ public class AbstractPivotLookupVisitor
     /**
      * visitExpressionInOCL(element : ExpressionInOCL[1]) : lookup::LookupEnvironment[?]
      * 
-     * 
-     * let
-     *   inner : lookup::LookupEnvironment[1] = context.addElements(
-     *     ownedContext->asSequence())
-     *   .addElements(ownedParameters)
-     *   .addElements(ownedResult->asSequence())
-     * in
-     *   if inner.hasFinalResult()
-     *   then inner
-     *   else this.parentEnv(element)
-     *   endif
+     * _'null' : lookup::LookupEnvironment[?]
      */
     @Override
     public @Nullable /*@NonInvalid*/ LookupEnvironment visitExpressionInOCL(final @NonNull /*@NonInvalid*/ ExpressionInOCL element_2) {
@@ -493,30 +438,7 @@ public class AbstractPivotLookupVisitor
     /**
      * visitIterateExp(element : IterateExp[1]) : lookup::LookupEnvironment[?]
      * 
-     * 
-     * if ownedIterators->includes(child)
-     * then
-     *   let
-     *     inner : lookup::LookupEnvironment[1] = context.addElements(
-     *       ownedResult->asSequence())
-     *     .addElements(
-     *       ownedIterators->select(x |
-     *         element.ownedIterators->indexOf(x) <
-     *         element.ownedIterators->indexOf(child)))
-     *   in
-     *     if inner.hasFinalResult()
-     *     then inner
-     *     else this.parentEnv(element)
-     *     endif
-     * else
-     *   let
-     *     inner : lookup::LookupEnvironment[1] = context.addElements(ownedIterators)
-     *   in
-     *     if inner.hasFinalResult()
-     *     then inner
-     *     else this.parentEnv(element)
-     *     endif
-     * endif
+     * _'null' : lookup::LookupEnvironment[1]
      */
     @Override
     public @Nullable /*@NonInvalid*/ LookupEnvironment visitIterateExp(final @NonNull /*@NonInvalid*/ IterateExp element_3) {
@@ -541,7 +463,7 @@ public class AbstractPivotLookupVisitor
                 }
                 @Nullable /*@NonInvalid*/ Variable x = (Variable)ITERATOR_x.next();
                 /**
-                 * element.ownedIterators->indexOf(x) < element.ownedIterators->indexOf(child)
+                 * _'<' : Boolean[1]
                  */
                 final @NonNull /*@Thrown*/ IntegerValue indexOf = OrderedCollectionIndexOfOperation.INSTANCE.evaluate(BOXED_ownedIterators, x);
                 final @NonNull /*@Thrown*/ IntegerValue indexOf_0 = OrderedCollectionIndexOfOperation.INSTANCE.evaluate(BOXED_ownedIterators, child);
@@ -585,28 +507,7 @@ public class AbstractPivotLookupVisitor
     /**
      * visitIteratorExp(element : IteratorExp[1]) : lookup::LookupEnvironment[?]
      * 
-     * 
-     * if ownedIterators->includes(child)
-     * then
-     *   let
-     *     inner : lookup::LookupEnvironment[1] = context.addElements(
-     *       ownedIterators->select(x |
-     *         element.ownedIterators->indexOf(x) <
-     *         element.ownedIterators->indexOf(child)))
-     *   in
-     *     if inner.hasFinalResult()
-     *     then inner
-     *     else this.parentEnv(element)
-     *     endif
-     * else
-     *   let
-     *     inner : lookup::LookupEnvironment[1] = context.addElements(ownedIterators)
-     *   in
-     *     if inner.hasFinalResult()
-     *     then inner
-     *     else this.parentEnv(element)
-     *     endif
-     * endif
+     * _'null' : lookup::LookupEnvironment[1]
      */
     @Override
     public @Nullable /*@NonInvalid*/ LookupEnvironment visitIteratorExp(final @NonNull /*@NonInvalid*/ IteratorExp element_4) {
@@ -625,7 +526,7 @@ public class AbstractPivotLookupVisitor
                 }
                 @Nullable /*@NonInvalid*/ Variable x = (Variable)ITERATOR_x.next();
                 /**
-                 * element.ownedIterators->indexOf(x) < element.ownedIterators->indexOf(child)
+                 * _'<' : Boolean[1]
                  */
                 final @NonNull /*@Thrown*/ IntegerValue indexOf = OrderedCollectionIndexOfOperation.INSTANCE.evaluate(BOXED_ownedIterators, x);
                 final @NonNull /*@Thrown*/ IntegerValue indexOf_0 = OrderedCollectionIndexOfOperation.INSTANCE.evaluate(BOXED_ownedIterators, child);
@@ -669,19 +570,7 @@ public class AbstractPivotLookupVisitor
     /**
      * visitLetExp(element : LetExp[1]) : lookup::LookupEnvironment[?]
      * 
-     * 
-     * if ownedIn->includes(child)
-     * then
-     *   let
-     *     inner : lookup::LookupEnvironment[1] = context.addElements(
-     *       ownedVariable->asSequence())
-     *   in
-     *     if inner.hasFinalResult()
-     *     then inner
-     *     else this.parentEnv(element)
-     *     endif
-     * else this.parentEnv(element)
-     * endif
+     * _'null' : lookup::LookupEnvironment[?]
      */
     @Override
     public @Nullable /*@NonInvalid*/ LookupEnvironment visitLetExp(final @NonNull /*@NonInvalid*/ LetExp element_5) {
@@ -719,16 +608,7 @@ public class AbstractPivotLookupVisitor
     /**
      * visitLibrary(element : Library[1]) : lookup::LookupEnvironment[?]
      * 
-     * 
-     * let
-     *   inner : lookup::LookupEnvironment[1] = context.addElements(ownedPackages)
-     *   .addElements(ownedClasses)
-     *   .addElements(ownedPrecedences)
-     * in
-     *   if inner.hasFinalResult()
-     *   then inner
-     *   else this.parentEnv(element)
-     *   endif
+     * _'null' : lookup::LookupEnvironment[?]
      */
     @Override
     public @Nullable /*@NonInvalid*/ LookupEnvironment visitLibrary(final @NonNull /*@NonInvalid*/ Library element_6) {
@@ -757,12 +637,7 @@ public class AbstractPivotLookupVisitor
     /**
      * visitModel(element : Model[1]) : lookup::LookupEnvironment[?]
      * 
-     * 
-     * this.parentEnv(element)
-     * .addElements(ownedPackages)
-     * .addElements(ownedImports.importedNamespace)
-     * .addElements(
-     *   ownedImports.importedNamespace._exported_env(element).namedElements)
+     * _'null' : lookup::LookupEnvironment[1]
      */
     @Override
     public @Nullable /*@NonInvalid*/ LookupEnvironment visitModel(final @NonNull /*@NonInvalid*/ Model element_7) {
@@ -778,7 +653,7 @@ public class AbstractPivotLookupVisitor
             }
             @Nullable /*@NonInvalid*/ Import _1 = (Import)ITERATOR__1.next();
             /**
-             * importedNamespace
+             * _'null' : Namespace[1]
              */
             if (_1 == null) {
                 throw new InvalidValueException("Null source for \'Import::importedNamespace\'");
@@ -826,7 +701,7 @@ public class AbstractPivotLookupVisitor
             }
             @Nullable /*@NonInvalid*/ LookupEnvironment _1_2 = (LookupEnvironment)ITERATOR__1_2.next();
             /**
-             * namedElements
+             * _'null' : OrderedSet(NamedElement)
              */
             if (_1_2 == null) {
                 throw new InvalidValueException("Null source for \'\'http://www.eclipse.org/ocl/2015/Lookup\'::LookupEnvironment::namedElements\'");
@@ -848,7 +723,7 @@ public class AbstractPivotLookupVisitor
     /**
      * visitNamespace(element : Namespace[1]) : lookup::LookupEnvironment[?]
      * 
-     * this.parentEnv(element)
+     * _'null' : lookup::LookupEnvironment[?]
      */
     @Override
     public @Nullable /*@NonInvalid*/ LookupEnvironment visitNamespace(final @NonNull /*@NonInvalid*/ Namespace element_8) {
@@ -859,40 +734,21 @@ public class AbstractPivotLookupVisitor
     /**
      * visitOperation(element : Operation[1]) : lookup::LookupEnvironment[?]
      * 
-     * 
-     * if bodyExpression->includes(child)
-     * then
-     *   let
-     *     inner : lookup::LookupEnvironment[1] = context.addElements(ownedParameters)
-     *   in
-     *     if inner.hasFinalResult()
-     *     then inner
-     *     else this.parentEnv(element)
-     *     endif
-     * else
-     *   if ownedPostconditions->includes(child)
-     *   then
-     *     let
-     *       inner : lookup::LookupEnvironment[1] = context.addElements(ownedParameters)
-     *     in
-     *       if inner.hasFinalResult()
-     *       then inner
-     *       else this.parentEnv(element)
-     *       endif
-     *   else this.parentEnv(element)
-     *   endif
-     * endif
+     * _'null' : lookup::LookupEnvironment[?]
      */
     @Override
     public @Nullable /*@NonInvalid*/ LookupEnvironment visitOperation(final @NonNull /*@NonInvalid*/ Operation element_9) {
-        final @Nullable /*@Thrown*/ LanguageExpression bodyExpression = element_9.getBodyExpression();
-        final @NonNull /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, SET_CLSSid_LanguageExpression, bodyExpression);
-        final /*@Thrown*/ boolean includes = CollectionIncludesOperation.INSTANCE.evaluate(oclAsSet, child).booleanValue();
-        @Nullable /*@Thrown*/ LookupEnvironment symbol_3;
-        if (includes) {
-            final @NonNull /*@Thrown*/ List<Parameter> ownedParameters = element_9.getOwnedParameters();
+        final @NonNull /*@Thrown*/ List<Parameter> ownedParameters_0 = element_9.getOwnedParameters();
+        final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedParameters = idResolver.createOrderedSetOfAll(ORD_CLSSid_Parameter, ownedParameters_0);
+        final /*@Thrown*/ boolean includes = CollectionIncludesOperation.INSTANCE.evaluate(BOXED_ownedParameters, child).booleanValue();
+        final @Nullable /*@Thrown*/ Boolean not = BooleanNotOperation.INSTANCE.evaluate(includes);
+        if (not == null) {
+            throw new InvalidValueException("Null if condition");
+        }
+        @Nullable /*@Thrown*/ LookupEnvironment symbol_1;
+        if (not) {
             @SuppressWarnings("null")
-            final @NonNull /*@Thrown*/ LookupEnvironment inner = context.addElements(ownedParameters);
+            final @NonNull /*@Thrown*/ LookupEnvironment inner = context.addElements(ownedParameters_0);
             final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
             @Nullable /*@Thrown*/ LookupEnvironment symbol_0;
             if (hasFinalResult) {
@@ -902,49 +758,19 @@ public class AbstractPivotLookupVisitor
                 final @Nullable /*@Thrown*/ LookupEnvironment parentEnv = this.parentEnv(element_9);
                 symbol_0 = parentEnv;
             }
-            symbol_3 = symbol_0;
+            symbol_1 = symbol_0;
         }
         else {
-            @SuppressWarnings("null")
-            final @NonNull /*@Thrown*/ List<Constraint> ownedPostconditions = element_9.getOwnedPostconditions();
-            final @NonNull /*@Thrown*/ SetValue BOXED_ownedPostconditions = idResolver.createSetOfAll(SET_CLSSid_Constraint, ownedPostconditions);
-            final /*@Thrown*/ boolean includes_0 = CollectionIncludesOperation.INSTANCE.evaluate(BOXED_ownedPostconditions, child).booleanValue();
-            @Nullable /*@Thrown*/ LookupEnvironment symbol_2;
-            if (includes_0) {
-                final @NonNull /*@Thrown*/ List<Parameter> ownedParameters_0 = element_9.getOwnedParameters();
-                @SuppressWarnings("null")
-                final @NonNull /*@Thrown*/ LookupEnvironment inner_0 = context.addElements(ownedParameters_0);
-                final /*@Thrown*/ boolean hasFinalResult_0 = inner_0.hasFinalResult();
-                @Nullable /*@Thrown*/ LookupEnvironment symbol_1;
-                if (hasFinalResult_0) {
-                    symbol_1 = inner_0;
-                }
-                else {
-                    final @Nullable /*@Thrown*/ LookupEnvironment parentEnv_0 = this.parentEnv(element_9);
-                    symbol_1 = parentEnv_0;
-                }
-                symbol_2 = symbol_1;
-            }
-            else {
-                final @Nullable /*@Thrown*/ LookupEnvironment parentEnv_1 = this.parentEnv(element_9);
-                symbol_2 = parentEnv_1;
-            }
-            symbol_3 = symbol_2;
+            final @Nullable /*@Thrown*/ LookupEnvironment parentEnv_0 = this.parentEnv(element_9);
+            symbol_1 = parentEnv_0;
         }
-        return symbol_3;
+        return symbol_1;
     }
     
     /**
      * visitPackage(element : Package[1]) : lookup::LookupEnvironment[?]
      * 
-     * 
-     * let
-     *   inner : lookup::LookupEnvironment[1] = context.addElements(ownedClasses)
-     * in
-     *   if inner.hasFinalResult()
-     *   then inner
-     *   else this.parentEnv(element)
-     *   endif
+     * _'null' : lookup::LookupEnvironment[?]
      */
     @Override
     public @Nullable /*@NonInvalid*/ LookupEnvironment visitPackage(final @NonNull /*@NonInvalid*/ Package element_10) {
@@ -966,7 +792,7 @@ public class AbstractPivotLookupVisitor
     /**
      * visitProperty(element : Property[1]) : lookup::LookupEnvironment[?]
      * 
-     * this.parentEnv(element)
+     * _'null' : lookup::LookupEnvironment[?]
      */
     @Override
     public @Nullable /*@NonInvalid*/ LookupEnvironment visitProperty(final @NonNull /*@NonInvalid*/ Property element_11) {
@@ -977,7 +803,7 @@ public class AbstractPivotLookupVisitor
     /**
      * visitVariable(element : Variable[1]) : lookup::LookupEnvironment[?]
      * 
-     * this.parentEnv(element)
+     * _'null' : lookup::LookupEnvironment[?]
      */
     @Override
     public @Nullable /*@NonInvalid*/ LookupEnvironment visitVariable(final @NonNull /*@NonInvalid*/ Variable element_12) {

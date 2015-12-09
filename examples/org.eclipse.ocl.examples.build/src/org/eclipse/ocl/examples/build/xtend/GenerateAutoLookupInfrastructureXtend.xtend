@@ -179,16 +179,16 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVis
 		private @NonNull Executor executor;
 		private @NonNull String name;
 		private @NonNull EClass typeFilter;
-		private @NonNull «projectPrefix»LookupFilter expFilter;
+		private @Nullable «projectPrefix»LookupFilter expFilter;
 		
-		public «className»(@NonNull Executor executor, @NonNull EClass typeFilter, @NonNull String name, «projectPrefix»LookupFilter expFilter) {
+		public «className»(@NonNull Executor executor, @NonNull EClass typeFilter, @NonNull String name,  @Nullable «projectPrefix»LookupFilter expFilter) {
 			this.executor = executor;
 			this.name = name;
 			this.typeFilter = typeFilter;
 			this.expFilter = expFilter;
 		}
 	
-		public ClassesSingleResultLookupEnvironment(@NonNull Executor executor, @NonNull EClass typeFilter, @NonNull String name) {
+		public «className»(@NonNull Executor executor, @NonNull EClass typeFilter, @NonNull String name) {
 			this(executor,typeFilter, name, null);
 		}
 		
@@ -214,7 +214,7 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVis
 			if (namedElement != null) {
 				if (name.equals(namedElement.getName())) {
 					if (typeFilter.isInstance(namedElement)) {
-						if (expFilter == null || expFilter.matches(namedElement)) {
+						if (expFilter == null || (expFilter != null /*null analysis bug? */ && expFilter.matches(namedElement))) {
 							EList<NamedElement> elements = getNamedElements();
 							if (!elements.contains(namedElement)) { 	// FIXME use a set ?
 								elements.add(namedElement);
