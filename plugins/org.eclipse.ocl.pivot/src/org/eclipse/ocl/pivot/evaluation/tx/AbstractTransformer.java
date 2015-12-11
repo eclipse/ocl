@@ -510,8 +510,13 @@ public abstract class AbstractTransformer implements Transformer
 		public OneToManyElementPropertyState(@NonNull EObject eObject, @NonNull EReference eFeature) {
 			super(eObject, eFeature);
 			assert !eFeature.isMany();
-			assert eFeature.getEOpposite() != null;
-			assert eFeature.getEOpposite().isMany();
+			if (eFeature == OCLstdlibPackage.Literals.OCL_ELEMENT__OCL_CONTAINER) {
+				assert eFeature.getEOpposite() == null;
+			}
+			else {
+				assert eFeature.getEOpposite() != null;
+				assert eFeature.getEOpposite().isMany();
+			}
 		}
 		
 		public OneToManyElementPropertyState(@NonNull EObject eObject, @NonNull EReference eFeature, @NonNull EObject eAggregator) {
@@ -532,9 +537,17 @@ public abstract class AbstractTransformer implements Transformer
 			if (!isAssigned() && (ecoreValue != null)) {
 				EObject eOpposite = (EObject) ecoreValue;
 				EReference eOppositeReference = ((EReference)eFeature).getEOpposite();
-				assert eOppositeReference != null;
-				OneToManyAggregatorPropertyState aggregatorPropertyState = (OneToManyAggregatorPropertyState) objectManager.getPropertyState(eOpposite, eOppositeReference);
-				aggregatorPropertyState.assignedElement(objectManager, eOpposite, eOppositeReference, eObject);
+				if (eFeature == OCLstdlibPackage.Literals.OCL_ELEMENT__OCL_CONTAINER) {
+					eOppositeReference = eObject.eContainmentFeature();
+					assert eOppositeReference != null;
+					PropertyState aggregatorPropertyState = objectManager.getPropertyState(eOpposite, eOppositeReference);
+					aggregatorPropertyState.assigned(objectManager, eOpposite, eOppositeReference, eObject);
+				}
+				else {
+					assert eOppositeReference != null;
+					OneToManyAggregatorPropertyState aggregatorPropertyState = (OneToManyAggregatorPropertyState) objectManager.getPropertyState(eOpposite, eOppositeReference);
+					aggregatorPropertyState.assignedElement(objectManager, eOpposite, eOppositeReference, eObject);
+				}
 			}
 			super.assigned(objectManager, eObject, eFeature, ecoreValue);
 		}
@@ -862,7 +875,7 @@ public abstract class AbstractTransformer implements Transformer
 			}
 		}
 
-		public synchronized <G,S> G get(@NonNull Object eObject, /*@NonNull*/ EStructuralFeature eFeature) {
+		public synchronized <G> G get(@NonNull Object eObject, /*@NonNull*/ EStructuralFeature eFeature) {
 			assert eFeature != null;
 			PropertyState propertyState = getPropertyState((EObject) eObject, eFeature);
 //			INVOCATIONS.println("get " + eFeature.getContainerClass().getName() + "::" + eFeature.getName() + " for " + eObject);
@@ -909,7 +922,7 @@ public abstract class AbstractTransformer implements Transformer
 						}
 					}
 					else if (eReference == OCLstdlibPackage.Literals.OCL_ELEMENT__OCL_CONTAINER) {
-						propertyState = new OneToOnePropertyState(eObject, eReference);
+						propertyState = new OneToManyElementPropertyState(eObject, eReference); //FIXME may be many
 					}
 					else {						// Unidirectional non-containment EReference
 						propertyState = new PropertyState(eObject, eFeature);

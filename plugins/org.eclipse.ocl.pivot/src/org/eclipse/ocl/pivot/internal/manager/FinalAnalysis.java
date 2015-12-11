@@ -64,7 +64,9 @@ public class FinalAnalysis
 						for (Operation subOperation : subCompleteClass.getOperations(null)) {
 							if (opName.equals(subOperation.getName()) && parametersId.equals(subOperation.getParametersId())) {
 								LibraryFeature subImplementation = metamodelManager.getImplementation(subOperation);
-								if ((domainImplementation != subImplementation) || (domainOperation.getBodyExpression() != subOperation.getBodyExpression())) {
+								if ((domainImplementation != subImplementation)
+								 || (domainOperation.getBodyExpression() != subOperation.getBodyExpression())
+								 || (domainOperation.getTypeId() != subOperation.getTypeId())) {
 									if (overrides == null) {
 										overrides = new HashSet<Operation>();
 										overrides.add(domainOperation);

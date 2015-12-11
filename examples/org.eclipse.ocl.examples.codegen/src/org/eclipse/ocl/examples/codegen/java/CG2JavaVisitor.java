@@ -132,6 +132,7 @@ import org.eclipse.ocl.pivot.library.LibraryOperation;
 import org.eclipse.ocl.pivot.library.LibraryProperty;
 import org.eclipse.ocl.pivot.library.LibrarySimpleOperation;
 import org.eclipse.ocl.pivot.library.LibraryUntypedOperation;
+import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.CollectionValue;
@@ -1118,7 +1119,13 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 		TypeDescriptor requiredTypeDescriptor = context.getUnboxedDescriptor(elementId);
 		EStructuralFeature eStructuralFeature = ClassUtil.nonNullState(cgPropertyCallExp.getEStructuralFeature());
 		CGValuedElement source = getExpression(cgPropertyCallExp.getSource());
-		String getAccessor = genModelHelper.getGetAccessor(eStructuralFeature);
+		String getAccessor;
+		if (eStructuralFeature == OCLstdlibPackage.Literals.OCL_ELEMENT__OCL_CONTAINER) {
+			getAccessor = "eContainer";
+		}
+		else {
+			getAccessor = genModelHelper.getGetAccessor(eStructuralFeature);
+		}
 		Class<?> requiredJavaClass = requiredTypeDescriptor.hasJavaClass();
 		Method leastDerivedMethod = requiredJavaClass != null ? context.getLeastDerivedMethod(requiredJavaClass, getAccessor) : null;
 		Class<?> unboxedSourceClass;
