@@ -151,8 +151,10 @@ public class CompleteOCLEObjectValidator extends PivotEObjectValidator
 	@Override
 	protected boolean validatePivot(@NonNull EClassifier eClassifier, @Nullable Object object,
 			@Nullable DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if ((ecore2as == null) && (object instanceof EObject)) {
-			initialize();	
+		if (object instanceof EObject) {
+			if (ecore2as == null) {
+				initialize();	
+			}
 			Resource eResource = ((EObject)object).eResource();
 			if (eResource != null) {
 				ResourceSet resourceSet = eResource.getResourceSet();
