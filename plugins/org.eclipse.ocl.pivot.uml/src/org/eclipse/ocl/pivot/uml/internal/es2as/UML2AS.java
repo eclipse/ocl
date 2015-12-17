@@ -730,9 +730,10 @@ public abstract class UML2AS extends AbstractExternal2AS
 		}
 
 		protected void installImports() throws ParserException {
-			if (importedResources != null) {
-				for (int i = 0; i < importedResources.size(); i++) {			// List may grow re-entrantly
-					Resource importedResource = importedResources.get(i);
+			List<Resource> importedResources2 = importedResources;
+			if (importedResources2 != null) {
+				for (int i = 0; i < importedResources2.size(); i++) {			// List may grow re-entrantly
+					Resource importedResource = importedResources2.get(i);
 					if (importedResource instanceof UMLResource) {
 						External2AS adapter = UML2AS.findAdapter(importedResource, environmentFactory);
 						if (adapter == null) {

@@ -1251,11 +1251,12 @@ public abstract class AbstractTransformer implements Transformer
 		if (propertyIndex2propertyId != null) {
 	    	int propertyIds = propertyIndex2propertyId.length;
 	    	this.propertyIndex2propertyId = propertyIndex2propertyId;
-			this.propertyId2propertyIndex = new HashMap<PropertyId, Integer>(propertyIds);
+			HashMap<PropertyId, Integer> propertyId2propertyIndex2 = new HashMap<PropertyId, Integer>(propertyIds);
+			this.propertyId2propertyIndex = propertyId2propertyIndex2;
 			this.propertyIndex2eReference = new EReference[propertyIds];
 			for (int propertyIndex = 0; propertyIndex < propertyIds; propertyIndex++) {
 				PropertyId propertyId = propertyIndex2propertyId[propertyIndex];
-				propertyId2propertyIndex.put(propertyId, propertyIndex);
+				propertyId2propertyIndex2.put(propertyId, propertyIndex);
 			}
 			@SuppressWarnings("unchecked")Map<EObject,EObject>[] object2oppositeObject = (Map<EObject,EObject>[]) new HashMap<?,?>[propertyIds];
 			this.object2oppositeObject = object2oppositeObject;
@@ -1275,16 +1276,18 @@ public abstract class AbstractTransformer implements Transformer
 		if (classIndex2classId != null) {
 	    	assert classIndex2allClassIndexes != null;
 	    	int classIds = classIndex2classId.length;
-			this.classId2classIndex = new HashMap<ClassId, Integer>(classIds);
-	    	this.classId2classIndexes = new HashMap<ClassId, Set<Integer>>(classIds);
+			HashMap<ClassId, Integer> classId2classIndex2 = new HashMap<ClassId, Integer>(classIds);
+	    	HashMap<ClassId, Set<Integer>> classId2classIndexes2 = new HashMap<ClassId, Set<Integer>>(classIds);
+			this.classId2classIndex = classId2classIndex2;
+			this.classId2classIndexes = classId2classIndexes2;
 			for (int classIndex = 0; classIndex < classIds; classIndex++) {
 				ClassId classId = classIndex2classId[classIndex];
-				classId2classIndex.put(classId, classIndex);
+				classId2classIndex2.put(classId, classIndex);
 				Set<Integer> superClassIndexes = new HashSet<Integer>();
 				for (int allClassIndex : classIndex2allClassIndexes[classIndex]) {
 					superClassIndexes.add(allClassIndex);
 				}
-				classId2classIndexes.put(classId, superClassIndexes);
+				classId2classIndexes2.put(classId, superClassIndexes);
 			}
 		}
 		else {
