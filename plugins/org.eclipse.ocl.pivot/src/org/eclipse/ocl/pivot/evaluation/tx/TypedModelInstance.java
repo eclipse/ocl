@@ -21,7 +21,7 @@ import org.eclipse.jdt.annotation.Nullable;
  * accessible as a model instance.
  * 
  * @since 1.1
- * @noimplement
+ * @noimplement clients should derive from AbstractTypedModelInstance
  */
 public interface TypedModelInstance
 {

@@ -10,22 +10,26 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.evaluation.tx;
 
-import java.util.Collection;
-
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.evaluation.ModelManager;
 
 /**
- * A Transformer provides the core support to execute an auto-generated transformation
- * between models.
+ * An InvocationFailedException is thrown when a Mapping invocation fails as a result of an attempt to
+ * access a Property before its value has been assigned. The InvocationManager should catch the exception
+ * and mark the invocation for a retry once the Property has been assigned.
  * 
  * @since 1.1
- * @noimplement clients should derive from AbstractTransformer
  */
-public interface Transformer extends ModelManager
+@SuppressWarnings("serial")
+public class InvocationFailedException extends RuntimeException
 {
-	void addRootObjects(@NonNull String modelName, @NonNull Iterable<? extends EObject> rootObjects);
-    @NonNull Collection<EObject> getRootObjects(@NonNull String modelName);
-    boolean run() throws Exception;
+	public final @NonNull SlotState slotState;
+	
+	public InvocationFailedException(@NonNull SlotState slotState) {
+		this.slotState = slotState;
+	}
+
+	@Override
+	public String toString() {
+		return slotState.toString();
+	}
 }

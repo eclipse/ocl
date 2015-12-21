@@ -44,6 +44,6 @@ public class EcoreLibraryProperty extends AbstractProperty
 
 	@Override
 	public String toString() {
-		return String.valueOf(eFeature.getContainerClass().getPackage().getName()) + "::" + String.valueOf(eFeature.getContainerClass().getName()) + "." + String.valueOf(eFeature.getName());  //$NON-NLS-1$//$NON-NLS-2$
+		return String.valueOf(eFeature.getEContainingClass().getEPackage().getName()) + "::" + String.valueOf(eFeature.getEContainingClass().getName()) + "." + String.valueOf(eFeature.getName());  //$NON-NLS-1$//$NON-NLS-2$
 	}
 }

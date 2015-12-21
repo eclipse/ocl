@@ -71,6 +71,7 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationHaltedException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.IterationManager;
+import org.eclipse.ocl.pivot.evaluation.tx.InvocationFailedException;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
@@ -487,6 +488,8 @@ public class BasicEvaluationVisitor extends AbstractEvaluationVisitor
 //		} catch (InvalidValueException e) {
 //			return evaluationEnvironment.throwInvalidEvaluation(e);
 		} catch (InvalidValueException e) {
+			throw e;
+		} catch (InvocationFailedException e) {
 			throw e;
 		} catch (Exception e) {
 			// This is a backstop. Library iterations should catch their own exceptions

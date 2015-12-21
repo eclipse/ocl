@@ -1113,12 +1113,19 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 
 	@Override
 	public @NonNull Boolean visitCGEcorePropertyCallExp(@NonNull CGEcorePropertyCallExp cgPropertyCallExp) {
+		return appendCGEcorePropertyCallExp(cgPropertyCallExp, null);
+	}
+
+	/**
+	 * Append the code for an EcorePropertyCall. If source is null, the code for the source will also be appended.
+	 * If source is non-null the caller has already appended it.
+	 */
+	protected @NonNull Boolean appendCGEcorePropertyCallExp(@NonNull CGEcorePropertyCallExp cgPropertyCallExp, @Nullable CGValuedElement source) {
 		Property asProperty = cgPropertyCallExp.getReferredProperty();
 		CGTypeId cgTypeId = analyzer.getTypeId(asProperty.getOwningClass().getTypeId());
 		ElementId elementId = ClassUtil.nonNullState(cgTypeId.getElementId());
 		TypeDescriptor requiredTypeDescriptor = context.getUnboxedDescriptor(elementId);
 		EStructuralFeature eStructuralFeature = ClassUtil.nonNullState(cgPropertyCallExp.getEStructuralFeature());
-		CGValuedElement source = getExpression(cgPropertyCallExp.getSource());
 		String getAccessor;
 		if (eStructuralFeature == OCLstdlibPackage.Literals.OCL_ELEMENT__OCL_CONTAINER) {
 			getAccessor = "eContainer";
@@ -1136,8 +1143,11 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 			unboxedSourceClass = requiredJavaClass;
 		}
 		//
-		if (!js.appendLocalStatements(source)) {
-			return false;
+		if (source == null) {
+			source = getExpression(cgPropertyCallExp.getSource());
+			if (!js.appendLocalStatements(source)) {
+				return false;
+			}
 		}
 		//
 		Boolean ecoreIsRequired = context.isNonNull(asProperty);

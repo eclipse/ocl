@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2015 Willink Transformations and others.
+ * Copyright (c) 2013, 2015 Willink Transformations and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,21 +13,18 @@ package org.eclipse.ocl.pivot.evaluation.tx;
 import org.eclipse.jdt.annotation.NonNull;
 
 /**
- * AbstractTransformationTechnology provides the mandatory shared functionality of TransformationTechnology
- * that is to be extended by all TransformationTechnology implementations.
- * 
+ * AbstractObjectManager provides the mandatory shared functionality for an object state manager.
  * @since 1.1
  */
-public abstract class AbstractTransformationTechnology implements TransformationTechnology
+public abstract class AbstractObjectManager implements ObjectManager
 {
-	protected final @NonNull String name;
+	protected final @NonNull InvocationManager invocationManager;
 	
-	protected AbstractTransformationTechnology(@NonNull String name) {
-		this.name = name;
+	protected AbstractObjectManager(@NonNull InvocationManager invocationManager) {
+		this.invocationManager = invocationManager;
 	}
 
-	@Override
-	public @NonNull String getName() {
-		return name;
+	public void unblock(@NonNull Invocation anInvocation) {
+		invocationManager.unblock(anInvocation);
 	}
 }

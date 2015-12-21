@@ -22,7 +22,7 @@ import org.eclipse.osgi.util.NLS;
  * technologies my be invoked.
  * 
  * @since 1.1
- * @noimplement
+ * @noimplement clients should derive from AbstractTransformationTechnology
  */
 public interface TransformationTechnology
 {

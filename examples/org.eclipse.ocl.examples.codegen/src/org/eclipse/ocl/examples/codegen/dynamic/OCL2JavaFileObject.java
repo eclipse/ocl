@@ -69,6 +69,8 @@ public class OCL2JavaFileObject extends SimpleJavaFileObject
 //		return (LibraryOperation) testField.get(null);
 	}
 
+	/** @deprecated provide explicitClassPath to avoid default directory indeterminacy */
+	@Deprecated
 	public static void saveClass(@NonNull String qualifiedName, @NonNull String javaCodeSource) throws Exception {
 		saveClass("bin", qualifiedName, javaCodeSource);
 	}

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2015 Willink Transformations and others.
+ * Copyright (c) 2013, 2015 Willink Transformations and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,21 +13,16 @@ package org.eclipse.ocl.pivot.evaluation.tx;
 import org.eclipse.jdt.annotation.NonNull;
 
 /**
- * AbstractTransformationTechnology provides the mandatory shared functionality of TransformationTechnology
- * that is to be extended by all TransformationTechnology implementations.
+ * An InvocationManager supervises the invocations of mappings, inhibiting re-executions and
+ * maintaining a blocked list of invocations that have failed and a waiting list of invocations
+ * ready to be reattempted.
  * 
  * @since 1.1
+ * @noimplement clients should derive from AbstractInvocationManager
  */
-public abstract class AbstractTransformationTechnology implements TransformationTechnology
+public interface InvocationManager
 {
-	protected final @NonNull String name;
-	
-	protected AbstractTransformationTechnology(@NonNull String name) {
-		this.name = name;
-	}
-
-	@Override
-	public @NonNull String getName() {
-		return name;
-	}
+	boolean flush() throws ReflectiveOperationException;
+    void invoke(@NonNull Invocation invocation, boolean doFlush) throws ReflectiveOperationException;
+    void unblock(@NonNull Invocation invocation);
 }
