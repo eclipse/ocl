@@ -14,10 +14,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.internal.evaluation.tx.LazyObjectManager;
 
 /**
- * A SlotState identifies the assigned/not assigned state of a n Object slot.
+ * A SlotState identifies the assigned/not assigned state of an Object slot.
  * 
  * @since 1.1
  * @noimplement clients should derive from AbstractSlotState
@@ -27,12 +26,18 @@ public interface SlotState
 	/**
 	 * Update the SlotState as a result of an assignment of ecoreValue to the eFeature of eObject.
 	 */
-	void assigned(@NonNull LazyObjectManager objectManager, @NonNull EObject eObject, @NonNull EStructuralFeature eFeature, @Nullable Object ecoreValue);
+	void assigned(@NonNull EObject eObject, @NonNull EStructuralFeature eFeature, @Nullable Object ecoreValue);
 
 	void block(@NonNull Invocation invocation);
 
 	/**
 	 * Throw an InvocationFailedException if the eFeature of eObject has not been assigned.
 	 */
-	void getting(@NonNull LazyObjectManager objectManager, @NonNull EObject eObject, @NonNull EStructuralFeature eFeature) throws InvocationFailedException;
+	void getting(@NonNull EObject eObject, @NonNull EStructuralFeature eFeature) throws InvocationFailedException;
+
+	public interface Incremental extends SlotState
+	{
+		void addSourceInternal(Invocation.@NonNull Incremental invocation);
+		void addTargetInternal(Invocation.@NonNull Incremental invocation);
+	}
 }

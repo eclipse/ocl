@@ -31,9 +31,21 @@ public interface ObjectManager
 	 * Mark the eFeature of eObject as assigned with an ecoreValue.
 	 */
 	void assigned(@NonNull EObject eObject, /*@NonNull*/ EStructuralFeature eFeature, @Nullable Object ecoreValue);
+
+	/**
+	 * Identify the creation of eObject by the current mapping invocation.
+	 */
+	void created(Invocation.@NonNull Incremental invocation, @NonNull EObject eObject);
 	
 	/**
 	 * Throw an InvocationFailedException if the eFeature of eObject has not yet been assigned.
 	 */
-	void getting(@NonNull Object eObject, /*@NonNull*/ EStructuralFeature eFeature) throws InvocationFailedException;
+	void getting(@NonNull EObject eObject, /*@NonNull*/ EStructuralFeature eFeature) throws InvocationFailedException;
+	
+	/**
+	 * Identify that the read of eFeature of eObject return ecoreValue.
+	 */
+	void got(Invocation.@NonNull Incremental invocation, @NonNull EObject eObject, /*@NonNull*/ EStructuralFeature eFeature, @Nullable Object ecoreValue);
+
+	void unblock(@NonNull Invocation anInvocation);
 }

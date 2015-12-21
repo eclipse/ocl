@@ -31,15 +31,16 @@ public interface Transformer extends ModelManager
 	 * @noreference this is solely for development usage.
 	 * 
 	 * 1.1.0-1 API version introduced, ObjectManager etc interfaces separated out, AbstractObjectManager etc enforced.
+	 * 1.1.0-2 Preliminary incremental support.
 	 */
-	public static int RUN_TIME_EVALUATOR_API_VERSION_1_1_0_1 = 1*1000 + 1 * 100 + 0*10 + 1;
+	public static int RUN_TIME_EVALUATOR_API_VERSION_1_1_0_2 = 1*1000 + 1 * 100 + 0*10 + 2;
 	
 	/**
 	 * The run-time API version.
 	 * 
 	 * @noreference this is solely for development usage.
 	 */
-	public static int RUN_TIME_EVALUATOR_API_VERSION = RUN_TIME_EVALUATOR_API_VERSION_1_1_0_1;
+	public static int RUN_TIME_EVALUATOR_API_VERSION = RUN_TIME_EVALUATOR_API_VERSION_1_1_0_2;
 	
 	void addRootObjects(@NonNull String modelName, @NonNull Iterable<@NonNull ? extends EObject> rootObjects);
     @NonNull Collection<@NonNull EObject> getRootObjects(@NonNull String modelName);

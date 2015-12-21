@@ -42,4 +42,12 @@ public interface Invocation
 	 * Remove this Invocation from the blocked or waiting invocations linked list.
 	 */
 	void remove();
+	
+	public interface Incremental extends Invocation
+	{
+		void addReadSlot(SlotState.@NonNull Incremental readSlot);
+		void addWriteSlot(SlotState.@NonNull Incremental writeSlot);
+		@NonNull Iterable<SlotState.Incremental> getReadSlots();
+		@NonNull Iterable<SlotState.Incremental> getWriteSlots();
+	}
 }

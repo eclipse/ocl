@@ -10,6 +10,12 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.evaluation.tx;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.internal.evaluation.tx.AbstractInvocationInternal;
 
 /**
@@ -18,4 +24,38 @@ import org.eclipse.ocl.pivot.internal.evaluation.tx.AbstractInvocationInternal;
  */
 public abstract class AbstractInvocation extends AbstractInvocationInternal
 {
-}
+	public abstract static class Incremental extends AbstractInvocation implements Invocation.Incremental
+	{
+		public static final @NonNull List<SlotState.Incremental> EMPTY_SLOT_LIST = Collections.<SlotState.Incremental>emptyList();
+
+		private Set<SlotState.Incremental> readSlots = null;
+		private Set<SlotState.Incremental> writeSlots = null;
+
+		@Override
+		public void addReadSlot(SlotState.@NonNull Incremental readSlot) {
+			if (readSlots == null) {
+				readSlots = new HashSet<SlotState.Incremental>();
+			}
+			readSlots.add(readSlot);
+			readSlot.addTargetInternal(this);
+		}
+
+		@Override
+		public void addWriteSlot(SlotState.@NonNull Incremental writeSlot) {
+			if (writeSlots == null) {
+				writeSlots = new HashSet<SlotState.Incremental>();
+			}
+			writeSlots.add(writeSlot);
+			writeSlot.addSourceInternal(this);
+		}
+
+		@Override
+		public @NonNull Iterable<SlotState.Incremental> getReadSlots() {
+			return readSlots != null ? readSlots : EMPTY_SLOT_LIST;
+		}
+
+		@Override
+		public @NonNull Iterable<SlotState.Incremental> getWriteSlots() {
+			return writeSlots != null ? writeSlots : EMPTY_SLOT_LIST;
+		}
+	}}

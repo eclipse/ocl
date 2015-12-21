@@ -24,6 +24,7 @@ public abstract class AbstractObjectManager implements ObjectManager
 		this.invocationManager = invocationManager;
 	}
 
+	@Override
 	public void unblock(@NonNull Invocation anInvocation) {
 		invocationManager.unblock(anInvocation);
 	}

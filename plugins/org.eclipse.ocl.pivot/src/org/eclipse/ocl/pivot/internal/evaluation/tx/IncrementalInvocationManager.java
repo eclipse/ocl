@@ -22,7 +22,7 @@ import org.eclipse.ocl.pivot.evaluation.tx.SlotState;
  * InvocationManager supervises and provides thread safety for the lists of blocked and waiting invocations.
  * @since 1.1
  */
-public class LazyInvocationManager extends AbstractInvocationManager
+public class IncrementalInvocationManager extends AbstractInvocationManager
 {
 	/**
 	 * Head of doubly linked list of blocked invocations.
@@ -92,7 +92,7 @@ public class LazyInvocationManager extends AbstractInvocationManager
     		}
     	}
     }
-
+	
     @Override
 	public void invoke(@NonNull Invocation invocation, boolean doFlush) throws ReflectiveOperationException {
 		try {

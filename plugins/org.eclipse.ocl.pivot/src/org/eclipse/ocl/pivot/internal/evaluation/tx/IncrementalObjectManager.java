@@ -33,12 +33,12 @@ import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage;
 /**
  * @since 1.1
  */
-public class LazyObjectManager extends AbstractObjectManager
+public class IncrementalObjectManager extends AbstractObjectManager
 {
 	/**
 	 * Simple SlotState describing a DataType element or 1:1 Object navigation.
 	 */
-	public static abstract class BasicSlotState extends AbstractSlotState
+	public static abstract class BasicSlotState extends AbstractSlotState.Incremental
 	{
 		public enum SlotMode {
 			ASSIGNABLE,		// No assignment has been performed, object reads are blocked (collections reads may be unblocked)
@@ -62,7 +62,7 @@ public class LazyObjectManager extends AbstractObjectManager
 			this.debug_eFeature = eFeature;
 		}
 
-		public synchronized void assigned(@NonNull LazyObjectManager objectManager, @NonNull EObject eObject, @NonNull EStructuralFeature eFeature, @Nullable Object ecoreValue) {
+		public synchronized void assigned(@NonNull IncrementalObjectManager objectManager, @NonNull EObject eObject, @NonNull EStructuralFeature eFeature, @Nullable Object ecoreValue) {
 			switch (mode) {
 				case ASSIGNABLE:
 					mode = SlotMode.ASSIGNED;
@@ -94,7 +94,7 @@ public class LazyObjectManager extends AbstractObjectManager
 		}
 		
 		@Override
-		public synchronized void getting(@NonNull EObject eObject, @NonNull EStructuralFeature eFeature) {
+		public synchronized void getting( @NonNull EObject eObject, @NonNull EStructuralFeature eFeature) {
 			switch (mode) {
 				case ASSIGNABLE:
 					throw new InvocationFailedException(this);
@@ -385,7 +385,7 @@ public class LazyObjectManager extends AbstractObjectManager
 			EReference eOppositeReference = ((EReference)eFeature).getEOpposite();
 			for (EObject element : ecoreValues) {
 				if (element != null) {
-					Map<EStructuralFeature, SlotState> elementObjectState = getObjectState(element);
+					Map<EStructuralFeature, BasicSlotState> elementObjectState = getObjectState(element);
 					elementObjectState.put(eOppositeReference, this);
 				}
 			}
@@ -398,7 +398,7 @@ public class LazyObjectManager extends AbstractObjectManager
 			switch (mode) {
 				case ASSIGNABLE:
 					mode = SlotMode.ASSIGNED;
-					unblock(LazyObjectManager.this);
+					unblock(IncrementalObjectManager.this);
 					break;
 				case ASSIGNED:
 					break;
@@ -410,7 +410,7 @@ public class LazyObjectManager extends AbstractObjectManager
 			switch (mode) {
 				case ASSIGNABLE:
 					mode = SlotMode.ASSIGNED;
-					unblock(LazyObjectManager.this);
+					unblock(IncrementalObjectManager.this);
 					break;
 				case ASSIGNED:
 					break;
@@ -481,7 +481,7 @@ public class LazyObjectManager extends AbstractObjectManager
 					aggregatorSlotState.assignedElement(eOpposite, eOppositeReference, eObject);
 				}
 			}
-			assigned(LazyObjectManager.this, eObject, eFeature, ecoreValue);
+			assigned(eObject, eFeature, ecoreValue);
 		}
 	}
 	
@@ -562,7 +562,7 @@ public class LazyObjectManager extends AbstractObjectManager
 
 		@Override
 		public void assigned(@NonNull EObject eObject, @NonNull EStructuralFeature eFeature, @Nullable Object ecoreValue) {
-			assigned(LazyObjectManager.this, eObject, eFeature, ecoreValue);
+			assigned(IncrementalObjectManager.this, eObject, eFeature, ecoreValue);
 		}
 	}
 	
@@ -581,7 +581,7 @@ public class LazyObjectManager extends AbstractObjectManager
 
 		@Override
 		public void assigned(@NonNull EObject eObject, @NonNull EStructuralFeature eFeature, @Nullable Object ecoreValue) {
-			assigned(LazyObjectManager.this, eObject, eFeature, ecoreValue);
+			assigned(IncrementalObjectManager.this, eObject, eFeature, ecoreValue);
 		}
 	}
 
@@ -591,9 +591,9 @@ public class LazyObjectManager extends AbstractObjectManager
 	 * This unpleasant Map of Maps is a pathfinder before embarking on slotted objects that merge user and overhead
 	 * in a single object. The first map is then a null lookup and the nested map is an index within the object. 
 	 */
-	private Map<@NonNull EObject, @NonNull Map<@NonNull EStructuralFeature, @NonNull SlotState>> object2feature2slotState = new HashMap<@NonNull EObject, @NonNull Map<@NonNull EStructuralFeature, @NonNull SlotState>>();
+	private Map<EObject, Map<EStructuralFeature, BasicSlotState>> object2feature2slotState = new HashMap<EObject, Map<EStructuralFeature, BasicSlotState>>();
 	
-	public LazyObjectManager(@NonNull LazyInvocationManager invocationManager) {
+	public IncrementalObjectManager(@NonNull IncrementalInvocationManager invocationManager) {
 		super(invocationManager);
 	}
 
@@ -603,8 +603,8 @@ public class LazyObjectManager extends AbstractObjectManager
 		if (debugTracing) {
 			AbstractTransformer.INVOCATIONS.println("assigned " + eFeature.getEContainingClass().getName() + "::" + eFeature.getName() + " for " + eObject + " = " + ecoreValue);
 		}
-		Map<EStructuralFeature, SlotState> objectState = getObjectState(eObject);
-		SlotState slotState = objectState.get(eFeature);
+		Map<EStructuralFeature, BasicSlotState> objectState = getObjectState(eObject);
+		BasicSlotState slotState = objectState.get(eFeature);
 		if (slotState != null) {
 			slotState.assigned(eObject, eFeature, ecoreValue);		
 		}
@@ -634,7 +634,7 @@ public class LazyObjectManager extends AbstractObjectManager
 							slotState = createOneToManyElementSlotState(eObject, eReference, eOppositeReference, (EObject)ecoreValue);
 						}
 //						else if (isIncremental) {
-//							slotState = OneToOneSlotState.create(this, eObject, eReference, eOppositeReference, (EObject)ecoreValue);
+//							slotState = AbstractTransformerInternal.OneToOneSlotState.create(this, eObject, eReference, eOppositeReference, (EObject)ecoreValue);
 //						}
 					}
 				}
@@ -646,7 +646,7 @@ public class LazyObjectManager extends AbstractObjectManager
 						slotState = createOneToManyAggregatorSlotState(eObject, eReference, eOppositeReference, ecoreValue);
 					}
 					else {
-						Map<@NonNull EStructuralFeature, @NonNull SlotState> oppositeObjectState = getObjectState((EObject) ecoreValue);
+						Map<EStructuralFeature, BasicSlotState> oppositeObjectState = getObjectState((EObject) ecoreValue);
 						slotState = oppositeObjectState.get(eOppositeReference);
 						if (slotState != null) {
 							slotState.assigned((EObject) ecoreValue, eOppositeReference, eObject);		
@@ -667,12 +667,12 @@ public class LazyObjectManager extends AbstractObjectManager
 		}
 	}
 
-	@NonNull SlotState createManyToManySlotState(
+	@NonNull BasicSlotState createManyToManySlotState(
 			@NonNull EObject eObject, @NonNull EReference eFeature, @NonNull EReference eOppositeFeature) {
 		throw new UnsupportedOperationException();
 	}
 
-	@NonNull SlotState createOneToManyAggregatorSlotState(
+	@NonNull BasicSlotState createOneToManyAggregatorSlotState(
 			@NonNull EObject eObject, @NonNull EReference eFeature, @NonNull EReference eOppositeFeature, @Nullable Object eContents) {
 		if (eContents != null) {
 //			SlotState containedSlotState = objectManager.getSlotState(eContent, eOppositeFeature);
@@ -681,24 +681,24 @@ public class LazyObjectManager extends AbstractObjectManager
 		return new OneToManyAggregatorSlotState(eObject, eFeature, eContents);
 	}
 
-	@NonNull SlotState createOneToManyElementSlotState(
+	@NonNull BasicSlotState createOneToManyElementSlotState(
 			@NonNull EObject eObject, @NonNull EReference eFeature, @NonNull EReference eOppositeFeature, @NonNull EObject eAggregator) {
 		OneToManyAggregatorSlotState aggregatorSlotState = (OneToManyAggregatorSlotState) getSlotState(eAggregator, eOppositeFeature);
 		aggregatorSlotState.assignedElement(eAggregator, eOppositeFeature, eObject);
 		return new OneToManyElementSlotState(eObject, eFeature, eAggregator);
 	}
 
-	@NonNull <G,S> SlotState createOneToOneSlotState(
+	@NonNull <G,S> BasicSlotState createOneToOneSlotState(
 			@NonNull EObject eObject, @NonNull EReference eFeature, @NonNull EReference eOppositeFeature, @Nullable EObject eOpposite) {
-		Map<EStructuralFeature, SlotState> oppositeObjectState = null;
+		Map<EStructuralFeature, BasicSlotState> oppositeObjectState = null;
 		if (eOpposite != null) {
 			oppositeObjectState = getObjectState(eOpposite);
-			SlotState slotState = oppositeObjectState.get(eOppositeFeature);
+			BasicSlotState slotState = oppositeObjectState.get(eOppositeFeature);
 			if (slotState != null) {
 				return slotState;
 			}
 		}
-		SlotState slotState = new OneToOneSlotState(eObject, eFeature, eOpposite);
+		BasicSlotState slotState = new OneToOneSlotState(eObject, eFeature, eOpposite);
 		if (oppositeObjectState != null) {
 			oppositeObjectState.put(eOppositeFeature, slotState);
 		}
@@ -707,22 +707,22 @@ public class LazyObjectManager extends AbstractObjectManager
 
 	@Override
 	public void created(Invocation.@NonNull Incremental invocation, @NonNull EObject eObject) {
-		throw new UnsupportedOperationException(getClass().getName() + " does not support Incremental operation");
+//		throw new UnsupportedOperationException(getClass().getName() + " does not support Incremental operation");
 	}
 
-	public @NonNull Map<@NonNull EStructuralFeature, @NonNull SlotState> getObjectState(@NonNull EObject eObject) {
-		Map<@NonNull EStructuralFeature, @NonNull SlotState> feature2state = object2feature2slotState.get(eObject);
+	public @NonNull Map<EStructuralFeature, BasicSlotState> getObjectState(@NonNull EObject eObject) {
+		Map<EStructuralFeature, BasicSlotState> feature2state = object2feature2slotState.get(eObject);
 		if (feature2state == null) {
-			feature2state = new HashMap<@NonNull EStructuralFeature, @NonNull SlotState>();
+			feature2state = new HashMap<EStructuralFeature, BasicSlotState>();
 			object2feature2slotState.put(eObject, feature2state);
 		}
 		return feature2state;
 	}
 
-	public synchronized @NonNull SlotState getSlotState(@NonNull EObject eObject, @NonNull EStructuralFeature eFeature) {
+	public synchronized @NonNull BasicSlotState getSlotState(@NonNull EObject eObject, @NonNull EStructuralFeature eFeature) {
 		assert eFeature != null;
-		Map<@NonNull EStructuralFeature, @NonNull SlotState> objectState = getObjectState(eObject);
-		SlotState slotState = objectState.get(eFeature);
+		Map<EStructuralFeature, BasicSlotState> objectState = getObjectState(eObject);
+		BasicSlotState slotState = objectState.get(eFeature);
 		if (slotState == null) {
 			if (eFeature instanceof EAttribute) {
 				slotState = new SimpleSlotState(eObject, eFeature);
@@ -779,7 +779,9 @@ public class LazyObjectManager extends AbstractObjectManager
 	}
 
 	@Override
-	public void got(Invocation.@NonNull Incremental invocation, @NonNull EObject eObject, EStructuralFeature eFeature, @Nullable Object ecoreValue) {
-		throw new UnsupportedOperationException(getClass().getName() + " does not support Incremental operation");
+	public void got(Invocation.@NonNull Incremental invocation, @NonNull EObject eObject, /*@NonNull*/ EStructuralFeature eFeature, @Nullable Object ecoreValue) {
+		assert eFeature != null;
+		BasicSlotState slotState = getSlotState(eObject, eFeature);
+		invocation.addReadSlot(slotState);
 	}
 }

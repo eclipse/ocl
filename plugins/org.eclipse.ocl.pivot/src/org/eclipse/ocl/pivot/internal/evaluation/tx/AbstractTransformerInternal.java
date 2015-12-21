@@ -31,14 +31,12 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.Executor;
-import org.eclipse.ocl.pivot.evaluation.tx.AbstractSlotState;
 import org.eclipse.ocl.pivot.evaluation.tx.AbstractTransformer;
 import org.eclipse.ocl.pivot.evaluation.tx.AbstractTypedModelInstance;
 import org.eclipse.ocl.pivot.evaluation.tx.Invocation;
 import org.eclipse.ocl.pivot.evaluation.tx.InvocationFailedException;
 import org.eclipse.ocl.pivot.evaluation.tx.InvocationManager;
 import org.eclipse.ocl.pivot.evaluation.tx.ObjectManager;
-import org.eclipse.ocl.pivot.evaluation.tx.SlotState;
 import org.eclipse.ocl.pivot.evaluation.tx.Transformer;
 import org.eclipse.ocl.pivot.ids.ClassId;
 import org.eclipse.ocl.pivot.ids.IdManager;
@@ -46,10 +44,8 @@ import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.ids.PropertyId;
 import org.eclipse.ocl.pivot.ids.TypeId;
-import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
-import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
@@ -63,571 +59,6 @@ public abstract class AbstractTransformerInternal implements Transformer
 	private static final @NonNull List<@NonNull Integer> EMPTY_INDEX_LIST = Collections.emptyList();
 	private static final @NonNull List<@NonNull EObject> EMPTY_EOBJECT_LIST = Collections.emptyList();
 
-	/**
-	 * Simple SlotState describing a DataType element or 1:1 Object navigation.
-	 */
-	public static class BasicSlotState extends AbstractSlotState
-	{
-		public enum SlotMode {
-			ASSIGNABLE,		// No assignment has been performed, object reads are blocked (collections reads may be unblocked)
-			ASSIGNED		// Last assignment has been performed, reads are unblocked
-		}
-		
-		protected final @NonNull EObject debug_eObject; 
-		protected final @NonNull EStructuralFeature debug_eFeature; 
-		protected @NonNull SlotMode mode;	
-		private @Nullable Object blockedInvocations = null;
-		
-		public BasicSlotState(@NonNull EObject eObject, @NonNull EStructuralFeature eFeature) {
-			mode = SlotMode.ASSIGNABLE;	
-			this.debug_eObject = eObject;
-			this.debug_eFeature = eFeature;
-		}
-
-		public BasicSlotState(@NonNull EObject eObject, @NonNull EStructuralFeature eFeature, @Nullable Object ecoreValue) {
-			mode = SlotMode.ASSIGNED;	
-			this.debug_eObject = eObject;
-			this.debug_eFeature = eFeature;
-		}
-
-		@Override
-		public synchronized void assigned(@NonNull LazyObjectManager objectManager, @NonNull EObject eObject, @NonNull EStructuralFeature eFeature, @Nullable Object ecoreValue) {
-			switch (mode) {
-				case ASSIGNABLE:
-					mode = SlotMode.ASSIGNED;
-					unblock(objectManager);
-					break;
-				case ASSIGNED:
-					System.out.println("Re-assignment of " + eFeature.getEContainingClass().getName() + "::" + eFeature.getName() + " for " + eObject + " with " + ecoreValue);
-					break;
-			}
-		}
-		
-		@Override
-		public synchronized void block(@NonNull Invocation invocation) {
-			final Object blockedInvocations2 = blockedInvocations;
-			if (blockedInvocations2 == null) {
-				blockedInvocations = invocation;
-			}
-			else if (blockedInvocations2 instanceof Invocation) {
-				List<Invocation> blockedInvocationList = new ArrayList<Invocation>();
-				blockedInvocationList.add((Invocation) blockedInvocations2);
-				blockedInvocationList.add(invocation);
-				blockedInvocations = blockedInvocationList;
-			}
-			else {
-				@SuppressWarnings("unchecked")
-				List<Invocation> blockedInvocationList = (List<Invocation>)blockedInvocations2;
-				blockedInvocationList.add(invocation);
-			}
-		}
-		
-		@Override
-		public synchronized void getting(@NonNull LazyObjectManager objectManager, @NonNull EObject eObject, @NonNull EStructuralFeature eFeature) {
-			switch (mode) {
-				case ASSIGNABLE:
-					throw new InvocationFailedException(this);
-				case ASSIGNED:
-					break;
-			}
-		}
-
-		protected boolean isAssigned() {
-			return mode == SlotMode.ASSIGNED;
-		}
-
-		@Override
-		public String toString() {
-			return getClass().getSimpleName() + "@" + Integer.toHexString(System.identityHashCode(this)) + "[" + debug_eFeature.getEContainingClass().getName() + "::" + debug_eFeature.getName() + " for " + debug_eObject + "]";
-		}
-
-		protected synchronized void unblock(@NonNull LazyObjectManager objectManager) {
-			final Object blockedInvocations2 = blockedInvocations;
-			if (blockedInvocations2 instanceof Invocation) {
-				objectManager.unblock((Invocation) blockedInvocations2);
-			}
-			else if (blockedInvocations2 != null) {
-				@SuppressWarnings("unchecked")
-				List<@NonNull Invocation> blockedInvocationList = (List<@NonNull Invocation>)blockedInvocations2;
-				for (@NonNull Invocation invocation : blockedInvocationList) {
-					objectManager.unblock(invocation);
-				}
-			}
-			blockedInvocations = null;
-		}
-	}
-	
-	/**
-	 * SlotState describing the contained element side of a 1:N Object navigation.
-	 * A single OneToManyContainedSlotState is shared by each of the possible containing features and also the
-	 * generic OCLstdlibPackage.Literals.OCL_ELEMENT__OCL_CONTAINER corresponding to eContainer().
-	 * The eGet() must therefore check not only that the proprty is assigned but also that it is
-	 * assigned to the containing feature of interest.
-	 * <br>
-	 * Lifecycle (read first, write later):
-	 * Create due to
-	 * - get of an aggregator => ASSIGNABLE, blocked
-	 * Unblock
-	 * - assign of possibly null aggregator for the element, ASSIGNABLE, blocked => ASSIGNED, not blocked
-	 * - non-null aggregator is notified to unblock 
-	 * Thereafter
-	 * - get of aggregator ASSIGNED => ASSIGNED
-	 * <br>
-	 * Lifecycle (write first):
-	 * Create due to
-	 * - assign of a possibly null aggregator => ASSIGNED, unblocked
-	 * - non-null aggregator is notified to unblock 
-	 * Thereafter
-	 * - get of aggregator ASSIGNED => ASSIGNED
-	 *
-	private static class ContainedSlotState extends SlotState
-	{
-		public static @NonNull SlotState create(@NonNull ObjectManager objectManager,
-				@NonNull EObject eObject, @NonNull EReference eFeature, @Nullable EReference eOppositeFeature, @Nullable EObject eContainer) {
-			if (eOppositeFeature == null) {
-				eOppositeFeature = OCLstdlibPackage.Literals.OCL_ELEMENT__OCL_CONTAINER;
-				assert eOppositeFeature != null;
-			}
-			if (eContainer != null) {
-				ContainerSlotState aggregatorSlotState = (ContainerSlotState) objectManager.getSlotState(eContainer, eOppositeFeature);
-				aggregatorSlotState.assignedElement(objectManager, eContainer, eOppositeFeature, eObject);
-			}
-			return new ContainedSlotState(eObject, eFeature, eContainer);
-		}
-		
-		public ContainedSlotState(@NonNull EObject eObject, @NonNull EReference eFeature) {
-			super(eObject, eFeature);
-			assert !eFeature.isMany();
-			if (eFeature != OCLstdlibPackage.Literals.OCL_ELEMENT__OCL_CONTAINER) {	// FIXME ensure oclContainer() composes
-				assert eFeature.isContainment();
-				assert eFeature.getEOpposite() != null;
-			}
-//			assert eFeature.getEOpposite().isMany();
-		}
-		
-		private ContainedSlotState(@NonNull EObject eObject, @NonNull EReference eFeature, @Nullable EObject eContainer) {
-			super(eObject, eFeature, eContainer);
-			assert !eFeature.isMany();
-			if (eFeature != OCLstdlibPackage.Literals.OCL_ELEMENT__OCL_CONTAINER) {	// FIXME ensure oclContainer() composes
-				assert eFeature.isContainment();
-			}
-//			assert eFeature.getEOpposite().isMany();
-			assert eObject.eContainer() == eContainer;
-		}
-
-		@Override
-		public synchronized void assigned(@NonNull ObjectManager objectManager, @NonNull EObject eObject, @NonNull EStructuralFeature eFeature, @Nullable Object ecoreValue) {
-			if (!isAssigned() && (ecoreValue != null)) {
-				EObject eOpposite = (EObject) ecoreValue;
-				EReference eOppositeReference = ((EReference)eFeature).getEOpposite();
-				assert eOppositeReference != null;
-				ContainerSlotState aggregatorSlotState = (ContainerSlotState) objectManager.getSlotState(eOpposite, eOppositeReference);
-				aggregatorSlotState.assignedElement(objectManager, eOpposite, eOppositeReference, eObject);
-			}
-			super.assigned(objectManager, eObject, eFeature, ecoreValue);
-		}
-		
-		@Override
-		@SuppressWarnings("unchecked")
-		public synchronized @Nullable <G> G get(@NonNull ObjectManager objectManager, @NonNull EObject eObject, @NonNull EStructuralFeature eFeature) {
-			switch (mode) {
-				case ASSIGNABLE:
-					throw new InvocationFailedException(this);
-				case ASSIGNED:
-					break;
-			}
-			if (eFeature != OCLstdlibPackage.Literals.OCL_ELEMENT__OCL_CONTAINER) {
-				EStructuralFeature eContainingFeature = eObject.eContainingFeature();
-				if (eContainingFeature != eFeature) {
-					return null;
-				}
-			}
-			return (G) eObject.eContainer();
-		}
-	} */
-	
-	/**
-	 * SlotState describing the container side of a 1:N Object navigation.
-	 * <br>
-	 * Lifecycle:
-	 * Create due to
-	 * - get of all elements => ASSIGNABLE, blocked
-	 * NO: - get of a container => ASSIGNABLE, blocked
-	 * Create due to
-	 * - assign of all elements => ASSIGNABLE => ASSIGNED, not blocked
-	 * - assign of a first element to the container => ASSIGNABLE, not blocked
-	 * Update due to
-	 * - assign of a further element to the container => ASSIGNABLE => ASSIGNABLE
-	 * Unblock due to
-	 * - get of a container ASSIGNABLE => ASSIGNED
-	 * - get of all elements ASSIGNABLE => ASSIGNED
-	 * Thereafter
-	 * - get of a container ASSIGNED => ASSIGNED
-	 * - get of all elements ASSIGNED => ASSIGNED
-	 * <br>
-	 * Lifecycle 2: read first
-	 * Create due to
-	 * - get of elements => ASSIGNABLE, blocked
-	 * Unblock due to
-	 * - assign of an element to the container => ASSIGNABLE => ASSIGNED, not blocked
-	 * Thereafter
-	 * - get of either end ASSIGNED => ASSIGNED
-	 * - (assign of either end is an ignored error)
-	 *
-	private static class ContainerSlotState extends SlotState
-	{
-		public static @NonNull SlotState create(@NonNull ObjectManager objectManager,
-				@NonNull EObject eObject, @NonNull EReference eFeature, @NonNull EReference eOppositeFeature, @Nullable EObject eContent) {
-			if (eContent != null) {
-				ContainedSlotState containedSlotState = (ContainedSlotState) objectManager.getSlotState(eContent, eOppositeFeature);
-				containedSlotState.assigned(objectManager, eContent, eOppositeFeature, eObject);
-			}
-			return new ContainerSlotState(eObject, eFeature, eContent);
-		}
-		
-		public ContainerSlotState(@NonNull EObject eContainer, @NonNull EReference eFeature) {
-			super(eContainer, eFeature);
-			assert eFeature.isContainer();
-//			assert eFeature.isMany();
-//			assert eFeature.getEOpposite() != null;
-//			assert eFeature.getEOpposite().isMany();
-		}
-
-		public ContainerSlotState(@NonNull EObject eContainer, @NonNull EReference eFeature, @Nullable Object elements) {
-			super(eContainer, eFeature, elements);
-			assert eFeature.isContainer();
-//			assert eFeature.isMany();
-//			assert eFeature.getEOpposite() != null;
-//			assert eFeature.getEOpposite().isMany();
-			assert eContainer.eGet(eFeature) == eContainer;
-		}
-
-		@Override
-		public synchronized void assigned(@NonNull ObjectManager objectManager, @NonNull EObject eObject, @NonNull EStructuralFeature eFeature, @Nullable Object ecoreValue) {
-			assert ecoreValue != null;
-			@SuppressWarnings("unchecked")
-			List<? extends EObject> ecoreValues = (List<? extends EObject>)ecoreValue;
-			EReference eOppositeReference = ((EReference)eFeature).getEOpposite();
-			for (EObject element : ecoreValues) {
-				if (element != null) {
-					Map<EStructuralFeature, SlotState> elementObjectState = objectManager.getObjectState(element);
-					elementObjectState.put(eOppositeReference, this);
-				}
-			}
-			super.assigned(objectManager, eObject, eFeature, ecoreValue);
-
-		}
-		
-		public void assignedElement(@NonNull ObjectManager objectManager,
-				@NonNull EObject eContainer, @NonNull EReference eReference, EObject eObject) {
-			super.assigned(objectManager, eContainer, eReference, eObject);
-		}
-		
-		@Override
-		@SuppressWarnings("unchecked")
-		public synchronized @Nullable <G> G get(@NonNull ObjectManager objectManager, @NonNull EObject eObject, @NonNull EStructuralFeature eFeature) {
-			switch (mode) {
-				case ASSIGNABLE:
-					mode = PropertyMode.ASSIGNED;
-					unblock(objectManager);
-					break;
-				case ASSIGNED:
-					break;
-			}
-			return (G) eObject.eGet(eFeature);
-		}
-	} */
-	
-	/**
-	 * SlotState describing an M:N Object navigation.
-	 */
-	static class ManyToManySlotState extends BasicSlotState
-	{	
-		public static @NonNull SlotState create(@NonNull LazyObjectManager objectManager,
-				@NonNull EObject eObject, @NonNull EReference eFeature, @NonNull EReference eOppositeFeature) {
-			throw new UnsupportedOperationException();
-		}
-		
-		public ManyToManySlotState(@NonNull EObject eObject, @NonNull EStructuralFeature eFeature) {
-			super(eObject, eFeature);
-			throw new UnsupportedOperationException();
-		}
-
-		@Override
-		public synchronized void assigned(@NonNull LazyObjectManager objectManager, @NonNull EObject eObject, @NonNull EStructuralFeature eFeature, @Nullable Object ecoreValue) {
-			throw new UnsupportedOperationException();
-		}
-	}
-	
-	/**
-	 * SlotState describing the aggregator side of a 1:N Object navigation.
-	 * <br>
-	 * Lifecycle:
-	 * Create due to
-	 * - get of all elements => ASSIGNABLE, blocked
-	 * NO: - get of an aggregator => ASSIGNABLE, blocked
-	 * Create due to
-	 * - assign of all elements => ASSIGNABLE => ASSIGNED, not blocked
-	 * - assign of a first element to the aggregator => ASSIGNABLE, not blocked
-	 * Update due to
-	 * - assign of a further element to the aggregator => ASSIGNABLE => ASSIGNABLE
-	 * Unblock due to
-	 * - get of an aggregator ASSIGNABLE => ASSIGNED
-	 * - get of all elements ASSIGNABLE => ASSIGNED
-	 * Thereafter
-	 * - get of an aggregator ASSIGNED => ASSIGNED
-	 * - get of all elements ASSIGNED => ASSIGNED
-	 * <br>
-	 * Lifecycle 2: read first
-	 * Create due to
-	 * - get of elements => ASSIGNABLE, blocked
-	 * Unblock due to
-	 * - assign of an element to the aggregator => ASSIGNABLE => ASSIGNED, not blocked
-	 * Thereafter
-	 * - get of either end ASSIGNED => ASSIGNED
-	 * - (assign of either end is an ignored error)
-	 */
-	static class OneToManyAggregatorSlotState extends BasicSlotState
-	{
-
-//		public static @NonNull  SlotState create(@NonNull ObjectManager objectManager,
-//				EObject eObject, @NonNull EReference eFeature, EReference eOppositeReference, Object ecoreValue) {
-//			// TODO Auto-generated method stub
-//			return null;
-//		}
-		public static @NonNull SlotState create(@NonNull LazyObjectManager objectManager,
-				@NonNull EObject eObject, @NonNull EReference eFeature, @NonNull EReference eOppositeFeature, @Nullable Object eContents) {
-			if (eContents != null) {
-//				SlotState containedSlotState = objectManager.getSlotState(eContent, eOppositeFeature);
-//				containedSlotState.assigned(objectManager, eContent, eOppositeFeature, eObject);
-			}
-			return new OneToManyAggregatorSlotState(eObject, eFeature, eContents);
-		}
-		
-		public OneToManyAggregatorSlotState(@NonNull EObject eContainer, @NonNull EStructuralFeature eFeature) {
-			super(eContainer, eFeature);
-			assert eFeature.isMany();
-//			assert eFeature.getEOpposite() != null;
-//			assert eFeature.getEOpposite().isMany();
-		}
-
-		private OneToManyAggregatorSlotState(@NonNull EObject eContainer, @NonNull EStructuralFeature eFeature, @Nullable Object eContents) {
-			super(eContainer, eFeature, eContents);
-			assert eFeature.isMany();
-//			assert eFeature.getEOpposite() != null;
-//			assert eFeature.getEOpposite().isMany();
-			assert eContainer.eGet(eFeature).equals(eContents);
-		}
-
-		@Override
-		public synchronized void assigned(@NonNull LazyObjectManager objectManager, @NonNull EObject eObject, @NonNull EStructuralFeature eFeature, @Nullable Object ecoreValue) {
-			assert ecoreValue != null;
-			@SuppressWarnings("unchecked")
-			List<? extends EObject> ecoreValues = (List<? extends EObject>)ecoreValue;
-			EReference eOppositeReference = ((EReference)eFeature).getEOpposite();
-			for (EObject element : ecoreValues) {
-				if (element != null) {
-					Map<EStructuralFeature, SlotState> elementObjectState = objectManager.getObjectState(element);
-					elementObjectState.put(eOppositeReference, this);
-				}
-			}
-//			super.assigned(objectManager, eObject, eFeature, ecoreValue);
-			assignedElement(objectManager, eObject, (EReference)eFeature, (EObject)ecoreValue);
-		}
-		
-		public void assignedElement(@NonNull LazyObjectManager objectManager,
-				@NonNull EObject eContainer, @NonNull EReference eReference, EObject eObject) {
-//			super.assigned(objectManager, eContainer, eReference, eObject);
-			switch (mode) {
-				case ASSIGNABLE:
-					mode = SlotMode.ASSIGNED;
-					unblock(objectManager);
-					break;
-				case ASSIGNED:
-					break;
-			}
-		}
-		
-		@Override
-		public synchronized void getting(@NonNull LazyObjectManager objectManager, @NonNull EObject eObject, @NonNull EStructuralFeature eFeature) {
-			switch (mode) {
-				case ASSIGNABLE:
-					mode = SlotMode.ASSIGNED;
-					unblock(objectManager);
-					break;
-				case ASSIGNED:
-					break;
-			}
-		}
-	}
-	
-	/**
-	 * SlotState describing the element side of a 1:N Object navigation.
-	 * <br>
-	 * Lifecycle (read first, write later):
-	 * Create due to
-	 * - get of an aggregator => ASSIGNABLE, blocked
-	 * Unblock
-	 * - assign of possibly null aggregator for the element, ASSIGNABLE, blocked => ASSIGNED, not blocked
-	 * - non-null aggregator is notified to unblock 
-	 * Thereafter
-	 * - get of aggregator ASSIGNED => ASSIGNED
-	 * <br>
-	 * Lifecycle (write first):
-	 * Create due to
-	 * - assign of a possibly null aggregator => ASSIGNED, unblocked
-	 * - non-null aggregator is notified to unblock 
-	 * Thereafter
-	 * - get of aggregator ASSIGNED => ASSIGNED
-	 */
-	static class OneToManyElementSlotState extends BasicSlotState
-	{
-		public static @NonNull SlotState create(@NonNull LazyObjectManager objectManager,
-				@NonNull EObject eObject, @NonNull EReference eFeature, @NonNull EReference eOppositeFeature, @NonNull EObject eAggregator) {
-			OneToManyAggregatorSlotState aggregatorSlotState = (OneToManyAggregatorSlotState) objectManager.getSlotState(eAggregator, eOppositeFeature);
-			aggregatorSlotState.assignedElement(objectManager, eAggregator, eOppositeFeature, eObject);
-			return new OneToManyElementSlotState(eObject, eFeature, eAggregator);
-		}
-		
-		public OneToManyElementSlotState(@NonNull EObject eObject, @NonNull EReference eFeature) {
-			super(eObject, eFeature);
-			assert !eFeature.isMany();
-			if (eFeature == OCLstdlibPackage.Literals.OCL_ELEMENT__OCL_CONTAINER) {
-				assert eFeature.getEOpposite() == null;
-			}
-			else {
-				assert eFeature.getEOpposite() != null;
-				assert eFeature.getEOpposite().isMany();
-			}
-		}
-		
-		public OneToManyElementSlotState(@NonNull EObject eObject, @NonNull EReference eFeature, @NonNull EObject eAggregator) {
-			super(eObject, eFeature, eAggregator);
-			assert !eFeature.isMany();
-			assert eFeature.getEOpposite() != null;
-			assert eFeature.getEOpposite().isMany();
-			if (eFeature == OCLstdlibPackage.Literals.OCL_ELEMENT__OCL_CONTAINER) {
-				assert eObject.eContainer() == eAggregator;
-			}
-			else {
-				assert eObject.eGet(eFeature) == eAggregator;
-			}
-		}
-
-		@Override
-		public synchronized void assigned(@NonNull LazyObjectManager objectManager, @NonNull EObject eObject, @NonNull EStructuralFeature eFeature, @Nullable Object ecoreValue) {
-			if (!isAssigned() && (ecoreValue != null)) {
-				EObject eOpposite = (EObject) ecoreValue;
-				EReference eOppositeReference = ((EReference)eFeature).getEOpposite();
-				if (eFeature == OCLstdlibPackage.Literals.OCL_ELEMENT__OCL_CONTAINER) {
-					eOppositeReference = eObject.eContainmentFeature();
-					assert eOppositeReference != null;
-					SlotState aggregatorSlotState = objectManager.getSlotState(eOpposite, eOppositeReference);
-					aggregatorSlotState.assigned(objectManager, eOpposite, eOppositeReference, eObject);
-				}
-				else {
-					assert eOppositeReference != null;
-					OneToManyAggregatorSlotState aggregatorSlotState = (OneToManyAggregatorSlotState) objectManager.getSlotState(eOpposite, eOppositeReference);
-					aggregatorSlotState.assignedElement(objectManager, eOpposite, eOppositeReference, eObject);
-				}
-			}
-			super.assigned(objectManager, eObject, eFeature, ecoreValue);
-		}
-	}
-	
-	/**
-	 * SlotState describing a 1:1 Object navigation. Both ends are assigned exactly once. The remote assignment
-	 * may be null.
-	 * <br>
-	 * Lifecycle 1: write first
-	 * Create due to
-	 * - assign of possibly null eOpposite => ASSIGNED
-	 * Thereafter
-	 * - get of either end ASSIGNED => ASSIGNED
-	 * - (assign of either end is an ignored error)
-	 * <br>
-	 * Lifecycle 2: read first
-	 * Create due to
-	 * - get of other end => ASSIGNABLE_BLOCKED
-	 * Unblock due to
-	 * - assign of a further element to the aggregator => ASSIGNABLE_BLOCKED => ASSIGNED
-	 * Thereafter
-	 * - get of either end ASSIGNED => ASSIGNED
-	 * - (assign of either end is an ignored error)
-	 */
-	static class OneToOneSlotState extends BasicSlotState
-	{
-		public static @NonNull <G,S> SlotState create(@NonNull LazyObjectManager objectManager,
-				@NonNull EObject eObject, @NonNull EReference eFeature, @NonNull EReference eOppositeFeature, @Nullable EObject eOpposite) {
-			Map<EStructuralFeature, SlotState> oppositeObjectState = null;
-			if (eOpposite != null) {
-				oppositeObjectState = objectManager.getObjectState(eOpposite);
-				SlotState slotState = oppositeObjectState.get(eOppositeFeature);
-				if (slotState != null) {
-					return slotState;
-				}
-			}
-			SlotState slotState = new OneToOneSlotState(eObject, eFeature, eOpposite);
-			if (oppositeObjectState != null) {
-				oppositeObjectState.put(eOppositeFeature, slotState);
-			}
-			return slotState;
-		}
-
-/*		public static @NonNull <G,S> SlotState createContainer(@NonNull ObjectManager objectManager,
-				@NonNull EObject eObject, @NonNull EReference eFeature, @Nullable EReference eOppositeFeature, @Nullable EObject eOpposite) {
-			Map<EStructuralFeature, SlotState> oppositeObjectState = null;
-			if (eOpposite != null) {
-				oppositeObjectState = objectManager.getObjectState(eObject);
-				SlotState slotState = oppositeObjectState.get(eOppositeFeature);
-				if (slotState != null) {
-					return slotState;
-				}		
-			}
-			SlotState slotState = new OneToOneSlotState(eObject, eFeature, eOpposite);
-			if (oppositeObjectState != null) {
-				oppositeObjectState.put(eOppositeFeature, slotState);
-			}
-			return slotState;
-		} */
-		
-		public OneToOneSlotState(@NonNull EObject eObject, @NonNull EReference eFeature) {
-			super(eObject, eFeature);
-			assert !eFeature.isMany();
-			if (eFeature.isContainer()) {
-//				assert eObject.eContainer() == eOpposite;
-			}
-			else if (eFeature.isContainment()) {
-//				assert eOpposite != null;
-//				assert eObject == eOpposite.eContainer();
-			}
-			else if (eFeature == OCLstdlibPackage.Literals.OCL_ELEMENT__OCL_CONTAINER) {
-//				slotState = new OneToOneSlotState(eObject, eReference);
-			}
-			else {
-				assert eFeature.getEOpposite() != null;
-				assert !eFeature.getEOpposite().isMany();
-			}
-		}
-
-		private OneToOneSlotState(@NonNull EObject eObject, @NonNull EReference eFeature, @Nullable EObject eOpposite) {
-			super(eObject, eFeature, eOpposite);
-			assert !eFeature.isMany();
-			if (eFeature.isContainer()) {
-				assert eObject.eContainer() == eOpposite;
-			}
-			else if (eFeature.isContainment()) {
-				assert eOpposite != null;
-				assert eObject == eOpposite.eContainer();
-			}
-			else {
-				assert eFeature.getEOpposite() != null;
-				assert !eFeature.getEOpposite().isMany();
-				assert eObject.eGet(eFeature) == eOpposite;
-			}
-		}
-	}
-	
 	protected class Model extends AbstractTypedModelInstance
 	{
 		protected final @NonNull String name;
@@ -907,19 +338,13 @@ public abstract class AbstractTransformerInternal implements Transformer
 	/**
 	 * Manager for the blocked and unblocked invocations.
 	 */
-	protected final @NonNull InvocationManager invocationManager = new LazyInvocationManager();
+	protected final @NonNull InvocationManager invocationManager = createInvocationManager();
 
 	/**
 	 * Manager for the auxiliary object and property state.
 	 */
-	protected final @NonNull ObjectManager objectManager = new LazyObjectManager(invocationManager, isIncremental());
+	protected final @NonNull ObjectManager objectManager = createObjectManager();
 	
-	/** @deprecated use Executor in constructor */
-	@Deprecated
-	protected AbstractTransformerInternal(@NonNull Evaluator evaluator, @NonNull String @NonNull [] modelNames,
-			@NonNull PropertyId @Nullable [] propertyIndex2propertyId, @NonNull ClassId @Nullable [] classIndex2classId, int  @Nullable [] @NonNull [] classIndex2allClassIndexes) {
-		this(ValueUtil.getExecutor(evaluator), modelNames, propertyIndex2propertyId, classIndex2classId, classIndex2allClassIndexes);
-	}
 	protected AbstractTransformerInternal(@NonNull Executor executor, @NonNull String @NonNull [] modelNames,
 			@NonNull PropertyId @Nullable [] propertyIndex2propertyId, @NonNull ClassId @Nullable [] classIndex2classId, int @Nullable [] @NonNull [] classIndex2allClassIndexes) {
 		this.executor = executor;
@@ -1039,7 +464,21 @@ public abstract class AbstractTransformerInternal implements Transformer
 		}
 		return theInvocation;
     }
-    
+
+    /**
+     * Create the InvocationManager. Creates a LazyInvocationManager by default.
+     */
+	protected @NonNull InvocationManager createInvocationManager() {
+		return new LazyInvocationManager();
+	}
+
+    /**
+     * Create the ObjectManager. Creates a LazyObjectManager by default.
+     */
+	protected @NonNull ObjectManager createObjectManager() {
+		return new LazyObjectManager((LazyInvocationManager)invocationManager);
+	}
+
 	@Override
 	public @NonNull Set<@NonNull EObject> get(org.eclipse.ocl.pivot.@NonNull Class type) {
 		return new HashSet<@NonNull EObject>(models[0].getObjectsOfKind(type));
@@ -1173,8 +612,4 @@ public abstract class AbstractTransformerInternal implements Transformer
     		invocationManager.invoke(invocation, true);
     	}
     }
-	
-	private boolean isIncremental() {
-		return false;
-	}
 }
