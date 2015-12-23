@@ -10,7 +10,11 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.evaluation.tx;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 
 /**
  * AbstractObjectManager provides the mandatory shared functionality for an object state manager.
@@ -18,10 +22,17 @@ import org.eclipse.jdt.annotation.NonNull;
  */
 public abstract class AbstractObjectManager implements ObjectManager
 {
+	protected static final @SuppressWarnings("null")@NonNull List<SlotState> EMPTY_SLOT_STATE_LIST = Collections.emptyList();
+
 	protected final @NonNull InvocationManager invocationManager;
 	
 	protected AbstractObjectManager(@NonNull InvocationManager invocationManager) {
 		this.invocationManager = invocationManager;
+	}
+
+	@Override
+	public @Nullable <R> R accept(@NonNull ExecutionVisitor<R> visitor) {
+		return visitor.visitObjectManager(this);
 	}
 
 	@Override

@@ -1,4 +1,7 @@
 class java/util/Collections
+EMPTY_LIST
+ Ljava/util/List;
+ L1java/util/List;
 emptyList
  <T:Ljava/lang/Object;>()Ljava/util/List<TT;>;
  <T:Ljava/lang/Object;>()L1java/util/List<TT;>;

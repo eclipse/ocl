@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2013, 2015 Willink Transformations and others.
+ * Copyright (c) 2015 Willink Transformations and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,15 +13,19 @@ package org.eclipse.ocl.pivot.evaluation.tx;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
-/**
- * AbstractInvocationManager provides the mandatory shared functionality for a mapping invocation manager.
+/** 
+ * ExecutionVisitable defines the common visitable capability of all run-time execution objects.
+ * 
+ * @noimplement clients should derive from some AbstractXXX class
  * @since 1.1
  */
-public abstract class AbstractInvocationManager implements InvocationManager
-{
-
-	@Override
-	public @Nullable <R> R accept(@NonNull ExecutionVisitor<R> visitor) {
-		return visitor.visitInvocationManager(this);
-	}
+public interface ExecutionVisitable
+{ 
+	/**
+	 * Returns the result of accepting a visit from a visitor.
+	 * Implementations typically invoke a derived-class-specific
+	 * variant of visitXXX() to facilitate derived-class-specific
+	 * processing or just visit() when no such method is available.
+	 */
+	@Nullable <R> R accept(@NonNull ExecutionVisitor<R> visitor);
 }

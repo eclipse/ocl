@@ -20,7 +20,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * @since 1.1
  * @noimplement clients should derive from AbstractInvocationManager
  */
-public interface InvocationManager
+public interface InvocationManager extends ExecutionVisitable
 {
 	boolean flush() throws ReflectiveOperationException;
     void invoke(@NonNull Invocation invocation, boolean doFlush) throws ReflectiveOperationException;

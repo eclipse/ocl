@@ -25,7 +25,7 @@ import org.eclipse.jdt.annotation.Nullable;
  * @since 1.1
  * @noimplement clients should derive from AbstractObjectManager
  */
-public interface ObjectManager
+public interface ObjectManager extends ExecutionVisitable
 {
 	/**
 	 * Mark the eFeature of eObject as assigned with an ecoreValue.
@@ -33,9 +33,17 @@ public interface ObjectManager
 	void assigned(@NonNull EObject eObject, /*@NonNull*/ EStructuralFeature eFeature, @Nullable Object ecoreValue);
 
 	/**
+	 * Mark the eFeature of eObject as assigned with an ecoreValue.
+	 */
+	void assigned(Invocation.@NonNull Incremental invocation, @NonNull EObject eObject, /*@NonNull*/ EStructuralFeature eFeature, @Nullable Object ecoreValue);
+
+	/**
 	 * Identify the creation of eObject by the current mapping invocation.
 	 */
 	void created(Invocation.@NonNull Incremental invocation, @NonNull EObject eObject);
+
+	@NonNull Iterable<? extends Object> getObjects();
+	@NonNull Iterable<? extends SlotState> getSlotStates(@NonNull Object object);
 	
 	/**
 	 * Throw an InvocationFailedException if the eFeature of eObject has not yet been assigned.

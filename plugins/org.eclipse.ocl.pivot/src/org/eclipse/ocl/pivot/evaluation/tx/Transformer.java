@@ -23,7 +23,7 @@ import org.eclipse.ocl.pivot.evaluation.ModelManager;
  * @since 1.1
  * @noimplement clients should derive from AbstractTransformer
  */
-public interface Transformer extends ModelManager
+public interface Transformer extends ModelManager, ExecutionVisitable
 {
 	/**
 	 * Clients may reference this explicitly to force a compile-time failure for a mismatch.

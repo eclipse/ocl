@@ -25,6 +25,7 @@ import org.eclipse.ocl.pivot.evaluation.tx.AbstractObjectManager;
 import org.eclipse.ocl.pivot.evaluation.tx.AbstractSlotState;
 import org.eclipse.ocl.pivot.evaluation.tx.AbstractTransformer;
 import org.eclipse.ocl.pivot.evaluation.tx.Invocation;
+import org.eclipse.ocl.pivot.evaluation.tx.Invocation.Incremental;
 import org.eclipse.ocl.pivot.evaluation.tx.InvocationFailedException;
 import org.eclipse.ocl.pivot.evaluation.tx.ObjectManager;
 import org.eclipse.ocl.pivot.evaluation.tx.SlotState;
@@ -667,6 +668,11 @@ public class LazyObjectManager extends AbstractObjectManager
 		}
 	}
 
+	@Override
+	public void assigned(@NonNull Incremental invocation, @NonNull EObject eObject, EStructuralFeature eFeature, @Nullable Object ecoreValue) {
+		assigned(eObject, eFeature, ecoreValue);		// Delegate incremental API to non-incremental API
+	}
+
 	@NonNull SlotState createManyToManySlotState(
 			@NonNull EObject eObject, @NonNull EReference eFeature, @NonNull EReference eOppositeFeature) {
 		throw new UnsupportedOperationException();
@@ -707,7 +713,7 @@ public class LazyObjectManager extends AbstractObjectManager
 
 	@Override
 	public void created(Invocation.@NonNull Incremental invocation, @NonNull EObject eObject) {
-		throw new UnsupportedOperationException(getClass().getName() + " does not support Incremental operation");
+		// Ignore incremental API
 	}
 
 	public @NonNull Map<@NonNull EStructuralFeature, @NonNull SlotState> getObjectState(@NonNull EObject eObject) {
@@ -717,6 +723,11 @@ public class LazyObjectManager extends AbstractObjectManager
 			object2feature2slotState.put(eObject, feature2state);
 		}
 		return feature2state;
+	}
+
+	@Override
+	public @NonNull Iterable<? extends Object> getObjects() {
+		return object2feature2slotState.keySet();
 	}
 
 	public synchronized @NonNull SlotState getSlotState(@NonNull EObject eObject, @NonNull EStructuralFeature eFeature) {
@@ -769,6 +780,12 @@ public class LazyObjectManager extends AbstractObjectManager
 	}
 
 	@Override
+	public @NonNull Iterable<SlotState> getSlotStates(@NonNull Object object) {
+		Map<EStructuralFeature, SlotState> feature2slotState = object2feature2slotState.get(object);;
+		return feature2slotState != null ? feature2slotState.values() : EMPTY_SLOT_STATE_LIST;
+	}
+
+	@Override
 	public synchronized void getting(@NonNull EObject eObject, /*@NonNull*/ EStructuralFeature eFeature) {
 		assert eFeature != null;
 		if (debugTracing) {
@@ -780,6 +797,6 @@ public class LazyObjectManager extends AbstractObjectManager
 
 	@Override
 	public void got(Invocation.@NonNull Incremental invocation, @NonNull EObject eObject, EStructuralFeature eFeature, @Nullable Object ecoreValue) {
-		throw new UnsupportedOperationException(getClass().getName() + " does not support Incremental operation");
+		// Ignore incremental API
 	}
 }

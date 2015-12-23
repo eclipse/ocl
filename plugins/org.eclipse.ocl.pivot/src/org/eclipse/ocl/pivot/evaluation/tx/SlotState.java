@@ -21,7 +21,7 @@ import org.eclipse.jdt.annotation.Nullable;
  * @since 1.1
  * @noimplement clients should derive from AbstractSlotState
  */
-public interface SlotState
+public interface SlotState extends ExecutionVisitable
 {
 	/**
 	 * Update the SlotState as a result of an assignment of ecoreValue to the eFeature of eObject.
@@ -39,5 +39,10 @@ public interface SlotState
 	{
 		void addSourceInternal(Invocation.@NonNull Incremental invocation);
 		void addTargetInternal(Invocation.@NonNull Incremental invocation);
+		@NonNull EStructuralFeature getEFeature();
+		SlotState.@NonNull Incremental getPrimarySlotState();
+		@Nullable Object getValue();
+		@NonNull Iterable<Invocation.Incremental> getSources();
+		@NonNull Iterable<Invocation.Incremental> getTargets();
 	}
 }

@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.internal.evaluation.tx.AbstractInvocationInternal;
 
 /**
@@ -28,8 +29,17 @@ public abstract class AbstractInvocation extends AbstractInvocationInternal
 	{
 		public static final @NonNull List<SlotState.Incremental> EMPTY_SLOT_LIST = Collections.<SlotState.Incremental>emptyList();
 
+		private Set<Object> createdObjects = null;
 		private Set<SlotState.Incremental> readSlots = null;
 		private Set<SlotState.Incremental> writeSlots = null;
+
+		@Override
+		public void addCreatedObject(@NonNull Object createdObject) {
+			if (createdObjects == null) {
+				createdObjects = new HashSet<Object>();
+			}
+			createdObjects.add(createdObject);
+		}
 
 		@Override
 		public void addReadSlot(SlotState.@NonNull Incremental readSlot) {
@@ -50,6 +60,11 @@ public abstract class AbstractInvocation extends AbstractInvocationInternal
 		}
 
 		@Override
+		public @NonNull Iterable<Object> getCreatedObjects() {
+			return createdObjects != null ? createdObjects : Collections.emptyList();
+		}
+
+		@Override
 		public @NonNull Iterable<SlotState.Incremental> getReadSlots() {
 			return readSlots != null ? readSlots : EMPTY_SLOT_LIST;
 		}
@@ -58,4 +73,10 @@ public abstract class AbstractInvocation extends AbstractInvocationInternal
 		public @NonNull Iterable<SlotState.Incremental> getWriteSlots() {
 			return writeSlots != null ? writeSlots : EMPTY_SLOT_LIST;
 		}
-	}}
+	}
+
+	@Override
+	public @Nullable <R> R accept(@NonNull ExecutionVisitor<R> visitor) {
+		return visitor.visitInvocation(this);
+	}
+}

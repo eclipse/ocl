@@ -28,6 +28,7 @@ import org.eclipse.ocl.pivot.evaluation.tx.Invocation;
 import org.eclipse.ocl.pivot.evaluation.tx.InvocationFailedException;
 import org.eclipse.ocl.pivot.evaluation.tx.ObjectManager;
 import org.eclipse.ocl.pivot.evaluation.tx.SlotState;
+import org.eclipse.ocl.pivot.evaluation.tx.Invocation.Incremental;
 import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage;
 
 /**
@@ -45,21 +46,24 @@ public class IncrementalObjectManager extends AbstractObjectManager
 			ASSIGNED		// Last assignment has been performed, reads are unblocked
 		}
 		
-		protected final @NonNull EObject debug_eObject; 
-		protected final @NonNull EStructuralFeature debug_eFeature; 
+		protected final @NonNull EObject eObject; 
+		protected final @NonNull EStructuralFeature eFeature; 
+		private @Nullable Object value = null; 
+
 		protected @NonNull SlotMode mode;
 		private @Nullable Object blockedInvocations = null;
 		
 		public BasicSlotState(@NonNull EObject eObject, @NonNull EStructuralFeature eFeature) {
 			mode = SlotMode.ASSIGNABLE;	
-			this.debug_eObject = eObject;
-			this.debug_eFeature = eFeature;
+			this.eObject = eObject;
+			this.eFeature = eFeature;
 		}
 
 		public BasicSlotState(@NonNull EObject eObject, @NonNull EStructuralFeature eFeature, @Nullable Object ecoreValue) {
 			mode = SlotMode.ASSIGNED;	
-			this.debug_eObject = eObject;
-			this.debug_eFeature = eFeature;
+			this.eObject = eObject;
+			this.eFeature = eFeature;
+			this.value = ecoreValue;
 		}
 
 		public synchronized void assigned(@NonNull IncrementalObjectManager objectManager, @NonNull EObject eObject, @NonNull EStructuralFeature eFeature, @Nullable Object ecoreValue) {
@@ -72,6 +76,7 @@ public class IncrementalObjectManager extends AbstractObjectManager
 					System.out.println("Re-assignment of " + eFeature.getEContainingClass().getName() + "::" + eFeature.getName() + " for " + eObject + " with " + ecoreValue);
 					break;
 			}
+			this.value = ecoreValue;
 		}
 		
 		@Override
@@ -92,7 +97,22 @@ public class IncrementalObjectManager extends AbstractObjectManager
 				blockedInvocationList.add(invocation);
 			}
 		}
-		
+
+		@Override
+		public @NonNull EStructuralFeature getEFeature() {
+			return eFeature;
+		}
+
+		@Override
+		public SlotState.@NonNull Incremental getPrimarySlotState() {
+			return this;
+		}
+
+		@Override
+		public @Nullable Object getValue() {
+			return value;
+		}
+
 		@Override
 		public synchronized void getting( @NonNull EObject eObject, @NonNull EStructuralFeature eFeature) {
 			switch (mode) {
@@ -109,7 +129,7 @@ public class IncrementalObjectManager extends AbstractObjectManager
 
 		@Override
 		public String toString() {
-			return getClass().getSimpleName() + "@" + Integer.toHexString(System.identityHashCode(this)) + "[" + debug_eFeature.getEContainingClass().getName() + "::" + debug_eFeature.getName() + " for " + debug_eObject + "]";
+			return getClass().getSimpleName() + "@" + Integer.toHexString(System.identityHashCode(this)) + "[" + eFeature.getEContainingClass().getName() + "::" + eFeature.getName() + " for " + eObject + "]";
 		}
 
 		protected synchronized void unblock(@NonNull ObjectManager objectManager) {
@@ -483,6 +503,22 @@ public class IncrementalObjectManager extends AbstractObjectManager
 			}
 			assigned(eObject, eFeature, ecoreValue);
 		}
+
+		@Override
+		public SlotState.@NonNull Incremental getPrimarySlotState() {
+			EObject eOpposite = (EObject) getValue();
+			assert eOpposite != null;
+			EReference eOppositeReference = ((EReference)eFeature).getEOpposite();
+			if (eFeature == OCLstdlibPackage.Literals.OCL_ELEMENT__OCL_CONTAINER) {
+				eOppositeReference = eObject.eContainmentFeature();
+				assert eOppositeReference != null;
+				return getSlotState(eOpposite, eOppositeReference);
+			}
+			else {
+				assert eOppositeReference != null;
+				return getSlotState(eOpposite, eOppositeReference);
+			}
+		}
 	}
 	
 	/**
@@ -667,6 +703,14 @@ public class IncrementalObjectManager extends AbstractObjectManager
 		}
 	}
 
+	@Override
+	public void assigned(@NonNull Incremental invocation, @NonNull EObject eObject, EStructuralFeature eFeature, @Nullable Object ecoreValue) {
+		assigned(eObject, eFeature, ecoreValue);
+		assert eFeature != null;
+		BasicSlotState slotState = getSlotState(eObject, eFeature);
+		invocation.addWriteSlot(slotState);
+	}
+
 	@NonNull BasicSlotState createManyToManySlotState(
 			@NonNull EObject eObject, @NonNull EReference eFeature, @NonNull EReference eOppositeFeature) {
 		throw new UnsupportedOperationException();
@@ -707,7 +751,7 @@ public class IncrementalObjectManager extends AbstractObjectManager
 
 	@Override
 	public void created(Invocation.@NonNull Incremental invocation, @NonNull EObject eObject) {
-//		throw new UnsupportedOperationException(getClass().getName() + " does not support Incremental operation");
+		invocation.addCreatedObject(eObject);
 	}
 
 	public @NonNull Map<EStructuralFeature, BasicSlotState> getObjectState(@NonNull EObject eObject) {
@@ -717,6 +761,11 @@ public class IncrementalObjectManager extends AbstractObjectManager
 			object2feature2slotState.put(eObject, feature2state);
 		}
 		return feature2state;
+	}
+
+	@Override
+	public @NonNull Iterable<? extends Object> getObjects() {
+		return object2feature2slotState.keySet();
 	}
 
 	public synchronized @NonNull BasicSlotState getSlotState(@NonNull EObject eObject, @NonNull EStructuralFeature eFeature) {
@@ -766,6 +815,12 @@ public class IncrementalObjectManager extends AbstractObjectManager
 			objectState.put(eFeature, slotState);
 		}
 		return slotState;
+	}
+
+	@Override
+	public @NonNull Iterable<? extends SlotState> getSlotStates(@NonNull Object object) {
+		Map<EStructuralFeature, BasicSlotState> feature2slotState = object2feature2slotState.get(object);;
+		return feature2slotState != null ? feature2slotState.values() : EMPTY_SLOT_STATE_LIST;
 	}
 
 	@Override

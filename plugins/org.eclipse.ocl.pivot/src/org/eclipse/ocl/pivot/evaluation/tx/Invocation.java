@@ -19,7 +19,7 @@ import org.eclipse.ocl.pivot.ids.IdResolver;
  * @noimplement clients should derive from AbstractInvocation
  * @since 1.1
  */
-public interface Invocation
+public interface Invocation extends ExecutionVisitable
 {
 	/**
 	 * Execute the mapping invocation, returning true if successfully executed, or false if some predicate failed.
@@ -45,8 +45,10 @@ public interface Invocation
 	
 	public interface Incremental extends Invocation
 	{
+		void addCreatedObject(@NonNull Object createdObject);
 		void addReadSlot(SlotState.@NonNull Incremental readSlot);
 		void addWriteSlot(SlotState.@NonNull Incremental writeSlot);
+		@NonNull Iterable<Object> getCreatedObjects();
 		@NonNull Iterable<SlotState.Incremental> getReadSlots();
 		@NonNull Iterable<SlotState.Incremental> getWriteSlots();
 	}

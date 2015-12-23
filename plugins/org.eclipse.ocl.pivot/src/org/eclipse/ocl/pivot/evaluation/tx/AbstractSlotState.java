@@ -10,10 +10,13 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.evaluation.tx;
 
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 
 /**
  * The abstract implementation of a SlotState provides the mandatory shared functionality for maintaining
@@ -23,8 +26,11 @@ import org.eclipse.jdt.annotation.NonNull;
  */
 public abstract class AbstractSlotState implements SlotState
 {
+
 	public abstract static class Incremental extends AbstractSlotState implements SlotState.Incremental
 	{
+		public static final @SuppressWarnings("null")@NonNull List<Invocation.Incremental> EMPTY_INVOCATIONS_LIST = Collections.emptyList();
+
 		private Set<Invocation.Incremental> sources = null;
 		private Set<Invocation.Incremental> targets = null;
 
@@ -43,5 +49,21 @@ public abstract class AbstractSlotState implements SlotState
 			}
 			targets.add(invocation);
 		}
+		
+		@Override
+		public @NonNull Iterable<Invocation.Incremental> getSources() {
+			return sources != null ? sources : EMPTY_INVOCATIONS_LIST;
+		}
+
+		
+		@Override
+		public @NonNull Iterable<Invocation.Incremental> getTargets() {
+			return targets != null ? targets : EMPTY_INVOCATIONS_LIST;
+		}
+	}
+
+	@Override
+	public @Nullable <R> R accept(@NonNull ExecutionVisitor<R> visitor) {
+		return visitor.visitSlotState(this);
 	}
 }

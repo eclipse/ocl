@@ -35,4 +35,9 @@ public abstract class AbstractTransformer extends AbstractTransformerInternal
 			@NonNull PropertyId @Nullable [] propertyIndex2propertyId, @NonNull ClassId @Nullable [] classIndex2classId, int @Nullable [] @NonNull [] classIndex2allClassIndexes) {
 		super(executor, modelNames, propertyIndex2propertyId, classIndex2classId, classIndex2allClassIndexes) ;
 	}
+
+	@Override
+	public @Nullable <R> R accept(@NonNull ExecutionVisitor<R> visitor) {
+		return visitor.visitTransformer(this);
+	}
 }
