@@ -19,8 +19,6 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 
 /**
  * DelegateResourceSetAdapter extends a ResourceSet to support a registry of local
@@ -32,7 +30,7 @@ public class DelegateResourceSetAdapter extends AdapterImpl
 		return (DelegateResourceSetAdapter) EcoreUtil.getAdapter(resourceSet.eAdapters(), DelegateResourceSetAdapter.class);
 	}
 
-	public static DelegateResourceSetAdapter getAdapter(@NonNull EModelElement modelElement) {
+	public static DelegateResourceSetAdapter getAdapter(/*@NonNull*/ EModelElement modelElement) {
 		Resource resource = modelElement.eResource();
 		if (resource == null) {
 			return null;
@@ -44,7 +42,7 @@ public class DelegateResourceSetAdapter extends AdapterImpl
 		return getAdapter(resourceSet);
 	}
 	
-	public static @NonNull DelegateResourceSetAdapter getAdapter(@NonNull ResourceSet resourceSet) {
+	public static /*@NonNull*/ DelegateResourceSetAdapter getAdapter(/*@NonNull*/ ResourceSet resourceSet) {
 		DelegateResourceSetAdapter adapter = (DelegateResourceSetAdapter) EcoreUtil.getAdapter(resourceSet.eAdapters(), DelegateResourceSetAdapter.class);
 		if (adapter == null) {
 			adapter = new DelegateResourceSetAdapter();
@@ -53,7 +51,7 @@ public class DelegateResourceSetAdapter extends AdapterImpl
 		return adapter;
 	}
 	
-	public static @Nullable <T> T getRegistry(@NonNull EModelElement modelElement, @NonNull Class<T> registryClass, @Nullable T defaultRegistry) {
+	public static /*@Nullable*/ <T> T getRegistry(/*@NonNull*/ EModelElement modelElement, /*@NonNull*/ Class<T> registryClass, /*@Nullable*/ T defaultRegistry) {
 		Resource resource = modelElement.eResource();
 		if (resource == null) {
 			return defaultRegistry;
@@ -83,7 +81,7 @@ public class DelegateResourceSetAdapter extends AdapterImpl
 		return (type instanceof Class<?>) && ((Class<?>)type).isAssignableFrom(getClass());
 	}
 
-	public @Nullable <T> T putRegistry(@NonNull Class<T> registryClass, @NonNull T newRegistry) {
+	public /*@Nullable*/ <T> T putRegistry(/*@NonNull*/ Class<T> registryClass, /*@NonNull*/ T newRegistry) {
 		@SuppressWarnings("unchecked")
 		T oldRegistry = (T) registryRegistry.put(registryClass, newRegistry);
 		return oldRegistry;

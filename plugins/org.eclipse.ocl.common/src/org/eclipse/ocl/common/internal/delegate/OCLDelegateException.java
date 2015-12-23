@@ -11,7 +11,6 @@
 package org.eclipse.ocl.common.internal.delegate;
 
 import org.eclipse.emf.common.util.WrappedException;
-import org.eclipse.jdt.annotation.NonNull;
 
 /**
  * An OCLDelegateException wraps an exception that explains a problem that occurred during delegated evaluation.
@@ -39,7 +38,7 @@ public class OCLDelegateException extends WrappedException {
 		super(message, cause);
 	}
 
-	public OCLDelegateException(@NonNull Exception cause) {
+	public OCLDelegateException(/*@NonNull*/ Exception cause) {
 		super(null, cause);
 	}
 }

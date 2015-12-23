@@ -10,19 +10,16 @@
  *******************************************************************************/
 package org.eclipse.ocl.common.internal.preferences;
 
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
-
 /**
  * A configurable preference with a String value.
  */
 public class StringPreference extends Preference<String>
 {
-	public StringPreference(@NonNull String pluginId, @NonNull String key, @Nullable String defaultValue) {
+	public StringPreference(/*@NonNull*/ String pluginId, /*@NonNull*/ String key, /*@Nullable*/ String defaultValue) {
 		super(pluginId, key, defaultValue);
 	}
 
-	public @NonNull String getValueOf(@NonNull String string) {
+	public /*@NonNull*/ String getValueOf(/*@NonNull*/ String string) {
 		return string;
 	}
 }

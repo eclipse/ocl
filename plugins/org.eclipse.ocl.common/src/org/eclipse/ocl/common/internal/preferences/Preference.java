@@ -13,8 +13,6 @@ package org.eclipse.ocl.common.internal.preferences;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.OCLCommon;
 import org.eclipse.ocl.common.preferences.PreferenceableOption;
 
@@ -35,7 +33,7 @@ public abstract class Preference<T> implements PreferenceableOption.Preferenceab
 	public T defaultValue;
 	private List<PreferenceableOption.Listener> listeners = null;
 
-	public Preference(@NonNull String pluginId, @NonNull String key, @Nullable T defaultValue) {
+	public Preference(/*@NonNull*/ String pluginId, /*@NonNull*/ String key, /*@Nullable*/ T defaultValue) {
 		this.pluginId = pluginId;
 		this.key = key;
 		this.defaultValue = defaultValue;
@@ -44,7 +42,7 @@ public abstract class Preference<T> implements PreferenceableOption.Preferenceab
 	/**
 	 * @since 1.1
 	 */
-	public synchronized void addListener(@NonNull PreferenceableOption.Listener listener) {
+	public synchronized void addListener(/*@NonNull*/ PreferenceableOption.Listener listener) {
 		if (listeners == null) {
 			listeners = new ArrayList<PreferenceableOption.Listener>();
 	 		OCLCommon.installListener(this);
@@ -71,11 +69,11 @@ public abstract class Preference<T> implements PreferenceableOption.Preferenceab
 	 * 
 	 * @return my key.  Is never <code>null</code>
 	 */
-	public @NonNull String getKey() {
+	public /*@NonNull*/ String getKey() {
 		return key;
 	}
 
-	public @NonNull String getPluginId() {
+	public /*@NonNull*/ String getPluginId() {
 		return pluginId;
 	}
 
@@ -84,7 +82,7 @@ public abstract class Preference<T> implements PreferenceableOption.Preferenceab
 	 * 
 	 * @return my default value, which default-default is <code>null</code>
 	 */
-	public @Nullable T getDefaultValue() {
+	public /*@Nullable*/ T getDefaultValue() {
 		return defaultValue;
 	}
 
@@ -94,20 +92,20 @@ public abstract class Preference<T> implements PreferenceableOption.Preferenceab
 	 *
 	 * @since 1.1
 	 */
-	public @Nullable T getPreferredValue() {
+	public /*@Nullable*/ T getPreferredValue() {
  		return OCLCommon.getPreference(this, null);
 	}
 
 	/**
 	 * @since 1.1
 	 */
-	public synchronized void removeListener(@NonNull  PreferenceableOption.Listener listener) {
+	public synchronized void removeListener(/*@NonNull*/  PreferenceableOption.Listener listener) {
 		if (listeners != null) {
 			listeners.remove(listener);
 		}
 	}
 	
-	public void setDefaultValue(@Nullable T defaultValue) {
+	public void setDefaultValue(/*@Nullable*/ T defaultValue) {
 		this.defaultValue = defaultValue;
 	}
 	
