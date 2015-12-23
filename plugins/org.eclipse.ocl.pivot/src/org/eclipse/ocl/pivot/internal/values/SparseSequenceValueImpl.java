@@ -25,7 +25,7 @@ import org.eclipse.ocl.pivot.values.SequenceValue;
  */
 public class SparseSequenceValueImpl extends SequenceValueImpl
 {
-	public static @NonNull List<Object> createSequenceOfEach(@NonNull Object[] boxedValues) {
+	public static @NonNull List<Object> createSequenceOfEach(@Nullable Object @NonNull [] boxedValues) {
 		List<Object> result = new ArrayList<Object>();
 		for (Object boxedValue : boxedValues) {
 			result.add(boxedValue);

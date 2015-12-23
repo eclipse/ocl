@@ -33,8 +33,8 @@ public class IsUniqueIteration extends AbstractIteration
 	/** @deprecated use Executor */
 	@Deprecated
 	@Override
-	public SetValue.@NonNull Accumulator createAccumulatorValue(@NonNull Evaluator evaluator, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
-		return createAccumulatorValue(ValueUtil.getExecutor(evaluator), accumulatorTypeId, bodyTypeId);
+	public SetValueImpl.@NonNull Accumulator createAccumulatorValue(@NonNull Evaluator evaluator, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
+		return (SetValueImpl.@NonNull Accumulator) createAccumulatorValue(ValueUtil.getExecutor(evaluator), accumulatorTypeId, bodyTypeId);
 	}
 	
 	/**

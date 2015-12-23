@@ -77,7 +77,7 @@ public interface Customizable {
      * 
      * @param options the options
      */
-    <T> void putOptions(@NonNull Map<? extends Option<T>, ? extends T> options);
+    <@Nullable T> void putOptions(@NonNull Map<? extends Option<T>, ? extends T> options);
     
     /**
      * Removes the specified option.
@@ -86,7 +86,7 @@ public interface Customizable {
      * 
      * @return the former value of the option
      */
-    @Nullable <T> T removeOption(@NonNull Option<T> option);
+    <@Nullable T> @Nullable T removeOption(@NonNull Option<T> option);
     
     /**
      * Removes the specified options.
@@ -95,7 +95,7 @@ public interface Customizable {
      * 
      * @return the former values of the options
      */
-    @NonNull <T> Map<Option<T>, T> removeOptions(@NonNull Collection<Option<T>> options);
+    <@Nullable T> @NonNull Map<Option<T>, T> removeOptions(@NonNull Collection<Option<T>> options);
     
     /**
      * Clears all options.

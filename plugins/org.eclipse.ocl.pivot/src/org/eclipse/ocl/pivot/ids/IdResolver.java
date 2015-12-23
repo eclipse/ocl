@@ -152,5 +152,5 @@ public interface IdResolver extends IdVisitor<Element>
 	
 	@NonNull EList<Object> unboxedValuesOfAll(@NonNull Collection<? extends Object> boxedValues);
 	
-	@NonNull EList<Object> unboxedValuesOfEach(@NonNull Object... boxedValues);
+	@NonNull EList<Object> unboxedValuesOfEach(@Nullable Object... boxedValues);
 }

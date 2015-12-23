@@ -28,8 +28,8 @@ public abstract class AbstractCS2ASTransformer extends AbstractTransformer
 
 	private final List<CS2ASDiagnostic> txErrors = new ArrayList<CS2ASDiagnostic>(); 
 	
-	protected AbstractCS2ASTransformer(@NonNull Executor executor, @NonNull String[] modelNames,
-			@Nullable PropertyId[] propertyIndex2propertyId, @Nullable ClassId[] classIndex2classId, int @Nullable [][] classIndex2allClassIndexes) {
+	protected AbstractCS2ASTransformer(@NonNull Executor executor, @NonNull String @NonNull [] modelNames,
+			@NonNull PropertyId @Nullable [] propertyIndex2propertyId, @NonNull ClassId @Nullable [] classIndex2classId, int @Nullable [] @NonNull [] classIndex2allClassIndexes) {
 		super(executor, modelNames, propertyIndex2propertyId, classIndex2classId, classIndex2allClassIndexes);
 	}
 

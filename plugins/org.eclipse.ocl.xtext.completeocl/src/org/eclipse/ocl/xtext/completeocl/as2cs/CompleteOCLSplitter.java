@@ -11,6 +11,7 @@
 package org.eclipse.ocl.xtext.completeocl.as2cs;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -195,8 +196,11 @@ public class CompleteOCLSplitter
 			if (separateParent instanceof Model) {
 				separateSiblings = ((Model)separateParent).getOwnedPackages();
 			}
-			else {
+			else if (separateParent != null) {
 				separateSiblings = ((org.eclipse.ocl.pivot.Package)separateParent).getOwnedPackages();
+			}
+			else {
+				separateSiblings = Collections.emptyList();
 			}
 			org.eclipse.ocl.pivot.Package separateObject = NameUtil.getNameable(separateSiblings, name);
 			if (separateObject == null) {

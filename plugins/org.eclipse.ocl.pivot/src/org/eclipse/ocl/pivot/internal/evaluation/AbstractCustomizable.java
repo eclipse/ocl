@@ -97,21 +97,21 @@ public abstract class AbstractCustomizable implements Adaptable, Customizable
 	}
 
 	@Override
-	public <T> void putOptions(@NonNull Map<? extends Option<T>, ? extends T> newOptions) {
+	public <@Nullable T> void putOptions(@NonNull Map<? extends Option<T>, ? extends T> newOptions) {
 		Map<Option<?>, Object> myOptions = options;	
 		myOptions.clear();
 		myOptions.putAll(newOptions);
 	}
 
 	@Override
-	public <T> @Nullable T removeOption(@NonNull Option<T> option) {
+	public <@Nullable T> @Nullable T removeOption(@NonNull Option<T> option) {
 		@Nullable T result = getValue(option);	
 		options.remove(option);	
 		return result;
 	}
 	
 	@Override
-	public @NonNull <T> Map<Option<T>, T> removeOptions(@NonNull Collection<Option<T>> unwantedOptions) {
+	public <@Nullable T> @NonNull Map<Option<T>, T> removeOptions(@NonNull Collection<Option<T>> unwantedOptions) {
 		Map<Option<T>, T> result = new HashMap<Option<T>, T>();	
 		Map<Option<?>, Object> myOptions = options;		
 		for (Option<T> next : unwantedOptions) {

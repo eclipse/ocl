@@ -45,7 +45,7 @@ public class BagValueImpl extends CollectionValueImpl implements BagValue
 		return ValuesPackage.Literals.BAG_VALUE;
 	}
 
-	public static @NonNull Bag<Object> createBagOfEach(@NonNull Object[] boxedValues) {
+	public static @NonNull Bag<Object> createBagOfEach(@Nullable Object @NonNull [] boxedValues) {
 		Bag<Object> result = new BagImpl<Object>();
 		for (Object boxedValue : boxedValues) {
 			result.add(boxedValue);

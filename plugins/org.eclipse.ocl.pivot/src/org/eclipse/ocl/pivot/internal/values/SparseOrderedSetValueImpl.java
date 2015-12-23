@@ -27,7 +27,7 @@ import org.eclipse.ocl.pivot.values.SequenceValue;
  */
 public class SparseOrderedSetValueImpl extends OrderedSetValueImpl
 {    	
-	public static @NonNull OrderedSet<Object> createOrderedSetOfEach(@NonNull Object[] boxedValues) {
+	public static @NonNull OrderedSet<Object> createOrderedSetOfEach(@Nullable Object @NonNull [] boxedValues) {
 		OrderedSet<Object> result = new OrderedSetImpl<Object>();
 		for (Object boxedValue : boxedValues) {
 			result.add(boxedValue);

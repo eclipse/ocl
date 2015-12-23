@@ -265,8 +265,8 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 			if ((bodyExpression instanceof TupleLiteralExp) && (bodyExpression.getTypeId() == TUPLE_MESSAGE_STATUS)) {
 				TupleLiteralPart messagePart = NameUtil.getNameable(((TupleLiteralExp)bodyExpression).getOwnedParts(), TUPLE_MESSAGE_STATUS_0.getName());
 				TupleLiteralPart statusPart = NameUtil.getNameable(((TupleLiteralExp)bodyExpression).getOwnedParts(), TUPLE_MESSAGE_STATUS_1.getName());
-				OCLExpression messageExpression = messagePart.getOwnedInit();
-				OCLExpression statusExpression = statusPart.getOwnedInit();
+				OCLExpression messageExpression = messagePart != null ? messagePart.getOwnedInit() : null;
+				OCLExpression statusExpression = statusPart != null ? statusPart.getOwnedInit() : null;
 				ExpSpecificationCS csMessage = context.refreshElement(ExpSpecificationCS.class, EssentialOCLCSPackage.Literals.EXP_SPECIFICATION_CS, specification);
 				csMessage.setExprString(messageExpression != null ? PrettyPrinter.print(messageExpression) : "null");
 				csElement.setOwnedMessageSpecification(csMessage);

@@ -209,7 +209,9 @@ public class EssentialOCLCSContainmentVisitor extends AbstractEssentialOCLCSCont
 				asExpressionInOCL.setOwnedBody(asTuplePartExp);
 			}
 			asTuplePartExp.setReferredProperty(statusProperty);
-			asTuplePartExp.setType(statusProperty.getType());
+			if (statusProperty != null) {
+				asTuplePartExp.setType(statusProperty.getType());
+			}
 			asTuplePartExp.setIsRequired(true);
 			asExpression = asTuplePartExp.getOwnedSource();
 			//

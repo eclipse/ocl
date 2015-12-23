@@ -637,9 +637,9 @@ public abstract class AbstractTransformerInternal implements Transformer
 		/**
 		 * All possible allInstances() returns indexed by the ClassIndex of the ClassId for which allInstances() may be invoked.
 		 */
-		private final @Nullable Set<EObject>[] classIndex2objects;
+		private final @NonNull Set<EObject>[] classIndex2objects;
 		
-		public Model(@NonNull String name, @Nullable PropertyId[] propertyIndex2propertyId, @Nullable ClassId[] classIndex2classId, int @Nullable [][] classIndex2allClassIndexes) {
+		public Model(@NonNull String name, @NonNull PropertyId @Nullable [] propertyIndex2propertyId, @NonNull ClassId @Nullable [] classIndex2classId, int @Nullable [] @NonNull [] classIndex2allClassIndexes) {
 			this.name = name;
 			//
 			//	Prepare the allInstances() fields
@@ -647,7 +647,7 @@ public abstract class AbstractTransformerInternal implements Transformer
 			if (classIndex2classId != null) {
 		    	assert classIndex2allClassIndexes != null;
 		    	int classIds = classIndex2classId.length;
-				@SuppressWarnings("unchecked")Set<EObject>[] classIndex2objects = (Set<EObject>[]) new HashSet<?>[classIds];
+				@SuppressWarnings("unchecked")@NonNull Set<EObject> @NonNull [] classIndex2objects = (@NonNull Set<EObject> @NonNull []) new @NonNull HashSet<?> @NonNull [classIds];
 				this.classIndex2objects = classIndex2objects;
 		        for (int i = 0; i < classIds; i++) {
 		        	classIndex2objects[i] = new HashSet<EObject>();
@@ -677,9 +677,10 @@ public abstract class AbstractTransformerInternal implements Transformer
 					allClassIndexes = getClassIndexes(eClass);
 					eClass2allClassIndexes.put(eClass, allClassIndexes);
 				}
+				Set<EObject>[] classIndex2objects2 = classIndex2objects;
+				assert classIndex2objects2 != null;
 				for (Integer classIndex : allClassIndexes) {
-					assert classIndex2objects != null;
-					classIndex2objects[classIndex].add(eObject);
+					classIndex2objects2[classIndex].add(eObject);
 				}
 			}
 			if (eClass2allPropertyIndexes != null) {
@@ -689,16 +690,18 @@ public abstract class AbstractTransformerInternal implements Transformer
 					allPropertyIndexes = getOppositePropertyIndexes(eReference2propertyIndex, eClass);
 					eClass2allPropertyIndexes.put(eClass, allPropertyIndexes);
 				}
+				Map<EObject, EObject>[] object2oppositeObject2 = object2oppositeObject;
+				assert object2oppositeObject2 != null;
 				for (Integer propertyIndex : allPropertyIndexes) {
 					assert propertyIndex2eReference != null;
 					EReference eReference = propertyIndex2eReference[propertyIndex];
 					if (eReference == null) {
 						assert propertyIndex2propertyId != null;
 						PropertyId propertyId = propertyIndex2propertyId[propertyIndex];
+						assert propertyId != null;
 						eReference = (EReference) NameUtil.getENamedElement(eClass.getEAllStructuralFeatures(), propertyId.getName());
 					}
-					assert object2oppositeObject != null;
-					object2oppositeObject[propertyIndex].put((EObject)eObject.eGet(eReference), eObject);
+					object2oppositeObject2[propertyIndex].put((EObject)eObject.eGet(eReference), eObject);
 				}
 			}
 		}
@@ -854,13 +857,13 @@ public abstract class AbstractTransformerInternal implements Transformer
 	@Deprecated
 	protected final @NonNull Evaluator evaluator;
 	protected final IdResolver.@NonNull IdResolverExtension idResolver;
-	protected final @NonNull Model[] models;
+	protected final @NonNull Model @NonNull [] models;
 	protected final @NonNull Map<String, Integer> modelIndexes = new HashMap<String, Integer>();
 
 	/**
 	 * Unchanging configured list PropertyId for which unnavigable opposite navigation may occur indexed by the PropertyIndex for that PropertyId.
 	 */
-	private final @Nullable PropertyId[] propertyIndex2propertyId;
+	private final @NonNull PropertyId @Nullable [] propertyIndex2propertyId;
 
 	/**
 	 * Unchanging configured map from the PropertyId for which unnavigable opposite navigation may occur to the PropertyIndex for that PropertyId.
@@ -870,12 +873,12 @@ public abstract class AbstractTransformerInternal implements Transformer
 	/**
 	 * Unchanging configured map from the PropertyIndex to the EReference for the opposite property navigation.
 	 */
-	private final @Nullable EReference[] propertyIndex2eReference;
+	private final @Nullable EReference @Nullable[] propertyIndex2eReference;
 
 	/**
 	 * Unchanging maps from an EObject to its opposite using the Property whose PropertyIndex indexes the map.
 	 */
-	private final @Nullable Map<EObject, EObject>[] object2oppositeObject;
+	private final @NonNull Map<EObject, EObject> @Nullable [] object2oppositeObject;
 
 	/**
 	 * Unchanging configured map from the ClassId for which allInstances() may be invoked to the ClassIndex for that ClassId.
@@ -910,18 +913,18 @@ public abstract class AbstractTransformerInternal implements Transformer
 	
 	/** @deprecated use Executor in constructor */
 	@Deprecated
-	protected AbstractTransformerInternal(@NonNull Evaluator evaluator, @NonNull String[] modelNames,
-			@Nullable PropertyId[] propertyIndex2propertyId, @Nullable ClassId[] classIndex2classId, @Nullable int[][] classIndex2allClassIndexes) {
+	protected AbstractTransformerInternal(@NonNull Evaluator evaluator, @NonNull String @NonNull [] modelNames,
+			@NonNull PropertyId @Nullable [] propertyIndex2propertyId, @NonNull ClassId @Nullable [] classIndex2classId, int  @Nullable [] @NonNull [] classIndex2allClassIndexes) {
 		this(ValueUtil.getExecutor(evaluator), modelNames, propertyIndex2propertyId, classIndex2classId, classIndex2allClassIndexes);
 	}
-	protected AbstractTransformerInternal(@NonNull Executor executor, @NonNull String[] modelNames,
-				@Nullable PropertyId[] propertyIndex2propertyId, @Nullable ClassId[] classIndex2classId, int @Nullable [][] classIndex2allClassIndexes) {
+	protected AbstractTransformerInternal(@NonNull Executor executor, @NonNull String @NonNull [] modelNames,
+			@NonNull PropertyId @Nullable [] propertyIndex2propertyId, @NonNull ClassId @Nullable [] classIndex2classId, int @Nullable [] @NonNull [] classIndex2allClassIndexes) {
 		this.executor = executor;
 		this.evaluator = executor;
 		this.idResolver = (IdResolver.IdResolverExtension)executor.getIdResolver();
-		this.models = new Model[modelNames.length];
+		this.models = new @NonNull Model @NonNull [modelNames.length];
 		for (int i = 0; i < modelNames.length; i++) {
-			@SuppressWarnings("null")@NonNull String modelName = modelNames[i];
+			String modelName = modelNames[i];
 			models[i] = new Model(modelName, propertyIndex2propertyId, classIndex2classId, classIndex2allClassIndexes);
 			modelIndexes.put(modelName,  i);
 		}
@@ -933,12 +936,12 @@ public abstract class AbstractTransformerInternal implements Transformer
 	    	this.propertyIndex2propertyId = propertyIndex2propertyId;
 			HashMap<PropertyId, Integer> propertyId2propertyIndex2 = new HashMap<PropertyId, Integer>(propertyIds);
 			this.propertyId2propertyIndex = propertyId2propertyIndex2;
-			this.propertyIndex2eReference = new EReference[propertyIds];
+			this.propertyIndex2eReference = new @Nullable EReference @NonNull [propertyIds];
 			for (int propertyIndex = 0; propertyIndex < propertyIds; propertyIndex++) {
 				PropertyId propertyId = propertyIndex2propertyId[propertyIndex];
 				propertyId2propertyIndex2.put(propertyId, propertyIndex);
 			}
-			@SuppressWarnings("unchecked")Map<EObject,EObject>[] object2oppositeObject = (Map<EObject,EObject>[]) new HashMap<?,?>[propertyIds];
+			@SuppressWarnings("unchecked")@NonNull Map<EObject,EObject> @Nullable [] object2oppositeObject = (@NonNull Map<EObject,EObject> @NonNull []) new HashMap<?,?> @NonNull [propertyIds];
 			this.object2oppositeObject = object2oppositeObject;
 	        for (int i = 0; i < propertyIds; i++) {
 	        	object2oppositeObject[i] = new HashMap<EObject, EObject>();

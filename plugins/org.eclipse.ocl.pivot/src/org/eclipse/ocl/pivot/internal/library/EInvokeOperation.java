@@ -81,7 +81,7 @@ public class EInvokeOperation extends AbstractOperation
 	
 	/** @deprecated use Executor */
 	@Deprecated
-	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue, @NonNull Object... boxedArgumentValues) {
+	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue, @Nullable Object... boxedArgumentValues) {
 		return evaluate(getExecutor(evaluator), returnTypeId, sourceValue, boxedArgumentValues); 
 	}
 
@@ -89,7 +89,7 @@ public class EInvokeOperation extends AbstractOperation
 	 * @since 1.1
 	 */
 	public @Nullable Object evaluate(@NonNull Executor executor, @NonNull TypeId returnTypeId, @Nullable Object sourceValue,
-			@NonNull Object... boxedArgumentValues) {
+			@Nullable Object... boxedArgumentValues) {
 		EObject eObject = asNavigableObject(sourceValue, eOperation, executor);
 //		EList<Object> ecoreArguments = executor.getIdResolver().ecoreValuesOfEach(null, boxedArgumentValues);
 		IdResolver idResolver = executor.getIdResolver();

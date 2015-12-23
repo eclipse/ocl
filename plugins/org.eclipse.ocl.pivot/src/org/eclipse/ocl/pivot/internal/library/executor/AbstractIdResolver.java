@@ -1491,7 +1491,7 @@ public abstract class AbstractIdResolver implements IdResolver.IdResolverExtensi
 	}
 
 	@Override
-	public @NonNull EList<Object> unboxedValuesOfEach(@NonNull Object... boxedValues) {
+	public @NonNull EList<Object> unboxedValuesOfEach(@Nullable Object... boxedValues) {
 		Object[] unboxedValues = new Object[boxedValues.length];
 		int i= 0;
 		for (Object boxedValue : boxedValues) {

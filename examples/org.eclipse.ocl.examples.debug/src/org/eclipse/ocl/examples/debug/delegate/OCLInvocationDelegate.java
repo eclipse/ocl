@@ -79,8 +79,11 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 					specification2 = specification = getExpressionInOCL(metamodelManager, constraint);
 					ValidationBehavior.INSTANCE.validate(constraint);
 				}
-				else {
+				else if (namedElement != null) {
 					throw new OCLDelegateException(new SemanticException("Unsupported InvocationDelegate for a " + namedElement.eClass().getName())) ;
+				}
+				else {
+					throw new OCLDelegateException(new SemanticException("Unsupported InvocationDelegate for null")) ;
 				}
 			}
 			Query query = ocl.createQuery(specification2);

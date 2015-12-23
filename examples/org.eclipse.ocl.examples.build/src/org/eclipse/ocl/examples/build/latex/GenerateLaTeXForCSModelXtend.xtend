@@ -121,7 +121,7 @@ public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 		'''
 
 		«emitHeading0a("Abstract Syntax Synthesis")»
-		«FOR asOperation : cs2asClass.getOwnedOperations()»
+		«FOR asOperation : ClassUtil.nonNullState(cs2asClass).getOwnedOperations()»
 
 			«emitHeading0b(prettyPrint(asOperation, cs2asClass))»
 			«emitComment(asOperation, asClass)»
@@ -139,7 +139,7 @@ public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 		'''
 
 		«emitHeading0a("Concrete Syntax Disambiguation")»
-		«FOR asOperation : cs2csClass.getOwnedOperations()»
+		«FOR asOperation : ClassUtil.nonNullState(cs2csClass).getOwnedOperations()»
 
 			«emitHeading0b(prettyPrint(asOperation, cs2csClass))»
 			«emitComment(asOperation, asClass)»

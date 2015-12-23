@@ -64,8 +64,8 @@ public class StereotypeProperty extends ConstrainedProperty
 				}
 				if (!gotIt && (elementExtension.isIsApplied() || elementExtension.isIsRequired())) {
 					Property theProperty = NameUtil.getNameable(elementExtension.getStereotype().getOwnedProperties(), propertyName);
-					defaultValue = theProperty.getDefaultValue();
-					defaultExpression = theProperty.getOwnedExpression();
+					defaultValue = theProperty != null ? theProperty.getDefaultValue() : null;
+					defaultExpression = theProperty != null ? theProperty.getOwnedExpression() : null;
 					gotIt = true;
 				}
 				extensionProperty = PivotFactory.eINSTANCE.createProperty();

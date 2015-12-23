@@ -120,7 +120,7 @@ public abstract class ExecutorManager implements Executor
 		}
 
 		@Override
-		public <T> void putOptions(@NonNull Map<? extends Option<T>, ? extends T> options) {
+		public <@Nullable T> void putOptions(@NonNull Map<? extends Option<T>, ? extends T> options) {
 		}
 
 		@Override
@@ -129,13 +129,13 @@ public abstract class ExecutorManager implements Executor
 		}
 
 		@Override
-		public @Nullable <T> T removeOption(@NonNull Option<T> option) {
+		public <@Nullable T> @Nullable T removeOption(@NonNull Option<T> option) {
 			return null;
 		}
 
 		@SuppressWarnings("null")
 		@Override
-		public @NonNull <T> Map<Option<T>, T> removeOptions(@NonNull Collection<Option<T>> options) {
+		public <@Nullable T> @NonNull Map<Option<T>, T> removeOptions(@NonNull Collection<Option<T>> options) {
 			return Collections.emptyMap();
 		}
 

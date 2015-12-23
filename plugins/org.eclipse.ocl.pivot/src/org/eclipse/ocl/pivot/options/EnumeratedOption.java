@@ -17,7 +17,7 @@ import org.eclipse.ocl.common.preferences.PreferenceableOption;
 /**
  * Implementation of the {@link PreferenceableOption} interface for enum OCL options.
  */
-public class EnumeratedOption<T extends Enum<T>> extends BasicOption<T>
+public class EnumeratedOption<T extends Enum<T>> extends BasicOption<@Nullable T>
 {
 	protected final @NonNull Class<T> enumType;
 	

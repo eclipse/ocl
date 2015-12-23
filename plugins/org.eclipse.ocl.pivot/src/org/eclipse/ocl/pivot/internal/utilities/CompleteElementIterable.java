@@ -11,6 +11,7 @@
 package org.eclipse.ocl.pivot.internal.utilities;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -79,7 +80,12 @@ public abstract class CompleteElementIterable<O,I> implements Iterable<I>
 		@Override
 		public I next() {
 			try {
-				return nextValue;
+				if (nextValue != null) {
+					return nextValue;
+				}
+				else {
+					throw new NoSuchElementException();
+				}
 			}
 			finally {
 				advance();

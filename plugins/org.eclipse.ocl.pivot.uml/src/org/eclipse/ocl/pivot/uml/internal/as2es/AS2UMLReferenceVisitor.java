@@ -75,6 +75,9 @@ public class AS2UMLReferenceVisitor
 	@Override
 	public EObject visitClass(@NonNull Class pivotClass) {
 		org.eclipse.uml2.uml.Class umlClass = context.getCreated(org.eclipse.uml2.uml.Class.class, pivotClass);
+		if (umlClass == null) {
+			return null;
+		}
 		safeVisitAll(umlClass.getSuperClasses(), pivotClass.getSuperClasses());
 		return umlClass;
 	}
@@ -88,6 +91,9 @@ public class AS2UMLReferenceVisitor
 	@Override
 	public EObject visitOperation(@NonNull Operation pivotOperation) {
 		org.eclipse.uml2.uml.Operation umlOperation = context.getCreated(org.eclipse.uml2.uml.Operation.class, pivotOperation);
+		if (umlOperation == null) {
+			return null;
+		}
 		safeVisitAll(umlOperation.getRaisedExceptions(), pivotOperation.getRaisedExceptions());
 		Type pivotType = pivotOperation.getType();
 		if (pivotType == null) {
@@ -150,6 +156,9 @@ public class AS2UMLReferenceVisitor
 	@Override
 	public EObject visitProperty(@NonNull Property pivotProperty) {
 		org.eclipse.uml2.uml.Property umlProperty = context.getCreated(org.eclipse.uml2.uml.Property.class, pivotProperty);
+		if (umlProperty == null) {
+			return null;
+		}
 		Property pivotOpposite = pivotProperty.getOpposite();
 		if (pivotOpposite != null) {
 			org.eclipse.uml2.uml.Property umlOpposite = context.getCreated(org.eclipse.uml2.uml.Property.class, pivotOpposite);
@@ -179,6 +188,9 @@ public class AS2UMLReferenceVisitor
 	@Override
 	public EObject visitTypedElement(@NonNull TypedElement pivotTypedElement) {
 		org.eclipse.uml2.uml.TypedElement umlTypedElement = context.getCreated(org.eclipse.uml2.uml.TypedElement.class, pivotTypedElement);
+		if (umlTypedElement == null) {
+			return null;
+		}
 		Type pivotType = pivotTypedElement.getType();
 		if ((pivotType == null) || (pivotType instanceof VoidType)) {				// Occurs for Operation return type
 			if (umlTypedElement instanceof MultiplicityElement) {

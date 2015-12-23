@@ -107,7 +107,7 @@ public abstract class GenerateTextileForLibraryUtils extends GenerateTextileForL
 		}
 	}
 
-	protected static class MarkupToTextile extends MarkupSwitch<String>
+	protected static class MarkupToTextile extends MarkupSwitch<@Nullable String>
 	{
 		@SuppressWarnings("unused") private final Namespace scope;
 		private final StringBuilder s = new StringBuilder();

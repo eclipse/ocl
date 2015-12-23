@@ -294,6 +294,9 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 	@Override
 	public EObject visitAnnotation(@NonNull Annotation pivotAnnotation) {
 		EAnnotation eAnnotation = context.getCreated(EAnnotation.class, pivotAnnotation);
+		if (eAnnotation == null) {
+			return null;
+		}
 		eAnnotation.getReferences().clear();
 		for (Element pivotReference : pivotAnnotation.getReferences()) {
 			if (pivotReference != null) {
@@ -312,6 +315,9 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 	@Override
 	public EObject visitClass(org.eclipse.ocl.pivot.@NonNull Class pivotClass) {
 		EClass eClass = context.getCreated(EClass.class, pivotClass);
+		if (eClass == null) {
+			return null;
+		}
 		safeVisitAll(EClass.class, eClass.getEGenericSuperTypes(), eClass.getESuperTypes(), pivotClass.getSuperClasses());
 		return eClass;
 	}
@@ -319,6 +325,9 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 	@Override
 	public @Nullable EObject visitCollectionType(@NonNull CollectionType pivotClass) {
 		EClass eClass = context.getCreated(EClass.class, pivotClass);
+		if (eClass == null) {
+			return null;
+		}
 		safeVisitAll(EClass.class, eClass.getEGenericSuperTypes(), eClass.getESuperTypes(), pivotClass.getSuperClasses());
 		return eClass;
 	}
@@ -337,7 +346,7 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 				eRedefinesAnnotation.getReferences().add(eRedefined);
 			}
 		}
-		if (eRedefinesAnnotation != null) {
+		if ((eOperation != null) && (eRedefinesAnnotation != null)) {
 			eOperation.getEAnnotations().add(eRedefinesAnnotation);
 		}
 		return eOperation;
@@ -352,6 +361,9 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 	@Override
 	public EObject visitOperation(@NonNull Operation pivotOperation) {
 		EOperation eOperation = context.getCreated(EOperation.class, pivotOperation);
+		if (eOperation == null) {
+			return null;
+		}
 		safeVisitAll(EClassifier.class, eOperation.getEGenericExceptions(), eOperation.getEExceptions(), pivotOperation.getRaisedExceptions());
 		EAnnotation eRedefinesAnnotation = null;
 		for (@SuppressWarnings("null")@NonNull Operation redefinedOperation : pivotOperation.getRedefinedOperations()) {
@@ -434,6 +446,9 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 	@Override
 	public EObject visitTemplateParameter(@NonNull TemplateParameter pivotTemplateParameter) {
 		ETypeParameter eTypeParameter = context.getCreated(ETypeParameter.class, pivotTemplateParameter);
+		if (eTypeParameter == null) {
+			return null;
+		}
 		for (org.eclipse.ocl.pivot.Class constrainingType : pivotTemplateParameter.getConstrainingClasses()) {
 			if (constrainingType != null) {
 				EGenericType eGenericType = typeRefVisitor.resolveEGenericType(constrainingType);

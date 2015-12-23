@@ -817,7 +817,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 					OCLExpression initExpression = context.visitLeft2Right(OCLExpression.class, csInit);
 					acc.setOwnedInit(initExpression);
 					TypedRefCS csAccType = csArgument.getOwnedType();
-					Type initType = initExpression.getType();
+					Type initType = initExpression != null ? initExpression.getType() : null;
 					Type accType;
 					if (csAccType != null) {
 						accType = PivotUtil.getPivot(Type.class, csAccType);
@@ -1473,6 +1473,9 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 				expression.setOwnedLast(pivotLast);
 			}
 		}
+		if (pivotFirst == null) {
+			return null;
+		}
 		Type type = pivotFirst.getType();
 		if (type == null) {
 			return null;
@@ -2038,8 +2041,8 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 				OCLExpression initExpression = context.visitLeft2Right(OCLExpression.class, csInitExpression);
 				pivotElement.setOwnedInit(initExpression);
 				TypedRefCS csType = csTupleLiteralPart.getOwnedType();
-				Type type = csType != null ? PivotUtil.getPivot(Type.class, csType) : initExpression.getType();
-				context.setType(pivotElement, type, initExpression.isIsRequired(), null);
+				Type type = csType != null ? PivotUtil.getPivot(Type.class, csType) : initExpression != null ? initExpression.getType() : null;
+				context.setType(pivotElement, type, (initExpression != null) && initExpression.isIsRequired(), null);
 			}
 		}
 		return pivotElement;

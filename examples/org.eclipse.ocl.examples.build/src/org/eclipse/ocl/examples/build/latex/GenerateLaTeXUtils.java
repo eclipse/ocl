@@ -162,7 +162,7 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		}
 	}
 
-	protected static class MarkupToLaTeX extends MarkupSwitch<String>
+	protected static class MarkupToLaTeX extends MarkupSwitch<@Nullable String>
 	{
 		@SuppressWarnings("unused") private final Namespace scope;
 		private final StringBuilder s = new StringBuilder();
