@@ -23,8 +23,6 @@ import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.build.utilities.ClasspathURIHandler;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
@@ -42,9 +40,9 @@ public abstract class GenerateLaTeXForCSModel extends GenerateLaTeXUtils
 	protected String cs2asFile;
 	protected String cs2csFile;
 
-	protected abstract @NonNull String generateLaTeX(org.eclipse.ocl.pivot.@NonNull Package asPackage,
-			@NonNull Grammar grammar, org.eclipse.ocl.pivot.@Nullable Package cs2asPackage,
-			org.eclipse.ocl.pivot.@Nullable Package cs2csPackage);
+	protected abstract /*@NonNull*/ String generateLaTeX(org.eclipse.ocl.pivot./*@NonNull*/ Package asPackage,
+			/*@NonNull*/ Grammar grammar, org.eclipse.ocl.pivot./*@Nullable*/ Package cs2asPackage,
+			org.eclipse.ocl.pivot./*@Nullable*/ Package cs2csPackage);
 
 	@Override
 	protected void invokeInternal(WorkflowContext ctx, ProgressMonitor monitor, Issues issues) {

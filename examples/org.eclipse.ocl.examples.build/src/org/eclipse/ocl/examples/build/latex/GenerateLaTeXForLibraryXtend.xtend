@@ -10,14 +10,13 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.build.latex
 
-import org.eclipse.jdt.annotation.NonNull
 import org.eclipse.ocl.pivot.Namespace
 import org.eclipse.ocl.pivot.Element
 import org.eclipse.ocl.pivot.Library
 
 public class GenerateLaTeXForLibraryXtend extends GenerateLaTeXForLibrary
 {
-	@NonNull protected override String generateLaTeX(@NonNull Library asLibrary) {
+	/*@NonNull*/ protected override String generateLaTeX(/*@NonNull*/ Library asLibrary) {
 		'''
 		«emitPrecedences(asLibrary)»
 		
@@ -55,7 +54,7 @@ public class GenerateLaTeXForLibraryXtend extends GenerateLaTeXForLibrary
 		}
 	}
 
-	protected def emitClasses(@NonNull org.eclipse.ocl.pivot.Package asPackage) {
+	protected def emitClasses(/*@NonNull*/ org.eclipse.ocl.pivot.Package asPackage) {
 		var asClasses = getSortedClasses(asPackage);
 		'''
 		«FOR asClass : asClasses»
@@ -139,7 +138,7 @@ public class GenerateLaTeXForLibraryXtend extends GenerateLaTeXForLibrary
 		}
 	}
 	
-	protected def emitPrecedences(@NonNull Library asLibrary) {
+	protected def emitPrecedences(/*@NonNull*/ Library asLibrary) {
 		'''
 		«emitHeading3("Precedences", "Precedences")»
 

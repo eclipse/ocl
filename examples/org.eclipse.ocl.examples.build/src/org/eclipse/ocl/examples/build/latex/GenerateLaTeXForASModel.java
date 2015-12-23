@@ -20,7 +20,6 @@ import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.internal.ecore.es2as.Ecore2AS;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
@@ -31,7 +30,7 @@ import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 
 public abstract class GenerateLaTeXForASModel extends GenerateLaTeXUtils
 {
-	protected abstract @NonNull String generateLaTeX(org.eclipse.ocl.pivot.@NonNull Package asPackage);
+	protected abstract /*@NonNull*/ String generateLaTeX(org.eclipse.ocl.pivot./*@NonNull*/ Package asPackage);
 
 	@Override
 	protected void invokeInternal(WorkflowContext ctx, ProgressMonitor monitor, Issues issues) {

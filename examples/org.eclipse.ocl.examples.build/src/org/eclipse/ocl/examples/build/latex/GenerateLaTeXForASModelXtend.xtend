@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.build.latex
 
-import org.eclipse.jdt.annotation.NonNull
 import org.eclipse.ocl.pivot.Class
 import org.eclipse.ocl.pivot.Element
 import org.eclipse.ocl.pivot.Namespace
@@ -18,7 +17,7 @@ import org.eclipse.ocl.pivot.Package
 
 public class GenerateLaTeXForASModelXtend extends GenerateLaTeXForASModel
 {
-	@NonNull protected override String generateLaTeX(@NonNull Package asPackage) {
+	/*@NonNull*/ protected override String generateLaTeX(/*@NonNull*/ Package asPackage) {
 		'''
 		«emitClasses(asPackage)»
 		'''
@@ -54,7 +53,7 @@ public class GenerateLaTeXForASModelXtend extends GenerateLaTeXForASModel
 		}
 	}
 
-	protected def emitClasses(@NonNull Package asPackage) {
+	protected def emitClasses(/*@NonNull*/ Package asPackage) {
 		var asClasses = getSortedClasses(asPackage);
 		'''
 		«FOR asClass : asClasses»

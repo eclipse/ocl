@@ -110,7 +110,7 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 	protected void doSetup() {
 	}
 
-	public abstract void generateVisitors(@NonNull final GenPackage genPackage);
+	public abstract void generateVisitors(/*@NonNull*/ final GenPackage genPackage);
 
 	private String getCopyright(@NonNull Resource genModelResource) {
 		GenModel genModel = (GenModel)genModelResource.getContents().get(0);

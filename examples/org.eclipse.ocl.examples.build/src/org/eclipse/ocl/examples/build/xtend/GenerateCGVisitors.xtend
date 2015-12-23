@@ -11,12 +11,11 @@
 package org.eclipse.ocl.examples.build.xtend
 
 import org.eclipse.emf.ecore.EPackage
-import org.eclipse.jdt.annotation.NonNull
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
 
 public class GenerateCGVisitors extends GenerateVisitorsXtend
 {
-	override void generateVisitors(@NonNull GenPackage genPackage) {
+	override void generateVisitors(/*@NonNull*/ GenPackage genPackage) {
 		var EPackage ePackage = genPackage.getEcorePackage();
 		ePackage.generateAbstractExtendingVisitor();
 		ePackage.generateAbstractNonNullExtendingVisitor();

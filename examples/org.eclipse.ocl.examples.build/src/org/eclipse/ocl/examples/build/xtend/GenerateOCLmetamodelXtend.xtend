@@ -10,13 +10,12 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.build.xtend
 
-import org.eclipse.jdt.annotation.NonNull
 import org.eclipse.ocl.pivot.Model
 import org.eclipse.ocl.pivot.Package
 
 public class GenerateOCLmetamodelXtend extends GenerateOCLmetamodel
 {
-	protected override String declareClassTypes(@NonNull Model root) {
+	protected override String declareClassTypes(/*@NonNull*/ Model root) {
 		var pkge2classTypes = root.getSortedClassTypes();
 		if (pkge2classTypes.isEmpty()) return "";
 		var sortedPackages = root.getSortedPackages(pkge2classTypes.keySet());
@@ -30,7 +29,7 @@ public class GenerateOCLmetamodelXtend extends GenerateOCLmetamodel
 		'''
 	}
 
-	protected override String declareEnumerations(@NonNull Model root) {
+	protected override String declareEnumerations(/*@NonNull*/ Model root) {
 		var pkge2enumerations = root.getSortedEnumerations();
 		if (pkge2enumerations.isEmpty()) return "";
 		var sortedPackages = root.getSortedPackages(pkge2enumerations.keySet());

@@ -12,7 +12,6 @@ package org.eclipse.ocl.examples.build.xtend
 
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EPackage
-import org.eclipse.jdt.annotation.NonNull
 import java.util.List
 import java.util.ArrayList
 import org.eclipse.ocl.xtext.base.cs2as.Continuation
@@ -23,7 +22,7 @@ import java.util.Collections
 
 public class GenerateCS2ASVisitors extends GenerateCSVisitors
 {
-	override void generateVisitors(@NonNull GenPackage genPackage) {
+	override void generateVisitors(/*@NonNull*/ GenPackage genPackage) {
 		super.generateVisitors(genPackage);
 		if (isDerived()) {
 			generateContainmentVisitor(genPackage);
@@ -33,7 +32,7 @@ public class GenerateCS2ASVisitors extends GenerateCSVisitors
 		}
 	}
 	
-	protected def void generateContainmentVisitor(@NonNull GenPackage genPackage) {
+	protected def void generateContainmentVisitor(/*@NonNull*/ GenPackage genPackage) {
 		var EPackage csPackage = genPackage.getEcorePackage();
 		var String visitorVariant = "Containment";
 		var String resultTypeName =  "Continuation<?>";
@@ -51,7 +50,7 @@ public class GenerateCS2ASVisitors extends GenerateCSVisitors
 			interfaceName,  resultTypeName, additionalImports);
 	}
 	
-	protected def void generatePreOrderVisitor(@NonNull GenPackage genPackage) {
+	protected def void generatePreOrderVisitor(/*@NonNull*/ GenPackage genPackage) {
 		var EPackage csPackage = genPackage.getEcorePackage();
 		var String visitorVariant = "PreOrder";
 		var String resultTypeName =  "Continuation<?>";
@@ -64,7 +63,7 @@ public class GenerateCS2ASVisitors extends GenerateCSVisitors
 			interfaceName, resultTypeName, additionalImports);
 	}
 	
-	protected def void generatePostOrderVisitor(@NonNull GenPackage genPackage) {
+	protected def void generatePostOrderVisitor(/*@NonNull*/ GenPackage genPackage) {
 		var EPackage csPackage = genPackage.getEcorePackage();
 		var String visitorVariant = "PostOrder";
 		var String resultTypeName =  "Continuation<?>";
@@ -77,7 +76,7 @@ public class GenerateCS2ASVisitors extends GenerateCSVisitors
 			interfaceName,  resultTypeName, additionalImports);
 	}
 	
-	protected def void generateLeft2RightVisitor(@NonNull GenPackage genPackage) {
+	protected def void generateLeft2RightVisitor(/*@NonNull*/ GenPackage genPackage) {
 		var EPackage csPackage = genPackage.getEcorePackage();
 		var String visitorVariant = "Left2Right";
 		var String resultTypeName =  "Element";
@@ -95,9 +94,9 @@ public class GenerateCS2ASVisitors extends GenerateCSVisitors
 	 * - the package of the extended visitor of generated visitors need to be qualified as follows:
 	 *    <code> «superProjectName».cs2as </code>
 	 */
-	protected def void generateContextfulAbstractExtendingVisitor(@NonNull EPackage ePackage, 
-		@NonNull String className, @NonNull String extendedClassName, @NonNull String interfaceName,
-		@NonNull String resultTypeName, @NonNull List<Class<?>> additionalImports) {
+	protected def void generateContextfulAbstractExtendingVisitor(/*@NonNull*/ EPackage ePackage, 
+		/*@NonNull*/ String className, /*@NonNull*/ String extendedClassName, /*@NonNull*/ String interfaceName,
+		/*@NonNull*/ String resultTypeName, /*@NonNull*/ List<Class<?>> additionalImports) {
 		var List<String> allImports = new ArrayList<String>();
 		allImports.add(typeof(CS2ASConversion).getName());
 		allImports.add(superProjectName + ".cs2as." +extendedClassName);

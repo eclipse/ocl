@@ -73,7 +73,7 @@ public abstract class PivotTestCaseWithAutoTearDown extends PivotTestCase
 		field.set(this, null);
 	}
 
-	protected void tearDownStatic(@NonNull java.lang.Class<?> aClass, @NonNull Field field) {
+	protected void tearDownStatic(/*@NonNull*/ java.lang.Class<?> aClass, @NonNull Field field) {
 		if (aClass != PivotTestSuite.class) {
 			// Tests may not have statics since they are prone to memory leakage
 			fail("static test variable:" + field); 

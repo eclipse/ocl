@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.xtext2lpg
 
-import org.eclipse.jdt.annotation.NonNull
 import org.eclipse.ocl.examples.xtext2lpg.XBNF.AbstractElement
 import org.eclipse.ocl.examples.xtext2lpg.XBNF.AbstractRule
 import org.eclipse.ocl.examples.xtext2lpg.XBNF.ActionAssignment
@@ -30,18 +29,18 @@ import org.eclipse.ocl.examples.xtext2lpg.XBNF.UntilToken
 
 public class GenerateLPGXtend extends GenerateLPGUtils
 {
-	@NonNull protected override String generateLPGKWLexer(@NonNull Syntax syntax) {
+	/*@NonNull*/ protected override String generateLPGKWLexer(/*@NonNull*/ Syntax syntax) {
 		return generateKWLexer(getLexerGrammar(syntax), getParserGrammar(syntax))
 	}
-	@NonNull protected override String generateLPGLexer(@NonNull Syntax syntax) {
+	/*@NonNull*/ protected override String generateLPGLexer(/*@NonNull*/ Syntax syntax) {
 		return generateLexer(getLexerGrammar(syntax), getParserGrammar(syntax));
 	}
 	
-	@NonNull protected override String generateLPGParser(@NonNull Syntax syntax) {
+	/*@NonNull*/ protected override String generateLPGParser(/*@NonNull*/ Syntax syntax) {
 		return generateParser(getParserGrammar(syntax));
 	}
 	
- 	protected def String generateKWLexer(@NonNull LexerGrammar lexerGrammar, @NonNull ParserGrammar parserGrammar) {
+ 	protected def String generateKWLexer(/*@NonNull*/ LexerGrammar lexerGrammar, /*@NonNull*/ ParserGrammar parserGrammar) {
 		var keywordValues = getSortedKWValues(parserGrammar);
 		'''
 		%options slr
@@ -103,7 +102,7 @@ public class GenerateLPGXtend extends GenerateLPGUtils
 		'''
 	}
 
- 	protected def String generateLexer(@NonNull LexerGrammar lexerGrammar, @NonNull ParserGrammar parserGrammar) {
+ 	protected def String generateLexer(/*@NonNull*/ LexerGrammar lexerGrammar, /*@NonNull*/ ParserGrammar parserGrammar) {
 		var syntax = lexerGrammar.getSyntax();
 		var syntaxName = emitSyntaxName(syntax);
 		var punctValues = getSortedPunctValues(parserGrammar);
@@ -177,7 +176,7 @@ public class GenerateLPGXtend extends GenerateLPGUtils
 		'''
 	}
 
- 	protected def String generateParser(@NonNull ParserGrammar parserGrammar) {
+ 	protected def String generateParser(/*@NonNull*/ ParserGrammar parserGrammar) {
 		var syntax = parserGrammar.getSyntax();
 		var syntaxName = emitSyntaxName(syntax);
 		'''

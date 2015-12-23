@@ -63,7 +63,7 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 	protected String libraryNsPrefix;
 	protected boolean useOCLstdlib = false;
 
-	protected abstract @NonNull String generateMetamodel(@NonNull Model pivotModel);
+	protected abstract /*@NonNull*/ String generateMetamodel(/*@NonNull*/ Model pivotModel);
 
 /*	@Override
 	protected String getExternalReference(@NonNull Element element) {

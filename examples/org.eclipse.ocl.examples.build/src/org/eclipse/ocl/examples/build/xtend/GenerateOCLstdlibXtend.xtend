@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.build.xtend
 
-import org.eclipse.jdt.annotation.NonNull
 import org.eclipse.ocl.pivot.DataType
 import org.eclipse.ocl.pivot.Model
 import org.eclipse.ocl.pivot.utilities.ClassUtil
@@ -28,7 +27,7 @@ public class GenerateOCLstdlibXtend extends GenerateOCLstdlib
 			private void DataType «type.getPrefixedSymbolName("_"+type.partialName())» = createDataType("«type.name»");«ENDIF»
 	'''}
 
-	@NonNull protected override String generateMetamodel(@NonNull Model root) {
+	/*@NonNull*/ protected override String generateMetamodel(/*@NonNull*/ Model root) {
 		thisModel = root;
 		var lib = ClassUtil.nonNullState(root.getLibrary());
 		var externalPackages = root.getSortedExternalPackages();

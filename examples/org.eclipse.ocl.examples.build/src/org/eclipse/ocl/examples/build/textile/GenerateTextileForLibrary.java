@@ -68,7 +68,7 @@ public abstract class GenerateTextileForLibrary extends AbstractWorkflowComponen
 		}
 	}
 
-	protected abstract @NonNull String generateTextile(@NonNull Model pivotModel);
+	protected abstract /*@NonNull*/ String generateTextile(/*@NonNull*/ Model pivotModel);
 
 	protected @Nullable Library getLibrary(@NonNull Model root) {
 		TreeIterator<EObject> tit = root.eAllContents();

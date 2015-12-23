@@ -13,7 +13,6 @@ package org.eclipse.ocl.examples.build.xtend
 import java.util.ArrayList
 import java.util.Collections
 import org.eclipse.emf.ecore.EObject
-import org.eclipse.jdt.annotation.NonNull
 import org.eclipse.ocl.pivot.AnyType
 import org.eclipse.ocl.pivot.Class
 import org.eclipse.ocl.pivot.CollectionType
@@ -36,7 +35,7 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil
 
 public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 {
-	protected def String declareClassTypes(@NonNull Model root) {
+	protected def String declareClassTypes(/*@NonNull*/ Model root) {
 		var pkge2classTypes = root.getSortedClassTypes();
 		if (pkge2classTypes.isEmpty()) return "";
 		var sortedPackages = root.getSortedPackages(pkge2classTypes.keySet());
@@ -72,7 +71,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String declareEnumerations(@NonNull Model root) {
+	protected def String declareEnumerations(/*@NonNull*/ Model root) {
 		var pkge2enumerations = root.getSortedEnumerations();
 		if (pkge2enumerations.isEmpty()) return "";
 		var sortedPackages = root.getSortedPackages(pkge2enumerations.keySet());
@@ -91,7 +90,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String declareMapTypes(@NonNull Model root) {
+	protected def String declareMapTypes(/*@NonNull*/ Model root) {
 		var pkge2mapTypes = root.getSortedMapTypes();
 		if (pkge2mapTypes.isEmpty()) return "";
 		var sortedPackages = root.getSortedPackages(pkge2mapTypes.keySet());
@@ -114,7 +113,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String declarePrimitiveTypes(@NonNull Model root) {
+	protected def String declarePrimitiveTypes(/*@NonNull*/ Model root) {
 		var pkge2primitiveTypes = root.getSortedPrimitiveTypes();
 		if (pkge2primitiveTypes.isEmpty()) return "";
 		var sortedPackages = root.getSortedPackages(pkge2primitiveTypes.keySet());
@@ -128,7 +127,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String declareProperties(@NonNull Model root) {
+	protected def String declareProperties(/*@NonNull*/ Model root) {
 		var pkge2properties = root.getSortedProperties();
 		if (pkge2properties.isEmpty()) return "";
 		var sortedPackages = root.getSortedPackages(pkge2properties.keySet());
@@ -142,7 +141,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String declareTupleTypes(@NonNull Model root) {
+	protected def String declareTupleTypes(/*@NonNull*/ Model root) {
 		var tupleTypes = root.getSortedTupleTypes();
 		if (tupleTypes.isEmpty()) return "";
 		'''
@@ -155,7 +154,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String defineCoercions(@NonNull Model root) {
+	protected def String defineCoercions(/*@NonNull*/ Model root) {
 		var allCoercions = root.getSortedCoercions();
 		if (allCoercions.isEmpty()) return "";
 		'''
@@ -176,7 +175,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String defineClassTypes(@NonNull Model root) {
+	protected def String defineClassTypes(/*@NonNull*/ Model root) {
 		var pkge2classTypes = root.getSortedClassTypes();
 		if (pkge2classTypes.isEmpty()) return "";
 		var sortedPackages = root.getSortedPackages(pkge2classTypes.keySet());
@@ -200,7 +199,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String defineCollectionTypes(@NonNull Model root) {
+	protected def String defineCollectionTypes(/*@NonNull*/ Model root) {
 		var pkge2collectionTypes = root.getSortedCollectionTypes();
 		if (pkge2collectionTypes.isEmpty()) return "";
 		var sortedPackages = root.getSortedPackages(pkge2collectionTypes.keySet());
@@ -225,7 +224,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String defineComments(@NonNull Model root) {
+	protected def String defineComments(/*@NonNull*/ Model root) {
 		'''
 
 			private void installComments() {
@@ -238,7 +237,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String defineEnumerations(@NonNull Model root) {
+	protected def String defineEnumerations(/*@NonNull*/ Model root) {
 		var pkge2enumerations = root.getSortedEnumerations();
 		if (pkge2enumerations.isEmpty()) return "";
 		var sortedPackages = root.getSortedPackages(pkge2enumerations.keySet());
@@ -264,7 +263,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String defineExternals(@NonNull Model root) {
+	protected def String defineExternals(/*@NonNull*/ Model root) {
 		var externals = root.getSortedExternals();
 		if (externals.isEmpty()) return "";
 		'''
@@ -279,7 +278,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String defineIterations(@NonNull Model root) {
+	protected def String defineIterations(/*@NonNull*/ Model root) {
 		var pkge2iterations = root.getSortedIterations();
 		if (pkge2iterations.isEmpty()) return "";
 		var sortedPackages = root.getSortedPackages(pkge2iterations.keySet());
@@ -354,7 +353,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String defineLambdaTypes(@NonNull Model root) {
+	protected def String defineLambdaTypes(/*@NonNull*/ Model root) {
 		var allLambdaTypes = root.getSortedLambdaTypes();
 		if (allLambdaTypes.isEmpty()) return "";
 		var orphanPackage = root.getOrphanPackage();
@@ -383,7 +382,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String defineMapTypes(@NonNull Model root) {
+	protected def String defineMapTypes(/*@NonNull*/ Model root) {
 		var pkge2mapTypes = root.getSortedMapTypes();
 		if (pkge2mapTypes.isEmpty()) return "";
 		var sortedPackages = root.getSortedPackages(pkge2mapTypes.keySet());
@@ -405,7 +404,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String defineOperations(@NonNull Model root) {
+	protected def String defineOperations(/*@NonNull*/ Model root) {
 		var pkge2operations = root.getSortedOperations();
 		if (pkge2operations.isEmpty()) return "";
 		var sortedPackages = root.getSortedPackages(pkge2operations.keySet());
@@ -465,7 +464,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String definePackages(@NonNull Model root) {
+	protected def String definePackages(/*@NonNull*/ Model root) {
 		var allPackages = root.getSortedPackages();
 		var import2alias = root.getSortedImports();
 		var importKeys = new ArrayList<Package>(import2alias.keySet());
@@ -520,7 +519,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String definePrimitiveTypes(@NonNull Model root) {
+	protected def String definePrimitiveTypes(/*@NonNull*/ Model root) {
 		var pkge2primitiveTypes = root.getSortedPrimitiveTypes();
 		if (pkge2primitiveTypes.isEmpty()) return "";
 		var sortedPackages = root.getSortedPackages(pkge2primitiveTypes.keySet());
@@ -544,7 +543,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String defineProperties(@NonNull Model root) {
+	protected def String defineProperties(/*@NonNull*/ Model root) {
 		var pkge2properties = root.getSortedProperties();
 		if (pkge2properties.isEmpty()) return "";
 		var sortedPackages = root.getSortedPackages(pkge2properties.keySet());
@@ -610,7 +609,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String defineTemplateBindings(@NonNull Model root) {
+	protected def String defineTemplateBindings(/*@NonNull*/ Model root) {
 		var allTemplateableElements = root.getSortedTemplateableElements();
 		if (allTemplateableElements.isEmpty()) return "";
 		'''
@@ -627,7 +626,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String defineTemplateParameters(@NonNull Model root) {
+	protected def String defineTemplateParameters(/*@NonNull*/ Model root) {
 		var allTemplateParameters = root.getSortedTemplateParameters();
 		if (allTemplateParameters.isEmpty()) return "";
 		'''
@@ -639,7 +638,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String defineTupleTypes(@NonNull Model root) {
+	protected def String defineTupleTypes(/*@NonNull*/ Model root) {
 		var allTupleTypes = root.getSortedTupleTypes();
 		if (allTupleTypes.isEmpty()) return "";
 		var orphanPackage = root.getOrphanPackage();
@@ -708,90 +707,90 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 	}
 
-	protected def String installCoercions(@NonNull Model root) {
+	protected def String installCoercions(/*@NonNull*/ Model root) {
 		var allCoercions = root.getSortedCoercions();
 		if (allCoercions.isEmpty()) return "";
 		'''installCoercions();'''
 	}
 
-	protected def String installClassTypes(@NonNull Model root) {
+	protected def String installClassTypes(/*@NonNull*/ Model root) {
 		var pkge2classTypes = root.getSortedClassTypes();
 		if (pkge2classTypes.isEmpty()) return "";
 		'''installClassTypes();'''
 	}
 
-	protected def String installCollectionTypes(@NonNull Model root) {
+	protected def String installCollectionTypes(/*@NonNull*/ Model root) {
 		var pkge2collectionTypes = root.getSortedCollectionTypes();
 		if (pkge2collectionTypes.isEmpty()) return "";
 		'''installCollectionTypes();'''
 	}
 
-	protected def String installComments(@NonNull Model root) {
+	protected def String installComments(/*@NonNull*/ Model root) {
 		'''installComments();'''
 	}
 
-	protected def String installEnumerations(@NonNull Model root) {
+	protected def String installEnumerations(/*@NonNull*/ Model root) {
 		var pkge2enumerations = root.getSortedEnumerations();
 		if (pkge2enumerations.isEmpty()) return "";
 		'''installEnumerations();'''
 	}
 
-	protected def String installIterations(@NonNull Model root) {
+	protected def String installIterations(/*@NonNull*/ Model root) {
 		var pkge2iterations = root.getSortedIterations();
 		if (pkge2iterations.isEmpty()) return "";
 		'''installIterations();'''
 	}
 
-	protected def String installLambdaTypes(@NonNull Model root) {
+	protected def String installLambdaTypes(/*@NonNull*/ Model root) {
 		var allLambdaTypes = root.getSortedLambdaTypes();
 		if (allLambdaTypes.isEmpty()) return "";
 		'''installLambdaTypes();'''
 	}
 
-	protected def String installMapTypes(@NonNull Model root) {
+	protected def String installMapTypes(/*@NonNull*/ Model root) {
 		var pkge2mapTypes = root.getSortedMapTypes();
 		if (pkge2mapTypes.isEmpty()) return "";
 		'''installMapTypes();'''
 	}
 
-	protected def String installOperations(@NonNull Model root) {
+	protected def String installOperations(/*@NonNull*/ Model root) {
 		var pkge2operations = root.getSortedOperations();
 		if (pkge2operations.isEmpty()) return "";
 		'''installOperations();'''
 	}
 
-	protected def String installPackages(@NonNull Model root) {
+	protected def String installPackages(/*@NonNull*/ Model root) {
 		var allPackages = root.getSortedPackages();
 		if (allPackages.isEmpty()) return "";
 		'''installPackages();'''
 	}
 
-	protected def String installPrecedences(@NonNull Model root) {
+	protected def String installPrecedences(/*@NonNull*/ Model root) {
 		var allLibraries = root.getSortedLibrariesWithPrecedence();
 		var allOperations = root.getSortedOperationsWithPrecedence();
 		if (allLibraries.isEmpty() && allOperations.isEmpty()) return "";
 		'''installPrecedences();'''
 	}
 
-	protected def String installPrimitiveTypes(@NonNull Model root) {
+	protected def String installPrimitiveTypes(/*@NonNull*/ Model root) {
 		var pkge2primitiveTypes = root.getSortedPrimitiveTypes();
 		if (pkge2primitiveTypes.isEmpty()) return "";
 		'''installPrimitiveTypes();'''
 	}
 
-	protected def String installProperties(@NonNull Model root) {
+	protected def String installProperties(/*@NonNull*/ Model root) {
 		var pkge2properties = root.getSortedProperties();
 		if (pkge2properties.isEmpty()) return "";
 		'''installProperties();'''
 	}
 	
-	protected def String installTemplateBindings(@NonNull Model root) {
+	protected def String installTemplateBindings(/*@NonNull*/ Model root) {
 		var allTemplateableElements = root.getSortedTemplateableElements();
 		if (allTemplateableElements.isEmpty()) return "";
 		'''installTemplateBindings();'''
 	}
 
-	protected def String installTupleTypes(@NonNull Model root) {
+	protected def String installTupleTypes(/*@NonNull*/ Model root) {
 		var allTupleTypes = root.getSortedTupleTypes();
 		if (allTupleTypes.size() <= 0) return "";
 		'''installTupleTypes();'''

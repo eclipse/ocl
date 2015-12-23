@@ -10,8 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.build.latex
 
-import org.eclipse.jdt.annotation.NonNull
-import org.eclipse.jdt.annotation.Nullable
 import org.eclipse.ocl.pivot.Class
 import org.eclipse.ocl.pivot.Element
 import org.eclipse.ocl.pivot.Namespace
@@ -36,9 +34,9 @@ import org.eclipse.ocl.pivot.utilities.NameUtil
 
 public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 {
-	@NonNull protected override String generateLaTeX(@NonNull Package asPackage,
-		@NonNull Grammar grammar, @Nullable Package cs2asPackage,
-		@Nullable Package cs2csPackage) {
+	/*@NonNull*/ protected override String generateLaTeX(/*@NonNull*/ Package asPackage,
+		/*@NonNull*/ Grammar grammar, /*@Nullable*/ Package cs2asPackage,
+		/*@Nullable*/ Package cs2csPackage) {
 		'''
 		«emitClasses(asPackage, grammar, cs2asPackage, cs2csPackage)»
 
@@ -48,7 +46,7 @@ public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 		'''
 	}
 	
-	protected def String emitAbstractElement(@NonNull AbstractElement abstractElement, boolean atRoot) {
+	protected def String emitAbstractElement(/*@NonNull*/ AbstractElement abstractElement, boolean atRoot) {
 		switch abstractElement {
 			Action: return emitAction(abstractElement)
 			Alternatives: return emitAlternatives(abstractElement, atRoot)
@@ -65,7 +63,7 @@ public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 		}		
 	}
 	
-	protected def String emitAction(@NonNull Action action) {
+	protected def String emitAction(/*@NonNull*/ Action action) {
 		if (action.feature != null) {
 			return "\n{" + emitTypeRef(action.type) + action.feature + action.operator + "current}";
 		}
@@ -74,7 +72,7 @@ public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 		}
 	}
 	
-	protected def String emitAlternatives(@NonNull Alternatives alternatives, boolean atRoot) {
+	protected def String emitAlternatives(/*@NonNull*/ Alternatives alternatives, boolean atRoot) {
 		if (atRoot && (alternatives.cardinality == null)) {
 		'''«FOR element : alternatives.elements SEPARATOR '\n| '»«emitAbstractElement(element, false)»«ENDFOR»'''
 		}
@@ -83,11 +81,11 @@ public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 		}
 	}
 	
-	protected def String emitAssignment(@NonNull Assignment assignment) {
+	protected def String emitAssignment(/*@NonNull*/ Assignment assignment) {
 		return assignment.feature + assignment.operator + emitAbstractElement(assignment.terminal, false) + emitCardinality(assignment) + "\n";
 	}
 
-	protected def emitAssociations(@NonNull Class asClass) {
+	protected def emitAssociations(/*@NonNull*/ Class asClass) {
 		var asAssociations = getSortedAssociations(asClass);
 		if (asAssociations.size() > 0) {
 		'''
@@ -102,7 +100,7 @@ public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 		}
 	}
 
-	protected def emitAttributes(@NonNull Class asClass) {
+	protected def emitAttributes(/*@NonNull*/ Class asClass) {
 		var asAttributes = getSortedAttributes(asClass);
 		if ( asAttributes.size() > 0) {
 		'''
@@ -117,7 +115,7 @@ public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 		}
 	}
 
-	protected def emitCS2AS(@NonNull Class asClass, @NonNull Package cs2asPackage) {
+	protected def emitCS2AS(/*@NonNull*/ Class asClass, /*@NonNull*/ Package cs2asPackage) {
 		var cs2asClass = NameUtil.getNameable(cs2asPackage.getOwnedClasses(), asClass.getName());
 		if (cs2asClass != null)  {
 		'''
@@ -135,7 +133,7 @@ public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 		}
 	}
 
-	protected def emitCS2CS(@NonNull Class asClass, @NonNull Package cs2asPackage) {
+	protected def emitCS2CS(/*@NonNull*/ Class asClass, /*@NonNull*/ Package cs2asPackage) {
 		var cs2csClass = NameUtil.getNameable(cs2asPackage.getOwnedClasses(), asClass.getName());
 		if (cs2csClass != null)  {
 		'''
@@ -153,7 +151,7 @@ public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 		}
 	}
 	
-	protected def String emitCardinality(@NonNull AbstractElement abstractElement) {
+	protected def String emitCardinality(/*@NonNull*/ AbstractElement abstractElement) {
 		if (abstractElement.cardinality != null) {
 			return abstractElement.cardinality;
 		}
@@ -162,7 +160,7 @@ public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 		}
 	}
 	
-	protected def String emitCharacterRange(@NonNull CharacterRange characterRange) {
+	protected def String emitCharacterRange(/*@NonNull*/ CharacterRange characterRange) {
 		if (characterRange.cardinality == null) {
 			return emitKeyword(characterRange.left) + '..' + emitKeyword(characterRange.right)
 		}
@@ -171,9 +169,9 @@ public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 		}
 	}
 
-	protected def emitClasses(@NonNull Package asPackage,
-		@NonNull Grammar grammar, @Nullable Package cs2asPackage,
-		@Nullable Package cs2csPackage) {
+	protected def emitClasses(/*@NonNull*/ Package asPackage,
+		/*@NonNull*/ Grammar grammar, /*@Nullable*/ Package cs2asPackage,
+		/*@Nullable*/ Package cs2csPackage) {
 		var asClasses = getSortedClasses(asPackage);
 		'''
 		«FOR asClass : asClasses»
@@ -195,7 +193,7 @@ public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 		'''
 	}
 
-	protected def emitComment(@NonNull Element asElement, @NonNull Namespace asNamespace) {
+	protected def emitComment(/*@NonNull*/ Element asElement, /*@NonNull*/ Namespace asNamespace) {
 		if (asElement.getOwnedComments().size() > 0) {
 		'''
 			«FOR asComment : asElement.getOwnedComments()»
@@ -206,11 +204,11 @@ public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 		}
 	}
 	
-	protected def String emitCrossReference(@NonNull CrossReference crossReference) {
+	protected def String emitCrossReference(/*@NonNull*/ CrossReference crossReference) {
 		return "[" + emitTypeRef(crossReference.type) + '|' + emitAbstractElement(crossReference.terminal, false) + "]" + emitCardinality(crossReference)
 	}
 	
-	protected def String emitGroup(@NonNull Group group, boolean atRoot) {
+	protected def String emitGroup(/*@NonNull*/ Group group, boolean atRoot) {
 		if (atRoot && (group.cardinality == null)) {
 		'''«FOR element : group.elements SEPARATOR ' '»«emitAbstractElement(element, false)»«ENDFOR»'''
 		}
@@ -219,7 +217,7 @@ public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 		}
 	}
 	
-	protected def emitExternalModels(@NonNull Grammar grammar) {
+	protected def emitExternalModels(/*@NonNull*/ Grammar grammar) {
 		var metamodelDeclarations = getSortedMetamodelDeclarations(grammar);
 		'''
 		«emitHeading3("External Models", labelPrefix + "ExternalModels")»
@@ -232,11 +230,11 @@ public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 		'''
 	}
 	
-	protected def String emitKeyword(@NonNull Keyword keyword) {
+	protected def String emitKeyword(/*@NonNull*/ Keyword keyword) {
 		return "'" + emitCharacters(keyword.value) + "'" + emitCardinality(keyword)
 	}
 	
-	protected def emitMetamodelDeclaration(@NonNull AbstractMetamodelDeclaration metamodelDeclaration) {
+	protected def emitMetamodelDeclaration(/*@NonNull*/ AbstractMetamodelDeclaration metamodelDeclaration) {
 		if (metamodelDeclaration.alias == null) {
 			return metamodelDeclaration.EPackage.nsURI + " (default)";
 		}
@@ -245,7 +243,7 @@ public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 		}
 	}
 
-	protected def emitOperations(@NonNull Class asClass) {
+	protected def emitOperations(/*@NonNull*/ Class asClass) {
 		var asOperations = getSortedOperations(asClass);
 		if (asOperations.size() > 0) {
 		'''
@@ -286,7 +284,7 @@ public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 		'''
 	} */
 	
-	protected def emitParserRules(@NonNull Grammar grammar) {
+	protected def emitParserRules(/*@NonNull*/ Grammar grammar) {
 		var parserRules = getSortedParserRules(grammar);
 		'''
 		«emitHeading3("Parser Rules", labelPrefix + "ParserRules")»
@@ -302,7 +300,7 @@ public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 		'''
 	}
 	
-	protected def emitParserRules(@NonNull Class asClass, @NonNull Grammar grammar) {
+	protected def emitParserRules(/*@NonNull*/ Class asClass, /*@NonNull*/ Grammar grammar) {
 		var parserRules = getSortedParserRules(asClass, grammar);
 		if (parserRules.size() > 0) {
 		'''
@@ -322,7 +320,7 @@ public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 		}
 	}
 
-	protected def emitSuperclasses(@NonNull Class asClass) {
+	protected def emitSuperclasses(/*@NonNull*/ Class asClass) {
 		var asSuperClasses = asClass.getSuperClasses();
 		if (asSuperClasses.size() > 0) {
 		'''
@@ -333,7 +331,7 @@ public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 		}
 	}
 	
-	protected def emitTerminalRules(@NonNull Grammar grammar) {
+	protected def emitTerminalRules(/*@NonNull*/ Grammar grammar) {
 		var terminalRules = getSortedTerminalRules(grammar);
 		'''
 		«emitHeading3("Terminal Rules", labelPrefix + "TerminalRules")»
@@ -349,7 +347,7 @@ public class GenerateLaTeXForCSModelXtend extends GenerateLaTeXForCSModel
 		'''
 	}
 	
-	protected def emitTypeRef(@NonNull TypeRef typeRef) {
+	protected def emitTypeRef(/*@NonNull*/ TypeRef typeRef) {
 		if ((typeRef.metamodel.alias == "ecore") && (typeRef.classifier.name == "EString")) {
 			return "String";
 		}

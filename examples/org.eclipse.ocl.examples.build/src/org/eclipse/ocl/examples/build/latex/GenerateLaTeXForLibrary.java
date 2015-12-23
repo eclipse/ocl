@@ -21,7 +21,6 @@ import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Library;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.resource.ASResource;
@@ -33,7 +32,7 @@ import org.eclipse.xtext.XtextStandaloneSetup;
 public abstract class GenerateLaTeXForLibrary extends GenerateLaTeXUtils
 {
 
-	protected abstract @NonNull String generateLaTeX(@NonNull Library asLibrary);
+	protected abstract /*@NonNull*/ String generateLaTeX(/*@NonNull*/ Library asLibrary);
 
 	@Override
 	protected void invokeInternal(WorkflowContext ctx, ProgressMonitor monitor, Issues issues) {

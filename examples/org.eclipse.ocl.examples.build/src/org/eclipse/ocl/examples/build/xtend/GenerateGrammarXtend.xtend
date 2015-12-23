@@ -51,7 +51,7 @@ import org.eclipse.xtext.UnorderedGroup
  */
 public class GenerateGrammarXtend extends GenerateGrammar
 {
-	@NonNull protected override String generate(@NonNull Resource grammarResource) {
+	/*@NonNull*/ protected override String generate(/*@NonNull*/ Resource grammarResource) {
 		'''
 			/*******************************************************************************
 			 * Copyright (c) 2015 Willink Transformations and others.
@@ -149,7 +149,7 @@ public class GenerateGrammarXtend extends GenerateGrammar
 		'''
 	}
 	
-	@NonNull protected def String generateEnumRules(@NonNull Grammar grammar, @NonNull Iterable<EnumRule> eObjects) {
+	/*@NonNull*/ protected def String generateEnumRules(/*@NonNull*/ Grammar grammar, /*@NonNull*/ Iterable<EnumRule> eObjects) {
 		'''
 		«FOR eObject : eObjects»
 		private static final @NonNull EnumRule ER_«eObject.getName()» = createEnumRule(«emitValue(eObject.getName())», «emit(grammar, eObject.getType())»);
@@ -164,7 +164,7 @@ public class GenerateGrammarXtend extends GenerateGrammar
 		'''
 	}
 	
-	@NonNull protected def String generateGrammarPackage(@NonNull Grammar grammar) {
+	/*@NonNull*/ protected def String generateGrammarPackage(/*@NonNull*/ Grammar grammar) {
 		var List<TerminalRule> terminalRules = getSortedAbstractRules(grammar, TerminalRule);
 		var List<EnumRule> enumRules = getSortedAbstractRules(grammar, EnumRule);
 		'''
@@ -184,7 +184,7 @@ public class GenerateGrammarXtend extends GenerateGrammar
 		'''
 	}
 	
-	@NonNull protected def String generateInitGrammar(@NonNull Grammar grammar, boolean hasTerminals, boolean hasEnumRules) {
+	/*@NonNull*/ protected def String generateInitGrammar(/*@NonNull*/ Grammar grammar, boolean hasTerminals, boolean hasEnumRules) {
 		'''
 		private static @NonNull Grammar initGrammar() {
 			«IF hasTerminals»
@@ -235,7 +235,7 @@ public class GenerateGrammarXtend extends GenerateGrammar
 		'''
 	}
 	
-	@NonNull protected def String generateParserRules(@NonNull Grammar grammar, @NonNull Iterable<ParserRule> eObjects) {
+	/*@NonNull*/ protected def String generateParserRules(/*@NonNull*/ Grammar grammar, /*@NonNull*/ Iterable<ParserRule> eObjects) {
 		'''
 		«FOR eObject : eObjects»
 		private static final @NonNull ParserRule PR_«eObject.getName()» = createParserRule(«emitValue(eObject.getName())», «emit(grammar, eObject.getType())»);
@@ -250,7 +250,7 @@ public class GenerateGrammarXtend extends GenerateGrammar
 		'''
 	}
 	
- 	@NonNull protected def String generateReferencedMetamodels(@NonNull Grammar grammar, @NonNull Iterable<ReferencedMetamodel> eObjects) {
+ 	/*@NonNull*/ protected def String generateReferencedMetamodels(/*@NonNull*/ Grammar grammar, /*@NonNull*/ Iterable<ReferencedMetamodel> eObjects) {
 		'''
 		«FOR eObject : eObjects»
 		private static final @NonNull ReferencedMetamodel «emit(grammar, eObject)» = createReferencedMetamodel(«emit(grammar, eObject.getEPackage())», «emitValue(eObject.getAlias())»); // «eObject.getEPackage().getNsURI()»
@@ -259,7 +259,7 @@ public class GenerateGrammarXtend extends GenerateGrammar
 		'''
 	}
 	
-	@NonNull protected def String generateTerminalRules(@NonNull Grammar grammar, @NonNull Iterable<TerminalRule> eObjects) {
+	/*@NonNull*/ protected def String generateTerminalRules(/*@NonNull*/ Grammar grammar, /*@NonNull*/ Iterable<TerminalRule> eObjects) {
 		'''
 		«FOR eObject : eObjects»
 		private static final @NonNull TerminalRule TR_«eObject.getName()» = createTerminalRule(«emitValue(eObject.getName())», «emit(grammar, eObject.getType())»);
@@ -280,7 +280,7 @@ public class GenerateGrammarXtend extends GenerateGrammar
 	/*
 	 * Emit the eObject term inline within a grammar, either as a direct construction or as a name reference to a previous construction.
 	 */
-	@NonNull protected def String emit(@NonNull Grammar grammar, @NonNull EObject eObject) {
+	/*@NonNull*/ protected def String emit(/*@NonNull*/ Grammar grammar, /*@NonNull*/ EObject eObject) {
 		switch eObject {
 			Action: return emitAction(grammar, eObject)
 			Alternatives: return emitAlternatives(grammar, eObject)
@@ -308,76 +308,76 @@ public class GenerateGrammarXtend extends GenerateGrammar
 		}
 	}
 	
-	@NonNull protected def String emitAction(@NonNull Grammar grammar, @NonNull Action eObject) {
+	/*@NonNull*/ protected def String emitAction(/*@NonNull*/ Grammar grammar, /*@NonNull*/ Action eObject) {
 		return wrapCardinality(eObject, wrapFirstSetPredicated(eObject, wrapPredicated(eObject,
 			'''createAction(«emitValue(eObject.getFeature())», «emitValue(eObject.getOperator())», «emit(grammar, eObject.getType())»)''')));
 	}
 	
-	@NonNull protected def String emitAlternatives(@NonNull Grammar grammar, @NonNull Alternatives eObject) {
+	/*@NonNull*/ protected def String emitAlternatives(/*@NonNull*/ Grammar grammar, /*@NonNull*/ Alternatives eObject) {
 		return wrapCardinality(eObject, wrapFirstSetPredicated(eObject, wrapPredicated(eObject,
 			'''createAlternatives(«FOR element : eObject.getElements() SEPARATOR ", "»«emit(grammar, element)»«ENDFOR»)''')));
 	}
 	
-	@NonNull protected def String emitAssignment(@NonNull Grammar grammar, @NonNull Assignment eObject) {
+	/*@NonNull*/ protected def String emitAssignment(/*@NonNull*/ Grammar grammar, /*@NonNull*/ Assignment eObject) {
 		return wrapCardinality(eObject, wrapFirstSetPredicated(eObject, wrapPredicated(eObject,
 			'''createAssignment(«emitValue(eObject.getFeature())», «emitValue(eObject.getOperator())», «emit(grammar, eObject.getTerminal())»)''')));
 	}
 	
-	@NonNull protected def String emitCharacterRange(@NonNull Grammar grammar, @NonNull CharacterRange eObject) {
+	/*@NonNull*/ protected def String emitCharacterRange(/*@NonNull*/ Grammar grammar, /*@NonNull*/ CharacterRange eObject) {
 		return wrapCardinality(eObject, wrapFirstSetPredicated(eObject, wrapPredicated(eObject,
 		'''createCharacterRange(«emit(grammar, eObject.getLeft)», «emit(grammar, eObject.getRight)»)''')));
 	}
 	
-	@NonNull protected def String emitCrossReference(@NonNull Grammar grammar, @NonNull CrossReference eObject) {
+	/*@NonNull*/ protected def String emitCrossReference(/*@NonNull*/ Grammar grammar, /*@NonNull*/ CrossReference eObject) {
 		return wrapCardinality(eObject, wrapFirstSetPredicated(eObject, wrapPredicated(eObject,
 			'''createCrossReference(«emit(grammar, eObject.getType())», «emit(grammar, eObject.getTerminal())»)''')));
 	}
 	
-	@NonNull protected def String emitEnumLiteralDeclaration(@NonNull Grammar grammar, @NonNull EnumLiteralDeclaration eObject) {
+	/*@NonNull*/ protected def String emitEnumLiteralDeclaration(/*@NonNull*/ Grammar grammar, /*@NonNull*/ EnumLiteralDeclaration eObject) {
 		return wrapCardinality(eObject, wrapFirstSetPredicated(eObject, wrapPredicated(eObject,
 			'''createEnumLiteral(«emit(grammar, eObject.literal)», «emit(grammar, eObject.enumLiteral)»)''')));
 		
 		
 	}
-	@NonNull protected def String emitGroup(@NonNull Grammar grammar, @NonNull Group eObject) {
+	/*@NonNull*/ protected def String emitGroup(/*@NonNull*/ Grammar grammar, /*@NonNull*/ Group eObject) {
 		return wrapCardinality(eObject, wrapFirstSetPredicated(eObject, wrapPredicated(eObject,
 			'''createGroup(«FOR element : eObject.getElements() SEPARATOR ", "»«emit(grammar, element)»«ENDFOR»)''')));
 	}
 	
-	@NonNull protected def String emitKeyword(@NonNull Keyword eObject) {
+	/*@NonNull*/ protected def String emitKeyword(/*@NonNull*/ Keyword eObject) {
 		return wrapCardinality(eObject, wrapFirstSetPredicated(eObject, wrapPredicated(eObject,
 		'''createKeyword(«emitValue(eObject.getValue())»)''')));
 	}
 	
-	@NonNull protected def String emitNegatedToken(@NonNull Grammar grammar, @NonNull NegatedToken eObject) {
+	/*@NonNull*/ protected def String emitNegatedToken(/*@NonNull*/ Grammar grammar, /*@NonNull*/ NegatedToken eObject) {
 		return wrapCardinality(eObject,  wrapFirstSetPredicated(eObject, wrapPredicated(eObject,
 		'''createNegatedToken(«emit(grammar, eObject.getTerminal())»)''')));
 	}
 	
-	@NonNull protected def String emitRuleCall(@NonNull Grammar grammar, @NonNull RuleCall eObject) {
+	/*@NonNull*/ protected def String emitRuleCall(/*@NonNull*/ Grammar grammar, /*@NonNull*/ RuleCall eObject) {
 		return wrapCardinality(eObject, wrapFirstSetPredicated(eObject, wrapPredicated(eObject,
 		'''createRuleCall(«emit(grammar, eObject.getRule())»)''')));
 	}
 	
-	@NonNull protected def String emitTypeRef(@NonNull Grammar grammar, @NonNull TypeRef eObject) {
+	/*@NonNull*/ protected def String emitTypeRef(/*@NonNull*/ Grammar grammar, /*@NonNull*/ TypeRef eObject) {
 		return '''createTypeRef(«emit(grammar, eObject.getMetamodel())», «emit(grammar, eObject.getClassifier())»)''';
 	}
 	
-	@NonNull protected def String emitUnorderedGroup(@NonNull Grammar grammar, @NonNull UnorderedGroup eObject) {
+	/*@NonNull*/ protected def String emitUnorderedGroup(/*@NonNull*/ Grammar grammar, /*@NonNull*/ UnorderedGroup eObject) {
 		return wrapCardinality(eObject, wrapFirstSetPredicated(eObject, wrapPredicated(eObject,
 			'''createUnorderedGroup(«FOR element : eObject.getElements() SEPARATOR ", "»«emit(grammar, element)»«ENDFOR»)''')));
 	}
 	
-	@NonNull protected def String emitUntilToken(@NonNull Grammar grammar, @NonNull UntilToken eObject) {
+	/*@NonNull*/ protected def String emitUntilToken(/*@NonNull*/ Grammar grammar, /*@NonNull*/ UntilToken eObject) {
 		return wrapCardinality(eObject, wrapFirstSetPredicated(eObject, wrapPredicated(eObject,
 		'''createUntilToken(«emit(grammar, eObject.getTerminal())»)''')));
 	}
 	
-	@NonNull protected def String emitWildcard(@NonNull Grammar grammar, @NonNull Wildcard eObject) {
+	/*@NonNull*/ protected def String emitWildcard(/*@NonNull*/ Grammar grammar, /*@NonNull*/ Wildcard eObject) {
 		return wrapCardinality(eObject, '''createWildcard()''');
 	}
 	
-	@NonNull protected def String wrapCardinality(@NonNull AbstractElement eObject, String generatedElement) {
+	/*@NonNull*/ protected def String wrapCardinality(/*@NonNull*/ AbstractElement eObject, String generatedElement) {
 		var String cardinality = eObject.getCardinality();
 		if (cardinality == null) {
 			return generatedElement;
@@ -387,7 +387,7 @@ public class GenerateGrammarXtend extends GenerateGrammar
 		}
 	}
 	
-	@NonNull protected def String wrapFirstSetPredicated(@NonNull AbstractElement eObject, String generatedElement) {
+	/*@NonNull*/ protected def String wrapFirstSetPredicated(/*@NonNull*/ AbstractElement eObject, String generatedElement) {
 		if (!eObject.isFirstSetPredicated()) {
 			return generatedElement;
 		}
@@ -396,7 +396,7 @@ public class GenerateGrammarXtend extends GenerateGrammar
 		}
 	}
 	
-	@NonNull protected def String wrapPredicated(@NonNull AbstractElement eObject, String generatedElement) {
+	/*@NonNull*/ protected def String wrapPredicated(/*@NonNull*/ AbstractElement eObject, String generatedElement) {
 		if (!eObject.isPredicated()) {
 			return generatedElement;
 		}

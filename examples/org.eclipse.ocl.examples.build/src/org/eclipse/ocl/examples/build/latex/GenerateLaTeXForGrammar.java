@@ -23,7 +23,6 @@ import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.build.utilities.ClasspathURIHandler;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -33,7 +32,7 @@ import org.eclipse.xtext.XtextStandaloneSetup;
 
 public abstract class GenerateLaTeXForGrammar extends GenerateLaTeXUtils
 {
-	protected abstract @NonNull String generateLaTeX(@NonNull Grammar xtextModel);
+	protected abstract /*@NonNull*/ String generateLaTeX(/*@NonNull*/ Grammar xtextModel);
 
 	@Override
 	protected void invokeInternal(WorkflowContext ctx, ProgressMonitor monitor, Issues issues) {

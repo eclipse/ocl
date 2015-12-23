@@ -174,7 +174,7 @@ public abstract class GenerateGrammar extends AbstractWorkflowComponent
 		return value != null ? ("\"" + Strings.convertToJavaString(value.toString())+ "\"") : "null";
 	}
 
-	protected abstract @NonNull String generate(@NonNull Resource grammarResource);
+	protected abstract /*@NonNull*/ String generate(/*@NonNull*/ Resource grammarResource);
 
 	protected String getGetAccessorName(@NonNull EStructuralFeature eStructuralFeature) {
 		return genModelHelper.getGetAccessor(eStructuralFeature);

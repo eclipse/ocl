@@ -10,14 +10,13 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.build.textile
 
-import org.eclipse.jdt.annotation.NonNull
 import org.eclipse.ocl.pivot.Namespace
 import org.eclipse.ocl.pivot.Element
 import org.eclipse.ocl.pivot.Model
 
 public class GenerateTextileForLibraryXtend extends GenerateTextileForLibraryUtils
 {
-	@NonNull protected override String generateTextile(@NonNull Model model) {
+	/*@NonNull*/ protected override String generateTextile(/*@NonNull*/ Model model) {
 		'''
 		h1(#StandardLibrary). The OCL Standard Library
 		

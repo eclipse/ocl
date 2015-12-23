@@ -11,7 +11,6 @@
 package org.eclipse.ocl.examples.build.xtend;
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.xtext.essentialocl.EssentialOCLStandaloneSetup;
 
@@ -25,7 +24,7 @@ public class GenerateAutoCS2ASVisitors extends GenerateCSVisitors
 	}
 	
 	@Override
-	public void generateVisitors(@NonNull GenPackage genPackage) {
+	public void generateVisitors(/*@NonNull*/ GenPackage genPackage) {
 /*		if (isDerived()) {
 			CS2ASCodeGenerator.generate(genPackage, projectPrefix, projectName, visitorPackageName, visitorClassName, visitableClassName,
 				superProjectPrefix, superProjectName, superVisitorClassName);

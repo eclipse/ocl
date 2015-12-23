@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.build.latex
 
-import org.eclipse.jdt.annotation.NonNull
 import org.eclipse.xtext.AbstractElement
 import org.eclipse.xtext.AbstractMetamodelDeclaration
 import org.eclipse.xtext.Action
@@ -29,7 +28,7 @@ import org.eclipse.xtext.Wildcard
 
 public class GenerateLaTeXForGrammarXtend extends GenerateLaTeXForGrammar
 {
-	@NonNull protected override String generateLaTeX(@NonNull Grammar grammar) {
+	/*@NonNull*/ protected override String generateLaTeX(/*@NonNull*/ Grammar grammar) {
 		'''
 		«emitExternalModels(grammar)»
 		
@@ -39,7 +38,7 @@ public class GenerateLaTeXForGrammarXtend extends GenerateLaTeXForGrammar
 		'''
 	}
 	
-	protected def emitExternalModels(@NonNull Grammar grammar) {
+	protected def emitExternalModels(/*@NonNull*/ Grammar grammar) {
 		var metamodelDeclarations = getSortedMetamodelDeclarations(grammar);
 		'''
 		«emitHeading3("External Models", labelPrefix + "ExternalModels")»
@@ -52,7 +51,7 @@ public class GenerateLaTeXForGrammarXtend extends GenerateLaTeXForGrammar
 		'''
 	}
 	
-	protected def emitParserRules(@NonNull Grammar grammar) {
+	protected def emitParserRules(/*@NonNull*/ Grammar grammar) {
 		var parserRules = getSortedParserRules(grammar);
 		'''
 		«emitHeading3("Parser Rules", labelPrefix + "ParserRules")»
@@ -68,7 +67,7 @@ public class GenerateLaTeXForGrammarXtend extends GenerateLaTeXForGrammar
 		'''
 	}
 	
-	protected def emitTerminalRules(@NonNull Grammar grammar) {
+	protected def emitTerminalRules(/*@NonNull*/ Grammar grammar) {
 		var terminalRules = getSortedTerminalRules(grammar);
 		'''
 		«emitHeading3("Terminal Rules", labelPrefix + "TerminalRules")»
@@ -84,7 +83,7 @@ public class GenerateLaTeXForGrammarXtend extends GenerateLaTeXForGrammar
 		'''
 	}
 	
-	protected def String emitAbstractElement(@NonNull AbstractElement abstractElement, boolean atRoot) {
+	protected def String emitAbstractElement(/*@NonNull*/ AbstractElement abstractElement, boolean atRoot) {
 		switch abstractElement {
 			Action: return emitAction(abstractElement)
 			Alternatives: return emitAlternatives(abstractElement, atRoot)
@@ -101,7 +100,7 @@ public class GenerateLaTeXForGrammarXtend extends GenerateLaTeXForGrammar
 		}		
 	}
 	
-	protected def String emitAction(@NonNull Action action) {
+	protected def String emitAction(/*@NonNull*/ Action action) {
 		if (action.feature != null) {
 			return "\n{" + emitTypeRef(action.type) + action.feature + action.operator + "current}";
 		}
@@ -110,7 +109,7 @@ public class GenerateLaTeXForGrammarXtend extends GenerateLaTeXForGrammar
 		}
 	}
 	
-	protected def String emitAlternatives(@NonNull Alternatives alternatives, boolean atRoot) {
+	protected def String emitAlternatives(/*@NonNull*/ Alternatives alternatives, boolean atRoot) {
 		if (atRoot && (alternatives.cardinality == null)) {
 		'''«FOR element : alternatives.elements SEPARATOR '\n| '»«emitAbstractElement(element, false)»«ENDFOR»'''
 		}
@@ -119,11 +118,11 @@ public class GenerateLaTeXForGrammarXtend extends GenerateLaTeXForGrammar
 		}
 	}
 	
-	protected def String emitAssignment(@NonNull Assignment assignment) {
+	protected def String emitAssignment(/*@NonNull*/ Assignment assignment) {
 		return assignment.feature + assignment.operator + emitAbstractElement(assignment.terminal, false) + emitCardinality(assignment) + "\n";
 	}
 	
-	protected def String emitCardinality(@NonNull AbstractElement abstractElement) {
+	protected def String emitCardinality(/*@NonNull*/ AbstractElement abstractElement) {
 		if (abstractElement.cardinality != null) {
 			return abstractElement.cardinality;
 		}
@@ -132,7 +131,7 @@ public class GenerateLaTeXForGrammarXtend extends GenerateLaTeXForGrammar
 		}
 	}
 	
-	protected def String emitCharacterRange(@NonNull CharacterRange characterRange) {
+	protected def String emitCharacterRange(/*@NonNull*/ CharacterRange characterRange) {
 		if (characterRange.cardinality == null) {
 			return emitKeyword(characterRange.left) + '..' + emitKeyword(characterRange.right)
 		}
@@ -141,11 +140,11 @@ public class GenerateLaTeXForGrammarXtend extends GenerateLaTeXForGrammar
 		}
 	}
 	
-	protected def String emitCrossReference(@NonNull CrossReference crossReference) {
+	protected def String emitCrossReference(/*@NonNull*/ CrossReference crossReference) {
 		return "[" + emitTypeRef(crossReference.type) + '|' + emitAbstractElement(crossReference.terminal, false) + "]" + emitCardinality(crossReference)
 	}
 	
-	protected def String emitGroup(@NonNull Group group, boolean atRoot) {
+	protected def String emitGroup(/*@NonNull*/ Group group, boolean atRoot) {
 		if (atRoot && (group.cardinality == null)) {
 		'''«FOR element : group.elements SEPARATOR ' '»«emitAbstractElement(element, false)»«ENDFOR»'''
 		}
@@ -154,11 +153,11 @@ public class GenerateLaTeXForGrammarXtend extends GenerateLaTeXForGrammar
 		}
 	}
 	
-	protected def String emitKeyword(@NonNull Keyword keyword) {
+	protected def String emitKeyword(/*@NonNull*/ Keyword keyword) {
 		return "'" + emitCharacters(keyword.value) + "'" + emitCardinality(keyword)
 	}
 	
-	protected def emitMetamodelDeclaration(@NonNull AbstractMetamodelDeclaration metamodelDeclaration) {
+	protected def emitMetamodelDeclaration(/*@NonNull*/ AbstractMetamodelDeclaration metamodelDeclaration) {
 		if (metamodelDeclaration.alias == null) {
 			return metamodelDeclaration.EPackage.nsURI + " (default)";
 		}
@@ -167,7 +166,7 @@ public class GenerateLaTeXForGrammarXtend extends GenerateLaTeXForGrammar
 		}
 	}
 	
-	protected def emitTypeRef(@NonNull TypeRef typeRef) {
+	protected def emitTypeRef(/*@NonNull*/ TypeRef typeRef) {
 		if ((typeRef.metamodel.alias == "ecore") && (typeRef.classifier.name == "EString")) {
 			return "String";
 		}

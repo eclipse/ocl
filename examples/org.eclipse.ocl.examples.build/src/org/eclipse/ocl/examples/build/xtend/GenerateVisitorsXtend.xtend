@@ -14,7 +14,6 @@ package org.eclipse.ocl.examples.build.xtend
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EPackage
-import org.eclipse.jdt.annotation.NonNull
 import org.eclipse.ocl.pivot.Type
 import org.eclipse.ocl.pivot.internal.manager.TemplateParameterSubstitutionVisitor
 
@@ -23,7 +22,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 	/*
 	 * Abstract«projectPrefix»«generic»Visitor
 	 */
-	protected def void generateAbstractGenericVisitor(@NonNull EPackage ePackage, @NonNull String generic, @NonNull Class<?> returnClass, @NonNull Class<?> contextClass) {
+	protected def void generateAbstractGenericVisitor(/*@NonNull*/ EPackage ePackage, /*@NonNull*/ String generic, /*@NonNull*/ Class<?> returnClass, /*@NonNull*/ Class<?> contextClass) {
 		var boolean isDerived = isDerived();
 		var boolean needsOverride = needsOverride();
 		var MergeWriter writer = new MergeWriter(outputFolder + "Abstract" + projectPrefix + generic + "Visitor.java");
@@ -77,7 +76,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 	/*
 	 * AbstractDelegatingVisitor
 	 */
-	protected def void generateAbstractDelegatingVisitor(@NonNull EPackage ePackage) {
+	protected def void generateAbstractDelegatingVisitor(/*@NonNull*/ EPackage ePackage) {
 		var boolean isDerived = isDerived();
 		var boolean needsOverride = needsOverride();
 		var MergeWriter writer = new MergeWriter(outputFolder + "AbstractDelegating" + visitorClassName + ".java");
@@ -149,7 +148,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 	/*
 	 * AbstractExtendingDelegatingVisitor
 	 */
-	protected def void generateAbstractExtendingDelegatingVisitor(@NonNull EPackage ePackage) {
+	protected def void generateAbstractExtendingDelegatingVisitor(/*@NonNull*/ EPackage ePackage) {
 		var MergeWriter writer = new MergeWriter(outputFolder + "AbstractExtendingDelegating" + visitorClassName + ".java");
 		writer.append('''
 			«ePackage.generateHeader(visitorPackageName)»
@@ -227,7 +226,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 	/*
 	 * AbstractExtendingVisitor
 	 */
-	protected def void generateAbstractExtendingVisitor(@NonNull EPackage ePackage) {
+	protected def void generateAbstractExtendingVisitor(/*@NonNull*/ EPackage ePackage) {
 		var boolean isDerived = isDerived();
 		var boolean needsOverride = needsOverride();
 		var MergeWriter writer = new MergeWriter(outputFolder + "AbstractExtending" + visitorClassName + ".java");
@@ -278,7 +277,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 	/*
 	 * AbstractMergedVisitor
 	 */
-	protected def void generateAbstractMergedVisitor(@NonNull EPackage ePackage) {
+	protected def void generateAbstractMergedVisitor(/*@NonNull*/ EPackage ePackage) {
 		var boolean isDerived = isDerived();
 		var boolean needsOverride = needsOverride();
 		var MergeWriter writer = new MergeWriter(outputFolder + "AbstractMerged" + visitorClassName + ".java");
@@ -316,7 +315,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 	/*
 	 * AbstractNonNullExtendingVisitor
 	 */
-	protected def void generateAbstractNonNullExtendingVisitor(@NonNull EPackage ePackage) {
+	protected def void generateAbstractNonNullExtendingVisitor(/*@NonNull*/ EPackage ePackage) {
 		var boolean isDerived = isDerived();
 		var boolean needsOverride = needsOverride();
 		var MergeWriter writer = new MergeWriter(outputFolder + "AbstractNonNullExtending" + visitorClassName + ".java");
@@ -395,7 +394,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 	/*
 	 * AbstractNullVisitor
 	 */
-	protected def void generateAbstractNullVisitor(@NonNull EPackage ePackage) {
+	protected def void generateAbstractNullVisitor(/*@NonNull*/ EPackage ePackage) {
 		var boolean isDerived = isDerived();
 		var boolean needsOverride = needsOverride();
 		var MergeWriter writer = new MergeWriter(outputFolder + "AbstractNull" + visitorClassName + ".java");
@@ -440,7 +439,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 	/*
 	 * Abstract«projectPrefix»«generic»Visitor
 	 */
-	protected def void generateAbstractTemplateParameterSubstitutionVisitor(@NonNull EPackage ePackage, @NonNull String generic, @NonNull Class<?> returnClass, @NonNull Class<?> contextClass) {
+	protected def void generateAbstractTemplateParameterSubstitutionVisitor(/*@NonNull*/ EPackage ePackage, /*@NonNull*/ String generic, /*@NonNull*/ Class<?> returnClass, /*@NonNull*/ Class<?> contextClass) {
 		var boolean isDerived = isDerived();
 		var boolean needsOverride = needsOverride();
 		var MergeWriter writer = new MergeWriter(outputFolder + "Abstract" + projectPrefix + generic + "Visitor.java");
@@ -496,7 +495,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 	/*
 	 *AbstractVisitor
 	 */
-	protected def void generateAbstractVisitor(@NonNull EPackage ePackage) {
+	protected def void generateAbstractVisitor(/*@NonNull*/ EPackage ePackage) {
 		var boolean isDerived = isDerived();
 		var boolean needsOverride = needsOverride();
 		var MergeWriter writer = new MergeWriter(outputFolder + "Abstract" + visitorClassName + ".java");
@@ -586,7 +585,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 	/*
 	 * AbstractWrappingVisitor
 	 */
-	protected def void generateAbstractWrappingVisitor(@NonNull EPackage ePackage) {
+	protected def void generateAbstractWrappingVisitor(/*@NonNull*/ EPackage ePackage) {
 		var boolean isDerived = isDerived();
 		var boolean needsOverride = needsOverride();
 		var MergeWriter writer = new MergeWriter(outputFolder + "AbstractWrapping" + visitorClassName + ".java");
@@ -691,7 +690,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 	/*
 	 * DecorableVisitorInterface
 	 */
-	protected def void generateDecorableVisitorInterface(@NonNull EPackage ePackage, String visitorRootClass) {
+	protected def void generateDecorableVisitorInterface(/*@NonNull*/ EPackage ePackage, String visitorRootClass) {
 		var boolean isDerived = isDerived();
 		var boolean needsOverride = needsOverride();
 		var MergeWriter writer = new MergeWriter(outputFolder + "Decorable" + visitorClassName + ".java");
@@ -713,7 +712,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 		writer.close();
 	}
 
-	protected def String generateHeader(@NonNull EPackage ePackage, String javaPackage) {
+	protected def String generateHeader(/*@NonNull*/ EPackage ePackage, String javaPackage) {
 		'''
 		/*******************************************************************************
 		 * «MergeWriter.getCopyright(copyright).replace("\n", "\n* ")»
@@ -727,7 +726,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 		'''
 	}
 
-	protected def void generateVisitableInterface(@NonNull GenPackage genPackage) {
+	protected def void generateVisitableInterface(/*@NonNull*/ GenPackage genPackage) {
 		var genModel = genPackage.getGenModel();
 		var String directoryURI = getInterfaceModelDirectory(genModel);
 		var visitableClassName2 = getVisitableClassName(genModel);
@@ -766,7 +765,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 		writer.close();
 	}
 
-	protected def void generateVisitorInterface(@NonNull GenPackage genPackage) {
+	protected def void generateVisitorInterface(/*@NonNull*/ GenPackage genPackage) {
 		var genModel = genPackage.getGenModel();
 		var String directoryURI = getInterfaceModelDirectory(genModel);
 		var visitableClassName2 = getVisitableClassName(genModel);
