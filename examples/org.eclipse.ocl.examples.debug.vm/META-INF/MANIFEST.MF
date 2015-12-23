@@ -5,7 +5,7 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.ocl.examples.debug.vm;singleton:=true
 Bundle-Version: 2.1.0.qualifier
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.eclipse.ocl.examples.debug.vm,
  org.eclipse.ocl.examples.debug.vm.core,
  org.eclipse.ocl.examples.debug.vm.data,

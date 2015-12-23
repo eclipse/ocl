@@ -14,7 +14,6 @@ Require-Bundle: org.junit;visibility:=reexport,
  org.eclipse.ocl.pivot;bundle-version="[1.0.0,2.0.0)";visibility:=reexport,
  org.eclipse.ocl.pivot.uml;bundle-version="[1.0.0,2.0.0)";visibility:=reexport,
  org.eclipse.ocl.examples.codegen;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
- org.eclipse.ocl.jdt.annotation7;visibility:=reexport,
  org.eclipse.emf.codegen.ecore;bundle-version="[2.5.0,3.0.0)",
  org.eclipse.emf.examples.library;bundle-version="[2.5.0,3.0.0)",
  org.eclipse.uml2.codegen.ecore;bundle-version="[1.7.0,3.0.0)",
@@ -35,7 +34,7 @@ Require-Bundle: org.junit;visibility:=reexport,
  org.eclipse.ocl.examples.validity;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.ocl.examples.project.royalandloyal;resolution:=optional
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-Vendor: %providerName
 Export-Package: codegen.company,
  codegen.company.impl,

@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.ocl"
       label="%featureName"
-      version="3.5.100.qualifier"
+      version="3.6.0.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.ocl.ecore"
       license-feature="org.eclipse.license"
@@ -44,13 +44,6 @@
 
    <plugin
          id="org.eclipse.ocl.common"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.ocl.jdt.annotation7"
          download-size="0"
          install-size="0"
          version="0.0.0"
