@@ -27,7 +27,7 @@ public class NestedCompletePackages extends AbstractCompletePackages
 	}
 
 	@Override
-	public @NonNull CompletePackageInternal createCompletePackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage) {
+	public @NonNull CompletePackageInternal createCompletePackage(org.eclipse.ocl.pivot.@NonNull Package partialPackage) {
 		CompletePackageInternal completePackage = (CompletePackageInternal) PivotFactory.eINSTANCE.createCompletePackage();
 		completePackage.init(partialPackage.getName(), partialPackage.getNsPrefix(), partialPackage.getURI());
 		return completePackage;
@@ -54,7 +54,7 @@ public class NestedCompletePackages extends AbstractCompletePackages
 	}
 
 	@Override
-	public @NonNull CompletePackageInternal getOwnedCompletePackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage) {
+	public @NonNull CompletePackageInternal getOwnedCompletePackage(org.eclipse.ocl.pivot.@NonNull Package partialPackage) {
 		CompletePackageInternal completePackage = null;
 		String uri = partialPackage.getURI();
 		if (uri != null) {

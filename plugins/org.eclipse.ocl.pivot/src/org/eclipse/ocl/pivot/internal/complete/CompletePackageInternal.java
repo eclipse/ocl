@@ -17,7 +17,7 @@ import org.eclipse.ocl.pivot.CompletePackage;
 public interface CompletePackageInternal extends CompletePackage
 {
 	@Override
-	@NonNull CompleteClassInternal getCompleteClass(@NonNull org.eclipse.ocl.pivot.Class pivotType);
+	@NonNull CompleteClassInternal getCompleteClass(org.eclipse.ocl.pivot.@NonNull Class pivotType);
 	@NonNull CompleteInheritanceImpl getCompleteInheritance(@NonNull CompleteClassInternal completeClass);
 	@Override
 	@NonNull CompleteModelInternal getCompleteModel();

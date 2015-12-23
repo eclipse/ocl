@@ -14,7 +14,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.util.Visitor;
 
@@ -130,7 +129,7 @@ public interface Element extends EObject, Visitable {
 	 */
 	// Generated from org.eclipse.ocl.examples.build/templates/model/Class/insert.javajetinc
 	@Override
-	public @Nullable <R> R accept(@NonNull Visitor<R> visitor);
+	public <R> R accept(@NonNull Visitor<R> visitor);
 
 	EObject getESObject();
 

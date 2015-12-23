@@ -183,7 +183,7 @@ public class CGCollectionExpImpl extends CGValuedElementImpl implements CGCollec
 	 * @generated
 	 */
 	@Override
-	public @Nullable <R> R accept(@NonNull CGModelVisitor<R> visitor) {
+	public <R> R accept(@NonNull CGModelVisitor<R> visitor) {
 		return visitor.visitCGCollectionExp(this);
 	}
 

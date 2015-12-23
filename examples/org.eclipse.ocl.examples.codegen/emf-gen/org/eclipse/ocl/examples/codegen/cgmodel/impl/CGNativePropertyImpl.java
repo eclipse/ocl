@@ -13,8 +13,6 @@ package org.eclipse.ocl.examples.codegen.cgmodel.impl;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
-
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGNativeProperty;
 
@@ -52,7 +50,7 @@ public class CGNativePropertyImpl extends CGPropertyImpl implements CGNativeProp
 	 * @generated
 	 */
 	@Override
-	public @Nullable <R> R accept(@NonNull CGModelVisitor<R> visitor) {
+	public <R> R accept(@NonNull CGModelVisitor<R> visitor) {
 		return visitor.visitCGNativeProperty(this);
 	}
 

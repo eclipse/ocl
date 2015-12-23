@@ -271,9 +271,9 @@ public abstract class AbstractIdResolver implements IdResolver.IdResolverExtensi
 		this.standardLibrary = environment.getOwnedStandardLibrary();
 	}
 
-	protected abstract @NonNull org.eclipse.ocl.pivot.Package addEPackage(@NonNull EPackage ePackage);
+	protected abstract org.eclipse.ocl.pivot.@NonNull Package addEPackage(@NonNull EPackage ePackage);
 
-	private void addPackage(@NonNull org.eclipse.ocl.pivot.Package userPackage) {
+	private void addPackage(org.eclipse.ocl.pivot.@NonNull Package userPackage) {
 		String nsURI = userPackage.getURI();
 		if (nsURI != null) {
 			nsURI2package.put(nsURI, userPackage);
@@ -715,18 +715,18 @@ public abstract class AbstractIdResolver implements IdResolver.IdResolverExtensi
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getClass(@NonNull TypeId typeId, @Nullable Object context) {
+	public org.eclipse.ocl.pivot.@NonNull Class getClass(@NonNull TypeId typeId, @Nullable Object context) {
 		Element type = typeId.accept(this);
 		assert type != null;
 		return (org.eclipse.ocl.pivot.Class)type;
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getCollectionType(@NonNull CollectionTypeId typeId) {
+	public org.eclipse.ocl.pivot.@NonNull Class getCollectionType(@NonNull CollectionTypeId typeId) {
 		return getCollectionType(typeId, false, null, null);
 	}
 
-	public @NonNull org.eclipse.ocl.pivot.Class getCollectionType(@NonNull CollectionTypeId typeId, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+	public org.eclipse.ocl.pivot.@NonNull Class getCollectionType(@NonNull CollectionTypeId typeId, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		CollectionTypeId generalizedId = typeId.getGeneralizedId();
 		if ((typeId == generalizedId) && !isNullFree && (lower == null) && (upper == null)) {
 			if (generalizedId == TypeId.BAG) {
@@ -776,7 +776,7 @@ public abstract class AbstractIdResolver implements IdResolver.IdResolverExtensi
 	}
 	
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getDynamicTypeOf(@Nullable Object value) {
+	public org.eclipse.ocl.pivot.@NonNull Class getDynamicTypeOf(@Nullable Object value) {
 		if (value instanceof CollectionValue) {
 			CollectionValue collectionValue = (CollectionValue) value;
 			Type elementType = getDynamicTypeOf(collectionValue.iterable());
@@ -834,7 +834,7 @@ public abstract class AbstractIdResolver implements IdResolver.IdResolverExtensi
 	}
 
 	@Override
-	public synchronized @NonNull org.eclipse.ocl.pivot.Class getJavaType(@NonNull Class<?> javaClass) {
+	public synchronized org.eclipse.ocl.pivot.@NonNull Class getJavaType(@NonNull Class<?> javaClass) {
 		org.eclipse.ocl.pivot.Class type = key2type.get(javaClass);
 		if (type != null) {
 			return type;
@@ -853,7 +853,7 @@ public abstract class AbstractIdResolver implements IdResolver.IdResolverExtensi
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getMapType(@NonNull MapTypeId typeId) {
+	public org.eclipse.ocl.pivot.@NonNull Class getMapType(@NonNull MapTypeId typeId) {
 		MapTypeId generalizedId = typeId.getGeneralizedId();
 		if (typeId == generalizedId) {
 			if (generalizedId == TypeId.MAP) {
@@ -887,7 +887,7 @@ public abstract class AbstractIdResolver implements IdResolver.IdResolverExtensi
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Package getPackage(@NonNull PackageId packageId) {
+	public org.eclipse.ocl.pivot.@NonNull Package getPackage(@NonNull PackageId packageId) {
 		Element element = packageId.accept(this);
 		if (element instanceof org.eclipse.ocl.pivot.Package) {
 			return (org.eclipse.ocl.pivot.Package) element;
@@ -910,7 +910,7 @@ public abstract class AbstractIdResolver implements IdResolver.IdResolverExtensi
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value) {
+	public org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value) {
 		if (value instanceof EObject) {
 			EClass eClass = ((EObject)value).eClass();
 			assert eClass != null;
@@ -962,7 +962,7 @@ public abstract class AbstractIdResolver implements IdResolver.IdResolverExtensi
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, Object... values) {
+	public org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value, Object... values) {
 		Object bestTypeId = getTypeKeyOf(value);
 		org.eclipse.ocl.pivot.Class bestType = key2type.get(bestTypeId);
 		assert bestType != null;
@@ -992,7 +992,7 @@ public abstract class AbstractIdResolver implements IdResolver.IdResolverExtensi
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values) {
+	public org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values) {
 		Object bestTypeKey = getTypeKeyOf(value);
 		org.eclipse.ocl.pivot.Class bestType = key2type.get(bestTypeKey);
 		assert bestType != null;
@@ -1585,7 +1585,7 @@ public abstract class AbstractIdResolver implements IdResolver.IdResolverExtensi
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Package visitNestedPackageId(@NonNull NestedPackageId packageId) {
+	public org.eclipse.ocl.pivot.@NonNull Package visitNestedPackageId(@NonNull NestedPackageId packageId) {
 		org.eclipse.ocl.pivot.Package parentPackage = (org.eclipse.ocl.pivot.Package) packageId.getParent().accept(this);
 		assert parentPackage != null;
 		org.eclipse.ocl.pivot.Package nestedPackage = environment.getNestedPackage(parentPackage, packageId.getName());
@@ -1596,7 +1596,7 @@ public abstract class AbstractIdResolver implements IdResolver.IdResolverExtensi
 	}
 
 /*	@Override
-	public @NonNull org.eclipse.ocl.pivot.Package visitNsURIPackageId(@NonNull NsURIPackageId id) {
+	public org.eclipse.ocl.pivot.@NonNull Package visitNsURIPackageId(@NonNull NsURIPackageId id) {
 		org.eclipse.ocl.pivot.Package nsURIPackage = standardLibrary.getNsURIPackage(id.getNsURI());
 		if (nsURIPackage == null) {
 			throw new UnsupportedOperationException();
@@ -1605,7 +1605,7 @@ public abstract class AbstractIdResolver implements IdResolver.IdResolverExtensi
 	} */
 
 	@Override
-	public synchronized @NonNull org.eclipse.ocl.pivot.Package visitNsURIPackageId(@NonNull NsURIPackageId id) {
+	public synchronized org.eclipse.ocl.pivot.@NonNull Package visitNsURIPackageId(@NonNull NsURIPackageId id) {
 		String nsURI = id.getNsURI();
 		org.eclipse.ocl.pivot.Package knownPackage = nsURI2package.get(nsURI);
 		if (knownPackage != null) {
@@ -1689,7 +1689,7 @@ public abstract class AbstractIdResolver implements IdResolver.IdResolverExtensi
 	}
 
 /*	@Override
-	public @NonNull org.eclipse.ocl.pivot.Package visitRootPackageId(@NonNull RootPackageId id) {
+	public org.eclipse.ocl.pivot.@NonNull Package visitRootPackageId(@NonNull RootPackageId id) {
 		String completeURIorName = id.getName();
 		org.eclipse.ocl.pivot.Package rootPackage = standardLibrary.getRootPackage(completeURIorName);
 		if (rootPackage == null) {
@@ -1699,7 +1699,7 @@ public abstract class AbstractIdResolver implements IdResolver.IdResolverExtensi
 	} */
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Package visitRootPackageId(@NonNull RootPackageId id) {
+	public org.eclipse.ocl.pivot.@NonNull Package visitRootPackageId(@NonNull RootPackageId id) {
 		if (id == IdManager.METAMODEL) {
 			return ClassUtil.nonNullState(getStandardLibrary().getPackage());
 		}
@@ -1764,7 +1764,7 @@ public abstract class AbstractIdResolver implements IdResolver.IdResolverExtensi
 	 * Return the map.get(key).get() entry if there is one or null if not, removing any stale
 	 * entry that may be encountered.
 	 */
-	protected <K, V> V weakGet(@NonNull Map<K, WeakReference<V>> map, @NonNull K key) {
+	protected <K, V> @Nullable V weakGet(@NonNull Map<K, WeakReference<V>> map, @NonNull K key) {
 		WeakReference<V> ref = map.get(key);
 		if (ref == null) {
 			return null;

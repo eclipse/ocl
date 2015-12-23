@@ -103,7 +103,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		ownedOperations = operationContextDecls->collect(o | contextOperation(o))->union(defOperations.ast())->sortedBy(name),
 		ownedProperties = propertyContextDecls->collect(p | contextProperty(p))->union(defProperties.ast())->sortedBy(name)
 	} */
-	private @NonNull org.eclipse.ocl.pivot.Class contextClass(@NonNull org.eclipse.ocl.pivot.Class modelClass,
+	private org.eclipse.ocl.pivot.@NonNull Class contextClass(org.eclipse.ocl.pivot.@NonNull Class modelClass,
 			@NonNull List<ContextDeclCS> contextDecls) {
 		List<ConstraintCS> allInvariants = new ArrayList<ConstraintCS>();
 		List<ClassifierContextDeclCS> classifierContextDecls = new ArrayList<ClassifierContextDeclCS>();
@@ -216,7 +216,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 --		ownedInvariants = packageInvariants.ast(),
 		ownedClasses = modelClasses->sortedBy(name)->collect(c | contextClass(c, allContextDecls->select(cd | cd.referredClass() = c)))
 	} */
-	private @NonNull org.eclipse.ocl.pivot.Package contextPackage(@NonNull org.eclipse.ocl.pivot.Package modelPackage,
+	private org.eclipse.ocl.pivot.@NonNull Package contextPackage(org.eclipse.ocl.pivot.@NonNull Package modelPackage,
 			@NonNull List<PackageDeclarationCS> packageDecls, @NonNull List<ContextDeclCS> contextDecls) {
 		List<ConstraintCS> packageInvariants = new ArrayList<ConstraintCS>();
 		List<ContextDeclCS> allContextDecls = new ArrayList<ContextDeclCS>(contextDecls);
@@ -285,7 +285,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		return contextProperty;
 	}
 
-	private @Nullable org.eclipse.ocl.pivot.Class getReferredClass(ContextDeclCS csContext) {
+	private org.eclipse.ocl.pivot.@Nullable Class getReferredClass(ContextDeclCS csContext) {
 		if (csContext instanceof ClassifierContextDeclCS) {
 			return ((ClassifierContextDeclCS)csContext).getReferredClass();
 		}
@@ -300,7 +300,7 @@ public class CompleteOCLCSContainmentVisitor extends AbstractCompleteOCLCSContai
 		return null;
 	}
 
-	private @Nullable org.eclipse.ocl.pivot.Package getReferredPackage(@NonNull ContextDeclCS csContext) {
+	private org.eclipse.ocl.pivot.@Nullable Package getReferredPackage(@NonNull ContextDeclCS csContext) {
 		org.eclipse.ocl.pivot.Class modelClass = getReferredClass(csContext);
 		return modelClass != null ? modelClass.getOwningPackage() : null;
 	}

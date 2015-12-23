@@ -16,13 +16,12 @@
 package	org.eclipse.ocl.xtext.oclinecorecs.util;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 
 /**
  */
 public interface OCLinEcoreCSVisitor<R> extends org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor<R>
 {
-	@Nullable R visitOCLinEcoreConstraintCS(@NonNull org.eclipse.ocl.xtext.oclinecorecs.OCLinEcoreConstraintCS object);
-	@Nullable R visitSysMLCS(@NonNull org.eclipse.ocl.xtext.oclinecorecs.SysMLCS object);
-	@Nullable R visitTopLevelCS(@NonNull org.eclipse.ocl.xtext.oclinecorecs.TopLevelCS object);
+	R visitOCLinEcoreConstraintCS(org.eclipse.ocl.xtext.oclinecorecs.@NonNull OCLinEcoreConstraintCS object);
+	R visitSysMLCS(org.eclipse.ocl.xtext.oclinecorecs.@NonNull SysMLCS object);
+	R visitTopLevelCS(org.eclipse.ocl.xtext.oclinecorecs.@NonNull TopLevelCS object);
 }

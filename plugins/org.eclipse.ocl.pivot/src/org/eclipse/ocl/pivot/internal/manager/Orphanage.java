@@ -421,7 +421,7 @@ public class Orphanage extends PackageImpl
 	/**
 	 * Return true if asPackage is an orphanage for synthesized types.
 	 */
-	public static boolean isTypeOrphanage(@Nullable org.eclipse.ocl.pivot.Package asPackage) {
+	public static boolean isTypeOrphanage(org.eclipse.ocl.pivot.@Nullable Package asPackage) {
 		if (asPackage == null) {
 			return false;
 		}

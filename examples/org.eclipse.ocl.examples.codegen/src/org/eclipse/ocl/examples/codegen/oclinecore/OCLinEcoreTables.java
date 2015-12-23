@@ -403,7 +403,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 			s.append("	public static class " + pagedName);
 			s.append(" {\n");
 			appendInitializationStart(pagedName);	
-			for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Class pClass : fragmentProperties.keySet()) {
+			for (@SuppressWarnings("null")org.eclipse.ocl.pivot.@NonNull Class pClass : fragmentProperties.keySet()) {
 				List<Property> sortedProperties = fragmentProperties.get(pClass);
 				s.append("\n");
 				s.append("		private static final " + atNonNull() + " ");
@@ -695,7 +695,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.append("	}\n");
 	}
 
-	protected void declareType(@NonNull org.eclipse.ocl.pivot.Class pClass) {
+	protected void declareType(org.eclipse.ocl.pivot.@NonNull Class pClass) {
 		Class<?> typeClass =
 				pClass instanceof Enumeration ? EcoreExecutorEnumeration.class :
 				pClass instanceof InvalidType ? EcoreExecutorInvalidType.class :
@@ -1111,7 +1111,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s1.append(" *************************************************************************\n");
 		s1.append(" * This code is 100% auto-generated\n");
 		s1.append(" * from:\n");
-		for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Package dPackage : metamodelManager.getPartialPackages(pPackage, false)) {
+		for (@SuppressWarnings("null")org.eclipse.ocl.pivot.@NonNull Package dPackage : metamodelManager.getPartialPackages(pPackage, false)) {
 			EObject eRoot = ((EObject)dPackage).eContainer();
 			if (eRoot instanceof Model) {
 				s1.append(" *   " + deresolveFileName(((Model)eRoot).getExternalURI()) + "\n");

@@ -72,7 +72,7 @@ public abstract class AbstractInheritance extends AbstractExecutorNamedElement i
 		}
 		
 		@Override
-		public @NonNull java.util.Iterator<InheritanceFragment> iterator() {
+		public java.util.@NonNull Iterator<InheritanceFragment> iterator() {
 			return new Iterator();
 		}
 
@@ -187,7 +187,7 @@ public abstract class AbstractInheritance extends AbstractExecutorNamedElement i
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getType() {
 		return getPivotClass();
 	}
 

@@ -45,6 +45,7 @@ import org.eclipse.ocl.pivot.internal.registry.CompleteOCLRegistry;
 import org.eclipse.ocl.pivot.internal.resource.OCLAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.xtext.base.ui.utilities.PDEUtils;
 import org.eclipse.ocl.xtext.completeocl.ui.CompleteOCLUiModule;
 import org.eclipse.ocl.xtext.completeocl.ui.messages.CompleteOCLUIMessages;
@@ -448,7 +449,7 @@ public class LoadCompleteOCLResourceHandler extends AbstractHandler
 					if (xtextResource == null) {
 						return null;
 					}
-					EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.findEnvironmentFactory(xtextResource);
+					EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.findEnvironmentFactory(ClassUtil.nonNullState(xtextResource));
 					if (environmentFactory != null) {
 						return environmentFactory.getResourceSet();
 					}

@@ -13,6 +13,7 @@ package org.eclipse.ocl.pivot.internal.utilities;
 import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 import com.google.common.collect.Iterators;
@@ -31,7 +32,7 @@ public abstract class CompleteElementIterable<O,I> implements Iterable<I>
 	{
 		private final java.util.Iterator<? extends O> outerIterator;
 		private java.util.Iterator<I> innerIterator;
-		private I nextValue;
+		private @Nullable I nextValue;
 		
 		public Iterator(@NonNull Iterable<? extends O> iterables) {
 			outerIterator = iterables.iterator();
@@ -112,7 +113,7 @@ public abstract class CompleteElementIterable<O,I> implements Iterable<I>
 	}
 
 	@Override
-	public @NonNull java.util.Iterator<I> iterator() {
+	public java.util.@NonNull Iterator<I> iterator() {
 		if (iterables instanceof List<?>) {
 			@SuppressWarnings("unchecked")
 			List<O> list = (List<O>)iterables;
@@ -125,7 +126,7 @@ public abstract class CompleteElementIterable<O,I> implements Iterable<I>
 				if (listEntry != null) {
 					Iterable<I> innerIterable = getInnerIterable(listEntry);
 					if (innerIterable != null) {
-						@SuppressWarnings("null") @NonNull java.util.Iterator<I> result = innerIterable.iterator();
+						@SuppressWarnings("null") java.util.@NonNull Iterator<I> result = innerIterable.iterator();
 						return result;
 					}
 				}

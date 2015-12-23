@@ -16,7 +16,6 @@
 package	org.eclipse.ocl.xtext.oclinecorecs.util;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 
 /**
  * An AbstractDelegatingOCLinEcoreCSVisitor delegates all visits.
@@ -30,22 +29,22 @@ public abstract class AbstractDelegatingOCLinEcoreCSVisitor<R, C, D extends OCLi
 	}
 
 	@Override
-	public @Nullable R visiting(@NonNull org.eclipse.ocl.xtext.basecs.util.VisitableCS visitable) {
+	public R visiting(org.eclipse.ocl.xtext.basecs.util.@NonNull VisitableCS visitable) {
 		return delegate.visiting(visitable);
 	}
 
 	@Override
-	public @Nullable R visitOCLinEcoreConstraintCS(@NonNull org.eclipse.ocl.xtext.oclinecorecs.OCLinEcoreConstraintCS object) {
+	public R visitOCLinEcoreConstraintCS(org.eclipse.ocl.xtext.oclinecorecs.@NonNull OCLinEcoreConstraintCS object) {
 		return delegate.visitOCLinEcoreConstraintCS(object);
 	}
 
 	@Override
-	public @Nullable R visitSysMLCS(@NonNull org.eclipse.ocl.xtext.oclinecorecs.SysMLCS object) {
+	public R visitSysMLCS(org.eclipse.ocl.xtext.oclinecorecs.@NonNull SysMLCS object) {
 		return delegate.visitSysMLCS(object);
 	}
 
 	@Override
-	public @Nullable R visitTopLevelCS(@NonNull org.eclipse.ocl.xtext.oclinecorecs.TopLevelCS object) {
+	public R visitTopLevelCS(org.eclipse.ocl.xtext.oclinecorecs.@NonNull TopLevelCS object) {
 		return delegate.visitTopLevelCS(object);
 	}
 }

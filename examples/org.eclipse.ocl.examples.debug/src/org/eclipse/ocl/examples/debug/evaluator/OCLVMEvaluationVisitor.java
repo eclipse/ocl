@@ -35,7 +35,7 @@ import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 
-public class OCLVMEvaluationVisitor extends AbstractMergedVisitor<Object, Executor> implements VMEvaluationVisitor, EvaluationVisitor.EvaluationVisitorExtension
+public class OCLVMEvaluationVisitor extends AbstractMergedVisitor<@Nullable Object, Executor> implements VMEvaluationVisitor, EvaluationVisitor.EvaluationVisitorExtension
 {
 	protected final @NonNull EvaluationVisitor evaluationVisitor;
 	protected final @NonNull VMEvaluationStepper vmEvaluationStepper;
@@ -156,21 +156,21 @@ public class OCLVMEvaluationVisitor extends AbstractMergedVisitor<Object, Execut
 	/** @deprecated moved to Evaluator */
 	@Deprecated
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value) {	
+	public org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value) {	
 		return context.getStaticTypeOf(value);
 	}
 
 	/** @deprecated moved to Evaluator */
 	@Deprecated
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Object... values) {
+	public org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value, @NonNull Object... values) {
 		return context.getStaticTypeOf(value, values);
 	}
 
 	/** @deprecated moved to Evaluator */
 	@Deprecated
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value,	@NonNull Iterable<?> values) {
+	public org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value,	@NonNull Iterable<?> values) {
 		return context.getStaticTypeOf(value, values);
 	}
 

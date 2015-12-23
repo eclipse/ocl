@@ -52,7 +52,7 @@ public class SetValueImpl extends CollectionValueImpl implements SetValue
 		return ValuesPackage.Literals.SET_VALUE;
 	}
 
-	public static @NonNull Set<Object> createSetOfEach(@NonNull Object[] boxedValues) {
+	public static @NonNull Set<Object> createSetOfEach(@Nullable Object @NonNull [] boxedValues) {
 		Set<Object> result = new HashSet<Object>();
 		for (Object boxedValue : boxedValues) {
 			result.add(boxedValue);

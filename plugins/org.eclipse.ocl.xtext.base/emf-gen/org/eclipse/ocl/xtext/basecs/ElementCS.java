@@ -13,7 +13,6 @@ package org.eclipse.ocl.xtext.basecs;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.xtext.base.utilities.CSI;
 import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.xtext.basecs.util.VisitableCS;
@@ -92,5 +91,5 @@ public interface ElementCS extends EObject, VisitableCS {
 	 */
 	// Generated from org.eclipse.ocl.examples.build/templates/model/Class/insert.javajetinc
 	@Override
-	public @Nullable <R> R accept(@NonNull BaseCSVisitor<R> visitor);
+	public <R> R accept(@NonNull BaseCSVisitor<R> visitor);
 } // ElementCS

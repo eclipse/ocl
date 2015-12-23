@@ -23,7 +23,7 @@ public class DefaultLabelGeneratorBuilder extends AbstractLabelGeneratorBuilder
 {	
 	protected final @NonNull StringBuilder s = new StringBuilder();
 	
-	public DefaultLabelGeneratorBuilder(@NonNull ILabelGenerator.Registry registry, @Nullable Object labelledObject, @Nullable Map<ILabelGenerator.Option<?>, Object> options) {
+	public DefaultLabelGeneratorBuilder(ILabelGenerator.@NonNull Registry registry, @Nullable Object labelledObject, @Nullable Map<ILabelGenerator.Option<?>, Object> options) {
 		super(registry, labelledObject, options);
 	}
 

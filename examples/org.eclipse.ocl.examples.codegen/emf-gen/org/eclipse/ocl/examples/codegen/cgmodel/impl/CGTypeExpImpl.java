@@ -149,7 +149,7 @@ public class CGTypeExpImpl extends CGValuedElementImpl implements CGTypeExp {
 	 * @generated
 	 */
 	@Override
-	public @Nullable <R> R accept(@NonNull CGModelVisitor<R> visitor) {
+	public <R> R accept(@NonNull CGModelVisitor<R> visitor) {
 		return visitor.visitCGTypeExp(this);
 	}
 

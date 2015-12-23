@@ -37,7 +37,7 @@ public class TemplateParameterIdImpl /*extends AbstractTypeId*/ implements Templ
 	}
 
 	@Override
-	public @Nullable <R> R accept(@NonNull IdVisitor<R> visitor) {
+	public <R> R accept(@NonNull IdVisitor<R> visitor) {
 		return visitor.visitTemplateParameterId(this);
 	}
 

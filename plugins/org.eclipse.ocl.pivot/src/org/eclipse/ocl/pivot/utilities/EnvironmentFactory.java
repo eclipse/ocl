@@ -165,7 +165,7 @@ public interface EnvironmentFactory extends Adaptable, Customizable
 	 * StatusCodes.OK severity suppresses the validation altogether.
 	 * StatusCodes.Warning is returned for any null or unknown key.
 	 */
-	@Nullable StatusCodes.Severity getSeverity(@Nullable Object validationKey);
+	StatusCodes.@Nullable Severity getSeverity(@Nullable Object validationKey);
 
 	/**
 	 * Return the (OCL) Standard Library that provides the build-in language facilities such as the OclAny and Set types.
@@ -178,5 +178,5 @@ public interface EnvironmentFactory extends Adaptable, Customizable
 	 * 
 	 * Returns any previous setting.
 	 */
-	@Nullable StatusCodes.Severity setSeverity(@NonNull Object validationKey, StatusCodes.Severity severity);
+	StatusCodes.@Nullable Severity setSeverity(@NonNull Object validationKey, StatusCodes.Severity severity);
 }

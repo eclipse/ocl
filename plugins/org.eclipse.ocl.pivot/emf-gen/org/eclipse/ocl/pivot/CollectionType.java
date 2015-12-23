@@ -142,7 +142,7 @@ public interface CollectionType extends DataType {
 	void setLowerValue(@NonNull IntegerValue lower);
 	void setUpperValue(@NonNull UnlimitedNaturalValue upper);
 	
-	@NonNull org.eclipse.ocl.pivot.Class getContainerType();		// NB There is no ExecutorCollectionType
+	org.eclipse.ocl.pivot.@NonNull Class getContainerType();		// NB There is no ExecutorCollectionType
 	@NonNull IntegerValue getLowerValue();		
 	@Override
 	@NonNull CollectionTypeId getTypeId();

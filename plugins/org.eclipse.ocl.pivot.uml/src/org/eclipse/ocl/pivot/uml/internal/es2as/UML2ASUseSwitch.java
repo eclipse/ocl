@@ -90,7 +90,7 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 					asAssociationClass = PivotFactory.eINSTANCE.createAssociationClass();
 					asAssociationClass.setName(umlAssociation.getName());
 //			 		pivotElement.setIsImplicit(true);
-					for (@SuppressWarnings("null")@NonNull org.eclipse.uml2.uml.Property umlProperty : umlAssociation.getMemberEnds()) {
+					for (@SuppressWarnings("null")org.eclipse.uml2.uml.@NonNull Property umlProperty : umlAssociation.getMemberEnds()) {
 						Property asProperty = converter.getCreated(Property.class, umlProperty);
 						if (asProperty != null) {
 							asAssociationClass.getUnownedAttributes().add(asProperty);
@@ -484,7 +484,7 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 		return pivotElement;
 	}
 
-	protected void copyConstraints(@NonNull Namespace pivotElement, @NonNull org.eclipse.uml2.uml.Namespace umlNamespace,
+	protected void copyConstraints(@NonNull Namespace pivotElement, org.eclipse.uml2.uml.@NonNull Namespace umlNamespace,
 			@Nullable List<org.eclipse.uml2.uml.Constraint> exclusions) {	
 		List<org.eclipse.uml2.uml.Constraint> ownedRules = umlNamespace.getOwnedRules();
 		if ((exclusions != null) && (exclusions.size() > 0)) {
@@ -504,7 +504,7 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 		assert eObjects != null;
 		for (EObject eObject : eObjects) {
 			if (eObject != null) {
-				T pivotElement = converter.getCreated(pivotClass, eObject);
+				@Nullable T pivotElement = converter.getCreated(pivotClass, eObject);
 				if (pivotElement == null) {
 					Resource eResource = eObject.eResource();
 					if (eResource != null) {
@@ -541,7 +541,7 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 		assert eObjects != null;
 		for (EObject eObject : eObjects) {
 			if (eObject != null) {
-				T pivotElement = converter.getCreated(pivotClass, eObject);
+				@Nullable T pivotElement = converter.getCreated(pivotClass, eObject);
 				if (pivotElement == null) {
 					Resource eResource = eObject.eResource();
 					if (eResource != null) {
@@ -565,7 +565,7 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 		}
 	}
 
-	public @Nullable org.eclipse.uml2.uml.Property getOtherEnd(@NonNull List<org.eclipse.uml2.uml.Property> umlMemberEnds, @NonNull org.eclipse.uml2.uml.Property umlProperty) {
+	public org.eclipse.uml2.uml.@Nullable Property getOtherEnd(@NonNull List<org.eclipse.uml2.uml.Property> umlMemberEnds, org.eclipse.uml2.uml.@NonNull Property umlProperty) {
 		for (org.eclipse.uml2.uml.Property umlMemberEnd : umlMemberEnds) {
 			if (umlMemberEnd != umlProperty) {
 				return umlMemberEnd;

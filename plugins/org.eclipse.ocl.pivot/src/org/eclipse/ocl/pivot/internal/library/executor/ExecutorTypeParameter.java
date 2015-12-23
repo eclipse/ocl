@@ -53,7 +53,7 @@ public class ExecutorTypeParameter extends AbstractExecutorType implements Execu
 	}
 	
 	@Override
-	public @Nullable org.eclipse.ocl.pivot.Class isClass() {
+	public org.eclipse.ocl.pivot.@Nullable Class isClass() {
 		return null;
 	}
 

@@ -201,7 +201,7 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 	}
 
 	@Override
-	public Boolean visitClass(@NonNull org.eclipse.ocl.pivot.Class object) {
+	public Boolean visitClass(org.eclipse.ocl.pivot.@NonNull Class object) {
 		if (Orphanage.isTypeOrphanage(object.getOwningPackage())) {
 			return false;
 		}
@@ -289,7 +289,7 @@ public class AS2XMIidVisitor extends AbstractExtendingVisitor<Boolean, AS2XMIid>
 	}
 
 	@Override
-	public @Nullable Boolean visitPackage(@NonNull org.eclipse.ocl.pivot.Package object) {
+	public @Nullable Boolean visitPackage(org.eclipse.ocl.pivot.@NonNull Package object) {
 		String name = object.getName();
 		if (name != null) {
 			s.append(PACKAGE_PREFIX);

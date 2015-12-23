@@ -43,11 +43,11 @@ public abstract class ReflectivePackage extends ExecutorPackage
 		return class2inheritance2;
 	}
 
-	protected abstract @NonNull CompleteInheritance createInheritance(@NonNull org.eclipse.ocl.pivot.Class domainClass);
+	protected abstract @NonNull CompleteInheritance createInheritance(org.eclipse.ocl.pivot.@NonNull Class domainClass);
 
 	protected abstract @NonNull List<org.eclipse.ocl.pivot.Class> getDomainClasses();
 
-	public @NonNull CompleteInheritance getInheritance(@NonNull org.eclipse.ocl.pivot.Class domainClass) {
+	public @NonNull CompleteInheritance getInheritance(org.eclipse.ocl.pivot.@NonNull Class domainClass) {
 		Map<org.eclipse.ocl.pivot.Class, CompleteInheritance> class2inheritance2 = class2inheritance;
 		if (class2inheritance2 == null) {
 			class2inheritance2 = computeClasses();

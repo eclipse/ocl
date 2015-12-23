@@ -206,7 +206,7 @@ public class UMLOCLEValidator implements EValidator
 	}
 
 	@Deprecated  // Obsolete use SuperCompleteClasses
-	protected static void gatherTypes(@NonNull Set<org.eclipse.ocl.pivot.Type> allTypes, @NonNull Set<org.eclipse.ocl.pivot.Constraint> allConstraints, @NonNull org.eclipse.ocl.pivot.Class newType) {
+	protected static void gatherTypes(@NonNull Set<org.eclipse.ocl.pivot.Type> allTypes, @NonNull Set<org.eclipse.ocl.pivot.Constraint> allConstraints, org.eclipse.ocl.pivot.@NonNull Class newType) {
 		if (allTypes.add(newType)) {
 			allConstraints.addAll(newType.getOwnedInvariants());
 			for (org.eclipse.ocl.pivot.Class superType : newType.getSuperClasses()) {
@@ -312,7 +312,7 @@ public class UMLOCLEValidator implements EValidator
 	 * Perform the validation of an instanceSpecification against the bodies defined in opaqueExpression.
 	 */
 	protected boolean validateInstance(@NonNull EObject instanceSpecification,
-			@NonNull org.eclipse.uml2.uml.OpaqueExpression opaqueExpression, @Nullable DiagnosticChain diagnostics,
+			org.eclipse.uml2.uml.@NonNull OpaqueExpression opaqueExpression, @Nullable DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		boolean allOk = true;
 		if (context != null) {
@@ -475,7 +475,7 @@ public class UMLOCLEValidator implements EValidator
 	 * context may be used to pass additional options from a calling context to the validation, and may be used to pass
 	 * cached results between successive validations. Returns true if successful, false otherwise.
 	 */
-	protected boolean validateSyntax1(@NonNull String body, @NonNull org.eclipse.uml2.uml.Element opaqueElement, final @Nullable DiagnosticChain diagnostics, @NonNull Map<Object, Object> context) {
+	protected boolean validateSyntax1(@NonNull String body, org.eclipse.uml2.uml.@NonNull Element opaqueElement, final @Nullable DiagnosticChain diagnostics, @NonNull Map<Object, Object> context) {
 		OCL ocl = PivotDiagnostician.getOCL(context);
 		try {
 			MetamodelManager metamodelManager = ocl.getMetamodelManager();
@@ -508,7 +508,7 @@ public class UMLOCLEValidator implements EValidator
 		}
 		return true;
 	}
-	protected boolean validateSyntax2(@NonNull EObject instance, @NonNull String body, @NonNull org.eclipse.uml2.uml.Element opaqueElement, final @Nullable DiagnosticChain diagnostics, @NonNull Map<Object, Object> context) {
+	protected boolean validateSyntax2(@NonNull EObject instance, @NonNull String body, org.eclipse.uml2.uml.@NonNull Element opaqueElement, final @Nullable DiagnosticChain diagnostics, @NonNull Map<Object, Object> context) {
 		OCL ocl = PivotDiagnostician.getOCL(context);
 		ExpressionInOCL asQuery = null;
 		try {

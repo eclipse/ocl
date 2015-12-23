@@ -156,7 +156,7 @@ public class PrecedenceManager
 		}
 	}
 
-	protected void compilePrecedenceType(@NonNull List<String> errors, @NonNull org.eclipse.ocl.pivot.Class pivotType) {
+	protected void compilePrecedenceType(@NonNull List<String> errors, org.eclipse.ocl.pivot.@NonNull Class pivotType) {
 		for (Operation operation : pivotType.getOwnedOperations()) {
 			if (operation != null) {
 				compilePrecedenceOperation(errors, operation);

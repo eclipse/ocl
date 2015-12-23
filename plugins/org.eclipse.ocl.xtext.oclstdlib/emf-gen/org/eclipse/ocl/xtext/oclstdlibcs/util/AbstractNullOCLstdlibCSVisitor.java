@@ -22,7 +22,7 @@ import org.eclipse.jdt.annotation.Nullable;
  * An AbstractNullOCLstdlibCSVisitor provides a default implementation for each
  * visitXxx method that returns null.
  */
-public abstract class AbstractNullOCLstdlibCSVisitor<R, C>
+public abstract class AbstractNullOCLstdlibCSVisitor<@Nullable R, C>
 	extends org.eclipse.ocl.xtext.essentialoclcs.util.AbstractNullEssentialOCLCSVisitor<R, C> implements OCLstdlibCSVisitor<R>
 {
 	/**
@@ -35,62 +35,62 @@ public abstract class AbstractNullOCLstdlibCSVisitor<R, C>
 	}	
 
 	@Override
-	public @Nullable R visitJavaClassCS(@NonNull org.eclipse.ocl.xtext.oclstdlibcs.JavaClassCS object) {
+	public R visitJavaClassCS(org.eclipse.ocl.xtext.oclstdlibcs.@NonNull JavaClassCS object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitJavaImplementationCS(@NonNull org.eclipse.ocl.xtext.oclstdlibcs.JavaImplementationCS object) {
+	public R visitJavaImplementationCS(org.eclipse.ocl.xtext.oclstdlibcs.@NonNull JavaImplementationCS object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitLibClassCS(@NonNull org.eclipse.ocl.xtext.oclstdlibcs.LibClassCS object) {
+	public R visitLibClassCS(org.eclipse.ocl.xtext.oclstdlibcs.@NonNull LibClassCS object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitLibCoercionCS(@NonNull org.eclipse.ocl.xtext.oclstdlibcs.LibCoercionCS object) {
+	public R visitLibCoercionCS(org.eclipse.ocl.xtext.oclstdlibcs.@NonNull LibCoercionCS object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitLibConstraintCS(@NonNull org.eclipse.ocl.xtext.oclstdlibcs.LibConstraintCS object) {
+	public R visitLibConstraintCS(org.eclipse.ocl.xtext.oclstdlibcs.@NonNull LibConstraintCS object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitLibIterationCS(@NonNull org.eclipse.ocl.xtext.oclstdlibcs.LibIterationCS object) {
+	public R visitLibIterationCS(org.eclipse.ocl.xtext.oclstdlibcs.@NonNull LibIterationCS object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitLibOperationCS(@NonNull org.eclipse.ocl.xtext.oclstdlibcs.LibOperationCS object) {
+	public R visitLibOperationCS(org.eclipse.ocl.xtext.oclstdlibcs.@NonNull LibOperationCS object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitLibPackageCS(@NonNull org.eclipse.ocl.xtext.oclstdlibcs.LibPackageCS object) {
+	public R visitLibPackageCS(org.eclipse.ocl.xtext.oclstdlibcs.@NonNull LibPackageCS object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitLibPropertyCS(@NonNull org.eclipse.ocl.xtext.oclstdlibcs.LibPropertyCS object) {
+	public R visitLibPropertyCS(org.eclipse.ocl.xtext.oclstdlibcs.@NonNull LibPropertyCS object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitLibRootPackageCS(@NonNull org.eclipse.ocl.xtext.oclstdlibcs.LibRootPackageCS object) {
+	public R visitLibRootPackageCS(org.eclipse.ocl.xtext.oclstdlibcs.@NonNull LibRootPackageCS object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitMetaclassNameCS(@NonNull org.eclipse.ocl.xtext.oclstdlibcs.MetaclassNameCS object) {
+	public R visitMetaclassNameCS(org.eclipse.ocl.xtext.oclstdlibcs.@NonNull MetaclassNameCS object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitPrecedenceCS(@NonNull org.eclipse.ocl.xtext.oclstdlibcs.PrecedenceCS object) {
+	public R visitPrecedenceCS(org.eclipse.ocl.xtext.oclstdlibcs.@NonNull PrecedenceCS object) {
 		return null;
 	}
 }

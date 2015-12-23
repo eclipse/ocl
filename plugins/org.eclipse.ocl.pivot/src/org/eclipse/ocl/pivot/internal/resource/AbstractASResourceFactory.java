@@ -220,7 +220,7 @@ public abstract class AbstractASResourceFactory extends ResourceFactoryImpl impl
 	}
 
 	@Override
-	public void initializeEValidatorRegistry(@NonNull EValidator.Registry eValidatorRegistry) {}
+	public void initializeEValidatorRegistry(EValidator.@NonNull Registry eValidatorRegistry) {}
 
 	protected void install(@Nullable String oclasExtension, @Nullable String resourceClassName) {
 		ASResourceFactoryRegistry.INSTANCE.addASResourceFactory(contentType, oclasExtension, resourceClassName, this);

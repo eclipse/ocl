@@ -31,15 +31,15 @@ public class VMBreakpointRequest extends VMRequest
 	}	
 	
 	public static @NonNull VMBreakpointRequest createAdd(@NonNull VMNewBreakpointData bpData) {
-		return new VMBreakpointRequest(-1, new VMNewBreakpointData[] { bpData }, ActionKind.ADD);
+		return new VMBreakpointRequest(-1, new @NonNull VMNewBreakpointData[] { bpData }, ActionKind.ADD);
 	}	
 
-	public static @NonNull VMBreakpointRequest createAdd(@NonNull VMNewBreakpointData[] bpData) {
+	public static @NonNull VMBreakpointRequest createAdd(@NonNull VMNewBreakpointData @NonNull [] bpData) {
 		return new VMBreakpointRequest(-1, bpData, ActionKind.ADD);
 	}
 
 	public static @NonNull VMBreakpointRequest createChange(long id, @NonNull VMBreakpointData bpData) {
-		return new VMBreakpointRequest((long)-1, new VMBreakpointData[] { bpData }, ActionKind.CHANGE);
+		return new VMBreakpointRequest((long)-1, new @NonNull VMBreakpointData[] { bpData }, ActionKind.CHANGE);
 	}	
 	
 	public static @NonNull VMBreakpointRequest createRemove(long id) {
@@ -48,9 +48,9 @@ public class VMBreakpointRequest extends VMRequest
 	
 	private final long fBreakpointID;
 	private final @NonNull ActionKind actionKind;	
-	private final @Nullable VMBreakpointData data[];
+	private final @NonNull VMBreakpointData data @Nullable [];
 	
-	private VMBreakpointRequest(long uniqueID, @Nullable VMBreakpointData data[], @NonNull ActionKind actionKind) {
+	private VMBreakpointRequest(long uniqueID, @NonNull VMBreakpointData data @Nullable [], @NonNull ActionKind actionKind) {
 		this.fBreakpointID = uniqueID;
 		this.data = data;
 		this.actionKind = actionKind;

@@ -70,7 +70,7 @@ public class BoxedValuesDescriptor extends AbstractValueDescriptor implements Bo
 	}
 
 	protected EClassifier getEClassifier(@NonNull PivotMetamodelManager metamodelManager, @NonNull Type type) {
-		for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Class dType : metamodelManager.getPartialClasses(type)) {
+		for (@SuppressWarnings("null")org.eclipse.ocl.pivot.@NonNull Class dType : metamodelManager.getPartialClasses(type)) {
 			EClassifier eClass = (EClassifier) dType.getESObject();
 			if (eClass != null) {
 				return eClass;

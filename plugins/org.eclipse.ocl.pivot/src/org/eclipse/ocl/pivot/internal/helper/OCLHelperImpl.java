@@ -41,7 +41,7 @@ public class OCLHelperImpl implements OCLHelper
 	protected final @NonNull OCL ocl;
 	protected final @Nullable EObject context;
 //	private Diagnostic problems;
-	private @Nullable org.eclipse.ocl.pivot.Class contextClass = null;
+	private org.eclipse.ocl.pivot.@Nullable Class contextClass = null;
 	private @Nullable Operation contextOperation = null;
 	private @Nullable Property contextProperty = null;
 

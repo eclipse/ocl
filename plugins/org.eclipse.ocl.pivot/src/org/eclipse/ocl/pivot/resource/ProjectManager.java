@@ -439,7 +439,7 @@ public interface ProjectManager extends Adapter
 		/**
 		 * Return the package registry maintained by this resource load status
 		 */
-		@NonNull EPackage.Registry getPackageRegistry();
+		EPackage.@NonNull Registry getPackageRegistry();
 
 		/**
 		 * Return the ResourceSet to which the resource logically belongs. (Note that generated EPackage may have

@@ -30,7 +30,7 @@ public class OCLDebuggableRunnerFactory extends DebuggableRunnerFactory
 {
 	public static final @NonNull ValidBreakpointLocator validBreakpointLocator = new ValidBreakpointLocator(OCLIsBreakpointableVisitor.INSTANCE);
 
-	public OCLDebuggableRunnerFactory(@NonNull EPackage.Registry packageRegistry,
+	public OCLDebuggableRunnerFactory(EPackage.@NonNull Registry packageRegistry,
 			@NonNull List<String> modelURIs, @Nullable String traceFileURI) {
 		super(packageRegistry, modelURIs, traceFileURI);
 	}

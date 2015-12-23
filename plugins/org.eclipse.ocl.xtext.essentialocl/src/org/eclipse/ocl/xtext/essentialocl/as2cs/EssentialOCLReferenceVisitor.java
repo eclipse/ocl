@@ -55,7 +55,7 @@ public class EssentialOCLReferenceVisitor extends BaseReferenceVisitor
 	}
 
 	@Override
-	public ElementCS visitClass(@NonNull org.eclipse.ocl.pivot.Class object) {
+	public ElementCS visitClass(org.eclipse.ocl.pivot.@NonNull Class object) {
 		return visitType(object);
 	}
 

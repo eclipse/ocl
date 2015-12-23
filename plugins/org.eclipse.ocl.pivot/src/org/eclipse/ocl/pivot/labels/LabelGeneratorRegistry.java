@@ -121,7 +121,7 @@ public class LabelGeneratorRegistry implements ILabelGenerator.Registry
 		return new LabelGeneratorRegistry.Global();
 	}
 
-	public static void initialize(@NonNull ILabelGenerator.Registry registry) {
+	public static void initialize(ILabelGenerator.@NonNull Registry registry) {
 		BooleanLabelGenerator.initialize(registry);
 		DynamicEObjectImplLabelGenerator.initialize(registry);
 		EAnnotationLabelGenerator.initialize(registry);
@@ -140,7 +140,7 @@ public class LabelGeneratorRegistry implements ILabelGenerator.Registry
 		ValueLabelGenerator.initialize(registry);
 	}
 
-	protected final @Nullable ILabelGenerator.Registry delegate;
+	protected final ILabelGenerator.@Nullable Registry delegate;
 	private final @NonNull Map<Class<?>, Object> map = new HashMap<Class<?>, Object>();
 	
 	/**
@@ -154,12 +154,12 @@ public class LabelGeneratorRegistry implements ILabelGenerator.Registry
 	 * Construct a registry that resolves label generators locally when possible
 	 * but which delegates to delegate otherwise.
 	 */
-	public LabelGeneratorRegistry(@Nullable ILabelGenerator.Registry delegate) {
+	public LabelGeneratorRegistry(ILabelGenerator.@Nullable Registry delegate) {
 		this.delegate = delegate;
 	}
 
 	@Override
-	public <T> void buildLabelFor(@NonNull ILabelGenerator.Builder s, @Nullable T labelledObject) {
+	public <T> void buildLabelFor(ILabelGenerator.@NonNull Builder s, @Nullable T labelledObject) {
 		if (labelledObject == null) {
 			s.appendString("<null-Object>");
 			return;
@@ -196,7 +196,7 @@ public class LabelGeneratorRegistry implements ILabelGenerator.Registry
 	}
 
 	@Override
-	public <T> void buildSubLabelFor(@NonNull ILabelGenerator.Builder labelBuilder, @Nullable T labelledObject) {
+	public <T> void buildSubLabelFor(ILabelGenerator.@NonNull Builder labelBuilder, @Nullable T labelledObject) {
 		if (labelledObject == null) {
 			labelBuilder.appendString("<null-Object>");
 			return;
@@ -224,7 +224,7 @@ public class LabelGeneratorRegistry implements ILabelGenerator.Registry
 		labelBuilder.appendString(">");
 	}
 	
-  	public @NonNull ILabelGenerator.Builder createDefaultLabelBuilder(@Nullable Object labelledObject, @Nullable Map<ILabelGenerator.Option<?>, Object> options) {
+  	public ILabelGenerator.@NonNull Builder createDefaultLabelBuilder(@Nullable Object labelledObject, @Nullable Map<ILabelGenerator.Option<?>, Object> options) {
   		return new DefaultLabelGeneratorBuilder(this, labelledObject, options);
   	}
     

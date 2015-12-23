@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.xtext.markupcs.BulletElement;
 import org.eclipse.ocl.xtext.markupcs.CompoundElement;
 import org.eclipse.ocl.xtext.markupcs.FigureElement;
@@ -34,7 +35,7 @@ import org.eclipse.ocl.xtext.markupcs.util.MarkupSwitch;
  * MarkupToTree gives a printable one line string presentation of the markup for
  * debugging purposes. New lines are replaced by printables.
  */
-public class MarkupToString extends MarkupSwitch<StringBuilder>
+public class MarkupToString extends MarkupSwitch<@Nullable StringBuilder>
 {
 	public static @NonNull String toString(@NonNull MarkupElement element) {
 		MarkupToString toString = new MarkupToString();

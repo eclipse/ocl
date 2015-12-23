@@ -44,10 +44,10 @@ import org.eclipse.uml2.uml.ValueSpecification;
  */
 public class InstanceSlotNavigationProperty extends AbstractProperty
 {
-	protected final @NonNull org.eclipse.uml2.uml.Property property;
+	protected final org.eclipse.uml2.uml.@NonNull Property property;
 	protected final @Nullable CollectionTypeId collectionTypeId;				// Non null for a Collection value
 	
-	public InstanceSlotNavigationProperty(@NonNull org.eclipse.uml2.uml.Property property, @Nullable CollectionTypeId collectionTypeId) {
+	public InstanceSlotNavigationProperty(org.eclipse.uml2.uml.@NonNull Property property, @Nullable CollectionTypeId collectionTypeId) {
 		this.property = property;
 		this.collectionTypeId = collectionTypeId;
 	}

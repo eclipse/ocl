@@ -315,7 +315,7 @@ public class CGMapPartImpl extends CGValuedElementImpl implements CGMapPart {
 	 * @generated
 	 */
 	@Override
-	public @Nullable <R> R accept(@NonNull CGModelVisitor<R> visitor) {
+	public <R> R accept(@NonNull CGModelVisitor<R> visitor) {
 		return visitor.visitCGMapPart(this);
 	}
 

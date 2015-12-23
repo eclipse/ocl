@@ -553,13 +553,13 @@ public class OperationCallExpImpl
 		            CAUGHT_operation_0 = ValueUtil.createInvalidValue(e);
 		        }
 		        final @NonNull /*@NonInvalid*/ Object symbol_1 = CAUGHT_operation_0 == null;
-		        @Nullable /*@Thrown*/ org.eclipse.ocl.pivot.Class safe_owningClass_source;
+		        /*@Thrown*/ org.eclipse.ocl.pivot.@Nullable Class safe_owningClass_source;
 		        if (symbol_1 == Boolean.TRUE) {
 		            safe_owningClass_source = null;
 		        }
 		        else {
 		            assert operation != null;
-		            final @Nullable /*@Thrown*/ org.eclipse.ocl.pivot.Class owningClass = operation.getOwningClass();
+		            final /*@Thrown*/ org.eclipse.ocl.pivot.@Nullable Class owningClass = operation.getOwningClass();
 		            safe_owningClass_source = owningClass;
 		        }
 		        final @NonNull /*@Thrown*/ List<OCLExpression> ownedArguments = this.getOwnedArguments();
@@ -640,7 +640,7 @@ public class OperationCallExpImpl
 		                }
 		                @NonNull /*@Thrown*/ Type requiredType;
 		                if (safe_isTypeof_source) {
-		                    final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_Class = idResolver.getClass(PivotTables.CLSSid_Class, null);
+		                    final /*@NonInvalid*/ org.eclipse.ocl.pivot.@NonNull Class TYP_Class = idResolver.getClass(PivotTables.CLSSid_Class, null);
 		                    requiredType = TYP_Class;
 		                }
 		                else {

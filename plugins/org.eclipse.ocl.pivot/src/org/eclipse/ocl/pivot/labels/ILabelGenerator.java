@@ -98,11 +98,11 @@ public interface ILabelGenerator<T>
     {
 		@NonNull Registry INSTANCE = LabelGeneratorRegistry.init();
 
-       	<T> void buildLabelFor(@NonNull ILabelGenerator.Builder labelBuilder, @Nullable T labelledObject);
-    	<T> void buildSubLabelFor(@NonNull ILabelGenerator.Builder labelBuilder, @Nullable T labelledObject);
+       	<T> void buildLabelFor(ILabelGenerator.@NonNull Builder labelBuilder, @Nullable T labelledObject);
+    	<T> void buildSubLabelFor(ILabelGenerator.@NonNull Builder labelBuilder, @Nullable T labelledObject);
     	@Nullable ILabelGenerator<?> get(@NonNull Class<?> labelledClass);
     	@Nullable Object install(@NonNull Class<?> labelledClass, @NonNull ILabelGenerator<?> labelGenerator);
-    	@Nullable Object install(@NonNull Class<?> labelledClass, @NonNull ILabelGenerator.Descriptor labelDescriptor);
+    	@Nullable Object install(@NonNull Class<?> labelledClass, ILabelGenerator.@NonNull Descriptor labelDescriptor);
         @NonNull String labelFor(@Nullable Object labelledObject);
        	@NonNull String labelFor(@Nullable Object labelledObject, @Nullable Map<ILabelGenerator.Option<?>, Object> options);
     	void uninstall(@NonNull Class<?> labelledClass);
@@ -113,7 +113,7 @@ public interface ILabelGenerator<T>
 	 */
 	public interface Self
 	{
-		public void buildLabel(@NonNull ILabelGenerator.Builder labelBuilder);
+		public void buildLabel(ILabelGenerator.@NonNull Builder labelBuilder);
 	}
 
     void buildLabelFor(@NonNull Builder labelBuilder, @NonNull T labelledObject);

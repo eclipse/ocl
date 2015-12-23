@@ -154,7 +154,7 @@ public abstract class ValueUtil
 		}
 	}
 
-	public static @NonNull org.eclipse.ocl.pivot.Class asClass(@Nullable Object value) {
+	public static org.eclipse.ocl.pivot.@NonNull Class asClass(@Nullable Object value) {
 		if (value instanceof org.eclipse.ocl.pivot.Class) {
 			return (org.eclipse.ocl.pivot.Class)value;
 		}
@@ -471,7 +471,7 @@ public abstract class ValueUtil
 		return hashCode;
 	}
 
-	public static @NonNull BagValue.Accumulator createBagAccumulatorValue(@NonNull CollectionTypeId collectedId) {
+	public static BagValue.@NonNull Accumulator createBagAccumulatorValue(@NonNull CollectionTypeId collectedId) {
 		return new BagValueImpl.Accumulator(collectedId);
 	}	
 
@@ -496,7 +496,7 @@ public abstract class ValueUtil
 		return new BagValueImpl(typeId, boxedValues);
 	}
 
-	public static @NonNull CollectionValue.Accumulator createCollectionAccumulatorValue(@NonNull CollectionTypeId collectedId) {
+	public static CollectionValue.@NonNull Accumulator createCollectionAccumulatorValue(@NonNull CollectionTypeId collectedId) {
 		CollectionTypeId collectionId = collectedId.getGeneralizedId();
 		if (collectionId == TypeId.BAG) {
 			return new BagValueImpl.Accumulator(collectedId);
@@ -537,7 +537,7 @@ public abstract class ValueUtil
 		return new JavaObjectValueImpl(typeId, object);
 	}
 
-	public static @NonNull OrderedSetValue.Accumulator createOrderedSetAccumulatorValue(@NonNull CollectionTypeId collectedId) {
+	public static OrderedSetValue.@NonNull Accumulator createOrderedSetAccumulatorValue(@NonNull CollectionTypeId collectedId) {
 		return new SparseOrderedSetValueImpl.Accumulator(collectedId);
 	}	
 
@@ -570,7 +570,7 @@ public abstract class ValueUtil
 		return new IntegerRangeImpl(firstInteger, lastInteger);
 	}
 
-	public static @NonNull SequenceValue.Accumulator createSequenceAccumulatorValue(@NonNull CollectionTypeId collectedId) {
+	public static SequenceValue.@NonNull Accumulator createSequenceAccumulatorValue(@NonNull CollectionTypeId collectedId) {
 		return new SparseSequenceValueImpl.Accumulator(collectedId);
 	}	
 
@@ -599,11 +599,11 @@ public abstract class ValueUtil
 		return new SparseSequenceValueImpl(typeId, boxedValues);
 	}
 
-	public static @NonNull SetValue.Accumulator createSetAccumulatorValue(@NonNull CollectionTypeId collectedId) {
+	public static SetValue.@NonNull Accumulator createSetAccumulatorValue(@NonNull CollectionTypeId collectedId) {
 		return new SetValueImpl.Accumulator(collectedId);
 	}	
 
-	public static @NonNull SetValue createSetOfEach(@NonNull CollectionTypeId typeId, @NonNull Object... boxedValues) {
+	public static @NonNull SetValue createSetOfEach(@NonNull CollectionTypeId typeId, @Nullable Object... boxedValues) {
 		return new SetValueImpl(typeId, SetValueImpl.createSetOfEach(boxedValues));
 	}
 

@@ -24,7 +24,7 @@ import org.eclipse.jdt.annotation.Nullable;
  * An AbstractNullCGModelVisitor provides a default implementation for each
  * visitXxx method that returns null.
  */
-public abstract class AbstractNullCGModelVisitor<R, C>
+public abstract class AbstractNullCGModelVisitor<@Nullable R, C>
 	extends AbstractCGModelVisitor<R, C>
 {
 	/**
@@ -37,447 +37,447 @@ public abstract class AbstractNullCGModelVisitor<R, C>
 	}	
 
 	@Override
-	public @Nullable R visitCGAccumulator(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGAccumulator object) {
+	public R visitCGAccumulator(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGAccumulator object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGAssertNonNullExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGAssertNonNullExp object) {
+	public R visitCGAssertNonNullExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGAssertNonNullExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGBoolean(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGBoolean object) {
+	public R visitCGBoolean(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGBoolean object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGBoxExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGBoxExp object) {
+	public R visitCGBoxExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGBoxExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGBuiltInIterationCallExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGBuiltInIterationCallExp object) {
+	public R visitCGBuiltInIterationCallExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGBuiltInIterationCallExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGCallExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGCallExp object) {
+	public R visitCGCallExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGCallExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGCallable(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGCallable object) {
+	public R visitCGCallable(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGCallable object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGCastExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGCastExp object) {
+	public R visitCGCastExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGCastExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGCatchExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGCatchExp object) {
+	public R visitCGCatchExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGCatchExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGClass(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGClass object) {
+	public R visitCGClass(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGClass object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGCollectionExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionExp object) {
+	public R visitCGCollectionExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGCollectionExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGCollectionPart(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGCollectionPart object) {
+	public R visitCGCollectionPart(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGCollectionPart object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGConstant(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGConstant object) {
+	public R visitCGConstant(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGConstant object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGConstantExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGConstantExp object) {
+	public R visitCGConstantExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGConstantExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGConstraint(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGConstraint object) {
+	public R visitCGConstraint(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGConstraint object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGEcoreClassShadowExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreClassShadowExp object) {
+	public R visitCGEcoreClassShadowExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGEcoreClassShadowExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGEcoreDataTypeShadowExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreDataTypeShadowExp object) {
+	public R visitCGEcoreDataTypeShadowExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGEcoreDataTypeShadowExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGEcoreExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreExp object) {
+	public R visitCGEcoreExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGEcoreExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGEcoreOperation(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOperation object) {
+	public R visitCGEcoreOperation(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGEcoreOperation object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGEcoreOperationCallExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOperationCallExp object) {
+	public R visitCGEcoreOperationCallExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGEcoreOperationCallExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGEcoreOppositePropertyCallExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOppositePropertyCallExp object) {
+	public R visitCGEcoreOppositePropertyCallExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGEcoreOppositePropertyCallExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGEcorePropertyCallExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGEcorePropertyCallExp object) {
+	public R visitCGEcorePropertyCallExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGEcorePropertyCallExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGElement(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGElement object) {
+	public R visitCGElement(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGElement object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGElementId(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGElementId object) {
+	public R visitCGElementId(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGElementId object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGExecutorCompositionProperty(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorCompositionProperty object) {
+	public R visitCGExecutorCompositionProperty(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGExecutorCompositionProperty object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGExecutorNavigationProperty(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorNavigationProperty object) {
+	public R visitCGExecutorNavigationProperty(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGExecutorNavigationProperty object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGExecutorOperation(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorOperation object) {
+	public R visitCGExecutorOperation(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGExecutorOperation object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGExecutorOperationCallExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorOperationCallExp object) {
+	public R visitCGExecutorOperationCallExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGExecutorOperationCallExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGExecutorOppositeProperty(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorOppositeProperty object) {
+	public R visitCGExecutorOppositeProperty(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGExecutorOppositeProperty object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGExecutorOppositePropertyCallExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorOppositePropertyCallExp object) {
+	public R visitCGExecutorOppositePropertyCallExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGExecutorOppositePropertyCallExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGExecutorProperty(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorProperty object) {
+	public R visitCGExecutorProperty(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGExecutorProperty object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGExecutorPropertyCallExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorPropertyCallExp object) {
+	public R visitCGExecutorPropertyCallExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGExecutorPropertyCallExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGExecutorShadowPart(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorShadowPart object) {
+	public R visitCGExecutorShadowPart(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGExecutorShadowPart object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGExecutorType(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorType object) {
+	public R visitCGExecutorType(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGExecutorType object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGFinalVariable(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGFinalVariable object) {
+	public R visitCGFinalVariable(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGFinalVariable object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGGuardExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGGuardExp object) {
+	public R visitCGGuardExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGGuardExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGIfExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGIfExp object) {
+	public R visitCGIfExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGIfExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGInteger(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGInteger object) {
+	public R visitCGInteger(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGInteger object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGInvalid(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGInvalid object) {
+	public R visitCGInvalid(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGInvalid object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGIsEqual2Exp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGIsEqual2Exp object) {
+	public R visitCGIsEqual2Exp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGIsEqual2Exp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGIsEqualExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGIsEqualExp object) {
+	public R visitCGIsEqualExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGIsEqualExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGIsInvalidExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGIsInvalidExp object) {
+	public R visitCGIsInvalidExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGIsInvalidExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGIsUndefinedExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGIsUndefinedExp object) {
+	public R visitCGIsUndefinedExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGIsUndefinedExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGIterationCallExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGIterationCallExp object) {
+	public R visitCGIterationCallExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGIterationCallExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGIterator(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGIterator object) {
+	public R visitCGIterator(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGIterator object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGLetExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGLetExp object) {
+	public R visitCGLetExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGLetExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGLibraryIterateCallExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryIterateCallExp object) {
+	public R visitCGLibraryIterateCallExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGLibraryIterateCallExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGLibraryIterationCallExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryIterationCallExp object) {
+	public R visitCGLibraryIterationCallExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGLibraryIterationCallExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGLibraryOperation(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryOperation object) {
+	public R visitCGLibraryOperation(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGLibraryOperation object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGLibraryOperationCallExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryOperationCallExp object) {
+	public R visitCGLibraryOperationCallExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGLibraryOperationCallExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGLibraryPropertyCallExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGLibraryPropertyCallExp object) {
+	public R visitCGLibraryPropertyCallExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGLibraryPropertyCallExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGLocalVariable(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGLocalVariable object) {
+	public R visitCGLocalVariable(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGLocalVariable object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGMapExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGMapExp object) {
+	public R visitCGMapExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGMapExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGMapPart(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGMapPart object) {
+	public R visitCGMapPart(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGMapPart object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGModel(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGModel object) {
+	public R visitCGModel(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGModel object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGNamedElement(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGNamedElement object) {
+	public R visitCGNamedElement(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGNamedElement object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGNativeOperation(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGNativeOperation object) {
+	public R visitCGNativeOperation(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGNativeOperation object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGNativeOperationCallExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGNativeOperationCallExp object) {
+	public R visitCGNativeOperationCallExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGNativeOperationCallExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGNativeProperty(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGNativeProperty object) {
+	public R visitCGNativeProperty(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGNativeProperty object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGNativePropertyCallExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGNativePropertyCallExp object) {
+	public R visitCGNativePropertyCallExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGNativePropertyCallExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGNavigationCallExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGNavigationCallExp object) {
+	public R visitCGNavigationCallExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGNavigationCallExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGNull(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGNull object) {
+	public R visitCGNull(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGNull object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGNumber(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGNumber object) {
+	public R visitCGNumber(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGNumber object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGOperation(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGOperation object) {
+	public R visitCGOperation(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGOperation object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGOperationCallExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGOperationCallExp object) {
+	public R visitCGOperationCallExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGOperationCallExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGOppositePropertyCallExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGOppositePropertyCallExp object) {
+	public R visitCGOppositePropertyCallExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGOppositePropertyCallExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGPackage(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGPackage object) {
+	public R visitCGPackage(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGPackage object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGParameter(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGParameter object) {
+	public R visitCGParameter(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGParameter object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGProperty(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGProperty object) {
+	public R visitCGProperty(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGProperty object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGPropertyCallExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGPropertyCallExp object) {
+	public R visitCGPropertyCallExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGPropertyCallExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGReal(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGReal object) {
+	public R visitCGReal(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGReal object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGSettableVariable(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGSettableVariable object) {
+	public R visitCGSettableVariable(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGSettableVariable object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGShadowExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGShadowExp object) {
+	public R visitCGShadowExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGShadowExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGShadowPart(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart object) {
+	public R visitCGShadowPart(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGShadowPart object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGString(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGString object) {
+	public R visitCGString(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGString object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGText(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGText object) {
+	public R visitCGText(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGText object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGTextParameter(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGTextParameter object) {
+	public R visitCGTextParameter(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGTextParameter object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGThrowExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGThrowExp object) {
+	public R visitCGThrowExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGThrowExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGTupleExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGTupleExp object) {
+	public R visitCGTupleExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGTupleExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGTuplePart(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGTuplePart object) {
+	public R visitCGTuplePart(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGTuplePart object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGTuplePartCallExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGTuplePartCallExp object) {
+	public R visitCGTuplePartCallExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGTuplePartCallExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGTypeExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGTypeExp object) {
+	public R visitCGTypeExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGTypeExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGTypeId(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGTypeId object) {
+	public R visitCGTypeId(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGTypeId object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGTypedElement(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGTypedElement object) {
+	public R visitCGTypedElement(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGTypedElement object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGUnboxExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGUnboxExp object) {
+	public R visitCGUnboxExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGUnboxExp object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGUnlimited(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGUnlimited object) {
+	public R visitCGUnlimited(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGUnlimited object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGValuedElement(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement object) {
+	public R visitCGValuedElement(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGValuedElement object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGVariable(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGVariable object) {
+	public R visitCGVariable(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGVariable object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitCGVariableExp(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGVariableExp object) {
+	public R visitCGVariableExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGVariableExp object) {
 		return null;
 	}
 }

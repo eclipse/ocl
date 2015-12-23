@@ -12,7 +12,6 @@ package org.eclipse.ocl.xtext.completeoclcs.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage;
 import org.eclipse.ocl.xtext.completeoclcs.OCLMessageArgCS;
@@ -55,7 +54,7 @@ public class OCLMessageArgCSImpl
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public @Nullable <R> R accept(@NonNull BaseCSVisitor<R> visitor) {
+	public <R> R accept(@NonNull BaseCSVisitor<R> visitor) {
 		return (R) ((CompleteOCLCSVisitor<?>)visitor).visitOCLMessageArgCS(this);
 	}
 } //OclMessageArgCSImpl

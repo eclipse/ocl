@@ -11,7 +11,6 @@
 package org.eclipse.ocl.pivot.internal.ids;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.ClassId;
 import org.eclipse.ocl.pivot.ids.DataTypeId;
@@ -30,7 +29,7 @@ public class UnspecifiedIdImpl extends AbstractTypeId implements UnspecifiedId, 
 	}
 
 	@Override
-	public @Nullable <R> R accept(@NonNull IdVisitor<R> visitor) {
+	public <R> R accept(@NonNull IdVisitor<R> visitor) {
 		return visitor.visitUnspecifiedId(this);
 	}
 

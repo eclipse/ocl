@@ -82,7 +82,7 @@ public abstract class PivotDiagnostician extends Diagnostician
 
 	protected final static class Diagnostician_2_8 extends PivotDiagnostician
 	{
-		protected Diagnostician_2_8(@NonNull EValidator.Registry eValidatorRegistry,
+		protected Diagnostician_2_8(EValidator.@NonNull Registry eValidatorRegistry,
 				@NonNull ResourceSet resourceSet, AdapterFactory adapterFactory) {
 			super(eValidatorRegistry, resourceSet, adapterFactory);
 		}
@@ -104,7 +104,7 @@ public abstract class PivotDiagnostician extends Diagnostician
 		private final @NonNull ResourceSet resourceSet;
 		private final @NonNull IProgressMonitor progressMonitor;
 
-		protected Diagnostician_2_9(@NonNull EValidator.Registry eValidatorRegistry, @NonNull ResourceSet resourceSet,
+		protected Diagnostician_2_9(EValidator.@NonNull Registry eValidatorRegistry, @NonNull ResourceSet resourceSet,
 				AdapterFactory adapterFactory, @NonNull IProgressMonitor progressMonitor) {
 			super(eValidatorRegistry, resourceSet, adapterFactory);
 			this.resourceSet = resourceSet;
@@ -160,7 +160,7 @@ public abstract class PivotDiagnostician extends Diagnostician
 	protected final AdapterFactory adapterFactory;
 	protected final @NonNull Technology technology;
 
-	protected PivotDiagnostician(@NonNull EValidator.Registry eValidatorRegistry, @NonNull ResourceSet resourceSet, AdapterFactory adapterFactory) {
+	protected PivotDiagnostician(EValidator.@NonNull Registry eValidatorRegistry, @NonNull ResourceSet resourceSet, AdapterFactory adapterFactory) {
 		super(eValidatorRegistry);
 		this.adapterFactory = adapterFactory;
 		this.technology = ASResourceFactoryRegistry.INSTANCE.getTechnology();

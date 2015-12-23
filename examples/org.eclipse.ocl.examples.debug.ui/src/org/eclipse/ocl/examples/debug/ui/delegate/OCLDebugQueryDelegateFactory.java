@@ -15,7 +15,7 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.util.QueryDelegate;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.internal.delegate.AbstractOCLDelegateFactory;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -77,8 +77,8 @@ public class OCLDebugQueryDelegateFactory extends AbstractOCLDelegateFactory
 			if ((context == null) || (expression == null)) {
 				return null;
 			}
-			QueryDelegate.Factory.Registry localRegistry = DelegateResourceSetAdapter.getRegistry(
-				context, QueryDelegate.Factory.Registry.class, null);
+			Class<QueryDelegate.Factory.@NonNull Registry> castClass = QueryDelegate.Factory.Registry.class;
+			QueryDelegate.Factory.@Nullable Registry localRegistry = OCLDelegateDomain.getDelegateResourceSetRegistry(context, castClass, null);
 			if (localRegistry != null) {
 				QueryDelegate.Factory factory = localRegistry.getFactory(delegateURI);
 				if (factory != null) {

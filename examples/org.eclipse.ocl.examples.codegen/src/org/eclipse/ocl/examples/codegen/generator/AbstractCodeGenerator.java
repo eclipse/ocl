@@ -103,7 +103,7 @@ public abstract class AbstractCodeGenerator implements CodeGenerator
 	}
 
 	@Override
-	public @Nullable Operation isFinal(@NonNull Operation anOperation, @NonNull org.eclipse.ocl.pivot.Class staticType) {
+	public @Nullable Operation isFinal(@NonNull Operation anOperation, org.eclipse.ocl.pivot.@NonNull Class staticType) {
 		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		FinalAnalysis finalAnalysis = metamodelManager.getFinalAnalysis();
 		return finalAnalysis.isFinal(anOperation, metamodelManager.getCompleteClass(staticType));

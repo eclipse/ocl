@@ -165,7 +165,7 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 	@Override
 	public Object caseClassifierTemplateParameter(org.eclipse.uml2.uml.ClassifierTemplateParameter umlTemplateParameter) {
 		assert umlTemplateParameter != null;
-		@SuppressWarnings("null") @NonNull org.eclipse.uml2.uml.Class umlParameterClass = (org.eclipse.uml2.uml.Class) umlTemplateParameter.getParameteredElement();
+		@SuppressWarnings("null") org.eclipse.uml2.uml.@NonNull Class umlParameterClass = (org.eclipse.uml2.uml.Class) umlTemplateParameter.getParameteredElement();
 		TemplateParameter pivotElement = converter.refreshElement(TemplateParameter.class, PivotPackage.Literals.TEMPLATE_PARAMETER, umlTemplateParameter);
 //		TemplateParameter pivotTemplateParameter = converter.refreshNamedElement(org.eclipse.ocl.pivot.Class.class, PivotPackage.Literals.CLASS, umlTemplateParameter);
 //		setOriginalMapping(pivotElement, umlTemplateParameter);
@@ -594,7 +594,7 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 		}
 	}
 
-	protected void copyClassOrInterface(@NonNull org.eclipse.ocl.pivot.Class pivotElement, @NonNull org.eclipse.uml2.uml.Classifier umlClassifier) {
+	protected void copyClassOrInterface(org.eclipse.ocl.pivot.@NonNull Class pivotElement, org.eclipse.uml2.uml.@NonNull Classifier umlClassifier) {
 		copyClassifier(pivotElement, umlClassifier);
 		pivotElement.setIsAbstract(umlClassifier.isAbstract());			
 		String instanceClassName = null;
@@ -610,7 +610,7 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 		@SuppressWarnings("null") @NonNull List<org.eclipse.uml2.uml.Property> umlAttributes = umlClassifier.getAttributes();
 /*		converter.addProperties(umlAttributes, new UML2AS.Predicate<org.eclipse.uml2.uml.Property>()
 		{
-			public boolean filter(@NonNull org.eclipse.uml2.uml.Property element) {
+			public boolean filter(org.eclipse.uml2.uml.@NonNull Property element) {
 				if (element.getAssociation() == null) {
 					doSwitch(element);
 				}
@@ -622,7 +622,7 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 		converter.queueUse(umlClassifier);				// For superclasses
 	}
 
-	protected void copyClass(@NonNull org.eclipse.ocl.pivot.Class pivotElement, @NonNull org.eclipse.uml2.uml.Class umlClass) {
+	protected void copyClass(org.eclipse.ocl.pivot.@NonNull Class pivotElement, org.eclipse.uml2.uml.@NonNull Class umlClass) {
 		pivotElement.setIsInterface(false);			
 		copyClassOrInterface(pivotElement, umlClass);
 /*		for (org.eclipse.uml2.uml.Classifier umlType : umlClass.getNestedClassifiers()) {
@@ -636,17 +636,17 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 		doSwitchAll(pivotElement.getOwnedBehaviors(), umlClass.getOwnedBehaviors(), null);
 	}
 
-	protected void copyClassifier(@NonNull org.eclipse.ocl.pivot.Class pivotElement, @NonNull org.eclipse.uml2.uml.Classifier umlClassifier) {
+	protected void copyClassifier(org.eclipse.ocl.pivot.@NonNull Class pivotElement, org.eclipse.uml2.uml.@NonNull Classifier umlClassifier) {
 		copyNamespace(pivotElement, umlClassifier);
 		copyTemplateSignature(pivotElement, umlClassifier.getOwnedTemplateSignature());
 		doSwitchAll(pivotElement.getOwnedOperations(), umlClassifier.getOperations(), null);
 	}
 
-	protected void copyComments(@NonNull Element pivotElement, @NonNull org.eclipse.uml2.uml.Element umlElement) {
+	protected void copyComments(@NonNull Element pivotElement, org.eclipse.uml2.uml.@NonNull Element umlElement) {
 		doSwitchAll(pivotElement.getOwnedComments(), umlElement.getOwnedComments(), null);
 	}
 
-/*	protected void copyConstraints(@NonNull Namespace pivotElement, @NonNull org.eclipse.uml2.uml.Namespace umlNamespace,
+/*	protected void copyConstraints(@NonNull Namespace pivotElement, org.eclipse.uml2.uml.@NonNull Namespace umlNamespace,
 			@Nullable List<org.eclipse.uml2.uml.Constraint> exclusions) {	
 		List<org.eclipse.uml2.uml.Constraint> ownedRules = umlNamespace.getOwnedRules();
 		if ((exclusions != null) && (exclusions.size() > 0)) {
@@ -656,7 +656,7 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 		doSwitchAll(pivotElement.getOwnedRule(), ownedRules, null);
 	} */
 
-	protected void copyDataTypeOrEnum(@NonNull DataType pivotElement, @NonNull org.eclipse.uml2.uml.DataType umlDataType) {
+	protected void copyDataTypeOrEnum(@NonNull DataType pivotElement, org.eclipse.uml2.uml.@NonNull DataType umlDataType) {
 		copyClassifier(pivotElement, umlDataType);
 		String instanceClassName = null;
 		org.eclipse.uml2.uml.Stereotype ecoreStereotype = umlDataType.getAppliedStereotype("Ecore::EClass");	// Bug 453090 : UML2 does not support generalization
@@ -700,18 +700,18 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 			}
 		} */
 
-	protected void copyNamedElement(@NonNull NamedElement pivotElement, @NonNull org.eclipse.uml2.uml.NamedElement umlNamedElement) {
+	protected void copyNamedElement(@NonNull NamedElement pivotElement, org.eclipse.uml2.uml.@NonNull NamedElement umlNamedElement) {
 		converter.copyNamedElement(pivotElement, umlNamedElement);
 		copyAnnotatedElement(pivotElement, umlNamedElement, null);
 		copyComments(pivotElement, umlNamedElement);
 	}
 	
-	protected void copyNamespace(@NonNull Namespace pivotElement, @NonNull org.eclipse.uml2.uml.Namespace umlNamespace) {
+	protected void copyNamespace(@NonNull Namespace pivotElement, org.eclipse.uml2.uml.@NonNull Namespace umlNamespace) {
 		copyNamedElement(pivotElement, umlNamespace);
 		converter.queueUse(umlNamespace);				// Defer for constraints
 	}
 
-	protected void copyPackage(@NonNull org.eclipse.ocl.pivot.Package pivotElement, @NonNull org.eclipse.uml2.uml.Package umlPackage) {
+	protected void copyPackage(org.eclipse.ocl.pivot.@NonNull Package pivotElement, org.eclipse.uml2.uml.@NonNull Package umlPackage) {
 //		EAnnotation eAnnotation = umlPackage.getEAnnotation(EcorePackage.eNS_URI);
 //		List<EAnnotation> exclusions = eAnnotation == null ? Collections.<EAnnotation>emptyList() : Collections.singletonList(eAnnotation);
 		copyNamespace(pivotElement, umlPackage);
@@ -873,7 +873,7 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 	}
 
 
-	protected void copyProperty(@NonNull Property pivotElement, @NonNull org.eclipse.uml2.uml.Property umlProperty, List<EAnnotation> excludedAnnotations) {
+	protected void copyProperty(@NonNull Property pivotElement, org.eclipse.uml2.uml.@NonNull Property umlProperty, List<EAnnotation> excludedAnnotations) {
 		copyTypedElement(pivotElement, umlProperty, excludedAnnotations);		pivotElement.setIsReadOnly(umlProperty.isReadOnly());			
 		pivotElement.setIsDerived(umlProperty.isDerived());			
 //		pivotElement.setIsTransient(umlProperty.isTransient());			
@@ -887,7 +887,7 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 //		}
 	}
 
-	protected void copyState(@NonNull State pivotElement, @NonNull org.eclipse.uml2.uml.State umlState) {
+	protected void copyState(@NonNull State pivotElement, org.eclipse.uml2.uml.@NonNull State umlState) {
 		copyNamespace(pivotElement, umlState);
 		doSwitchAll(pivotElement.getOwnedRegions(), umlState.getRegions(), null);
 	}
@@ -903,7 +903,7 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 		}
 	}
 
-	protected void copyTypedElement(@NonNull TypedElement pivotElement, @NonNull org.eclipse.uml2.uml.TypedElement umlTypedElement, List<EAnnotation> excludedAnnotations) {
+	protected void copyTypedElement(@NonNull TypedElement pivotElement, org.eclipse.uml2.uml.@NonNull TypedElement umlTypedElement, List<EAnnotation> excludedAnnotations) {
 		copyNamedElement(pivotElement, umlTypedElement);
 		int lower = ((org.eclipse.uml2.uml.MultiplicityElement)umlTypedElement).getLower();
 		int upper = ((org.eclipse.uml2.uml.MultiplicityElement)umlTypedElement).getUpper();
@@ -1019,7 +1019,7 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 		}
 	}
 
-	public <T extends Element, V extends EObject> void doSwitchAll(/*@NonNull*/ Collection<T> pivotObjects, /*@NonNull*/ List<V> eObjects, @Nullable UML2AS.Predicate<V> predicate) {
+	public <T extends Element, V extends EObject> void doSwitchAll(/*@NonNull*/ Collection<T> pivotObjects, /*@NonNull*/ List<V> eObjects, UML2AS.@Nullable Predicate<V> predicate) {
 		assert pivotObjects != null;
 		assert eObjects != null;
 		eObjects.size();
@@ -1064,7 +1064,7 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 			: null;
 	}
 
-	protected @Nullable PrimitiveType getPrimitiveTypeByEcoreStereotype(@NonNull org.eclipse.uml2.uml.Stereotype ecoreStereotype, @NonNull String instanceClassName) {
+	protected @Nullable PrimitiveType getPrimitiveTypeByEcoreStereotype(org.eclipse.uml2.uml.@NonNull Stereotype ecoreStereotype, @NonNull String instanceClassName) {
 		if ("boolean".equals(instanceClassName)) {
 			return standardLibrary.getBooleanType();
 		}
@@ -1092,7 +1092,7 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 		return null;
 	}
 
-	protected @Nullable PrimitiveType getPrimitiveTypeByName(@NonNull org.eclipse.uml2.uml.PrimitiveType umlPrimitiveType) {
+	protected @Nullable PrimitiveType getPrimitiveTypeByName(org.eclipse.uml2.uml.@NonNull PrimitiveType umlPrimitiveType) {
 		String name = umlPrimitiveType.getName();
 		if (UMLUtil.isBoolean(umlPrimitiveType) || TypeId.BOOLEAN_NAME.equals(name)) {
 			return standardLibrary.getBooleanType();
@@ -1126,7 +1126,7 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 		return null;
 	}
 
-	protected @Nullable PrimitiveType getPrimitiveTypeByOCLStereotype(@NonNull org.eclipse.uml2.uml.DataType umlDataType) {
+	protected @Nullable PrimitiveType getPrimitiveTypeByOCLStereotype(org.eclipse.uml2.uml.@NonNull DataType umlDataType) {
 		if (umlDataType.getAppliedStereotype("OCLforUML::Integer") != null) {
 			return standardLibrary.getIntegerType();
 		}

@@ -138,7 +138,7 @@ public class MarkupElementImpl extends MinimalEObjectImpl.Container implements M
 	@Override
 	public String toString() {
 		MarkupToTree toString = new MarkupToTree();
-		return toString.doSwitch(this).toString();
+		return String.valueOf(toString.doSwitch(this));
 	}
 
 	/**

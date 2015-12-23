@@ -21,6 +21,7 @@ import org.eclipse.ocl.pivot.library.AbstractIteration;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
+import org.eclipse.ocl.pivot.values.SetValue;
 
 /**
  * IsUniqueIteration realizes the Collection::isUnique() library iteration.
@@ -32,7 +33,7 @@ public class IsUniqueIteration extends AbstractIteration
 	/** @deprecated use Executor */
 	@Deprecated
 	@Override
-	public @NonNull SetValueImpl.Accumulator createAccumulatorValue(@NonNull Evaluator evaluator, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
+	public SetValue.@NonNull Accumulator createAccumulatorValue(@NonNull Evaluator evaluator, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
 		return createAccumulatorValue(ValueUtil.getExecutor(evaluator), accumulatorTypeId, bodyTypeId);
 	}
 	
@@ -40,7 +41,7 @@ public class IsUniqueIteration extends AbstractIteration
 	 * @since 1.1
 	 */
 	@Override
-	public @NonNull SetValueImpl.Accumulator createAccumulatorValue(@NonNull Executor executor, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
+	public SetValue.@NonNull Accumulator createAccumulatorValue(@NonNull Executor executor, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
 		return new SetValueImpl.Accumulator(TypeId.SET.getSpecializedId(accumulatorTypeId));
 	}
 	

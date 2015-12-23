@@ -13,6 +13,7 @@ package org.eclipse.ocl.xtext.completeoclcs.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.utilities.MorePivotable;
 import org.eclipse.ocl.pivot.utilities.Nameable;
 import org.eclipse.ocl.pivot.utilities.Pivotable;
@@ -41,7 +42,7 @@ import org.eclipse.ocl.xtext.essentialoclcs.ExpCS;
  * @see org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage
  * @generated
  */
-public class CompleteOCLCSSwitch<T>
+public class CompleteOCLCSSwitch<@Nullable T>
 		extends Switch<T> {
 
 	/**

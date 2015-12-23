@@ -591,7 +591,7 @@ public class PackageImpl
 		return visitor.visitPackage(this);
 	}
 
-	public synchronized void addPackageListener(@NonNull PackageListeners.IPackageListener packageListener) {
+	public synchronized void addPackageListener(PackageListeners.@NonNull IPackageListener packageListener) {
 		PackageListeners<PackageListeners.IPackageListener> packageListeners2 = packageListeners;
 		if (packageListeners2 == null) {
 			packageListeners2 = packageListeners = new PackageListeners<PackageListeners.IPackageListener>();
@@ -603,25 +603,25 @@ public class PackageImpl
 		return packageId;
 	}
 
-	protected void didAddClass(@NonNull org.eclipse.ocl.pivot.Class partialClass) {
+	protected void didAddClass(org.eclipse.ocl.pivot.@NonNull Class partialClass) {
 		if (packageListeners != null) {
 			packageListeners.didAddClass(partialClass);
 		}
 	}
 
-	protected void didAddPackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage) {
+	protected void didAddPackage(org.eclipse.ocl.pivot.@NonNull Package partialPackage) {
 		if (packageListeners != null) {
 			packageListeners.didAddPackage(partialPackage);
 		}
 	}
 
-	protected void didRemoveClass(@NonNull org.eclipse.ocl.pivot.Class partialClass) {
+	protected void didRemoveClass(org.eclipse.ocl.pivot.@NonNull Class partialClass) {
 		if (packageListeners != null) {
 			packageListeners.didRemoveClass(partialClass);
 		}
 	}
 
-	protected void didRemovePackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage) {
+	protected void didRemovePackage(org.eclipse.ocl.pivot.@NonNull Package partialPackage) {
 		if (packageListeners != null) {
 			packageListeners.didRemovePackage(partialPackage);
 		}
@@ -635,7 +635,7 @@ public class PackageImpl
 
 	@Override
 	
-	public @Nullable org.eclipse.ocl.pivot.Class getOwnedClass(String className) {
+	public org.eclipse.ocl.pivot.@Nullable Class getOwnedClass(String className) {
 		return NameUtil.getNameable(getOwnedClasses(), className);
 	}
 
@@ -730,7 +730,7 @@ public class PackageImpl
 		return ignoreInvariants;
 	}
 
-	public synchronized void removePackageListener(@NonNull PackageListeners.IPackageListener packageListener) {
+	public synchronized void removePackageListener(PackageListeners.@NonNull IPackageListener packageListener) {
 		PackageListeners<PackageListeners.IPackageListener> packageListeners2 = packageListeners;
 		if ((packageListeners2 != null) && packageListeners2.removeListener(packageListener)) {
 			packageListeners = null;

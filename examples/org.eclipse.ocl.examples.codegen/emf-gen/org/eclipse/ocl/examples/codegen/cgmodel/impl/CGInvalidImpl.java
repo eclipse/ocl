@@ -211,7 +211,7 @@ public class CGInvalidImpl extends CGConstantImpl implements CGInvalid {
 	 * @generated
 	 */
 	@Override
-	public @Nullable <R> R accept(@NonNull CGModelVisitor<R> visitor) {
+	public <R> R accept(@NonNull CGModelVisitor<R> visitor) {
 		return visitor.visitCGInvalid(this);
 	}
 

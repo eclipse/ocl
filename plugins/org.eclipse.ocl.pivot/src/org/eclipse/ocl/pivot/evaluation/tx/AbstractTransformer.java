@@ -31,7 +31,7 @@ public abstract class AbstractTransformer extends AbstractTransformerInternal
 	public static final @NonNull TracingOption INVOCATIONS = new TracingOption(PivotPlugin.PLUGIN_ID, "tx/invocations");
 
 	protected AbstractTransformer(@NonNull Executor executor, @NonNull String[] modelNames,
-			@Nullable PropertyId[] propertyIndex2propertyId, @Nullable ClassId[] classIndex2classId, @Nullable int[][] classIndex2allClassIndexes) {
+			@Nullable PropertyId[] propertyIndex2propertyId, @Nullable ClassId[] classIndex2classId, int @Nullable [][] classIndex2allClassIndexes) {
 		super(executor, modelNames, propertyIndex2propertyId, classIndex2classId, classIndex2allClassIndexes) ;
 	}
 }

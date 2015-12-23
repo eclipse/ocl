@@ -11,7 +11,6 @@
 package org.eclipse.ocl.pivot.options;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.preferences.PreferenceableOption;
 import org.eclipse.ocl.pivot.utilities.Option;
 
@@ -22,9 +21,9 @@ public abstract class BasicOption<T> implements Option<T>, PreferenceableOption<
 {
 	protected final @NonNull String pluginId;
 	protected final @NonNull String key;
-	protected final @Nullable T defaultValue;
+	protected final T defaultValue;
 	
-	protected BasicOption(@NonNull String pluginId, @NonNull String key, @Nullable T defaultValue) {
+	protected BasicOption(@NonNull String pluginId, @NonNull String key, T defaultValue) {
 		this.pluginId = pluginId;
 		this.key = key;
 		this.defaultValue = defaultValue;
@@ -36,7 +35,7 @@ public abstract class BasicOption<T> implements Option<T>, PreferenceableOption<
 	}
 	
 	@Override
-	public final @Nullable T getDefaultValue() {
+	public final T getDefaultValue() {
 		return defaultValue;
 	}
 

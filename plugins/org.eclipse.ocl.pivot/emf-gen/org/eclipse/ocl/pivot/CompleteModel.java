@@ -138,9 +138,9 @@ public interface CompleteModel extends NamedElement
 //	@NonNull <T extends CollectionType> T getCollectionType(@NonNull T containerType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper);
 	@NonNull CompleteClass getCompleteClass(@NonNull Type partialClass);
 	@NonNull CompleteEnvironment getCompleteEnvironment();
-	@NonNull CompletePackage getCompletePackage(@NonNull org.eclipse.ocl.pivot.Package asPackage);
+	@NonNull CompletePackage getCompletePackage(org.eclipse.ocl.pivot.@NonNull Package asPackage);
 	@Nullable CompletePackage getCompletePackageByURI(@NonNull String packageURI);
 	@NonNull Iterable<? extends CompletePackage> getAllCompletePackagesWithUris();
 	@NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType);
-	@Nullable org.eclipse.ocl.pivot.Package getRootPackage(@NonNull String completeURIorName);
+	org.eclipse.ocl.pivot.@Nullable Package getRootPackage(@NonNull String completeURIorName);
 } // CompleteModel

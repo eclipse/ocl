@@ -97,15 +97,15 @@ public interface Evaluator
 
 	/** @deprecated use Executor or EvaluationVisitor. */
 	@Deprecated
-	@NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value);
+	org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value);
 
 	/** @deprecated use Executor or EvaluationVisitor. */
 	@Deprecated
-	@NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Object... values);
+	org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value, @NonNull Object... values);
 
 	/** @deprecated use Executor or EvaluationVisitor. */
 	@Deprecated
-	@NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values);
+	org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values);
 	
 	/**
 	 * Return true if the evaluation has been canceled.

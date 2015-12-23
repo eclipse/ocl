@@ -598,7 +598,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 		return excludedAnnotations;
 	}
 
-	protected void copyClassifier(@NonNull org.eclipse.ocl.pivot.Class pivotElement, @NonNull EClassifier eClassifier, @Nullable List<EAnnotation> excludedAnnotations) {
+	protected void copyClassifier(org.eclipse.ocl.pivot.@NonNull Class pivotElement, @NonNull EClassifier eClassifier, @Nullable List<EAnnotation> excludedAnnotations) {
 		excludedAnnotations = refreshTypeConstraints(pivotElement, eClassifier, excludedAnnotations);
 		copyNamedElement(pivotElement, eClassifier);
 		copyAnnotatedElement(pivotElement, eClassifier, excludedAnnotations);
@@ -782,7 +782,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 		}
 	}
 
-	protected List<EAnnotation> refreshTypeConstraints(@NonNull org.eclipse.ocl.pivot.Class pivotElement, @NonNull EClassifier eClassifier, @Nullable List<EAnnotation> excludedAnnotations) {
+	protected List<EAnnotation> refreshTypeConstraints(org.eclipse.ocl.pivot.@NonNull Class pivotElement, @NonNull EClassifier eClassifier, @Nullable List<EAnnotation> excludedAnnotations) {
 		EMap<String, String> oclAnnotationDetails = null;
 		Map<String, Constraint> newConstraintMap = null;
 		Map<String, Constraint> oldInvariantMap = null;

@@ -500,7 +500,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 	 * Install any required extension/content-type registrations to enable AS Resources
 	 * to be created satisfactorily.
 	 */
-	protected void initializeResourceFactory(@NonNull Resource.Factory.Registry resourceFactoryRegistry) {}
+	protected void initializeResourceFactory(Resource.Factory.@NonNull Registry resourceFactoryRegistry) {}
 
 	@Override
 	public @Nullable NamedElement isPathable(@NonNull EObject element) {

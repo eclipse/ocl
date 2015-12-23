@@ -43,7 +43,7 @@ public class ExecutorTupleType extends AbstractExecutorClass implements TupleTyp
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getCommonType(@NonNull IdResolver idResolver, @NonNull Type type) {
+	public org.eclipse.ocl.pivot.@NonNull Class getCommonType(@NonNull IdResolver idResolver, @NonNull Type type) {
 		if (type != this) {
 			return idResolver.getStandardLibrary().getOclAnyType();
 		}

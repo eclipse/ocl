@@ -56,7 +56,7 @@ public class CGAccumulatorImpl extends CGIteratorImpl implements CGAccumulator
 	 * @generated
 	 */
 	@Override
-	public @Nullable <R> R accept(@NonNull CGModelVisitor<R> visitor) {
+	public <R> R accept(@NonNull CGModelVisitor<R> visitor) {
 		return visitor.visitCGAccumulator(this);
 	}
 

@@ -288,7 +288,7 @@ public class IfExpImpl
 		else {
 		    @NonNull /*@Caught*/ Object CAUGHT_status;
 		    try {
-		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_Boolean_0 = idResolver.getClass(TypeId.BOOLEAN, null);
+		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.@NonNull Class TYP_Boolean_0 = idResolver.getClass(TypeId.BOOLEAN, null);
 		        @SuppressWarnings("null")
 		        final @NonNull /*@Thrown*/ OCLExpression ownedCondition = this.getOwnedCondition();
 		        final @Nullable /*@Thrown*/ Type type = ownedCondition.getType();
@@ -336,7 +336,7 @@ public class IfExpImpl
 		else {
 		    @NonNull /*@Caught*/ Object CAUGHT_status;
 		    try {
-		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OclInvalid_0 = idResolver.getClass(TypeId.OCL_INVALID, null);
+		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.@NonNull Class TYP_OclInvalid_0 = idResolver.getClass(TypeId.OCL_INVALID, null);
 		        final @Nullable /*@Thrown*/ Type type = this.getType();
 		        final /*@Thrown*/ boolean status = (type != null) ? (type.getTypeId() != TYP_OclInvalid_0.getTypeId()) : true;
 		        CAUGHT_status = status;

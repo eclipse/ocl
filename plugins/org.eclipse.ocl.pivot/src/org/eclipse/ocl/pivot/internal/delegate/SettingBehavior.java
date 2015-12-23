@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Internal.SettingDelegate;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Property;
@@ -36,12 +35,12 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 	public static final @NonNull String NAME = "settingDelegates"; //$NON-NLS-1$
 
 	@Override
-	public @Nullable SettingDelegate.Factory getDefaultFactory() {
+	public SettingDelegate.@Nullable Factory getDefaultFactory() {
 		return SettingDelegate.Factory.Registry.INSTANCE.getFactory(getName());
 	}
 
 	@Override
-	public @NonNull SettingDelegate.Factory.Registry getDefaultRegistry() {
+	public SettingDelegate.Factory.@NonNull Registry getDefaultRegistry() {
 		return ClassUtil.nonNullEMF(SettingDelegate.Factory.Registry.INSTANCE);
 	}
 
@@ -69,10 +68,10 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 	}
 
 	@Override
-	public @Nullable SettingDelegate.Factory getFactory(@NonNull DelegateDomain delegateDomain, @NonNull EStructuralFeature eStructuralFeature) {
-		SettingDelegate.Factory.Registry registry = DelegateResourceSetAdapter.getRegistry(
-			eStructuralFeature, getRegistryClass(), getDefaultRegistry());
-	    return registry != null ? registry.getFactory(delegateDomain.getURI()) : null;
+	public SettingDelegate.@Nullable Factory getFactory(@NonNull DelegateDomain delegateDomain, @NonNull EStructuralFeature eStructuralFeature) {
+		@SuppressWarnings("null")Class<SettingDelegate.Factory.@NonNull Registry> castClass = getRegistryClass();
+		SettingDelegate.Factory.Registry registry = OCLDelegateDomain.getDelegateResourceSetRegistry(eStructuralFeature, castClass, getDefaultRegistry());
+		return registry.getFactory(delegateDomain.getURI());
 	}	
 
 	@Override

@@ -46,7 +46,7 @@ import org.eclipse.ocl.xtext.markupcs.util.MarkupSwitch;
 /**
  * MarkupToHTML gives an HTML presentation of the markup.
  */
-public class MarkupToHTML extends MarkupSwitch<HTMLBuffer>
+public class MarkupToHTML extends MarkupSwitch<@Nullable HTMLBuffer>
 {
 	@SuppressWarnings("serial")
 	public static class InvalidMarkupException extends RuntimeException
@@ -59,7 +59,7 @@ public class MarkupToHTML extends MarkupSwitch<HTMLBuffer>
 	public static String toString(@NonNull EnvironmentFactoryInternal environmentFactory, @Nullable Object context, @NonNull MarkupElement element) throws Exception {
 		MarkupToHTML toString = new MarkupToHTML(environmentFactory, context);
 		try {
-			return toString.doSwitch(element).toString();
+			return String.valueOf(toString.doSwitch(element));
 		} catch (InvalidMarkupException e) {
 			throw (Exception)e.getCause();
 		}

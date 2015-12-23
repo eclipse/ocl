@@ -104,7 +104,7 @@ public interface IdResolver extends IdVisitor<Element>
 	@Deprecated
 	@NonNull EList<Object> ecoreValuesOfEach(@Nullable Class<?> instanceClass, @NonNull Object... values);
 
-	@NonNull org.eclipse.ocl.pivot.Class getClass(@NonNull TypeId typeId, @Nullable Object context);
+	org.eclipse.ocl.pivot.@NonNull Class getClass(@NonNull TypeId typeId, @Nullable Object context);
 
 	@NonNull Type getCollectionType(@NonNull CollectionTypeId typeId);
 
@@ -118,29 +118,29 @@ public interface IdResolver extends IdVisitor<Element>
 
 	@NonNull CompleteInheritance getInheritance(@NonNull EClassifier eClassifier);
 	
-	@NonNull org.eclipse.ocl.pivot.Class getJavaType(@NonNull Class<?> javaClass);
+	org.eclipse.ocl.pivot.@NonNull Class getJavaType(@NonNull Class<?> javaClass);
 
 	@NonNull Type getMapType(@NonNull MapTypeId typeId);
 
 	@NonNull Operation getOperation(@NonNull OperationId operationId);
 	
-	@NonNull org.eclipse.ocl.pivot.Package getPackage(@NonNull PackageId packageId);
+	org.eclipse.ocl.pivot.@NonNull Package getPackage(@NonNull PackageId packageId);
 
 	@NonNull Property getProperty(@NonNull PropertyId propertyId);
 
 	@NonNull StandardLibrary getStandardLibrary();
 
-	@NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value);
+	org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value);
 
-	@NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, Object... values);
+	org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value, Object... values);
 
-	@NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values);
+	org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values);
 
 	@NonNull TypedElement getTuplePart(@NonNull String name, @NonNull TypeId typeId);
 
 	@NonNull TupleType getTupleType(@NonNull TupleTypeId typeId);
 
-	@NonNull org.eclipse.ocl.pivot.Class getType(@NonNull EClassifier eClassifier);
+	org.eclipse.ocl.pivot.@NonNull Class getType(@NonNull EClassifier eClassifier);
 
 	@NonNull Type getType(@NonNull TypeId typeId, @Nullable Object context);
 

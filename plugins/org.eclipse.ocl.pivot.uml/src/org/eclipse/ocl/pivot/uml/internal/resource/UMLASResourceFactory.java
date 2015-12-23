@@ -289,7 +289,7 @@ public final class UMLASResourceFactory extends AbstractASResourceFactory
 	}
 
 	@Override
-	public void initializeEValidatorRegistry(@NonNull org.eclipse.emf.ecore.EValidator.Registry eValidatorRegistry) {
+	public void initializeEValidatorRegistry(org.eclipse.emf.ecore.EValidator.@NonNull Registry eValidatorRegistry) {
 		eValidatorRegistry.put(UMLPackage.eINSTANCE, UMLOCLEValidator.NO_NEW_LINES);
 	}
 }

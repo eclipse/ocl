@@ -171,7 +171,7 @@ public class CGElementIdImpl extends CGConstantImpl implements CGElementId {
 	 * @generated
 	 */
 	@Override
-	public @Nullable <R> R accept(@NonNull CGModelVisitor<R> visitor) {
+	public <R> R accept(@NonNull CGModelVisitor<R> visitor) {
 		return visitor.visitCGElementId(this);
 	}
 

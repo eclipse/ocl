@@ -348,7 +348,7 @@ public class ModelImpl extends NamespaceImpl implements Model
 		return visitor.visitModel(this);
 	}
 
-	public synchronized void addRootListener(@NonNull ModelListeners.IModelListener rootListener) {
+	public synchronized void addRootListener(ModelListeners.@NonNull IModelListener rootListener) {
 		ModelListeners<ModelListeners.IModelListener> rootListeners2 = rootListeners;
 		if (rootListeners2 == null) {
 			rootListeners2 = rootListeners = new ModelListeners<ModelListeners.IModelListener>();
@@ -356,19 +356,19 @@ public class ModelImpl extends NamespaceImpl implements Model
 		rootListeners2.addListener(rootListener);
 	}
 
-	protected void didAddPackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage) {
+	protected void didAddPackage(org.eclipse.ocl.pivot.@NonNull Package partialPackage) {
 		if (rootListeners != null) {
 			rootListeners.didAddPackage(partialPackage);
 		}
 	}
 
-	protected void didRemovePackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage) {
+	protected void didRemovePackage(org.eclipse.ocl.pivot.@NonNull Package partialPackage) {
 		if (rootListeners != null) {
 			rootListeners.didRemovePackage(partialPackage);
 		}
 	}
 
-	public synchronized void removeRootListener(@NonNull ModelListeners.IModelListener rootListener) {
+	public synchronized void removeRootListener(ModelListeners.@NonNull IModelListener rootListener) {
 		ModelListeners<ModelListeners.IModelListener> rootListeners2 = rootListeners;
 		if ((rootListeners2 != null) && rootListeners2.removeListener(rootListener)) {
 			rootListeners = null;

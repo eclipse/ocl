@@ -52,11 +52,11 @@ public interface Executor extends Evaluator
 	@Override
 	@NonNull StandardLibrary getStandardLibrary();
 	@Override
-	@NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value);
+	org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value);
 	@Override
-	@NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Object... values);
+	org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value, @NonNull Object... values);
 	@Override
-	@NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values);
+	org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values);
 	void popEvaluationEnvironment();
 	@NonNull EvaluationEnvironment pushEvaluationEnvironment(@NonNull NamedElement executableObject, @Nullable OCLExpression callingObject);
 	void replace(@NonNull TypedElement referredVariable, @Nullable Object value);

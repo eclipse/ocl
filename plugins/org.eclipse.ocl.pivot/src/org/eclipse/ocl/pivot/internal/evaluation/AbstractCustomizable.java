@@ -56,7 +56,7 @@ public abstract class AbstractCustomizable implements Adaptable, Customizable
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public <T> T getAdapter(java.lang.Class<T> adapterType) {
+	public <T> @Nullable T getAdapter(java.lang.Class<T> adapterType) {
 		if (adapterType.isInstance(this)) {
 			return (T) this;
 		} 
@@ -78,7 +78,7 @@ public abstract class AbstractCustomizable implements Adaptable, Customizable
 	protected abstract @Nullable Customizable getParent();
 	
 	@Override
-	public @Nullable <T> T getValue(@NonNull Option<T> option) {
+	public <@Nullable T> T getValue(@NonNull Option<T> option) {
 		@SuppressWarnings("unchecked") T result = (T) getOptions().get(option);
 		if (result != null) {
 			return result;
@@ -104,8 +104,8 @@ public abstract class AbstractCustomizable implements Adaptable, Customizable
 	}
 
 	@Override
-	public @Nullable <T> T removeOption(@NonNull Option<T> option) {
-		T result = getValue(option);	
+	public <T> @Nullable T removeOption(@NonNull Option<T> option) {
+		@Nullable T result = getValue(option);	
 		options.remove(option);	
 		return result;
 	}

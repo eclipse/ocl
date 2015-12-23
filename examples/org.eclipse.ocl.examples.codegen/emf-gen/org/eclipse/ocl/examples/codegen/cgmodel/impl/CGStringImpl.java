@@ -170,7 +170,7 @@ public class CGStringImpl extends CGConstantImpl implements CGString {
 	 * @generated
 	 */
 	@Override
-	public @Nullable <R> R accept(@NonNull CGModelVisitor<R> visitor) {
+	public <R> R accept(@NonNull CGModelVisitor<R> visitor) {
 		return visitor.visitCGString(this);
 	}
 

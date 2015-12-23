@@ -11,7 +11,6 @@
 package org.eclipse.ocl.pivot.internal.ids;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ids.IdVisitor;
 import org.eclipse.ocl.pivot.ids.PropertyId;
 import org.eclipse.ocl.pivot.ids.TypeId;
@@ -32,7 +31,7 @@ public class PropertyIdImpl extends AbstractElementId implements PropertyId //, 
 	}
 
 	@Override
-	public @Nullable <R> R accept(@NonNull IdVisitor<R> visitor) {
+	public <R> R accept(@NonNull IdVisitor<R> visitor) {
 		return visitor.visitPropertyId(this);
 	}
 

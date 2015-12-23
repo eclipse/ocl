@@ -85,7 +85,7 @@ public class ValidityManager
 	 * @param constraintLocator
 	 *            the corresponding constraint locator
 	 */
-	public static synchronized void addConstraintLocator(/*@NonNull*/ String nsURI, @NonNull ConstraintLocator.Descriptor constraintLocator) {
+	public static synchronized void addConstraintLocator(/*@NonNull*/ String nsURI, ConstraintLocator.@NonNull Descriptor constraintLocator) {
 		List<ConstraintLocator.Descriptor> list = constraintLocatorDescriptors.get(nsURI);
 		if (list == null) {
 			list = new ArrayList<ConstraintLocator.Descriptor>();

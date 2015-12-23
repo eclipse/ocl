@@ -1109,7 +1109,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 	 * @since 1.3
 	 */
 	@Override
-	public @Nullable CGClass visitClass(@NonNull org.eclipse.ocl.pivot.Class element) {
+	public @Nullable CGClass visitClass(org.eclipse.ocl.pivot.@NonNull Class element) {
 		CGClass cgClass = CGModelFactory.eINSTANCE.createCGClass();
 		pushCurrentClass(cgClass);
 		setAst(cgClass, element);
@@ -1393,7 +1393,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeG
 	}
 
 	@Override
-	public @Nullable CGPackage visitPackage(@NonNull org.eclipse.ocl.pivot.Package element) {
+	public @Nullable CGPackage visitPackage(org.eclipse.ocl.pivot.@NonNull Package element) {
 		CGPackage cgPackage = CGModelFactory.eINSTANCE.createCGPackage();
 		setAst(cgPackage, element);
 		for (org.eclipse.ocl.pivot.Class asType : element.getOwnedClasses()) {

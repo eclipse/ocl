@@ -266,7 +266,7 @@ public abstract class LoopExpImpl
 		else {
 		    @NonNull /*@Caught*/ Object CAUGHT_status;
 		    try {
-		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_CollectionType_0 = idResolver.getClass(PivotTables.CLSSid_CollectionType, null);
+		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.@NonNull Class TYP_CollectionType_0 = idResolver.getClass(PivotTables.CLSSid_CollectionType, null);
 		        final @Nullable /*@Thrown*/ OCLExpression ownedSource = this.getOwnedSource();
 		        @Nullable /*@Caught*/ Object CAUGHT_ownedSource;
 		        try {

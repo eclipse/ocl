@@ -80,7 +80,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	public void postProcess(@NonNull BaseCSResource csResource, @NonNull Map<Namespace, List<String>> importedNamespaces) {}
 
 	@Override
-	public ElementCS visitAnnotation(@NonNull org.eclipse.ocl.pivot.Annotation object) {
+	public ElementCS visitAnnotation(org.eclipse.ocl.pivot.@NonNull Annotation object) {
 		AnnotationCS csElement = context.refreshNamedElement(AnnotationCS.class, BaseCSPackage.Literals.ANNOTATION_CS, object, null);
 		context.refreshList(csElement.getOwnedContents(), context.visitDeclarations(ModelElementCS.class, object.getOwnedContents(), null));
 		context.refreshList(csElement.getOwnedDetails(), context.visitDeclarations(DetailCS.class, object.getOwnedDetails(), null));
@@ -105,7 +105,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	}
 
 	@Override
-	public ElementCS visitClass(@NonNull org.eclipse.ocl.pivot.Class object) {
+	public ElementCS visitClass(org.eclipse.ocl.pivot.@NonNull Class object) {
 		org.eclipse.ocl.pivot.Class savedScope = context.setScope(object);
 		StructuredClassCS csElement = context.refreshClassifier(StructuredClassCS.class, BaseCSPackage.Literals.STRUCTURED_CLASS_CS, object);
 		context.refreshList(csElement.getOwnedProperties(), context.visitDeclarations(StructuralFeatureCS.class, object.getOwnedProperties(),
@@ -163,7 +163,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	}
 
 	@Override
-	public ElementCS visitEnumeration(@NonNull org.eclipse.ocl.pivot.Enumeration object) {
+	public ElementCS visitEnumeration(org.eclipse.ocl.pivot.@NonNull Enumeration object) {
 		EnumerationCS csElement = context.refreshClassifier(EnumerationCS.class, BaseCSPackage.Literals.ENUMERATION_CS, object);
 		context.refreshList(csElement.getOwnedLiterals(), context.visitDeclarations(EnumerationLiteralCS.class, object.getOwnedLiterals(), null));
 		csElement.setIsSerializable(object.isIsSerializable());
@@ -224,7 +224,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	}
 
 	@Override
-	public ElementCS visitPackage(@NonNull org.eclipse.ocl.pivot.Package object) {
+	public ElementCS visitPackage(org.eclipse.ocl.pivot.@NonNull Package object) {
 		PackageCS csPackage = context.refreshNamedElement(PackageCS.class, BaseCSPackage.Literals.PACKAGE_CS, object);
 		context.refreshList(csPackage.getOwnedClasses(), context.visitDeclarations(ClassCS.class, object.getOwnedClasses(), null));
 		csPackage.setNsPrefix(object.getNsPrefix());

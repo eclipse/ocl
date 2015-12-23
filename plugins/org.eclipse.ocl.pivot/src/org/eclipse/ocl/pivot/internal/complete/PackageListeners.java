@@ -18,11 +18,11 @@ public class PackageListeners<L extends PackageListeners.IPackageListener> exten
 {
 	public static interface IPackageListener extends IModelListener
 	{
-		void didAddClass(@NonNull org.eclipse.ocl.pivot.Class partialClass);
-		void didRemoveClass(@NonNull org.eclipse.ocl.pivot.Class partialClass);
+		void didAddClass(org.eclipse.ocl.pivot.@NonNull Class partialClass);
+		void didRemoveClass(org.eclipse.ocl.pivot.@NonNull Class partialClass);
 	}
 
-	public synchronized void didAddClass(@NonNull org.eclipse.ocl.pivot.Class partialClass) {
+	public synchronized void didAddClass(org.eclipse.ocl.pivot.@NonNull Class partialClass) {
 		boolean doFlush = false;
 		for (WeakReference<L> ref : listeners) {
 			IPackageListener listener = ref.get();
@@ -38,7 +38,7 @@ public class PackageListeners<L extends PackageListeners.IPackageListener> exten
 		}
 	}
 
-	public synchronized void didRemoveClass(@NonNull org.eclipse.ocl.pivot.Class partialClass) {
+	public synchronized void didRemoveClass(org.eclipse.ocl.pivot.@NonNull Class partialClass) {
 		boolean doFlush = false;
 		for (WeakReference<L> ref : listeners) {
 			IPackageListener listener = ref.get();

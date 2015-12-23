@@ -51,7 +51,7 @@ public class CGIsInvalidExpImpl extends CGCallExpImpl implements CGIsInvalidExp 
 	 * @generated
 	 */
 	@Override
-	public @Nullable <R> R accept(@NonNull CGModelVisitor<R> visitor) {
+	public <R> R accept(@NonNull CGModelVisitor<R> visitor) {
 		return visitor.visitCGIsInvalidExp(this);
 	}
 

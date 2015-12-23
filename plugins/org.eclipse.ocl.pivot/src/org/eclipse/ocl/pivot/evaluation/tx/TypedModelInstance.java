@@ -27,7 +27,7 @@ public interface TypedModelInstance
 {
 	@NonNull Collection<EObject> getAllObjects();
 	@Nullable String getName();
-	@NonNull Collection<EObject> getObjectsOfKind(@NonNull org.eclipse.ocl.pivot.Class type);
-	@NonNull Collection<EObject> getObjectsOfType(@NonNull org.eclipse.ocl.pivot.Class type);
+	@NonNull Collection<EObject> getObjectsOfKind(org.eclipse.ocl.pivot.@NonNull Class type);
+	@NonNull Collection<EObject> getObjectsOfType(org.eclipse.ocl.pivot.@NonNull Class type);
 	@NonNull Collection<EObject> getRootObjects();
 }

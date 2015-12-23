@@ -102,7 +102,7 @@ public class NameUtil
 		return null;				
 	}
 
-	public static <T extends Nameable> T getNameable(@Nullable Iterable<T> elements, @Nullable String name) {
+	public static <T extends Nameable> @Nullable T getNameable(@Nullable Iterable<T> elements, @Nullable String name) {
 		if (elements == null)
 			return null;
 		for (T element : elements)

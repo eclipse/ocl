@@ -16,7 +16,6 @@
 package	org.eclipse.ocl.xtext.basecs.util;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 
 /**
  * An AbstractDelegatingBaseCSVisitor delegates all visits.
@@ -52,267 +51,267 @@ public abstract class AbstractDelegatingBaseCSVisitor<R, C, D extends BaseCSVisi
 	}
 
 	@Override
-	public @Nullable R visiting(@NonNull org.eclipse.ocl.xtext.basecs.util.VisitableCS visitable) {
+	public R visiting(org.eclipse.ocl.xtext.basecs.util.@NonNull VisitableCS visitable) {
 		return delegate.visiting(visitable);
 	}
 
 	@Override
-	public @Nullable R visitAnnotationCS(@NonNull org.eclipse.ocl.xtext.basecs.AnnotationCS object) {
+	public R visitAnnotationCS(org.eclipse.ocl.xtext.basecs.@NonNull AnnotationCS object) {
 		return delegate.visitAnnotationCS(object);
 	}
 
 	@Override
-	public @Nullable R visitAnnotationElementCS(@NonNull org.eclipse.ocl.xtext.basecs.AnnotationElementCS object) {
+	public R visitAnnotationElementCS(org.eclipse.ocl.xtext.basecs.@NonNull AnnotationElementCS object) {
 		return delegate.visitAnnotationElementCS(object);
 	}
 
 	@Override
-	public @Nullable R visitAttributeCS(@NonNull org.eclipse.ocl.xtext.basecs.AttributeCS object) {
+	public R visitAttributeCS(org.eclipse.ocl.xtext.basecs.@NonNull AttributeCS object) {
 		return delegate.visitAttributeCS(object);
 	}
 
 	@Override
-	public @Nullable R visitClassCS(@NonNull org.eclipse.ocl.xtext.basecs.ClassCS object) {
+	public R visitClassCS(org.eclipse.ocl.xtext.basecs.@NonNull ClassCS object) {
 		return delegate.visitClassCS(object);
 	}
 
 	@Override
-	public @Nullable R visitConstraintCS(@NonNull org.eclipse.ocl.xtext.basecs.ConstraintCS object) {
+	public R visitConstraintCS(org.eclipse.ocl.xtext.basecs.@NonNull ConstraintCS object) {
 		return delegate.visitConstraintCS(object);
 	}
 
 	@Override
-	public @Nullable R visitContextLessElementCS(@NonNull org.eclipse.ocl.xtext.basecs.ContextLessElementCS object) {
+	public R visitContextLessElementCS(org.eclipse.ocl.xtext.basecs.@NonNull ContextLessElementCS object) {
 		return delegate.visitContextLessElementCS(object);
 	}
 
 	@Override
-	public @Nullable R visitDataTypeCS(@NonNull org.eclipse.ocl.xtext.basecs.DataTypeCS object) {
+	public R visitDataTypeCS(org.eclipse.ocl.xtext.basecs.@NonNull DataTypeCS object) {
 		return delegate.visitDataTypeCS(object);
 	}
 
 	@Override
-	public @Nullable R visitDetailCS(@NonNull org.eclipse.ocl.xtext.basecs.DetailCS object) {
+	public R visitDetailCS(org.eclipse.ocl.xtext.basecs.@NonNull DetailCS object) {
 		return delegate.visitDetailCS(object);
 	}
 
 	@Override
-	public @Nullable R visitDocumentationCS(@NonNull org.eclipse.ocl.xtext.basecs.DocumentationCS object) {
+	public R visitDocumentationCS(org.eclipse.ocl.xtext.basecs.@NonNull DocumentationCS object) {
 		return delegate.visitDocumentationCS(object);
 	}
 
 	@Override
-	public @Nullable R visitElementCS(@NonNull org.eclipse.ocl.xtext.basecs.ElementCS object) {
+	public R visitElementCS(org.eclipse.ocl.xtext.basecs.@NonNull ElementCS object) {
 		return delegate.visitElementCS(object);
 	}
 
 	@Override
-	public @Nullable R visitElementRefCS(@NonNull org.eclipse.ocl.xtext.basecs.ElementRefCS object) {
+	public R visitElementRefCS(org.eclipse.ocl.xtext.basecs.@NonNull ElementRefCS object) {
 		return delegate.visitElementRefCS(object);
 	}
 
 	@Override
-	public @Nullable R visitEnumerationCS(@NonNull org.eclipse.ocl.xtext.basecs.EnumerationCS object) {
+	public R visitEnumerationCS(org.eclipse.ocl.xtext.basecs.@NonNull EnumerationCS object) {
 		return delegate.visitEnumerationCS(object);
 	}
 
 	@Override
-	public @Nullable R visitEnumerationLiteralCS(@NonNull org.eclipse.ocl.xtext.basecs.EnumerationLiteralCS object) {
+	public R visitEnumerationLiteralCS(org.eclipse.ocl.xtext.basecs.@NonNull EnumerationLiteralCS object) {
 		return delegate.visitEnumerationLiteralCS(object);
 	}
 
 	@Override
-	public @Nullable R visitFeatureCS(@NonNull org.eclipse.ocl.xtext.basecs.FeatureCS object) {
+	public R visitFeatureCS(org.eclipse.ocl.xtext.basecs.@NonNull FeatureCS object) {
 		return delegate.visitFeatureCS(object);
 	}
 
 	@Override
-	public @Nullable R visitImportCS(@NonNull org.eclipse.ocl.xtext.basecs.ImportCS object) {
+	public R visitImportCS(org.eclipse.ocl.xtext.basecs.@NonNull ImportCS object) {
 		return delegate.visitImportCS(object);
 	}
 
 	@Override
-	public @Nullable R visitLambdaTypeCS(@NonNull org.eclipse.ocl.xtext.basecs.LambdaTypeCS object) {
+	public R visitLambdaTypeCS(org.eclipse.ocl.xtext.basecs.@NonNull LambdaTypeCS object) {
 		return delegate.visitLambdaTypeCS(object);
 	}
 
 	@Override
-	public @Nullable R visitModelElementCS(@NonNull org.eclipse.ocl.xtext.basecs.ModelElementCS object) {
+	public R visitModelElementCS(org.eclipse.ocl.xtext.basecs.@NonNull ModelElementCS object) {
 		return delegate.visitModelElementCS(object);
 	}
 
 	@Override
-	public @Nullable R visitModelElementRefCS(@NonNull org.eclipse.ocl.xtext.basecs.ModelElementRefCS object) {
+	public R visitModelElementRefCS(org.eclipse.ocl.xtext.basecs.@NonNull ModelElementRefCS object) {
 		return delegate.visitModelElementRefCS(object);
 	}
 
 	@Override
-	public @Nullable R visitMultiplicityBoundsCS(@NonNull org.eclipse.ocl.xtext.basecs.MultiplicityBoundsCS object) {
+	public R visitMultiplicityBoundsCS(org.eclipse.ocl.xtext.basecs.@NonNull MultiplicityBoundsCS object) {
 		return delegate.visitMultiplicityBoundsCS(object);
 	}
 
 	@Override
-	public @Nullable R visitMultiplicityCS(@NonNull org.eclipse.ocl.xtext.basecs.MultiplicityCS object) {
+	public R visitMultiplicityCS(org.eclipse.ocl.xtext.basecs.@NonNull MultiplicityCS object) {
 		return delegate.visitMultiplicityCS(object);
 	}
 
 	@Override
-	public @Nullable R visitMultiplicityStringCS(@NonNull org.eclipse.ocl.xtext.basecs.MultiplicityStringCS object) {
+	public R visitMultiplicityStringCS(org.eclipse.ocl.xtext.basecs.@NonNull MultiplicityStringCS object) {
 		return delegate.visitMultiplicityStringCS(object);
 	}
 
 	@Override
-	public @Nullable R visitNamedElementCS(@NonNull org.eclipse.ocl.xtext.basecs.NamedElementCS object) {
+	public R visitNamedElementCS(org.eclipse.ocl.xtext.basecs.@NonNull NamedElementCS object) {
 		return delegate.visitNamedElementCS(object);
 	}
 
 	@Override
-	public @Nullable R visitNamespaceCS(@NonNull org.eclipse.ocl.xtext.basecs.NamespaceCS object) {
+	public R visitNamespaceCS(org.eclipse.ocl.xtext.basecs.@NonNull NamespaceCS object) {
 		return delegate.visitNamespaceCS(object);
 	}
 
 	@Override
-	public @Nullable R visitOperationCS(@NonNull org.eclipse.ocl.xtext.basecs.OperationCS object) {
+	public R visitOperationCS(org.eclipse.ocl.xtext.basecs.@NonNull OperationCS object) {
 		return delegate.visitOperationCS(object);
 	}
 
 	@Override
-	public @Nullable R visitPackageCS(@NonNull org.eclipse.ocl.xtext.basecs.PackageCS object) {
+	public R visitPackageCS(org.eclipse.ocl.xtext.basecs.@NonNull PackageCS object) {
 		return delegate.visitPackageCS(object);
 	}
 
 	@Override
-	public @Nullable R visitPackageOwnerCS(@NonNull org.eclipse.ocl.xtext.basecs.PackageOwnerCS object) {
+	public R visitPackageOwnerCS(org.eclipse.ocl.xtext.basecs.@NonNull PackageOwnerCS object) {
 		return delegate.visitPackageOwnerCS(object);
 	}
 
 	@Override
-	public @Nullable R visitParameterCS(@NonNull org.eclipse.ocl.xtext.basecs.ParameterCS object) {
+	public R visitParameterCS(org.eclipse.ocl.xtext.basecs.@NonNull ParameterCS object) {
 		return delegate.visitParameterCS(object);
 	}
 
 	@Override
-	public @Nullable R visitPathElementCS(@NonNull org.eclipse.ocl.xtext.basecs.PathElementCS object) {
+	public R visitPathElementCS(org.eclipse.ocl.xtext.basecs.@NonNull PathElementCS object) {
 		return delegate.visitPathElementCS(object);
 	}
 
 	@Override
-	public @Nullable R visitPathElementWithURICS(@NonNull org.eclipse.ocl.xtext.basecs.PathElementWithURICS object) {
+	public R visitPathElementWithURICS(org.eclipse.ocl.xtext.basecs.@NonNull PathElementWithURICS object) {
 		return delegate.visitPathElementWithURICS(object);
 	}
 
 	@Override
-	public @Nullable R visitPathNameCS(@NonNull org.eclipse.ocl.xtext.basecs.PathNameCS object) {
+	public R visitPathNameCS(org.eclipse.ocl.xtext.basecs.@NonNull PathNameCS object) {
 		return delegate.visitPathNameCS(object);
 	}
 
 	@Override
-	public @Nullable R visitPivotableElementCS(@NonNull org.eclipse.ocl.xtext.basecs.PivotableElementCS object) {
+	public R visitPivotableElementCS(org.eclipse.ocl.xtext.basecs.@NonNull PivotableElementCS object) {
 		return delegate.visitPivotableElementCS(object);
 	}
 
 	@Override
-	public @Nullable R visitPrimitiveTypeRefCS(@NonNull org.eclipse.ocl.xtext.basecs.PrimitiveTypeRefCS object) {
+	public R visitPrimitiveTypeRefCS(org.eclipse.ocl.xtext.basecs.@NonNull PrimitiveTypeRefCS object) {
 		return delegate.visitPrimitiveTypeRefCS(object);
 	}
 
 	@Override
-	public @Nullable R visitReferenceCS(@NonNull org.eclipse.ocl.xtext.basecs.ReferenceCS object) {
+	public R visitReferenceCS(org.eclipse.ocl.xtext.basecs.@NonNull ReferenceCS object) {
 		return delegate.visitReferenceCS(object);
 	}
 
 	@Override
-	public @Nullable R visitRootCS(@NonNull org.eclipse.ocl.xtext.basecs.RootCS object) {
+	public R visitRootCS(org.eclipse.ocl.xtext.basecs.@NonNull RootCS object) {
 		return delegate.visitRootCS(object);
 	}
 
 	@Override
-	public @Nullable R visitRootPackageCS(@NonNull org.eclipse.ocl.xtext.basecs.RootPackageCS object) {
+	public R visitRootPackageCS(org.eclipse.ocl.xtext.basecs.@NonNull RootPackageCS object) {
 		return delegate.visitRootPackageCS(object);
 	}
 
 	@Override
-	public @Nullable R visitSpecificationCS(@NonNull org.eclipse.ocl.xtext.basecs.SpecificationCS object) {
+	public R visitSpecificationCS(org.eclipse.ocl.xtext.basecs.@NonNull SpecificationCS object) {
 		return delegate.visitSpecificationCS(object);
 	}
 
 	@Override
-	public @Nullable R visitStructuralFeatureCS(@NonNull org.eclipse.ocl.xtext.basecs.StructuralFeatureCS object) {
+	public R visitStructuralFeatureCS(org.eclipse.ocl.xtext.basecs.@NonNull StructuralFeatureCS object) {
 		return delegate.visitStructuralFeatureCS(object);
 	}
 
 	@Override
-	public @Nullable R visitStructuredClassCS(@NonNull org.eclipse.ocl.xtext.basecs.StructuredClassCS object) {
+	public R visitStructuredClassCS(org.eclipse.ocl.xtext.basecs.@NonNull StructuredClassCS object) {
 		return delegate.visitStructuredClassCS(object);
 	}
 
 	@Override
-	public @Nullable R visitTemplateBindingCS(@NonNull org.eclipse.ocl.xtext.basecs.TemplateBindingCS object) {
+	public R visitTemplateBindingCS(org.eclipse.ocl.xtext.basecs.@NonNull TemplateBindingCS object) {
 		return delegate.visitTemplateBindingCS(object);
 	}
 
 	@Override
-	public @Nullable R visitTemplateParameterCS(@NonNull org.eclipse.ocl.xtext.basecs.TemplateParameterCS object) {
+	public R visitTemplateParameterCS(org.eclipse.ocl.xtext.basecs.@NonNull TemplateParameterCS object) {
 		return delegate.visitTemplateParameterCS(object);
 	}
 
 	@Override
-	public @Nullable R visitTemplateParameterSubstitutionCS(@NonNull org.eclipse.ocl.xtext.basecs.TemplateParameterSubstitutionCS object) {
+	public R visitTemplateParameterSubstitutionCS(org.eclipse.ocl.xtext.basecs.@NonNull TemplateParameterSubstitutionCS object) {
 		return delegate.visitTemplateParameterSubstitutionCS(object);
 	}
 
 	@Override
-	public @Nullable R visitTemplateSignatureCS(@NonNull org.eclipse.ocl.xtext.basecs.TemplateSignatureCS object) {
+	public R visitTemplateSignatureCS(org.eclipse.ocl.xtext.basecs.@NonNull TemplateSignatureCS object) {
 		return delegate.visitTemplateSignatureCS(object);
 	}
 
 	@Override
-	public @Nullable R visitTemplateableElementCS(@NonNull org.eclipse.ocl.xtext.basecs.TemplateableElementCS object) {
+	public R visitTemplateableElementCS(org.eclipse.ocl.xtext.basecs.@NonNull TemplateableElementCS object) {
 		return delegate.visitTemplateableElementCS(object);
 	}
 
 	@Override
-	public @Nullable R visitTuplePartCS(@NonNull org.eclipse.ocl.xtext.basecs.TuplePartCS object) {
+	public R visitTuplePartCS(org.eclipse.ocl.xtext.basecs.@NonNull TuplePartCS object) {
 		return delegate.visitTuplePartCS(object);
 	}
 
 	@Override
-	public @Nullable R visitTupleTypeCS(@NonNull org.eclipse.ocl.xtext.basecs.TupleTypeCS object) {
+	public R visitTupleTypeCS(org.eclipse.ocl.xtext.basecs.@NonNull TupleTypeCS object) {
 		return delegate.visitTupleTypeCS(object);
 	}
 
 	@Override
-	public @Nullable R visitTypeCS(@NonNull org.eclipse.ocl.xtext.basecs.TypeCS object) {
+	public R visitTypeCS(org.eclipse.ocl.xtext.basecs.@NonNull TypeCS object) {
 		return delegate.visitTypeCS(object);
 	}
 
 	@Override
-	public @Nullable R visitTypeParameterCS(@NonNull org.eclipse.ocl.xtext.basecs.TypeParameterCS object) {
+	public R visitTypeParameterCS(org.eclipse.ocl.xtext.basecs.@NonNull TypeParameterCS object) {
 		return delegate.visitTypeParameterCS(object);
 	}
 
 	@Override
-	public @Nullable R visitTypeRefCS(@NonNull org.eclipse.ocl.xtext.basecs.TypeRefCS object) {
+	public R visitTypeRefCS(org.eclipse.ocl.xtext.basecs.@NonNull TypeRefCS object) {
 		return delegate.visitTypeRefCS(object);
 	}
 
 	@Override
-	public @Nullable R visitTypedElementCS(@NonNull org.eclipse.ocl.xtext.basecs.TypedElementCS object) {
+	public R visitTypedElementCS(org.eclipse.ocl.xtext.basecs.@NonNull TypedElementCS object) {
 		return delegate.visitTypedElementCS(object);
 	}
 
 	@Override
-	public @Nullable R visitTypedRefCS(@NonNull org.eclipse.ocl.xtext.basecs.TypedRefCS object) {
+	public R visitTypedRefCS(org.eclipse.ocl.xtext.basecs.@NonNull TypedRefCS object) {
 		return delegate.visitTypedRefCS(object);
 	}
 
 	@Override
-	public @Nullable R visitTypedTypeRefCS(@NonNull org.eclipse.ocl.xtext.basecs.TypedTypeRefCS object) {
+	public R visitTypedTypeRefCS(org.eclipse.ocl.xtext.basecs.@NonNull TypedTypeRefCS object) {
 		return delegate.visitTypedTypeRefCS(object);
 	}
 
 	@Override
-	public @Nullable R visitWildcardTypeRefCS(@NonNull org.eclipse.ocl.xtext.basecs.WildcardTypeRefCS object) {
+	public R visitWildcardTypeRefCS(org.eclipse.ocl.xtext.basecs.@NonNull WildcardTypeRefCS object) {
 		return delegate.visitWildcardTypeRefCS(object);
 	}
 }

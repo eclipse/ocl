@@ -50,7 +50,7 @@ public class CGLocalVariableImpl extends CGVariableImpl implements CGLocalVariab
 	 * @generated
 	 */
 	@Override
-	public @Nullable <R> R accept(@NonNull CGModelVisitor<R> visitor) {
+	public <R> R accept(@NonNull CGModelVisitor<R> visitor) {
 		return visitor.visitCGLocalVariable(this);
 	}
 

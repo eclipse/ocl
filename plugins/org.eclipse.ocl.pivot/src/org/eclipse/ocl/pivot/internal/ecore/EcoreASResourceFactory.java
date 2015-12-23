@@ -103,7 +103,7 @@ public final class EcoreASResourceFactory extends AbstractASResourceFactory
 	}
 
 	@Override
-	public void initializeEValidatorRegistry(@NonNull org.eclipse.emf.ecore.EValidator.Registry eValidatorRegistry) {
+	public void initializeEValidatorRegistry(org.eclipse.emf.ecore.EValidator.@NonNull Registry eValidatorRegistry) {
 		eValidatorRegistry.put(EcorePackage.eINSTANCE, EcoreOCLEValidator.NO_NEW_LINES);
 	}
 }

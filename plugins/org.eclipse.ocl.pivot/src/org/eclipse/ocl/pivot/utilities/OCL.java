@@ -115,7 +115,7 @@ public class OCL
      * 
      * @see OCL#getResourceSet()
      */
-	public static @NonNull OCL newInstance(@NonNull EPackage.Registry ePackageRegistry) {
+	public static @NonNull OCL newInstance(EPackage.@NonNull Registry ePackageRegistry) {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		resourceSet.setPackageRegistry(ePackageRegistry);
 		return newInstance(NO_PROJECTS, resourceSet);
@@ -435,7 +435,7 @@ public class OCL
 		return environmentFactory.getCompleteEnvironment();
 	}
 
-	public @NonNull org.eclipse.ocl.pivot.Class getContextType(@Nullable Object contextObject) {
+	public org.eclipse.ocl.pivot.@NonNull Class getContextType(@Nullable Object contextObject) {
 		MetamodelManagerInternal metamodelManager = environmentFactory.getMetamodelManager();
 		IdResolver idResolver = getIdResolver();
 		org.eclipse.ocl.pivot.Class staticTypeOf = idResolver.getStaticTypeOf(contextObject);
@@ -466,7 +466,7 @@ public class OCL
 		return modelManager;
 	}
 
-	public @NonNull EPackage.Registry getPackageRegistry() {
+	public EPackage.@NonNull Registry getPackageRegistry() {
 		return ClassUtil.nonNullEMF(getResourceSet().getPackageRegistry());
 	}
 

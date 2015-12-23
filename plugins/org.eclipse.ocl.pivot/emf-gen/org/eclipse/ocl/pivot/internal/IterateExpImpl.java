@@ -649,7 +649,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 		        }
 		        @NonNull /*@Caught*/ Object CAUGHT_isNullFree;
 		        try {
-		            final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_CollectionType_0 = idResolver.getClass(PivotTables.CLSSid_CollectionType, null);
+		            final /*@NonInvalid*/ org.eclipse.ocl.pivot.@NonNull Class TYP_CollectionType_0 = idResolver.getClass(PivotTables.CLSSid_CollectionType, null);
 		            final @Nullable /*@Thrown*/ OCLExpression ownedSource = this.getOwnedSource();
 		            @Nullable /*@Caught*/ Object CAUGHT_ownedSource;
 		            try {
@@ -964,7 +964,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 		        }
 		        @Nullable /*@Caught*/ Object CAUGHT_not;
 		        try {
-		            final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_CollectionType = idResolver.getClass(PivotTables.CLSSid_CollectionType, null);
+		            final /*@NonInvalid*/ org.eclipse.ocl.pivot.@NonNull Class TYP_CollectionType = idResolver.getClass(PivotTables.CLSSid_CollectionType, null);
 		            final @Nullable /*@Thrown*/ OCLExpression ownedSource = this.getOwnedSource();
 		            @Nullable /*@Caught*/ Object CAUGHT_ownedSource;
 		            try {

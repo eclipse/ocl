@@ -31,7 +31,7 @@ public class NsURIPackageIdImpl extends AbstractPackageIdImpl implements NsURIPa
 	}
 
 	@Override
-	public @Nullable <R> R accept(@NonNull IdVisitor<R> visitor) {
+	public <R> R accept(@NonNull IdVisitor<R> visitor) {
 		return visitor.visitNsURIPackageId(this);
 	}
 

@@ -42,17 +42,17 @@ public abstract class AbstractOCLinEcoreCSLeft2RightVisitor
 	}
 
 	@Override
-	public @Nullable Element visitOCLinEcoreConstraintCS(@NonNull org.eclipse.ocl.xtext.oclinecorecs.OCLinEcoreConstraintCS csElement) {
+	public @Nullable Element visitOCLinEcoreConstraintCS(org.eclipse.ocl.xtext.oclinecorecs.@NonNull OCLinEcoreConstraintCS csElement) {
 		return visitConstraintCS(csElement);
 	}
 
 	@Override
-	public @Nullable Element visitSysMLCS(@NonNull org.eclipse.ocl.xtext.oclinecorecs.SysMLCS csElement) {
+	public @Nullable Element visitSysMLCS(org.eclipse.ocl.xtext.oclinecorecs.@NonNull SysMLCS csElement) {
 		return visitAnnotationElementCS(csElement);
 	}
 
 	@Override
-	public @Nullable Element visitTopLevelCS(@NonNull org.eclipse.ocl.xtext.oclinecorecs.TopLevelCS csElement) {
+	public @Nullable Element visitTopLevelCS(org.eclipse.ocl.xtext.oclinecorecs.@NonNull TopLevelCS csElement) {
 		return visitRootPackageCS(csElement);
 	}
 }

@@ -16,22 +16,21 @@
 package	org.eclipse.ocl.xtext.completeoclcs.util;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 
 /**
  */
 public interface CompleteOCLCSVisitor<R> extends org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor<R>
 {
-	@Nullable R visitClassifierContextDeclCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.ClassifierContextDeclCS object);
-	@Nullable R visitCompleteOCLDocumentCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.CompleteOCLDocumentCS object);
-	@Nullable R visitContextDeclCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.ContextDeclCS object);
-	@Nullable R visitDefCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.DefCS object);
-	@Nullable R visitDefOperationCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.DefOperationCS object);
-	@Nullable R visitDefPropertyCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.DefPropertyCS object);
-	@Nullable R visitFeatureContextDeclCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.FeatureContextDeclCS object);
-	@Nullable R visitOCLMessageArgCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.OCLMessageArgCS object);
-	@Nullable R visitOperationContextDeclCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.OperationContextDeclCS object);
-	@Nullable R visitPackageDeclarationCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.PackageDeclarationCS object);
-	@Nullable R visitPathNameDeclCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.PathNameDeclCS object);
-	@Nullable R visitPropertyContextDeclCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.PropertyContextDeclCS object);
+	R visitClassifierContextDeclCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull ClassifierContextDeclCS object);
+	R visitCompleteOCLDocumentCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull CompleteOCLDocumentCS object);
+	R visitContextDeclCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull ContextDeclCS object);
+	R visitDefCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull DefCS object);
+	R visitDefOperationCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull DefOperationCS object);
+	R visitDefPropertyCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull DefPropertyCS object);
+	R visitFeatureContextDeclCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull FeatureContextDeclCS object);
+	R visitOCLMessageArgCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull OCLMessageArgCS object);
+	R visitOperationContextDeclCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull OperationContextDeclCS object);
+	R visitPackageDeclarationCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull PackageDeclarationCS object);
+	R visitPathNameDeclCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull PathNameDeclCS object);
+	R visitPropertyContextDeclCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull PropertyContextDeclCS object);
 }

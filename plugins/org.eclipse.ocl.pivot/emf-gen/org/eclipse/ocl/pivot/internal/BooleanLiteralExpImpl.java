@@ -187,7 +187,7 @@ public class BooleanLiteralExpImpl
 		else {
 		    @NonNull /*@Caught*/ Object CAUGHT_status;
 		    try {
-		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_Boolean = idResolver.getClass(TypeId.BOOLEAN, null);
+		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.@NonNull Class TYP_Boolean = idResolver.getClass(TypeId.BOOLEAN, null);
 		        final @Nullable /*@Thrown*/ Type type = this.getType();
 		        final /*@Thrown*/ boolean status = (type != null) ? (type.getTypeId() == TYP_Boolean.getTypeId()) : false;
 		        CAUGHT_status = status;

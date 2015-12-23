@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.xtext.basecs.BaseCSPackage;
 import org.eclipse.ocl.xtext.basecs.TemplateParameterCS;
 import org.eclipse.ocl.xtext.basecs.TemplateSignatureCS;
@@ -262,7 +261,7 @@ public class TemplateSignatureCSImpl extends ModelElementCSImpl implements Templ
 	 * @generated
 	 */
 	@Override
-	public @Nullable <R> R accept(@NonNull BaseCSVisitor<R> visitor) {
+	public <R> R accept(@NonNull BaseCSVisitor<R> visitor) {
 		return visitor.visitTemplateSignatureCS(this);
 	}
 } //TemplateSignatureCSImpl

@@ -13,6 +13,7 @@ package org.eclipse.ocl.pivot.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Annotation;
 import org.eclipse.ocl.pivot.AnyType;
 import org.eclipse.ocl.pivot.AssociationClass;
@@ -150,7 +151,7 @@ import org.eclipse.ocl.pivot.utilities.Pivotable;
  * @see org.eclipse.ocl.pivot.PivotPackage
  * @generated
  */
-public class PivotSwitch<T> extends Switch<T> {
+public class PivotSwitch<@Nullable T> extends Switch<T> {
 
 	/**
 	 * The cached model package

@@ -153,7 +153,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 		}
 
 		@Override
-		protected @NonNull Iterable<Operation> getInnerIterable(@NonNull org.eclipse.ocl.pivot.Class model) {
+		protected @NonNull Iterable<Operation> getInnerIterable(org.eclipse.ocl.pivot.@NonNull Class model) {
 			return ClassUtil.nonNullEMF(model.getOwnedOperations());
 		}
 
@@ -178,7 +178,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 		}
 
 		@Override
-		protected @NonNull Iterable<Property> getInnerIterable(@NonNull org.eclipse.ocl.pivot.Class model) {
+		protected @NonNull Iterable<Property> getInnerIterable(org.eclipse.ocl.pivot.@NonNull Class model) {
 			return ClassUtil.nonNullEMF(model.getOwnedProperties());
 		}
 
@@ -201,7 +201,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 		}
 
 		@Override
-		protected @NonNull Iterable<Constraint> getInnerIterable(@NonNull org.eclipse.ocl.pivot.Class model) {
+		protected @NonNull Iterable<Constraint> getInnerIterable(org.eclipse.ocl.pivot.@NonNull Class model) {
 			return ClassUtil.nonNullEMF(model.getOwnedInvariants());
 		}
 	}
@@ -691,7 +691,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 		return asUnlimitedNatural;
 	}
 
-	public @NonNull WildcardType createWildcardType(@Nullable org.eclipse.ocl.pivot.Class lowerBound, @Nullable org.eclipse.ocl.pivot.Class upperBound) {		// FIXME move to AbstractEnvironmentFactory
+	public @NonNull WildcardType createWildcardType(org.eclipse.ocl.pivot.@Nullable Class lowerBound, org.eclipse.ocl.pivot.@Nullable Class upperBound) {		// FIXME move to AbstractEnvironmentFactory
 		WildcardType wildcardType = PivotFactory.eINSTANCE.createWildcardType();
 		wildcardType.setName("?");			// Name is not significant
 		wildcardType.setLowerBound(lowerBound != null ? lowerBound : standardLibrary.getOclAnyType());
@@ -782,7 +782,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 	 * Return the pivot model class for className with the Pivot Model.
 	 */
 	@Override
-	public @Nullable org.eclipse.ocl.pivot.Class getASClass(@NonNull String className) {
+	public org.eclipse.ocl.pivot.@Nullable Class getASClass(@NonNull String className) {
 		if (asMetamodel == null) {
 			getASmetamodel();
 			if (asMetamodel == null) {
@@ -836,7 +836,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 	}
 
 	@Override
-	public @Nullable org.eclipse.ocl.pivot.Package getASmetamodel() {
+	public org.eclipse.ocl.pivot.@Nullable Package getASmetamodel() {
 		if ((asMetamodel == null) && autoLoadASmetamodel) {
 			org.eclipse.ocl.pivot.Package stdlibPackage = null;
 			standardLibrary.getOclAnyType();				// Load a default library if necessary.
@@ -870,7 +870,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 		Set<Constraint> knownInvariants = new HashSet<Constraint>();
 		for (CompleteClass superType : getAllSuperCompleteClasses(pivotType)) {
 			if (superType != null) {
-				for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Class partialSuperType : superType.getPartialClasses()) {
+				for (@SuppressWarnings("null")org.eclipse.ocl.pivot.@NonNull Class partialSuperType : superType.getPartialClasses()) {
 					org.eclipse.ocl.pivot.Package partialPackage = partialSuperType.getOwningPackage();
 					if (!(partialPackage instanceof PackageImpl) || !((PackageImpl)partialPackage).isIgnoreInvariants()) {
 						knownInvariants.addAll(partialSuperType.getOwnedInvariants());
@@ -929,7 +929,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 	}
 
 	@Deprecated
-	public @NonNull Iterable<org.eclipse.ocl.pivot.Class> getAllTypes(@NonNull org.eclipse.ocl.pivot.Class pivotType) {
+	public @NonNull Iterable<org.eclipse.ocl.pivot.Class> getAllTypes(org.eclipse.ocl.pivot.@NonNull Class pivotType) {
 //		if (pivotType == null) {
 //			return EMPTY_TYPE_LIST;
 //		}
@@ -1000,12 +1000,12 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 	 * @deprecated add isNullFree argument
 	 */
 	@Deprecated
-	public @NonNull org.eclipse.ocl.pivot.Class getCollectionType(@NonNull String collectionTypeName, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+	public org.eclipse.ocl.pivot.@NonNull Class getCollectionType(@NonNull String collectionTypeName, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		return getCollectionType(collectionTypeName, elementType, false, lower, upper);
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getCollectionType(@NonNull String collectionTypeName, @NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+	public org.eclipse.ocl.pivot.@NonNull Class getCollectionType(@NonNull String collectionTypeName, @NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		if (elementType.eIsProxy()) {
 			return standardLibrary.getOclInvalidType();
 		}
@@ -1065,7 +1065,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 	}
 	
 	@Override
-	public @NonNull CompletePackage getCompletePackage(@NonNull org.eclipse.ocl.pivot.Package asPackage) {
+	public @NonNull CompletePackage getCompletePackage(org.eclipse.ocl.pivot.@NonNull Package asPackage) {
 		if (!libraryLoadInProgress && asMetamodel == null) {
 			getASmetamodel();
 		}
@@ -1158,7 +1158,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 	 * class/package name hierarchy. THis is typically used to create a merge contribution
 	 * for thatClass in thisModel avoiding the need to modify thatClass.
 	 */
-	public org.eclipse.ocl.pivot.Class getEquivalentClass(@NonNull Model thisModel, @NonNull org.eclipse.ocl.pivot.Class thatClass) {
+	public org.eclipse.ocl.pivot.Class getEquivalentClass(@NonNull Model thisModel, org.eclipse.ocl.pivot.@NonNull Class thatClass) {
 		Model thatModel = PivotUtil.getContainingModel(thatClass);
 		if (thisModel == thatModel) {
 			return thatClass;
@@ -1351,7 +1351,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 		return precedenceManager.getInfixPrecedence(operatorName);
 	}
 
-	public @NonNull CompleteInheritance getInheritance(@NonNull org.eclipse.ocl.pivot.Class type) {
+	public @NonNull CompleteInheritance getInheritance(org.eclipse.ocl.pivot.@NonNull Class type) {
 		org.eclipse.ocl.pivot.Class type1 = getPrimaryClass(type);
 		org.eclipse.ocl.pivot.Class unspecializedType = (org.eclipse.ocl.pivot.Class) type1.getUnspecializedElement();
 		org.eclipse.ocl.pivot.Class theType = unspecializedType != null ? unspecializedType : type1;
@@ -1362,7 +1362,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 	public @NonNull List<Library> getLibraries() { return asLibraries; }
 	public @Nullable Resource getLibraryResource() { return asLibraryResource; }
 
-	public @Nullable org.eclipse.ocl.pivot.Class getLibraryType(@NonNull String string, @NonNull List<? extends Type> templateArguments) {
+	public org.eclipse.ocl.pivot.@Nullable Class getLibraryType(@NonNull String string, @NonNull List<? extends Type> templateArguments) {
 		org.eclipse.ocl.pivot.Class libraryType = standardLibrary.getRequiredLibraryType(string);
 		return getLibraryType(libraryType, templateArguments);
 	}
@@ -1406,7 +1406,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 		}
 	}
 
-	public @NonNull Iterable<Constraint> getLocalInvariants(@NonNull org.eclipse.ocl.pivot.Class type) {
+	public @NonNull Iterable<Constraint> getLocalInvariants(org.eclipse.ocl.pivot.@NonNull Class type) {
 		type = PivotUtil.getUnspecializedTemplateableElement(type);
 		return new CompleteElementInvariantsIterable(getAllTypes(type));
 	}
@@ -1415,28 +1415,28 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 		return lockingAnnotation;
 	}
 
-	public @NonNull org.eclipse.ocl.pivot.Class getMapType(@NonNull String mapTypeName, @NonNull Type keyType, @NonNull Type valueType) {
+	public org.eclipse.ocl.pivot.@NonNull Class getMapType(@NonNull String mapTypeName, @NonNull Type keyType, @NonNull Type valueType) {
 		if (keyType.eIsProxy() || valueType.eIsProxy()) {
 			return standardLibrary.getOclInvalidType();
 		}
 		return completeEnvironment.getMapType(standardLibrary.getRequiredLibraryType(mapTypeName), keyType, valueType);
 	}
 
-	public @NonNull Iterable<Operation> getMemberOperations(@NonNull org.eclipse.ocl.pivot.Class type, boolean selectStatic) {
+	public @NonNull Iterable<Operation> getMemberOperations(org.eclipse.ocl.pivot.@NonNull Class type, boolean selectStatic) {
 		type = PivotUtil.getUnspecializedTemplateableElement(type);
 		return new CompleteTypeOperationsIterable(getAllTypes(type), selectStatic);
 	}
 
-	public @NonNull Iterable<? extends CompletePackage> getMemberPackages(@NonNull org.eclipse.ocl.pivot.Package pkg) {
+	public @NonNull Iterable<? extends CompletePackage> getMemberPackages(org.eclipse.ocl.pivot.@NonNull Package pkg) {
 		return getCompletePackage(pkg).getOwnedCompletePackages();
 	}
 
-	public @NonNull Iterable<Property> getMemberProperties(@NonNull org.eclipse.ocl.pivot.Class type, boolean selectStatic) {
+	public @NonNull Iterable<Property> getMemberProperties(org.eclipse.ocl.pivot.@NonNull Class type, boolean selectStatic) {
 		type = PivotUtil.getUnspecializedTemplateableElement(type);
 		return new CompleteClassPropertiesIterable(getAllTypes(type), selectStatic);
 	}
 
-	public @NonNull org.eclipse.ocl.pivot.Class getMetaclass(@NonNull Type domainInstanceType) {
+	public org.eclipse.ocl.pivot.@NonNull Class getMetaclass(@NonNull Type domainInstanceType) {
 		org.eclipse.ocl.pivot.Class metaType = null;
 		if (domainInstanceType instanceof CollectionType) {
 			CollectionType collectionType = (CollectionType)domainInstanceType;
@@ -1483,7 +1483,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 		return singletonList;
 	}
 
-	public @NonNull Iterable<? extends org.eclipse.ocl.pivot.Package> getPartialPackages(@NonNull org.eclipse.ocl.pivot.Package pkg, boolean loadASmetamodelFirst) {
+	public @NonNull Iterable<? extends org.eclipse.ocl.pivot.Package> getPartialPackages(org.eclipse.ocl.pivot.@NonNull Package pkg, boolean loadASmetamodelFirst) {
 		if (!libraryLoadInProgress && loadASmetamodelFirst && (asMetamodel == null)) {
 			getASmetamodel();
 		}
@@ -1553,7 +1553,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 	/**
 	 * Lookup a primary package by its URI and optionally a sub-package path.
 	 */
-	public @Nullable org.eclipse.ocl.pivot.Package getPrimaryPackage(@NonNull String nsURI, String... subPackagePath) {
+	public org.eclipse.ocl.pivot.@Nullable Package getPrimaryPackage(@NonNull String nsURI, String... subPackagePath) {
 		CompletePackage completePackage = completeModel.getCompletePackageByURI(nsURI);
 		if (completePackage == null) {
 			return null;
@@ -1575,7 +1575,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 	/**
 	 * Lookup a primary sub-package.
 	 *
-	public @Nullable PackageServer getPrimaryPackage(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String subPackageName) {
+	public @Nullable PackageServer getPrimaryPackage(org.eclipse.ocl.pivot.@NonNull Package parentPackage, @NonNull String subPackageName) {
 		PackageTracker packageTracker = packageManager.findPackageTracker(parentPackage);
 		if (packageTracker != null) {
 			return packageTracker.getPackageServer().getMemberPackage(subPackageName);
@@ -1586,7 +1586,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 	} */
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Package getPrimaryPackage(@NonNull org.eclipse.ocl.pivot.Package aPackage) {
+	public org.eclipse.ocl.pivot.@NonNull Package getPrimaryPackage(org.eclipse.ocl.pivot.@NonNull Package aPackage) {
 		return ClassUtil.nonNullState(getCompletePackage(aPackage).getPrimaryPackage());
 	}
 
@@ -1623,7 +1623,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getPrimaryClass(@NonNull org.eclipse.ocl.pivot.Class type) {
+	public org.eclipse.ocl.pivot.@NonNull Class getPrimaryClass(org.eclipse.ocl.pivot.@NonNull Class type) {
 		if (/*(type instanceof Type) &&*/ !isTypeServeable(type)) {
 			return type;
 		}
@@ -1653,7 +1653,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 	}
 
 	@Override
-	public @Nullable org.eclipse.ocl.pivot.Class getPrimaryType(@NonNull String nsURI, @NonNull String path, String... extraPath) {
+	public org.eclipse.ocl.pivot.@Nullable Class getPrimaryType(@NonNull String nsURI, @NonNull String path, String... extraPath) {
 		CompletePackage completePackage = completeModel.getCompletePackageByURI(nsURI);
 		if (completePackage == null) {
 			return null;
@@ -1709,7 +1709,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 		return standardLibrary;
 	}
 	
-	public Iterable<CompleteClass> getSuperCompleteClasses(@NonNull org.eclipse.ocl.pivot.Class pivotType) {
+	public Iterable<CompleteClass> getSuperCompleteClasses(org.eclipse.ocl.pivot.@NonNull Class pivotType) {
 		if (!libraryLoadInProgress && (asMetamodel == null) && (pivotType == standardLibrary.getClassType()))  {
 			getASmetamodel();
 		}
@@ -1861,7 +1861,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 		return libraryLoadInProgress;	
 	}
 
-	public boolean isSuperClassOf(@NonNull org.eclipse.ocl.pivot.Class unspecializedFirstType, @NonNull org.eclipse.ocl.pivot.Class secondType) {
+	public boolean isSuperClassOf(org.eclipse.ocl.pivot.@NonNull Class unspecializedFirstType, org.eclipse.ocl.pivot.@NonNull Class secondType) {
 		CompleteClass firstCompleteClass = getCompleteClass(unspecializedFirstType);
 		CompleteClass secondCompleteClass = getCompleteClass(secondType);
 		return isSuperCompleteClassOf(firstCompleteClass, secondCompleteClass);
@@ -1923,7 +1923,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 	 * 
 	 * @param asLibrary
 	 */
-	protected void loadASmetamodel(@NonNull org.eclipse.ocl.pivot.Package asLibrary) {
+	protected void loadASmetamodel(org.eclipse.ocl.pivot.@NonNull Package asLibrary) {
 		for (org.eclipse.ocl.pivot.Package libPackage : getPartialPackages(asLibrary, false)) {
 			if (NameUtil.getNameable(libPackage.getOwnedClasses(), PivotPackage.Literals.ELEMENT.getName()) != null) {
 				setASmetamodel(libPackage);	// Custom meta-model

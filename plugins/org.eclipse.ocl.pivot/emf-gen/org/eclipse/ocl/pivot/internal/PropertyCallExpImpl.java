@@ -562,7 +562,7 @@ public class PropertyCallExpImpl
 		                safe_type_source = type;
 		            }
 		            @SuppressWarnings("null")
-		            final @NonNull /*@Thrown*/ org.eclipse.ocl.pivot.Class getSpecializedReferredPropertyOwningType = this.getSpecializedReferredPropertyOwningType();
+		            final /*@Thrown*/ org.eclipse.ocl.pivot.@NonNull Class getSpecializedReferredPropertyOwningType = this.getSpecializedReferredPropertyOwningType();
 		            final /*@Thrown*/ boolean conformsTo = OclTypeConformsToOperation.INSTANCE.evaluate(executor, safe_type_source, getSpecializedReferredPropertyOwningType).booleanValue();
 		            CAUGHT_conformsTo = conformsTo;
 		        }
@@ -805,7 +805,7 @@ public class PropertyCallExpImpl
 		    try {
 		        final @Nullable /*@Thrown*/ Type type = this.getType();
 		        @SuppressWarnings("null")
-		        final @NonNull /*@Thrown*/ org.eclipse.ocl.pivot.Class getSpecializedReferredPropertyType = this.getSpecializedReferredPropertyType();
+		        final /*@Thrown*/ org.eclipse.ocl.pivot.@NonNull Class getSpecializedReferredPropertyType = this.getSpecializedReferredPropertyType();
 		        final /*@Thrown*/ boolean status = (type != null) ? (type.getTypeId() == getSpecializedReferredPropertyType.getTypeId()) : false;
 		        CAUGHT_status = status;
 		    }

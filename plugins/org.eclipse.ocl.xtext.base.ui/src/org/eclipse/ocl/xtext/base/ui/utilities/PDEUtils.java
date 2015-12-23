@@ -79,7 +79,7 @@ public class PDEUtils
 		}
 	}
 
-	private static @Nullable CompleteOCLRegistry.Registration readCompleteOCLRegistryExtensionPoint(
+	private static CompleteOCLRegistry.@Nullable Registration readCompleteOCLRegistryExtensionPoint(
 			@NonNull URI location, @NonNull IPluginElement documentElement) {
 		IPluginAttribute resourceAttribute = documentElement.getAttribute("resource");
 		if (resourceAttribute == null) {

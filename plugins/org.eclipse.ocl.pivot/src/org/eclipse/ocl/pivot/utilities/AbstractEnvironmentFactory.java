@@ -210,7 +210,7 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	}
 
 	@Override
-	public void configureLoadStrategy(@NonNull ProjectManager.IResourceLoadStrategy packageLoadStrategy, @Nullable ProjectManager.IConflictHandler conflictHandler) {
+	public void configureLoadStrategy(ProjectManager.@NonNull IResourceLoadStrategy packageLoadStrategy, ProjectManager.@Nullable IConflictHandler conflictHandler) {
 		ResourceSet externalResourceSet = getResourceSet();
 		projectManager.configure(externalResourceSet, packageLoadStrategy, conflictHandler);
 	}
@@ -490,8 +490,8 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public <T> T getAdapter(java.lang.Class<T> adapterType) {
-		T result;
+	public <T> @Nullable T getAdapter(java.lang.Class<T> adapterType) {
+		@Nullable T result;
 		
 		if (adapterType.isAssignableFrom(getClass())) {
 			result = (T) this;
@@ -511,7 +511,7 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
      * @return the user model's classifier for this context object, or the
      *     context itself if it is a classifier
      */
-	protected @NonNull org.eclipse.ocl.pivot.Class getClassifier(@NonNull Object context) {
+	protected org.eclipse.ocl.pivot.@NonNull Class getClassifier(@NonNull Object context) {
 		PivotMetamodelManager metamodelManager = getMetamodelManager();
 		org.eclipse.ocl.pivot.Class dClass = getIdResolver().getStaticTypeOf(context);
 		return metamodelManager.getPrimaryClass(dClass);
@@ -587,7 +587,7 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	}
 
 	@Override
-	public @Nullable StatusCodes.Severity getSeverity(@Nullable Object validationKey) {
+	public StatusCodes.@Nullable Severity getSeverity(@Nullable Object validationKey) {
 		Map<Object, StatusCodes.Severity> validationKey2severity2 = validationKey2severity;
 		if (validationKey2severity2 == null) {
 			validationKey2severity = validationKey2severity2 = createValidationKey2severityMap();
@@ -677,7 +677,7 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	 * Configure safe navigation validation severities.
 	 */
 	@Override
-	public void setSafeNavigationValidationSeverity(@NonNull StatusCodes.Severity severity) {
+	public void setSafeNavigationValidationSeverity(StatusCodes.@NonNull Severity severity) {
 		for (String key : PivotValidationOptions.safeValidationName2severityOption.keySet()) {
 			if (key != null) {
 				setSeverity(key, severity);
@@ -686,7 +686,7 @@ public abstract class AbstractEnvironmentFactory extends AbstractCustomizable im
 	}
 
 	@Override
-	public synchronized @Nullable StatusCodes.Severity setSeverity(@NonNull Object validationKey, StatusCodes.Severity severity) {
+	public synchronized StatusCodes.@Nullable Severity setSeverity(@NonNull Object validationKey, StatusCodes.Severity severity) {
 		Map<Object, StatusCodes.Severity> validationKey2severity2 = validationKey2severity;
 		if (validationKey2severity2 == null) {
 			validationKey2severity = validationKey2severity2 = createValidationKey2severityMap();

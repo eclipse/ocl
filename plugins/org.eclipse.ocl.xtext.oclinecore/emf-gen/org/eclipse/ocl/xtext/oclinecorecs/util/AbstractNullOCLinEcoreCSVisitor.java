@@ -22,7 +22,7 @@ import org.eclipse.jdt.annotation.Nullable;
  * An AbstractNullOCLinEcoreCSVisitor provides a default implementation for each
  * visitXxx method that returns null.
  */
-public abstract class AbstractNullOCLinEcoreCSVisitor<R, C>
+public abstract class AbstractNullOCLinEcoreCSVisitor<@Nullable R, C>
 	extends org.eclipse.ocl.xtext.essentialoclcs.util.AbstractNullEssentialOCLCSVisitor<R, C> implements OCLinEcoreCSVisitor<R>
 {
 	/**
@@ -35,17 +35,17 @@ public abstract class AbstractNullOCLinEcoreCSVisitor<R, C>
 	}	
 
 	@Override
-	public @Nullable R visitOCLinEcoreConstraintCS(@NonNull org.eclipse.ocl.xtext.oclinecorecs.OCLinEcoreConstraintCS object) {
+	public R visitOCLinEcoreConstraintCS(org.eclipse.ocl.xtext.oclinecorecs.@NonNull OCLinEcoreConstraintCS object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitSysMLCS(@NonNull org.eclipse.ocl.xtext.oclinecorecs.SysMLCS object) {
+	public R visitSysMLCS(org.eclipse.ocl.xtext.oclinecorecs.@NonNull SysMLCS object) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visitTopLevelCS(@NonNull org.eclipse.ocl.xtext.oclinecorecs.TopLevelCS object) {
+	public R visitTopLevelCS(org.eclipse.ocl.xtext.oclinecorecs.@NonNull TopLevelCS object) {
 		return null;
 	}
 }

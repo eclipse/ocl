@@ -48,7 +48,7 @@ public class SortedByIteration extends AbstractIteration
 		protected final @NonNull CollectionTypeId typeId;
 		private final @NonNull Executor executor;
 		private final boolean isUnique;
-		private final @NonNull LibraryBinaryOperation.LibraryBinaryOperationExtension implementation;
+		private final LibraryBinaryOperation.@NonNull LibraryBinaryOperationExtension implementation;
 		private final @NonNull Map<Object, Object> content = new HashMap<Object, Object>();	// User object to sortedBy value
 		private Map<Object, Integer> repeatCounts = null;						// Repeat counts for non-unique content
 
@@ -158,7 +158,7 @@ public class SortedByIteration extends AbstractIteration
 	/** @deprecated use Executor */
 	@Deprecated
 	@Override
-	public @NonNull SortedByIteration.SortingValue createAccumulatorValue(@NonNull Evaluator evaluator, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
+	public SortedByIteration.@NonNull SortingValue createAccumulatorValue(@NonNull Evaluator evaluator, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
 		return createAccumulatorValue(ValueUtil.getExecutor(evaluator), accumulatorTypeId, bodyTypeId);
 	}
 	
@@ -166,7 +166,7 @@ public class SortedByIteration extends AbstractIteration
 	 * @since 1.1
 	 */
 	@Override
-	public @NonNull SortedByIteration.SortingValue createAccumulatorValue(@NonNull Executor executor, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
+	public SortedByIteration.@NonNull SortingValue createAccumulatorValue(@NonNull Executor executor, @NonNull TypeId accumulatorTypeId, @NonNull TypeId bodyTypeId) {
 		StandardLibrary standardLibrary = executor.getStandardLibrary();
 		CompleteInheritance comparableType = standardLibrary.getOclComparableType().getInheritance(standardLibrary);
 		CompleteInheritance selfType = standardLibrary.getOclSelfType().getInheritance(standardLibrary);

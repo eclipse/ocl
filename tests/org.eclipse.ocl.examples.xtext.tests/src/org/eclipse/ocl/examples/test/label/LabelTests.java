@@ -22,7 +22,7 @@ import org.eclipse.ocl.pivot.utilities.NameUtil;
 
 public class LabelTests extends TestCase
 {
-	protected @NonNull ILabelGenerator.Registry registry = new LabelGeneratorRegistry(ILabelGenerator.Registry.INSTANCE);
+	protected ILabelGenerator.@NonNull Registry registry = new LabelGeneratorRegistry(ILabelGenerator.Registry.INSTANCE);
 	
 	@Override
 	public void setUp() {

@@ -31,7 +31,7 @@ public class GeneralizedTupleTypeIdImpl extends AbstractTypeId implements TupleT
 	}
 
 	@Override
-	public @Nullable <R> R accept(@NonNull IdVisitor<R> visitor) {
+	public <R> R accept(@NonNull IdVisitor<R> visitor) {
 		return visitor.visitTupleTypeId(this);
 	}
 

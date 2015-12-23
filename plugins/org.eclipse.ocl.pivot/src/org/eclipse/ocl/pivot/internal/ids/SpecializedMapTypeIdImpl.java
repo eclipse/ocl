@@ -27,7 +27,7 @@ public class SpecializedMapTypeIdImpl extends AbstractSpecializedIdImpl<MapTypeI
 	}
 
 	@Override
-	public @Nullable <R> R accept(@NonNull IdVisitor<R> visitor) {
+	public <R> R accept(@NonNull IdVisitor<R> visitor) {
 		return visitor.visitMapTypeId(this);
 	}
 

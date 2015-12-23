@@ -87,7 +87,7 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
 	 * Configure the PackageRegistry associated with the (external) ResourceSet to use a packageLoadStrategy and conflictHandler when
 	 * resolving namespace and platform URIs.
 	 */
-	void configureLoadStrategy(@NonNull ProjectManager.IResourceLoadStrategy packageLoadStrategy, @Nullable ProjectManager.IConflictHandler conflictHandler);
+	void configureLoadStrategy(ProjectManager.@NonNull IResourceLoadStrategy packageLoadStrategy, ProjectManager.@Nullable IConflictHandler conflictHandler);
 
 	/**
 	 * Create and initialize the AS ResourceSet used by metamodelManager to contain the AS forms of CS and Ecore/UML resources.
@@ -154,5 +154,5 @@ public interface EnvironmentFactoryInternal extends EnvironmentFactory
 	 */
 	void setProject(@Nullable IProject project);
 
-	void setSafeNavigationValidationSeverity(@NonNull StatusCodes.Severity severity);
+	void setSafeNavigationValidationSeverity(StatusCodes.@NonNull Severity severity);
 }

@@ -75,7 +75,7 @@ public abstract class LazyModelManager implements ModelManager {
 	 * @param type a class in the model
 	 */
 	@Override
-	public @NonNull Set<EObject> get(@NonNull org.eclipse.ocl.pivot.Class type) {
+	public @NonNull Set<EObject> get(org.eclipse.ocl.pivot.@NonNull Class type) {
 		// TODO: Optimize by parsing ahead of time to find all EClasses that we will query
 		Set<EObject> result = modelManager.get(type);		
 		if (result == null) {

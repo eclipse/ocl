@@ -22,7 +22,7 @@ import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 
 public class PivotQueries
 {
-	public static @NonNull LinkedHashSet<Operation> getOperations(@NonNull org.eclipse.ocl.pivot.Class type) {
+	public static @NonNull LinkedHashSet<Operation> getOperations(org.eclipse.ocl.pivot.@NonNull Class type) {
 		EnvironmentFactory environmentFactory = ClassUtil.nonNullState(PivotUtilInternal.findEnvironmentFactory(type));
 		PivotMetamodelManager metamodelManager = (PivotMetamodelManager) environmentFactory.getMetamodelManager();
 		LinkedHashSet<Operation> operations = new LinkedHashSet<Operation>();
@@ -35,7 +35,7 @@ public class PivotQueries
 		return operations;
 	}
 	
-	public static @NonNull LinkedHashSet<Property> getProperties(@NonNull org.eclipse.ocl.pivot.Class type) {
+	public static @NonNull LinkedHashSet<Property> getProperties(org.eclipse.ocl.pivot.@NonNull Class type) {
 		EnvironmentFactory environmentFactory = ClassUtil.nonNullState(PivotUtilInternal.findEnvironmentFactory(type));
 		PivotMetamodelManager metamodelManager = (PivotMetamodelManager) environmentFactory.getMetamodelManager();
 		LinkedHashSet<Property> properties = new LinkedHashSet<Property>();

@@ -72,7 +72,7 @@ public class ModelAnalysis
 		}
 	}
 
-	protected final @NonNull UML2AS.Outer converter;
+	protected final UML2AS.@NonNull Outer converter;
 	protected final @NonNull ProfileAnalysis profileAnalysis;
 	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
 
@@ -111,7 +111,7 @@ public class ModelAnalysis
 	 */
 	private @Nullable List<EObject> umlStereotypeApplications = null;
 
-	public ModelAnalysis(@NonNull UML2AS.Outer converter, @NonNull ProfileAnalysis profileAnalysis) {
+	public ModelAnalysis(UML2AS.@NonNull Outer converter, @NonNull ProfileAnalysis profileAnalysis) {
 		this.converter = converter;
 		this.profileAnalysis = profileAnalysis;
 		this.environmentFactory = converter.getEnvironmentFactory();
@@ -418,7 +418,7 @@ public class ModelAnalysis
 		return stereotype2extension;
 	}
 
-	protected void printMetatypes2StereotypeExtensions(@NonNull org.eclipse.ocl.pivot.Package asPackage,
+	protected void printMetatypes2StereotypeExtensions(org.eclipse.ocl.pivot.@NonNull Package asPackage,
 			@NonNull Map<Type, Set<StereotypeExtender>> metatype2typeExtensions) {
 		if (UML2AS.TYPE_EXTENSIONS.isActive()) {
 			StringBuffer s = new StringBuffer();
@@ -454,7 +454,7 @@ public class ModelAnalysis
 		Map<Element, List<EObject>> asElement2umlStereotypeApplications = new HashMap<Element, List<EObject>>();
 		for (@SuppressWarnings("null")@NonNull EObject umlStereotypeApplication : umlStereotypeApplication2umlStereotypedElements.keySet()) {
 			@SuppressWarnings("null")@NonNull List<org.eclipse.uml2.uml.Element> umlStereotypedElements = umlStereotypeApplication2umlStereotypedElements.get(umlStereotypeApplication);
-			for (@SuppressWarnings("null")@NonNull org.eclipse.uml2.uml.Element umlStereotypedElement : umlStereotypedElements) {
+			for (@SuppressWarnings("null")org.eclipse.uml2.uml.@NonNull Element umlStereotypedElement : umlStereotypedElements) {
 				Element asStereotypedElement = converter.getCreated(Element.class, umlStereotypedElement);
 				if (asStereotypedElement != null) {
 					List<EObject> umlPerElementStereotypeApplications = asElement2umlStereotypeApplications.get(asStereotypedElement);

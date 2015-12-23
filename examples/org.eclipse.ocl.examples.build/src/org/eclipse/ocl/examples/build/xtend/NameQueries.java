@@ -96,7 +96,7 @@ public class NameQueries
 		return "\"" + property.getName() + "\"";
 	}
 	
-	public @NonNull String getEcoreLiteral(@NonNull org.eclipse.ocl.pivot.Class type) {
+	public @NonNull String getEcoreLiteral(org.eclipse.ocl.pivot.@NonNull Class type) {
 		String nsURI = ClassUtil.nonNullModel(type.getOwningPackage().getURI());
 		GenPackage genPackage = ClassUtil.nonNullState(metamodelManager).getGenPackage(nsURI);
 		if (genPackage != null) {
@@ -105,7 +105,7 @@ public class NameQueries
 		return "\"" + type.getName() + "\"";
 	}
 	
-	public @Nullable String getEcoreQualifiedPackageInterfaceName(@NonNull org.eclipse.ocl.pivot.Package pkge) {
+	public @Nullable String getEcoreQualifiedPackageInterfaceName(org.eclipse.ocl.pivot.@NonNull Package pkge) {
 		String nsURI = ClassUtil.nonNullModel(pkge.getURI());
 		GenPackage genPackage = ClassUtil.nonNullState(metamodelManager).getGenPackage(nsURI);
 		if (genPackage == null) {

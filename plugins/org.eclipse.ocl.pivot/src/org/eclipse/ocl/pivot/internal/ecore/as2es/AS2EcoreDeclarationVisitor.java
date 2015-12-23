@@ -197,7 +197,7 @@ public class AS2EcoreDeclarationVisitor
 		this.delegateInstaller = context.getDelegateInstaller();
 	}
 
-	protected void copyClassifier(@NonNull EClassifier eClassifier, @NonNull org.eclipse.ocl.pivot.Class pivotType) {
+	protected void copyClassifier(@NonNull EClassifier eClassifier, org.eclipse.ocl.pivot.@NonNull Class pivotType) {
 		copyNamedElement(eClassifier, pivotType);
 		@SuppressWarnings("null")@NonNull List<ETypeParameter> eTypeParameters = eClassifier.getETypeParameters();
 		copyTemplateSignature(eTypeParameters, pivotType);
@@ -413,7 +413,7 @@ public class AS2EcoreDeclarationVisitor
 	}
 
 	@Override
-	public EObject visitClass(@NonNull org.eclipse.ocl.pivot.Class pivotClass) {
+	public EObject visitClass(org.eclipse.ocl.pivot.@NonNull Class pivotClass) {
 		if (pivotClass.getOwnedBindings().size() > 0) {
 			return null;
 		}
@@ -653,7 +653,7 @@ public class AS2EcoreDeclarationVisitor
 	public Object visitModel(@NonNull Model pivotModel) {
 		EModelElement firstElement = null;
 		List<EObject> outputObjects = new ArrayList<EObject>();
-		for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Package pivotObject : pivotModel.getOwnedPackages()) {
+		for (@SuppressWarnings("null")org.eclipse.ocl.pivot.@NonNull Package pivotObject : pivotModel.getOwnedPackages()) {
 			if (!Orphanage.isTypeOrphanage(pivotObject) && !PivotUtilInternal.isImplicitPackage(pivotObject)) {
 				Object ecoreObject = safeVisit(pivotObject);
 				if (ecoreObject instanceof EObject) {

@@ -11,32 +11,31 @@
 package	org.eclipse.ocl.pivot.ids;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 
 /**
  * An IdVisitor supports visting an ElementId to react according to the derived Element type.
  */
 public interface IdVisitor<R>
 {	
-	@Nullable R visitClassId(@NonNull ClassId id);
-	@Nullable R visitCollectionTypeId(@NonNull CollectionTypeId id);
-	@Nullable R visitDataTypeId(@NonNull DataTypeId id);
-	@Nullable R visitEnumerationId(@NonNull EnumerationId id);
-	@Nullable R visitEnumerationLiteralId(@NonNull EnumerationLiteralId id);
-	@Nullable R visitInvalidId(@NonNull OclInvalidTypeId id);
-	@Nullable R visitLambdaTypeId(@NonNull LambdaTypeId id);
-	@Nullable R visitMapTypeId(@NonNull MapTypeId id);
-	@Nullable R visitNestedPackageId(@NonNull NestedPackageId id);
-	@Nullable R visitNsURIPackageId(@NonNull NsURIPackageId id);
-	@Nullable R visitNullId(@NonNull OclVoidTypeId id);
-	@Nullable R visitOperationId(@NonNull OperationId id);
-	@Nullable R visitPrimitiveTypeId(@NonNull PrimitiveTypeId id);
-	@Nullable R visitPropertyId(@NonNull PropertyId id);
-	@Nullable R visitRootPackageId(@NonNull RootPackageId id);
-	@Nullable R visitTemplateBinding(@NonNull TemplateBinding id);
-	@Nullable R visitTemplateParameterId(@NonNull TemplateParameterId id);
-	@Nullable R visitTemplateableTypeId(@NonNull TemplateableTypeId id);
-	@Nullable R visitTuplePartId(@NonNull TuplePartId id);
-	@Nullable R visitTupleTypeId(@NonNull TupleTypeId id);
-	@Nullable R visitUnspecifiedId(@NonNull UnspecifiedId id);
+	R visitClassId(@NonNull ClassId id);
+	R visitCollectionTypeId(@NonNull CollectionTypeId id);
+	R visitDataTypeId(@NonNull DataTypeId id);
+	R visitEnumerationId(@NonNull EnumerationId id);
+	R visitEnumerationLiteralId(@NonNull EnumerationLiteralId id);
+	R visitInvalidId(@NonNull OclInvalidTypeId id);
+	R visitLambdaTypeId(@NonNull LambdaTypeId id);
+	R visitMapTypeId(@NonNull MapTypeId id);
+	R visitNestedPackageId(@NonNull NestedPackageId id);
+	R visitNsURIPackageId(@NonNull NsURIPackageId id);
+	R visitNullId(@NonNull OclVoidTypeId id);
+	R visitOperationId(@NonNull OperationId id);
+	R visitPrimitiveTypeId(@NonNull PrimitiveTypeId id);
+	R visitPropertyId(@NonNull PropertyId id);
+	R visitRootPackageId(@NonNull RootPackageId id);
+	R visitTemplateBinding(@NonNull TemplateBinding id);
+	R visitTemplateParameterId(@NonNull TemplateParameterId id);
+	R visitTemplateableTypeId(@NonNull TemplateableTypeId id);
+	R visitTuplePartId(@NonNull TuplePartId id);
+	R visitTupleTypeId(@NonNull TupleTypeId id);
+	R visitUnspecifiedId(@NonNull UnspecifiedId id);
 }

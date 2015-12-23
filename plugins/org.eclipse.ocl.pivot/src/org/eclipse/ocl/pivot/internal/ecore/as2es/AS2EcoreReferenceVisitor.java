@@ -310,7 +310,7 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 	}
 
 	@Override
-	public EObject visitClass(@NonNull org.eclipse.ocl.pivot.Class pivotClass) {
+	public EObject visitClass(org.eclipse.ocl.pivot.@NonNull Class pivotClass) {
 		EClass eClass = context.getCreated(EClass.class, pivotClass);
 		safeVisitAll(EClass.class, eClass.getEGenericSuperTypes(), eClass.getESuperTypes(), pivotClass.getSuperClasses());
 		return eClass;
@@ -371,7 +371,7 @@ public class AS2EcoreReferenceVisitor extends AbstractExtendingVisitor<EObject, 
 	}
 
 	@Override
-	public EObject visitPackage(@NonNull org.eclipse.ocl.pivot.Package pivotPackage) {
+	public EObject visitPackage(org.eclipse.ocl.pivot.@NonNull Package pivotPackage) {
 		EPackage ePackage = context.getCreated(EPackage.class, pivotPackage);
 		if (ePackage == null) {
 			return null;

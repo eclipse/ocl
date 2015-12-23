@@ -36,7 +36,7 @@ public interface ValidationDelegate extends ValidationDelegateExtension // waiti
 		interface Descriptor extends EValidator.ValidationDelegate.Descriptor {
 
 			@Override
-			@Nullable ValidationDelegate.Factory getValidationDelegate();
+			ValidationDelegate.@Nullable Factory getValidationDelegate();
 		}
 
 		/**

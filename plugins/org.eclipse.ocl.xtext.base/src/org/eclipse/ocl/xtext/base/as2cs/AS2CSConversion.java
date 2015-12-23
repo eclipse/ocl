@@ -306,7 +306,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 		}
 	}
 
-	protected <T extends ClassCS> T refreshClassifier(@NonNull Class<T> csClass, /*@NonNull*/ EClass csEClass, @NonNull org.eclipse.ocl.pivot.Class object) {
+	protected <T extends ClassCS> T refreshClassifier(@NonNull Class<T> csClass, /*@NonNull*/ EClass csEClass, org.eclipse.ocl.pivot.@NonNull Class object) {
 		T csElement = refreshNamedElement(csClass, csEClass, object);
 		List<ConstraintCS> csInvariants = visitDeclarations(ConstraintCS.class, object.getOwnedInvariants(), null);
 		for (ConstraintCS csInvariant : csInvariants) {
@@ -602,19 +602,19 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 		if (eObject == null) {
 			return null;
 		}
-		T csElement = visitDeclaration(csClass, eObject);
+		@Nullable T csElement = visitDeclaration(csClass, eObject);
 		if (csElement == null) {
 			return null;
 		}
 		return Collections.singletonList(csElement);
 	}
 
-	public @NonNull <T extends ElementCS, V extends EObject> List<T> visitDeclarations(@NonNull Class<T> csClass, /*@NonNull*/ List<V> eObjects, @Nullable AS2CS.Predicate<V> predicate) {
+	public @NonNull <T extends ElementCS, V extends EObject> List<T> visitDeclarations(@NonNull Class<T> csClass, /*@NonNull*/ List<V> eObjects, AS2CS.@Nullable Predicate<V> predicate) {
 		assert eObjects != null;
 		List<T> csElements = new ArrayList<T>();
 		for (V eObject : eObjects) {
 			if ((eObject != null) && ((predicate == null) || predicate.filter(eObject))) {
-				T csElement = visitDeclaration(csClass, eObject);
+				@Nullable T csElement = visitDeclaration(csClass, eObject);
 				if (csElement != null) {
 					csElements.add(csElement);
 				}
@@ -643,12 +643,12 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 		return castElement;
 	}
 
-	public @NonNull <T extends ElementCS, V extends EObject> List<T> visitReferences(@NonNull Class<T> csClass, /*@NonNull*/ List<? extends V> eObjects, @Nullable AS2CS.Predicate<V> predicate) {
+	public @NonNull <T extends ElementCS, V extends EObject> List<T> visitReferences(@NonNull Class<T> csClass, /*@NonNull*/ List<? extends V> eObjects, AS2CS.@Nullable Predicate<V> predicate) {
 		assert eObjects != null;
 		List<T> csElements = new ArrayList<T>();
 		for (V eObject : eObjects) {
 			if ((eObject != null) && ((predicate == null) || predicate.filter(eObject))) {
-				T csElement = visitReference(csClass, eObject, null);
+				@Nullable T csElement = visitReference(csClass, eObject, null);
 				if (csElement != null) {
 					csElements.add(csElement);
 				}

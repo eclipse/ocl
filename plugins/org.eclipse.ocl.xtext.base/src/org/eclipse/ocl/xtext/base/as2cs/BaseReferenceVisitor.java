@@ -45,7 +45,7 @@ public class BaseReferenceVisitor extends AbstractExtendingVisitor<ElementCS, AS
 	}
 
 	@Override
-	public ElementCS visitClass(@NonNull org.eclipse.ocl.pivot.Class object) {
+	public ElementCS visitClass(org.eclipse.ocl.pivot.@NonNull Class object) {
 		org.eclipse.ocl.pivot.Class scopeClass = context.getScope();
 		org.eclipse.ocl.pivot.Package scopePackage = scopeClass != null ? PivotUtil.getPackage(scopeClass) : null;
 		TypedTypeRefCS csRef = BaseCSFactory.eINSTANCE.createTypedTypeRefCS();

@@ -106,7 +106,7 @@ public class AS2UML extends AbstractConversion
 		deferMap.add(pivotElement);
 	}
 
-	public <T extends EObject> T getCreated(@NonNull Class<T> requiredClass, @NonNull Element pivotElement) {
+	public <T extends EObject> @Nullable T getCreated(@NonNull Class<T> requiredClass, @NonNull Element pivotElement) {
 		EModelElement eModelElement = createMap.get(pivotElement);
 		if (eModelElement == null) {
 			return null;

@@ -249,7 +249,7 @@ public class LookupTables
 			Fragments._Executor__OclElement /* 1 */,
 			Fragments._Executor__Executor /* 2 */
 		};
-		private static final @NonNull int[] __Executor = { 1,1,1 };
+		private static final int @NonNull [] __Executor = { 1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _LookupEnvironment =
 		{
@@ -257,7 +257,7 @@ public class LookupTables
 			Fragments._LookupEnvironment__OclElement /* 1 */,
 			Fragments._LookupEnvironment__LookupEnvironment /* 2 */
 		};
-		private static final @NonNull int[] __LookupEnvironment = { 1,1,1 };
+		private static final int @NonNull [] __LookupEnvironment = { 1,1,1 };
 
 		/**
 		 *	Install the fragment descriptors in the class descriptors.

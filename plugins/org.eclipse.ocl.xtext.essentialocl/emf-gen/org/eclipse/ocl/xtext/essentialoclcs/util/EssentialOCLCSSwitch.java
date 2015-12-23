@@ -13,6 +13,7 @@ package org.eclipse.ocl.xtext.essentialoclcs.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.utilities.Nameable;
 import org.eclipse.ocl.pivot.utilities.Pivotable;
 import org.eclipse.ocl.xtext.basecs.ContextLessElementCS;
@@ -41,7 +42,7 @@ import org.eclipse.ocl.xtext.essentialoclcs.*;
  * @see org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage
  * @generated
  */
-public class EssentialOCLCSSwitch<T>
+public class EssentialOCLCSSwitch<@Nullable T>
 		extends Switch<T> {
 
 	/**

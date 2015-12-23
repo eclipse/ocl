@@ -30,7 +30,7 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
  */
 public class UMLElementExtension extends DynamicEObjectImpl implements Adapter.Internal
 {
-	public static @Nullable Object /*UMLElementExtension*/ getUMLElementExtension(@NonNull Stereotype staticType, @NonNull org.eclipse.uml2.uml.Element umlElement) {
+	public static @Nullable Object /*UMLElementExtension*/ getUMLElementExtension(@NonNull Stereotype staticType, org.eclipse.uml2.uml.@NonNull Element umlElement) {
 		EObject eTarget = staticType.getESObject();
 		if (eTarget instanceof org.eclipse.uml2.uml.Stereotype) {
 			org.eclipse.uml2.uml.Stereotype umlDynamicStereotype = null;
@@ -64,13 +64,13 @@ public class UMLElementExtension extends DynamicEObjectImpl implements Adapter.I
 		throw new InvalidValueException("Unable to resolve stereotype " + staticType);
 	}
 
-	protected final @NonNull org.eclipse.uml2.uml.Element umlElement;
-	protected final @NonNull org.eclipse.uml2.uml.Stereotype umlDynamicStereotype;
-	protected final @NonNull org.eclipse.uml2.uml.Stereotype umlStaticStereotype;
+	protected final org.eclipse.uml2.uml.@NonNull Element umlElement;
+	protected final org.eclipse.uml2.uml.@NonNull Stereotype umlDynamicStereotype;
+	protected final org.eclipse.uml2.uml.@NonNull Stereotype umlStaticStereotype;
 	
-	public UMLElementExtension(@NonNull org.eclipse.uml2.uml.Element umlElement,
-			@NonNull org.eclipse.uml2.uml.Stereotype umlDynamicStereotype,
-			@NonNull org.eclipse.uml2.uml.Stereotype umlStaticStereotype) {
+	public UMLElementExtension(org.eclipse.uml2.uml.@NonNull Element umlElement,
+			org.eclipse.uml2.uml.@NonNull Stereotype umlDynamicStereotype,
+			org.eclipse.uml2.uml.@NonNull Stereotype umlStaticStereotype) {
 		this.umlElement = umlElement;
 		this.umlDynamicStereotype = umlDynamicStereotype;
 		this.umlStaticStereotype = umlStaticStereotype;
@@ -78,16 +78,16 @@ public class UMLElementExtension extends DynamicEObjectImpl implements Adapter.I
 		umlElement.eAdapters().add(this);
 	}
 
-	public @NonNull org.eclipse.uml2.uml.Stereotype getDynamicStereotype() {
+	public org.eclipse.uml2.uml.@NonNull Stereotype getDynamicStereotype() {
 		return umlDynamicStereotype;
 	}
 
-	public @NonNull org.eclipse.uml2.uml.Stereotype getStaticStereotype() {
+	public org.eclipse.uml2.uml.@NonNull Stereotype getStaticStereotype() {
 		return umlStaticStereotype;
 	}
 
 	@Override
-	public @NonNull org.eclipse.uml2.uml.Element getTarget() {
+	public org.eclipse.uml2.uml.@NonNull Element getTarget() {
 		return umlElement;
 	}
 

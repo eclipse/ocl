@@ -1075,21 +1075,21 @@ public class OCLstdlibTables
 			Fragments._Bag__Collection /* 1 */,
 			Fragments._Bag__Bag /* 2 */
 		};
-		private static final @NonNull int[] __Bag = { 1,1,1 };
+		private static final int @NonNull [] __Bag = { 1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Boolean =
 		{
 			Fragments._Boolean__OclAny /* 0 */,
 			Fragments._Boolean__Boolean /* 1 */
 		};
-		private static final @NonNull int[] __Boolean = { 1,1 };
+		private static final int @NonNull [] __Boolean = { 1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Collection =
 		{
 			Fragments._Collection__OclAny /* 0 */,
 			Fragments._Collection__Collection /* 1 */
 		};
-		private static final @NonNull int[] __Collection = { 1,1 };
+		private static final int @NonNull [] __Collection = { 1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Integer =
 		{
@@ -1099,34 +1099,34 @@ public class OCLstdlibTables
 			Fragments._Integer__Real /* 2 */,
 			Fragments._Integer__Integer /* 3 */
 		};
-		private static final @NonNull int[] __Integer = { 1,2,1,1 };
+		private static final int @NonNull [] __Integer = { 1,2,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Map =
 		{
 			Fragments._Map__OclAny /* 0 */,
 			Fragments._Map__Map /* 1 */
 		};
-		private static final @NonNull int[] __Map = { 1,1 };
+		private static final int @NonNull [] __Map = { 1,1 };
 
 		private static final @NonNull ExecutorFragment[] _OclAny =
 		{
 			Fragments._OclAny__OclAny /* 0 */
 		};
-		private static final @NonNull int[] __OclAny = { 1 };
+		private static final int @NonNull [] __OclAny = { 1 };
 
 		private static final @NonNull ExecutorFragment[] _OclComparable =
 		{
 			Fragments._OclComparable__OclAny /* 0 */,
 			Fragments._OclComparable__OclComparable /* 1 */
 		};
-		private static final @NonNull int[] __OclComparable = { 1,1 };
+		private static final int @NonNull [] __OclComparable = { 1,1 };
 
 		private static final @NonNull ExecutorFragment[] _OclElement =
 		{
 			Fragments._OclElement__OclAny /* 0 */,
 			Fragments._OclElement__OclElement /* 1 */
 		};
-		private static final @NonNull int[] __OclElement = { 1,1 };
+		private static final int @NonNull [] __OclElement = { 1,1 };
 
 		private static final @NonNull ExecutorFragment[] _OclInvalid =
 		{
@@ -1134,49 +1134,49 @@ public class OCLstdlibTables
 			Fragments._OclInvalid__OclVoid /* 1 */,
 			Fragments._OclInvalid__OclInvalid /* 2 */
 		};
-		private static final @NonNull int[] __OclInvalid = { 1,1,1 };
+		private static final int @NonNull [] __OclInvalid = { 1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _OclLambda =
 		{
 			Fragments._OclLambda__OclAny /* 0 */,
 			Fragments._OclLambda__OclLambda /* 1 */
 		};
-		private static final @NonNull int[] __OclLambda = { 1,1 };
+		private static final int @NonNull [] __OclLambda = { 1,1 };
 
 		private static final @NonNull ExecutorFragment[] _OclMessage =
 		{
 			Fragments._OclMessage__OclAny /* 0 */,
 			Fragments._OclMessage__OclMessage /* 1 */
 		};
-		private static final @NonNull int[] __OclMessage = { 1,1 };
+		private static final int @NonNull [] __OclMessage = { 1,1 };
 
 		private static final @NonNull ExecutorFragment[] _OclSelf =
 		{
 			Fragments._OclSelf__OclAny /* 0 */,
 			Fragments._OclSelf__OclSelf /* 1 */
 		};
-		private static final @NonNull int[] __OclSelf = { 1,1 };
+		private static final int @NonNull [] __OclSelf = { 1,1 };
 
 		private static final @NonNull ExecutorFragment[] _OclState =
 		{
 			Fragments._OclState__OclAny /* 0 */,
 			Fragments._OclState__OclState /* 1 */
 		};
-		private static final @NonNull int[] __OclState = { 1,1 };
+		private static final int @NonNull [] __OclState = { 1,1 };
 
 		private static final @NonNull ExecutorFragment[] _OclSummable =
 		{
 			Fragments._OclSummable__OclAny /* 0 */,
 			Fragments._OclSummable__OclSummable /* 1 */
 		};
-		private static final @NonNull int[] __OclSummable = { 1,1 };
+		private static final int @NonNull [] __OclSummable = { 1,1 };
 
 		private static final @NonNull ExecutorFragment[] _OclTuple =
 		{
 			Fragments._OclTuple__OclAny /* 0 */,
 			Fragments._OclTuple__OclTuple /* 1 */
 		};
-		private static final @NonNull int[] __OclTuple = { 1,1 };
+		private static final int @NonNull [] __OclTuple = { 1,1 };
 
 		private static final @NonNull ExecutorFragment[] _OclType =
 		{
@@ -1184,14 +1184,14 @@ public class OCLstdlibTables
 			Fragments._OclType__OclElement /* 1 */,
 			Fragments._OclType__OclType /* 2 */
 		};
-		private static final @NonNull int[] __OclType = { 1,1,1 };
+		private static final int @NonNull [] __OclType = { 1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _OclVoid =
 		{
 			Fragments._OclVoid__OclAny /* 0 */,
 			Fragments._OclVoid__OclVoid /* 1 */
 		};
-		private static final @NonNull int[] __OclVoid = { 1,1 };
+		private static final int @NonNull [] __OclVoid = { 1,1 };
 
 		private static final @NonNull ExecutorFragment[] _OrderedCollection =
 		{
@@ -1199,7 +1199,7 @@ public class OCLstdlibTables
 			Fragments._OrderedCollection__Collection /* 1 */,
 			Fragments._OrderedCollection__OrderedCollection /* 2 */
 		};
-		private static final @NonNull int[] __OrderedCollection = { 1,1,1 };
+		private static final int @NonNull [] __OrderedCollection = { 1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _OrderedSet =
 		{
@@ -1209,7 +1209,7 @@ public class OCLstdlibTables
 			Fragments._OrderedSet__UniqueCollection /* 2 */,
 			Fragments._OrderedSet__OrderedSet /* 3 */
 		};
-		private static final @NonNull int[] __OrderedSet = { 1,1,2,1 };
+		private static final int @NonNull [] __OrderedSet = { 1,1,2,1 };
 
 		private static final @NonNull ExecutorFragment[] _Real =
 		{
@@ -1218,7 +1218,7 @@ public class OCLstdlibTables
 			Fragments._Real__OclSummable /* 1 */,
 			Fragments._Real__Real /* 2 */
 		};
-		private static final @NonNull int[] __Real = { 1,2,1 };
+		private static final int @NonNull [] __Real = { 1,2,1 };
 
 		private static final @NonNull ExecutorFragment[] _Sequence =
 		{
@@ -1227,7 +1227,7 @@ public class OCLstdlibTables
 			Fragments._Sequence__OrderedCollection /* 2 */,
 			Fragments._Sequence__Sequence /* 3 */
 		};
-		private static final @NonNull int[] __Sequence = { 1,1,1,1 };
+		private static final int @NonNull [] __Sequence = { 1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Set =
 		{
@@ -1236,7 +1236,7 @@ public class OCLstdlibTables
 			Fragments._Set__UniqueCollection /* 2 */,
 			Fragments._Set__Set /* 3 */
 		};
-		private static final @NonNull int[] __Set = { 1,1,1,1 };
+		private static final int @NonNull [] __Set = { 1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _String =
 		{
@@ -1245,7 +1245,7 @@ public class OCLstdlibTables
 			Fragments._String__OclSummable /* 1 */,
 			Fragments._String__String /* 2 */
 		};
-		private static final @NonNull int[] __String = { 1,2,1 };
+		private static final int @NonNull [] __String = { 1,2,1 };
 
 		private static final @NonNull ExecutorFragment[] _UniqueCollection =
 		{
@@ -1253,7 +1253,7 @@ public class OCLstdlibTables
 			Fragments._UniqueCollection__Collection /* 1 */,
 			Fragments._UniqueCollection__UniqueCollection /* 2 */
 		};
-		private static final @NonNull int[] __UniqueCollection = { 1,1,1 };
+		private static final int @NonNull [] __UniqueCollection = { 1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _UnlimitedNatural =
 		{
@@ -1261,7 +1261,7 @@ public class OCLstdlibTables
 			Fragments._UnlimitedNatural__OclComparable /* 1 */,
 			Fragments._UnlimitedNatural__UnlimitedNatural /* 2 */
 		};
-		private static final @NonNull int[] __UnlimitedNatural = { 1,1,1 };
+		private static final int @NonNull [] __UnlimitedNatural = { 1,1,1 };
 
 		/**
 		 *	Install the fragment descriptors in the class descriptors.

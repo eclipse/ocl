@@ -46,7 +46,7 @@ public interface Technology
 
 	RootPackageId getMetamodelId(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull EPackage eObject2);
 
-	@NonNull PackageId getMetapackageId(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull org.eclipse.ocl.pivot.Package asPackage);
+	@NonNull PackageId getMetapackageId(@NonNull EnvironmentFactoryInternal environmentFactory, org.eclipse.ocl.pivot.@NonNull Package asPackage);
 
 	@Nullable String getOriginalName(@NonNull ENamedElement eNamedElement);
 

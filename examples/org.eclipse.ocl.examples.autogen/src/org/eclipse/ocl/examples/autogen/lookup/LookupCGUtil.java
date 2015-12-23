@@ -36,7 +36,7 @@ public class LookupCGUtil {
 			for (EObject root : resource.getContents()) {
 				if (root instanceof Model) {
 					Package asPackage = ClassUtil.nonNullState(getPackage(genPackage, projectPrefix, envFact));
-					for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Package oclDocPackage : ((Model)root).getOwnedPackages()) {
+					for (@SuppressWarnings("null")org.eclipse.ocl.pivot.@NonNull Package oclDocPackage : ((Model)root).getOwnedPackages()) {
 						if (samePrimaryPackage(oclDocPackage, asPackage, envFact)) { 
 							result.add(oclDocPackage);
 						}
@@ -48,9 +48,8 @@ public class LookupCGUtil {
 		}
 		return result;
 	}
-						
-	@Nullable
-	public static org.eclipse.ocl.pivot.Package getPackage(GenPackage genPackage, String packageName, EnvironmentFactory envFactory) {
+
+	public static org.eclipse.ocl.pivot.@Nullable Package getPackage(GenPackage genPackage, String packageName, EnvironmentFactory envFactory) {
 		MetamodelManager metaModelManager = envFactory.getMetamodelManager();
 		for (GenPackage gPackage : genPackage.getGenModel().getAllGenAndUsedGenPackagesWithClassifiers()) {
 			String name = gPackage.getPrefix();
@@ -62,7 +61,7 @@ public class LookupCGUtil {
 		return null;
 	}
 	
-	private static boolean samePrimaryPackage(@NonNull org.eclipse.ocl.pivot.Package p1, @NonNull org.eclipse.ocl.pivot.Package p2, @NonNull EnvironmentFactory envFactory) {
+	private static boolean samePrimaryPackage(org.eclipse.ocl.pivot.@NonNull Package p1, org.eclipse.ocl.pivot.@NonNull Package p2, @NonNull EnvironmentFactory envFactory) {
 		MetamodelManager mm = envFactory.getMetamodelManager();
 		return mm.getPrimaryPackage(p1).equals(mm.getPrimaryPackage(p2));
 	}

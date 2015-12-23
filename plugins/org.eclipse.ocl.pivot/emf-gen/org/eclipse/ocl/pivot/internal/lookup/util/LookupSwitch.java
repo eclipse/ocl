@@ -13,6 +13,7 @@ package org.eclipse.ocl.pivot.internal.lookup.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment;
 import org.eclipse.ocl.pivot.internal.lookup.LookupPackage;
@@ -30,7 +31,7 @@ import org.eclipse.ocl.pivot.internal.lookup.LookupPackage;
  * @see org.eclipse.ocl.pivot.internal.lookup.LookupPackage
  * @generated
  */
-public class LookupSwitch<T> extends Switch<T> {
+public class LookupSwitch<@Nullable T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->

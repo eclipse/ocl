@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.pivot.internal.delegate.AbstractOCLDelegateFactory;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -30,7 +29,7 @@ public class OCLDebugSettingDelegateFactory extends AbstractOCLDelegateFactory
 		super(delegateURI);
 	}
 
-	public @Nullable EStructuralFeature.Internal.SettingDelegate createSettingDelegate(EStructuralFeature structuralFeature) {
+	public EStructuralFeature.Internal.@Nullable SettingDelegate createSettingDelegate(EStructuralFeature structuralFeature) {
 		if (structuralFeature == null) {
 			return null;
 		}
@@ -54,12 +53,12 @@ public class OCLDebugSettingDelegateFactory extends AbstractOCLDelegateFactory
 		}
 
 		@Override
-		public @Nullable EStructuralFeature.Internal.SettingDelegate createSettingDelegate(EStructuralFeature structuralFeature) {
+		public EStructuralFeature.Internal.@Nullable SettingDelegate createSettingDelegate(EStructuralFeature structuralFeature) {
 			if (structuralFeature == null) {
 				return null;
 			}
-			EStructuralFeature.Internal.SettingDelegate.Factory.Registry localRegistry = DelegateResourceSetAdapter.getRegistry(
-				structuralFeature, EStructuralFeature.Internal.SettingDelegate.Factory.Registry.class, null);
+			Class<EStructuralFeature.Internal.SettingDelegate.Factory.@NonNull Registry> castClass = EStructuralFeature.Internal.SettingDelegate.Factory.Registry.class;
+			EStructuralFeature.Internal.SettingDelegate.Factory.@Nullable Registry localRegistry = OCLDelegateDomain.getDelegateResourceSetRegistry(structuralFeature, castClass, null);
 			if (localRegistry != null) {
 				EStructuralFeature.Internal.SettingDelegate.Factory factory = localRegistry.getFactory(delegateURI);
 				if (factory != null) {

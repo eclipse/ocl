@@ -197,7 +197,7 @@ public class CGIsEqual2ExpImpl extends CGCallExpImpl implements CGIsEqual2Exp {
 	 * @generated
 	 */
 	@Override
-	public @Nullable <R> R accept(@NonNull CGModelVisitor<R> visitor) {
+	public <R> R accept(@NonNull CGModelVisitor<R> visitor) {
 		return visitor.visitCGIsEqual2Exp(this);
 	}
 

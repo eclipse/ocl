@@ -315,7 +315,7 @@ public abstract class UML2AS extends AbstractExternal2AS
 		}
 
 		@Override
-		public void addProperty(@NonNull org.eclipse.ocl.pivot.Class asType, @NonNull Property asProperty) {
+		public void addProperty(org.eclipse.ocl.pivot.@NonNull Class asType, @NonNull Property asProperty) {
 			root.addProperty(asType, asProperty);
 		}
 
@@ -360,7 +360,7 @@ public abstract class UML2AS extends AbstractExternal2AS
 		}
 
 		@Override
-		public <T extends Element> T getCreated(@NonNull Class<T> requiredClass, @NonNull EObject eObject) {
+		public <T extends Element> @Nullable T getCreated(@NonNull Class<T> requiredClass, @NonNull EObject eObject) {
 			return root.getCreated(requiredClass, eObject);
 		}
 
@@ -390,7 +390,7 @@ public abstract class UML2AS extends AbstractExternal2AS
 		}
 		
 		@Override
-		public void resolveMultiplicity(@NonNull TypedElement pivotElement, @NonNull org.eclipse.uml2.uml.TypedElement umlTypedElement) {
+		public void resolveMultiplicity(@NonNull TypedElement pivotElement, org.eclipse.uml2.uml.@NonNull TypedElement umlTypedElement) {
 			root.resolveMultiplicity(pivotElement, umlTypedElement);
 		}
 	}
@@ -520,7 +520,7 @@ public abstract class UML2AS extends AbstractExternal2AS
 		}
 
 		@Override
-		public void addProperty(@NonNull org.eclipse.ocl.pivot.Class asType, @NonNull Property asProperty) {
+		public void addProperty(org.eclipse.ocl.pivot.@NonNull Class asType, @NonNull Property asProperty) {
 			List<Property> asProperties = type2properties.get(asType);
 			if (asProperties == null) {
 				asProperties = new ArrayList<Property>();
@@ -552,7 +552,7 @@ public abstract class UML2AS extends AbstractExternal2AS
 			errors.add(new XMIException(message));
 		}
 
-/*		protected org.eclipse.uml2.uml.Property getOtherEnd(@NonNull org.eclipse.uml2.uml.Property umlProperty) {
+/*		protected org.eclipse.uml2.uml.Property getOtherEnd(org.eclipse.uml2.uml.@NonNull Property umlProperty) {
 			org.eclipse.uml2.uml.Property otherEnd = umlProperty.getOtherEnd();
 			if (otherEnd != null) {
 				return otherEnd;
@@ -651,7 +651,7 @@ public abstract class UML2AS extends AbstractExternal2AS
 		}
 
 		@Override
-		public <T extends Element> T getCreated(@NonNull Class<T> requiredClass, @NonNull EObject eObject) {
+		public <T extends Element> @Nullable T getCreated(@NonNull Class<T> requiredClass, @NonNull EObject eObject) {
 			Element element = createMap.get(eObject);
 			if (element == null) {
 				Resource resource = eObject.eResource();
@@ -691,7 +691,7 @@ public abstract class UML2AS extends AbstractExternal2AS
 			return importedResources;
 		}
 
-/*		protected org.eclipse.uml2.uml.Property getOtherEnd(@NonNull org.eclipse.uml2.uml.Property umlProperty) {
+/*		protected org.eclipse.uml2.uml.Property getOtherEnd(org.eclipse.uml2.uml.@NonNull Property umlProperty) {
 			org.eclipse.uml2.uml.Property otherEnd = umlProperty.getOtherEnd();
 			if (otherEnd != null) {
 				return otherEnd;
@@ -894,7 +894,7 @@ public abstract class UML2AS extends AbstractExternal2AS
 		}
 
 		@Override
-		public void resolveMultiplicity(@NonNull TypedElement pivotElement, @NonNull org.eclipse.uml2.uml.TypedElement umlTypedElement) {
+		public void resolveMultiplicity(@NonNull TypedElement pivotElement, org.eclipse.uml2.uml.@NonNull TypedElement umlTypedElement) {
 			boolean isRequired = false;
 			org.eclipse.uml2.uml.Type umlType = umlTypedElement.getType();
 			if (umlType != null) {
@@ -956,7 +956,7 @@ public abstract class UML2AS extends AbstractExternal2AS
 	
 	public abstract void addCreated(@NonNull EObject umlElement, @NonNull Element pivotElement);
 
-	public void addImportedPackage(@NonNull org.eclipse.uml2.uml.Package importedPackage) {
+	public void addImportedPackage(org.eclipse.uml2.uml.@NonNull Package importedPackage) {
 		EObject rootContainer = EcoreUtil.getRootContainer(importedPackage);
 		Resource importedResource = ClassUtil.nonNullEMF(rootContainer.eResource());
 		addImportedResource(importedResource);
@@ -974,7 +974,7 @@ public abstract class UML2AS extends AbstractExternal2AS
 
 	public abstract void addProfileApplication(@NonNull ProfileApplication asProfileApplication) ;
 
-	public abstract void addProperty(@NonNull org.eclipse.ocl.pivot.Class asType, @NonNull Property asProperty);
+	public abstract void addProperty(org.eclipse.ocl.pivot.@NonNull Class asType, @NonNull Property asProperty);
 
 	public abstract void addStereotype(@NonNull Stereotype asStereotype);
 
@@ -987,11 +987,11 @@ public abstract class UML2AS extends AbstractExternal2AS
 		return pivotModel;
 	}
 
-	public void copyModelElement(@NonNull Element pivotElement, @NonNull org.eclipse.uml2.uml.Element umlElement) {
+	public void copyModelElement(@NonNull Element pivotElement, org.eclipse.uml2.uml.@NonNull Element umlElement) {
 		setOriginalMapping(pivotElement, umlElement);
 	}
 
-	public void copyNamedElement(@NonNull NamedElement pivotElement, @NonNull org.eclipse.uml2.uml.NamedElement umlNamedElement) {
+	public void copyNamedElement(@NonNull NamedElement pivotElement, org.eclipse.uml2.uml.@NonNull NamedElement umlNamedElement) {
 		copyModelElement(pivotElement, umlNamedElement);
 		String name = umlNamedElement.getName();
 		pivotElement.setName(name);
@@ -1104,7 +1104,7 @@ public abstract class UML2AS extends AbstractExternal2AS
 	}
 
 	protected @NonNull <T extends NamedElement> T refreshNamedElement(@NonNull Class<T> pivotClass,
-			/*@NonNull*/ EClass pivotEClass, @NonNull org.eclipse.uml2.uml.NamedElement umlNamedElement) {
+			/*@NonNull*/ EClass pivotEClass, org.eclipse.uml2.uml.@NonNull NamedElement umlNamedElement) {
 		assert pivotEClass != null;
 		EFactory eFactoryInstance = pivotEClass.getEPackage().getEFactoryInstance();
 		EObject pivotElement = eFactoryInstance.create(pivotEClass);
@@ -1117,7 +1117,7 @@ public abstract class UML2AS extends AbstractExternal2AS
 		return castElement;
 	}
 
-	public ExpressionInOCL refreshOpaqueExpression(@NonNull org.eclipse.uml2.uml.OpaqueExpression umlExpression) {
+	public ExpressionInOCL refreshOpaqueExpression(org.eclipse.uml2.uml.@NonNull OpaqueExpression umlExpression) {
 		ExpressionInOCL pivotElement = refreshNamedElement(ExpressionInOCL.class, PivotPackage.Literals.EXPRESSION_IN_OCL, umlExpression);
 		pivotElement.setBody(null);
 		List<String> umlBodies = umlExpression.getBodies();
@@ -1149,7 +1149,7 @@ public abstract class UML2AS extends AbstractExternal2AS
 		return pivotElement;
 	}
 	
-	public abstract void resolveMultiplicity(@NonNull TypedElement pivotElement, @NonNull org.eclipse.uml2.uml.TypedElement umlTypedElement);
+	public abstract void resolveMultiplicity(@NonNull TypedElement pivotElement, org.eclipse.uml2.uml.@NonNull TypedElement umlTypedElement);
 
 	/**
 	 * Return the UML Stereotype referenced by the UML stereotype application to some UML Stereotyped Elements.
@@ -1218,7 +1218,7 @@ public abstract class UML2AS extends AbstractExternal2AS
 		return null;
 	}
 
-	protected @Nullable Type resolveType(@NonNull org.eclipse.uml2.uml.Type umlType) {
+	protected @Nullable Type resolveType(org.eclipse.uml2.uml.@NonNull Type umlType) {
 		Type pivotType = getCreated(Type.class, umlType);
 		if (pivotType != null) {
 			return pivotType;

@@ -264,7 +264,7 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		}
 	};
 	
-	public static @NonNull PrettyPrintOptions.Global createOptions(@Nullable Namespace scope) {
+	public static PrettyPrintOptions.@NonNull Global createOptions(@Nullable Namespace scope) {
 		PrettyPrintOptions.Global options = new PrettyPrintOptions.Global(scope)
 		{
 			@Override
@@ -359,7 +359,7 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		return s.toString();
 	}
 
-	protected String emitClassDef(@NonNull org.eclipse.ocl.pivot.Class asClass) {
+	protected String emitClassDef(org.eclipse.ocl.pivot.@NonNull Class asClass) {
 		String className = asClass.getName();
 		String packageName = asClass.getOwningPackage().getName();
 		if (className == null) className = "<<anon>>";
@@ -367,7 +367,7 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		return  "#\\hypertarget#{" + encodeLabelText(packageName) + ":" + encodeLabelText(className) + "#}#{" /*+ encodeLabelText(className)*/ + "#}";
 	}
 
-	protected String emitClassRef(@NonNull org.eclipse.ocl.pivot.Class asClass) {
+	protected String emitClassRef(org.eclipse.ocl.pivot.@NonNull Class asClass) {
 		String className = asClass.getName();
 		String packageName = asClass.getOwningPackage().getName();
 		if (className == null) className = "<<anon>>";
@@ -595,7 +595,7 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		return precedences;
 	}
 	
-	protected @Nullable org.eclipse.ocl.pivot.Package getPrimaryPackage(@NonNull PivotMetamodelManager metamodelManager, @Nullable Resource oclResource) {
+	protected org.eclipse.ocl.pivot.@Nullable Package getPrimaryPackage(@NonNull PivotMetamodelManager metamodelManager, @Nullable Resource oclResource) {
 		if (oclResource != null) {
 			for (EObject eContent : oclResource.getContents()) {
 				if (eContent instanceof RootCS) {
@@ -611,7 +611,7 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		return null;
 	}
 	
-	protected @Nullable org.eclipse.ocl.pivot.Package getSecondaryPackage(@NonNull MetamodelManager metamodelManager, @Nullable Resource oclResource) {
+	protected org.eclipse.ocl.pivot.@Nullable Package getSecondaryPackage(@NonNull MetamodelManager metamodelManager, @Nullable Resource oclResource) {
 		if (oclResource != null) {
 			for (EObject eContent : oclResource.getContents()) {
 				if (eContent instanceof RootCS) {
@@ -627,7 +627,7 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		return null;
 	}
 
-	protected @NonNull List<Property> getSortedAssociations(@NonNull org.eclipse.ocl.pivot.Class asClass) {
+	protected @NonNull List<Property> getSortedAssociations(org.eclipse.ocl.pivot.@NonNull Class asClass) {
 		Set<Property> allElements = new HashSet<Property>();
 		for (Property asProperty : asClass.getOwnedProperties()) {
 //			[let pAssociations : Sequence(Property) = pClass.ownedAttribute->select(e | not e.type.oclIsKindOf(DataType) and e.type.owningTemplateParameter->isEmpty())->asSequence()]
@@ -640,7 +640,7 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		return sortedElements;
 	}
 
-	protected @NonNull List<Property> getSortedAttributes(@NonNull org.eclipse.ocl.pivot.Class asClass) {
+	protected @NonNull List<Property> getSortedAttributes(org.eclipse.ocl.pivot.@NonNull Class asClass) {
 		Set<Property> allElements = new HashSet<Property>();
 		for (Property asProperty : asClass.getOwnedProperties()) {
 			if (asProperty.getType() instanceof DataType) {
@@ -652,7 +652,7 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		return sortedElements;
 	}
 
-	protected @NonNull List<org.eclipse.ocl.pivot.Class> getSortedClasses(@NonNull org.eclipse.ocl.pivot.Package asPackage) {
+	protected @NonNull List<org.eclipse.ocl.pivot.Class> getSortedClasses(org.eclipse.ocl.pivot.@NonNull Package asPackage) {
 		Set<org.eclipse.ocl.pivot.Class> allElements = new HashSet<org.eclipse.ocl.pivot.Class>();
 		allElements.addAll(asPackage.getOwnedClasses());
 		List<org.eclipse.ocl.pivot.Class> sortedElements = new ArrayList<org.eclipse.ocl.pivot.Class>(allElements);
@@ -684,7 +684,7 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		return sortedElements;
 	}
 
-	protected @NonNull List<Iteration> getSortedIterations(@NonNull org.eclipse.ocl.pivot.Class asClass) {
+	protected @NonNull List<Iteration> getSortedIterations(org.eclipse.ocl.pivot.@NonNull Class asClass) {
 		Set<Iteration> allElements = new HashSet<Iteration>();
 		for (Operation asOperation : asClass.getOwnedOperations()) {
 			if (asOperation instanceof Iteration) {
@@ -708,7 +708,7 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		return sortedMetamodels;
 	}
 
-	protected @NonNull List<Operation> getSortedOperations(@NonNull org.eclipse.ocl.pivot.Class asClass) {
+	protected @NonNull List<Operation> getSortedOperations(org.eclipse.ocl.pivot.@NonNull Class asClass) {
 		Set<Operation> allElements = new HashSet<Operation>();
 		for (Operation asOperation : asClass.getOwnedOperations()) {
 			if (!(asOperation instanceof Iteration)) {
@@ -731,7 +731,7 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 		return sortedRules;
 	}
 
-	protected @NonNull List<ParserRule> getSortedParserRules(@NonNull org.eclipse.ocl.pivot.Class asClass, @NonNull Grammar grammar) {
+	protected @NonNull List<ParserRule> getSortedParserRules(org.eclipse.ocl.pivot.@NonNull Class asClass, @NonNull Grammar grammar) {
 		EClassifier eClassifier = (EClassifier) ((PivotObjectImpl)asClass).getESObject();
 		List<ParserRule> sortedRules = new ArrayList<ParserRule>();
 		for (AbstractRule rule : grammar.getRules()) {

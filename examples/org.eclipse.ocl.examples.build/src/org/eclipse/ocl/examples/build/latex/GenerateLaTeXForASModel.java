@@ -31,7 +31,7 @@ import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 
 public abstract class GenerateLaTeXForASModel extends GenerateLaTeXUtils
 {
-	protected abstract @NonNull String generateLaTeX(@NonNull org.eclipse.ocl.pivot.Package asPackage);
+	protected abstract @NonNull String generateLaTeX(org.eclipse.ocl.pivot.@NonNull Package asPackage);
 
 	@Override
 	protected void invokeInternal(WorkflowContext ctx, ProgressMonitor monitor, Issues issues) {

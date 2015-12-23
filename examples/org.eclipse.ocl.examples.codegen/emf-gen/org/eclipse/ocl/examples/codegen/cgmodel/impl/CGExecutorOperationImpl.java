@@ -150,7 +150,7 @@ public class CGExecutorOperationImpl extends CGValuedElementImpl implements CGEx
 	 * @generated
 	 */
 	@Override
-	public @Nullable <R> R accept(@NonNull CGModelVisitor<R> visitor) {
+	public <R> R accept(@NonNull CGModelVisitor<R> visitor) {
 		return visitor.visitCGExecutorOperation(this);
 	}
 

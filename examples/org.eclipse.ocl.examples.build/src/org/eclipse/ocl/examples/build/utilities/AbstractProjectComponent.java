@@ -31,7 +31,7 @@ public abstract class AbstractProjectComponent extends WorkflowComponentWithMode
 		}
 	}
 
-	protected @Nullable StandaloneProjectMap.IProjectDescriptor getProjectDescriptor() {
+	protected StandaloneProjectMap.@Nullable IProjectDescriptor getProjectDescriptor() {
 		ResourceSet resourceSet = getResourceSet();
 		StandaloneProjectMap projectMap = StandaloneProjectMap.getAdapter(resourceSet);
 		assert projectName != null;

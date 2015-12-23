@@ -153,7 +153,7 @@ public class CGExecutorTypeImpl extends CGValuedElementImpl implements CGExecuto
 	 * @generated
 	 */
 	@Override
-	public @Nullable <R> R accept(@NonNull CGModelVisitor<R> visitor) {
+	public <R> R accept(@NonNull CGModelVisitor<R> visitor) {
 		return visitor.visitCGExecutorType(this);
 	}
 

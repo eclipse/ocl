@@ -43,7 +43,7 @@ public abstract class AbstractCGModelVisitor<R, C>
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <A> A getAdapter(@NonNull Class<A> adapter) {
+	public <A> @Nullable A getAdapter(@NonNull Class<A> adapter) {
 		if (adapter.isAssignableFrom(getClass())) {
 			return (A) this;
 		}
@@ -59,7 +59,7 @@ public abstract class AbstractCGModelVisitor<R, C>
 	 * @return <code>null</code> if the visitable is <code>null</code>;
 	 *	 otherwise, the result of visiting it
 	 */
-	public @Nullable R safeVisit(@Nullable org.eclipse.ocl.examples.codegen.cgmodel.CGElement v) {
+	public @Nullable R safeVisit(org.eclipse.ocl.examples.codegen.cgmodel.@Nullable CGElement v) {
 		return (v == null) ? null : v.accept(this);
 	}
 	
@@ -70,11 +70,11 @@ public abstract class AbstractCGModelVisitor<R, C>
 	 * @return <code>null</code> if the visitable is <code>null</code>;
 	 *	 otherwise, the result of visiting it
 	 */
-	public @Nullable R visit(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGElement v) {
+	public R visit(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGElement v) {
 		return v.accept(this);
 	}
 
-	//	public @Nullable R visiting(@NonNull org.eclipse.ocl.examples.codegen.cgmodel.CGElement visitable) {
+	//	public R visiting(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGElement visitable) {
 	//		return null;
 	//	}
 }

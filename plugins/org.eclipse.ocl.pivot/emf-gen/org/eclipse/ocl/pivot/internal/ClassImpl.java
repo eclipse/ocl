@@ -686,7 +686,7 @@ public class ClassImpl
 		    try {
 		        final @NonNull /*@Thrown*/ List<Constraint> ownedInvariants = this.getOwnedInvariants();
 		        final @NonNull /*@Thrown*/ SetValue BOXED_ownedInvariants = idResolver.createSetOfAll(PivotTables.SET_CLSSid_Constraint, ownedInvariants);
-		        @NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValueUtil.createSetAccumulatorValue(PivotTables.SET_CLSSid_Constraint);
+		        /*@Thrown*/ SetValue.@NonNull Accumulator accumulator = ValueUtil.createSetAccumulatorValue(PivotTables.SET_CLSSid_Constraint);
 		        @Nullable Iterator<?> ITERATOR_p = BOXED_ownedInvariants.iterator();
 		        /*@Thrown*/ boolean status;
 		        while (true) {
@@ -1118,7 +1118,7 @@ public class ClassImpl
 		return visitor.visitClass(this);
 	}
 
-	public synchronized void addClassListener(@NonNull ClassListeners.IClassListener classListener) {
+	public synchronized void addClassListener(ClassListeners.@NonNull IClassListener classListener) {
 		ClassListeners<ClassListeners.IClassListener> classListeners2 = classListeners;
 		if (classListeners2 == null) {
 			classListeners2 = classListeners = new ClassListeners<ClassListeners.IClassListener>();
@@ -1162,7 +1162,7 @@ public class ClassImpl
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getNormalizedType(@NonNull StandardLibrary standardLibrary) {
+	public org.eclipse.ocl.pivot.@NonNull Class getNormalizedType(@NonNull StandardLibrary standardLibrary) {
 		try {
 			return getInheritance(standardLibrary).getPivotClass();
 		}
@@ -1302,7 +1302,7 @@ public class ClassImpl
 	}
 	
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class isClass() {
+	public org.eclipse.ocl.pivot.@NonNull Class isClass() {
 		return this;
 	}
 
@@ -1333,7 +1333,7 @@ public class ClassImpl
 		return inheritance.lookupImplementation(standardLibrary, apparentOperation);
 	}
 
-	public synchronized void removeClassListener(@NonNull ClassListeners.IClassListener classListener) {
+	public synchronized void removeClassListener(ClassListeners.@NonNull IClassListener classListener) {
 		ClassListeners<ClassListeners.IClassListener> classListeners2 = classListeners;
 		if ((classListeners2 != null) && classListeners2.removeListener(classListener)) {
 			classListeners = null;

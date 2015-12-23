@@ -316,7 +316,7 @@ public class DelegateInstaller
 	 * @param metamodelManager
 	 * @param pivotPackage
 	 */
-	private boolean installDelegates(@NonNull org.eclipse.ocl.pivot.Class pivotType) {
+	private boolean installDelegates(org.eclipse.ocl.pivot.@NonNull Class pivotType) {
 		boolean hasDelegates = false;
 		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		Type primaryType = metamodelManager.getPrimaryType(pivotType);
@@ -417,7 +417,7 @@ public class DelegateInstaller
 		}
 	}
 	
-	public void installDelegates(@NonNull EClassifier eClassifier, @NonNull org.eclipse.ocl.pivot.Class pivotType) {
+	public void installDelegates(@NonNull EClassifier eClassifier, org.eclipse.ocl.pivot.@NonNull Class pivotType) {
 		StringBuilder s = null;
 		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		for (Constraint pivotConstraint : metamodelManager.getLocalInvariants(pivotType)) {

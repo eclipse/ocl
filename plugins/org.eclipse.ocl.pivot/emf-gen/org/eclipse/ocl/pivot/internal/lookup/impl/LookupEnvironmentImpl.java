@@ -156,7 +156,7 @@ public class LookupEnvironmentImpl extends MinimalEObjectImpl.Container implemen
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
 		final @NonNull /*@NonInvalid*/ Property CTORid_namedElements = idResolver.getProperty(LookupTables.PROPid_namedElements);
-		final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_lookup_c_c_LookupEnvironment_0 = idResolver.getClass(LookupTables.CLSSid_LookupEnvironment, null);
+		final /*@NonInvalid*/ org.eclipse.ocl.pivot.@NonNull Class TYP_lookup_c_c_LookupEnvironment_0 = idResolver.getClass(LookupTables.CLSSid_LookupEnvironment, null);
 		final @NonNull /*@Thrown*/ LookupEnvironment symbol_0 = (LookupEnvironment)TYP_lookup_c_c_LookupEnvironment_0.createInstance();
 		@SuppressWarnings("null")
 		final @NonNull /*@Thrown*/ List<NamedElement> namedElements = this.getNamedElements();
@@ -182,7 +182,7 @@ public class LookupEnvironmentImpl extends MinimalEObjectImpl.Container implemen
 		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
 		final @NonNull /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
 		final @NonNull /*@NonInvalid*/ Property CTORid_namedElements = idResolver.getProperty(LookupTables.PROPid_namedElements);
-		final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_lookup_c_c_LookupEnvironment_0 = idResolver.getClass(LookupTables.CLSSid_LookupEnvironment, null);
+		final /*@NonInvalid*/ org.eclipse.ocl.pivot.@NonNull Class TYP_lookup_c_c_LookupEnvironment_0 = idResolver.getClass(LookupTables.CLSSid_LookupEnvironment, null);
 		final @NonNull /*@Thrown*/ LookupEnvironment symbol_0 = (LookupEnvironment)TYP_lookup_c_c_LookupEnvironment_0.createInstance();
 		@SuppressWarnings("null")
 		final @NonNull /*@Thrown*/ List<NamedElement> namedElements = this.getNamedElements();

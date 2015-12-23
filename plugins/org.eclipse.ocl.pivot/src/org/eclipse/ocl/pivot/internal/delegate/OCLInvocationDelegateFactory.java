@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 
@@ -29,7 +28,7 @@ public class OCLInvocationDelegateFactory extends AbstractOCLDelegateFactory
 	}
 
 	@Override
-	public @Nullable EOperation.Internal.InvocationDelegate createInvocationDelegate(EOperation operation) {
+	public EOperation.Internal.@Nullable InvocationDelegate createInvocationDelegate(EOperation operation) {
 		if (operation == null) {
 			return null;
 		}
@@ -50,12 +49,12 @@ public class OCLInvocationDelegateFactory extends AbstractOCLDelegateFactory
 		}
 
 		@Override
-		public @Nullable EOperation.Internal.InvocationDelegate createInvocationDelegate(EOperation operation) {
+		public EOperation.Internal.@Nullable InvocationDelegate createInvocationDelegate(EOperation operation) {
 			if (operation == null) {
 				return null;
 			}
-			EOperation.Internal.InvocationDelegate.Factory.Registry localRegistry = DelegateResourceSetAdapter.getRegistry(
-				operation, EOperation.Internal.InvocationDelegate.Factory.Registry.class, null);
+			Class<EOperation.Internal.InvocationDelegate.Factory.@NonNull Registry> castClass = EOperation.Internal.InvocationDelegate.Factory.Registry.class;
+			EOperation.Internal.InvocationDelegate.Factory.@Nullable Registry localRegistry = OCLDelegateDomain.getDelegateResourceSetRegistry(operation, castClass, null);
 			if (localRegistry != null) {
 				EOperation.Internal.InvocationDelegate.Factory factory = localRegistry.getFactory(delegateURI);
 				if (factory != null) {

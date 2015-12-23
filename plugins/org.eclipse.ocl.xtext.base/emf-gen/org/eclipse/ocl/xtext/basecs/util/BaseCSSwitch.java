@@ -14,6 +14,7 @@ package org.eclipse.ocl.xtext.basecs.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.utilities.Nameable;
 import org.eclipse.ocl.pivot.utilities.Pivotable;
 import org.eclipse.ocl.xtext.basecs.*;
@@ -31,7 +32,7 @@ import org.eclipse.ocl.xtext.basecs.*;
  * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage
  * @generated
  */
-public class BaseCSSwitch<T> extends Switch<T> {
+public class BaseCSSwitch<@Nullable T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->

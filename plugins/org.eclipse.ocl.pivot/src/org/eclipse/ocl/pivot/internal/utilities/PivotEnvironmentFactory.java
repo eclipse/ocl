@@ -44,7 +44,7 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory
 	}
 	
 	@Override
-	public @Nullable <T> T getValue(@NonNull Option<T> option) {
+	public <@Nullable T> T getValue(@NonNull Option<T> option) {
 		@SuppressWarnings("unchecked") T result = (T) getOptions().get(option);
 		if (result != null) {
 			return result;

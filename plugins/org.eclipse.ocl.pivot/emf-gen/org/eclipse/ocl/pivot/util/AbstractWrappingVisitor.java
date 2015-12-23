@@ -39,7 +39,7 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	 * 
 	 * @return a rethrown RuntimeException or a RuntimeException-wrapped non-RuntimeException.
 	 */
-	protected @Nullable R badVisit(@NonNull org.eclipse.ocl.pivot.util.Visitable visitable, @Nullable P prologue, @NonNull Throwable e) throws RuntimeException {
+	protected R badVisit(org.eclipse.ocl.pivot.util.@NonNull Visitable visitable, @Nullable P prologue, @NonNull Throwable e) throws RuntimeException {
 		if (e instanceof Exception) {
 			throw (RuntimeException)e;
 		}
@@ -64,7 +64,7 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	 * 
 	 * @return the epilogue result, which defaults to the delegated result.
 	 */
-	protected @Nullable R postVisit(@NonNull org.eclipse.ocl.pivot.util.Visitable visitable, @Nullable P prologue, @Nullable R result) {
+	protected R postVisit(org.eclipse.ocl.pivot.util.@NonNull Visitable visitable, @Nullable P prologue, R result) {
 		return result;
 	}
 
@@ -73,18 +73,18 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	 * 
 	 * @return the prologue result, which defauilts to null.
 	 */
-	protected @Nullable P preVisit(@NonNull org.eclipse.ocl.pivot.util.Visitable visitable) {
+	protected @Nullable P preVisit(org.eclipse.ocl.pivot.util.@NonNull Visitable visitable) {
 		return null;
 	}
 
 	@Override
-	public @Nullable R visiting(@NonNull org.eclipse.ocl.pivot.util.Visitable visitable) {
+	public R visiting(org.eclipse.ocl.pivot.util.@NonNull Visitable visitable) {
 		throw new UnsupportedOperationException();		// Cannot happen since all methods delegate.
 	}
 
 	@Override
-	public @Nullable R visitAnnotation(@NonNull org.eclipse.ocl.pivot.Annotation object) {
-		P prologue = preVisit(object);
+	public R visitAnnotation(org.eclipse.ocl.pivot.@NonNull Annotation object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitAnnotation(object);
 			return postVisit(object, prologue, result);
@@ -95,8 +95,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitAnyType(@NonNull org.eclipse.ocl.pivot.AnyType object) {
-		P prologue = preVisit(object);
+	public R visitAnyType(org.eclipse.ocl.pivot.@NonNull AnyType object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitAnyType(object);
 			return postVisit(object, prologue, result);
@@ -107,8 +107,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitAssociationClass(@NonNull org.eclipse.ocl.pivot.AssociationClass object) {
-		P prologue = preVisit(object);
+	public R visitAssociationClass(org.eclipse.ocl.pivot.@NonNull AssociationClass object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitAssociationClass(object);
 			return postVisit(object, prologue, result);
@@ -119,8 +119,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitAssociationClassCallExp(@NonNull org.eclipse.ocl.pivot.AssociationClassCallExp object) {
-		P prologue = preVisit(object);
+	public R visitAssociationClassCallExp(org.eclipse.ocl.pivot.@NonNull AssociationClassCallExp object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitAssociationClassCallExp(object);
 			return postVisit(object, prologue, result);
@@ -131,8 +131,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitBagType(@NonNull org.eclipse.ocl.pivot.BagType object) {
-		P prologue = preVisit(object);
+	public R visitBagType(org.eclipse.ocl.pivot.@NonNull BagType object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitBagType(object);
 			return postVisit(object, prologue, result);
@@ -143,8 +143,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitBehavior(@NonNull org.eclipse.ocl.pivot.Behavior object) {
-		P prologue = preVisit(object);
+	public R visitBehavior(org.eclipse.ocl.pivot.@NonNull Behavior object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitBehavior(object);
 			return postVisit(object, prologue, result);
@@ -155,8 +155,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitBooleanLiteralExp(@NonNull org.eclipse.ocl.pivot.BooleanLiteralExp object) {
-		P prologue = preVisit(object);
+	public R visitBooleanLiteralExp(org.eclipse.ocl.pivot.@NonNull BooleanLiteralExp object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitBooleanLiteralExp(object);
 			return postVisit(object, prologue, result);
@@ -167,8 +167,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitCallExp(@NonNull org.eclipse.ocl.pivot.CallExp object) {
-		P prologue = preVisit(object);
+	public R visitCallExp(org.eclipse.ocl.pivot.@NonNull CallExp object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitCallExp(object);
 			return postVisit(object, prologue, result);
@@ -179,8 +179,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitCallOperationAction(@NonNull org.eclipse.ocl.pivot.CallOperationAction object) {
-		P prologue = preVisit(object);
+	public R visitCallOperationAction(org.eclipse.ocl.pivot.@NonNull CallOperationAction object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitCallOperationAction(object);
 			return postVisit(object, prologue, result);
@@ -191,8 +191,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitClass(@NonNull org.eclipse.ocl.pivot.Class object) {
-		P prologue = preVisit(object);
+	public R visitClass(org.eclipse.ocl.pivot.@NonNull Class object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitClass(object);
 			return postVisit(object, prologue, result);
@@ -203,8 +203,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitCollectionItem(@NonNull org.eclipse.ocl.pivot.CollectionItem object) {
-		P prologue = preVisit(object);
+	public R visitCollectionItem(org.eclipse.ocl.pivot.@NonNull CollectionItem object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitCollectionItem(object);
 			return postVisit(object, prologue, result);
@@ -215,8 +215,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitCollectionLiteralExp(@NonNull org.eclipse.ocl.pivot.CollectionLiteralExp object) {
-		P prologue = preVisit(object);
+	public R visitCollectionLiteralExp(org.eclipse.ocl.pivot.@NonNull CollectionLiteralExp object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitCollectionLiteralExp(object);
 			return postVisit(object, prologue, result);
@@ -227,8 +227,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitCollectionLiteralPart(@NonNull org.eclipse.ocl.pivot.CollectionLiteralPart object) {
-		P prologue = preVisit(object);
+	public R visitCollectionLiteralPart(org.eclipse.ocl.pivot.@NonNull CollectionLiteralPart object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitCollectionLiteralPart(object);
 			return postVisit(object, prologue, result);
@@ -239,8 +239,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitCollectionRange(@NonNull org.eclipse.ocl.pivot.CollectionRange object) {
-		P prologue = preVisit(object);
+	public R visitCollectionRange(org.eclipse.ocl.pivot.@NonNull CollectionRange object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitCollectionRange(object);
 			return postVisit(object, prologue, result);
@@ -251,8 +251,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitCollectionType(@NonNull org.eclipse.ocl.pivot.CollectionType object) {
-		P prologue = preVisit(object);
+	public R visitCollectionType(org.eclipse.ocl.pivot.@NonNull CollectionType object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitCollectionType(object);
 			return postVisit(object, prologue, result);
@@ -263,8 +263,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitComment(@NonNull org.eclipse.ocl.pivot.Comment object) {
-		P prologue = preVisit(object);
+	public R visitComment(org.eclipse.ocl.pivot.@NonNull Comment object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitComment(object);
 			return postVisit(object, prologue, result);
@@ -275,8 +275,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitCompleteClass(@NonNull org.eclipse.ocl.pivot.CompleteClass object) {
-		P prologue = preVisit(object);
+	public R visitCompleteClass(org.eclipse.ocl.pivot.@NonNull CompleteClass object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitCompleteClass(object);
 			return postVisit(object, prologue, result);
@@ -287,8 +287,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitCompleteEnvironment(@NonNull org.eclipse.ocl.pivot.CompleteEnvironment object) {
-		P prologue = preVisit(object);
+	public R visitCompleteEnvironment(org.eclipse.ocl.pivot.@NonNull CompleteEnvironment object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitCompleteEnvironment(object);
 			return postVisit(object, prologue, result);
@@ -299,8 +299,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitCompleteModel(@NonNull org.eclipse.ocl.pivot.CompleteModel object) {
-		P prologue = preVisit(object);
+	public R visitCompleteModel(org.eclipse.ocl.pivot.@NonNull CompleteModel object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitCompleteModel(object);
 			return postVisit(object, prologue, result);
@@ -311,8 +311,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitCompletePackage(@NonNull org.eclipse.ocl.pivot.CompletePackage object) {
-		P prologue = preVisit(object);
+	public R visitCompletePackage(org.eclipse.ocl.pivot.@NonNull CompletePackage object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitCompletePackage(object);
 			return postVisit(object, prologue, result);
@@ -323,8 +323,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitConnectionPointReference(@NonNull org.eclipse.ocl.pivot.ConnectionPointReference object) {
-		P prologue = preVisit(object);
+	public R visitConnectionPointReference(org.eclipse.ocl.pivot.@NonNull ConnectionPointReference object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitConnectionPointReference(object);
 			return postVisit(object, prologue, result);
@@ -335,8 +335,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitConstraint(@NonNull org.eclipse.ocl.pivot.Constraint object) {
-		P prologue = preVisit(object);
+	public R visitConstraint(org.eclipse.ocl.pivot.@NonNull Constraint object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitConstraint(object);
 			return postVisit(object, prologue, result);
@@ -347,8 +347,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitDataType(@NonNull org.eclipse.ocl.pivot.DataType object) {
-		P prologue = preVisit(object);
+	public R visitDataType(org.eclipse.ocl.pivot.@NonNull DataType object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitDataType(object);
 			return postVisit(object, prologue, result);
@@ -359,8 +359,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitDetail(@NonNull org.eclipse.ocl.pivot.Detail object) {
-		P prologue = preVisit(object);
+	public R visitDetail(org.eclipse.ocl.pivot.@NonNull Detail object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitDetail(object);
 			return postVisit(object, prologue, result);
@@ -371,8 +371,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitDynamicBehavior(@NonNull org.eclipse.ocl.pivot.DynamicBehavior object) {
-		P prologue = preVisit(object);
+	public R visitDynamicBehavior(org.eclipse.ocl.pivot.@NonNull DynamicBehavior object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitDynamicBehavior(object);
 			return postVisit(object, prologue, result);
@@ -383,8 +383,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitDynamicElement(@NonNull org.eclipse.ocl.pivot.DynamicElement object) {
-		P prologue = preVisit(object);
+	public R visitDynamicElement(org.eclipse.ocl.pivot.@NonNull DynamicElement object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitDynamicElement(object);
 			return postVisit(object, prologue, result);
@@ -395,8 +395,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitDynamicProperty(@NonNull org.eclipse.ocl.pivot.DynamicProperty object) {
-		P prologue = preVisit(object);
+	public R visitDynamicProperty(org.eclipse.ocl.pivot.@NonNull DynamicProperty object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitDynamicProperty(object);
 			return postVisit(object, prologue, result);
@@ -407,8 +407,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitDynamicType(@NonNull org.eclipse.ocl.pivot.DynamicType object) {
-		P prologue = preVisit(object);
+	public R visitDynamicType(org.eclipse.ocl.pivot.@NonNull DynamicType object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitDynamicType(object);
 			return postVisit(object, prologue, result);
@@ -419,8 +419,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitDynamicValueSpecification(@NonNull org.eclipse.ocl.pivot.DynamicValueSpecification object) {
-		P prologue = preVisit(object);
+	public R visitDynamicValueSpecification(org.eclipse.ocl.pivot.@NonNull DynamicValueSpecification object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitDynamicValueSpecification(object);
 			return postVisit(object, prologue, result);
@@ -431,8 +431,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitElement(@NonNull org.eclipse.ocl.pivot.Element object) {
-		P prologue = preVisit(object);
+	public R visitElement(org.eclipse.ocl.pivot.@NonNull Element object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitElement(object);
 			return postVisit(object, prologue, result);
@@ -443,8 +443,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitElementExtension(@NonNull org.eclipse.ocl.pivot.ElementExtension object) {
-		P prologue = preVisit(object);
+	public R visitElementExtension(org.eclipse.ocl.pivot.@NonNull ElementExtension object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitElementExtension(object);
 			return postVisit(object, prologue, result);
@@ -455,8 +455,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitEnumLiteralExp(@NonNull org.eclipse.ocl.pivot.EnumLiteralExp object) {
-		P prologue = preVisit(object);
+	public R visitEnumLiteralExp(org.eclipse.ocl.pivot.@NonNull EnumLiteralExp object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitEnumLiteralExp(object);
 			return postVisit(object, prologue, result);
@@ -467,8 +467,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitEnumeration(@NonNull org.eclipse.ocl.pivot.Enumeration object) {
-		P prologue = preVisit(object);
+	public R visitEnumeration(org.eclipse.ocl.pivot.@NonNull Enumeration object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitEnumeration(object);
 			return postVisit(object, prologue, result);
@@ -479,8 +479,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitEnumerationLiteral(@NonNull org.eclipse.ocl.pivot.EnumerationLiteral object) {
-		P prologue = preVisit(object);
+	public R visitEnumerationLiteral(org.eclipse.ocl.pivot.@NonNull EnumerationLiteral object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitEnumerationLiteral(object);
 			return postVisit(object, prologue, result);
@@ -491,8 +491,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitExpressionInOCL(@NonNull org.eclipse.ocl.pivot.ExpressionInOCL object) {
-		P prologue = preVisit(object);
+	public R visitExpressionInOCL(org.eclipse.ocl.pivot.@NonNull ExpressionInOCL object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitExpressionInOCL(object);
 			return postVisit(object, prologue, result);
@@ -503,8 +503,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitFeature(@NonNull org.eclipse.ocl.pivot.Feature object) {
-		P prologue = preVisit(object);
+	public R visitFeature(org.eclipse.ocl.pivot.@NonNull Feature object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitFeature(object);
 			return postVisit(object, prologue, result);
@@ -515,8 +515,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitFeatureCallExp(@NonNull org.eclipse.ocl.pivot.FeatureCallExp object) {
-		P prologue = preVisit(object);
+	public R visitFeatureCallExp(org.eclipse.ocl.pivot.@NonNull FeatureCallExp object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitFeatureCallExp(object);
 			return postVisit(object, prologue, result);
@@ -527,8 +527,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitFinalState(@NonNull org.eclipse.ocl.pivot.FinalState object) {
-		P prologue = preVisit(object);
+	public R visitFinalState(org.eclipse.ocl.pivot.@NonNull FinalState object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitFinalState(object);
 			return postVisit(object, prologue, result);
@@ -539,8 +539,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitIfExp(@NonNull org.eclipse.ocl.pivot.IfExp object) {
-		P prologue = preVisit(object);
+	public R visitIfExp(org.eclipse.ocl.pivot.@NonNull IfExp object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitIfExp(object);
 			return postVisit(object, prologue, result);
@@ -551,8 +551,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitImport(@NonNull org.eclipse.ocl.pivot.Import object) {
-		P prologue = preVisit(object);
+	public R visitImport(org.eclipse.ocl.pivot.@NonNull Import object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitImport(object);
 			return postVisit(object, prologue, result);
@@ -563,8 +563,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitInstanceSpecification(@NonNull org.eclipse.ocl.pivot.InstanceSpecification object) {
-		P prologue = preVisit(object);
+	public R visitInstanceSpecification(org.eclipse.ocl.pivot.@NonNull InstanceSpecification object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitInstanceSpecification(object);
 			return postVisit(object, prologue, result);
@@ -575,8 +575,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitIntegerLiteralExp(@NonNull org.eclipse.ocl.pivot.IntegerLiteralExp object) {
-		P prologue = preVisit(object);
+	public R visitIntegerLiteralExp(org.eclipse.ocl.pivot.@NonNull IntegerLiteralExp object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitIntegerLiteralExp(object);
 			return postVisit(object, prologue, result);
@@ -587,8 +587,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitInvalidLiteralExp(@NonNull org.eclipse.ocl.pivot.InvalidLiteralExp object) {
-		P prologue = preVisit(object);
+	public R visitInvalidLiteralExp(org.eclipse.ocl.pivot.@NonNull InvalidLiteralExp object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitInvalidLiteralExp(object);
 			return postVisit(object, prologue, result);
@@ -599,8 +599,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitInvalidType(@NonNull org.eclipse.ocl.pivot.InvalidType object) {
-		P prologue = preVisit(object);
+	public R visitInvalidType(org.eclipse.ocl.pivot.@NonNull InvalidType object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitInvalidType(object);
 			return postVisit(object, prologue, result);
@@ -611,8 +611,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitIterateExp(@NonNull org.eclipse.ocl.pivot.IterateExp object) {
-		P prologue = preVisit(object);
+	public R visitIterateExp(org.eclipse.ocl.pivot.@NonNull IterateExp object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitIterateExp(object);
 			return postVisit(object, prologue, result);
@@ -623,8 +623,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitIteration(@NonNull org.eclipse.ocl.pivot.Iteration object) {
-		P prologue = preVisit(object);
+	public R visitIteration(org.eclipse.ocl.pivot.@NonNull Iteration object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitIteration(object);
 			return postVisit(object, prologue, result);
@@ -635,8 +635,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitIteratorExp(@NonNull org.eclipse.ocl.pivot.IteratorExp object) {
-		P prologue = preVisit(object);
+	public R visitIteratorExp(org.eclipse.ocl.pivot.@NonNull IteratorExp object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitIteratorExp(object);
 			return postVisit(object, prologue, result);
@@ -647,8 +647,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitLambdaType(@NonNull org.eclipse.ocl.pivot.LambdaType object) {
-		P prologue = preVisit(object);
+	public R visitLambdaType(org.eclipse.ocl.pivot.@NonNull LambdaType object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitLambdaType(object);
 			return postVisit(object, prologue, result);
@@ -659,8 +659,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitLanguageExpression(@NonNull org.eclipse.ocl.pivot.LanguageExpression object) {
-		P prologue = preVisit(object);
+	public R visitLanguageExpression(org.eclipse.ocl.pivot.@NonNull LanguageExpression object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitLanguageExpression(object);
 			return postVisit(object, prologue, result);
@@ -671,8 +671,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitLetExp(@NonNull org.eclipse.ocl.pivot.LetExp object) {
-		P prologue = preVisit(object);
+	public R visitLetExp(org.eclipse.ocl.pivot.@NonNull LetExp object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitLetExp(object);
 			return postVisit(object, prologue, result);
@@ -683,8 +683,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitLibrary(@NonNull org.eclipse.ocl.pivot.Library object) {
-		P prologue = preVisit(object);
+	public R visitLibrary(org.eclipse.ocl.pivot.@NonNull Library object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitLibrary(object);
 			return postVisit(object, prologue, result);
@@ -695,8 +695,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitLiteralExp(@NonNull org.eclipse.ocl.pivot.LiteralExp object) {
-		P prologue = preVisit(object);
+	public R visitLiteralExp(org.eclipse.ocl.pivot.@NonNull LiteralExp object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitLiteralExp(object);
 			return postVisit(object, prologue, result);
@@ -707,8 +707,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitLoopExp(@NonNull org.eclipse.ocl.pivot.LoopExp object) {
-		P prologue = preVisit(object);
+	public R visitLoopExp(org.eclipse.ocl.pivot.@NonNull LoopExp object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitLoopExp(object);
 			return postVisit(object, prologue, result);
@@ -719,8 +719,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitMapLiteralExp(@NonNull org.eclipse.ocl.pivot.MapLiteralExp object) {
-		P prologue = preVisit(object);
+	public R visitMapLiteralExp(org.eclipse.ocl.pivot.@NonNull MapLiteralExp object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitMapLiteralExp(object);
 			return postVisit(object, prologue, result);
@@ -731,8 +731,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitMapLiteralPart(@NonNull org.eclipse.ocl.pivot.MapLiteralPart object) {
-		P prologue = preVisit(object);
+	public R visitMapLiteralPart(org.eclipse.ocl.pivot.@NonNull MapLiteralPart object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitMapLiteralPart(object);
 			return postVisit(object, prologue, result);
@@ -743,8 +743,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitMapType(@NonNull org.eclipse.ocl.pivot.MapType object) {
-		P prologue = preVisit(object);
+	public R visitMapType(org.eclipse.ocl.pivot.@NonNull MapType object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitMapType(object);
 			return postVisit(object, prologue, result);
@@ -755,8 +755,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitMessageExp(@NonNull org.eclipse.ocl.pivot.MessageExp object) {
-		P prologue = preVisit(object);
+	public R visitMessageExp(org.eclipse.ocl.pivot.@NonNull MessageExp object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitMessageExp(object);
 			return postVisit(object, prologue, result);
@@ -767,8 +767,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitMessageType(@NonNull org.eclipse.ocl.pivot.MessageType object) {
-		P prologue = preVisit(object);
+	public R visitMessageType(org.eclipse.ocl.pivot.@NonNull MessageType object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitMessageType(object);
 			return postVisit(object, prologue, result);
@@ -779,8 +779,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitModel(@NonNull org.eclipse.ocl.pivot.Model object) {
-		P prologue = preVisit(object);
+	public R visitModel(org.eclipse.ocl.pivot.@NonNull Model object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitModel(object);
 			return postVisit(object, prologue, result);
@@ -791,8 +791,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitNamedElement(@NonNull org.eclipse.ocl.pivot.NamedElement object) {
-		P prologue = preVisit(object);
+	public R visitNamedElement(org.eclipse.ocl.pivot.@NonNull NamedElement object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitNamedElement(object);
 			return postVisit(object, prologue, result);
@@ -803,8 +803,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitNamespace(@NonNull org.eclipse.ocl.pivot.Namespace object) {
-		P prologue = preVisit(object);
+	public R visitNamespace(org.eclipse.ocl.pivot.@NonNull Namespace object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitNamespace(object);
 			return postVisit(object, prologue, result);
@@ -815,8 +815,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitNavigationCallExp(@NonNull org.eclipse.ocl.pivot.NavigationCallExp object) {
-		P prologue = preVisit(object);
+	public R visitNavigationCallExp(org.eclipse.ocl.pivot.@NonNull NavigationCallExp object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitNavigationCallExp(object);
 			return postVisit(object, prologue, result);
@@ -827,8 +827,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitNullLiteralExp(@NonNull org.eclipse.ocl.pivot.NullLiteralExp object) {
-		P prologue = preVisit(object);
+	public R visitNullLiteralExp(org.eclipse.ocl.pivot.@NonNull NullLiteralExp object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitNullLiteralExp(object);
 			return postVisit(object, prologue, result);
@@ -839,8 +839,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitNumericLiteralExp(@NonNull org.eclipse.ocl.pivot.NumericLiteralExp object) {
-		P prologue = preVisit(object);
+	public R visitNumericLiteralExp(org.eclipse.ocl.pivot.@NonNull NumericLiteralExp object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitNumericLiteralExp(object);
 			return postVisit(object, prologue, result);
@@ -851,8 +851,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitOCLExpression(@NonNull org.eclipse.ocl.pivot.OCLExpression object) {
-		P prologue = preVisit(object);
+	public R visitOCLExpression(org.eclipse.ocl.pivot.@NonNull OCLExpression object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitOCLExpression(object);
 			return postVisit(object, prologue, result);
@@ -863,8 +863,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitOperation(@NonNull org.eclipse.ocl.pivot.Operation object) {
-		P prologue = preVisit(object);
+	public R visitOperation(org.eclipse.ocl.pivot.@NonNull Operation object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitOperation(object);
 			return postVisit(object, prologue, result);
@@ -875,8 +875,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitOperationCallExp(@NonNull org.eclipse.ocl.pivot.OperationCallExp object) {
-		P prologue = preVisit(object);
+	public R visitOperationCallExp(org.eclipse.ocl.pivot.@NonNull OperationCallExp object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitOperationCallExp(object);
 			return postVisit(object, prologue, result);
@@ -887,8 +887,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitOppositePropertyCallExp(@NonNull org.eclipse.ocl.pivot.OppositePropertyCallExp object) {
-		P prologue = preVisit(object);
+	public R visitOppositePropertyCallExp(org.eclipse.ocl.pivot.@NonNull OppositePropertyCallExp object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitOppositePropertyCallExp(object);
 			return postVisit(object, prologue, result);
@@ -899,8 +899,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitOrderedSetType(@NonNull org.eclipse.ocl.pivot.OrderedSetType object) {
-		P prologue = preVisit(object);
+	public R visitOrderedSetType(org.eclipse.ocl.pivot.@NonNull OrderedSetType object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitOrderedSetType(object);
 			return postVisit(object, prologue, result);
@@ -911,8 +911,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitOrphanCompletePackage(@NonNull org.eclipse.ocl.pivot.OrphanCompletePackage object) {
-		P prologue = preVisit(object);
+	public R visitOrphanCompletePackage(org.eclipse.ocl.pivot.@NonNull OrphanCompletePackage object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitOrphanCompletePackage(object);
 			return postVisit(object, prologue, result);
@@ -923,8 +923,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitPackage(@NonNull org.eclipse.ocl.pivot.Package object) {
-		P prologue = preVisit(object);
+	public R visitPackage(org.eclipse.ocl.pivot.@NonNull Package object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitPackage(object);
 			return postVisit(object, prologue, result);
@@ -935,8 +935,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitParameter(@NonNull org.eclipse.ocl.pivot.Parameter object) {
-		P prologue = preVisit(object);
+	public R visitParameter(org.eclipse.ocl.pivot.@NonNull Parameter object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitParameter(object);
 			return postVisit(object, prologue, result);
@@ -947,8 +947,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitPrecedence(@NonNull org.eclipse.ocl.pivot.Precedence object) {
-		P prologue = preVisit(object);
+	public R visitPrecedence(org.eclipse.ocl.pivot.@NonNull Precedence object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitPrecedence(object);
 			return postVisit(object, prologue, result);
@@ -959,8 +959,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitPrimitiveCompletePackage(@NonNull org.eclipse.ocl.pivot.PrimitiveCompletePackage object) {
-		P prologue = preVisit(object);
+	public R visitPrimitiveCompletePackage(org.eclipse.ocl.pivot.@NonNull PrimitiveCompletePackage object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitPrimitiveCompletePackage(object);
 			return postVisit(object, prologue, result);
@@ -971,8 +971,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitPrimitiveLiteralExp(@NonNull org.eclipse.ocl.pivot.PrimitiveLiteralExp object) {
-		P prologue = preVisit(object);
+	public R visitPrimitiveLiteralExp(org.eclipse.ocl.pivot.@NonNull PrimitiveLiteralExp object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitPrimitiveLiteralExp(object);
 			return postVisit(object, prologue, result);
@@ -983,8 +983,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitPrimitiveType(@NonNull org.eclipse.ocl.pivot.PrimitiveType object) {
-		P prologue = preVisit(object);
+	public R visitPrimitiveType(org.eclipse.ocl.pivot.@NonNull PrimitiveType object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitPrimitiveType(object);
 			return postVisit(object, prologue, result);
@@ -995,8 +995,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitProfile(@NonNull org.eclipse.ocl.pivot.Profile object) {
-		P prologue = preVisit(object);
+	public R visitProfile(org.eclipse.ocl.pivot.@NonNull Profile object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitProfile(object);
 			return postVisit(object, prologue, result);
@@ -1007,8 +1007,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitProfileApplication(@NonNull org.eclipse.ocl.pivot.ProfileApplication object) {
-		P prologue = preVisit(object);
+	public R visitProfileApplication(org.eclipse.ocl.pivot.@NonNull ProfileApplication object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitProfileApplication(object);
 			return postVisit(object, prologue, result);
@@ -1019,8 +1019,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitProperty(@NonNull org.eclipse.ocl.pivot.Property object) {
-		P prologue = preVisit(object);
+	public R visitProperty(org.eclipse.ocl.pivot.@NonNull Property object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitProperty(object);
 			return postVisit(object, prologue, result);
@@ -1031,8 +1031,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitPropertyCallExp(@NonNull org.eclipse.ocl.pivot.PropertyCallExp object) {
-		P prologue = preVisit(object);
+	public R visitPropertyCallExp(org.eclipse.ocl.pivot.@NonNull PropertyCallExp object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitPropertyCallExp(object);
 			return postVisit(object, prologue, result);
@@ -1043,8 +1043,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitPseudostate(@NonNull org.eclipse.ocl.pivot.Pseudostate object) {
-		P prologue = preVisit(object);
+	public R visitPseudostate(org.eclipse.ocl.pivot.@NonNull Pseudostate object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitPseudostate(object);
 			return postVisit(object, prologue, result);
@@ -1055,8 +1055,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitRealLiteralExp(@NonNull org.eclipse.ocl.pivot.RealLiteralExp object) {
-		P prologue = preVisit(object);
+	public R visitRealLiteralExp(org.eclipse.ocl.pivot.@NonNull RealLiteralExp object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitRealLiteralExp(object);
 			return postVisit(object, prologue, result);
@@ -1067,8 +1067,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitRegion(@NonNull org.eclipse.ocl.pivot.Region object) {
-		P prologue = preVisit(object);
+	public R visitRegion(org.eclipse.ocl.pivot.@NonNull Region object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitRegion(object);
 			return postVisit(object, prologue, result);
@@ -1079,8 +1079,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitSelfType(@NonNull org.eclipse.ocl.pivot.SelfType object) {
-		P prologue = preVisit(object);
+	public R visitSelfType(org.eclipse.ocl.pivot.@NonNull SelfType object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitSelfType(object);
 			return postVisit(object, prologue, result);
@@ -1091,8 +1091,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitSendSignalAction(@NonNull org.eclipse.ocl.pivot.SendSignalAction object) {
-		P prologue = preVisit(object);
+	public R visitSendSignalAction(org.eclipse.ocl.pivot.@NonNull SendSignalAction object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitSendSignalAction(object);
 			return postVisit(object, prologue, result);
@@ -1103,8 +1103,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitSequenceType(@NonNull org.eclipse.ocl.pivot.SequenceType object) {
-		P prologue = preVisit(object);
+	public R visitSequenceType(org.eclipse.ocl.pivot.@NonNull SequenceType object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitSequenceType(object);
 			return postVisit(object, prologue, result);
@@ -1115,8 +1115,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitSetType(@NonNull org.eclipse.ocl.pivot.SetType object) {
-		P prologue = preVisit(object);
+	public R visitSetType(org.eclipse.ocl.pivot.@NonNull SetType object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitSetType(object);
 			return postVisit(object, prologue, result);
@@ -1127,8 +1127,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitShadowExp(@NonNull org.eclipse.ocl.pivot.ShadowExp object) {
-		P prologue = preVisit(object);
+	public R visitShadowExp(org.eclipse.ocl.pivot.@NonNull ShadowExp object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitShadowExp(object);
 			return postVisit(object, prologue, result);
@@ -1139,8 +1139,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitShadowPart(@NonNull org.eclipse.ocl.pivot.ShadowPart object) {
-		P prologue = preVisit(object);
+	public R visitShadowPart(org.eclipse.ocl.pivot.@NonNull ShadowPart object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitShadowPart(object);
 			return postVisit(object, prologue, result);
@@ -1151,8 +1151,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitSignal(@NonNull org.eclipse.ocl.pivot.Signal object) {
-		P prologue = preVisit(object);
+	public R visitSignal(org.eclipse.ocl.pivot.@NonNull Signal object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitSignal(object);
 			return postVisit(object, prologue, result);
@@ -1163,8 +1163,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitSlot(@NonNull org.eclipse.ocl.pivot.Slot object) {
-		P prologue = preVisit(object);
+	public R visitSlot(org.eclipse.ocl.pivot.@NonNull Slot object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitSlot(object);
 			return postVisit(object, prologue, result);
@@ -1175,8 +1175,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitStandardLibrary(@NonNull org.eclipse.ocl.pivot.StandardLibrary object) {
-		P prologue = preVisit(object);
+	public R visitStandardLibrary(org.eclipse.ocl.pivot.@NonNull StandardLibrary object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitStandardLibrary(object);
 			return postVisit(object, prologue, result);
@@ -1187,8 +1187,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitState(@NonNull org.eclipse.ocl.pivot.State object) {
-		P prologue = preVisit(object);
+	public R visitState(org.eclipse.ocl.pivot.@NonNull State object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitState(object);
 			return postVisit(object, prologue, result);
@@ -1199,8 +1199,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitStateExp(@NonNull org.eclipse.ocl.pivot.StateExp object) {
-		P prologue = preVisit(object);
+	public R visitStateExp(org.eclipse.ocl.pivot.@NonNull StateExp object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitStateExp(object);
 			return postVisit(object, prologue, result);
@@ -1211,8 +1211,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitStateMachine(@NonNull org.eclipse.ocl.pivot.StateMachine object) {
-		P prologue = preVisit(object);
+	public R visitStateMachine(org.eclipse.ocl.pivot.@NonNull StateMachine object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitStateMachine(object);
 			return postVisit(object, prologue, result);
@@ -1223,8 +1223,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitStereotype(@NonNull org.eclipse.ocl.pivot.Stereotype object) {
-		P prologue = preVisit(object);
+	public R visitStereotype(org.eclipse.ocl.pivot.@NonNull Stereotype object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitStereotype(object);
 			return postVisit(object, prologue, result);
@@ -1235,8 +1235,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitStereotypeExtender(@NonNull org.eclipse.ocl.pivot.StereotypeExtender object) {
-		P prologue = preVisit(object);
+	public R visitStereotypeExtender(org.eclipse.ocl.pivot.@NonNull StereotypeExtender object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitStereotypeExtender(object);
 			return postVisit(object, prologue, result);
@@ -1247,8 +1247,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitStringLiteralExp(@NonNull org.eclipse.ocl.pivot.StringLiteralExp object) {
-		P prologue = preVisit(object);
+	public R visitStringLiteralExp(org.eclipse.ocl.pivot.@NonNull StringLiteralExp object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitStringLiteralExp(object);
 			return postVisit(object, prologue, result);
@@ -1259,8 +1259,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitTemplateBinding(@NonNull org.eclipse.ocl.pivot.TemplateBinding object) {
-		P prologue = preVisit(object);
+	public R visitTemplateBinding(org.eclipse.ocl.pivot.@NonNull TemplateBinding object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitTemplateBinding(object);
 			return postVisit(object, prologue, result);
@@ -1271,8 +1271,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitTemplateParameter(@NonNull org.eclipse.ocl.pivot.TemplateParameter object) {
-		P prologue = preVisit(object);
+	public R visitTemplateParameter(org.eclipse.ocl.pivot.@NonNull TemplateParameter object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitTemplateParameter(object);
 			return postVisit(object, prologue, result);
@@ -1283,8 +1283,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitTemplateParameterSubstitution(@NonNull org.eclipse.ocl.pivot.TemplateParameterSubstitution object) {
-		P prologue = preVisit(object);
+	public R visitTemplateParameterSubstitution(org.eclipse.ocl.pivot.@NonNull TemplateParameterSubstitution object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitTemplateParameterSubstitution(object);
 			return postVisit(object, prologue, result);
@@ -1295,8 +1295,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitTemplateSignature(@NonNull org.eclipse.ocl.pivot.TemplateSignature object) {
-		P prologue = preVisit(object);
+	public R visitTemplateSignature(org.eclipse.ocl.pivot.@NonNull TemplateSignature object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitTemplateSignature(object);
 			return postVisit(object, prologue, result);
@@ -1307,8 +1307,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitTemplateableElement(@NonNull org.eclipse.ocl.pivot.TemplateableElement object) {
-		P prologue = preVisit(object);
+	public R visitTemplateableElement(org.eclipse.ocl.pivot.@NonNull TemplateableElement object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitTemplateableElement(object);
 			return postVisit(object, prologue, result);
@@ -1319,8 +1319,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitTransition(@NonNull org.eclipse.ocl.pivot.Transition object) {
-		P prologue = preVisit(object);
+	public R visitTransition(org.eclipse.ocl.pivot.@NonNull Transition object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitTransition(object);
 			return postVisit(object, prologue, result);
@@ -1331,8 +1331,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitTrigger(@NonNull org.eclipse.ocl.pivot.Trigger object) {
-		P prologue = preVisit(object);
+	public R visitTrigger(org.eclipse.ocl.pivot.@NonNull Trigger object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitTrigger(object);
 			return postVisit(object, prologue, result);
@@ -1343,8 +1343,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitTupleLiteralExp(@NonNull org.eclipse.ocl.pivot.TupleLiteralExp object) {
-		P prologue = preVisit(object);
+	public R visitTupleLiteralExp(org.eclipse.ocl.pivot.@NonNull TupleLiteralExp object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitTupleLiteralExp(object);
 			return postVisit(object, prologue, result);
@@ -1355,8 +1355,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitTupleLiteralPart(@NonNull org.eclipse.ocl.pivot.TupleLiteralPart object) {
-		P prologue = preVisit(object);
+	public R visitTupleLiteralPart(org.eclipse.ocl.pivot.@NonNull TupleLiteralPart object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitTupleLiteralPart(object);
 			return postVisit(object, prologue, result);
@@ -1367,8 +1367,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitTupleType(@NonNull org.eclipse.ocl.pivot.TupleType object) {
-		P prologue = preVisit(object);
+	public R visitTupleType(org.eclipse.ocl.pivot.@NonNull TupleType object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitTupleType(object);
 			return postVisit(object, prologue, result);
@@ -1379,8 +1379,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitType(@NonNull org.eclipse.ocl.pivot.Type object) {
-		P prologue = preVisit(object);
+	public R visitType(org.eclipse.ocl.pivot.@NonNull Type object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitType(object);
 			return postVisit(object, prologue, result);
@@ -1391,8 +1391,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitTypeExp(@NonNull org.eclipse.ocl.pivot.TypeExp object) {
-		P prologue = preVisit(object);
+	public R visitTypeExp(org.eclipse.ocl.pivot.@NonNull TypeExp object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitTypeExp(object);
 			return postVisit(object, prologue, result);
@@ -1403,8 +1403,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitTypedElement(@NonNull org.eclipse.ocl.pivot.TypedElement object) {
-		P prologue = preVisit(object);
+	public R visitTypedElement(org.eclipse.ocl.pivot.@NonNull TypedElement object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitTypedElement(object);
 			return postVisit(object, prologue, result);
@@ -1415,8 +1415,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitUnlimitedNaturalLiteralExp(@NonNull org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp object) {
-		P prologue = preVisit(object);
+	public R visitUnlimitedNaturalLiteralExp(org.eclipse.ocl.pivot.@NonNull UnlimitedNaturalLiteralExp object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitUnlimitedNaturalLiteralExp(object);
 			return postVisit(object, prologue, result);
@@ -1427,8 +1427,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitUnspecifiedValueExp(@NonNull org.eclipse.ocl.pivot.UnspecifiedValueExp object) {
-		P prologue = preVisit(object);
+	public R visitUnspecifiedValueExp(org.eclipse.ocl.pivot.@NonNull UnspecifiedValueExp object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitUnspecifiedValueExp(object);
 			return postVisit(object, prologue, result);
@@ -1439,8 +1439,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitValueSpecification(@NonNull org.eclipse.ocl.pivot.ValueSpecification object) {
-		P prologue = preVisit(object);
+	public R visitValueSpecification(org.eclipse.ocl.pivot.@NonNull ValueSpecification object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitValueSpecification(object);
 			return postVisit(object, prologue, result);
@@ -1451,8 +1451,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitVariable(@NonNull org.eclipse.ocl.pivot.Variable object) {
-		P prologue = preVisit(object);
+	public R visitVariable(org.eclipse.ocl.pivot.@NonNull Variable object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitVariable(object);
 			return postVisit(object, prologue, result);
@@ -1463,8 +1463,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitVariableDeclaration(@NonNull org.eclipse.ocl.pivot.VariableDeclaration object) {
-		P prologue = preVisit(object);
+	public R visitVariableDeclaration(org.eclipse.ocl.pivot.@NonNull VariableDeclaration object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitVariableDeclaration(object);
 			return postVisit(object, prologue, result);
@@ -1475,8 +1475,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitVariableExp(@NonNull org.eclipse.ocl.pivot.VariableExp object) {
-		P prologue = preVisit(object);
+	public R visitVariableExp(org.eclipse.ocl.pivot.@NonNull VariableExp object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitVariableExp(object);
 			return postVisit(object, prologue, result);
@@ -1487,8 +1487,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitVertex(@NonNull org.eclipse.ocl.pivot.Vertex object) {
-		P prologue = preVisit(object);
+	public R visitVertex(org.eclipse.ocl.pivot.@NonNull Vertex object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitVertex(object);
 			return postVisit(object, prologue, result);
@@ -1499,8 +1499,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitVoidType(@NonNull org.eclipse.ocl.pivot.VoidType object) {
-		P prologue = preVisit(object);
+	public R visitVoidType(org.eclipse.ocl.pivot.@NonNull VoidType object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitVoidType(object);
 			return postVisit(object, prologue, result);
@@ -1511,8 +1511,8 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 	}
 
 	@Override
-	public @Nullable R visitWildcardType(@NonNull org.eclipse.ocl.pivot.WildcardType object) {
-		P prologue = preVisit(object);
+	public R visitWildcardType(org.eclipse.ocl.pivot.@NonNull WildcardType object) {
+		@Nullable P prologue = preVisit(object);
 		try {
 			R result = delegate.visitWildcardType(object);
 			return postVisit(object, prologue, result);

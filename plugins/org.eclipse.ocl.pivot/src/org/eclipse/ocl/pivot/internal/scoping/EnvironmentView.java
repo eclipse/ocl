@@ -157,7 +157,7 @@ public class EnvironmentView
 	private static final class MergedPackageDisambiguator extends Disambiguator<org.eclipse.ocl.pivot.Package>
 	{
 		@Override
-		public int compare(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull org.eclipse.ocl.pivot.Package match1, @NonNull org.eclipse.ocl.pivot.Package match2) {
+		public int compare(@NonNull EnvironmentFactoryInternal environmentFactory, org.eclipse.ocl.pivot.@NonNull Package match1, org.eclipse.ocl.pivot.@NonNull Package match2) {
 			CompleteModelInternal completeModel = environmentFactory.getCompleteModel();
 			CompletePackageInternal completePackage1 = completeModel.getCompletePackage(match1);
 			CompletePackageInternal completePackage2 = completeModel.getCompletePackage(match2);
@@ -261,7 +261,7 @@ public class EnvironmentView
 		return (name == null) || PivotUtil.conformsTo(requiredType, eClass) || ((requiredType != null) && PivotUtil.conformsTo(eClass, requiredType));
 	}
 
-	public void addAllElements(@NonNull org.eclipse.ocl.pivot.Class asClass, @NonNull ScopeView scopeView) {
+	public void addAllElements(org.eclipse.ocl.pivot.@NonNull Class asClass, @NonNull ScopeView scopeView) {
 		Attribution attribution = PivotUtilInternal.getAttribution(asClass);
 		attribution.computeLookup(asClass, this, scopeView);
 		org.eclipse.ocl.pivot.Class asUnspecializedClass = PivotUtil.getUnspecializedTemplateableElement(asClass);
@@ -299,7 +299,7 @@ public class EnvironmentView
 		}
 	}
 
-	public void addAllOperations(@NonNull org.eclipse.ocl.pivot.Class type, @Nullable FeatureFilter featureFilter) {
+	public void addAllOperations(org.eclipse.ocl.pivot.@NonNull Class type, @Nullable FeatureFilter featureFilter) {
 		if (accepts(PivotPackage.Literals.ITERATION)		// If ITERATION is acceptable then so too is OPERATION
 				&& (requiredType != PivotPackage.Literals.NAMESPACE)) {			// Don't really want operations when looking for NAMESPACE
 			assert environmentFactory.getMetamodelManager().isTypeServeable(type);
@@ -323,7 +323,7 @@ public class EnvironmentView
 		}
 	}
 
-	public void addAllPackages(@NonNull org.eclipse.ocl.pivot.Package pkge) {
+	public void addAllPackages(org.eclipse.ocl.pivot.@NonNull Package pkge) {
 		if (accepts(PivotPackage.Literals.PACKAGE)) {
 			CompletePackage parentCompletePackage = environmentFactory.getMetamodelManager().getCompletePackage(pkge);
 			String name2 = name;
@@ -403,7 +403,7 @@ public class EnvironmentView
 		}
 	}
 	
-	public void addAllProperties(@NonNull org.eclipse.ocl.pivot.Class type, @Nullable FeatureFilter featureFilter) {
+	public void addAllProperties(org.eclipse.ocl.pivot.@NonNull Class type, @Nullable FeatureFilter featureFilter) {
 		if (accepts(PivotPackage.Literals.PROPERTY)
 			&& (requiredType != PivotPackage.Literals.NAMESPACE)) {			// Don't really want properties when looking for NAMESPACE
 			assert environmentFactory.getMetamodelManager().isTypeServeable(type);
@@ -472,7 +472,7 @@ public class EnvironmentView
 		}
 	}
 
-	public void addAllTypes(@NonNull org.eclipse.ocl.pivot.Package pkge) {
+	public void addAllTypes(org.eclipse.ocl.pivot.@NonNull Package pkge) {
 		if (accepts(PivotPackage.Literals.CLASS)) {
 			CompletePackage completePackage = environmentFactory.getMetamodelManager().getCompletePackage(pkge);
 			String name2 = name;
@@ -667,7 +667,7 @@ public class EnvironmentView
 		}
 	}
 
-	public void addLibContents(@NonNull org.eclipse.ocl.pivot.Class libType, @NonNull ScopeView scopeView) {
+	public void addLibContents(org.eclipse.ocl.pivot.@NonNull Class libType, @NonNull ScopeView scopeView) {
 		addElementsOfScope(libType, scopeView);
 		for (org.eclipse.ocl.pivot.Class superClass : libType.getSuperClasses()) {
 			if (superClass != null) {

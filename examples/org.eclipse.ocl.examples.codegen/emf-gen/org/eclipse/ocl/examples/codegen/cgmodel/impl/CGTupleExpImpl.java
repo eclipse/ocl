@@ -179,7 +179,7 @@ public class CGTupleExpImpl extends CGValuedElementImpl implements CGTupleExp {
 	 * @generated
 	 */
 	@Override
-	public @Nullable <R> R accept(@NonNull CGModelVisitor<R> visitor) {
+	public <R> R accept(@NonNull CGModelVisitor<R> visitor) {
 		return visitor.visitCGTupleExp(this);
 	}
 

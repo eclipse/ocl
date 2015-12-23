@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
@@ -53,12 +52,12 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 	}
 
 	@Override
-	public @Nullable ValidationDelegate.Factory getDefaultFactory() {
+	public ValidationDelegate.@Nullable Factory getDefaultFactory() {
 		return (ValidationDelegate.Factory) ValidationDelegate.Factory.Registry.INSTANCE.getValidationDelegate(getName());
 	}
 
 	@Override
-	public @NonNull EValidator.ValidationDelegate.Registry getDefaultRegistry() {
+	public EValidator.ValidationDelegate.@NonNull Registry getDefaultRegistry() {
 		return ClassUtil.nonNullEMF(ValidationDelegate.Factory.Registry.INSTANCE);
 	}
 
@@ -83,12 +82,9 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 	} */
 
 	@Override
-	public @Nullable ValidationDelegate.Factory getFactory(@NonNull DelegateDomain delegateDomain, @NonNull EClassifier eClassifier) {
-		EValidator.ValidationDelegate.Registry registry = DelegateResourceSetAdapter.getRegistry(
-			eClassifier, ValidationDelegate.Registry.class, getDefaultRegistry());
-		if (registry == null) {
-			return null;
-		}
+	public ValidationDelegate.@Nullable Factory getFactory(@NonNull DelegateDomain delegateDomain, @NonNull EClassifier eClassifier) {
+		Class<EValidator.ValidationDelegate.@NonNull Registry> castClass = ValidationDelegate.Registry.class;
+		EValidator.ValidationDelegate.@NonNull Registry registry = OCLDelegateDomain.getDelegateResourceSetRegistry(eClassifier, castClass, getDefaultRegistry());
 	    String delegateURI = delegateDomain.getURI();
 	    org.eclipse.emf.ecore.EValidator.ValidationDelegate validationDelegate = registry.getValidationDelegate(delegateURI);
 		return (ValidationDelegate.Factory) validationDelegate;

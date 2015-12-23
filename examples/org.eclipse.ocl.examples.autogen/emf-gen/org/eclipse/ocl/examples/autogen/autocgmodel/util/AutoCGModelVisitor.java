@@ -18,14 +18,13 @@
 package	org.eclipse.ocl.examples.autogen.autocgmodel.util;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 
 /**
  */
 public interface AutoCGModelVisitor<R> extends org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor<R>
 {
-	@Nullable R visitCGASTCallExp(@NonNull org.eclipse.ocl.examples.autogen.autocgmodel.CGASTCallExp object);
-	@Nullable R visitCGContainmentBody(@NonNull org.eclipse.ocl.examples.autogen.autocgmodel.CGContainmentBody object);
-	@Nullable R visitCGContainmentPart(@NonNull org.eclipse.ocl.examples.autogen.autocgmodel.CGContainmentPart object);
-	@Nullable R visitCGContainmentVisit(@NonNull org.eclipse.ocl.examples.autogen.autocgmodel.CGContainmentVisit object);
+	R visitCGASTCallExp( org.eclipse.ocl.examples.autogen.autocgmodel.@NonNull CGASTCallExp object);
+	R visitCGContainmentBody( org.eclipse.ocl.examples.autogen.autocgmodel.@NonNull CGContainmentBody object);
+	R visitCGContainmentPart( org.eclipse.ocl.examples.autogen.autocgmodel.@NonNull CGContainmentPart object);
+	R visitCGContainmentVisit( org.eclipse.ocl.examples.autogen.autocgmodel.@NonNull CGContainmentVisit object);
 }

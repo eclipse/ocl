@@ -735,7 +735,7 @@ public class OperationImpl
 		            }
 		            @NonNull /*@Caught*/ Object CAUGHT_ne_0;
 		            try {
-		                final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_ExpressionInOCL = idResolver.getClass(PivotTables.CLSSid_ExpressionInOCL, null);
+		                final /*@NonInvalid*/ org.eclipse.ocl.pivot.@NonNull Class TYP_ExpressionInOCL = idResolver.getClass(PivotTables.CLSSid_ExpressionInOCL, null);
 		                final @Nullable /*@Thrown*/ LanguageExpression bodyExpression_0 = this.getBodyExpression();
 		                final @NonNull /*@Thrown*/ ExpressionInOCL oclAsType = ClassUtil.nonNullState((ExpressionInOCL)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, bodyExpression_0, TYP_ExpressionInOCL));
 		                final @Nullable /*@Thrown*/ OCLExpression ownedBody = oclAsType.getOwnedBody();
@@ -844,7 +844,7 @@ public class OperationImpl
 		        @SuppressWarnings("null")
 		        final @NonNull /*@Thrown*/ List<Constraint> ownedPreconditions = this.getOwnedPreconditions();
 		        final @NonNull /*@Thrown*/ SetValue BOXED_ownedPreconditions = idResolver.createSetOfAll(PivotTables.SET_CLSSid_Constraint, ownedPreconditions);
-		        @NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValueUtil.createSetAccumulatorValue(PivotTables.SET_CLSSid_Constraint);
+		        /*@Thrown*/ SetValue.@NonNull Accumulator accumulator = ValueUtil.createSetAccumulatorValue(PivotTables.SET_CLSSid_Constraint);
 		        @Nullable Iterator<?> ITERATOR_p = BOXED_ownedPreconditions.iterator();
 		        /*@Thrown*/ boolean status;
 		        while (true) {
@@ -922,7 +922,7 @@ public class OperationImpl
 		        @SuppressWarnings("null")
 		        final @NonNull /*@Thrown*/ List<Constraint> ownedPostconditions = this.getOwnedPostconditions();
 		        final @NonNull /*@Thrown*/ SetValue BOXED_ownedPostconditions = idResolver.createSetOfAll(PivotTables.SET_CLSSid_Constraint, ownedPostconditions);
-		        @NonNull /*@Thrown*/ SetValue.Accumulator accumulator = ValueUtil.createSetAccumulatorValue(PivotTables.SET_CLSSid_Constraint);
+		        /*@Thrown*/ SetValue.@NonNull Accumulator accumulator = ValueUtil.createSetAccumulatorValue(PivotTables.SET_CLSSid_Constraint);
 		        @Nullable Iterator<?> ITERATOR_p = BOXED_ownedPostconditions.iterator();
 		        /*@Thrown*/ boolean status;
 		        while (true) {

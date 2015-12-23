@@ -38,7 +38,7 @@ public interface CGElement extends EObject {
 	 * @generated
 	 */
 	// Generated from org.eclipse.ocl.examples.build/templates/model/Class/insert.javajetinc
-	public @Nullable <R> R accept(@NonNull CGModelVisitor<R> visitor);
+	public <R> R accept(@NonNull CGModelVisitor<R> visitor);
 
 	/**
 	 * Return the child CGElements.

@@ -29,7 +29,7 @@ public abstract class AbstractConversion
 		boolean filter(@NonNull T element);
 	}	
 
-	protected static <T> T basicGet(@NonNull EObject eObject, @NonNull EAttribute eFeature, @NonNull Class<T> resultClass) {
+	protected static <T> @Nullable T basicGet(@NonNull EObject eObject, @NonNull EAttribute eFeature, @NonNull Class<T> resultClass) {
 		if (!eObject.eIsSet(eFeature)) {
 			return null;
 		}

@@ -49,7 +49,7 @@ public interface Customizable {
      * 
      * @return value of the option
      */
-    @Nullable <T> T getValue(@NonNull Option<T> option);
+    <@Nullable T> T getValue(@NonNull Option<T> option);
     
     /**
      * Queries whether the specified boolean-valued option is enabled.

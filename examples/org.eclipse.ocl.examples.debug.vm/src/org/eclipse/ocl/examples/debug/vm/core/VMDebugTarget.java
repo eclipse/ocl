@@ -168,7 +168,7 @@ public abstract class VMDebugTarget extends VMDebugElement implements IVMDebugTa
 		}
 
 		if (!allBpData.isEmpty()) {
-			@SuppressWarnings("null")@NonNull VMNewBreakpointData[] bpData = allBpData.toArray(new VMNewBreakpointData[allBpData.size()]);
+			@SuppressWarnings("null")@NonNull VMNewBreakpointData @NonNull [] bpData = allBpData.toArray(new VMNewBreakpointData[allBpData.size()]);
 			VMBreakpointRequest breakpointRequest = VMBreakpointRequest.createAdd(bpData);
 			try {
 				VMResponse response = fVM.sendRequest(breakpointRequest);

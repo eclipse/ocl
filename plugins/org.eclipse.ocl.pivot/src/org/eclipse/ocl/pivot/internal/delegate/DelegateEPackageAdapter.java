@@ -30,7 +30,6 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.common.delegate.VirtualDelegateMapping;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
@@ -72,9 +71,9 @@ public class DelegateEPackageAdapter extends AdapterImpl
 
 	protected @NonNull DelegateDomain createDelegateDomain(@NonNull String delegateURI) {
 		EPackage ePackage = ClassUtil.nonNullState(getTarget());
-		DelegateDomain.Factory.Registry registry = DelegateResourceSetAdapter.getRegistry(
-			ePackage, DelegateDomain.Factory.Registry.class, DelegateDomain.Factory.Registry.INSTANCE);
-		DelegateDomain.Factory factory = registry != null ? registry.getFactory(delegateURI) : null;
+		Class<DelegateDomain.Factory.@NonNull Registry> castClass = DelegateDomain.Factory.Registry.class;
+		DelegateDomain.Factory.@NonNull Registry registry = OCLDelegateDomain.getDelegateResourceSetRegistry(ePackage, castClass, DelegateDomain.Factory.Registry.INSTANCE);
+		DelegateDomain.Factory factory = registry.getFactory(delegateURI);
 		if (factory == null) {
 			factory = OCLDelegateDomainFactory.INSTANCE;
 		}
@@ -116,8 +115,8 @@ public class DelegateEPackageAdapter extends AdapterImpl
 					String delegateURIs = details.get(behaviorName);
 					if (delegateURIs != null) {
 						for (StringTokenizer stringTokenizer = new StringTokenizer(delegateURIs); stringTokenizer.hasMoreTokens();) {
-							@SuppressWarnings("null") @NonNull String delegateURI = stringTokenizer.nextToken();
-							String resolvedURI = registry.resolve(delegateURI);
+							@SuppressWarnings("null")@NonNull String delegateURI = stringTokenizer.nextToken();
+							@SuppressWarnings("null")@NonNull String resolvedURI = registry.resolve(delegateURI);
 							loadDelegateDomain(resolvedURI);
 						}
 					}

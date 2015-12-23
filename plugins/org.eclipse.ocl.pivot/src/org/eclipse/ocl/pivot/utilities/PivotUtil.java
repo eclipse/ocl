@@ -187,14 +187,14 @@ public class PivotUtil
 		return createCollectionType(PivotFactory.eINSTANCE.createBagType(), unspecializedType, elementType);
 	}
 
-	public static @NonNull org.eclipse.ocl.pivot.Class createClass(/*@NonNull*/ EClass eClass) {
+	public static org.eclipse.ocl.pivot.@NonNull Class createClass(/*@NonNull*/ EClass eClass) {
 		org.eclipse.ocl.pivot.Class pivotType = PivotFactory.eINSTANCE.createClass();
 		pivotType.setName(eClass.getName());
 		((PivotObjectImpl)pivotType).setESObject(eClass);
 		return pivotType;
 	}
 
-	public static @NonNull org.eclipse.ocl.pivot.Class createClass(@NonNull String name) {
+	public static org.eclipse.ocl.pivot.@NonNull Class createClass(@NonNull String name) {
 		org.eclipse.ocl.pivot.Class pivotType = PivotFactory.eINSTANCE.createClass();
 		pivotType.setName(name);
 		return pivotType;
@@ -404,21 +404,21 @@ public class PivotUtil
 		return createCollectionType(PivotFactory.eINSTANCE.createOrderedSetType(), unspecializedType, elementType);
 	}
 
-	public static @NonNull org.eclipse.ocl.pivot.Package createOwnedPackage(@NonNull Model parentRoot, @NonNull String name) {
+	public static org.eclipse.ocl.pivot.@NonNull Package createOwnedPackage(@NonNull Model parentRoot, @NonNull String name) {
 		@SuppressWarnings("null")
 		org.eclipse.ocl.pivot.Package aPackage = PivotUtil.createPackage(org.eclipse.ocl.pivot.Package.class, PivotPackage.Literals.PACKAGE, name, null, null);
 		parentRoot.getOwnedPackages().add(aPackage);
 		return aPackage;
 	}
 
-	public static @NonNull org.eclipse.ocl.pivot.Package createOwnedPackage(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String name) {
+	public static org.eclipse.ocl.pivot.@NonNull Package createOwnedPackage(org.eclipse.ocl.pivot.@NonNull Package parentPackage, @NonNull String name) {
 		@SuppressWarnings("null")
 		org.eclipse.ocl.pivot.Package aPackage = PivotUtil.createPackage(org.eclipse.ocl.pivot.Package.class, PivotPackage.Literals.PACKAGE, name, null, null);
 		parentPackage.getOwnedPackages().add(aPackage);
 		return aPackage;
 	}
 
-	public static @NonNull org.eclipse.ocl.pivot.Package createPackage(/*@NonNull*/ EPackage ePackage, @Nullable String nsPrefix, @NonNull String nsURI) {
+	public static org.eclipse.ocl.pivot.@NonNull Package createPackage(/*@NonNull*/ EPackage ePackage, @Nullable String nsPrefix, @NonNull String nsURI) {
 		Package pivotPackage = PivotFactory.eINSTANCE.createPackage();
 		pivotPackage.setName(ePackage.getName());
 		pivotPackage.setNsPrefix(nsPrefix);
@@ -427,7 +427,7 @@ public class PivotUtil
 		return pivotPackage;
 	}
 
-	public static @NonNull org.eclipse.ocl.pivot.Package createPackage(@NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI, @Nullable PackageId packageId) {
+	public static org.eclipse.ocl.pivot.@NonNull Package createPackage(@NonNull String name, @Nullable String nsPrefix, @NonNull String nsURI, @Nullable PackageId packageId) {
 		Package pivotPackage = PivotFactory.eINSTANCE.createPackage();
 		pivotPackage.setName(name);
 		pivotPackage.setNsPrefix(nsPrefix);
@@ -761,7 +761,7 @@ public class PivotUtil
 		return null;
 	}
 
-	public static @Nullable org.eclipse.ocl.pivot.Package getContainingPackage(@Nullable EObject element) {
+	public static org.eclipse.ocl.pivot.@Nullable Package getContainingPackage(@Nullable EObject element) {
 		for (EObject eObject = element; eObject != null; eObject = eObject.eContainer()) {
 			if (eObject instanceof org.eclipse.ocl.pivot.Package) {
 				return (org.eclipse.ocl.pivot.Package)eObject;
@@ -853,7 +853,7 @@ public class PivotUtil
 		}
 	}
 
-	public static @Nullable org.eclipse.ocl.pivot.Package getPackage(@NonNull EObject object) {
+	public static org.eclipse.ocl.pivot.@Nullable Package getPackage(@NonNull EObject object) {
 		for (EObject eObject = object; eObject != null; eObject = eObject.eContainer()) {
 			if (eObject instanceof org.eclipse.ocl.pivot.Package) {
 				return (org.eclipse.ocl.pivot.Package)eObject;

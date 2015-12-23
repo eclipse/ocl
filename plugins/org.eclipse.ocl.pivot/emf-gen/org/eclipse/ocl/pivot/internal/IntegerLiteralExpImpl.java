@@ -152,7 +152,7 @@ public class IntegerLiteralExpImpl
 		else {
 		    @NonNull /*@Caught*/ Object CAUGHT_status;
 		    try {
-		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_Integer = idResolver.getClass(TypeId.INTEGER, null);
+		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.@NonNull Class TYP_Integer = idResolver.getClass(TypeId.INTEGER, null);
 		        final @Nullable /*@Thrown*/ Type type = this.getType();
 		        final /*@Thrown*/ boolean status = (type != null) ? (type.getTypeId() == TYP_Integer.getTypeId()) : false;
 		        CAUGHT_status = status;

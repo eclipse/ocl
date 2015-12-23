@@ -17,10 +17,10 @@ import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 
 public interface CompleteClassInternal extends CompleteClass
 {
-	void addClass(@NonNull org.eclipse.ocl.pivot.Class partialClass);
-	void didAddClass(@NonNull org.eclipse.ocl.pivot.Class partialClass);
+	void addClass(org.eclipse.ocl.pivot.@NonNull Class partialClass);
+	void didAddClass(org.eclipse.ocl.pivot.@NonNull Class partialClass);
 //	@NonNull CompleteInheritance createCompleteInheritance();
-	boolean didRemoveClass(@NonNull org.eclipse.ocl.pivot.Class partialClass);
+	boolean didRemoveClass(org.eclipse.ocl.pivot.@NonNull Class partialClass);
 	void dispose();
 	void uninstall();
 	@Override

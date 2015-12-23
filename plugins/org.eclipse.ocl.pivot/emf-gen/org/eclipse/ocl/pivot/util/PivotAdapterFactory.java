@@ -14,6 +14,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Annotation;
 import org.eclipse.ocl.pivot.AnyType;
 import org.eclipse.ocl.pivot.AssociationClass;
@@ -197,7 +198,7 @@ public class PivotAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PivotSwitch<Adapter> modelSwitch = new PivotSwitch<Adapter>()
+	protected PivotSwitch<@Nullable Adapter> modelSwitch = new PivotSwitch<@Nullable Adapter>()
 		{
 			@Override
 			public Adapter caseAnnotation(Annotation object)

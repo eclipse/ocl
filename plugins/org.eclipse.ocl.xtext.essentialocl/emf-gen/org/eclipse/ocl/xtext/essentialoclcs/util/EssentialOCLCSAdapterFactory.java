@@ -14,6 +14,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.utilities.Nameable;
 import org.eclipse.ocl.pivot.utilities.Pivotable;
 import org.eclipse.ocl.xtext.basecs.ContextLessElementCS;
@@ -88,7 +89,7 @@ public class EssentialOCLCSAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EssentialOCLCSSwitch<Adapter> modelSwitch = new EssentialOCLCSSwitch<Adapter>()
+	protected EssentialOCLCSSwitch<@Nullable Adapter> modelSwitch = new EssentialOCLCSSwitch<@Nullable Adapter>()
 		{
 			@Override
 			public Adapter caseAbstractNameExpCS(AbstractNameExpCS object)

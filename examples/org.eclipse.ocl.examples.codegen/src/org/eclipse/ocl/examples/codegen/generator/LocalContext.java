@@ -16,7 +16,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 
 public interface LocalContext
 {
-	@NonNull NameManager.Context getNameManagerContext();
+	NameManager.@NonNull Context getNameManagerContext();
 
 	void setNames(@NonNull CGValuedElement cgValueElement, @NonNull CGValuedElement cgExpression);
 }

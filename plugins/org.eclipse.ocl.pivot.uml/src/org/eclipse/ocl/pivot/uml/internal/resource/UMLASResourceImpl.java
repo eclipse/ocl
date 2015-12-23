@@ -41,7 +41,7 @@ public class UMLASResourceImpl extends ASResourceImpl
 	/**
 	 * Return the Eclipse UML2 namespace variant of an OMG namespace type.
 	 */
-	public @Nullable EClassifier getEClassifier(@NonNull org.eclipse.uml2.uml.Type umlType) {
+	public @Nullable EClassifier getEClassifier(org.eclipse.uml2.uml.@NonNull Type umlType) {
 		if (uml2ecore == null) {
 			uml2ecore = new HashMap<org.eclipse.uml2.uml.Type, EClassifier>();
 		}

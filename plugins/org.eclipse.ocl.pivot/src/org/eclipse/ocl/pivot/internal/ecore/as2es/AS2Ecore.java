@@ -328,7 +328,7 @@ public class AS2Ecore extends AbstractConversion
 		errors2.add(new XMIException(message));
 	}
 
-	public <T extends EObject> T getCreated(@NonNull Class<T> requiredClass, @NonNull Element pivotElement) {
+	public <T extends EObject> @Nullable T getCreated(@NonNull Class<T> requiredClass, @NonNull Element pivotElement) {
 		EModelElement eModelElement = createMap.get(pivotElement);
 //		System.out.println("Get " + PivotUtil.debugSimpleName(pivotElement) + " " + PivotUtil.debugSimpleName(eModelElement));
 		if (eModelElement == null) {
@@ -381,7 +381,7 @@ public class AS2Ecore extends AbstractConversion
 	/**
 	 * Return tre if asPackage is a Pivot Metamodel.
 	 */
-	public boolean isPivot(@NonNull org.eclipse.ocl.pivot.Package asPackage) {
+	public boolean isPivot(org.eclipse.ocl.pivot.@NonNull Package asPackage) {
 		List<org.eclipse.ocl.pivot.Class> asTypes = asPackage.getOwnedClasses();
 		if (NameUtil.getNameable(asTypes, PivotPackage.Literals.ENUMERATION_LITERAL.getName()) == null) {
 			return false;
@@ -425,7 +425,7 @@ public class AS2Ecore extends AbstractConversion
 		}
 	}
 
-	protected void setGenerationInProgress(@NonNull org.eclipse.ocl.pivot.Package asPackage, boolean isGenerating) {
+	protected void setGenerationInProgress(org.eclipse.ocl.pivot.@NonNull Package asPackage, boolean isGenerating) {
 		String nsUri = asPackage.getURI();
 		if (nsUri != null) {
 			ProjectManager projectManager = environmentFactory.getProjectManager();

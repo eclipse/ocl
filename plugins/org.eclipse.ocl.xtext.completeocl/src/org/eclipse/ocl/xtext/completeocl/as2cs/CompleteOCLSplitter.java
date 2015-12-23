@@ -93,7 +93,7 @@ public class CompleteOCLSplitter
 		return oclResource;
 	}
 	
-	public static class Separator extends PivotSwitch<EObject>
+	public static class Separator extends PivotSwitch<@Nullable EObject>
 	{
 		protected final @NonNull PivotMetamodelManager metamodelManager;
 		protected final @NonNull Resource separateResource;
@@ -237,10 +237,10 @@ public class CompleteOCLSplitter
 
 		protected <T extends NamedElement> T cloneNamedElement(List<T> separateSiblings, T object) {
 			String name = object.getName();
-			T separateObject = NameUtil.getNameable(separateSiblings, name);
+			@Nullable T separateObject = NameUtil.getNameable(separateSiblings, name);
 			if (separateObject == null) {
 				@SuppressWarnings("unchecked")
-				T castObject = (T) object.eClass().getEPackage().getEFactoryInstance().create(object.eClass());
+				@NonNull T castObject = (T) object.eClass().getEPackage().getEFactoryInstance().create(object.eClass());
 				separateObject = castObject;
 				separateObject.setName(name);
 				separateSiblings.add(separateObject);

@@ -176,7 +176,7 @@ public abstract class GenerateTextileForLibraryUtils extends GenerateTextileForL
 		}
 	};
 	
-	public static @NonNull PrettyPrintOptions.Global createOptions(@Nullable Namespace scope) {
+	public static PrettyPrintOptions.@NonNull Global createOptions(@Nullable Namespace scope) {
 		PrettyPrintOptions.Global options = new PrettyPrintOptions.Global(scope)
 		{
 			@Override
@@ -211,7 +211,7 @@ public abstract class GenerateTextileForLibraryUtils extends GenerateTextileForL
 		return markup;
 	}
 
-	protected @NonNull List<Property> getSortedAssociations(@NonNull org.eclipse.ocl.pivot.Class asClass) {
+	protected @NonNull List<Property> getSortedAssociations(org.eclipse.ocl.pivot.@NonNull Class asClass) {
 		Set<Property> allElements = new HashSet<Property>();
 		for (Property asProperty : asClass.getOwnedProperties()) {
 //			[let pAssociations : Sequence(Property) = pClass.ownedAttribute->select(e | not e.type.oclIsKindOf(DataType) and e.type.owningTemplateParameter->isEmpty())->asSequence()]
@@ -224,7 +224,7 @@ public abstract class GenerateTextileForLibraryUtils extends GenerateTextileForL
 		return sortedElements;
 	}
 
-	protected @NonNull List<Property> getSortedAttributes(@NonNull org.eclipse.ocl.pivot.Class asClass) {
+	protected @NonNull List<Property> getSortedAttributes(org.eclipse.ocl.pivot.@NonNull Class asClass) {
 		Set<Property> allElements = new HashSet<Property>();
 		for (Property asProperty : asClass.getOwnedProperties()) {
 			if (asProperty.getType() instanceof DataType) {
@@ -260,7 +260,7 @@ public abstract class GenerateTextileForLibraryUtils extends GenerateTextileForL
 		return sortedElements;
 	}
 
-	protected @NonNull List<Iteration> getSortedIterations(@NonNull org.eclipse.ocl.pivot.Class asClass) {
+	protected @NonNull List<Iteration> getSortedIterations(org.eclipse.ocl.pivot.@NonNull Class asClass) {
 		Set<Iteration> allElements = new HashSet<Iteration>();
 		for (Operation asOperation : asClass.getOwnedOperations()) {
 			if (asOperation instanceof Iteration) {
@@ -272,7 +272,7 @@ public abstract class GenerateTextileForLibraryUtils extends GenerateTextileForL
 		return sortedElements;
 	}
 
-	protected @NonNull List<Operation> getSortedOperations(@NonNull org.eclipse.ocl.pivot.Class asClass) {
+	protected @NonNull List<Operation> getSortedOperations(org.eclipse.ocl.pivot.@NonNull Class asClass) {
 		Set<Operation> allElements = new HashSet<Operation>();
 		for (Operation asOperation : asClass.getOwnedOperations()) {
 			if (!(asOperation instanceof Iteration)) {

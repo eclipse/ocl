@@ -37,7 +37,7 @@ public class EnumerationIdImpl extends AbstractTypeId implements EnumerationId
 	}
 
 	@Override
-	public @Nullable <R> R accept(@NonNull IdVisitor<R> visitor) {
+	public <R> R accept(@NonNull IdVisitor<R> visitor) {
 		return visitor.visitEnumerationId(this);
 	}
 

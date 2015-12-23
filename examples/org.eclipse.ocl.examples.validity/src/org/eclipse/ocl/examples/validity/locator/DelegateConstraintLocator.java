@@ -97,7 +97,7 @@ public class DelegateConstraintLocator extends AbstractPivotConstraintLocator
 			EAnnotation oclAnnotation = OCLCommon.getDelegateAnnotation(eClassifier);
 			if (oclAnnotation != null) {
 				EMap<String, String> details = oclAnnotation.getDetails();
-				for (@SuppressWarnings("null")@NonNull Map.Entry<String, String> constraint : details.entrySet()) {
+				for (@SuppressWarnings("null")Map.@NonNull Entry<String, String> constraint : details.entrySet()) {
 					String constraintName = constraint.getKey();
 					if (constraintName != null) {
 						map = createLeafConstrainingNode(map, validityModel, eClassifier, constraint, constraintName);

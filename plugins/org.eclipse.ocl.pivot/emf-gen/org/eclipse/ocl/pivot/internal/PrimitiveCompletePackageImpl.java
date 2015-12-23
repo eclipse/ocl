@@ -51,7 +51,7 @@ public class PrimitiveCompletePackageImpl extends CompletePackageImpl implements
 	}
 
 	@Override
-	public @NonNull CompleteClassInternal getCompleteClass(final @NonNull org.eclipse.ocl.pivot.Class primitiveType) {
+	public @NonNull CompleteClassInternal getCompleteClass(final org.eclipse.ocl.pivot.@NonNull Class primitiveType) {
 		String name = primitiveType.getName();
 		CompleteClassInternal completeClass = getOwnedCompleteClass(name);
 		if (completeClass == null) {

@@ -157,7 +157,7 @@ public class CG2StringVisitor extends AbstractExtendingCGModelVisitor<String, Ob
 		}
 	}
 
-	public static @NonNull CG2StringVisitor.Factory FACTORY = new MyFactory();
+	public static CG2StringVisitor.@NonNull Factory FACTORY = new MyFactory();
 	
 	/**
 	 * Indicates where a required element in the AST was <code>null</code>, so

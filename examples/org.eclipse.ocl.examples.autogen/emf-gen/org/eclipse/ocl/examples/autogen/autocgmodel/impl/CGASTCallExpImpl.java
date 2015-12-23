@@ -53,7 +53,7 @@ public class CGASTCallExpImpl extends CGOperationCallExpImpl implements CGASTCal
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public @Nullable <R> R accept(@NonNull CGModelVisitor<R> visitor) {
+	public <R> R accept(@NonNull CGModelVisitor<R> visitor) {
 		return (R) ((AutoCGModelVisitor<?>)visitor).visitCGASTCallExp(this);
 	}
 

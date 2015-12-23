@@ -13,6 +13,7 @@ package org.eclipse.ocl.examples.codegen.cgmodel.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.cgmodel.*;
 import org.eclipse.ocl.pivot.utilities.Nameable;
 
@@ -29,7 +30,7 @@ import org.eclipse.ocl.pivot.utilities.Nameable;
  * @see org.eclipse.ocl.examples.codegen.cgmodel.CGModelPackage
  * @generated
  */
-public class CGModelSwitch<T> extends Switch<T> {
+public class CGModelSwitch<@Nullable T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->

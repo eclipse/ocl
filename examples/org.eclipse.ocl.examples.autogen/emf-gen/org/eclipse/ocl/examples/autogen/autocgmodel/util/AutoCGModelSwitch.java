@@ -13,6 +13,7 @@ package org.eclipse.ocl.examples.autogen.autocgmodel.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.autogen.autocgmodel.*;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCallable;
@@ -37,7 +38,7 @@ import org.eclipse.ocl.pivot.utilities.Nameable;
  * @see org.eclipse.ocl.examples.autogen.autocgmodel.AutoCGModelPackage
  * @generated
  */
-public class AutoCGModelSwitch<T> extends Switch<T> {
+public class AutoCGModelSwitch<@Nullable T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->

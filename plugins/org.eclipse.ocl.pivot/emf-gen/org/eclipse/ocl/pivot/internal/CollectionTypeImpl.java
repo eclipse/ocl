@@ -652,7 +652,7 @@ public class CollectionTypeImpl
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getCommonType(@NonNull IdResolver idResolver, @NonNull Type type) {
+	public org.eclipse.ocl.pivot.@NonNull Class getCommonType(@NonNull IdResolver idResolver, @NonNull Type type) {
 		CompleteEnvironment environment = idResolver.getEnvironment();
 		StandardLibrary standardLibrary = environment.getOwnedStandardLibrary();
 		CompleteInheritance thisInheritance = this.getInheritance(standardLibrary);

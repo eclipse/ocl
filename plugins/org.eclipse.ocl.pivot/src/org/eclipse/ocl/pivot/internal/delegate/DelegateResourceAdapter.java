@@ -79,7 +79,7 @@ public class DelegateResourceAdapter extends AdapterImpl
 	    }
 	}
 
-	protected void installPackages(@NonNull EPackage.Registry packageRegistry, @NonNull List<? extends EObject> contents) {
+	protected void installPackages(EPackage.@NonNull Registry packageRegistry, @NonNull List<? extends EObject> contents) {
 		for (EObject eObject : contents) {
 			if (eObject instanceof EPackage) {
 				EPackage ePackage = (EPackage)eObject;

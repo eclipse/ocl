@@ -14,6 +14,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.xtext.markupcs.BulletElement;
 import org.eclipse.ocl.xtext.markupcs.CompoundElement;
 import org.eclipse.ocl.xtext.markupcs.FigureElement;
@@ -85,8 +86,8 @@ public class MarkupAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MarkupSwitch<Adapter> modelSwitch =
-		new MarkupSwitch<Adapter>() {
+	protected MarkupSwitch<@Nullable Adapter> modelSwitch =
+		new MarkupSwitch<@Nullable Adapter>() {
 			@Override
 			public Adapter caseBulletElement(BulletElement object) {
 				return createBulletElementAdapter();

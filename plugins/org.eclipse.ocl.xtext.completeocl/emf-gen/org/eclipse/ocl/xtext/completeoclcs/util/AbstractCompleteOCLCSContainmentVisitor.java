@@ -42,62 +42,62 @@ public abstract class AbstractCompleteOCLCSContainmentVisitor
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitClassifierContextDeclCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.ClassifierContextDeclCS csElement) {
+	public @Nullable Continuation<?> visitClassifierContextDeclCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull ClassifierContextDeclCS csElement) {
 		return visitContextDeclCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitCompleteOCLDocumentCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.CompleteOCLDocumentCS csElement) {
+	public @Nullable Continuation<?> visitCompleteOCLDocumentCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull CompleteOCLDocumentCS csElement) {
 		return visitNamespaceCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitContextDeclCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.ContextDeclCS csElement) {
+	public @Nullable Continuation<?> visitContextDeclCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull ContextDeclCS csElement) {
 		return visitPathNameDeclCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitDefCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.DefCS csElement) {
+	public @Nullable Continuation<?> visitDefCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull DefCS csElement) {
 		return visitTypedElementCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitDefOperationCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.DefOperationCS csElement) {
+	public @Nullable Continuation<?> visitDefOperationCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull DefOperationCS csElement) {
 		return visitDefCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitDefPropertyCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.DefPropertyCS csElement) {
+	public @Nullable Continuation<?> visitDefPropertyCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull DefPropertyCS csElement) {
 		return visitDefCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitFeatureContextDeclCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.FeatureContextDeclCS csElement) {
+	public @Nullable Continuation<?> visitFeatureContextDeclCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull FeatureContextDeclCS csElement) {
 		return visitContextDeclCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitOCLMessageArgCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.OCLMessageArgCS csElement) {
+	public @Nullable Continuation<?> visitOCLMessageArgCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull OCLMessageArgCS csElement) {
 		return visitExpCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitOperationContextDeclCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.OperationContextDeclCS csElement) {
+	public @Nullable Continuation<?> visitOperationContextDeclCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull OperationContextDeclCS csElement) {
 		return visitFeatureContextDeclCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitPackageDeclarationCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.PackageDeclarationCS csElement) {
+	public @Nullable Continuation<?> visitPackageDeclarationCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull PackageDeclarationCS csElement) {
 		return visitPathNameDeclCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitPathNameDeclCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.PathNameDeclCS csElement) {
+	public @Nullable Continuation<?> visitPathNameDeclCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull PathNameDeclCS csElement) {
 		return visitModelElementCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitPropertyContextDeclCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.PropertyContextDeclCS csElement) {
+	public @Nullable Continuation<?> visitPropertyContextDeclCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull PropertyContextDeclCS csElement) {
 		return visitFeatureContextDeclCS(csElement);
 	}
 }

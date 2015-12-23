@@ -14,6 +14,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.autogen.autocgmodel.*;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCallable;
@@ -79,8 +80,8 @@ public class AutoCGModelAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AutoCGModelSwitch<Adapter> modelSwitch =
-		new AutoCGModelSwitch<Adapter>() {
+	protected AutoCGModelSwitch<@Nullable Adapter> modelSwitch =
+		new AutoCGModelSwitch<@Nullable Adapter>() {
 			@Override
 			public Adapter caseCGASTCallExp(CGASTCallExp object) {
 				return createCGASTCallExpAdapter();

@@ -42,17 +42,17 @@ public abstract class AbstractOCLinEcoreCSPreOrderVisitor
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitOCLinEcoreConstraintCS(@NonNull org.eclipse.ocl.xtext.oclinecorecs.OCLinEcoreConstraintCS csElement) {
+	public @Nullable Continuation<?> visitOCLinEcoreConstraintCS(org.eclipse.ocl.xtext.oclinecorecs.@NonNull OCLinEcoreConstraintCS csElement) {
 		return visitConstraintCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitSysMLCS(@NonNull org.eclipse.ocl.xtext.oclinecorecs.SysMLCS csElement) {
+	public @Nullable Continuation<?> visitSysMLCS(org.eclipse.ocl.xtext.oclinecorecs.@NonNull SysMLCS csElement) {
 		return visitAnnotationElementCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitTopLevelCS(@NonNull org.eclipse.ocl.xtext.oclinecorecs.TopLevelCS csElement) {
+	public @Nullable Continuation<?> visitTopLevelCS(org.eclipse.ocl.xtext.oclinecorecs.@NonNull TopLevelCS csElement) {
 		return visitRootPackageCS(csElement);
 	}
 }

@@ -56,7 +56,7 @@ public abstract class AbstractCompletePackages extends EObjectContainmentWithInv
 		didAdd(completePackage);
 	}
 
-	public abstract @NonNull CompletePackageInternal createCompletePackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage);
+	public abstract @NonNull CompletePackageInternal createCompletePackage(org.eclipse.ocl.pivot.@NonNull Package partialPackage);
 
 	protected void didAdd(@NonNull CompletePackage completePackage) {
 		CompletePackageInternal completePackageInternal = (CompletePackageInternal)completePackage;
@@ -73,7 +73,7 @@ public abstract class AbstractCompletePackages extends EObjectContainmentWithInv
 		getCompleteModel().didAddCompletePackage(completePackageInternal);
 	}
 
-	public void didAddPackage(@NonNull org.eclipse.ocl.pivot.Package pivotPackage) {
+	public void didAddPackage(org.eclipse.ocl.pivot.@NonNull Package pivotPackage) {
 		CompletePackage completePackage = null;
 		String name = pivotPackage.getName();
 		String packageURI = pivotPackage.getURI();
@@ -105,7 +105,7 @@ public abstract class AbstractCompletePackages extends EObjectContainmentWithInv
 		getCompleteModel().didRemoveCompletePackage(completePackageInternal);
 	}
 
-	public void didRemovePackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage) {
+	public void didRemovePackage(org.eclipse.ocl.pivot.@NonNull Package partialPackage) {
 		CompletePackage completePackage = getCompletePackage(partialPackage);
 		List<Package> partialPackages = completePackage.getPartialPackages();
 		partialPackages.remove(partialPackage);
@@ -126,7 +126,7 @@ public abstract class AbstractCompletePackages extends EObjectContainmentWithInv
 
 	protected abstract CompleteModelInternal getCompleteModel();
 
-	public @NonNull CompletePackageInternal getCompletePackage(@NonNull org.eclipse.ocl.pivot.Package pivotPackage) {
+	public @NonNull CompletePackageInternal getCompletePackage(org.eclipse.ocl.pivot.@NonNull Package pivotPackage) {
 		CompletePackageInternal completePackage = null;
 		if (pivotPackage instanceof CompletePackageInternal) {
 			((CompletePackageInternal)pivotPackage).assertSamePackage(pivotPackage);
@@ -166,7 +166,7 @@ public abstract class AbstractCompletePackages extends EObjectContainmentWithInv
 		return name2completePackage.get(name);
 	}
 	
-	protected abstract @NonNull CompletePackageInternal getOwnedCompletePackage(@NonNull org.eclipse.ocl.pivot.Package pivotPackage);
+	protected abstract @NonNull CompletePackageInternal getOwnedCompletePackage(org.eclipse.ocl.pivot.@NonNull Package pivotPackage);
 
 	protected abstract @NonNull Iterable<org.eclipse.ocl.pivot.Package> getPartialPackages();
 

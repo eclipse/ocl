@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 
@@ -139,8 +138,8 @@ public class OCLValidationDelegateFactory extends AbstractOCLDelegateFactory
 
 		@Override
 		public @Nullable ValidationDelegate createValidationDelegate(@NonNull EClassifier classifier) {
-			ValidationDelegate.Factory.Registry localRegistry = DelegateResourceSetAdapter.getRegistry(
-				classifier, ValidationDelegate.Factory.Registry.class, null);
+			Class<ValidationDelegate.Factory.@NonNull Registry> castClass = ValidationDelegate.Factory.Registry.class;
+			ValidationDelegate.Factory.@Nullable Registry localRegistry = OCLDelegateDomain.getDelegateResourceSetRegistry(classifier, castClass, null);
 			if (localRegistry != null) {
 				ValidationDelegate.Factory factory = localRegistry.getValidationDelegate(delegateURI);
 				if (factory != null) {

@@ -13,6 +13,7 @@ package org.eclipse.ocl.xtext.markupcs.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.xtext.markupcs.BulletElement;
 import org.eclipse.ocl.xtext.markupcs.CompoundElement;
 import org.eclipse.ocl.xtext.markupcs.FigureElement;
@@ -43,7 +44,7 @@ import org.eclipse.ocl.xtext.markupcs.TextElement;
  * @see org.eclipse.ocl.xtext.markupcs.MarkupPackage
  * @generated
  */
-public class MarkupSwitch<T> extends Switch<T> {
+public class MarkupSwitch<@Nullable T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->

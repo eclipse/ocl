@@ -201,7 +201,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 	}
 
 	@Override
-	public Object visitClass(@NonNull org.eclipse.ocl.pivot.Class object) {
+	public Object visitClass(org.eclipse.ocl.pivot.@NonNull Class object) {
 		if (!object.getOwnedBindings().isEmpty()) {
 			Type templateableClass = PivotUtil.getUnspecializedTemplateableElement(object);
 			context.appendParent(templateableClass, MONIKER_SCOPE_SEPARATOR);
@@ -439,7 +439,7 @@ public class AS2MonikerVisitor extends AbstractExtendingVisitor<Object, AS2Monik
 	}
 
 	@Override
-	public Object visitPackage(@NonNull org.eclipse.ocl.pivot.Package object) {
+	public Object visitPackage(org.eclipse.ocl.pivot.@NonNull Package object) {
 //		if (!object.hasMoniker()) {
 //			throw new IllegalStateException("No moniker has been configured for " + object);
 //		}

@@ -54,9 +54,9 @@ public class LabelGeneratorRegistryReader extends RegistryReader
 	static final @NonNull String ATT_FOR = "for";
 	static final @NonNull String ATT_CLASS = "class";
 	
-	protected final @NonNull ILabelGenerator.Registry registry;
+	protected final ILabelGenerator.@NonNull Registry registry;
 
-	public LabelGeneratorRegistryReader(@NonNull ILabelGenerator.Registry registry) {
+	public LabelGeneratorRegistryReader(ILabelGenerator.@NonNull Registry registry) {
 		super(Platform.getExtensionRegistry(), PivotPlugin.getPlugin().getBundle().getSymbolicName(),
 				PivotPlugin.LABEL_GENERATOR_PPID);
 		this.registry = registry;

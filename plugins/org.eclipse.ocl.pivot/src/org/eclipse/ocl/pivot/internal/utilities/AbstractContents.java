@@ -128,23 +128,23 @@ public abstract class AbstractContents extends PivotUtil
 		return createCollectionType(PivotFactory.eINSTANCE.createSetType(), name, lower, upper, templateParameter);
 	}
 
-	protected @NonNull AnyType getAnyType(@NonNull org.eclipse.ocl.pivot.Package asPackage, @NonNull String name) {
+	protected @NonNull AnyType getAnyType(org.eclipse.ocl.pivot.@NonNull Package asPackage, @NonNull String name) {
 		return (AnyType) ClassUtil.nonNullState(asPackage.getOwnedClass(name));
 	}
 
-	protected @NonNull BagType getBagType(@NonNull org.eclipse.ocl.pivot.Package asPackage, @NonNull String name) {
+	protected @NonNull BagType getBagType(org.eclipse.ocl.pivot.@NonNull Package asPackage, @NonNull String name) {
 		return (BagType) ClassUtil.nonNullState(asPackage.getOwnedClass(name));
 	}
 
-	protected @NonNull org.eclipse.ocl.pivot.Class getClass(@NonNull org.eclipse.ocl.pivot.Package asPackage, @NonNull String name) {
+	protected org.eclipse.ocl.pivot.@NonNull Class getClass(org.eclipse.ocl.pivot.@NonNull Package asPackage, @NonNull String name) {
 		return ClassUtil.nonNullState(asPackage.getOwnedClass(name));
 	}
 
-	protected @NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Package asPackage, @NonNull String name) {
+	protected @NonNull CollectionType getCollectionType(org.eclipse.ocl.pivot.@NonNull Package asPackage, @NonNull String name) {
 		return (CollectionType) ClassUtil.nonNullState(asPackage.getOwnedClass(name));
 	}
 
-	protected @NonNull InvalidType getInvalidType(@NonNull org.eclipse.ocl.pivot.Package asPackage, @NonNull String name) {
+	protected @NonNull InvalidType getInvalidType(org.eclipse.ocl.pivot.@NonNull Package asPackage, @NonNull String name) {
 		return (InvalidType) ClassUtil.nonNullState(asPackage.getOwnedClass(name));
 	}
 
@@ -158,27 +158,27 @@ public abstract class AbstractContents extends PivotUtil
 		return ClassUtil.nonNullState((Model) resource.getContents().get(0));
 	}
 
-	protected @NonNull OrderedSetType getOrderedSetType(@NonNull org.eclipse.ocl.pivot.Package asPackage, @NonNull String name) {
+	protected @NonNull OrderedSetType getOrderedSetType(org.eclipse.ocl.pivot.@NonNull Package asPackage, @NonNull String name) {
 		return (OrderedSetType) ClassUtil.nonNullState(asPackage.getOwnedClass(name));
 	}
 
-	protected @NonNull org.eclipse.ocl.pivot.Package getPackage(@NonNull Model asModel, @NonNull String name) {
+	protected org.eclipse.ocl.pivot.@NonNull Package getPackage(@NonNull Model asModel, @NonNull String name) {
 		return ClassUtil.nonNullState(NameUtil.getNameable(asModel.getOwnedPackages(), name));
 	}
 
-	protected @NonNull PrimitiveType getPrimitiveType(@NonNull org.eclipse.ocl.pivot.Package asPackage, @NonNull String name) {
+	protected @NonNull PrimitiveType getPrimitiveType(org.eclipse.ocl.pivot.@NonNull Package asPackage, @NonNull String name) {
 		return (PrimitiveType) ClassUtil.nonNullState(asPackage.getOwnedClass(name));
 	}
 
-	protected @NonNull Property getProperty(@NonNull org.eclipse.ocl.pivot.Class asClass, @NonNull String name) {
+	protected @NonNull Property getProperty(org.eclipse.ocl.pivot.@NonNull Class asClass, @NonNull String name) {
 		return ClassUtil.nonNullState(NameUtil.getNameable(asClass.getOwnedProperties(), name));
 	}
 
-	protected @NonNull SequenceType getSequenceType(@NonNull org.eclipse.ocl.pivot.Package asPackage, @NonNull String name) {
+	protected @NonNull SequenceType getSequenceType(org.eclipse.ocl.pivot.@NonNull Package asPackage, @NonNull String name) {
 		return (SequenceType) ClassUtil.nonNullState(asPackage.getOwnedClass(name));
 	}
 
-	protected @NonNull SetType getSetType(@NonNull org.eclipse.ocl.pivot.Package asPackage, @NonNull String name) {
+	protected @NonNull SetType getSetType(org.eclipse.ocl.pivot.@NonNull Package asPackage, @NonNull String name) {
 		return (SetType) ClassUtil.nonNullState(asPackage.getOwnedClass(name));
 	}
 
@@ -186,7 +186,7 @@ public abstract class AbstractContents extends PivotUtil
 		return ClassUtil.nonNullState(templateableElement.getOwnedSignature().getOwnedParameters().get(index));
 	}
 
-	protected @NonNull VoidType getVoidType(@NonNull org.eclipse.ocl.pivot.Package asPackage, @NonNull String name) {
+	protected @NonNull VoidType getVoidType(org.eclipse.ocl.pivot.@NonNull Package asPackage, @NonNull String name) {
 		return (VoidType) ClassUtil.nonNullState(asPackage.getOwnedClass(name));
 	}
 

@@ -16,7 +16,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
-
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.uml.internal.oclforuml.BoundedInteger;
 import org.eclipse.ocl.pivot.uml.internal.oclforuml.Collection;
 import org.eclipse.ocl.pivot.uml.internal.oclforuml.Collections;
@@ -83,7 +83,7 @@ public class OCLforUMLAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected OCLforUMLSwitch<Adapter> modelSwitch = new OCLforUMLSwitch<Adapter>() {
+	protected OCLforUMLSwitch<@Nullable Adapter> modelSwitch = new OCLforUMLSwitch<@Nullable Adapter>() {
 
 		@Override
 		public Adapter caseBoundedInteger(BoundedInteger object) {

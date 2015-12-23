@@ -96,7 +96,7 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getBagType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getBagType() {
 		return OCLstdlibTables.Types._Bag;
 	}
 
@@ -111,22 +111,22 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getBooleanType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getBooleanType() {
 		return OCLstdlibTables.Types._Boolean;
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getCollectionType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getCollectionType() {
 		return OCLstdlibTables.Types._Collection;
 	}
 
 	@Override
-	public @NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class genericType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+	public @NonNull CollectionType getCollectionType(org.eclipse.ocl.pivot.@NonNull Class genericType, @NonNull Type elementType, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		return getCollectionType(genericType, elementType, false, lower, upper);
 	}
 
 	@Override
-	public synchronized @NonNull CollectionType getCollectionType(@NonNull org.eclipse.ocl.pivot.Class genericType, @NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
+	public synchronized @NonNull CollectionType getCollectionType(org.eclipse.ocl.pivot.@NonNull Class genericType, @NonNull Type elementType, boolean isNullFree, @Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
 		IntegerValue lower2 = lower;
 		UnlimitedNaturalValue upper2 = upper;
 		if (lower2 == null) {
@@ -153,7 +153,7 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getIntegerType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getIntegerType() {
 		return OCLstdlibTables.Types._Integer;
 	}
 
@@ -164,12 +164,12 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getMapType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getMapType() {
 		return OCLstdlibTables.Types._Map;
 	}
 
 	@Override
-	public synchronized @NonNull MapType getMapType(@NonNull org.eclipse.ocl.pivot.Class genericType, @NonNull Type keyType, @NonNull Type valueType) {
+	public synchronized @NonNull MapType getMapType(org.eclipse.ocl.pivot.@NonNull Class genericType, @NonNull Type keyType, @NonNull Type valueType) {
 		MapTypeParameters<Type, Type> typeParameters = TypeUtil.createMapTypeParameters(keyType, valueType);
 		ExecutorMapType specializedType = null;
 		Map<MapTypeParameters<Type, Type>, WeakReference<ExecutorMapType>> map = mapSpecializations.get(genericType);
@@ -189,7 +189,7 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 
 	// FIXME cf MetamodelManager
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getMetaclass(@NonNull Type classType) {
+	public org.eclipse.ocl.pivot.@NonNull Class getMetaclass(@NonNull Type classType) {
 		org.eclipse.ocl.pivot.Class metaType = null;
 		if (classType instanceof CollectionType) {
 			CollectionType collectionType = (CollectionType)classType;
@@ -227,57 +227,57 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 	}
 
 	@Override
-	public @Nullable org.eclipse.ocl.pivot.Package getNestedPackage(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String name) {
+	public org.eclipse.ocl.pivot.@Nullable Package getNestedPackage(org.eclipse.ocl.pivot.@NonNull Package parentPackage, @NonNull String name) {
 		return NameUtil.getNameable(parentPackage.getOwnedPackages(), name);
 	}
 
 	@Override
-	public @Nullable org.eclipse.ocl.pivot.Class getNestedType(@NonNull org.eclipse.ocl.pivot.Package parentPackage, @NonNull String name) {
+	public org.eclipse.ocl.pivot.@Nullable Class getNestedType(org.eclipse.ocl.pivot.@NonNull Package parentPackage, @NonNull String name) {
 		return NameUtil.getNameable(parentPackage.getOwnedClasses(), name);
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getOclAnyType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getOclAnyType() {
 		return OCLstdlibTables.Types._OclAny;
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getOclComparableType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getOclComparableType() {
 		return OCLstdlibTables.Types._OclComparable;
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getOclElementType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getOclElementType() {
 		return OCLstdlibTables.Types._OclElement;
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getOclInvalidType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getOclInvalidType() {
 		return OCLstdlibTables.Types._OclInvalid;
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getOclMessageType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getOclMessageType() {
 		return OCLstdlibTables.Types._OclMessage;
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getOclSelfType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getOclSelfType() {
 		return OCLstdlibTables.Types._OclSelf;
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getOclSummableType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getOclSummableType() {
 		return OCLstdlibTables.Types._OclSummable;
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getOclTupleType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getOclTupleType() {
 		return OCLstdlibTables.Types._OclTuple;
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getOclVoidType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getOclVoidType() {
 		return OCLstdlibTables.Types._OclVoid;
 	}
 
@@ -287,12 +287,12 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getOrderedCollectionType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getOrderedCollectionType() {
 		return OCLstdlibTables.Types._OrderedCollection;
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getOrderedSetType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getOrderedSetType() {
 		return OCLstdlibTables.Types._OrderedSet;
 	}
 
@@ -322,11 +322,11 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Package getPackage() {
+	public org.eclipse.ocl.pivot.@NonNull Package getPackage() {
 		return OCLstdlibTables.PACKAGE;
 	}
 
-	public @Nullable org.eclipse.ocl.pivot.Class getPivotType(@NonNull String className) {
+	public org.eclipse.ocl.pivot.@Nullable Class getPivotType(@NonNull String className) {
 		throw new UnsupportedOperationException();
 	}	
 
@@ -336,7 +336,7 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getRealType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getRealType() {
 		return OCLstdlibTables.Types._Real;
 	}
 
@@ -346,7 +346,7 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getSequenceType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getSequenceType() {
 		return OCLstdlibTables.Types._Sequence;
 	}
 
@@ -361,7 +361,7 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getSetType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getSetType() {
 		return OCLstdlibTables.Types._Set;
 	}
 
@@ -376,7 +376,7 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 	}
 
 //	@Override
-	public @Nullable StatusCodes.Severity getSeverity(@Nullable Object validationKey) {
+	public StatusCodes.@Nullable Severity getSeverity(@Nullable Object validationKey) {
 		Map<Object, StatusCodes.Severity> validationKey2severity2 = validationKey2severity;
 		if (validationKey2severity2 == null) {
 			validationKey2severity = validationKey2severity2 = createValidationKey2severityMap();
@@ -390,7 +390,7 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getStringType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getStringType() {
 		return OCLstdlibTables.Types._String;
 	}
 
@@ -458,12 +458,12 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getUniqueCollectionType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getUniqueCollectionType() {
 		return OCLstdlibTables.Types._UniqueCollection;
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getUnlimitedNaturalType() {
+	public org.eclipse.ocl.pivot.@NonNull Class getUnlimitedNaturalType() {
 		return OCLstdlibTables.Types._UnlimitedNatural;
 	}
 	
@@ -490,7 +490,7 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 	 * Return the map.get(key).get() entry if there is one or null if not, removing any stale
 	 * entry that may be encountered.
 	 */
-	protected <K, V> V weakGet(@NonNull Map<K, WeakReference<V>> map, @NonNull K key) {
+	protected <K, V> @Nullable V weakGet(@NonNull Map<K, WeakReference<V>> map, @NonNull K key) {
 		WeakReference<V> ref = map.get(key);
 		if (ref == null) {
 			return null;

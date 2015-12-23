@@ -17,12 +17,14 @@ import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.ValidationDelegateRegistryImpl;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.QueryDelegate;
 import org.eclipse.jdt.annotation.NonNull;
@@ -101,6 +103,35 @@ public class OCLDelegateDomain implements DelegateDomain, GlobalEnvironmentFacto
 			return PivotConstants.OCL_DELEGATE_URI_PIVOT;
 		}
 	}
+	
+	// FIXME workaround BUG 485093 giving a false non-null analysis
+	@SuppressWarnings("null")
+	private static @NonNull DelegateResourceSetAdapter getDelegateResourceSetAdapter(@NonNull ResourceSet resourceSet) {
+		return DelegateResourceSetAdapter.getAdapter(resourceSet);
+	}
+	
+	/**
+	 * @since 1.1
+	 */
+	// FIXME workaround BUG 485093 giving a false non-null analysis
+	public static <T> T getDelegateResourceSetRegistry(EModelElement modelElement, @NonNull Class<@NonNull T> registryClass, T defaultRegistry) {
+		Resource resource = modelElement.eResource();
+		if (resource == null) {
+			return defaultRegistry;
+		}
+		ResourceSet resourceSet = resource.getResourceSet();
+		if (resourceSet == null) {
+			return defaultRegistry;
+		}
+		DelegateResourceSetAdapter adapter = getDelegateResourceSetAdapter(resourceSet);
+		@Nullable T registry = getDelegateResourceSetAdapterRegistry(adapter, registryClass);
+		return registry != null ? registry : defaultRegistry;
+	}
+	
+	// FIXME workaround BUG 485093 giving a false non-null analysis
+	private static <T> @Nullable T getDelegateResourceSetAdapterRegistry(@NonNull DelegateResourceSetAdapter adapter, @NonNull Class<T> registryClass) {
+		return adapter.getRegistry(registryClass);
+	}
 
 	/**
 	 * Initialize the resourceSet registries, if non-null, or the global registries, if null,
@@ -127,9 +158,9 @@ public class OCLDelegateDomain implements DelegateDomain, GlobalEnvironmentFacto
 	}
 
 	public static void initializePivotOnlyDiagnosticianResourceSet(@NonNull ResourceSet resourceSet) {
-		DelegateResourceSetAdapter adapter = DelegateResourceSetAdapter.getAdapter(resourceSet);
-		adapter.putRegistry(org.eclipse.ocl.pivot.internal.delegate.ValidationDelegate.Registry.class, PivotOnlyRegistry.INSTANCE);
-		adapter.putRegistry(VirtualDelegateMapping.class, PivotOnlyVirtualDelegateMapping.INSTANCE);
+		DelegateResourceSetAdapter adapter = getDelegateResourceSetAdapter(resourceSet);
+		putDelegateResourceSetRegistry(adapter, org.eclipse.ocl.pivot.internal.delegate.ValidationDelegate.Registry.class, PivotOnlyRegistry.INSTANCE);
+		putDelegateResourceSetRegistry(adapter, VirtualDelegateMapping.class, PivotOnlyVirtualDelegateMapping.INSTANCE);
 	}
 
 	/**
@@ -143,10 +174,10 @@ public class OCLDelegateDomain implements DelegateDomain, GlobalEnvironmentFacto
 		}
 		FactoryFactory delegateFactoryFactory2 = ClassUtil.nonNullState(delegateFactoryFactory);  // Try to avoid spurious build failure
 		// Install a DelegateResourceSetAdapter to supervise local registries and resource post-loading
-		DelegateResourceSetAdapter adapter = DelegateResourceSetAdapter.getAdapter(resourceSet);
+		@SuppressWarnings("null")@NonNull DelegateResourceSetAdapter adapter = DelegateResourceSetAdapter.getAdapter(resourceSet);
 		VirtualDelegateMapping delegationMode = CommonOptions.DEFAULT_DELEGATION_MODE;
-		if (forceInitialization || (adapter.getRegistry(VirtualDelegateMapping.class) == null)) {
-			adapter.putRegistry(VirtualDelegateMapping.class, new VirtualDelegateMapping(delegationMode.getPluginId(), delegationMode.getKey(), delegationMode.getPreferredValue()));
+		if (forceInitialization || (getDelegateResourceSetAdapterRegistry(adapter, VirtualDelegateMapping.class) == null)) {
+			putDelegateResourceSetRegistry(adapter, VirtualDelegateMapping.class, new VirtualDelegateMapping(delegationMode.getPluginId(), delegationMode.getKey(), delegationMode.getPreferredValue()));
 		}
 		
 		// Install a local DelegateDomain.Factory
@@ -154,8 +185,8 @@ public class OCLDelegateDomain implements DelegateDomain, GlobalEnvironmentFacto
 		if (forceInitialization || !delegateDomainFactory.containsKey(oclDelegateURI)) {
 			delegateDomainFactory.put(oclDelegateURI, delegateFactoryFactory2.createDelegateDomainFactory());
 		}
-		if (forceInitialization || (adapter.getRegistry(DelegateDomain.Factory.Registry.class) == null)) {
-			adapter.putRegistry(DelegateDomain.Factory.Registry.class, delegateDomainFactory);
+		if (forceInitialization || (getDelegateResourceSetAdapterRegistry(adapter, DelegateDomain.Factory.Registry.class) == null)) {
+			putDelegateResourceSetRegistry(adapter, DelegateDomain.Factory.Registry.class, delegateDomainFactory);
 		}
 
 		// Install a local ValidationDelegate.Factory
@@ -163,8 +194,8 @@ public class OCLDelegateDomain implements DelegateDomain, GlobalEnvironmentFacto
 		if (forceInitialization || !validationDelegateFactoryRegistry.containsKey(oclDelegateURI)) {
 			validationDelegateFactoryRegistry.put(oclDelegateURI, delegateFactoryFactory2.createValidationDelegateFactory(oclDelegateURI));
 		}
-		if (forceInitialization || (adapter.getRegistry(ValidationDelegate.Factory.Registry.class) == null)) {
-			adapter.putRegistry(ValidationDelegate.Factory.Registry.class, validationDelegateFactoryRegistry);
+		if (forceInitialization || (getDelegateResourceSetAdapterRegistry(adapter, ValidationDelegate.Factory.Registry.class) == null)) {
+			putDelegateResourceSetRegistry(adapter, ValidationDelegate.Factory.Registry.class, validationDelegateFactoryRegistry);
 		}
 
 		// Install a local SettingDelegate.Factory
@@ -172,8 +203,8 @@ public class OCLDelegateDomain implements DelegateDomain, GlobalEnvironmentFacto
 		if (forceInitialization || !settingDelegateFactoryRegistry.containsKey(oclDelegateURI)) {
 			settingDelegateFactoryRegistry.put(oclDelegateURI, delegateFactoryFactory2.createSettingDelegateFactory(oclDelegateURI));
 		}
-		if (forceInitialization || (adapter.getRegistry(EStructuralFeature.Internal.SettingDelegate.Factory.Registry.class) == null)) {
-			adapter.putRegistry(EStructuralFeature.Internal.SettingDelegate.Factory.Registry.class, settingDelegateFactoryRegistry);
+		if (forceInitialization || (getDelegateResourceSetAdapterRegistry(adapter, EStructuralFeature.Internal.SettingDelegate.Factory.Registry.class) == null)) {
+			putDelegateResourceSetRegistry(adapter, EStructuralFeature.Internal.SettingDelegate.Factory.Registry.class, settingDelegateFactoryRegistry);
 		}
 
 		// Install a local InvocationDelegate.Factory
@@ -181,8 +212,8 @@ public class OCLDelegateDomain implements DelegateDomain, GlobalEnvironmentFacto
 		if (forceInitialization || !invocationDelegateFactoryRegistry.containsKey(oclDelegateURI)) {
 			invocationDelegateFactoryRegistry.put(oclDelegateURI, delegateFactoryFactory2.createInvocationDelegateFactory(oclDelegateURI));
 		}
-		if (forceInitialization || (adapter.getRegistry(EOperation.Internal.InvocationDelegate.Factory.Registry.class) == null)) {
-			adapter.putRegistry(EOperation.Internal.InvocationDelegate.Factory.Registry.class, invocationDelegateFactoryRegistry);
+		if (forceInitialization || (getDelegateResourceSetAdapterRegistry(adapter, EOperation.Internal.InvocationDelegate.Factory.Registry.class) == null)) {
+			putDelegateResourceSetRegistry(adapter, EOperation.Internal.InvocationDelegate.Factory.Registry.class, invocationDelegateFactoryRegistry);
 		}
 
 		// Install a local QueryDelegate.Factory
@@ -190,8 +221,8 @@ public class OCLDelegateDomain implements DelegateDomain, GlobalEnvironmentFacto
 		if (forceInitialization || !queryDelegateFactoryRegistry.containsKey(oclDelegateURI)) {
 			queryDelegateFactoryRegistry.put(oclDelegateURI, delegateFactoryFactory2.createQueryDelegateFactory(oclDelegateURI));
 		}
-		if (forceInitialization || (adapter.getRegistry(QueryDelegate.Factory.Registry.class) == null)) {
-			adapter.putRegistry(QueryDelegate.Factory.Registry.class, queryDelegateFactoryRegistry);
+		if (forceInitialization || (getDelegateResourceSetAdapterRegistry(adapter, QueryDelegate.Factory.Registry.class) == null)) {
+			putDelegateResourceSetRegistry(adapter, QueryDelegate.Factory.Registry.class, queryDelegateFactoryRegistry);
 		}
 	}
 
@@ -217,6 +248,11 @@ public class OCLDelegateDomain implements DelegateDomain, GlobalEnvironmentFacto
 				queryRegistry.put(oclDelegateURI, new OCLQueryDelegateFactory.Global());
 			}
 		}
+	}
+	
+	// FIXME workaround BUG 485093 giving a false non-null analysis
+	private static @Nullable <T> T putDelegateResourceSetRegistry(@NonNull DelegateResourceSetAdapter adapter, @NonNull Class<T> registryClass, @NonNull T newRegistry) {
+		return adapter.putRegistry(registryClass, newRegistry);
 	}
 
 	protected final @NonNull String uri;
@@ -293,7 +329,7 @@ public class OCLDelegateDomain implements DelegateDomain, GlobalEnvironmentFacto
 		return ocl2;
 	}
 	
-	public <T extends Element> T getPivot(@NonNull Class<T> requiredClass, @NonNull EObject eObject) {
+	public <T extends Element> @Nullable T getPivot(@NonNull Class<T> requiredClass, @NonNull EObject eObject) {
 		MetamodelManager metamodelManager = getOCL().getMetamodelManager();
 		try {
 			return metamodelManager.getASOf(requiredClass, eObject);

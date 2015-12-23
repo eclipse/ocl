@@ -14,6 +14,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.ECollections;
@@ -36,7 +37,7 @@ public class ClassUtil
 	 * @return cast object or null
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T extends Object> T asClassOrNull(Object object, Class<T> requiredClass) {
+	public static <T extends Object> @Nullable T asClassOrNull(Object object, Class<T> requiredClass) {
 		if (object == null)
 			return null;
 		if (requiredClass == null)
@@ -91,6 +92,17 @@ public class ClassUtil
 		EAnnotation asMetamodelAnnotation = ePackage.getEAnnotation(PivotConstants.AS_METAMODEL_ANNOTATION_SOURCE);
 		return asMetamodelAnnotation;
 	}
+	
+	/**
+	 * Return the non-null adapterClass if iAdfaptable has an adapterClass adapter.
+	 * 
+	 * This method just delegates to IAdaptable.getAdapter() but avoids the hazard from the unconstrained Class<T> declaration.
+	 * 
+	 * @since 1.1
+	 */
+	public static <T> @Nullable T getAdapter(@Nullable IAdaptable iAdaptable, @NonNull Class<T> adapterClass) {
+		return iAdaptable != null ? iAdaptable.getAdapter(adapterClass) : null;
+	}
 
 	/**
 	 * Return the fully typed class of an object.
@@ -138,7 +150,7 @@ public class ClassUtil
 	 * @return the non-null cast of anObject if safe
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T> T isInstanceOf(Object anObject, Class<T> aClass) {
+	public static <T> @Nullable T isInstanceOf(Object anObject, Class<T> aClass) {
 		if (anObject == null)
 			return null;
 		Class<?> objectClass = anObject.getClass();
@@ -202,6 +214,15 @@ public class ClassUtil
 	}
 
 	/**
+	 * Cast a logically nullFreeList such as EMF collection to a declared null free list.
+	 * @since 1.1
+	 */
+	@SuppressWarnings("null")
+	public static <T> @NonNull List<@NonNull T> nullFree(@NonNull List<T> nullFreeList) {
+		return nullFreeList;
+	}
+
+	/**
 	 * Safely determines the relative order of <code>object</code> and
 	 * <code>otherObject</code>, i.e. without throwing an exception if
 	 * <code>object</code> is <code>null</code>.
@@ -247,12 +268,12 @@ public class ClassUtil
 		}
 	}
 
-	public static <T> T getAdapter(@NonNull Class<T> adapterClass, @NonNull Notifier notifier) {
+	public static <T> @Nullable T getAdapter(@NonNull Class<T> adapterClass, @NonNull Notifier notifier) {
 		List<Adapter> eAdapters = nonNullEMF(notifier.eAdapters());
 		return getAdapter(adapterClass, eAdapters);
 	}
 
-	public static <T> T getAdapter(@NonNull Class<T> adapterClass, @NonNull List<Adapter> eAdapters) {
+	public static <T> @Nullable T getAdapter(@NonNull Class<T> adapterClass, @NonNull List<Adapter> eAdapters) {
 		Adapter adapter = EcoreUtil.getAdapter(eAdapters, adapterClass);
 		if (adapter == null) {
 			return null;
@@ -263,5 +284,13 @@ public class ClassUtil
 		@SuppressWarnings("unchecked")
 		T castAdapter = (T) adapter;
 		return castAdapter;
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	@SuppressWarnings("null")
+	public static @NonNull String toString(Object anObject) {
+		return String.valueOf(anObject);
 	}
 }

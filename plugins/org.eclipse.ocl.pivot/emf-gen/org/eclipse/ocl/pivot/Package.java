@@ -211,5 +211,5 @@ public interface Package extends Namespace {
 
 	@Nullable EPackage getEPackage();
 	@NonNull PackageId getPackageId();
-	@Nullable org.eclipse.ocl.pivot.Class getOwnedClass(String className);
+	org.eclipse.ocl.pivot.@Nullable Class getOwnedClass(String className);
 } // Package

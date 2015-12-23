@@ -20,12 +20,12 @@ public class VMStackFrameResponse extends VMResponse
 {
 	private static final long serialVersionUID = -731807514003839012L;
 
-	public final @Nullable VMStackFrameData[] frames;
-	public final @Nullable VMVariableData[] variables;
+	public final @NonNull VMStackFrameData @Nullable [] frames;
+	public final @NonNull VMVariableData @Nullable [] variables;
 	public boolean isDeferredExecution;
 	
 	public VMStackFrameResponse(@NonNull VMStackFrameData frame) {
-		this(new VMStackFrameData[] { frame });
+		this(new @NonNull VMStackFrameData[] { frame });
 	}
 
 	public VMStackFrameResponse(@NonNull VMStackFrameData[] frames) {

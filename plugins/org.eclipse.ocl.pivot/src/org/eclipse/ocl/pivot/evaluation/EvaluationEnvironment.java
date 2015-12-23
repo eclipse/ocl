@@ -33,7 +33,7 @@ public interface EvaluationEnvironment extends Adaptable, Customizable
 	public interface EvaluationEnvironmentExtension extends EvaluationEnvironment
 	{
 		@NonNull ExecutorInternal getExecutor();
-		@Nullable EvaluationEnvironment.EvaluationEnvironmentExtension getParentEvaluationEnvironment();
+		EvaluationEnvironment.@Nullable EvaluationEnvironmentExtension getParentEvaluationEnvironment();
 	}
 	
 	/**

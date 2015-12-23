@@ -246,7 +246,7 @@ public class StandaloneProjectMap implements ProjectManager
 	{	
 		protected final @NonNull IPackageLoadStatus packageLoadStatus;	// The PackageLoadStatus of the required package.
 
-		protected EPackageDescriptor(@NonNull IPackageLoadStatus packageLoadStatus, @NonNull EPackage.Registry packageRegistry) {
+		protected EPackageDescriptor(@NonNull IPackageLoadStatus packageLoadStatus, EPackage.@NonNull Registry packageRegistry) {
 			this.packageLoadStatus = packageLoadStatus;
 			packageRegistry.put(getURI().toString(), this);
 			if (PROJECT_MAP_INSTALL.isActive()) {
@@ -295,7 +295,7 @@ public class StandaloneProjectMap implements ProjectManager
 			return getURI() + " with " + resourceLoadStrategy;
 		}
 
-		public void uninstall(@NonNull EPackage.Registry packageRegistry) {
+		public void uninstall(EPackage.@NonNull Registry packageRegistry) {
 			if (PROJECT_MAP_INSTALL.isActive()) {
 				PROJECT_MAP_INSTALL.println("" + toString());
 			}
@@ -662,7 +662,7 @@ public class StandaloneProjectMap implements ProjectManager
 		protected final @NonNull IResourceDescriptor resourceDescriptor;
 		protected @Nullable ResourceSet resourceSet;
 		private final @NonNull Map<URI, PackageLoadStatus> nsURI2packageLoadStatus = new HashMap<URI, PackageLoadStatus>();
-		protected final @NonNull EPackage.Registry packageRegistry;
+		protected final EPackage.@NonNull Registry packageRegistry;
 		
 		/**
 		 * The optional handler for namespace/platform or platform/namespace metamodel schizophrenia.
@@ -777,7 +777,7 @@ public class StandaloneProjectMap implements ProjectManager
 		}
 
 		@Override
-		public @NonNull EPackage.Registry getPackageRegistry() {
+		public EPackage.@NonNull Registry getPackageRegistry() {
 			return packageRegistry;
 		}
 
@@ -2204,16 +2204,12 @@ public class StandaloneProjectMap implements ProjectManager
 	 * Return the EPackage.Registry for a resourceSet or the Global
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry#INSTANCE} if resourceSet is null.
 	 */
-	public static @NonNull EPackage.Registry getPackageRegistry(@Nullable ResourceSet resourceSet) {
+	public static EPackage.@NonNull Registry getPackageRegistry(@Nullable ResourceSet resourceSet) {
 		if (resourceSet == null) {
-			@SuppressWarnings("null")
-			@NonNull
-			EPackage.Registry globalRegistry = EPackage.Registry.INSTANCE;
+			@SuppressWarnings("null") EPackage.@NonNull Registry globalRegistry = EPackage.Registry.INSTANCE;
 			return globalRegistry;
 		} else {
-			@SuppressWarnings("null")
-			@NonNull
-			EPackage.Registry packageRegistry = resourceSet.getPackageRegistry();
+			@SuppressWarnings("null") EPackage.@NonNull Registry packageRegistry = resourceSet.getPackageRegistry();
 			return packageRegistry;
 		}
 	}

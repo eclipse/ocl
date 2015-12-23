@@ -56,7 +56,7 @@ public class CGThrowExpImpl extends CGCallExpImpl implements CGThrowExp {
 	 * @generated
 	 */
 	@Override
-	public @Nullable <R> R accept(@NonNull CGModelVisitor<R> visitor) {
+	public <R> R accept(@NonNull CGModelVisitor<R> visitor) {
 		return visitor.visitCGThrowExp(this);
 	}
 

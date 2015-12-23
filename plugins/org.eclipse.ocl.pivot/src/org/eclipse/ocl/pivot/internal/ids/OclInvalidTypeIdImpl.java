@@ -23,7 +23,7 @@ public class OclInvalidTypeIdImpl extends OclVoidTypeIdImpl implements OclInvali
 	}
 
 	@Override
-	public @Nullable <R> R accept(@NonNull IdVisitor<R> visitor) {
+	public <R> R accept(@NonNull IdVisitor<R> visitor) {
 		return visitor.visitInvalidId(this);
 	}
 

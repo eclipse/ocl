@@ -18,7 +18,6 @@
 package	org.eclipse.ocl.examples.autogen.autocgmodel.util;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 
 /**
  * An AbstractExtendingAutoCGModelVisitor provides a default implementation for each
@@ -41,22 +40,22 @@ public abstract class AbstractExtendingAutoCGModelVisitor<R, C>
 	}	
 
 	@Override
-	public @Nullable R visitCGASTCallExp(@NonNull org.eclipse.ocl.examples.autogen.autocgmodel.CGASTCallExp object) {
+	public R visitCGASTCallExp( org.eclipse.ocl.examples.autogen.autocgmodel.@NonNull CGASTCallExp object) {
 		return visitCGOperationCallExp(object);
 	}
 
 	@Override
-	public @Nullable R visitCGContainmentBody(@NonNull org.eclipse.ocl.examples.autogen.autocgmodel.CGContainmentBody object) {
+	public R visitCGContainmentBody( org.eclipse.ocl.examples.autogen.autocgmodel.@NonNull CGContainmentBody object) {
 		return visitCGValuedElement(object);
 	}
 
 	@Override
-	public @Nullable R visitCGContainmentPart(@NonNull org.eclipse.ocl.examples.autogen.autocgmodel.CGContainmentPart object) {
+	public R visitCGContainmentPart( org.eclipse.ocl.examples.autogen.autocgmodel.@NonNull CGContainmentPart object) {
 		return visitCGValuedElement(object);
 	}
 
 	@Override
-	public @Nullable R visitCGContainmentVisit(@NonNull org.eclipse.ocl.examples.autogen.autocgmodel.CGContainmentVisit object) {
+	public R visitCGContainmentVisit( org.eclipse.ocl.examples.autogen.autocgmodel.@NonNull CGContainmentVisit object) {
 		return visitCGOperation(object);
 	}
 }

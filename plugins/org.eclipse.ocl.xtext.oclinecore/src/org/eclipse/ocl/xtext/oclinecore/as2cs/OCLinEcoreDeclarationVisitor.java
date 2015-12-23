@@ -41,7 +41,7 @@ public class OCLinEcoreDeclarationVisitor extends EssentialOCLDeclarationVisitor
 			new Predicate<org.eclipse.ocl.pivot.Package>()
 	{
 		@Override
-		public boolean filter(@NonNull org.eclipse.ocl.pivot.Package asPackage) {
+		public boolean filter(org.eclipse.ocl.pivot.@NonNull Package asPackage) {
 			return !PivotUtilInternal.isImplicitPackage(asPackage);
 		}
 	};

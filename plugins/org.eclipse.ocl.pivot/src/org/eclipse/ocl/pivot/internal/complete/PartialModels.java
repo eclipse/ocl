@@ -72,7 +72,7 @@ public class PartialModels extends EObjectResolvingEList<Model> implements Model
 	}
 
 	@Override
-	public void didAddPackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage) {
+	public void didAddPackage(org.eclipse.ocl.pivot.@NonNull Package partialPackage) {
 		getCompleteModel().didAddNestedPackage(partialPackage);
 	}
 	
@@ -97,7 +97,7 @@ public class PartialModels extends EObjectResolvingEList<Model> implements Model
 	}
 
 	@Override
-	public void didRemovePackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage) {
+	public void didRemovePackage(org.eclipse.ocl.pivot.@NonNull Package partialPackage) {
 		getCompleteModel().didRemoveNestedPackage(partialPackage);
 	}
 	

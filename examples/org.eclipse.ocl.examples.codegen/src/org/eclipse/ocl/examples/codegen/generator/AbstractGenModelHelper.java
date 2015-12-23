@@ -165,7 +165,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	}
 
 	@Override
-	public @NonNull Class<?> getEcoreInterfaceClass(@NonNull org.eclipse.ocl.pivot.Class type) throws GenModelException {
+	public @NonNull Class<?> getEcoreInterfaceClass(org.eclipse.ocl.pivot.@NonNull Class type) throws GenModelException {
 		GenClassifier genClassifier = getGenClassifier(type);
 		String qualifiedInterfaceName;
 		if (genClassifier instanceof GenDataType) {
@@ -257,7 +257,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	}
 	
 	@Override
-	public @Nullable String getEcoreInterfaceName(@NonNull org.eclipse.ocl.pivot.Class type) {
+	public @Nullable String getEcoreInterfaceName(org.eclipse.ocl.pivot.@NonNull Class type) {
 		try {
 			GenClassifier genClassifier = getGenClassifier(type);
 			return genClassifier instanceof GenDataType  
@@ -279,7 +279,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	}
 	
 	@Override
-	public @Nullable String getEcoreClassName(@NonNull org.eclipse.ocl.pivot.Class type) {
+	public @Nullable String getEcoreClassName(org.eclipse.ocl.pivot.@NonNull Class type) {
 		try {
 			GenClassifier genClassifier = getGenClassifier(type);
 			return genClassifier instanceof GenDataType  
@@ -295,7 +295,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 		return metamodelManager.getEnvironmentFactory();
 	}
 	
-	protected @NonNull GenClass getGenClass(@NonNull org.eclipse.ocl.pivot.Class type) throws GenModelException {
+	protected @NonNull GenClass getGenClass(org.eclipse.ocl.pivot.@NonNull Class type) throws GenModelException {
 		GenPackage genPackage = getGenPackage(type);
 		if (genPackage != null) {
 			String name = type.getName();
@@ -349,7 +349,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	} */
 	
 	@Override
-	public @NonNull GenClassifier getGenClassifier(@NonNull org.eclipse.ocl.pivot.Class type) throws GenModelException {
+	public @NonNull GenClassifier getGenClassifier(org.eclipse.ocl.pivot.@NonNull Class type) throws GenModelException {
 		GenPackage genPackage = getGenPackage(type);
 		if (genPackage != null) {
 			String name = type.getName();
@@ -360,7 +360,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 				}
 			}
 		}
-		for (@SuppressWarnings("null")@NonNull org.eclipse.ocl.pivot.Class partialType : metamodelManager.getPartialClasses(type)) {
+		for (@SuppressWarnings("null")org.eclipse.ocl.pivot.@NonNull Class partialType : metamodelManager.getPartialClasses(type)) {
 			genPackage = getGenPackage(partialType);
 			if (genPackage != null) {
 				String name = partialType.getName();
@@ -453,7 +453,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	}
 
 	@Override
-	public @Nullable GenPackage getGenPackage(@NonNull org.eclipse.ocl.pivot.Package asPackage) {
+	public @Nullable GenPackage getGenPackage(org.eclipse.ocl.pivot.@NonNull Package asPackage) {
 		EObject eContainer = asPackage.eContainer();
 		if (eContainer instanceof Model) {
 			String nsURI = ((Model)eContainer).getExternalURI();
@@ -472,7 +472,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	}
 
 	@Override
-	public @Nullable GenPackage getGenPackage(@NonNull org.eclipse.ocl.pivot.Class type) {
+	public @Nullable GenPackage getGenPackage(org.eclipse.ocl.pivot.@NonNull Class type) {
 		org.eclipse.ocl.pivot.Package asPackage = type.getOwningPackage();
 		if (asPackage == null) {
 			return null;
@@ -618,7 +618,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	}
 	
 	@Override
-	public @Nullable String getQualifiedFactoryInterfaceName(@NonNull org.eclipse.ocl.pivot.Class type) {
+	public @Nullable String getQualifiedFactoryInterfaceName(org.eclipse.ocl.pivot.@NonNull Class type) {
 		GenPackage genPackage = getGenPackage(type);
 		if (genPackage == null) {
 			return null;
@@ -636,7 +636,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 	}
 	
 	@Override
-	public @Nullable String getQualifiedFactoryInstanceAccessor(@NonNull org.eclipse.ocl.pivot.Class type) {
+	public @Nullable String getQualifiedFactoryInstanceAccessor(org.eclipse.ocl.pivot.@NonNull Class type) {
 		GenPackage genPackage = getGenPackage(type);
 		if (genPackage == null) {
 			return null;

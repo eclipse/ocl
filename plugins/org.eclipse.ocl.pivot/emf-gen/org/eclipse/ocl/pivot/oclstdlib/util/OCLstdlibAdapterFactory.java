@@ -20,6 +20,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage;
 import org.eclipse.ocl.pivot.values.Bag;
 import org.eclipse.ocl.pivot.values.OrderedSet;
@@ -78,8 +79,8 @@ public class OCLstdlibAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected OCLstdlibSwitch<Adapter> modelSwitch =
-		new OCLstdlibSwitch<Adapter>() {
+	protected OCLstdlibSwitch<@Nullable Adapter> modelSwitch =
+		new OCLstdlibSwitch<@Nullable Adapter>() {
 			@Override
 			public <T> Adapter caseBag(Bag<T> object) {
 				return createBagAdapter();

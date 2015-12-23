@@ -353,7 +353,7 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	}
 
 	@Override
-	public void addClass(@NonNull org.eclipse.ocl.pivot.Class partialClass) {
+	public void addClass(org.eclipse.ocl.pivot.@NonNull Class partialClass) {
 		partialClasses.add(partialClass);
 	}
 
@@ -382,7 +382,7 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	 * Eliminate a partialClass from a CompleteClass returning true if the CompleteClass is empty.
 	 */
 	@Override
-	public void didAddClass(@NonNull org.eclipse.ocl.pivot.Class partialClass) {
+	public void didAddClass(org.eclipse.ocl.pivot.@NonNull Class partialClass) {
 		partialClasses.add(partialClass);
 	}
 
@@ -390,7 +390,7 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	 * Eliminate a partialClass from a CompleteClass returning true if the CompleteClass is empty.
 	 */
 	@Override
-	public boolean didRemoveClass(@NonNull org.eclipse.ocl.pivot.Class partialClass) {
+	public boolean didRemoveClass(org.eclipse.ocl.pivot.@NonNull Class partialClass) {
 		partialClasses.remove(partialClass);
 		return partialClasses.size() <= 0;		// FIXME Need to invalidate all derived inheritances
 	}
@@ -411,7 +411,7 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getBehavioralClass() {
+	public org.eclipse.ocl.pivot.@NonNull Class getBehavioralClass() {
 		for (org.eclipse.ocl.pivot.Class partialClass : partialClasses) {
 			if (partialClass != null) {
 				if (partialClass instanceof DataType) {
@@ -496,7 +496,7 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getPrimaryClass() {
+	public org.eclipse.ocl.pivot.@NonNull Class getPrimaryClass() {
 		for (org.eclipse.ocl.pivot.Class partialClass : partialClasses) {
 			if (partialClass != null) {
 				return partialClass;

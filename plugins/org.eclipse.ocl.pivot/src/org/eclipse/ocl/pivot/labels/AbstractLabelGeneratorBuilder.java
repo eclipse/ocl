@@ -24,11 +24,11 @@ import org.eclipse.ocl.pivot.labels.ILabelGenerator.Registry;
  */
 public abstract class AbstractLabelGeneratorBuilder implements ILabelGenerator.Builder
 {	
-	protected final @NonNull ILabelGenerator.Registry registry;
+	protected final ILabelGenerator.@NonNull Registry registry;
 	protected final @Nullable Object labelledObject;
 	protected @Nullable Map<ILabelGenerator.Option<?>, Object> options = null;
 	
-	protected AbstractLabelGeneratorBuilder(@NonNull ILabelGenerator.Registry registry, @Nullable Object labelledObject, @Nullable Map<ILabelGenerator.Option<?>, Object> options) {
+	protected AbstractLabelGeneratorBuilder(ILabelGenerator.@NonNull Registry registry, @Nullable Object labelledObject, @Nullable Map<ILabelGenerator.Option<?>, Object> options) {
 		this.registry = registry;
 		this.labelledObject = labelledObject;
 		this.options = options;
@@ -51,7 +51,7 @@ public abstract class AbstractLabelGeneratorBuilder implements ILabelGenerator.B
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public @Nullable <T> T getOption(@NonNull ILabelGenerator.Option<T> option) {
+	public @Nullable <T> T getOption(ILabelGenerator.@NonNull Option<T> option) {
 		return options != null ? (T) options.get(option) : null;
 	}
 
@@ -61,12 +61,12 @@ public abstract class AbstractLabelGeneratorBuilder implements ILabelGenerator.B
 	}
 
 	@Override
-	public <T> boolean hasOption(@NonNull ILabelGenerator.Option<T> option) {
+	public <T> boolean hasOption(ILabelGenerator.@NonNull Option<T> option) {
 		return (options != null) && options.containsKey(option);
 	}
 
 	@Override
-	public <T> void setOption(@NonNull ILabelGenerator.Option<T> option, @Nullable T value) {
+	public <T> void setOption(ILabelGenerator.@NonNull Option<T> option, @Nullable T value) {
 		Map<Option<?>, Object> options2 = options;
 		if (options2 == null)
 			options = options2 = new HashMap<ILabelGenerator.Option<?>, Object>();

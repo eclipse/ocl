@@ -69,7 +69,7 @@ public final class PartialPackages extends EObjectResolvingEList<org.eclipse.ocl
 		super.addUnique(index, partialPackage);
 	}
 
-	protected void didAdd(@NonNull org.eclipse.ocl.pivot.Package partialPackage) {
+	protected void didAdd(org.eclipse.ocl.pivot.@NonNull Package partialPackage) {
 		if (PARTIAL_PACKAGES.isActive()) {
 			PARTIAL_PACKAGES.println("Do-didAdd " + this + " " + partialPackage);
 		}
@@ -78,7 +78,7 @@ public final class PartialPackages extends EObjectResolvingEList<org.eclipse.ocl
 	}
 
 	@Override
-	public void didAddPackage(@NonNull org.eclipse.ocl.pivot.Package nestedPackage) {
+	public void didAddPackage(org.eclipse.ocl.pivot.@NonNull Package nestedPackage) {
 		getCompletePackage().didAddNestedPackage(nestedPackage);
 	}
 
@@ -139,17 +139,17 @@ public final class PartialPackages extends EObjectResolvingEList<org.eclipse.ocl
 	}
 
 	@Override
-	public void didRemovePackage(@NonNull org.eclipse.ocl.pivot.Package nestedPackage) {
+	public void didRemovePackage(org.eclipse.ocl.pivot.@NonNull Package nestedPackage) {
 		getCompletePackage().didRemoveNestedPackage(nestedPackage);
 	}
 
 	@Override
-	public void didAddClass(@NonNull org.eclipse.ocl.pivot.Class partialClass) {
+	public void didAddClass(org.eclipse.ocl.pivot.@NonNull Class partialClass) {
 		getCompletePackage().didAddClass(partialClass);
 	}
 
 	@Override
-	public void didRemoveClass(@NonNull org.eclipse.ocl.pivot.Class partialClass) {
+	public void didRemoveClass(org.eclipse.ocl.pivot.@NonNull Class partialClass) {
 		CompleteInheritanceImpl completeInheritance = name2inheritance.remove(partialClass.getName());
 //		System.out.println("PartialPackage.didRemoveClass " + partialClass);
 		getCompletePackage().didRemoveClass(partialClass);

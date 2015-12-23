@@ -279,7 +279,7 @@ public class CollectionLiteralExpImpl
 		        }
 		        @NonNull /*@Caught*/ Object CAUGHT_oclIsKindOf;
 		        try {
-		            final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_SetType = idResolver.getClass(PivotTables.CLSSid_SetType, null);
+		            final /*@NonInvalid*/ org.eclipse.ocl.pivot.@NonNull Class TYP_SetType = idResolver.getClass(PivotTables.CLSSid_SetType, null);
 		            final @Nullable /*@Thrown*/ Type type = this.getType();
 		            final /*@Thrown*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(executor, type, TYP_SetType).booleanValue();
 		            CAUGHT_oclIsKindOf = oclIsKindOf;
@@ -346,7 +346,7 @@ public class CollectionLiteralExpImpl
 		        }
 		        @NonNull /*@Caught*/ Object CAUGHT_oclIsKindOf;
 		        try {
-		            final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_OrderedSetType = idResolver.getClass(PivotTables.CLSSid_OrderedSetType, null);
+		            final /*@NonInvalid*/ org.eclipse.ocl.pivot.@NonNull Class TYP_OrderedSetType = idResolver.getClass(PivotTables.CLSSid_OrderedSetType, null);
 		            final @Nullable /*@Thrown*/ Type type = this.getType();
 		            final /*@Thrown*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(executor, type, TYP_OrderedSetType).booleanValue();
 		            CAUGHT_oclIsKindOf = oclIsKindOf;
@@ -413,7 +413,7 @@ public class CollectionLiteralExpImpl
 		        }
 		        @NonNull /*@Caught*/ Object CAUGHT_oclIsKindOf;
 		        try {
-		            final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_SequenceType = idResolver.getClass(PivotTables.CLSSid_SequenceType, null);
+		            final /*@NonInvalid*/ org.eclipse.ocl.pivot.@NonNull Class TYP_SequenceType = idResolver.getClass(PivotTables.CLSSid_SequenceType, null);
 		            final @Nullable /*@Thrown*/ Type type = this.getType();
 		            final /*@Thrown*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(executor, type, TYP_SequenceType).booleanValue();
 		            CAUGHT_oclIsKindOf = oclIsKindOf;
@@ -480,7 +480,7 @@ public class CollectionLiteralExpImpl
 		        }
 		        @NonNull /*@Caught*/ Object CAUGHT_oclIsKindOf;
 		        try {
-		            final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_BagType = idResolver.getClass(PivotTables.CLSSid_BagType, null);
+		            final /*@NonInvalid*/ org.eclipse.ocl.pivot.@NonNull Class TYP_BagType = idResolver.getClass(PivotTables.CLSSid_BagType, null);
 		            final @Nullable /*@Thrown*/ Type type = this.getType();
 		            final /*@Thrown*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(executor, type, TYP_BagType).booleanValue();
 		            CAUGHT_oclIsKindOf = oclIsKindOf;

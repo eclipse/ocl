@@ -96,7 +96,7 @@ public class TextilePrettyPrinter
 		}
 	}
 
-	public static @NonNull PrettyPrintOptions.Global createOptions(@Nullable Namespace scope) {
+	public static PrettyPrintOptions.@NonNull Global createOptions(@Nullable Namespace scope) {
 		PrettyPrintOptions.Global options = new PrettyPrintOptions.Global(scope)
 		{
 			@Override

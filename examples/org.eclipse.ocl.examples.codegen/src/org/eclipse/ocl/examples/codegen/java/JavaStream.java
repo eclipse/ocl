@@ -85,7 +85,7 @@ public class JavaStream
 		return outBuffer.toString();
 	}
 
-	public static @NonNull PrettyPrintOptions.Global createOptions(@NonNull Visitable element) {
+	public static PrettyPrintOptions.@NonNull Global createOptions(@NonNull Visitable element) {
 		Namespace scope = null;
 		if (element instanceof EObject) {
 			for (EObject eObject = (EObject) element; eObject != null; ) {

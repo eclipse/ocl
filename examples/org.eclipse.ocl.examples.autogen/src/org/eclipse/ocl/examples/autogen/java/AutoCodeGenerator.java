@@ -64,8 +64,8 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 //	private static final Logger logger = Logger.getLogger(AutoCodeGenerator.class);
 	
 	protected final @NonNull AutoAnalyzer cgAnalyzer;
-	protected final @NonNull org.eclipse.ocl.pivot.Package asPackage;
-	protected final @Nullable org.eclipse.ocl.pivot.Package asSuperPackage;
+	protected final org.eclipse.ocl.pivot.@NonNull Package asPackage;
+	protected final org.eclipse.ocl.pivot.@Nullable Package asSuperPackage;
 	protected final @NonNull GenModel genModel;
 	protected final @NonNull GenPackage genPackage;
 	//protected final @Nullable GenPackage superGenPackage;
@@ -83,8 +83,8 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 	
 
 	public AutoCodeGenerator(@NonNull EnvironmentFactoryInternal environmentFactory,
-			@NonNull org.eclipse.ocl.pivot.Package asPackage,
-			@Nullable org.eclipse.ocl.pivot.Package asSuperPackage,
+			org.eclipse.ocl.pivot.@NonNull Package asPackage,
+			org.eclipse.ocl.pivot.@Nullable Package asSuperPackage,
 			@NonNull GenPackage genPackage, // @Nullable GenPackage superGenPackage,
 			@NonNull String projectPrefix,	// FIXME Since visitors/visitable package/name are really configured in the MWE file
 			@NonNull String projectName,    // there is no point of providing a different to compute it here. To improve the framework, make use of the
@@ -214,7 +214,7 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 		return cgClass;
 	}
 	
-	protected @Nullable CGClass getExternalClass(@NonNull org.eclipse.ocl.pivot.Class aClass) {
+	protected @Nullable CGClass getExternalClass(org.eclipse.ocl.pivot.@NonNull Class aClass) {
 		return getExternalClass(genModelHelper.getEcoreInterfaceClass(aClass));
 	}
 
@@ -252,7 +252,7 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 		}
 	}
 	
-	protected @NonNull org.eclipse.ocl.pivot.Class getVisitablePivotClass() {
+	protected org.eclipse.ocl.pivot.@NonNull Class getVisitablePivotClass() {
 		
 //		return ClassUtil.nonNullState(metamodelManager.getASClass(visitableClass)); 
 		for (GenPackage genPackage : genModel.getAllGenAndUsedGenPackagesWithClassifiers()) {

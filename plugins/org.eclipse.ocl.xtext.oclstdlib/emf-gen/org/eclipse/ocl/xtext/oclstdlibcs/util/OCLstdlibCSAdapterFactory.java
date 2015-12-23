@@ -15,6 +15,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.utilities.Nameable;
 import org.eclipse.ocl.pivot.utilities.Pivotable;
 import org.eclipse.ocl.xtext.basecs.AttributeCS;
@@ -98,7 +99,7 @@ public class OCLstdlibCSAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected OCLstdlibCSSwitch<Adapter> modelSwitch = new OCLstdlibCSSwitch<Adapter>()
+	protected OCLstdlibCSSwitch<@Nullable Adapter> modelSwitch = new OCLstdlibCSSwitch<@Nullable Adapter>()
 		{
 			@Override
 			public Adapter caseJavaClassCS(JavaClassCS object)

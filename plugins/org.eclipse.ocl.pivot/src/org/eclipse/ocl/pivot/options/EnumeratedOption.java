@@ -31,7 +31,7 @@ public class EnumeratedOption<T extends Enum<T>> extends BasicOption<T>
 	}		
 
 	@Override
-	public T getValueOf(@Nullable String string) {
+	public @Nullable T getValueOf(@Nullable String string) {
 		if (string == null) {
 			return null;
 		}

@@ -381,7 +381,7 @@ public class MessageExpImpl
 		else {
 		    @Nullable /*@Caught*/ Object CAUGHT_status;
 		    try {
-		        final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_CollectionType_0 = idResolver.getClass(PivotTables.CLSSid_CollectionType, null);
+		        final /*@NonInvalid*/ org.eclipse.ocl.pivot.@NonNull Class TYP_CollectionType_0 = idResolver.getClass(PivotTables.CLSSid_CollectionType, null);
 		        @SuppressWarnings("null")
 		        final @NonNull /*@Thrown*/ OCLExpression ownedTarget = this.getOwnedTarget();
 		        final @Nullable /*@Thrown*/ Type type = ownedTarget.getType();

@@ -16,7 +16,6 @@
 package	org.eclipse.ocl.xtext.completeoclcs.util;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 
 /**
  * An AbstractDelegatingCompleteOCLCSVisitor delegates all visits.
@@ -30,67 +29,67 @@ public abstract class AbstractDelegatingCompleteOCLCSVisitor<R, C, D extends Com
 	}
 
 	@Override
-	public @Nullable R visiting(@NonNull org.eclipse.ocl.xtext.basecs.util.VisitableCS visitable) {
+	public R visiting(org.eclipse.ocl.xtext.basecs.util.@NonNull VisitableCS visitable) {
 		return delegate.visiting(visitable);
 	}
 
 	@Override
-	public @Nullable R visitClassifierContextDeclCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.ClassifierContextDeclCS object) {
+	public R visitClassifierContextDeclCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull ClassifierContextDeclCS object) {
 		return delegate.visitClassifierContextDeclCS(object);
 	}
 
 	@Override
-	public @Nullable R visitCompleteOCLDocumentCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.CompleteOCLDocumentCS object) {
+	public R visitCompleteOCLDocumentCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull CompleteOCLDocumentCS object) {
 		return delegate.visitCompleteOCLDocumentCS(object);
 	}
 
 	@Override
-	public @Nullable R visitContextDeclCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.ContextDeclCS object) {
+	public R visitContextDeclCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull ContextDeclCS object) {
 		return delegate.visitContextDeclCS(object);
 	}
 
 	@Override
-	public @Nullable R visitDefCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.DefCS object) {
+	public R visitDefCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull DefCS object) {
 		return delegate.visitDefCS(object);
 	}
 
 	@Override
-	public @Nullable R visitDefOperationCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.DefOperationCS object) {
+	public R visitDefOperationCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull DefOperationCS object) {
 		return delegate.visitDefOperationCS(object);
 	}
 
 	@Override
-	public @Nullable R visitDefPropertyCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.DefPropertyCS object) {
+	public R visitDefPropertyCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull DefPropertyCS object) {
 		return delegate.visitDefPropertyCS(object);
 	}
 
 	@Override
-	public @Nullable R visitFeatureContextDeclCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.FeatureContextDeclCS object) {
+	public R visitFeatureContextDeclCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull FeatureContextDeclCS object) {
 		return delegate.visitFeatureContextDeclCS(object);
 	}
 
 	@Override
-	public @Nullable R visitOCLMessageArgCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.OCLMessageArgCS object) {
+	public R visitOCLMessageArgCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull OCLMessageArgCS object) {
 		return delegate.visitOCLMessageArgCS(object);
 	}
 
 	@Override
-	public @Nullable R visitOperationContextDeclCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.OperationContextDeclCS object) {
+	public R visitOperationContextDeclCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull OperationContextDeclCS object) {
 		return delegate.visitOperationContextDeclCS(object);
 	}
 
 	@Override
-	public @Nullable R visitPackageDeclarationCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.PackageDeclarationCS object) {
+	public R visitPackageDeclarationCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull PackageDeclarationCS object) {
 		return delegate.visitPackageDeclarationCS(object);
 	}
 
 	@Override
-	public @Nullable R visitPathNameDeclCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.PathNameDeclCS object) {
+	public R visitPathNameDeclCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull PathNameDeclCS object) {
 		return delegate.visitPathNameDeclCS(object);
 	}
 
 	@Override
-	public @Nullable R visitPropertyContextDeclCS(@NonNull org.eclipse.ocl.xtext.completeoclcs.PropertyContextDeclCS object) {
+	public R visitPropertyContextDeclCS(org.eclipse.ocl.xtext.completeoclcs.@NonNull PropertyContextDeclCS object) {
 		return delegate.visitPropertyContextDeclCS(object);
 	}
 }

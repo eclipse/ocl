@@ -200,7 +200,7 @@ public abstract class PivotTestSuite extends PivotTestCaseWithAutoTearDown
 	 * @param type The '<em><b>Type</b></em>' of the {@link org.eclipse.uml2.uml.Property} to retrieve, or <code>null</code>.
 	 * @return The first {@link org.eclipse.uml2.uml.Property} with the specified '<em><b>Name</b></em>', and '<em><b>Type</b></em>', or <code>null</code>.
 	 */
-	protected Property getAttribute(@NonNull org.eclipse.ocl.pivot.Class classifier, @NonNull String name, @NonNull Type type) {
+	protected Property getAttribute(org.eclipse.ocl.pivot.@NonNull Class classifier, @NonNull String name, @NonNull Type type) {
 		Property feature = NameUtil.getNameable(classifier.getOwnedProperties(), name);
 		if (feature == null)
 			return null;

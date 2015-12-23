@@ -43,7 +43,7 @@ public class AutoCG2StringVisitor extends CG2StringVisitor implements AutoCGMode
 		}
 	}
 
-	public static @NonNull AutoCG2StringVisitor.Factory FACTORY = new MyFactory();
+	public static AutoCG2StringVisitor.@NonNull Factory FACTORY = new MyFactory();
 
 	public AutoCG2StringVisitor() {}
 

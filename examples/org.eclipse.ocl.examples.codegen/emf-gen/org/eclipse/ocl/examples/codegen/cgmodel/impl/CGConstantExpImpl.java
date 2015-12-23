@@ -150,7 +150,7 @@ public class CGConstantExpImpl extends CGValuedElementImpl implements CGConstant
 	 * @generated
 	 */
 	@Override
-	public @Nullable <R> R accept(@NonNull CGModelVisitor<R> visitor) {
+	public <R> R accept(@NonNull CGModelVisitor<R> visitor) {
 		return visitor.visitCGConstantExp(this);
 	}
 

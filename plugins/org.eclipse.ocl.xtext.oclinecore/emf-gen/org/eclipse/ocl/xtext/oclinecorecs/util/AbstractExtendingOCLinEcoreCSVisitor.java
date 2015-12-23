@@ -16,7 +16,6 @@
 package	org.eclipse.ocl.xtext.oclinecorecs.util;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 
 /**
  * An AbstractExtendingOCLinEcoreCSVisitor provides a default implementation for each
@@ -39,17 +38,17 @@ public abstract class AbstractExtendingOCLinEcoreCSVisitor<R, C>
 	}	
 
 	@Override
-	public @Nullable R visitOCLinEcoreConstraintCS(@NonNull org.eclipse.ocl.xtext.oclinecorecs.OCLinEcoreConstraintCS object) {
+	public R visitOCLinEcoreConstraintCS(org.eclipse.ocl.xtext.oclinecorecs.@NonNull OCLinEcoreConstraintCS object) {
 		return visitConstraintCS(object);
 	}
 
 	@Override
-	public @Nullable R visitSysMLCS(@NonNull org.eclipse.ocl.xtext.oclinecorecs.SysMLCS object) {
+	public R visitSysMLCS(org.eclipse.ocl.xtext.oclinecorecs.@NonNull SysMLCS object) {
 		return visitAnnotationElementCS(object);
 	}
 
 	@Override
-	public @Nullable R visitTopLevelCS(@NonNull org.eclipse.ocl.xtext.oclinecorecs.TopLevelCS object) {
+	public R visitTopLevelCS(org.eclipse.ocl.xtext.oclinecorecs.@NonNull TopLevelCS object) {
 		return visitRootPackageCS(object);
 	}
 }

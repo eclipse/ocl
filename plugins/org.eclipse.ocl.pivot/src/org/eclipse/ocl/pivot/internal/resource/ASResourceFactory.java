@@ -134,7 +134,7 @@ public interface ASResourceFactory extends Resource.Factory, ASResourceFactoryCo
 	 */
 	@Nullable Element importFromResource(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Resource resource, @Nullable URI uri) throws ParserException;
 
-	void initializeEValidatorRegistry(@NonNull EValidator.Registry eValidatorRegistry);
+	void initializeEValidatorRegistry(EValidator.@NonNull Registry eValidatorRegistry);
 
 	/**
 	 * Return true if newResource can be ignored in favour of an already loaded oldResource.

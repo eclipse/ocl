@@ -2637,7 +2637,7 @@ public class PivotTables
 			Fragments._Annotation__NamedElement /* 4 */,
 			Fragments._Annotation__Annotation /* 5 */
 		};
-		private static final @NonNull int[] __Annotation = { 1,1,2,1,1,1 };
+		private static final int @NonNull [] __Annotation = { 1,1,2,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _AnyType =
 		{
@@ -2654,7 +2654,7 @@ public class PivotTables
 			Fragments._AnyType__Class /* 6 */,
 			Fragments._AnyType__AnyType /* 7 */
 		};
-		private static final @NonNull int[] __AnyType = { 1,1,3,1,2,2,1,1 };
+		private static final int @NonNull [] __AnyType = { 1,1,3,1,2,2,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _AssociationClass =
 		{
@@ -2671,7 +2671,7 @@ public class PivotTables
 			Fragments._AssociationClass__Class /* 6 */,
 			Fragments._AssociationClass__AssociationClass /* 7 */
 		};
-		private static final @NonNull int[] __AssociationClass = { 1,1,3,1,2,2,1,1 };
+		private static final int @NonNull [] __AssociationClass = { 1,1,3,1,2,2,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _AssociationClassCallExp =
 		{
@@ -2688,7 +2688,7 @@ public class PivotTables
 			Fragments._AssociationClassCallExp__NavigationCallExp /* 9 */,
 			Fragments._AssociationClassCallExp__AssociationClassCallExp /* 10 */
 		};
-		private static final @NonNull int[] __AssociationClassCallExp = { 1,1,2,1,1,1,1,1,1,1,1 };
+		private static final int @NonNull [] __AssociationClassCallExp = { 1,1,2,1,1,1,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _AssociativityKind =
 		{
@@ -2707,7 +2707,7 @@ public class PivotTables
 			Fragments._AssociativityKind__Enumeration /* 8 */,
 			Fragments._AssociativityKind__AssociativityKind /* 9 */
 		};
-		private static final @NonNull int[] __AssociativityKind = { 1,1,3,1,2,2,1,1,1,1 };
+		private static final int @NonNull [] __AssociativityKind = { 1,1,3,1,2,2,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _BagType =
 		{
@@ -2726,7 +2726,7 @@ public class PivotTables
 			Fragments._BagType__CollectionType /* 8 */,
 			Fragments._BagType__BagType /* 9 */
 		};
-		private static final @NonNull int[] __BagType = { 1,1,3,1,2,2,1,1,1,1 };
+		private static final int @NonNull [] __BagType = { 1,1,3,1,2,2,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Behavior =
 		{
@@ -2743,7 +2743,7 @@ public class PivotTables
 			Fragments._Behavior__Class /* 6 */,
 			Fragments._Behavior__Behavior /* 7 */
 		};
-		private static final @NonNull int[] __Behavior = { 1,1,3,1,2,2,1,1 };
+		private static final int @NonNull [] __Behavior = { 1,1,3,1,2,2,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _BooleanLiteralExp =
 		{
@@ -2759,7 +2759,7 @@ public class PivotTables
 			Fragments._BooleanLiteralExp__PrimitiveLiteralExp /* 8 */,
 			Fragments._BooleanLiteralExp__BooleanLiteralExp /* 9 */
 		};
-		private static final @NonNull int[] __BooleanLiteralExp = { 1,1,2,1,1,1,1,1,1,1 };
+		private static final int @NonNull [] __BooleanLiteralExp = { 1,1,2,1,1,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _CallExp =
 		{
@@ -2773,7 +2773,7 @@ public class PivotTables
 			Fragments._CallExp__OCLExpression /* 6 */,
 			Fragments._CallExp__CallExp /* 7 */
 		};
-		private static final @NonNull int[] __CallExp = { 1,1,2,1,1,1,1,1 };
+		private static final int @NonNull [] __CallExp = { 1,1,2,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _CallOperationAction =
 		{
@@ -2785,7 +2785,7 @@ public class PivotTables
 			Fragments._CallOperationAction__NamedElement /* 4 */,
 			Fragments._CallOperationAction__CallOperationAction /* 5 */
 		};
-		private static final @NonNull int[] __CallOperationAction = { 1,1,2,1,1,1 };
+		private static final int @NonNull [] __CallOperationAction = { 1,1,2,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Class =
 		{
@@ -2801,7 +2801,7 @@ public class PivotTables
 			Fragments._Class__Type /* 5 */,
 			Fragments._Class__Class /* 6 */
 		};
-		private static final @NonNull int[] __Class = { 1,1,3,1,2,2,1 };
+		private static final int @NonNull [] __Class = { 1,1,3,1,2,2,1 };
 
 		private static final @NonNull ExecutorFragment[] _CollectionItem =
 		{
@@ -2815,7 +2815,7 @@ public class PivotTables
 			Fragments._CollectionItem__CollectionLiteralPart /* 6 */,
 			Fragments._CollectionItem__CollectionItem /* 7 */
 		};
-		private static final @NonNull int[] __CollectionItem = { 1,1,2,1,1,1,1,1 };
+		private static final int @NonNull [] __CollectionItem = { 1,1,2,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _CollectionKind =
 		{
@@ -2834,7 +2834,7 @@ public class PivotTables
 			Fragments._CollectionKind__Enumeration /* 8 */,
 			Fragments._CollectionKind__CollectionKind /* 9 */
 		};
-		private static final @NonNull int[] __CollectionKind = { 1,1,3,1,2,2,1,1,1,1 };
+		private static final int @NonNull [] __CollectionKind = { 1,1,3,1,2,2,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _CollectionLiteralExp =
 		{
@@ -2849,7 +2849,7 @@ public class PivotTables
 			Fragments._CollectionLiteralExp__LiteralExp /* 7 */,
 			Fragments._CollectionLiteralExp__CollectionLiteralExp /* 8 */
 		};
-		private static final @NonNull int[] __CollectionLiteralExp = { 1,1,2,1,1,1,1,1,1 };
+		private static final int @NonNull [] __CollectionLiteralExp = { 1,1,2,1,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _CollectionLiteralPart =
 		{
@@ -2862,7 +2862,7 @@ public class PivotTables
 			Fragments._CollectionLiteralPart__TypedElement /* 5 */,
 			Fragments._CollectionLiteralPart__CollectionLiteralPart /* 6 */
 		};
-		private static final @NonNull int[] __CollectionLiteralPart = { 1,1,2,1,1,1,1 };
+		private static final int @NonNull [] __CollectionLiteralPart = { 1,1,2,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _CollectionRange =
 		{
@@ -2876,7 +2876,7 @@ public class PivotTables
 			Fragments._CollectionRange__CollectionLiteralPart /* 6 */,
 			Fragments._CollectionRange__CollectionRange /* 7 */
 		};
-		private static final @NonNull int[] __CollectionRange = { 1,1,2,1,1,1,1,1 };
+		private static final int @NonNull [] __CollectionRange = { 1,1,2,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _CollectionType =
 		{
@@ -2894,7 +2894,7 @@ public class PivotTables
 			Fragments._CollectionType__DataType /* 7 */,
 			Fragments._CollectionType__CollectionType /* 8 */
 		};
-		private static final @NonNull int[] __CollectionType = { 1,1,3,1,2,2,1,1,1 };
+		private static final int @NonNull [] __CollectionType = { 1,1,3,1,2,2,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Comment =
 		{
@@ -2904,7 +2904,7 @@ public class PivotTables
 			Fragments._Comment__Element /* 3 */,
 			Fragments._Comment__Comment /* 4 */
 		};
-		private static final @NonNull int[] __Comment = { 1,1,1,1,1 };
+		private static final int @NonNull [] __Comment = { 1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _CompleteClass =
 		{
@@ -2916,7 +2916,7 @@ public class PivotTables
 			Fragments._CompleteClass__NamedElement /* 4 */,
 			Fragments._CompleteClass__CompleteClass /* 5 */
 		};
-		private static final @NonNull int[] __CompleteClass = { 1,1,2,1,1,1 };
+		private static final int @NonNull [] __CompleteClass = { 1,1,2,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _CompleteEnvironment =
 		{
@@ -2926,7 +2926,7 @@ public class PivotTables
 			Fragments._CompleteEnvironment__Element /* 3 */,
 			Fragments._CompleteEnvironment__CompleteEnvironment /* 4 */
 		};
-		private static final @NonNull int[] __CompleteEnvironment = { 1,1,1,1,1 };
+		private static final int @NonNull [] __CompleteEnvironment = { 1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _CompleteModel =
 		{
@@ -2938,7 +2938,7 @@ public class PivotTables
 			Fragments._CompleteModel__NamedElement /* 4 */,
 			Fragments._CompleteModel__CompleteModel /* 5 */
 		};
-		private static final @NonNull int[] __CompleteModel = { 1,1,2,1,1,1 };
+		private static final int @NonNull [] __CompleteModel = { 1,1,2,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _CompletePackage =
 		{
@@ -2950,7 +2950,7 @@ public class PivotTables
 			Fragments._CompletePackage__NamedElement /* 4 */,
 			Fragments._CompletePackage__CompletePackage /* 5 */
 		};
-		private static final @NonNull int[] __CompletePackage = { 1,1,2,1,1,1 };
+		private static final int @NonNull [] __CompletePackage = { 1,1,2,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _ConnectionPointReference =
 		{
@@ -2963,7 +2963,7 @@ public class PivotTables
 			Fragments._ConnectionPointReference__Vertex /* 5 */,
 			Fragments._ConnectionPointReference__ConnectionPointReference /* 6 */
 		};
-		private static final @NonNull int[] __ConnectionPointReference = { 1,1,2,1,1,1,1 };
+		private static final int @NonNull [] __ConnectionPointReference = { 1,1,2,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Constraint =
 		{
@@ -2975,7 +2975,7 @@ public class PivotTables
 			Fragments._Constraint__NamedElement /* 4 */,
 			Fragments._Constraint__Constraint /* 5 */
 		};
-		private static final @NonNull int[] __Constraint = { 1,1,2,1,1,1 };
+		private static final int @NonNull [] __Constraint = { 1,1,2,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _DataType =
 		{
@@ -2992,7 +2992,7 @@ public class PivotTables
 			Fragments._DataType__Class /* 6 */,
 			Fragments._DataType__DataType /* 7 */
 		};
-		private static final @NonNull int[] __DataType = { 1,1,3,1,2,2,1,1 };
+		private static final int @NonNull [] __DataType = { 1,1,3,1,2,2,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Detail =
 		{
@@ -3004,7 +3004,7 @@ public class PivotTables
 			Fragments._Detail__NamedElement /* 4 */,
 			Fragments._Detail__Detail /* 5 */
 		};
-		private static final @NonNull int[] __Detail = { 1,1,2,1,1,1 };
+		private static final int @NonNull [] __Detail = { 1,1,2,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _DynamicBehavior =
 		{
@@ -3024,7 +3024,7 @@ public class PivotTables
 			Fragments._DynamicBehavior__DynamicType /* 7 */,
 			Fragments._DynamicBehavior__DynamicBehavior /* 8 */
 		};
-		private static final @NonNull int[] __DynamicBehavior = { 1,1,3,1,3,2,1,2,1 };
+		private static final int @NonNull [] __DynamicBehavior = { 1,1,3,1,3,2,1,2,1 };
 
 		private static final @NonNull ExecutorFragment[] _DynamicElement =
 		{
@@ -3034,7 +3034,7 @@ public class PivotTables
 			Fragments._DynamicElement__Element /* 3 */,
 			Fragments._DynamicElement__DynamicElement /* 4 */
 		};
-		private static final @NonNull int[] __DynamicElement = { 1,1,1,1,1 };
+		private static final int @NonNull [] __DynamicElement = { 1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _DynamicProperty =
 		{
@@ -3044,7 +3044,7 @@ public class PivotTables
 			Fragments._DynamicProperty__Element /* 3 */,
 			Fragments._DynamicProperty__DynamicProperty /* 4 */
 		};
-		private static final @NonNull int[] __DynamicProperty = { 1,1,1,1,1 };
+		private static final int @NonNull [] __DynamicProperty = { 1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _DynamicType =
 		{
@@ -3062,7 +3062,7 @@ public class PivotTables
 			Fragments._DynamicType__Class /* 6 */,
 			Fragments._DynamicType__DynamicType /* 7 */
 		};
-		private static final @NonNull int[] __DynamicType = { 1,1,3,1,3,2,1,1 };
+		private static final int @NonNull [] __DynamicType = { 1,1,3,1,3,2,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _DynamicValueSpecification =
 		{
@@ -3076,7 +3076,7 @@ public class PivotTables
 			Fragments._DynamicValueSpecification__ValueSpecification /* 6 */,
 			Fragments._DynamicValueSpecification__DynamicValueSpecification /* 7 */
 		};
-		private static final @NonNull int[] __DynamicValueSpecification = { 1,1,2,1,1,1,1,1 };
+		private static final int @NonNull [] __DynamicValueSpecification = { 1,1,2,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Element =
 		{
@@ -3085,7 +3085,7 @@ public class PivotTables
 			Fragments._Element__Visitable /* 2 */,
 			Fragments._Element__Element /* 3 */
 		};
-		private static final @NonNull int[] __Element = { 1,1,1,1 };
+		private static final int @NonNull [] __Element = { 1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _ElementExtension =
 		{
@@ -3102,7 +3102,7 @@ public class PivotTables
 			Fragments._ElementExtension__Class /* 6 */,
 			Fragments._ElementExtension__ElementExtension /* 7 */
 		};
-		private static final @NonNull int[] __ElementExtension = { 1,1,3,1,2,2,1,1 };
+		private static final int @NonNull [] __ElementExtension = { 1,1,3,1,2,2,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _EnumLiteralExp =
 		{
@@ -3117,7 +3117,7 @@ public class PivotTables
 			Fragments._EnumLiteralExp__LiteralExp /* 7 */,
 			Fragments._EnumLiteralExp__EnumLiteralExp /* 8 */
 		};
-		private static final @NonNull int[] __EnumLiteralExp = { 1,1,2,1,1,1,1,1,1 };
+		private static final int @NonNull [] __EnumLiteralExp = { 1,1,2,1,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Enumeration =
 		{
@@ -3135,7 +3135,7 @@ public class PivotTables
 			Fragments._Enumeration__DataType /* 7 */,
 			Fragments._Enumeration__Enumeration /* 8 */
 		};
-		private static final @NonNull int[] __Enumeration = { 1,1,3,1,2,2,1,1,1 };
+		private static final int @NonNull [] __Enumeration = { 1,1,3,1,2,2,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _EnumerationLiteral =
 		{
@@ -3148,7 +3148,7 @@ public class PivotTables
 			Fragments._EnumerationLiteral__InstanceSpecification /* 5 */,
 			Fragments._EnumerationLiteral__EnumerationLiteral /* 6 */
 		};
-		private static final @NonNull int[] __EnumerationLiteral = { 1,1,2,1,1,1,1 };
+		private static final int @NonNull [] __EnumerationLiteral = { 1,1,2,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _ExpressionInOCL =
 		{
@@ -3163,7 +3163,7 @@ public class PivotTables
 			Fragments._ExpressionInOCL__LanguageExpression /* 7 */,
 			Fragments._ExpressionInOCL__ExpressionInOCL /* 8 */
 		};
-		private static final @NonNull int[] __ExpressionInOCL = { 1,1,2,1,1,1,1,1,1 };
+		private static final int @NonNull [] __ExpressionInOCL = { 1,1,2,1,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Feature =
 		{
@@ -3176,7 +3176,7 @@ public class PivotTables
 			Fragments._Feature__TypedElement /* 5 */,
 			Fragments._Feature__Feature /* 6 */
 		};
-		private static final @NonNull int[] __Feature = { 1,1,2,1,1,1,1 };
+		private static final int @NonNull [] __Feature = { 1,1,2,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _FeatureCallExp =
 		{
@@ -3191,7 +3191,7 @@ public class PivotTables
 			Fragments._FeatureCallExp__CallExp /* 7 */,
 			Fragments._FeatureCallExp__FeatureCallExp /* 8 */
 		};
-		private static final @NonNull int[] __FeatureCallExp = { 1,1,2,1,1,1,1,1,1 };
+		private static final int @NonNull [] __FeatureCallExp = { 1,1,2,1,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _FinalState =
 		{
@@ -3207,7 +3207,7 @@ public class PivotTables
 			Fragments._FinalState__State /* 6 */,
 			Fragments._FinalState__FinalState /* 7 */
 		};
-		private static final @NonNull int[] __FinalState = { 1,2,2,1,1,2,1,1 };
+		private static final int @NonNull [] __FinalState = { 1,2,2,1,1,2,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _IfExp =
 		{
@@ -3221,7 +3221,7 @@ public class PivotTables
 			Fragments._IfExp__OCLExpression /* 6 */,
 			Fragments._IfExp__IfExp /* 7 */
 		};
-		private static final @NonNull int[] __IfExp = { 1,1,2,1,1,1,1,1 };
+		private static final int @NonNull [] __IfExp = { 1,1,2,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Import =
 		{
@@ -3233,7 +3233,7 @@ public class PivotTables
 			Fragments._Import__NamedElement /* 4 */,
 			Fragments._Import__Import /* 5 */
 		};
-		private static final @NonNull int[] __Import = { 1,1,2,1,1,1 };
+		private static final int @NonNull [] __Import = { 1,1,2,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _InstanceSpecification =
 		{
@@ -3245,7 +3245,7 @@ public class PivotTables
 			Fragments._InstanceSpecification__NamedElement /* 4 */,
 			Fragments._InstanceSpecification__InstanceSpecification /* 5 */
 		};
-		private static final @NonNull int[] __InstanceSpecification = { 1,1,2,1,1,1 };
+		private static final int @NonNull [] __InstanceSpecification = { 1,1,2,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _IntegerLiteralExp =
 		{
@@ -3262,7 +3262,7 @@ public class PivotTables
 			Fragments._IntegerLiteralExp__NumericLiteralExp /* 9 */,
 			Fragments._IntegerLiteralExp__IntegerLiteralExp /* 10 */
 		};
-		private static final @NonNull int[] __IntegerLiteralExp = { 1,1,2,1,1,1,1,1,1,1,1 };
+		private static final int @NonNull [] __IntegerLiteralExp = { 1,1,2,1,1,1,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _InvalidLiteralExp =
 		{
@@ -3277,7 +3277,7 @@ public class PivotTables
 			Fragments._InvalidLiteralExp__LiteralExp /* 7 */,
 			Fragments._InvalidLiteralExp__InvalidLiteralExp /* 8 */
 		};
-		private static final @NonNull int[] __InvalidLiteralExp = { 1,1,2,1,1,1,1,1,1 };
+		private static final int @NonNull [] __InvalidLiteralExp = { 1,1,2,1,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _InvalidType =
 		{
@@ -3294,7 +3294,7 @@ public class PivotTables
 			Fragments._InvalidType__Class /* 6 */,
 			Fragments._InvalidType__InvalidType /* 7 */
 		};
-		private static final @NonNull int[] __InvalidType = { 1,1,3,1,2,2,1,1 };
+		private static final int @NonNull [] __InvalidType = { 1,1,3,1,2,2,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _IterateExp =
 		{
@@ -3311,7 +3311,7 @@ public class PivotTables
 			Fragments._IterateExp__LoopExp /* 8 */,
 			Fragments._IterateExp__IterateExp /* 9 */
 		};
-		private static final @NonNull int[] __IterateExp = { 1,1,3,1,1,1,1,1,1,1 };
+		private static final int @NonNull [] __IterateExp = { 1,1,3,1,1,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Iteration =
 		{
@@ -3328,7 +3328,7 @@ public class PivotTables
 			Fragments._Iteration__Operation /* 7 */,
 			Fragments._Iteration__Iteration /* 8 */
 		};
-		private static final @NonNull int[] __Iteration = { 1,1,2,1,2,2,1,1,1 };
+		private static final int @NonNull [] __Iteration = { 1,1,2,1,2,2,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _IteratorExp =
 		{
@@ -3345,7 +3345,7 @@ public class PivotTables
 			Fragments._IteratorExp__LoopExp /* 8 */,
 			Fragments._IteratorExp__IteratorExp /* 9 */
 		};
-		private static final @NonNull int[] __IteratorExp = { 1,1,3,1,1,1,1,1,1,1 };
+		private static final int @NonNull [] __IteratorExp = { 1,1,3,1,1,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _LambdaType =
 		{
@@ -3363,7 +3363,7 @@ public class PivotTables
 			Fragments._LambdaType__DataType /* 7 */,
 			Fragments._LambdaType__LambdaType /* 8 */
 		};
-		private static final @NonNull int[] __LambdaType = { 1,1,3,1,2,2,1,1,1 };
+		private static final int @NonNull [] __LambdaType = { 1,1,3,1,2,2,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _LanguageExpression =
 		{
@@ -3377,7 +3377,7 @@ public class PivotTables
 			Fragments._LanguageExpression__ValueSpecification /* 6 */,
 			Fragments._LanguageExpression__LanguageExpression /* 7 */
 		};
-		private static final @NonNull int[] __LanguageExpression = { 1,1,2,1,1,1,1,1 };
+		private static final int @NonNull [] __LanguageExpression = { 1,1,2,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _LetExp =
 		{
@@ -3391,7 +3391,7 @@ public class PivotTables
 			Fragments._LetExp__OCLExpression /* 6 */,
 			Fragments._LetExp__LetExp /* 7 */
 		};
-		private static final @NonNull int[] __LetExp = { 1,1,2,1,1,1,1,1 };
+		private static final int @NonNull [] __LetExp = { 1,1,2,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Library =
 		{
@@ -3405,14 +3405,14 @@ public class PivotTables
 			Fragments._Library__Package /* 6 */,
 			Fragments._Library__Library /* 7 */
 		};
-		private static final @NonNull int[] __Library = { 1,1,2,1,1,1,1,1 };
+		private static final int @NonNull [] __Library = { 1,1,2,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _LibraryFeature =
 		{
 			Fragments._LibraryFeature__OclAny /* 0 */,
 			Fragments._LibraryFeature__LibraryFeature /* 1 */
 		};
-		private static final @NonNull int[] __LibraryFeature = { 1,1 };
+		private static final int @NonNull [] __LibraryFeature = { 1,1 };
 
 		private static final @NonNull ExecutorFragment[] _LiteralExp =
 		{
@@ -3426,7 +3426,7 @@ public class PivotTables
 			Fragments._LiteralExp__OCLExpression /* 6 */,
 			Fragments._LiteralExp__LiteralExp /* 7 */
 		};
-		private static final @NonNull int[] __LiteralExp = { 1,1,2,1,1,1,1,1 };
+		private static final int @NonNull [] __LiteralExp = { 1,1,2,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _LoopExp =
 		{
@@ -3441,7 +3441,7 @@ public class PivotTables
 			Fragments._LoopExp__CallExp /* 7 */,
 			Fragments._LoopExp__LoopExp /* 8 */
 		};
-		private static final @NonNull int[] __LoopExp = { 1,1,2,1,1,1,1,1,1 };
+		private static final int @NonNull [] __LoopExp = { 1,1,2,1,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _MapLiteralExp =
 		{
@@ -3456,7 +3456,7 @@ public class PivotTables
 			Fragments._MapLiteralExp__LiteralExp /* 7 */,
 			Fragments._MapLiteralExp__MapLiteralExp /* 8 */
 		};
-		private static final @NonNull int[] __MapLiteralExp = { 1,1,2,1,1,1,1,1,1 };
+		private static final int @NonNull [] __MapLiteralExp = { 1,1,2,1,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _MapLiteralPart =
 		{
@@ -3466,7 +3466,7 @@ public class PivotTables
 			Fragments._MapLiteralPart__Element /* 3 */,
 			Fragments._MapLiteralPart__MapLiteralPart /* 4 */
 		};
-		private static final @NonNull int[] __MapLiteralPart = { 1,1,1,1,1 };
+		private static final int @NonNull [] __MapLiteralPart = { 1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _MapType =
 		{
@@ -3484,7 +3484,7 @@ public class PivotTables
 			Fragments._MapType__DataType /* 7 */,
 			Fragments._MapType__MapType /* 8 */
 		};
-		private static final @NonNull int[] __MapType = { 1,1,3,1,2,2,1,1,1 };
+		private static final int @NonNull [] __MapType = { 1,1,3,1,2,2,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _MessageExp =
 		{
@@ -3498,7 +3498,7 @@ public class PivotTables
 			Fragments._MessageExp__OCLExpression /* 6 */,
 			Fragments._MessageExp__MessageExp /* 7 */
 		};
-		private static final @NonNull int[] __MessageExp = { 1,1,2,1,1,1,1,1 };
+		private static final int @NonNull [] __MessageExp = { 1,1,2,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _MessageType =
 		{
@@ -3515,7 +3515,7 @@ public class PivotTables
 			Fragments._MessageType__Class /* 6 */,
 			Fragments._MessageType__MessageType /* 7 */
 		};
-		private static final @NonNull int[] __MessageType = { 1,1,3,1,2,2,1,1 };
+		private static final int @NonNull [] __MessageType = { 1,1,3,1,2,2,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Model =
 		{
@@ -3528,7 +3528,7 @@ public class PivotTables
 			Fragments._Model__Namespace /* 5 */,
 			Fragments._Model__Model /* 6 */
 		};
-		private static final @NonNull int[] __Model = { 1,1,2,1,1,1,1 };
+		private static final int @NonNull [] __Model = { 1,1,2,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _MorePivotable =
 		{
@@ -3536,7 +3536,7 @@ public class PivotTables
 			Fragments._MorePivotable__OclElement /* 1 */,
 			Fragments._MorePivotable__MorePivotable /* 2 */
 		};
-		private static final @NonNull int[] __MorePivotable = { 1,1,1 };
+		private static final int @NonNull [] __MorePivotable = { 1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Nameable =
 		{
@@ -3544,7 +3544,7 @@ public class PivotTables
 			Fragments._Nameable__OclElement /* 1 */,
 			Fragments._Nameable__Nameable /* 2 */
 		};
-		private static final @NonNull int[] __Nameable = { 1,1,1 };
+		private static final int @NonNull [] __Nameable = { 1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _NamedElement =
 		{
@@ -3555,7 +3555,7 @@ public class PivotTables
 			Fragments._NamedElement__Element /* 3 */,
 			Fragments._NamedElement__NamedElement /* 4 */
 		};
-		private static final @NonNull int[] __NamedElement = { 1,1,2,1,1 };
+		private static final int @NonNull [] __NamedElement = { 1,1,2,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Namespace =
 		{
@@ -3567,7 +3567,7 @@ public class PivotTables
 			Fragments._Namespace__NamedElement /* 4 */,
 			Fragments._Namespace__Namespace /* 5 */
 		};
-		private static final @NonNull int[] __Namespace = { 1,1,2,1,1,1 };
+		private static final int @NonNull [] __Namespace = { 1,1,2,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _NavigationCallExp =
 		{
@@ -3583,7 +3583,7 @@ public class PivotTables
 			Fragments._NavigationCallExp__FeatureCallExp /* 8 */,
 			Fragments._NavigationCallExp__NavigationCallExp /* 9 */
 		};
-		private static final @NonNull int[] __NavigationCallExp = { 1,1,2,1,1,1,1,1,1,1 };
+		private static final int @NonNull [] __NavigationCallExp = { 1,1,2,1,1,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _NullLiteralExp =
 		{
@@ -3599,7 +3599,7 @@ public class PivotTables
 			Fragments._NullLiteralExp__PrimitiveLiteralExp /* 8 */,
 			Fragments._NullLiteralExp__NullLiteralExp /* 9 */
 		};
-		private static final @NonNull int[] __NullLiteralExp = { 1,1,2,1,1,1,1,1,1,1 };
+		private static final int @NonNull [] __NullLiteralExp = { 1,1,2,1,1,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _NumericLiteralExp =
 		{
@@ -3615,7 +3615,7 @@ public class PivotTables
 			Fragments._NumericLiteralExp__PrimitiveLiteralExp /* 8 */,
 			Fragments._NumericLiteralExp__NumericLiteralExp /* 9 */
 		};
-		private static final @NonNull int[] __NumericLiteralExp = { 1,1,2,1,1,1,1,1,1,1 };
+		private static final int @NonNull [] __NumericLiteralExp = { 1,1,2,1,1,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _OCLExpression =
 		{
@@ -3628,14 +3628,14 @@ public class PivotTables
 			Fragments._OCLExpression__TypedElement /* 5 */,
 			Fragments._OCLExpression__OCLExpression /* 6 */
 		};
-		private static final @NonNull int[] __OCLExpression = { 1,1,2,1,1,1,1 };
+		private static final int @NonNull [] __OCLExpression = { 1,1,2,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Object =
 		{
 			Fragments._Object__OclAny /* 0 */,
 			Fragments._Object__Object /* 1 */
 		};
-		private static final @NonNull int[] __Object = { 1,1 };
+		private static final int @NonNull [] __Object = { 1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Operation =
 		{
@@ -3651,7 +3651,7 @@ public class PivotTables
 			Fragments._Operation__Feature /* 6 */,
 			Fragments._Operation__Operation /* 7 */
 		};
-		private static final @NonNull int[] __Operation = { 1,1,2,1,2,2,1,1 };
+		private static final int @NonNull [] __Operation = { 1,1,2,1,2,2,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _OperationCallExp =
 		{
@@ -3668,7 +3668,7 @@ public class PivotTables
 			Fragments._OperationCallExp__FeatureCallExp /* 8 */,
 			Fragments._OperationCallExp__OperationCallExp /* 9 */
 		};
-		private static final @NonNull int[] __OperationCallExp = { 1,1,3,1,1,1,1,1,1,1 };
+		private static final int @NonNull [] __OperationCallExp = { 1,1,3,1,1,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _OppositePropertyCallExp =
 		{
@@ -3685,7 +3685,7 @@ public class PivotTables
 			Fragments._OppositePropertyCallExp__NavigationCallExp /* 9 */,
 			Fragments._OppositePropertyCallExp__OppositePropertyCallExp /* 10 */
 		};
-		private static final @NonNull int[] __OppositePropertyCallExp = { 1,1,2,1,1,1,1,1,1,1,1 };
+		private static final int @NonNull [] __OppositePropertyCallExp = { 1,1,2,1,1,1,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _OrderedSetType =
 		{
@@ -3704,7 +3704,7 @@ public class PivotTables
 			Fragments._OrderedSetType__CollectionType /* 8 */,
 			Fragments._OrderedSetType__OrderedSetType /* 9 */
 		};
-		private static final @NonNull int[] __OrderedSetType = { 1,1,3,1,2,2,1,1,1,1 };
+		private static final int @NonNull [] __OrderedSetType = { 1,1,3,1,2,2,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _OrphanCompletePackage =
 		{
@@ -3717,7 +3717,7 @@ public class PivotTables
 			Fragments._OrphanCompletePackage__CompletePackage /* 5 */,
 			Fragments._OrphanCompletePackage__OrphanCompletePackage /* 6 */
 		};
-		private static final @NonNull int[] __OrphanCompletePackage = { 1,1,2,1,1,1,1 };
+		private static final int @NonNull [] __OrphanCompletePackage = { 1,1,2,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Package =
 		{
@@ -3730,7 +3730,7 @@ public class PivotTables
 			Fragments._Package__Namespace /* 5 */,
 			Fragments._Package__Package /* 6 */
 		};
-		private static final @NonNull int[] __Package = { 1,1,2,1,1,1,1 };
+		private static final int @NonNull [] __Package = { 1,1,2,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Parameter =
 		{
@@ -3744,7 +3744,7 @@ public class PivotTables
 			Fragments._Parameter__VariableDeclaration /* 6 */,
 			Fragments._Parameter__Parameter /* 7 */
 		};
-		private static final @NonNull int[] __Parameter = { 1,1,2,1,1,1,1,1 };
+		private static final int @NonNull [] __Parameter = { 1,1,2,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Pivotable =
 		{
@@ -3752,7 +3752,7 @@ public class PivotTables
 			Fragments._Pivotable__OclElement /* 1 */,
 			Fragments._Pivotable__Pivotable /* 2 */
 		};
-		private static final @NonNull int[] __Pivotable = { 1,1,1 };
+		private static final int @NonNull [] __Pivotable = { 1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Precedence =
 		{
@@ -3764,7 +3764,7 @@ public class PivotTables
 			Fragments._Precedence__NamedElement /* 4 */,
 			Fragments._Precedence__Precedence /* 5 */
 		};
-		private static final @NonNull int[] __Precedence = { 1,1,2,1,1,1 };
+		private static final int @NonNull [] __Precedence = { 1,1,2,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _PrimitiveCompletePackage =
 		{
@@ -3777,7 +3777,7 @@ public class PivotTables
 			Fragments._PrimitiveCompletePackage__CompletePackage /* 5 */,
 			Fragments._PrimitiveCompletePackage__PrimitiveCompletePackage /* 6 */
 		};
-		private static final @NonNull int[] __PrimitiveCompletePackage = { 1,1,2,1,1,1,1 };
+		private static final int @NonNull [] __PrimitiveCompletePackage = { 1,1,2,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _PrimitiveLiteralExp =
 		{
@@ -3792,7 +3792,7 @@ public class PivotTables
 			Fragments._PrimitiveLiteralExp__LiteralExp /* 7 */,
 			Fragments._PrimitiveLiteralExp__PrimitiveLiteralExp /* 8 */
 		};
-		private static final @NonNull int[] __PrimitiveLiteralExp = { 1,1,2,1,1,1,1,1,1 };
+		private static final int @NonNull [] __PrimitiveLiteralExp = { 1,1,2,1,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _PrimitiveType =
 		{
@@ -3810,7 +3810,7 @@ public class PivotTables
 			Fragments._PrimitiveType__DataType /* 7 */,
 			Fragments._PrimitiveType__PrimitiveType /* 8 */
 		};
-		private static final @NonNull int[] __PrimitiveType = { 1,1,3,1,2,2,1,1,1 };
+		private static final int @NonNull [] __PrimitiveType = { 1,1,3,1,2,2,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Profile =
 		{
@@ -3824,7 +3824,7 @@ public class PivotTables
 			Fragments._Profile__Package /* 6 */,
 			Fragments._Profile__Profile /* 7 */
 		};
-		private static final @NonNull int[] __Profile = { 1,1,2,1,1,1,1,1 };
+		private static final int @NonNull [] __Profile = { 1,1,2,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _ProfileApplication =
 		{
@@ -3834,7 +3834,7 @@ public class PivotTables
 			Fragments._ProfileApplication__Element /* 3 */,
 			Fragments._ProfileApplication__ProfileApplication /* 4 */
 		};
-		private static final @NonNull int[] __ProfileApplication = { 1,1,1,1,1 };
+		private static final int @NonNull [] __ProfileApplication = { 1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Property =
 		{
@@ -3848,7 +3848,7 @@ public class PivotTables
 			Fragments._Property__Feature /* 6 */,
 			Fragments._Property__Property /* 7 */
 		};
-		private static final @NonNull int[] __Property = { 1,1,2,1,1,1,1,1 };
+		private static final int @NonNull [] __Property = { 1,1,2,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _PropertyCallExp =
 		{
@@ -3866,7 +3866,7 @@ public class PivotTables
 			Fragments._PropertyCallExp__NavigationCallExp /* 9 */,
 			Fragments._PropertyCallExp__PropertyCallExp /* 10 */
 		};
-		private static final @NonNull int[] __PropertyCallExp = { 1,1,3,1,1,1,1,1,1,1,1 };
+		private static final int @NonNull [] __PropertyCallExp = { 1,1,3,1,1,1,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Pseudostate =
 		{
@@ -3879,7 +3879,7 @@ public class PivotTables
 			Fragments._Pseudostate__Vertex /* 5 */,
 			Fragments._Pseudostate__Pseudostate /* 6 */
 		};
-		private static final @NonNull int[] __Pseudostate = { 1,1,2,1,1,1,1 };
+		private static final int @NonNull [] __Pseudostate = { 1,1,2,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _PseudostateKind =
 		{
@@ -3898,7 +3898,7 @@ public class PivotTables
 			Fragments._PseudostateKind__Enumeration /* 8 */,
 			Fragments._PseudostateKind__PseudostateKind /* 9 */
 		};
-		private static final @NonNull int[] __PseudostateKind = { 1,1,3,1,2,2,1,1,1,1 };
+		private static final int @NonNull [] __PseudostateKind = { 1,1,3,1,2,2,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _RealLiteralExp =
 		{
@@ -3915,7 +3915,7 @@ public class PivotTables
 			Fragments._RealLiteralExp__NumericLiteralExp /* 9 */,
 			Fragments._RealLiteralExp__RealLiteralExp /* 10 */
 		};
-		private static final @NonNull int[] __RealLiteralExp = { 1,1,2,1,1,1,1,1,1,1,1 };
+		private static final int @NonNull [] __RealLiteralExp = { 1,1,2,1,1,1,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _ReferringElement =
 		{
@@ -3923,7 +3923,7 @@ public class PivotTables
 			Fragments._ReferringElement__OclElement /* 1 */,
 			Fragments._ReferringElement__ReferringElement /* 2 */
 		};
-		private static final @NonNull int[] __ReferringElement = { 1,1,1 };
+		private static final int @NonNull [] __ReferringElement = { 1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Region =
 		{
@@ -3936,7 +3936,7 @@ public class PivotTables
 			Fragments._Region__Namespace /* 5 */,
 			Fragments._Region__Region /* 6 */
 		};
-		private static final @NonNull int[] __Region = { 1,1,2,1,1,1,1 };
+		private static final int @NonNull [] __Region = { 1,1,2,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _SelfType =
 		{
@@ -3953,7 +3953,7 @@ public class PivotTables
 			Fragments._SelfType__Class /* 6 */,
 			Fragments._SelfType__SelfType /* 7 */
 		};
-		private static final @NonNull int[] __SelfType = { 1,1,3,1,2,2,1,1 };
+		private static final int @NonNull [] __SelfType = { 1,1,3,1,2,2,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _SendSignalAction =
 		{
@@ -3965,7 +3965,7 @@ public class PivotTables
 			Fragments._SendSignalAction__NamedElement /* 4 */,
 			Fragments._SendSignalAction__SendSignalAction /* 5 */
 		};
-		private static final @NonNull int[] __SendSignalAction = { 1,1,2,1,1,1 };
+		private static final int @NonNull [] __SendSignalAction = { 1,1,2,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _SequenceType =
 		{
@@ -3984,7 +3984,7 @@ public class PivotTables
 			Fragments._SequenceType__CollectionType /* 8 */,
 			Fragments._SequenceType__SequenceType /* 9 */
 		};
-		private static final @NonNull int[] __SequenceType = { 1,1,3,1,2,2,1,1,1,1 };
+		private static final int @NonNull [] __SequenceType = { 1,1,3,1,2,2,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _SetType =
 		{
@@ -4003,7 +4003,7 @@ public class PivotTables
 			Fragments._SetType__CollectionType /* 8 */,
 			Fragments._SetType__SetType /* 9 */
 		};
-		private static final @NonNull int[] __SetType = { 1,1,3,1,2,2,1,1,1,1 };
+		private static final int @NonNull [] __SetType = { 1,1,3,1,2,2,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _ShadowExp =
 		{
@@ -4017,7 +4017,7 @@ public class PivotTables
 			Fragments._ShadowExp__OCLExpression /* 6 */,
 			Fragments._ShadowExp__ShadowExp /* 7 */
 		};
-		private static final @NonNull int[] __ShadowExp = { 1,1,2,1,1,1,1,1 };
+		private static final int @NonNull [] __ShadowExp = { 1,1,2,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _ShadowPart =
 		{
@@ -4030,7 +4030,7 @@ public class PivotTables
 			Fragments._ShadowPart__TypedElement /* 5 */,
 			Fragments._ShadowPart__ShadowPart /* 6 */
 		};
-		private static final @NonNull int[] __ShadowPart = { 1,1,2,1,1,1,1 };
+		private static final int @NonNull [] __ShadowPart = { 1,1,2,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Signal =
 		{
@@ -4047,7 +4047,7 @@ public class PivotTables
 			Fragments._Signal__Class /* 6 */,
 			Fragments._Signal__Signal /* 7 */
 		};
-		private static final @NonNull int[] __Signal = { 1,1,3,1,2,2,1,1 };
+		private static final int @NonNull [] __Signal = { 1,1,3,1,2,2,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Slot =
 		{
@@ -4057,7 +4057,7 @@ public class PivotTables
 			Fragments._Slot__Element /* 3 */,
 			Fragments._Slot__Slot /* 4 */
 		};
-		private static final @NonNull int[] __Slot = { 1,1,1,1,1 };
+		private static final int @NonNull [] __Slot = { 1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _StandardLibrary =
 		{
@@ -4067,7 +4067,7 @@ public class PivotTables
 			Fragments._StandardLibrary__Element /* 3 */,
 			Fragments._StandardLibrary__StandardLibrary /* 4 */
 		};
-		private static final @NonNull int[] __StandardLibrary = { 1,1,1,1,1 };
+		private static final int @NonNull [] __StandardLibrary = { 1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _State =
 		{
@@ -4082,7 +4082,7 @@ public class PivotTables
 			Fragments._State__Vertex /* 5 */,
 			Fragments._State__State /* 6 */
 		};
-		private static final @NonNull int[] __State = { 1,2,2,1,1,2,1 };
+		private static final int @NonNull [] __State = { 1,2,2,1,1,2,1 };
 
 		private static final @NonNull ExecutorFragment[] _StateExp =
 		{
@@ -4096,7 +4096,7 @@ public class PivotTables
 			Fragments._StateExp__OCLExpression /* 6 */,
 			Fragments._StateExp__StateExp /* 7 */
 		};
-		private static final @NonNull int[] __StateExp = { 1,1,2,1,1,1,1,1 };
+		private static final int @NonNull [] __StateExp = { 1,1,2,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _StateMachine =
 		{
@@ -4114,7 +4114,7 @@ public class PivotTables
 			Fragments._StateMachine__Behavior /* 7 */,
 			Fragments._StateMachine__StateMachine /* 8 */
 		};
-		private static final @NonNull int[] __StateMachine = { 1,1,3,1,2,2,1,1,1 };
+		private static final int @NonNull [] __StateMachine = { 1,1,3,1,2,2,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Stereotype =
 		{
@@ -4131,7 +4131,7 @@ public class PivotTables
 			Fragments._Stereotype__Class /* 6 */,
 			Fragments._Stereotype__Stereotype /* 7 */
 		};
-		private static final @NonNull int[] __Stereotype = { 1,1,3,1,2,2,1,1 };
+		private static final int @NonNull [] __Stereotype = { 1,1,3,1,2,2,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _StereotypeExtender =
 		{
@@ -4141,7 +4141,7 @@ public class PivotTables
 			Fragments._StereotypeExtender__Element /* 3 */,
 			Fragments._StereotypeExtender__StereotypeExtender /* 4 */
 		};
-		private static final @NonNull int[] __StereotypeExtender = { 1,1,1,1,1 };
+		private static final int @NonNull [] __StereotypeExtender = { 1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _StringLiteralExp =
 		{
@@ -4157,7 +4157,7 @@ public class PivotTables
 			Fragments._StringLiteralExp__PrimitiveLiteralExp /* 8 */,
 			Fragments._StringLiteralExp__StringLiteralExp /* 9 */
 		};
-		private static final @NonNull int[] __StringLiteralExp = { 1,1,2,1,1,1,1,1,1,1 };
+		private static final int @NonNull [] __StringLiteralExp = { 1,1,2,1,1,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _TemplateBinding =
 		{
@@ -4167,7 +4167,7 @@ public class PivotTables
 			Fragments._TemplateBinding__Element /* 3 */,
 			Fragments._TemplateBinding__TemplateBinding /* 4 */
 		};
-		private static final @NonNull int[] __TemplateBinding = { 1,1,1,1,1 };
+		private static final int @NonNull [] __TemplateBinding = { 1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _TemplateParameter =
 		{
@@ -4181,7 +4181,7 @@ public class PivotTables
 			Fragments._TemplateParameter__Type /* 5 */,
 			Fragments._TemplateParameter__TemplateParameter /* 6 */
 		};
-		private static final @NonNull int[] __TemplateParameter = { 1,1,3,1,1,1,1 };
+		private static final int @NonNull [] __TemplateParameter = { 1,1,3,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _TemplateParameterSubstitution =
 		{
@@ -4191,7 +4191,7 @@ public class PivotTables
 			Fragments._TemplateParameterSubstitution__Element /* 3 */,
 			Fragments._TemplateParameterSubstitution__TemplateParameterSubstitution /* 4 */
 		};
-		private static final @NonNull int[] __TemplateParameterSubstitution = { 1,1,1,1,1 };
+		private static final int @NonNull [] __TemplateParameterSubstitution = { 1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _TemplateSignature =
 		{
@@ -4201,7 +4201,7 @@ public class PivotTables
 			Fragments._TemplateSignature__Element /* 3 */,
 			Fragments._TemplateSignature__TemplateSignature /* 4 */
 		};
-		private static final @NonNull int[] __TemplateSignature = { 1,1,1,1,1 };
+		private static final int @NonNull [] __TemplateSignature = { 1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _TemplateableElement =
 		{
@@ -4211,14 +4211,14 @@ public class PivotTables
 			Fragments._TemplateableElement__Element /* 3 */,
 			Fragments._TemplateableElement__TemplateableElement /* 4 */
 		};
-		private static final @NonNull int[] __TemplateableElement = { 1,1,1,1,1 };
+		private static final int @NonNull [] __TemplateableElement = { 1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Throwable =
 		{
 			Fragments._Throwable__OclAny /* 0 */,
 			Fragments._Throwable__Throwable /* 1 */
 		};
-		private static final @NonNull int[] __Throwable = { 1,1 };
+		private static final int @NonNull [] __Throwable = { 1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Transition =
 		{
@@ -4231,7 +4231,7 @@ public class PivotTables
 			Fragments._Transition__Namespace /* 5 */,
 			Fragments._Transition__Transition /* 6 */
 		};
-		private static final @NonNull int[] __Transition = { 1,1,2,1,1,1,1 };
+		private static final int @NonNull [] __Transition = { 1,1,2,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _TransitionKind =
 		{
@@ -4250,7 +4250,7 @@ public class PivotTables
 			Fragments._TransitionKind__Enumeration /* 8 */,
 			Fragments._TransitionKind__TransitionKind /* 9 */
 		};
-		private static final @NonNull int[] __TransitionKind = { 1,1,3,1,2,2,1,1,1,1 };
+		private static final int @NonNull [] __TransitionKind = { 1,1,3,1,2,2,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Trigger =
 		{
@@ -4262,7 +4262,7 @@ public class PivotTables
 			Fragments._Trigger__NamedElement /* 4 */,
 			Fragments._Trigger__Trigger /* 5 */
 		};
-		private static final @NonNull int[] __Trigger = { 1,1,2,1,1,1 };
+		private static final int @NonNull [] __Trigger = { 1,1,2,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _TupleLiteralExp =
 		{
@@ -4277,7 +4277,7 @@ public class PivotTables
 			Fragments._TupleLiteralExp__LiteralExp /* 7 */,
 			Fragments._TupleLiteralExp__TupleLiteralExp /* 8 */
 		};
-		private static final @NonNull int[] __TupleLiteralExp = { 1,1,2,1,1,1,1,1,1 };
+		private static final int @NonNull [] __TupleLiteralExp = { 1,1,2,1,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _TupleLiteralPart =
 		{
@@ -4291,7 +4291,7 @@ public class PivotTables
 			Fragments._TupleLiteralPart__VariableDeclaration /* 6 */,
 			Fragments._TupleLiteralPart__TupleLiteralPart /* 7 */
 		};
-		private static final @NonNull int[] __TupleLiteralPart = { 1,1,2,1,1,1,1,1 };
+		private static final int @NonNull [] __TupleLiteralPart = { 1,1,2,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _TupleType =
 		{
@@ -4309,7 +4309,7 @@ public class PivotTables
 			Fragments._TupleType__DataType /* 7 */,
 			Fragments._TupleType__TupleType /* 8 */
 		};
-		private static final @NonNull int[] __TupleType = { 1,1,3,1,2,2,1,1,1 };
+		private static final int @NonNull [] __TupleType = { 1,1,3,1,2,2,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Type =
 		{
@@ -4322,7 +4322,7 @@ public class PivotTables
 			Fragments._Type__NamedElement /* 4 */,
 			Fragments._Type__Type /* 5 */
 		};
-		private static final @NonNull int[] __Type = { 1,1,3,1,1,1 };
+		private static final int @NonNull [] __Type = { 1,1,3,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _TypeExp =
 		{
@@ -4337,7 +4337,7 @@ public class PivotTables
 			Fragments._TypeExp__OCLExpression /* 6 */,
 			Fragments._TypeExp__TypeExp /* 7 */
 		};
-		private static final @NonNull int[] __TypeExp = { 1,1,3,1,1,1,1,1 };
+		private static final int @NonNull [] __TypeExp = { 1,1,3,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _TypedElement =
 		{
@@ -4349,7 +4349,7 @@ public class PivotTables
 			Fragments._TypedElement__NamedElement /* 4 */,
 			Fragments._TypedElement__TypedElement /* 5 */
 		};
-		private static final @NonNull int[] __TypedElement = { 1,1,2,1,1,1 };
+		private static final int @NonNull [] __TypedElement = { 1,1,2,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _UnlimitedNaturalLiteralExp =
 		{
@@ -4366,7 +4366,7 @@ public class PivotTables
 			Fragments._UnlimitedNaturalLiteralExp__NumericLiteralExp /* 9 */,
 			Fragments._UnlimitedNaturalLiteralExp__UnlimitedNaturalLiteralExp /* 10 */
 		};
-		private static final @NonNull int[] __UnlimitedNaturalLiteralExp = { 1,1,2,1,1,1,1,1,1,1,1 };
+		private static final int @NonNull [] __UnlimitedNaturalLiteralExp = { 1,1,2,1,1,1,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _UnspecifiedValueExp =
 		{
@@ -4380,7 +4380,7 @@ public class PivotTables
 			Fragments._UnspecifiedValueExp__OCLExpression /* 6 */,
 			Fragments._UnspecifiedValueExp__UnspecifiedValueExp /* 7 */
 		};
-		private static final @NonNull int[] __UnspecifiedValueExp = { 1,1,2,1,1,1,1,1 };
+		private static final int @NonNull [] __UnspecifiedValueExp = { 1,1,2,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _ValueSpecification =
 		{
@@ -4393,7 +4393,7 @@ public class PivotTables
 			Fragments._ValueSpecification__TypedElement /* 5 */,
 			Fragments._ValueSpecification__ValueSpecification /* 6 */
 		};
-		private static final @NonNull int[] __ValueSpecification = { 1,1,2,1,1,1,1 };
+		private static final int @NonNull [] __ValueSpecification = { 1,1,2,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Variable =
 		{
@@ -4407,7 +4407,7 @@ public class PivotTables
 			Fragments._Variable__VariableDeclaration /* 6 */,
 			Fragments._Variable__Variable /* 7 */
 		};
-		private static final @NonNull int[] __Variable = { 1,1,2,1,1,1,1,1 };
+		private static final int @NonNull [] __Variable = { 1,1,2,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _VariableDeclaration =
 		{
@@ -4420,7 +4420,7 @@ public class PivotTables
 			Fragments._VariableDeclaration__TypedElement /* 5 */,
 			Fragments._VariableDeclaration__VariableDeclaration /* 6 */
 		};
-		private static final @NonNull int[] __VariableDeclaration = { 1,1,2,1,1,1,1 };
+		private static final int @NonNull [] __VariableDeclaration = { 1,1,2,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _VariableExp =
 		{
@@ -4435,7 +4435,7 @@ public class PivotTables
 			Fragments._VariableExp__OCLExpression /* 6 */,
 			Fragments._VariableExp__VariableExp /* 7 */
 		};
-		private static final @NonNull int[] __VariableExp = { 1,1,3,1,1,1,1,1 };
+		private static final int @NonNull [] __VariableExp = { 1,1,3,1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Vertex =
 		{
@@ -4447,7 +4447,7 @@ public class PivotTables
 			Fragments._Vertex__NamedElement /* 4 */,
 			Fragments._Vertex__Vertex /* 5 */
 		};
-		private static final @NonNull int[] __Vertex = { 1,1,2,1,1,1 };
+		private static final int @NonNull [] __Vertex = { 1,1,2,1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _Visitable =
 		{
@@ -4455,7 +4455,7 @@ public class PivotTables
 			Fragments._Visitable__OclElement /* 1 */,
 			Fragments._Visitable__Visitable /* 2 */
 		};
-		private static final @NonNull int[] __Visitable = { 1,1,1 };
+		private static final int @NonNull [] __Visitable = { 1,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _VoidType =
 		{
@@ -4472,7 +4472,7 @@ public class PivotTables
 			Fragments._VoidType__Class /* 6 */,
 			Fragments._VoidType__VoidType /* 7 */
 		};
-		private static final @NonNull int[] __VoidType = { 1,1,3,1,2,2,1,1 };
+		private static final int @NonNull [] __VoidType = { 1,1,3,1,2,2,1,1 };
 
 		private static final @NonNull ExecutorFragment[] _WildcardType =
 		{
@@ -4489,7 +4489,7 @@ public class PivotTables
 			Fragments._WildcardType__Class /* 6 */,
 			Fragments._WildcardType__WildcardType /* 7 */
 		};
-		private static final @NonNull int[] __WildcardType = { 1,1,3,1,2,2,1,1 };
+		private static final int @NonNull [] __WildcardType = { 1,1,3,1,2,2,1,1 };
 
 		/**
 		 *	Install the fragment descriptors in the class descriptors.

@@ -14,7 +14,6 @@ package org.eclipse.ocl.xtext.oclinecorecs.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.xtext.basecs.impl.RootPackageCSImpl;
 import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
 import org.eclipse.ocl.xtext.oclinecorecs.OCLinEcoreCSPackage;
@@ -57,7 +56,7 @@ public class TopLevelCSImpl extends RootPackageCSImpl implements TopLevelCS
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public @Nullable <R> R accept(@NonNull BaseCSVisitor<R> visitor) {
+	public <R> R accept(@NonNull BaseCSVisitor<R> visitor) {
 		return (R) ((OCLinEcoreCSVisitor<?>)visitor).visitTopLevelCS(this);
 	}
 

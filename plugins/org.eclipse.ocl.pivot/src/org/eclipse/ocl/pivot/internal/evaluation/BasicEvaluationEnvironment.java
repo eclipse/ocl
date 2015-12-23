@@ -82,7 +82,7 @@ public class BasicEvaluationEnvironment extends AbstractCustomizable implements 
 	/**
 	 * @since 1.1
 	 */
-    public BasicEvaluationEnvironment(@NonNull EvaluationEnvironment.EvaluationEnvironmentExtension parent, @NonNull NamedElement executableObject, @Nullable OCLExpression callingObject) {	
+    public BasicEvaluationEnvironment(EvaluationEnvironment.@NonNull EvaluationEnvironmentExtension parent, @NonNull NamedElement executableObject, @Nullable OCLExpression callingObject) {	
     	this.executor = parent.getExecutor();
 		this.environmentFactory = parent.getEnvironmentFactory();
 		this.parent = parent;
@@ -134,7 +134,7 @@ public class BasicEvaluationEnvironment extends AbstractCustomizable implements 
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public <T> T getAdapter(java.lang.Class<T> adapterType) {
+	public <T> @Nullable T getAdapter(java.lang.Class<T> adapterType) {
 		if (adapterType.isInstance(this)) {
 			return (T) this;
 		} 
@@ -175,12 +175,12 @@ public class BasicEvaluationEnvironment extends AbstractCustomizable implements 
 	 * @since 1.1
 	 */
 	@Override
-	public @Nullable EvaluationEnvironment.EvaluationEnvironmentExtension getParentEvaluationEnvironment() {
+	public EvaluationEnvironment.@Nullable EvaluationEnvironmentExtension getParentEvaluationEnvironment() {
 		return (EvaluationEnvironment.EvaluationEnvironmentExtension)parent;
 	}
 	
 	@Override
-	public @Nullable <T> T getValue(@NonNull Option<T> option) {
+	public <@Nullable T> T getValue(@NonNull Option<T> option) {
 		@SuppressWarnings("unchecked")
 		T result = (T) getOptions().get(option);
 		

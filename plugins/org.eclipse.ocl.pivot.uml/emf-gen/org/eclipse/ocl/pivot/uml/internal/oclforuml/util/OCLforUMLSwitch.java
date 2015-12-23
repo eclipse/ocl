@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
-
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.uml.internal.oclforuml.BoundedInteger;
 import org.eclipse.ocl.pivot.uml.internal.oclforuml.Collection;
 import org.eclipse.ocl.pivot.uml.internal.oclforuml.Collections;
@@ -38,7 +38,7 @@ import org.eclipse.ocl.pivot.uml.internal.oclforuml.Validations;
  * @see org.eclipse.ocl.pivot.uml.internal.oclforuml.OCLforUMLPackage
  * @generated
  */
-public class OCLforUMLSwitch<T>
+public class OCLforUMLSwitch<@Nullable T>
 		extends Switch<T> {
 
 	/**

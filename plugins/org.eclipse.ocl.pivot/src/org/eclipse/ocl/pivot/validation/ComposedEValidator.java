@@ -34,7 +34,7 @@ import org.eclipse.jdt.annotation.Nullable;
  */
 public class ComposedEValidator implements EValidator
 {
-	private static @Nullable Object getEValidator(@NonNull EValidator.Registry eValidatorRegistry, @NonNull EClass eClass) {		
+	private static @Nullable Object getEValidator(EValidator.@NonNull Registry eValidatorRegistry, @NonNull EClass eClass) {		
 	      List<EClass> eSuperTypes = eClass.getESuperTypes();
 	      EClass eSuperClass = eSuperTypes.size() > 0 ? eSuperTypes.get(0) : null;
 	      if (eSuperClass == null) {

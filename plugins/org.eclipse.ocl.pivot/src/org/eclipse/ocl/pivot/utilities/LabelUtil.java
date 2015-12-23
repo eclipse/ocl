@@ -51,19 +51,19 @@ public class LabelUtil
 	 * for objects; typically a :: separted hierarchical name.  The QUALIFIED_NAME_REGISTRY delegates unsupported
 	 * label generation to the SIMPLE_NAME_REGISTRY.
 	 */
-	public static @NonNull ILabelGenerator.Registry QUALIFIED_NAME_REGISTRY = new LabelGeneratorRegistry(ILabelGenerator.Registry.INSTANCE);
+	public static ILabelGenerator.@NonNull Registry QUALIFIED_NAME_REGISTRY = new LabelGeneratorRegistry(ILabelGenerator.Registry.INSTANCE);
 
 	/**
 	 * The global SIMPLE_NAME_REGISTRY is used by simpleNameFor to generate simple names 
 	 * for objects; typically the name property. The SIMPLE_NAME_REGISTRY delegates unsupported
 	 * label generation to the global ILabelGenerator.Registry.INSTANCE.
 	 */
-	public static @NonNull ILabelGenerator.Registry SIMPLE_NAME_REGISTRY = new LabelGeneratorRegistry(ILabelGenerator.Registry.INSTANCE);
+	public static ILabelGenerator.@NonNull Registry SIMPLE_NAME_REGISTRY = new LabelGeneratorRegistry(ILabelGenerator.Registry.INSTANCE);
 
 	/**
 	 * A SubstitutionLabelProvider instance that uses LaberlUtil.getLabel() to provide labels.
 	 */
-	public static @NonNull EValidator.SubstitutionLabelProvider SUBSTITUTION_LABEL_PROVIDER = new LabelSubstitutionLabelProvider();
+	public static EValidator.@NonNull SubstitutionLabelProvider SUBSTITUTION_LABEL_PROVIDER = new LabelSubstitutionLabelProvider();
 
 	static {
 		/**
@@ -265,7 +265,7 @@ public class LabelUtil
 		Object notifier = notification.getNotifier();
 		if (notifier != expectedNotifier)
 			return Notification.NO_FEATURE_ID;
-		T castNotifier = ClassUtil.asClassOrNull(notifier, featureClass);
+		@Nullable T castNotifier = ClassUtil.asClassOrNull(notifier, featureClass);
 		if (castNotifier == null)
 			throw new IllegalArgumentException("EcoreUtils.getFeatureID: " + featureClass.getName() + " for a " + notifier.getClass().getName());
 		return notification.getFeatureID(featureClass);

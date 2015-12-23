@@ -64,7 +64,7 @@ public abstract class ExecutorManager implements Executor
 		public void dispose() {}
 
 		@Override
-		public <T> T getAdapter(Class<T> adapterType) {
+		public <T> @Nullable T getAdapter(Class<T> adapterType) {
 			return null;
 		}
 
@@ -94,13 +94,12 @@ public abstract class ExecutorManager implements Executor
 		}
 
 //		@Override
-//		public @Nullable EvaluationEnvironment.EvaluationEnvironmentExtension getParent() {
+//		public EvaluationEnvironment.@Nullable EvaluationEnvironmentExtension getParent() {
 //			return null;
 //		}
 
 		@Override
-		@Nullable
-		public <T> T getValue(@NonNull Option<T> option) {
+		public <@Nullable T> T getValue(@NonNull Option<T> option) {
 			return null;
 		}
 
@@ -324,17 +323,17 @@ public abstract class ExecutorManager implements Executor
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value) {
+	public org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value) {
 		return getIdResolver().getStaticTypeOf(value);
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Object... values) {
+	public org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value, @NonNull Object... values) {
 		return getIdResolver().getStaticTypeOf(value, values);
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values) {
+	public org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values) {
 		return getIdResolver().getStaticTypeOf(value, values);
 	}
 

@@ -41,7 +41,7 @@ public abstract class AbstractBaseCSVisitor<R, C>
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <A> A getAdapter(@NonNull Class<A> adapter) {
+	public <A> @Nullable A getAdapter(@NonNull Class<A> adapter) {
 		if (adapter.isAssignableFrom(getClass())) {
 			return (A) this;
 		}
@@ -57,7 +57,7 @@ public abstract class AbstractBaseCSVisitor<R, C>
 	 * @return <code>null</code> if the visitable is <code>null</code>;
 	 *	 otherwise, the result of visiting it
 	 */
-	public @Nullable R safeVisit(@Nullable org.eclipse.ocl.xtext.basecs.util.VisitableCS v) {
+	public @Nullable R safeVisit(org.eclipse.ocl.xtext.basecs.util.@Nullable VisitableCS v) {
 		return (v == null) ? null : v.accept(this);
 	}
 	
@@ -68,11 +68,11 @@ public abstract class AbstractBaseCSVisitor<R, C>
 	 * @return <code>null</code> if the visitable is <code>null</code>;
 	 *	 otherwise, the result of visiting it
 	 */
-	public @Nullable R visit(@NonNull org.eclipse.ocl.xtext.basecs.util.VisitableCS v) {
+	public R visit(org.eclipse.ocl.xtext.basecs.util.@NonNull VisitableCS v) {
 		return v.accept(this);
 	}
 
-	//	public @Nullable R visiting(@NonNull org.eclipse.ocl.xtext.basecs.util.VisitableCS visitable) {
+	//	public R visiting(org.eclipse.ocl.xtext.basecs.util.@NonNull VisitableCS visitable) {
 	//		return null;
 	//	}
 }

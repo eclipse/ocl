@@ -13,6 +13,7 @@ package org.eclipse.ocl.examples.emf.validation.validity.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.emf.validation.validity.*;
 
 /**
@@ -28,7 +29,7 @@ import org.eclipse.ocl.examples.emf.validation.validity.*;
  * @see org.eclipse.ocl.examples.emf.validation.validity.ValidityPackage
  * @generated
  */
-public class ValiditySwitch<T> extends Switch<T> {
+public class ValiditySwitch<@Nullable T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->

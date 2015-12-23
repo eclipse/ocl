@@ -382,7 +382,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 	}
 
 	@Override
-	public @Nullable Object visitClass(@NonNull org.eclipse.ocl.pivot.Class object) {
+	public @Nullable Object visitClass(org.eclipse.ocl.pivot.@NonNull Class object) {
 		for (TemplateBinding templateBinding : object.getOwnedBindings()) {
 			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getOwnedSubstitutions()) {
 				safeVisit(templateParameterSubstitution.getActual());

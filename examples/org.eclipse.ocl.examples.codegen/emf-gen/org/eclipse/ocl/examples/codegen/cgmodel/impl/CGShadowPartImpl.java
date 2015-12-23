@@ -282,7 +282,7 @@ public class CGShadowPartImpl extends CGValuedElementImpl implements CGShadowPar
 	 * @generated
 	 */
 	@Override
-	public @Nullable <R> R accept(@NonNull CGModelVisitor<R> visitor) {
+	public <R> R accept(@NonNull CGModelVisitor<R> visitor) {
 		return visitor.visitCGShadowPart(this);
 	}
 

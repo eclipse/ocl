@@ -42,247 +42,247 @@ public abstract class AbstractEssentialOCLCSPreOrderVisitor
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitAbstractNameExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.AbstractNameExpCS csElement) {
+	public @Nullable Continuation<?> visitAbstractNameExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull AbstractNameExpCS csElement) {
 		return visitExpCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitAssociationClassCallExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.AssociationClassCallExpCS csElement) {
+	public @Nullable Continuation<?> visitAssociationClassCallExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull AssociationClassCallExpCS csElement) {
 		return visitCallExpCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitBooleanLiteralExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.BooleanLiteralExpCS csElement) {
+	public @Nullable Continuation<?> visitBooleanLiteralExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull BooleanLiteralExpCS csElement) {
 		return visitPrimitiveLiteralExpCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitCallExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.CallExpCS csElement) {
+	public @Nullable Continuation<?> visitCallExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull CallExpCS csElement) {
 		return visitAbstractNameExpCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitCollectionLiteralExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralExpCS csElement) {
+	public @Nullable Continuation<?> visitCollectionLiteralExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull CollectionLiteralExpCS csElement) {
 		return visitLiteralExpCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitCollectionLiteralPartCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralPartCS csElement) {
+	public @Nullable Continuation<?> visitCollectionLiteralPartCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull CollectionLiteralPartCS csElement) {
 		return visitModelElementCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitCollectionPatternCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.CollectionPatternCS csElement) {
+	public @Nullable Continuation<?> visitCollectionPatternCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull CollectionPatternCS csElement) {
 		return visitTypedRefCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitCollectionTypeCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.CollectionTypeCS csElement) {
+	public @Nullable Continuation<?> visitCollectionTypeCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull CollectionTypeCS csElement) {
 		return visitTypedRefCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitContextCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.ContextCS csElement) {
+	public @Nullable Continuation<?> visitContextCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull ContextCS csElement) {
 		return visitNamedElementCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitCurlyBracketedClauseCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.CurlyBracketedClauseCS csElement) {
+	public @Nullable Continuation<?> visitCurlyBracketedClauseCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull CurlyBracketedClauseCS csElement) {
 		return visitContextLessElementCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.ExpCS csElement) {
+	public @Nullable Continuation<?> visitExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull ExpCS csElement) {
 		return visitModelElementCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitExpSpecificationCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.ExpSpecificationCS csElement) {
+	public @Nullable Continuation<?> visitExpSpecificationCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull ExpSpecificationCS csElement) {
 		return visitSpecificationCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitIfExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.IfExpCS csElement) {
+	public @Nullable Continuation<?> visitIfExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull IfExpCS csElement) {
 		return visitExpCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitIfThenExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.IfThenExpCS csElement) {
+	public @Nullable Continuation<?> visitIfThenExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull IfThenExpCS csElement) {
 		return visitExpCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitInfixExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.InfixExpCS csElement) {
+	public @Nullable Continuation<?> visitInfixExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull InfixExpCS csElement) {
 		return visitOperatorExpCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitInvalidLiteralExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.InvalidLiteralExpCS csElement) {
+	public @Nullable Continuation<?> visitInvalidLiteralExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull InvalidLiteralExpCS csElement) {
 		return visitPrimitiveLiteralExpCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitIterateCallExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.IterateCallExpCS csElement) {
+	public @Nullable Continuation<?> visitIterateCallExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull IterateCallExpCS csElement) {
 		return visitIterationCallExpCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitIterationCallExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.IterationCallExpCS csElement) {
+	public @Nullable Continuation<?> visitIterationCallExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull IterationCallExpCS csElement) {
 		return visitCallExpCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitLambdaLiteralExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.LambdaLiteralExpCS csElement) {
+	public @Nullable Continuation<?> visitLambdaLiteralExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull LambdaLiteralExpCS csElement) {
 		return visitLiteralExpCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitLetExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.LetExpCS csElement) {
+	public @Nullable Continuation<?> visitLetExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull LetExpCS csElement) {
 		return visitExpCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitLetVariableCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.LetVariableCS csElement) {
+	public @Nullable Continuation<?> visitLetVariableCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull LetVariableCS csElement) {
 		return visitExpCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitLiteralExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.LiteralExpCS csElement) {
+	public @Nullable Continuation<?> visitLiteralExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull LiteralExpCS csElement) {
 		return visitExpCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitMapLiteralExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.MapLiteralExpCS csElement) {
+	public @Nullable Continuation<?> visitMapLiteralExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull MapLiteralExpCS csElement) {
 		return visitLiteralExpCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitMapLiteralPartCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.MapLiteralPartCS csElement) {
+	public @Nullable Continuation<?> visitMapLiteralPartCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull MapLiteralPartCS csElement) {
 		return visitModelElementCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitMapTypeCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.MapTypeCS csElement) {
+	public @Nullable Continuation<?> visitMapTypeCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull MapTypeCS csElement) {
 		return visitTypedRefCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitNameExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.NameExpCS csElement) {
+	public @Nullable Continuation<?> visitNameExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull NameExpCS csElement) {
 		return visitAssociationClassCallExpCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitNavigatingArgCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.NavigatingArgCS csElement) {
+	public @Nullable Continuation<?> visitNavigatingArgCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull NavigatingArgCS csElement) {
 		return visitModelElementCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitNestedExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.NestedExpCS csElement) {
+	public @Nullable Continuation<?> visitNestedExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull NestedExpCS csElement) {
 		return visitExpCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitNullLiteralExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.NullLiteralExpCS csElement) {
+	public @Nullable Continuation<?> visitNullLiteralExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull NullLiteralExpCS csElement) {
 		return visitPrimitiveLiteralExpCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitNumberLiteralExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.NumberLiteralExpCS csElement) {
+	public @Nullable Continuation<?> visitNumberLiteralExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull NumberLiteralExpCS csElement) {
 		return visitPrimitiveLiteralExpCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitOperationCallExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.OperationCallExpCS csElement) {
+	public @Nullable Continuation<?> visitOperationCallExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull OperationCallExpCS csElement) {
 		return visitCallExpCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitOperatorExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.OperatorExpCS csElement) {
+	public @Nullable Continuation<?> visitOperatorExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull OperatorExpCS csElement) {
 		return visitExpCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitPatternExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.PatternExpCS csElement) {
+	public @Nullable Continuation<?> visitPatternExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull PatternExpCS csElement) {
 		return visitExpCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitPrefixExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.PrefixExpCS csElement) {
+	public @Nullable Continuation<?> visitPrefixExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull PrefixExpCS csElement) {
 		return visitOperatorExpCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitPrimitiveLiteralExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.PrimitiveLiteralExpCS csElement) {
+	public @Nullable Continuation<?> visitPrimitiveLiteralExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull PrimitiveLiteralExpCS csElement) {
 		return visitLiteralExpCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitPropertyCallExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.PropertyCallExpCS csElement) {
+	public @Nullable Continuation<?> visitPropertyCallExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull PropertyCallExpCS csElement) {
 		return visitCallExpCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitRoundBracketedClauseCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.RoundBracketedClauseCS csElement) {
+	public @Nullable Continuation<?> visitRoundBracketedClauseCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull RoundBracketedClauseCS csElement) {
 		return visitContextLessElementCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitSelfExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.SelfExpCS csElement) {
+	public @Nullable Continuation<?> visitSelfExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull SelfExpCS csElement) {
 		return visitExpCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitShadowExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.ShadowExpCS csElement) {
+	public @Nullable Continuation<?> visitShadowExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull ShadowExpCS csElement) {
 		return visitAbstractNameExpCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitShadowPartCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS csElement) {
+	public @Nullable Continuation<?> visitShadowPartCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull ShadowPartCS csElement) {
 		return visitModelElementCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitSquareBracketedClauseCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.SquareBracketedClauseCS csElement) {
+	public @Nullable Continuation<?> visitSquareBracketedClauseCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull SquareBracketedClauseCS csElement) {
 		return visitContextLessElementCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitStringLiteralExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.StringLiteralExpCS csElement) {
+	public @Nullable Continuation<?> visitStringLiteralExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull StringLiteralExpCS csElement) {
 		return visitPrimitiveLiteralExpCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitTupleLiteralExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.TupleLiteralExpCS csElement) {
+	public @Nullable Continuation<?> visitTupleLiteralExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull TupleLiteralExpCS csElement) {
 		return visitLiteralExpCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitTupleLiteralPartCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.TupleLiteralPartCS csElement) {
+	public @Nullable Continuation<?> visitTupleLiteralPartCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull TupleLiteralPartCS csElement) {
 		return visitVariableCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitTypeLiteralExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.TypeLiteralExpCS csElement) {
+	public @Nullable Continuation<?> visitTypeLiteralExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull TypeLiteralExpCS csElement) {
 		return visitLiteralExpCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitTypeNameExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS csElement) {
+	public @Nullable Continuation<?> visitTypeNameExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull TypeNameExpCS csElement) {
 		return visitTypedRefCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitUnlimitedNaturalLiteralExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.UnlimitedNaturalLiteralExpCS csElement) {
+	public @Nullable Continuation<?> visitUnlimitedNaturalLiteralExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull UnlimitedNaturalLiteralExpCS csElement) {
 		return visitPrimitiveLiteralExpCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitVariableCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.VariableCS csElement) {
+	public @Nullable Continuation<?> visitVariableCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull VariableCS csElement) {
 		return visitNamedElementCS(csElement);
 	}
 
 	@Override
-	public @Nullable Continuation<?> visitVariableExpCS(@NonNull org.eclipse.ocl.xtext.essentialoclcs.VariableExpCS csElement) {
+	public @Nullable Continuation<?> visitVariableExpCS(org.eclipse.ocl.xtext.essentialoclcs.@NonNull VariableExpCS csElement) {
 		return visitAbstractNameExpCS(csElement);
 	}
 }

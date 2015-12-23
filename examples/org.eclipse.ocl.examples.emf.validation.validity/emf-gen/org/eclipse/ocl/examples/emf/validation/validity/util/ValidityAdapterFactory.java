@@ -14,6 +14,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.emf.validation.validity.*;
 
 /**
@@ -70,8 +71,8 @@ public class ValidityAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ValiditySwitch<Adapter> modelSwitch =
-		new ValiditySwitch<Adapter>() {
+	protected ValiditySwitch<@Nullable Adapter> modelSwitch =
+		new ValiditySwitch<@Nullable Adapter>() {
 			@Override
 			public Adapter caseAbstractNode(AbstractNode object) {
 				return createAbstractNodeAdapter();

@@ -102,12 +102,12 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getNormalizedType( @NonNull StandardLibrary standardLibrary) {
+	public org.eclipse.ocl.pivot.@NonNull Class getNormalizedType( @NonNull StandardLibrary standardLibrary) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getPivotClass() {
+	public org.eclipse.ocl.pivot.@NonNull Class getPivotClass() {
 		throw new UnsupportedOperationException();
 	}
 

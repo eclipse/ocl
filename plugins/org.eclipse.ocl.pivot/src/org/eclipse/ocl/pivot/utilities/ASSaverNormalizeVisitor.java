@@ -67,14 +67,14 @@ public class ASSaverNormalizeVisitor extends AbstractExtendingVisitor<Object, AS
 	}
 
 	@Override
-	public Object visitClass(@NonNull org.eclipse.ocl.pivot.Class object) {
+	public Object visitClass(org.eclipse.ocl.pivot.@NonNull Class object) {
 		List<Property> ownedAttributes = object.getOwnedProperties();
 		ClassUtil.sort(ownedAttributes, PropertyComparator.INSTANCE);
 		return null;
 	}
 
 	@Override
-	public Object visitPackage(@NonNull org.eclipse.ocl.pivot.Package object) {
+	public Object visitPackage(org.eclipse.ocl.pivot.@NonNull Package object) {
 		if (!(object instanceof Orphanage)) {			// The Orphanage is not assignable/sortable
 			@NonNull List<org.eclipse.ocl.pivot.Class> ownedTypes = object.getOwnedClasses();
 			ClassUtil.sort(ownedTypes, TypeComparator.INSTANCE);

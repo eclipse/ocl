@@ -19,6 +19,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage;
 import org.eclipse.ocl.pivot.values.Bag;
 import org.eclipse.ocl.pivot.values.OrderedSet;
@@ -36,7 +37,7 @@ import org.eclipse.ocl.pivot.values.OrderedSet;
  * @see org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage
  * @generated
  */
-public class OCLstdlibSwitch<T1> extends Switch<T1> {
+public class OCLstdlibSwitch<@Nullable T1> extends Switch<T1> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->

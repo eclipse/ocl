@@ -50,7 +50,7 @@ public abstract class AbstractExecutor implements ExecutorInternal
 	// this is the same as HashMap's default load factor
 	private static final float DEFAULT_REGEX_CACHE_LOAD_FACTOR = 0.75f;
 	
-	protected final @NonNull EnvironmentFactoryInternal.EnvironmentFactoryInternalExtension environmentFactory;
+	protected final EnvironmentFactoryInternal.@NonNull EnvironmentFactoryInternalExtension environmentFactory;
 	protected final @NonNull ModelManager modelManager;
 	private /*@LazyNonNull*/ EvaluationEnvironment.EvaluationEnvironmentExtension rootEvaluationEnvironment = null;
 	private /*@LazyNonNull*/ EvaluationEnvironment.EvaluationEnvironmentExtension evaluationEnvironment = null;
@@ -64,7 +64,7 @@ public abstract class AbstractExecutor implements ExecutorInternal
 
 	private EvaluationLogger logger = IndentingLogger.OUT;
 
-	protected AbstractExecutor(@NonNull EnvironmentFactoryInternal.EnvironmentFactoryInternalExtension environmentFactory, @NonNull ModelManager modelManager) {
+	protected AbstractExecutor(EnvironmentFactoryInternal.@NonNull EnvironmentFactoryInternalExtension environmentFactory, @NonNull ModelManager modelManager) {
 		this.environmentFactory = environmentFactory;
 		this.modelManager = modelManager;
 	}
@@ -74,7 +74,7 @@ public abstract class AbstractExecutor implements ExecutorInternal
 		evaluationEnvironment.add(referredVariable, value);
 	}
 
-	protected @NonNull EvaluationVisitor.EvaluationVisitorExtension createEvaluationVisitor() {
+	protected EvaluationVisitor.@NonNull EvaluationVisitorExtension createEvaluationVisitor() {
 		EvaluationVisitor.EvaluationVisitorExtension result = new BasicEvaluationVisitor(this);
 	    
 	    if (environmentFactory.isEvaluationTracingEnabled()) {
@@ -109,7 +109,7 @@ public abstract class AbstractExecutor implements ExecutorInternal
 		};
 	}
 	
-	protected @NonNull EvaluationEnvironment.EvaluationEnvironmentExtension createNestedEvaluationEnvironment(@NonNull EvaluationEnvironment.EvaluationEnvironmentExtension evaluationEnvironment, @NonNull NamedElement executableObject, @Nullable OCLExpression callingObject) {
+	protected EvaluationEnvironment.@NonNull EvaluationEnvironmentExtension createNestedEvaluationEnvironment(EvaluationEnvironment.@NonNull EvaluationEnvironmentExtension evaluationEnvironment, @NonNull NamedElement executableObject, @Nullable OCLExpression callingObject) {
 		return new BasicEvaluationEnvironment(evaluationEnvironment, executableObject, callingObject);
 	}
 	
@@ -120,7 +120,7 @@ public abstract class AbstractExecutor implements ExecutorInternal
 		return this;
 	}
 
-	protected @NonNull EvaluationEnvironment.EvaluationEnvironmentExtension createRootEvaluationEnvironment(@NonNull NamedElement executableObject) {
+	protected EvaluationEnvironment.@NonNull EvaluationEnvironmentExtension createRootEvaluationEnvironment(@NonNull NamedElement executableObject) {
 		return new BasicEvaluationEnvironment(this, executableObject);
 	} 
 	
@@ -165,7 +165,7 @@ public abstract class AbstractExecutor implements ExecutorInternal
 	}
 
 	@Override
-	public @NonNull EvaluationVisitor.EvaluationVisitorExtension getEvaluationVisitor() {
+	public EvaluationVisitor.@NonNull EvaluationVisitorExtension getEvaluationVisitor() {
 		EvaluationVisitor.EvaluationVisitorExtension evaluationVisitor2 = evaluationVisitor;
 		if (evaluationVisitor2 == null) {
 			evaluationVisitor = evaluationVisitor2 = createEvaluationVisitor();
@@ -179,7 +179,7 @@ public abstract class AbstractExecutor implements ExecutorInternal
 //	}
 
 	@Override
-	public @NonNull IdResolver.IdResolverExtension getIdResolver() {
+	public IdResolver.@NonNull IdResolverExtension getIdResolver() {
 		return (IdResolverExtension) environmentFactory.getIdResolver();
 	}
 
@@ -242,17 +242,17 @@ public abstract class AbstractExecutor implements ExecutorInternal
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value) {
+	public org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value) {
 		return environmentFactory.getIdResolver().getStaticTypeOf(value);
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Object... values) {
+	public org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value, @NonNull Object... values) {
 		return environmentFactory.getIdResolver().getStaticTypeOf(value, values);
 	}
  
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values) {
+	public org.eclipse.ocl.pivot.@NonNull Class getStaticTypeOf(@Nullable Object value, @NonNull Iterable<?> values) {
 		return environmentFactory.getIdResolver().getStaticTypeOf(value, values);
 	}
     
@@ -321,7 +321,7 @@ public abstract class AbstractExecutor implements ExecutorInternal
 		this.logger = logger;
 	}
 
-	protected void setRootEvaluationEnvironment(@NonNull EvaluationEnvironment.EvaluationEnvironmentExtension evaluationEnvironment) {
+	protected void setRootEvaluationEnvironment(EvaluationEnvironment.@NonNull EvaluationEnvironmentExtension evaluationEnvironment) {
 		assert this.rootEvaluationEnvironment == null;
 		this.rootEvaluationEnvironment = evaluationEnvironment;
 		this.evaluationEnvironment = evaluationEnvironment;

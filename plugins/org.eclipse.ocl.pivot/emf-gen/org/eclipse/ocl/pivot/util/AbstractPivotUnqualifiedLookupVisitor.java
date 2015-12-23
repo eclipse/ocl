@@ -164,7 +164,7 @@ public class AbstractPivotUnqualifiedLookupVisitor
     public @Nullable /*@NonInvalid*/ LookupEnvironment visitClass(final @NonNull /*@NonInvalid*/ Class element) {
         final @NonNull /*@Thrown*/ List<Property> ownedProperties = element.getOwnedProperties();
         final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedProperties = idResolver.createOrderedSetOfAll(ORD_CLSSid_Property, ownedProperties);
-        @NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator = ValueUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Property);
+        /*@Thrown*/ OrderedSetValue.@NonNull Accumulator accumulator = ValueUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Property);
         @Nullable Iterator<?> ITERATOR__1 = BOXED_ownedProperties.iterator();
         @NonNull /*@Thrown*/ OrderedSetValue select;
         while (true) {
@@ -194,7 +194,7 @@ public class AbstractPivotUnqualifiedLookupVisitor
         final @NonNull /*@Thrown*/ LookupEnvironment addElements = context.addElements(ECORE_select);
         final @NonNull /*@Thrown*/ List<Operation> ownedOperations = element.getOwnedOperations();
         final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedOperations = idResolver.createOrderedSetOfAll(ORD_CLSSid_Operation, ownedOperations);
-        @NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator_0 = ValueUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Operation);
+        /*@Thrown*/ OrderedSetValue.@NonNull Accumulator accumulator_0 = ValueUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Operation);
         @Nullable Iterator<?> ITERATOR__1_0 = BOXED_ownedOperations.iterator();
         @NonNull /*@Thrown*/ OrderedSetValue select_0;
         while (true) {
@@ -246,7 +246,7 @@ public class AbstractPivotUnqualifiedLookupVisitor
     public @Nullable /*@NonInvalid*/ LookupEnvironment visitDataType(final @NonNull /*@NonInvalid*/ DataType element_0) {
         final @NonNull /*@Thrown*/ List<Property> ownedProperties = element_0.getOwnedProperties();
         final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedProperties = idResolver.createOrderedSetOfAll(ORD_CLSSid_Property, ownedProperties);
-        @NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator = ValueUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Property);
+        /*@Thrown*/ OrderedSetValue.@NonNull Accumulator accumulator = ValueUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Property);
         @Nullable Iterator<?> ITERATOR__1 = BOXED_ownedProperties.iterator();
         @NonNull /*@Thrown*/ OrderedSetValue select;
         while (true) {
@@ -276,7 +276,7 @@ public class AbstractPivotUnqualifiedLookupVisitor
         final @NonNull /*@Thrown*/ LookupEnvironment addElements = context.addElements(ECORE_select);
         final @NonNull /*@Thrown*/ List<Operation> ownedOperations = element_0.getOwnedOperations();
         final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedOperations = idResolver.createOrderedSetOfAll(ORD_CLSSid_Operation, ownedOperations);
-        @NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator_0 = ValueUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Operation);
+        /*@Thrown*/ OrderedSetValue.@NonNull Accumulator accumulator_0 = ValueUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Operation);
         @Nullable Iterator<?> ITERATOR__1_0 = BOXED_ownedOperations.iterator();
         @NonNull /*@Thrown*/ OrderedSetValue select_0;
         while (true) {
@@ -328,7 +328,7 @@ public class AbstractPivotUnqualifiedLookupVisitor
         final @NonNull /*@Thrown*/ LookupEnvironment addElements = context.addElements(ownedLiterals);
         final @NonNull /*@Thrown*/ List<Property> ownedProperties = element_1.getOwnedProperties();
         final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedProperties = idResolver.createOrderedSetOfAll(ORD_CLSSid_Property, ownedProperties);
-        @NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator = ValueUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Property);
+        /*@Thrown*/ OrderedSetValue.@NonNull Accumulator accumulator = ValueUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Property);
         @Nullable Iterator<?> ITERATOR__1 = BOXED_ownedProperties.iterator();
         @NonNull /*@Thrown*/ OrderedSetValue select;
         while (true) {
@@ -358,7 +358,7 @@ public class AbstractPivotUnqualifiedLookupVisitor
         final @NonNull /*@Thrown*/ LookupEnvironment addElements_0 = addElements.addElements(ECORE_select);
         final @NonNull /*@Thrown*/ List<Operation> ownedOperations = element_1.getOwnedOperations();
         final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedOperations = idResolver.createOrderedSetOfAll(ORD_CLSSid_Operation, ownedOperations);
-        @NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator_0 = ValueUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Operation);
+        /*@Thrown*/ OrderedSetValue.@NonNull Accumulator accumulator_0 = ValueUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Operation);
         @Nullable Iterator<?> ITERATOR__1_0 = BOXED_ownedOperations.iterator();
         @NonNull /*@Thrown*/ OrderedSetValue select_0;
         while (true) {
@@ -453,7 +453,7 @@ public class AbstractPivotUnqualifiedLookupVisitor
             final @NonNull /*@Thrown*/ List<Variable> ECORE_asSequence = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Variable.class, asSequence);
             @SuppressWarnings("null")
             final @NonNull /*@Thrown*/ LookupEnvironment addElements = context.addElements(ECORE_asSequence);
-            @NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator = ValueUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Variable);
+            /*@Thrown*/ OrderedSetValue.@NonNull Accumulator accumulator = ValueUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Variable);
             @Nullable Iterator<?> ITERATOR_x = BOXED_ownedIterators.iterator();
             @NonNull /*@Thrown*/ OrderedSetValue select;
             while (true) {
@@ -516,7 +516,7 @@ public class AbstractPivotUnqualifiedLookupVisitor
         final /*@Thrown*/ boolean includes = CollectionIncludesOperation.INSTANCE.evaluate(BOXED_ownedIterators, child).booleanValue();
         @Nullable /*@Thrown*/ LookupEnvironment symbol_2;
         if (includes) {
-            @NonNull /*@Thrown*/ OrderedSetValue.Accumulator accumulator = ValueUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Variable);
+            /*@Thrown*/ OrderedSetValue.@NonNull Accumulator accumulator = ValueUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Variable);
             @Nullable Iterator<?> ITERATOR_x = BOXED_ownedIterators.iterator();
             @NonNull /*@Thrown*/ OrderedSetValue select;
             while (true) {
@@ -643,7 +643,7 @@ public class AbstractPivotUnqualifiedLookupVisitor
     public @Nullable /*@NonInvalid*/ LookupEnvironment visitModel(final @NonNull /*@NonInvalid*/ Model element_7) {
         final @NonNull /*@Thrown*/ List<Import> ownedImports = element_7.getOwnedImports();
         final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedImports = idResolver.createOrderedSetOfAll(ORD_CLSSid_Import, ownedImports);
-        @NonNull /*@Thrown*/ SequenceValue.Accumulator accumulator = ValueUtil.createSequenceAccumulatorValue(SEQ_CLSSid_Namespace);
+        /*@Thrown*/ SequenceValue.@NonNull Accumulator accumulator = ValueUtil.createSequenceAccumulatorValue(SEQ_CLSSid_Namespace);
         @Nullable Iterator<?> ITERATOR__1 = BOXED_ownedImports.iterator();
         @NonNull /*@Thrown*/ SequenceValue collect;
         while (true) {
@@ -673,7 +673,7 @@ public class AbstractPivotUnqualifiedLookupVisitor
         final @NonNull /*@Thrown*/ List<Namespace> ECORE_collect = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Namespace.class, collect);
         @SuppressWarnings("null")
         final @NonNull /*@Thrown*/ LookupEnvironment addElements_0 = addElements.addElements(ECORE_collect);
-        @NonNull /*@Thrown*/ SequenceValue.Accumulator accumulator_0 = ValueUtil.createSequenceAccumulatorValue(SEQ_CLSSid_LookupEnvironment);
+        /*@Thrown*/ SequenceValue.@NonNull Accumulator accumulator_0 = ValueUtil.createSequenceAccumulatorValue(SEQ_CLSSid_LookupEnvironment);
         @NonNull Iterator<?> ITERATOR__1_1 = collect.iterator();
         @NonNull /*@Thrown*/ SequenceValue collect_1;
         while (true) {
@@ -691,7 +691,7 @@ public class AbstractPivotUnqualifiedLookupVisitor
             //
             accumulator_0.add(symbol_0);
         }
-        @NonNull /*@Thrown*/ SequenceValue.Accumulator accumulator_1 = ValueUtil.createSequenceAccumulatorValue(SEQ_CLSSid_NamedElement);
+        /*@Thrown*/ SequenceValue.@NonNull Accumulator accumulator_1 = ValueUtil.createSequenceAccumulatorValue(SEQ_CLSSid_NamedElement);
         @Nullable Iterator<?> ITERATOR__1_2 = collect_1.iterator();
         @NonNull /*@Thrown*/ SequenceValue collect_0;
         while (true) {

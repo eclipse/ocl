@@ -42,62 +42,62 @@ public abstract class AbstractOCLstdlibCSLeft2RightVisitor
 	}
 
 	@Override
-	public @Nullable Element visitJavaClassCS(@NonNull org.eclipse.ocl.xtext.oclstdlibcs.JavaClassCS csElement) {
+	public @Nullable Element visitJavaClassCS(org.eclipse.ocl.xtext.oclstdlibcs.@NonNull JavaClassCS csElement) {
 		return visitNamedElementCS(csElement);
 	}
 
 	@Override
-	public @Nullable Element visitJavaImplementationCS(@NonNull org.eclipse.ocl.xtext.oclstdlibcs.JavaImplementationCS csElement) {
+	public @Nullable Element visitJavaImplementationCS(org.eclipse.ocl.xtext.oclstdlibcs.@NonNull JavaImplementationCS csElement) {
 		return visitElementCS(csElement);
 	}
 
 	@Override
-	public @Nullable Element visitLibClassCS(@NonNull org.eclipse.ocl.xtext.oclstdlibcs.LibClassCS csElement) {
+	public @Nullable Element visitLibClassCS(org.eclipse.ocl.xtext.oclstdlibcs.@NonNull LibClassCS csElement) {
 		return visitStructuredClassCS(csElement);
 	}
 
 	@Override
-	public @Nullable Element visitLibCoercionCS(@NonNull org.eclipse.ocl.xtext.oclstdlibcs.LibCoercionCS csElement) {
+	public @Nullable Element visitLibCoercionCS(org.eclipse.ocl.xtext.oclstdlibcs.@NonNull LibCoercionCS csElement) {
 		return visitOperationCS(csElement);
 	}
 
 	@Override
-	public @Nullable Element visitLibConstraintCS(@NonNull org.eclipse.ocl.xtext.oclstdlibcs.LibConstraintCS csElement) {
+	public @Nullable Element visitLibConstraintCS(org.eclipse.ocl.xtext.oclstdlibcs.@NonNull LibConstraintCS csElement) {
 		return visitConstraintCS(csElement);
 	}
 
 	@Override
-	public @Nullable Element visitLibIterationCS(@NonNull org.eclipse.ocl.xtext.oclstdlibcs.LibIterationCS csElement) {
+	public @Nullable Element visitLibIterationCS(org.eclipse.ocl.xtext.oclstdlibcs.@NonNull LibIterationCS csElement) {
 		return visitOperationCS(csElement);
 	}
 
 	@Override
-	public @Nullable Element visitLibOperationCS(@NonNull org.eclipse.ocl.xtext.oclstdlibcs.LibOperationCS csElement) {
+	public @Nullable Element visitLibOperationCS(org.eclipse.ocl.xtext.oclstdlibcs.@NonNull LibOperationCS csElement) {
 		return visitOperationCS(csElement);
 	}
 
 	@Override
-	public @Nullable Element visitLibPackageCS(@NonNull org.eclipse.ocl.xtext.oclstdlibcs.LibPackageCS csElement) {
+	public @Nullable Element visitLibPackageCS(org.eclipse.ocl.xtext.oclstdlibcs.@NonNull LibPackageCS csElement) {
 		return visitPackageCS(csElement);
 	}
 
 	@Override
-	public @Nullable Element visitLibPropertyCS(@NonNull org.eclipse.ocl.xtext.oclstdlibcs.LibPropertyCS csElement) {
+	public @Nullable Element visitLibPropertyCS(org.eclipse.ocl.xtext.oclstdlibcs.@NonNull LibPropertyCS csElement) {
 		return visitAttributeCS(csElement);
 	}
 
 	@Override
-	public @Nullable Element visitLibRootPackageCS(@NonNull org.eclipse.ocl.xtext.oclstdlibcs.LibRootPackageCS csElement) {
+	public @Nullable Element visitLibRootPackageCS(org.eclipse.ocl.xtext.oclstdlibcs.@NonNull LibRootPackageCS csElement) {
 		return visitRootPackageCS(csElement);
 	}
 
 	@Override
-	public @Nullable Element visitMetaclassNameCS(@NonNull org.eclipse.ocl.xtext.oclstdlibcs.MetaclassNameCS csElement) {
+	public @Nullable Element visitMetaclassNameCS(org.eclipse.ocl.xtext.oclstdlibcs.@NonNull MetaclassNameCS csElement) {
 		return visitElementCS(csElement);
 	}
 
 	@Override
-	public @Nullable Element visitPrecedenceCS(@NonNull org.eclipse.ocl.xtext.oclstdlibcs.PrecedenceCS csElement) {
+	public @Nullable Element visitPrecedenceCS(org.eclipse.ocl.xtext.oclstdlibcs.@NonNull PrecedenceCS csElement) {
 		return visitNamedElementCS(csElement);
 	}
 }

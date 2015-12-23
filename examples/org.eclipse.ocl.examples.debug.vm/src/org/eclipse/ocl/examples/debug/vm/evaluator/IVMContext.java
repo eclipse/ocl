@@ -18,7 +18,7 @@ import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 
 public interface IVMContext
 {
-	@NonNull EnvironmentFactoryInternal.EnvironmentFactoryInternalExtension getEnvironmentFactory();
+	EnvironmentFactoryInternal.@NonNull EnvironmentFactoryInternalExtension getEnvironmentFactory();
 	@NonNull IVMDebuggerShell getShell();
 	boolean keepDebug();
 	void setShell(@Nullable IVMDebuggerShell shell);

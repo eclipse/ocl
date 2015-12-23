@@ -87,7 +87,7 @@ public class UMLValidateTest extends AbstractValidateTests
 		}
 	}
 
-	public @Nullable EObject getStereotypeApplication(@NonNull org.eclipse.uml2.uml.Element umlElement, @NonNull org.eclipse.uml2.uml.Stereotype umlStereotype) {
+	public @Nullable EObject getStereotypeApplication(org.eclipse.uml2.uml.@NonNull Element umlElement, org.eclipse.uml2.uml.@NonNull Stereotype umlStereotype) {
 		for (EObject eObject : umlElement.eResource().getContents()) {
 			if (ClassUtil.safeEquals(eObject.eClass().getName(), umlStereotype.getName())) {
 				for (EStructuralFeature eFeature : eObject.eClass().getEAllStructuralFeatures()) {

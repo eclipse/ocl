@@ -12,7 +12,7 @@ package org.eclipse.ocl.pivot.internal;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-import java.util.List;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -21,8 +21,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.annotation.NonNull;
@@ -419,7 +417,7 @@ public class CompletePackageImpl extends NamedElementImpl implements CompletePac
 		}
 	}
 
-	protected void didAddNestedPackage(@NonNull CompleteModel completeModel, @NonNull org.eclipse.ocl.pivot.Package pivotPackage) {
+	protected void didAddNestedPackage(@NonNull CompleteModel completeModel, org.eclipse.ocl.pivot.@NonNull Package pivotPackage) {
 /*		CompletePackage completePackage = null;
 		String name = pivotPackage.getName();
 //		String packageURI = pivotPackage.getURI();
@@ -445,33 +443,33 @@ public class CompletePackageImpl extends NamedElementImpl implements CompletePac
 //		}
 	}
 
-	public void didAddClass(@NonNull org.eclipse.ocl.pivot.Class partialClass) {
+	public void didAddClass(org.eclipse.ocl.pivot.@NonNull Class partialClass) {
 		if (ownedCompleteClasses != null) {
 			ownedCompleteClasses.didAddClass(partialClass);
 		}
 	}
 
-	public void didAddNestedPackage(@NonNull org.eclipse.ocl.pivot.Package nestedPackage) {
+	public void didAddNestedPackage(org.eclipse.ocl.pivot.@NonNull Package nestedPackage) {
 		getOwnedCompletePackages().didAddPackage(nestedPackage);
 	}
 
-	public void didAddPartialPackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage) {
+	public void didAddPartialPackage(org.eclipse.ocl.pivot.@NonNull Package partialPackage) {
 		if (ownedCompleteClasses != null) {
 			ownedCompleteClasses.didAddPackage(partialPackage);
 		}
 	}
 
-	public void didRemoveClass(@NonNull org.eclipse.ocl.pivot.Class partialClass) {
+	public void didRemoveClass(org.eclipse.ocl.pivot.@NonNull Class partialClass) {
 		if (ownedCompleteClasses != null) {
 			ownedCompleteClasses.didRemoveClass(partialClass);
 		}
 	}
 
-	public void didRemoveNestedPackage(@NonNull org.eclipse.ocl.pivot.Package nestedPackage) {
+	public void didRemoveNestedPackage(org.eclipse.ocl.pivot.@NonNull Package nestedPackage) {
 		getOwnedCompletePackages().didRemovePackage(nestedPackage);
 	}
 
-	public void didRemovePartialPackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage) {
+	public void didRemovePartialPackage(org.eclipse.ocl.pivot.@NonNull Package partialPackage) {
 		if (ownedCompleteClasses != null) {
 			ownedCompleteClasses.didRemovePackage(partialPackage);
 		}
@@ -496,7 +494,7 @@ public class CompletePackageImpl extends NamedElementImpl implements CompletePac
 	}
 
 	@Override
-	public @NonNull CompleteClassInternal getCompleteClass(@NonNull org.eclipse.ocl.pivot.Class pivotType) {
+	public @NonNull CompleteClassInternal getCompleteClass(org.eclipse.ocl.pivot.@NonNull Class pivotType) {
 		return ClassUtil.nonNullState(getOwnedCompleteClass(pivotType.getName()));
 	}
 
@@ -684,7 +682,7 @@ public class CompletePackageImpl extends NamedElementImpl implements CompletePac
 	}
 
 	@Override
-	public final @NonNull org.eclipse.ocl.pivot.Package getPrimaryPackage() {
+	public final org.eclipse.ocl.pivot.@NonNull Package getPrimaryPackage() {
 		for (org.eclipse.ocl.pivot.Package partialPackage : getPartialPackages()) {
 			if (partialPackage != null) {
 				return partialPackage;

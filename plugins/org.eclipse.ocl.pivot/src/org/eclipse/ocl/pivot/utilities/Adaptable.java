@@ -11,6 +11,7 @@
 
 package org.eclipse.ocl.pivot.utilities;
 
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 
 /**
@@ -29,5 +30,5 @@ public interface Adaptable {
 	 * @return an instance of the requested interface, or <code>null</code>
 	 *     if this environment does not adapt to it
 	 */
-	<T> T getAdapter(Class<T> adapterType);
+	<T> @Nullable T getAdapter(Class<T> adapterType);
 }

@@ -170,7 +170,7 @@ public class CGTuplePartCallExpImpl extends CGPropertyCallExpImpl implements CGT
 	 * @generated
 	 */
 	@Override
-	public @Nullable <R> R accept(@NonNull CGModelVisitor<R> visitor) {
+	public <R> R accept(@NonNull CGModelVisitor<R> visitor) {
 		return visitor.visitCGTuplePartCallExp(this);
 	}
 

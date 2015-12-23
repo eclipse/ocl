@@ -364,7 +364,7 @@ public class TemplateParameterImpl
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Class getNormalizedType(@NonNull StandardLibrary standardLibrary) {
+	public org.eclipse.ocl.pivot.@NonNull Class getNormalizedType(@NonNull StandardLibrary standardLibrary) {
 		try {
 			return getInheritance(standardLibrary).getPivotClass();
 		}
@@ -412,7 +412,7 @@ public class TemplateParameterImpl
 	}
 	
 	@Override
-	public @Nullable org.eclipse.ocl.pivot.Class isClass() {
+	public org.eclipse.ocl.pivot.@Nullable Class isClass() {
 		return null;
 	}
 

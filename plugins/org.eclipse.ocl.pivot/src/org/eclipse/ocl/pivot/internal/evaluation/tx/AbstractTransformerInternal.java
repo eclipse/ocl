@@ -639,7 +639,7 @@ public abstract class AbstractTransformerInternal implements Transformer
 		 */
 		private final @Nullable Set<EObject>[] classIndex2objects;
 		
-		public Model(@NonNull String name, @Nullable PropertyId[] propertyIndex2propertyId, @Nullable ClassId[] classIndex2classId, @Nullable int[][] classIndex2allClassIndexes) {
+		public Model(@NonNull String name, @Nullable PropertyId[] propertyIndex2propertyId, @Nullable ClassId[] classIndex2classId, int @Nullable [][] classIndex2allClassIndexes) {
 			this.name = name;
 			//
 			//	Prepare the allInstances() fields
@@ -776,7 +776,7 @@ public abstract class AbstractTransformerInternal implements Transformer
 		}
 
 		@Override
-		public @NonNull Collection<EObject> getObjectsOfKind(@NonNull org.eclipse.ocl.pivot.Class type) {
+		public @NonNull Collection<EObject> getObjectsOfKind(org.eclipse.ocl.pivot.@NonNull Class type) {
 			Map<ClassId, Integer> classId2classIndex2 = classId2classIndex;
 			if (classId2classIndex2 != null) {
 				TypeId classId = type.getTypeId();
@@ -795,7 +795,7 @@ public abstract class AbstractTransformerInternal implements Transformer
 		}
 
 		@Override
-		public @NonNull Collection<EObject> getObjectsOfType(@NonNull org.eclipse.ocl.pivot.Class type) {
+		public @NonNull Collection<EObject> getObjectsOfType(org.eclipse.ocl.pivot.@NonNull Class type) {
 			throw new UnsupportedOperationException();
 		}
 
@@ -853,7 +853,7 @@ public abstract class AbstractTransformerInternal implements Transformer
 	/** deprecated use executor */
 	@Deprecated
 	protected final @NonNull Evaluator evaluator;
-	protected final @NonNull IdResolver.IdResolverExtension idResolver;
+	protected final IdResolver.@NonNull IdResolverExtension idResolver;
 	protected final @NonNull Model[] models;
 	protected final @NonNull Map<String, Integer> modelIndexes = new HashMap<String, Integer>();
 
@@ -915,7 +915,7 @@ public abstract class AbstractTransformerInternal implements Transformer
 		this(ValueUtil.getExecutor(evaluator), modelNames, propertyIndex2propertyId, classIndex2classId, classIndex2allClassIndexes);
 	}
 	protected AbstractTransformerInternal(@NonNull Executor executor, @NonNull String[] modelNames,
-				@Nullable PropertyId[] propertyIndex2propertyId, @Nullable ClassId[] classIndex2classId, @Nullable int[][] classIndex2allClassIndexes) {
+				@Nullable PropertyId[] propertyIndex2propertyId, @Nullable ClassId[] classIndex2classId, int @Nullable [][] classIndex2allClassIndexes) {
 		this.executor = executor;
 		this.evaluator = executor;
 		this.idResolver = (IdResolver.IdResolverExtension)executor.getIdResolver();
@@ -1034,7 +1034,7 @@ public abstract class AbstractTransformerInternal implements Transformer
     }
     
 	@Override
-	public @NonNull Set<EObject> get(@NonNull org.eclipse.ocl.pivot.Class type) {
+	public @NonNull Set<EObject> get(org.eclipse.ocl.pivot.@NonNull Class type) {
 		return new HashSet<EObject>(models[0].getObjectsOfKind(type));
 	} 
 

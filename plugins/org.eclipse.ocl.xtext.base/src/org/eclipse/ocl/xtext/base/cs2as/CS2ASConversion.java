@@ -563,12 +563,12 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		return (T) intermediateCache.get(key);
 	}
 
-	public @Nullable org.eclipse.ocl.pivot.Package getOldPackageByQualifiedName(@NonNull PackageCS csElement) {
+	public org.eclipse.ocl.pivot.@Nullable Package getOldPackageByQualifiedName(@NonNull PackageCS csElement) {
 		String qualifiedName = getQualifiedName(new StringBuilder(), csElement);
 		return oldPackagesByQualifiedName.get(qualifiedName);
 	}
 
-	public @Nullable org.eclipse.ocl.pivot.Package getOldPackageBySimpleName(@NonNull String name) {
+	public org.eclipse.ocl.pivot.@Nullable Package getOldPackageBySimpleName(@NonNull String name) {
 		return oldPackagesByName.get(name);
 	}
 
@@ -576,7 +576,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		return operatorsHavePrecedence;
 	}
 
-	protected @NonNull String getQualifiedName(@NonNull StringBuilder s, @NonNull org.eclipse.ocl.pivot.Package pkg) {
+	protected @NonNull String getQualifiedName(@NonNull StringBuilder s, org.eclipse.ocl.pivot.@NonNull Package pkg) {
 		org.eclipse.ocl.pivot.Package nestingPackage = pkg.getOwningPackage();
 		if (nestingPackage != null) {
 			getQualifiedName(s, nestingPackage);
@@ -993,7 +993,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		if (!pivotElements.isEmpty() ||!csElements.isEmpty()) {
 			List<T> newPivotElements = new ArrayList<T>();
 			for (PivotableElementCS csElement : csElements) {
-				T pivotElement = PivotUtil.getPivot(pivotClass, csElement);
+				@Nullable T pivotElement = PivotUtil.getPivot(pivotClass, csElement);
 				if ((pivotElement == null) && (csElement instanceof ModelElementCS)) {
 					pivotElement = converter.getPivotElement(pivotClass, (ModelElementCS)csElement);
 				}
@@ -1024,7 +1024,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		}
 		List<T> newPivotElements = new ArrayList<T>();
 		for (ModelElementCS csElement : csElements) {
-			T pivotElement = PivotUtil.getPivot(pivotClass, csElement);
+			@Nullable T pivotElement = PivotUtil.getPivot(pivotClass, csElement);
 			if (pivotElement != null) {
 				newPivotElements.add(pivotElement);
 			}
@@ -1467,7 +1467,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		}
 	}
 
-	public <T extends Element> T visitLeft2Right(@NonNull Class<T> pivotClass, @NonNull ElementCS csElement) {
+	public <T extends Element> @Nullable T visitLeft2Right(@NonNull Class<T> pivotClass, @NonNull ElementCS csElement) {
 		Element element = null;
 		try {
 			element = csElement.accept(left2RightVisitor);

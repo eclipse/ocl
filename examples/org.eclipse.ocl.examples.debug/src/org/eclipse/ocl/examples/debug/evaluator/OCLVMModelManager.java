@@ -56,7 +56,7 @@ public class OCLVMModelManager implements ModelManager.ModelManagerExtension
 //		allInstancesTypes.clear();
 	}
 
-	public @NonNull Set<EObject> get(@NonNull org.eclipse.ocl.pivot.Class type) {
+	public @NonNull Set<EObject> get(org.eclipse.ocl.pivot.@NonNull Class type) {
 		throw new UnsupportedOperationException();
 	}
 

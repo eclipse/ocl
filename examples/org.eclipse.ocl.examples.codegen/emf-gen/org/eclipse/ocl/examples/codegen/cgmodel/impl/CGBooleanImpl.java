@@ -169,7 +169,7 @@ public class CGBooleanImpl extends CGConstantImpl implements CGBoolean {
 	 * @generated
 	 */
 	@Override
-	public @Nullable <R> R accept(@NonNull CGModelVisitor<R> visitor) {
+	public <R> R accept(@NonNull CGModelVisitor<R> visitor) {
 		return visitor.visitCGBoolean(this);
 	}
 

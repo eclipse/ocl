@@ -277,7 +277,7 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 		}
 	}
 
-	public void didAddClass(@NonNull org.eclipse.ocl.pivot.Class partialClass) {
+	public void didAddClass(org.eclipse.ocl.pivot.@NonNull Class partialClass) {
 		if (name2completeClass != null) {
 			CompleteClassInternal completeClass = name2completeClass.get(partialClass.getName());
 			if (completeClass == null) {
@@ -289,7 +289,7 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 		}
 	}
 
-	public void didAddPackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage) {
+	public void didAddPackage(org.eclipse.ocl.pivot.@NonNull Package partialPackage) {
 		if (name2completeClass != null) {
 			doRefreshPartialClasses(partialPackage);
 		}
@@ -313,7 +313,7 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 		}
 	}
 
-	public void didRemoveClass(@NonNull org.eclipse.ocl.pivot.Class partialClass) {
+	public void didRemoveClass(org.eclipse.ocl.pivot.@NonNull Class partialClass) {
 		if (name2completeClass != null) {
 			CompleteClassInternal completeClass = name2completeClass.get(partialClass.getName());
 			if ((completeClass != null) && completeClass.didRemoveClass(partialClass)) {
@@ -326,7 +326,7 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 		}
 	}
 
-	public void didRemovePackage(@NonNull org.eclipse.ocl.pivot.Package partialPackage) {
+	public void didRemovePackage(org.eclipse.ocl.pivot.@NonNull Package partialPackage) {
 		Map<String, CompleteClassInternal> name2completeClass2 = name2completeClass;
 		if (name2completeClass2 != null) {
 			for (org.eclipse.ocl.pivot.Class partialClass : partialPackage.getOwnedClasses()) {
@@ -337,7 +337,7 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 		}
 	}
 	
-	protected void doRefreshPartialClass(@NonNull org.eclipse.ocl.pivot.Class partialClass) {
+	protected void doRefreshPartialClass(org.eclipse.ocl.pivot.@NonNull Class partialClass) {
 		Map<String, CompleteClassInternal> name2completeClass2 = name2completeClass;
 		assert name2completeClass2 != null;
 		CompleteModelInternal completeModel = getCompleteModel();
@@ -392,7 +392,7 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 		return name2completeClass2;
 	}
 
-	protected void doRefreshPartialClasses(@NonNull org.eclipse.ocl.pivot.Package partialPackage) {
+	protected void doRefreshPartialClasses(org.eclipse.ocl.pivot.@NonNull Package partialPackage) {
 		for (org.eclipse.ocl.pivot.Class partialClass : partialPackage.getOwnedClasses()) {
 			if (partialClass != null) {
 				doRefreshPartialClass(partialClass);

@@ -75,12 +75,12 @@ public abstract class VMLaunchConfigurationDelegate<EC extends EvaluationContext
 
 	protected abstract @NonNull VMDebugTarget createDebugTarget(@NonNull IVMVirtualMachineShell vm, @NonNull VMVirtualProcess process);
 
-	protected abstract @NonNull DebuggableRunnerFactory createDebuggableRunnerFactory(@NonNull EPackage.Registry packageRegistry,
+	protected abstract @NonNull DebuggableRunnerFactory createDebuggableRunnerFactory(EPackage.@NonNull Registry packageRegistry,
 			@NonNull List<String> modelURIs, @Nullable String traceURI);
 
 	protected abstract @NonNull EC createEvaluationContext(@NonNull ILaunchConfiguration configuration) throws CoreException;
 
-	protected @NonNull EPackage.Registry createPackageRegistry(String debuggableUri) {
+	protected EPackage.@NonNull Registry createPackageRegistry(String debuggableUri) {
 		URI debuggableURI = URI.createURI(debuggableUri);
 		try {		
 			if(debuggableURI.isPlatformResource()) {

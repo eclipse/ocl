@@ -1008,7 +1008,7 @@ public class PropertyImpl
 		final @Nullable /*@NonInvalid*/ Object container = ClassifierOclContainerOperation.INSTANCE.evaluate(executor, this);
 		@NonNull /*@Caught*/ Object CAUGHT_oclIsKindOf;
 		try {
-		    final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_Class_0 = idResolver.getClass(PivotTables.CLSSid_Class, null);
+		    final /*@NonInvalid*/ org.eclipse.ocl.pivot.@NonNull Class TYP_Class_0 = idResolver.getClass(PivotTables.CLSSid_Class, null);
 		    final /*@Thrown*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE.evaluate(executor, container, TYP_Class_0).booleanValue();
 		    CAUGHT_oclIsKindOf = oclIsKindOf;
 		}
@@ -1017,8 +1017,8 @@ public class PropertyImpl
 		}
 		@NonNull /*@Caught*/ Object CAUGHT_includes;
 		try {
-		    final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_Class_1 = idResolver.getClass(PivotTables.CLSSid_Class, null);
-		    final @NonNull /*@Thrown*/ org.eclipse.ocl.pivot.Class oclAsType = ClassUtil.nonNullState((org.eclipse.ocl.pivot.Class)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, container, TYP_Class_1));
+		    final /*@NonInvalid*/ org.eclipse.ocl.pivot.@NonNull Class TYP_Class_1 = idResolver.getClass(PivotTables.CLSSid_Class, null);
+		    final /*@Thrown*/ org.eclipse.ocl.pivot.@NonNull Class oclAsType = ClassUtil.nonNullState((org.eclipse.ocl.pivot.Class)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, container, TYP_Class_1));
 		    final @NonNull /*@Thrown*/ List<Property> ownedProperties = oclAsType.getOwnedProperties();
 		    final @NonNull /*@Thrown*/ OrderedSetValue BOXED_ownedProperties = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Property, ownedProperties);
 		    final /*@Thrown*/ boolean includes = CollectionIncludesOperation.INSTANCE.evaluate(BOXED_ownedProperties, this).booleanValue();
@@ -1082,7 +1082,7 @@ public class PropertyImpl
 		            }
 		            @NonNull /*@Caught*/ Object CAUGHT_ne_0;
 		            try {
-		                final @NonNull /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_ExpressionInOCL_0 = idResolver.getClass(PivotTables.CLSSid_ExpressionInOCL, null);
+		                final /*@NonInvalid*/ org.eclipse.ocl.pivot.@NonNull Class TYP_ExpressionInOCL_0 = idResolver.getClass(PivotTables.CLSSid_ExpressionInOCL, null);
 		                final @Nullable /*@Thrown*/ LanguageExpression ownedExpression_0 = this.getOwnedExpression();
 		                final @NonNull /*@Thrown*/ ExpressionInOCL oclAsType = ClassUtil.nonNullState((ExpressionInOCL)OclAnyOclAsTypeOperation.INSTANCE.evaluate(executor, ownedExpression_0, TYP_ExpressionInOCL_0));
 		                final @Nullable /*@Thrown*/ OCLExpression ownedBody = oclAsType.getOwnedBody();

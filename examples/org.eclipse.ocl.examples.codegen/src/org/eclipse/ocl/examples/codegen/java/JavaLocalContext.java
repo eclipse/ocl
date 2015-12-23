@@ -34,7 +34,7 @@ public class JavaLocalContext<CG extends JavaCodeGenerator> extends AbstractJava
 	protected final @NonNull JavaGlobalContext<? extends CG> globalContext;
 	protected final @Nullable JavaLocalContext<? extends CG> parentContext;
 	protected @NonNull CGElement cgScope;
-	protected @NonNull NameManager.Context nameManagerContext;
+	protected NameManager.@NonNull Context nameManagerContext;
 
 	public JavaLocalContext(@NonNull JavaGlobalContext<? extends CG> globalContext, @NonNull CGElement cgScope) {
 		super(globalContext.getCodeGenerator());
@@ -88,7 +88,7 @@ public class JavaLocalContext<CG extends JavaCodeGenerator> extends AbstractJava
 	}
 	
 	@Override
-	public @NonNull NameManager.Context getNameManagerContext() {
+	public NameManager.@NonNull Context getNameManagerContext() {
 		return nameManagerContext;
 	}
 

@@ -120,7 +120,7 @@ public abstract class AbstractImplicitSourceNamedElementIterator<T extends Named
 
 	@Override
 	public @NonNull T next() {
-		T next2 = next;
+		@Nullable T next2 = next;
 		if (next2 == null) {
 			throw new NoSuchElementException();
 		}
