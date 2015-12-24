@@ -37,16 +37,22 @@ public class OCLBuildGenModelGeneratorAdapterFactory extends GenModelGeneratorAd
     super();
   }
 
-  /**
-   * Returns a singleton {@link GenClassGeneratorAdapter}.
-   */
-  @Override
-  public Adapter createGenClassAdapter()
-  {
-    if (genClassGeneratorAdapter == null)
-    {
-      genClassGeneratorAdapter = new OCLBuildGenClassGeneratorAdapter(this);
-    }
-    return genClassGeneratorAdapter;
-  }
+	@Override
+	public Adapter createGenPackageAdapter() {
+		if (genPackageGeneratorAdapter == null) {
+			genPackageGeneratorAdapter = new OCLBuildGenPackageGeneratorAdapter(this);
+		}
+		return genPackageGeneratorAdapter;
+	}
+
+	/**
+	 * Returns a singleton {@link GenClassGeneratorAdapter}.
+	 */
+	@Override
+	public Adapter createGenClassAdapter() {
+		if (genClassGeneratorAdapter == null) {
+			genClassGeneratorAdapter = new OCLBuildGenClassGeneratorAdapter(this);
+		}
+		return genClassGeneratorAdapter;
+	}
 }
