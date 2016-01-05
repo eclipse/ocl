@@ -4,7 +4,7 @@
     modelDirectory="/org.eclipse.ocl.pivot/emf-gen" editDirectory="/org.eclipse.ocl.pivot.edit/emf-gen"
     editorDirectory="/org.eclipse.ocl.pivot.editor/emf-gen" modelPluginID="org.eclipse.ocl.pivot"
     modelName="OCLstdlib" nonNLSMarkers="true" suppressInterfaces="true" importerID="org.eclipse.emf.importer.ecore"
-    bundleManifest="false" complianceLevel="6.0" copyrightFields="false" runtimeVersion="2.7"
+    bundleManifest="false" complianceLevel="8.0" copyrightFields="false" runtimeVersion="2.7"
     interfaceNamePattern="">
   <genAnnotations source="http://www.eclipse.org/OCL/GenModel">
     <details key="Use Delegates" value="false"/>
