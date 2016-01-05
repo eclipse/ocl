@@ -73,6 +73,26 @@ public abstract class GenerateVisitors extends GenerateVisitorsWorkflowComponent
 		return string;
 	}
 
+	protected @NonNull String emitNonNull(@NonNull String qualifiedTypeName) {
+		int index = qualifiedTypeName.lastIndexOf(".");
+		if (index < 0) {
+			return "@NonNull " + qualifiedTypeName;
+		}
+		else {
+			return qualifiedTypeName.substring(0, index+1) + "@NonNull " + qualifiedTypeName.substring(index+1);
+		}
+	}
+
+	protected @NonNull String emitNullable(@NonNull String qualifiedTypeName) {
+		int index = qualifiedTypeName.lastIndexOf(".");
+		if (index < 0) {
+			return "@Nullable " + qualifiedTypeName;
+		}
+		else {
+			return qualifiedTypeName.substring(0, index+1) + "@Nullable " + qualifiedTypeName.substring(index+1);
+		}
+	}
+	
 	protected String getInterfaceModelDirectory(@NonNull GenModel genModel) {
 		String interfaceModelDirectory = SplitGenModelGeneratorAdapterFactory.getInterfaceModelDirectory(genModel);
 		if (interfaceModelDirectory == null) {

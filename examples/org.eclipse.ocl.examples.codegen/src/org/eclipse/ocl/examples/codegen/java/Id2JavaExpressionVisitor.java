@@ -279,7 +279,7 @@ public class Id2JavaExpressionVisitor implements IdVisitor<Object>
 		js.appendClassReference(IdManager.class);
 		js.append(".getTupleTypeId(");
 		js.appendString(id.getName());
-		for (@SuppressWarnings("null")@NonNull TuplePartId partId : id.getPartIds()) {
+		for (TuplePartId partId : id.getPartIds()) {
 			js.append(", ");
 			js.appendIdReference(partId);
 		}

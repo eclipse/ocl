@@ -270,7 +270,7 @@ public abstract class GenerateGrammar extends AbstractWorkflowComponent
 			}
 			String fileName = folder + "/" + grammarFileStem + "GrammarResource.java";
 //			log.info("Generating '" + fileName + "'");
-			String metamodel = generate(grammarResource);
+			@SuppressWarnings("null")@NonNull String metamodel = generate(grammarResource);
 			MergeWriter fw = new MergeWriter(fileName);
 			fw.append(metamodel);
 			fw.close();

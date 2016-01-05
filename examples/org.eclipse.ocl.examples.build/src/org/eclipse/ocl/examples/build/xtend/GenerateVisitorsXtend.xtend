@@ -51,7 +51,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				 * 
 				 * @param context my initial result value
 				 */
-				protected Abstract«projectPrefix»«generic»Visitor(@NonNull «contextClass.getSimpleName()» context) {
+				protected Abstract«projectPrefix»«generic»Visitor(«emitNonNull(contextClass.getSimpleName())» context) {
 					super(context);
 				}	
 				«FOR eClass : getSortedEClasses(ePackage)»
@@ -60,7 +60,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				«IF needsOverride»
 				@Override
 				«ENDIF»
-				public @Nullable «returnClass.getSimpleName()» visit«eClass.name»(@NonNull «modelPackageName».«getTemplatedName(eClass)» object) {
+				public «emitNullable(returnClass.getSimpleName())» visit«eClass.name»(«emitNonNull(modelPackageName + "." + getTemplatedName(eClass))» object) {
 					«IF firstSuperClass == eClass»
 					return visiting(object);
 					«ELSE»
@@ -84,7 +84,6 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 			«ePackage.generateHeader(visitorPackageName)»
 			
 			import org.eclipse.jdt.annotation.NonNull;
-			import org.eclipse.jdt.annotation.Nullable;
 			
 			/**
 			 * An AbstractDelegating«visitorClassName» delegates all visits.
@@ -94,13 +93,13 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				implements «visitorClassName»<R>
 			{
 				«IF isDerived»
-				protected AbstractDelegating«visitorClassName»(@NonNull D delegate, @NonNull C context) {
+				protected AbstractDelegating«visitorClassName»(@NonNull D delegate, C context) {
 					super(delegate, context);
 				}
 				«ELSE»
 				protected final D delegate;
 				
-				protected AbstractDelegating«visitorClassName»(@NonNull D delegate, @NonNull C context) {
+				protected AbstractDelegating«visitorClassName»(@NonNull D delegate, C context) {
 					super(context);
 				//	assert delegate != null : "cannot decorate a null visitor"; //$NON-NLS-1$
 					this.delegate = delegate;		
@@ -128,7 +127,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				«IF isDerived || needsOverride»
 				@Override
 				«ENDIF»
-				public @Nullable R visiting(@NonNull «visitablePackageName».«visitableClassName» visitable) {
+				public R visiting(«emitNonNull(visitablePackageName + "." + visitableClassName)» visitable) {
 					return delegate.visiting(visitable);
 				}
 				«FOR eClass : getSortedEClasses(ePackage)»
@@ -136,7 +135,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				«IF needsOverride»
 				@Override
 				«ENDIF»
-				public @Nullable R visit«eClass.name»(@NonNull «modelPackageName».«getTemplatedName(eClass)» object) {
+				public R visit«eClass.name»(«emitNonNull(modelPackageName + "." + getTemplatedName(eClass))» object) {
 					return delegate.visit«eClass.name»(object);
 				}
 				«ENDFOR»
@@ -168,13 +167,13 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				implements «visitorClassName»<R>
 			{
 				«IF true»
-				protected AbstractExtendingDelegating«visitorClassName»(@NonNull D delegate, @NonNull C context) {
+				protected AbstractExtendingDelegating«visitorClassName»(@NonNull D delegate, C context) {
 					super(delegate, context);
 				}
 				«ELSE»
 				protected final D delegate;
 				
-				protected AbstractExtendingDelegating«visitorClassName»(@NonNull D delegate, @NonNull C context) {
+				protected AbstractExtendingDelegating«visitorClassName»(@NonNull D delegate, C context) {
 					super(context);
 				//	assert delegate != null : "cannot decorate a null visitor"; //$NON-NLS-1$		
 					this.delegate = delegate;		
@@ -199,7 +198,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				«ENDIF»
 
 				@Override
-				public @Nullable R visiting(@NonNull «visitablePackageName».«visitableClassName» visitable) {
+				public R visiting(«emitNonNull(visitablePackageName + "." + visitableClassName)» visitable) {
 					return delegate.visiting(visitable);
 				}
 				«FOR eClass : getSortedEClasses(ePackage)»
@@ -208,7 +207,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				«IF needsOverride»
 				@Override
 				«ENDIF»
-				public @Nullable R visit«eClass.name»(@NonNull «modelPackageName».«getTemplatedName(eClass)» object) {
+				public R visit«eClass.name»(«emitNonNull(modelPackageName + "." + getTemplatedName(eClass))» object) {
 					«IF firstSuperClass == eClass»
 					return visiting(object);
 					«ELSEIF firstSuperClass.getEPackage() == eClass.getEPackage()»
@@ -234,7 +233,6 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 			«ePackage.generateHeader(visitorPackageName)»
 			
 			import org.eclipse.jdt.annotation.NonNull;
-			import org.eclipse.jdt.annotation.Nullable;
 			
 			/**
 			 * An AbstractExtending«visitorClassName» provides a default implementation for each
@@ -252,7 +250,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				 * 
 				 * @param context my initial result value
 				 */
-				protected AbstractExtending«visitorClassName»(@NonNull C context) {
+				protected AbstractExtending«visitorClassName»(C context) {
 					super(context);
 				}	
 				«FOR eClass : getSortedEClasses(ePackage)»
@@ -261,7 +259,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				«IF needsOverride»
 				@Override
 				«ENDIF»
-				public @Nullable R visit«eClass.name»(@NonNull «modelPackageName».«getTemplatedName(eClass)» object) {
+				public R visit«eClass.name»(«emitNonNull(modelPackageName + "." + getTemplatedName(eClass))» object) {
 					«IF firstSuperClass == eClass»
 					return visiting(object);
 					«ELSE»
@@ -285,7 +283,6 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 			«ePackage.generateHeader(visitorPackageName)»
 			
 			import org.eclipse.jdt.annotation.NonNull;
-			import org.eclipse.jdt.annotation.Nullable;
 			
 			/**
 			 * An AbstractMerged«visitorClassName» merges all visits direct to visiting().
@@ -295,7 +292,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				extends «IF isDerived»«superVisitorPackageName».AbstractMerged«superVisitorClassName»<R, C>«ELSE»«IF isDerived»«superVisitorClassName»«ELSE»Abstract«visitorClassName»«ENDIF»<R, C>«ENDIF»
 				implements «visitorClassName»<R>
 			{
-				protected AbstractMerged«visitorClassName»(@NonNull C context) {
+				protected AbstractMerged«visitorClassName»(C context) {
 					super(context);
 				}
 				«FOR eClass : getSortedEClasses(ePackage)»
@@ -303,7 +300,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				«IF needsOverride»
 				@Override
 				«ENDIF»
-				public @Nullable R visit«eClass.name»(@NonNull «modelPackageName».«getTemplatedName(eClass)» object) {
+				public R visit«eClass.name»(«emitNonNull(modelPackageName + "." + getTemplatedName(eClass))» object) {
 					return visiting(object);
 				}
 				«ENDFOR»
@@ -330,8 +327,11 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 			 * super class, (or transitively its first super class first super class
 			 * until a non-interface super-class is found). In the absence of any
 			 * suitable first super class, the method delegates to visiting().
-			 * The return in annotated as @NonNull.
+			 * The return is annotated as @NonNull.
+			 *
+			 * @deprecated Explicit 'NonNull' functionality is obsolete with Java 8 @NonNull annotations.  
 			 */
+			 @Deprecated
 			public abstract class AbstractNonNullExtending«visitorClassName»<R, C>
 				extends «IF isDerived»«superVisitorPackageName».AbstractNonNullExtending«superVisitorClassName»«ELSE»Abstract«visitorClassName»«ENDIF»<R, C>
 				implements «visitorClassName»<R>
@@ -341,7 +341,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				 * 
 				 * @param context my initial result value
 				 */
-				protected AbstractNonNullExtending«visitorClassName»(@NonNull C context) {
+				protected AbstractNonNullExtending«visitorClassName»(C context) {
 					super(context);
 				}	
 				«IF !isDerived»
@@ -353,7 +353,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				 * @return the non-null result of visiting it
 				 */
 				@Override
-				public @NonNull R visit(@NonNull «visitablePackageName».«visitableClassName» visitable) {
+				public @NonNull R visit(«emitNonNull(visitablePackageName + "." + visitableClassName)» visitable) {
 					R result = visitable.accept(this);
 					if (result == null) {
 						throw new IllegalStateException("null return from non-null " + getClass().getName());
@@ -367,7 +367,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				«IF needsOverride»
 				@Override
 				«ENDIF»
-				public @NonNull R visit«eClass.name»(@NonNull «modelPackageName».«getTemplatedName(eClass)» object) {
+				public @NonNull R visit«eClass.name»(«emitNonNull(modelPackageName+ "." + getTemplatedName(eClass))» object) {
 					«IF firstSuperClass == eClass»
 					return visiting(object);
 					«ELSE»
@@ -384,7 +384,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				«IF needsOverride»
 				@Override
 				«ENDIF»
-				public abstract @NonNull R visiting(@NonNull «visitablePackageName».«visitableClassName» visitable);
+				public abstract @NonNull R visiting(«emitNonNull(visitablePackageName+ "." + visitableClassName)» visitable);
 				«ENDIF»
 			}
 		''');
@@ -407,8 +407,11 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 			/**
 			 * An AbstractNull«visitorClassName» provides a default implementation for each
 			 * visitXxx method that returns null.
+			 *
+			 * @deprecated Explicit 'Null' functionality is obsolete with Java 8 @Nullable annotations.  
 			 */
-			public abstract class AbstractNull«visitorClassName»<R, C>
+			 @Deprecated
+			public abstract class AbstractNull«visitorClassName»<@Nullable R, C>
 				«IF !isDerived»
 				extends Abstract«visitorClassName»<R, C>
 				«ELSE»
@@ -420,7 +423,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				 * 
 				 * @param context my initial result value
 				 */
-				protected AbstractNull«visitorClassName»(@NonNull C context) {
+				protected AbstractNull«visitorClassName»(C context) {
 					super(context);
 				}	
 				«FOR eClass : getSortedEClasses(ePackage)»
@@ -428,7 +431,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				«IF needsOverride»
 				@Override
 				«ENDIF»
-				public @Nullable R visit«eClass.name»(@NonNull «modelPackageName».«getTemplatedName(eClass)» object) {
+				public R visit«eClass.name»(«emitNonNull(modelPackageName + "." + getTemplatedName(eClass))» object) {
 					return null;
 				}
 				«ENDFOR»
@@ -470,7 +473,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				 * 
 				 * @param context my initial result value
 				 */
-				protected Abstract«projectPrefix»«generic»Visitor(@NonNull «contextClass.getSimpleName()» environmentFactory, @Nullable Type selfType, @Nullable Type selfTypeValue) {
+				protected Abstract«projectPrefix»«generic»Visitor(«emitNonNull(contextClass.getSimpleName())» environmentFactory, @Nullable Type selfType, @Nullable Type selfTypeValue) {
 					super(environmentFactory, selfType, selfTypeValue);
 				}	
 				«FOR eClass : getSortedEClasses(ePackage)»
@@ -479,7 +482,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				«IF needsOverride»
 				@Override
 				«ENDIF»
-				public @Nullable «returnClass.getSimpleName()» visit«eClass.name»(@NonNull «modelPackageName».«getTemplatedName(eClass)» object) {
+				public «emitNullable(returnClass.getSimpleName())» visit«eClass.name»(«emitNonNull(modelPackageName + "." + getTemplatedName(eClass))» object) {
 					«IF firstSuperClass == eClass»
 					return visiting(object);
 					«ELSE»
@@ -502,8 +505,8 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 		writer.append('''
 			«ePackage.generateHeader(visitorPackageName)»
 			
-			import org.eclipse.jdt.annotation.NonNull;
 			«IF !isDerived»
+			import org.eclipse.jdt.annotation.NonNull;
 			import org.eclipse.jdt.annotation.Nullable;
 			«ENDIF»
 			
@@ -521,7 +524,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				/**
 				 * Context for the AST visitation.
 				 */
-				protected final @NonNull C context;
+				protected final C context;
 
 				«ENDIF»	
 				/**
@@ -529,7 +532,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				 * 
 				 * @param context my initial result value
 				 */
-				protected Abstract«visitorClassName»(@NonNull C context) {
+				protected Abstract«visitorClassName»(C context) {
 					«IF !isDerived»
 					this.context = context;
 					«ELSE»
@@ -542,7 +545,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				«IF needsOverride»
 				@Override
 				«ENDIF»
-				public <A> A getAdapter(@NonNull Class<A> adapter) {
+				public <A> @Nullable A getAdapter(@NonNull Class<A> adapter) {
 					if (adapter.isAssignableFrom(getClass())) {
 						return (A) this;
 					}
@@ -558,7 +561,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				 * @return <code>null</code> if the visitable is <code>null</code>;
 				 *	 otherwise, the result of visiting it
 				 */
-				public @Nullable R safeVisit(@Nullable «visitablePackageName».«visitableClassName» v) {
+				public @Nullable R safeVisit(«emitNullable(visitablePackageName + "." + visitableClassName)» v) {
 					return (v == null) ? null : v.accept(this);
 				}
 				
@@ -569,11 +572,11 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				 * @return <code>null</code> if the visitable is <code>null</code>;
 				 *	 otherwise, the result of visiting it
 				 */
-				public @Nullable R visit(@NonNull «visitablePackageName».«visitableClassName» v) {
+				public R visit(«emitNonNull(visitablePackageName + "." + visitableClassName)» v) {
 					return v.accept(this);
 				}
 
-				//	public @Nullable R visiting(@NonNull «visitablePackageName».«visitableClassName» visitable) {
+				//	public R visiting(«emitNonNull(visitablePackageName + "." + visitableClassName)» visitable) {
 				//		return null;
 				//	}
 				«ENDIF»
@@ -603,13 +606,13 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				implements «visitorClassName»<R>
 			{
 				«IF isDerived»
-				protected AbstractWrapping«visitorClassName»(@NonNull D delegate, @NonNull C context) {
+				protected AbstractWrapping«visitorClassName»(@NonNull D delegate, C context) {
 					super(delegate, context);
 				}
 				«ELSE»
 				protected final D delegate;
 				
-				protected AbstractWrapping«visitorClassName»(@NonNull D delegate, @NonNull C context) {
+				protected AbstractWrapping«visitorClassName»(@NonNull D delegate, C context) {
 					super(context);
 					this.delegate = delegate;		
 				//	delegate.setUndecoratedVisitor(this);
@@ -621,7 +624,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				 * 
 				 * @return a rethrown RuntimeException or a RuntimeException-wrapped non-RuntimeException.
 				 */
-				protected @Nullable R badVisit(@NonNull «visitablePackageName».«visitableClassName» visitable, @Nullable P prologue, @NonNull Throwable e) throws RuntimeException {
+				protected R badVisit(«emitNonNull(visitablePackageName + "." + visitableClassName)» visitable, @Nullable P prologue, @NonNull Throwable e) throws RuntimeException {
 					if (e instanceof Exception) {
 						throw (RuntimeException)e;
 					}
@@ -646,7 +649,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				 * 
 				 * @return the epilogue result, which defaults to the delegated result.
 				 */
-				protected @Nullable R postVisit(@NonNull «visitablePackageName».«visitableClassName» visitable, @Nullable P prologue, @Nullable R result) {
+				protected R postVisit(«emitNonNull(visitablePackageName + "." + visitableClassName)» visitable, @Nullable P prologue, R result) {
 					return result;
 				}
 
@@ -655,14 +658,14 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				 * 
 				 * @return the prologue result, which defauilts to null.
 				 */
-				protected @Nullable P preVisit(@NonNull «visitablePackageName».«visitableClassName» visitable) {
+				protected @Nullable P preVisit(«emitNonNull(visitablePackageName + "." + visitableClassName)» visitable) {
 					return null;
 				}
 
 				«IF needsOverride»
 				@Override
 				«ENDIF»
-				public @Nullable R visiting(@NonNull «visitablePackageName».«visitableClassName» visitable) {
+				public R visiting(«emitNonNull(visitablePackageName + "." + visitableClassName)» visitable) {
 					throw new UnsupportedOperationException();		// Cannot happen since all methods delegate.
 				}
 				«ENDIF»
@@ -671,8 +674,8 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				«IF needsOverride»
 				@Override
 				«ENDIF»
-				public @Nullable R visit«eClass.name»(@NonNull «modelPackageName».«getTemplatedName(eClass)» object) {
-					P prologue = preVisit(object);
+				public R visit«eClass.name»(«emitNonNull(modelPackageName + "." + getTemplatedName(eClass))» object) {
+					@Nullable P prologue = preVisit(object);
 					try {
 						R result = delegate.visit«eClass.name»(object);
 						return postVisit(object, prologue, result);
@@ -706,7 +709,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				«IF isDerived && needsOverride»
 				@Override
 				«ENDIF»
-				void setUndecoratedVisitor(@NonNull «visitorRootClass»<R> visitor);
+				void setUndecoratedVisitor(«emitNonNull(visitorRootClass)»<R> visitor);
 			}
 		''');
 		writer.close();
@@ -738,7 +741,6 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 
 			import org.eclipse.emf.ecore.EClass;
 			import org.eclipse.jdt.annotation.NonNull;
-			import org.eclipse.jdt.annotation.Nullable;
 
 			public interface «visitableClassName2»
 			{
@@ -757,7 +759,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				 * @param visitor
 				 * @return the result of the visit.
 				 */
-				@Nullable <R> R accept(@NonNull «visitorPackageName».«visitorClassName»<R> visitor);
+				<R> R accept(«emitNonNull(visitorPackageName +"." + visitorClassName)»<R> visitor);
 				
 				EClass eClass();
 			}
@@ -779,7 +781,9 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 			«ePackage.generateHeader(visitorPackageName)»
 
 			import org.eclipse.jdt.annotation.NonNull;
+			«IF !isDerived»
 			import org.eclipse.jdt.annotation.Nullable;
+			«ENDIF»
 
 			/**
 			 */
@@ -802,11 +806,11 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				 * Return the result of visiting a visitable for which no more specific pivot type method
 				 * is available.
 				 */
-				@Nullable R visiting(@NonNull «visitablePackageName2».«visitableClassName2» visitable);
+				R visiting(«emitNonNull(visitablePackageName2 + "." + visitableClassName2)» visitable);
 
 				«ENDIF»
 				«FOR eClass : getSortedEClasses(ePackage)»
-				@Nullable R visit«eClass.name»(@NonNull «modelPackageName».«getTemplatedName(eClass)» object);
+				R visit«eClass.name»(«emitNonNull(modelPackageName + "." + getTemplatedName(eClass))» object);
 				«ENDFOR»
 			}
 		''')

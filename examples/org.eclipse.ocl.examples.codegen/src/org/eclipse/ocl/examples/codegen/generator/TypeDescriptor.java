@@ -34,7 +34,7 @@ public interface TypeDescriptor
 	/**
 	 * Append the declaration of this type to a JavaStream. e.g. "typename"
 	 */
-	void append(@NonNull JavaStream js);
+	void append(@NonNull JavaStream js, @Nullable Boolean isRequired);
 
 	/**
 	 * Append the appropriate statements to js to create the boxed value for cgBboxExp from its unboxedValue.

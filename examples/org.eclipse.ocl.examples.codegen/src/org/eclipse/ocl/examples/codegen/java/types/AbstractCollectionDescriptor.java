@@ -35,7 +35,7 @@ public abstract class AbstractCollectionDescriptor extends AbstractDescriptor im
 
 	@Override
 	public void append(@NonNull JavaStream javaStream, boolean reClass) {
-		append(javaStream);
+		append(javaStream, null);
 	}
 
 	@Override

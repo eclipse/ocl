@@ -228,9 +228,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 		//	Dispatch: Determine static type
 		//
 		js.append("final "); 
-		js.appendIsRequired(true);
-		js.append(" ");
-		js.appendClassReference(org.eclipse.ocl.pivot.Class.class);		// FIXME lookup type
+		js.appendClassReference(true, org.eclipse.ocl.pivot.Class.class);		// FIXME lookup type
 		js.append(" " + staticTypeName + " = ");
 //		js.appendReferenceTo(evaluatorParameter);
 		js.append(JavaConstants.EXECUTOR_NAME);
@@ -241,11 +239,9 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 		//	Dispatch: Determine dynamic operation
 		//
 		js.append("final "); 
-		js.appendIsRequired(true);
-		js.append(" ");
-		js.appendClassReference(LibraryIteration.LibraryIterationExtension.class);
+		js.appendClassReference(true, LibraryIteration.LibraryIterationExtension.class);
 		js.append(" " + implementationName + " = ("); 
-		js.appendClassReference(LibraryIteration.LibraryIterationExtension.class);
+		js.appendClassReference(null, LibraryIteration.LibraryIterationExtension.class);
 		js.append( ")" + staticTypeName + ".lookupImplementation("); 
 		js.appendReferenceTo(localContext.getStandardLibraryVariable(cgIterationCallExp));
 		js.append(", ");
@@ -473,7 +469,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 
 	private Method getJavaMethod(@NonNull LibraryIteration libraryIteration) {
 		try {
-			@SuppressWarnings("null") @NonNull Class<? extends LibraryIteration> implementationClass = libraryIteration.getClass();
+			Class<? extends LibraryIteration> implementationClass = libraryIteration.getClass();
 			Method method = implementationClass.getMethod("evaluateIteration", IterationManager.class);
 			return method;
 		} catch (Exception e) {
@@ -483,7 +479,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 
 	private Method getJavaMethod(@NonNull LibraryOperation libraryOperation, int argumentSize) {
 		try {
-			@SuppressWarnings("null") @NonNull Class<? extends LibraryOperation> implementationClass = libraryOperation.getClass();
+			Class<? extends LibraryOperation> implementationClass = libraryOperation.getClass();
 			Class<?>[] arguments;
 			int i = 0;
 			if (libraryOperation instanceof LibrarySimpleOperation) {
@@ -510,8 +506,8 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 
 	private Method getJavaMethod(@NonNull LibraryProperty libraryProperty) {
 		try {
-			@SuppressWarnings("null") @NonNull Class<? extends LibraryProperty> implementationClass = libraryProperty.getClass();
-			Class<?>[] arguments = new Class<?>[3];
+			Class<? extends LibraryProperty> implementationClass = libraryProperty.getClass();
+			Class<?>@NonNull [] arguments = new Class<?>@NonNull [3];
 			arguments[0] = Executor.class;
 			arguments[1] = TypeId.class; 
 			arguments[2] = Object.class; 
@@ -1172,11 +1168,9 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 		ElementId elementId = cgElementId.getElementId();
 		if ((elementId != null) && !CGUtil.isInlinedId(elementId)) {
 			js.append("public static final ");
-			js.appendIsRequired(true);
-			js.append(" ");
 			js.appendIsCaught(true, false);
 			js.append(" ");
-			js.appendClassReference(elementId.accept(id2JavaInterfaceVisitor));
+			js.appendClassReference(true, elementId.accept(id2JavaInterfaceVisitor));
 			js.append(" ");
 			js.append(globalContext.getValueName(cgElementId));
 			js.append(" = ");
@@ -1190,7 +1184,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 	public @NonNull Boolean visitCGExecutorCompositionProperty(@NonNull CGExecutorCompositionProperty cgExecutorProperty) {
 		js.appendDeclaration(cgExecutorProperty);
 		js.append(" = new ");
-		js.appendClassReference(cgExecutorProperty);
+		js.appendClassReference(null, cgExecutorProperty);
 		js.append("(");
 		Property asProperty = (Property) cgExecutorProperty.getAst();
 		Property asOppositeProperty = asProperty.getOpposite();
@@ -1214,7 +1208,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 	public @NonNull Boolean visitCGExecutorNavigationProperty(@NonNull CGExecutorNavigationProperty cgExecutorProperty) {
 		js.appendDeclaration(cgExecutorProperty);
 		js.append(" = new ");
-		js.appendClassReference(cgExecutorProperty);
+		js.appendClassReference(null, cgExecutorProperty);
 		js.append("(");
 		js.appendIdReference(cgExecutorProperty.getUnderlyingPropertyId().getElementId());
 		js.append(");\n");
@@ -1227,7 +1221,7 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 		Property asOppositeProperty = asProperty.getOpposite();
 		js.appendDeclaration(cgExecutorProperty);
 		js.append(" = new ");
-		js.appendClassReference(cgExecutorProperty);
+		js.appendClassReference(null, cgExecutorProperty);
 		js.append("(");
 		js.appendIdReference(asOppositeProperty.getPropertyId());
 		js.append(");\n");
@@ -1975,17 +1969,10 @@ public abstract class CG2JavaVisitor<CG extends JavaCodeGenerator> extends Abstr
 				//
 				appendAtOverride(cgOperation);
 				js.append("public ");
-				if (cgOperation.isNull()) {
-					js.append("/*@Null*/");
-				}
-				else {
-					js.appendIsRequired(cgOperation.isRequired());
-				}
-				js.append(" ");
 				boolean cgOperationIsInvalid = cgOperation.getInvalidValue() != null;
 				js.appendIsCaught(!cgOperationIsInvalid, cgOperationIsInvalid);
 				js.append(" ");
-				js.appendClassReference(cgOperation);
+				js.appendClassReference(cgOperation.isRequired() ? true : null, cgOperation);
 				js.append(" ");
 				js.append(cgOperation.getName());
 				js.append("(");

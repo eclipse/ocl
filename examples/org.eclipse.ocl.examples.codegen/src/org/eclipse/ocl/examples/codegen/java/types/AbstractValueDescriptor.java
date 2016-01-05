@@ -29,8 +29,8 @@ public abstract class AbstractValueDescriptor extends AbstractDescriptor
 	}
 
 	@Override
-	public void append(@NonNull JavaStream js) {
-		js.appendClassReference(javaClass);
+	public void append(@NonNull JavaStream js, @Nullable Boolean isRequired) {
+		js.appendClassReference(isRequired, javaClass);
 	}
 
 	@Override

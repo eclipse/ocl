@@ -23,17 +23,17 @@ public class SimpleAnalysis extends AbstractAnalysis
 {	
 	static final Logger logger = Logger.getLogger(SimpleAnalysis.class);
 
-	public static final @NonNull SimpleAnalysis[] EMPTY_LIST = new SimpleAnalysis[] {};
+	public static final @NonNull SimpleAnalysis @NonNull [] EMPTY_LIST = new @NonNull SimpleAnalysis @NonNull [] {};
 
 	protected final @NonNull GlobalPlace globalPlace;
 	protected final @NonNull CGValuedElement cgElement;
 	protected final int depth;
 	protected final int structuralHashCode;
-	protected final @NonNull SimpleAnalysis[] children;
+	protected final @NonNull SimpleAnalysis @NonNull [] children;
 	private @Nullable SimpleAnalysis parent = null;
 	private @Nullable CommonAnalysis commonAnalysis = null;
 	
-	public SimpleAnalysis(@NonNull GlobalPlace globalPlace, @NonNull CGValuedElement cgElement, int depth, int structuralHashCode, @NonNull SimpleAnalysis[] children) {
+	public SimpleAnalysis(@NonNull GlobalPlace globalPlace, @NonNull CGValuedElement cgElement, int depth, int structuralHashCode, @NonNull SimpleAnalysis @NonNull [] children) {
 		this.globalPlace = globalPlace;
 		this.cgElement = cgElement;
 		this.depth = depth;

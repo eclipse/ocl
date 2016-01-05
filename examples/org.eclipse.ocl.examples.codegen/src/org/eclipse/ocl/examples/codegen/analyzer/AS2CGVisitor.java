@@ -186,7 +186,7 @@ import org.eclipse.ocl.pivot.values.UnlimitedValue;
 /**
  * The AS2CGVisitor performs the first stage of code generation by converting the Pivot AST to the CG AST.
  */
-public class AS2CGVisitor extends AbstractExtendingVisitor<CGNamedElement, CodeGenAnalyzer>
+public class AS2CGVisitor extends AbstractExtendingVisitor<@Nullable CGNamedElement, @NonNull CodeGenAnalyzer>
 {
 	protected final @NonNull CodeGenerator codeGenerator;
 	protected final @NonNull EnvironmentFactoryInternal environmentFactory;

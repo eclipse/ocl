@@ -12,6 +12,7 @@ package org.eclipse.ocl.examples.codegen.java.types;
 
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGBoxExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
@@ -34,8 +35,8 @@ public class FutureEnumerationObjectDescriptor extends UnboxedValueDescriptor
 	}
 
 	@Override
-	public void append(@NonNull JavaStream js) {
-		js.appendClassReference(className);
+	public void append(@NonNull JavaStream js, @Nullable Boolean isRequired) {
+		js.appendClassReference(isRequired, className);
 	}
 
 	@Override

@@ -132,7 +132,7 @@ public class GlobalPlace extends AbstractPlace
 //		System.out.println("new " + structuralHashCode + " " + ClassUtil.debugSimpleName(cgValuedElement) + " " + cgValuedElement.toString());
 		SimpleAnalysis structuralAnalysis;
 		if (childAnalyses != null) {
-			@SuppressWarnings("null")@NonNull SimpleAnalysis[] childArray = childAnalyses.toArray(new SimpleAnalysis[childAnalyses.size()]);
+			@SuppressWarnings("null")@NonNull SimpleAnalysis @NonNull [] childArray = childAnalyses.toArray(new SimpleAnalysis[childAnalyses.size()]);
 			structuralAnalysis = new SimpleAnalysis(this, cgValuedElement, depth, structuralHashCode, childArray);
 		}
 		else {

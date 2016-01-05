@@ -36,8 +36,8 @@ public class SimpleDataTypeDescriptor extends AbstractDescriptor implements Simp
 	}
 
 	@Override
-	public void append(@NonNull JavaStream javaStream) {
-		javaStream.appendClassReference(className);
+	public void append(@NonNull JavaStream javaStream, @Nullable Boolean isRequired) {
+		javaStream.appendClassReference(isRequired, className);
 	}
 
 	@Override

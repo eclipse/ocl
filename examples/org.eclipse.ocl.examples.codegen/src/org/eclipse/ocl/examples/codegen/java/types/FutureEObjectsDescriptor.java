@@ -40,7 +40,7 @@ public class FutureEObjectsDescriptor extends AbstractCollectionDescriptor imple
 	}
 
 	@Override
-	public void append(@NonNull JavaStream javaStream) {
+	public void append(@NonNull JavaStream javaStream, @Nullable Boolean isRequired) {
 		javaStream.appendClassReference(List.class, false, className);
 	}
 

@@ -39,7 +39,7 @@ public class EcoreListDescriptor extends AbstractCollectionDescriptor implements
 	}
 
 	@Override
-	public void append(@NonNull JavaStream js) {
+	public void append(@NonNull JavaStream js, @Nullable Boolean isRequired) {
 		BoxedDescriptor elementTypeDescriptor = js.getCodeGenerator().getBoxedDescriptor(((CollectionTypeId)elementId).getElementTypeId());
 		js.appendClassReference(/*E*/List.class, false, elementTypeDescriptor);
 	}

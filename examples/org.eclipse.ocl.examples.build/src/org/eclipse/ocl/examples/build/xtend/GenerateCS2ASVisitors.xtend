@@ -140,7 +140,7 @@ public class GenerateCS2ASVisitors extends GenerateCSVisitors
 				«IF needsOverride»
 				@Override
 				«ENDIF»
-				public @Nullable «resultTypeName» visit«eClass.name»(@NonNull «modelPackageName».«eClass.name» csElement) {
+				public «emitNullable(resultTypeName)» visit«eClass.name»(«emitNonNull(modelPackageName + "." + eClass.name)» csElement) {
 					«IF firstSuperClass == eClass»
 					return visiting(csElement);
 					«ELSE»

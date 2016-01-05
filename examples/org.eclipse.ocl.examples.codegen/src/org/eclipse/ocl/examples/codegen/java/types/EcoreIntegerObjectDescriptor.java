@@ -35,7 +35,7 @@ public class EcoreIntegerObjectDescriptor extends SimpleValueDescriptor implemen
 		if (actualJavaClass != boolean.class) {
 			assert (actualJavaClass == null) || (actualJavaClass == Object.class);
 			js.append("(");
-			append(js);
+			append(js, null);
 			js.append(")");
 		}
 		if (subStream != null) {

@@ -24,6 +24,7 @@ import java.util.Set;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.codegen.util.CodeGenUtil;
+import org.eclipse.emf.codegen.util.ImportManager;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -72,11 +73,13 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 	protected final boolean useNullAnnotations;
 	private @Nullable String precedingPackageName = null;		// Initialization linkage
 	private @Nullable String currentPackageName = null;			// Initialization linkage
+	protected final @NonNull ImportManager importManager;
 	
 	public OCLinEcoreTables(@NonNull GenPackage genPackage) {
 		super(genPackage);
 		GenModel genModel = ClassUtil.nonNullState(genPackage.getGenModel());
 		this.useNullAnnotations = OCLinEcoreGenModelGeneratorAdapter.useNullAnnotations(genModel);
+		this.importManager = new ImportManager(genPackage.getReflectionPackageName());
 	}
 
 	protected void appendConstants(@NonNull String constants) {
@@ -248,7 +251,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 				}
 				s.append("		private static final " + atNonNull() + " ");
 				s.appendClassReference(EcoreExecutorEnumerationLiteral.class);
-				s.append("[] ");
+				s.append(" " + atNonNull() + " [] ");
 				s.appendScopedTypeName(pClass);
 				s.append(" = {");
 				for (int i = 0; i < enumerationLiterals.size(); i++) {
@@ -336,7 +339,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 					List<Operation> sortedOperations = classOperations.get(pSuperClass);
 					s.append("		private static final " + atNonNull() + " ");
 					s.appendClassReference(ExecutorOperation.class);
-					s.append("[] ");
+					s.append(" " + atNonNull() + " [] ");
 					s.appendScopedTypeName(pClass);
 					s.append("__");
 					s.appendUnscopedTypeName(metamodelManager, pSuperClass);
@@ -408,7 +411,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 				s.append("\n");
 				s.append("		private static final " + atNonNull() + " ");
 				s.appendClassReference(ExecutorProperty.class);
-				s.append("[] ");
+				s.append(" " + atNonNull() + " [] ");
 				s.appendScopedTypeName(pClass);
 				s.append(" = ");
 				if (sortedProperties.size() <= 0) {
@@ -754,7 +757,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		s.append("\n");
 		s.append("		private static final " + atNonNull() + " ");
 		s.appendClassReference(EcoreExecutorType.class);
-		s.append("[] types = {");
+		s.append(" " + atNonNull() + " [] types = {");
 		boolean isFirst = true;
 		for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pClass : activeClassesSortedByName) {
 			assert pClass != null;
@@ -819,7 +822,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 			s.append("\n");
 			s.append("		private static final " + atNonNull() + " ");
 			s.appendClassReference(ExecutorFragment.class);
-			s.append("[] ");
+			s.append(" " + atNonNull() + " [] ");
 			s.appendScopedTypeName(pClass);
 			s.append(" =\n");
 			s.append("		{");
@@ -839,7 +842,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 			}
 			s.append("\n");
 			s.append("		};\n");
-			s.append("		private static final " + atNonNull() + " int[] _");
+			s.append("		private static final int " + atNonNull() + " [] _");
 			s.appendScopedTypeName(pClass);
 			s.append(" = { ");
 			for (int i = 0; i <= myDepth; i++) {
@@ -962,6 +965,9 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 	}
 
 	public @NonNull String generateTablesClass(@Nullable String constants) {
+		if (constants != null) {
+			constants = s.rewriteManagedImports(constants);
+		}
 		String tablesClassName = getTablesClassName(genPackage);
 		LinkedHashMap<org.eclipse.ocl.pivot.Class, LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Operation>>> fragmentOperations = computeFragmentOperations();
 		LinkedHashMap<org.eclipse.ocl.pivot.Class, List<Property>> fragmentProperties = computeFragmentProperties();

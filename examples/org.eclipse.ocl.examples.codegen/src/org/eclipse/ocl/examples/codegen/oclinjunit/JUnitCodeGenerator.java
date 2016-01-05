@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.analyzer.AS2CGVisitor;
 import org.eclipse.ocl.examples.codegen.analyzer.CodeGenAnalyzer;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGClass;
@@ -28,6 +29,7 @@ import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
 import org.eclipse.ocl.examples.codegen.java.JavaGlobalContext;
 import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.complete.CompleteEnvironmentInternal;
@@ -102,7 +104,9 @@ public class JUnitCodeGenerator extends JavaCodeGenerator
 			cgParameters.add(cgParameter);
 		}
 		cgOperation.setAst(expInOcl);
-		TypeId asTypeId = PivotUtilInternal.getBehavioralType(expInOcl.getType()).getTypeId();
+		Type type = expInOcl.getType();
+		assert type != null;
+		TypeId asTypeId = PivotUtilInternal.getBehavioralType(type).getTypeId();
 		cgOperation.setTypeId(cgAnalyzer.getTypeId(asTypeId));
 		cgOperation.setName(globalContext.getEvaluateName());
 		cgOperation.setBody(cgBody);
@@ -117,8 +121,8 @@ public class JUnitCodeGenerator extends JavaCodeGenerator
 		JUnitCG2JavaClassVisitor cg2JavaClassVisitor = new JUnitCG2JavaClassVisitor(this, expInOcl, sortedGlobals);
 		cg2JavaClassVisitor.safeVisit(cgPackage);
 		Set<String> allImports = cg2JavaClassVisitor.getAllImports();
-		Map<String, String> long2ShortImportNames = ImportUtils.getLong2ShortImportNames(allImports);
-		return ImportUtils.resolveImports(cg2JavaClassVisitor.toString(), long2ShortImportNames);
+		Map<@NonNull String, @Nullable String> long2ShortImportNames = ImportUtils.getLong2ShortImportNames(allImports);
+		return ImportUtils.resolveImports(cg2JavaClassVisitor.toString(), long2ShortImportNames, false);
 	}
 
 	@Override

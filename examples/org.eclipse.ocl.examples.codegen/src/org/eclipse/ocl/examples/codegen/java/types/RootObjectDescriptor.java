@@ -28,8 +28,8 @@ public class RootObjectDescriptor extends AbstractDescriptor implements SimpleDe
 	}
 
 	@Override
-	public void append(@NonNull JavaStream javaStream) {
-		javaStream.appendClassReference(Object.class);
+	public void append(@NonNull JavaStream javaStream, @Nullable Boolean isRequired) {
+		javaStream.appendClassReference(isRequired, Object.class);
 	}
 
 	@Override

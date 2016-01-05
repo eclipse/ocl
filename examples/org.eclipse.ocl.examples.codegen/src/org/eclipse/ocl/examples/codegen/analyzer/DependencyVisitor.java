@@ -470,7 +470,7 @@ public class DependencyVisitor extends AbstractExtendingCGModelVisitor<Object, C
 
 		@Override
 		public @Nullable Object visitTupleTypeId(final @NonNull TupleTypeId id) {
-			for (@SuppressWarnings("null")@NonNull TuplePartId partId : id.getPartIds()) {
+			for (TuplePartId partId : id.getPartIds()) {
 				addElementIdDependency(id, partId);
 			}
 			return null;

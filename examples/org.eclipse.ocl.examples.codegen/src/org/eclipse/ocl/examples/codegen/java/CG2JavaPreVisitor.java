@@ -117,7 +117,7 @@ public class CG2JavaPreVisitor extends AbstractExtendingCGModelVisitor<Object, J
 				addOwnedTypeId(cgConstantExp, ((CollectionTypeId)typeId).getElementTypeId());
 			}
 			else if (typeId instanceof TupleTypeId) {
-				for (@SuppressWarnings("null")@NonNull TuplePartId partId : ((TupleTypeId)typeId).getPartIds()) {
+				for (TuplePartId partId : ((TupleTypeId)typeId).getPartIds()) {
 					addOwnedTypeId(cgConstantExp, partId);
 				}
 			}

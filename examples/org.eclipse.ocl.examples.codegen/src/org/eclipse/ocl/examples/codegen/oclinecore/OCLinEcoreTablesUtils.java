@@ -36,6 +36,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.common.NameQueries;
 import org.eclipse.ocl.examples.codegen.generator.AbstractGenModelHelper;
+import org.eclipse.ocl.examples.codegen.java.ImportUtils;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteClass;
 import org.eclipse.ocl.pivot.Constraint;
@@ -222,7 +223,7 @@ public class OCLinEcoreTablesUtils
 	public static class CodeGenString
 	{
 		private final @NonNull StringBuilder s = new StringBuilder();
-		private Map<String, String> classReferences = new HashMap<String, String>();
+		private @NonNull Map<@NonNull String, @Nullable String> classReferences = new HashMap<@NonNull String, @Nullable String>();
 		
 		protected final @NonNull Map<Type, String> typeNameMap = new HashMap<Type, String>();
 		protected final @NonNull Set<String> typeNameUse = new HashSet<String>();
@@ -319,6 +320,70 @@ public class OCLinEcoreTablesUtils
 			List<String> names = new ArrayList<String>(classReferences.values());
 			Collections.sort(names);
 			return names;
+		}
+
+		/**
+		 * Rewrite double imports to suit the EMF generators. If importManager is null, as is the case
+		 * since it is not obvious how to re-use the ImportManager between the OCL pre-generate and the Ecore generate
+		 * sessions, an import such as <%x.y.@p.q z%> is chnaged to x.y.@<%p.q%> z so that the @p.q gets handler by
+		 * the Ecore ImportmManager. If importManager is non-null both imports are shortened.
+		 */
+		public @NonNull String rewriteManagedImports(@NonNull String source)
+		{
+			return ImportUtils.resolveImports(source, classReferences, true);
+/*			int iMax = source.length();
+			int iStart = 0;
+			StringBuilder s = new StringBuilder();
+			while (true) {
+				int iPrefix = source.indexOf(ImportUtils.IMPORTS_PREFIX, iStart);
+				if (iPrefix < 0) {
+					break;
+				}
+				int iSuffix = source.indexOf(ImportUtils.IMPORTS_SUFFIX, iPrefix);
+				if (iSuffix < 0) {
+					break;
+				}
+				s.append(source, iStart, iPrefix);
+				String annotatedName = source.substring(iPrefix+ImportUtils.IMPORTS_PREFIX.length(), iSuffix);
+				String longAnnotationName = null;
+				String longTypeName = annotatedName;
+				int startIndex = annotatedName.indexOf("@");
+				int endIndex = annotatedName.indexOf(" ");
+				if ((0 <= startIndex) && (startIndex < endIndex)) {
+					longTypeName = annotatedName.substring(0, startIndex) + annotatedName.substring(endIndex).trim();
+					longAnnotationName = annotatedName.substring(startIndex+1, endIndex).trim();
+					addClassReference(longAnnotationName, longAnnotationName);
+				}
+				addClassReference(longTypeName, longTypeName);
+				String shortTypeName = classReferences.get(longTypeName);
+				String shortAnnotationName = longAnnotationName != null ? classReferences.get(longAnnotationName) : null;
+				if (longAnnotationName == null) {
+//					s.append(IMPORTS_PREFIX);
+					s.append(shortTypeName != null ? shortTypeName : longTypeName);
+//					s.append(IMPORTS_SUFFIX);
+				}
+				else if ((shortTypeName != null) && !shortTypeName.equals(longTypeName)) {
+					s.append("@");
+//					s.append(IMPORTS_PREFIX);
+					s.append(longAnnotationName);
+//					s.append(IMPORTS_SUFFIX);
+					s.append(" ");
+					s.append(shortTypeName);
+				}
+				else {
+					s.append(annotatedName.substring(0, startIndex));
+					s.append("@");
+//					s.append(IMPORTS_PREFIX);
+					s.append(longAnnotationName);
+//					s.append(IMPORTS_SUFFIX);
+					s.append(" ");
+					s.append(annotatedName.substring(endIndex).trim());
+				}
+				iStart = iSuffix + ImportUtils.IMPORTS_SUFFIX.length();
+			}
+			s.append(source, iStart, iMax);
+			@SuppressWarnings("null")@NonNull String string = s.toString();
+			return string; */
 		}
 		
 		@Override

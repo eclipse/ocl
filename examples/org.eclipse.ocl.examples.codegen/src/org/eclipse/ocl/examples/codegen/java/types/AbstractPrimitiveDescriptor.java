@@ -11,6 +11,7 @@
 package org.eclipse.ocl.examples.codegen.java.types;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.generator.TypeDescriptor;
 import org.eclipse.ocl.examples.codegen.java.JavaStream;
@@ -26,7 +27,7 @@ public abstract class AbstractPrimitiveDescriptor extends SimpleValueDescriptor 
 	}
 
 	@Override
-	public void append(@NonNull JavaStream js) {
+	public void append(@NonNull JavaStream js, @Nullable Boolean isRequired) {
 		js.append(javaClass.getName());			// Override avoids registration of int as an import
 	}
 

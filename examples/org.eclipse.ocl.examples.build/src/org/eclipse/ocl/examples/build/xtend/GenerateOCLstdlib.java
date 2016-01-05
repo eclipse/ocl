@@ -132,7 +132,7 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 			saver.localizeSpecializations();
 			String fileName = folder + "/" + javaClassName + ".java";
 			log.info("Generating '" + fileName + "'");
-			String metamodel = generateMetamodel((Model)pivotModel);
+			@SuppressWarnings("null")@NonNull String metamodel = generateMetamodel((Model)pivotModel);
 			MergeWriter fw = new MergeWriter(fileName);
 			fw.append(metamodel);
 			fw.close();

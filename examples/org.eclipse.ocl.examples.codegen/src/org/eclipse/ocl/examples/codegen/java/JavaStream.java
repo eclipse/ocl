@@ -129,7 +129,7 @@ public class JavaStream
 	}
 	
 	protected @NonNull JavaCodeGenerator codeGenerator;
-	protected @NonNull CG2JavaVisitor<?> cg2java;
+	protected @NonNull CG2JavaVisitor<@NonNull ?> cg2java;
 	protected @NonNull CodeGenAnalyzer analyzer;
 	protected final @NonNull Id2JavaExpressionVisitor id2JavaExpressionVisitor;
 	protected final boolean useNullAnnotations;
@@ -139,7 +139,7 @@ public class JavaStream
 	private @NonNull Stack<String> indentationStack = new Stack<String>();
 	private @NonNull String defaultIndentationString = "    ";
 	
-	public JavaStream(@NonNull JavaCodeGenerator codeGenerator, @NonNull CG2JavaVisitor<?> cg2java) {
+	public JavaStream(@NonNull JavaCodeGenerator codeGenerator, @NonNull CG2JavaVisitor<@NonNull ?> cg2java) {
 		this.codeGenerator = codeGenerator;
 		this.cg2java = cg2java;
 		this.analyzer = codeGenerator.getAnalyzer();
@@ -325,28 +325,36 @@ public class JavaStream
 		append(String.valueOf(cgPackage.getName()));
 	}
 
-	public void appendClassReference(@Nullable CGValuedElement cgValue) {
+	public void appendClassReference(@Nullable Boolean isRequired, @Nullable CGValuedElement cgValue) {
 		if (cgValue == null) {
 			append("<<null->>");
 		}
 		else if (cgValue.getNamedValue().isCaught()) {
+			if (isRequired != null) {
+				appendIsRequired(isRequired);
+				append(" ");
+			}
 			appendClassReference(Object.class);
 		}
 		else {
 			TypeDescriptor typeDescriptor = codeGenerator.getTypeDescriptor(cgValue);
 			if ((cgValue instanceof CGParameter) && (cgValue.eContainer() instanceof CGOperation) && (typeDescriptor instanceof EObjectDescriptor)) {		// FIXME eliminate reclassing
 				Class<?> originalJavaClass = ((EObjectDescriptor)typeDescriptor).getOriginalJavaClass();
-				appendClassReference(originalJavaClass);
+				appendClassReference(isRequired, originalJavaClass);
 			}
 			else {
-				typeDescriptor.append(this);
+				typeDescriptor.append(this, isRequired);
 			}
 		}
 	}
 
 	public void appendClassReference(@Nullable Class<?> javaClass) {
+		appendClassReference(null, javaClass);
+	}
+
+	public void appendClassReference(@Nullable Boolean isRequired, @Nullable Class<?> javaClass) {
 		if (javaClass != null) {
-			appendClassReference(javaClass.getName());
+			appendClassReference(isRequired, javaClass.getName());
 			TypeVariable<?>[] typeParameters = javaClass.getTypeParameters();
 			if (typeParameters.length > 0) {
 				append("<");
@@ -360,12 +368,16 @@ public class JavaStream
 			}
 		}
 		else {
+			if (isRequired != null) {
+				appendIsRequired(isRequired);
+				append(" ");
+			}
 			appendClassReference(Object.class);
 		}
 	}
 
 	public void appendClassReference(@NonNull TypeDescriptor typeDescriptor) {
-		typeDescriptor.append(this);
+		typeDescriptor.append(this, null);
 	}
 
 	public void appendClassReference(@Nullable Class<?> javaClass, @NonNull Class<?>... typeParameters) {
@@ -408,7 +420,7 @@ public class JavaStream
 		}
 	} */
 		
-	public void appendClassReference(Class<?> javaClass, boolean useExtends, @NonNull TypeDescriptor... typeDescriptors) {
+	public void appendClassReference(Class<?> javaClass, boolean useExtends, @NonNull TypeDescriptor @NonNull ... typeDescriptors) {
 		if (javaClass != null) {
 			appendClassReference(javaClass.getName());
 			if (typeDescriptors.length > 0) {
@@ -420,8 +432,8 @@ public class JavaStream
 					if (useExtends) {
 						append("? extends ");
 					}
-					@SuppressWarnings("null")@NonNull TypeDescriptor typeDescriptor = typeDescriptors[i];
-					typeDescriptor.append(this);
+					TypeDescriptor typeDescriptor = typeDescriptors[i];
+					typeDescriptor.append(this, null);
 //					Class<?> javaClass2 = typeDescriptor.getJavaClass();
 //					if ((javaClass2 != null) && (javaClass2 != Object.class)) {
 //						appendClassReference(javaClass2, new Class<?>[]{});
@@ -439,20 +451,39 @@ public class JavaStream
 	}
 
 	public void appendClassReference(@Nullable String className) {
+		appendClassReference(null, className);
+	}
+
+	public void appendClassReference(@Nullable Boolean isRequired, @Nullable String className) {
 		if (className != null) {
+			StringBuilder s = new StringBuilder();
 			int dollar = className.indexOf("$");
 			if (dollar > 0) {
 				@SuppressWarnings("null")@NonNull String importClassName = className.substring(0, dollar);
-				append(ImportUtils.getAffixedName(importClassName));
+				s.append(ImportUtils.getAffixedName(importClassName));
 				cg2java.addImport(importClassName);
-				append(className.substring(dollar).replace('$',  '.'));
+				s.append(className.substring(dollar).replace('$',  '.'));
 			}
 			else if (className.contains(".")){
-				append(ImportUtils.getAffixedName(className));
+				s.append(ImportUtils.getAffixedName(className));
 				cg2java.addImport(className);
 			}
 			else {
-				append(className);
+				s.append(className);
+			}
+			String resolvedClassName = s.toString();
+			if (isRequired == null) {
+				append(resolvedClassName);
+			}
+			else {
+				String annotation = "@" +  (isRequired ? NonNull.class : Nullable.class).getName() + " ";
+				int index = resolvedClassName.lastIndexOf(".");
+				if (index < 0) {
+					append(annotation + resolvedClassName);
+				}
+				else {
+					append(resolvedClassName.substring(0, index+1) + annotation + resolvedClassName.substring(index+1));
+				}
 			}
 		}
 	}
@@ -516,7 +547,6 @@ public class JavaStream
 	}
 
 	public void appendDeclaration(@NonNull CGValuedElement cgElement) {
-		boolean isPrimitive = isPrimitive(cgElement);
 		boolean isGlobal = cgElement.isGlobal();
 		if (isGlobal) {
 			append("public static ");
@@ -524,18 +554,7 @@ public class JavaStream
 		if (!cgElement.isSettable()) {
 			append("final ");
 		}
-		if (!isPrimitive && !cgElement.isAssertedNonNull()) {
-			appendIsRequired(cgElement.isNonNull() && !(cgElement instanceof CGUnboxExp)/*|| cgElement.isRequired()*/);	// FIXME Ugh!
-			append(" ");
-		}
-		appendIsCaught(cgElement.isNonInvalid(), cgElement.isCaught());
-		append(" ");
-//		if (is_boolean) {
-//			append(boolean.class.getSimpleName());
-//		}
-//		else {
-			appendClassReference(cgElement);
-//		}
+		appendTypeDeclaration(cgElement);
 		append(" ");
 		String valueName = cg2java.getValueName(cgElement);
 		append(valueName);
@@ -811,7 +830,7 @@ public class JavaStream
 			if (cgValue.getNamedValue().isCaught()) {
 				TypeDescriptor actualTypeDescriptor = codeGenerator.getTypeDescriptor(cgValue);
 				append("(");
-				actualTypeDescriptor.append(this);
+				actualTypeDescriptor.append(this, null);
 				append(")");
 			}
 			appendValueName(cgValue);
@@ -853,6 +872,14 @@ public class JavaStream
 	public void appendTrue() {
 		appendClassReference(ValueUtil.class);
 		append(".TRUE_VALUE");
+	}
+
+	protected void appendTypeDeclaration(@NonNull CGValuedElement cgElement) {
+		boolean isPrimitive = isPrimitive(cgElement);
+		boolean isRequired = !isPrimitive && !cgElement.isAssertedNonNull() && cgElement.isNonNull() && !(cgElement instanceof CGUnboxExp)/*|| cgElement.isRequired()*/;	// FIXME Ugh!
+		appendIsCaught(cgElement.isNonInvalid(), cgElement.isCaught());
+		append(" ");
+		appendClassReference(isRequired, cgElement);
 	}
 
 	public void appendTypeParameters(boolean useExtends, @NonNull Class<?>... typeParameters) {

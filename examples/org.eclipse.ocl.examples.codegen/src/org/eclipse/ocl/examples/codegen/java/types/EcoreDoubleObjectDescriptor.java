@@ -35,7 +35,7 @@ public class EcoreDoubleObjectDescriptor extends SimpleValueDescriptor implement
 		if (actualJavaClass != boolean.class) {
 			assert (actualJavaClass == null) || (actualJavaClass == Object.class);
 			js.append("(");
-			append(js);
+			append(js, null);
 			js.append(")");
 		}
 		if (subStream != null) {

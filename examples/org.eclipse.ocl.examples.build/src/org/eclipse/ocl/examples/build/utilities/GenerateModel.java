@@ -135,7 +135,7 @@ public class GenerateModel extends AbstractWorkflowComponent {
 		genModel.setCanGenerate(true);
 		// genModel.setFacadeHelperClass(null); // Non-null gives JDT
 		// default NPEs
-		genModel.setFacadeHelperClass(StandaloneASTFacadeHelper.class.getName()); // Bug 308069
+//		genModel.setFacadeHelperClass(ASTFacadeHelper.class.getName()); // Bug 308069
 		// genModel.setValidateModel(true);
 		genModel.setBundleManifest(false); // New manifests should be
 											// generated manually

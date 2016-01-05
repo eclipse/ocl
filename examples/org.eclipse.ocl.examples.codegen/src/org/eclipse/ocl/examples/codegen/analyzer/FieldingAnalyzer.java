@@ -41,7 +41,6 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGVariable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGVariableExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.util.AbstractExtendingCGModelVisitor;
-import org.eclipse.ocl.examples.codegen.cgmodel.util.AbstractNonNullExtendingCGModelVisitor;
 import org.eclipse.ocl.examples.codegen.utilities.CGUtil;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
@@ -198,7 +197,7 @@ public class FieldingAnalyzer
 	 * the mustBeCaught/mustBeThrown requirement of their usage.
 	 * The return from each child visit is true if isCaught, false if isThrown or isNonInvalid.
 	 */
-	public static class RewriteVisitor extends AbstractNonNullExtendingCGModelVisitor<Boolean, CodeGenAnalyzer>
+	public static class RewriteVisitor extends AbstractExtendingCGModelVisitor<@NonNull Boolean, CodeGenAnalyzer>
 	{
 		protected final @NonNull Set<CGVariable> externalVariables;
 		
