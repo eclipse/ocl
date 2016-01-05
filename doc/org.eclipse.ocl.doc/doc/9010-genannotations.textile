@@ -115,7 +115,3 @@ Custom JET templates are declared by OCLBuildGenModelGeneratorAdapterFactory whi
 
 The custom build functionality is installed by the @GenModelSetup@ workflow component,
 
-h4. @org.eclipse.ocl.examples.build.acceleo@
-
-The Acceleo builder and quiescent performance has not proved very satisfactory, consequently the main templates have been migrated to Xtend. The remaining templates are in the @org.eclipse.ocl.examples.build.acceleo@ plugin which can be kept closed most of the time allowing operation without installing Acceleo at all.
-

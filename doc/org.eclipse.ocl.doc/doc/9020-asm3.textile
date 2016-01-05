@@ -1,8 +1,0 @@
-h2(#ASM3). ASM 3
-
-OCl project endeavors to maintain compatibility beyond the latest release, so when Luna moved to ASM 5, there was a problem supporting installation on Juno and Kepler where only ASM 3 were available. Either the codegen.asm3 or codegen.asm5 plugin is used on the relevant platforms.
-
-If you create a Luna installation, ASM 5 is installed and ASM 3 is missing, so you get compiler errors. Unfortuntately Luna does not allow you to directly install ASM 3 from Orbit http://download.eclipse.org/tools/orbit/downloads/ to remedy the deficiency.
-
-The Mars release eliminates this problem by hiding a copy of ASM3 within the @org.eclipse.ocl.examples.codegen.asm3@ support library.
-

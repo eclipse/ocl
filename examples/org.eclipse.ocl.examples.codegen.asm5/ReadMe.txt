@@ -1,0 +1,1 @@
+This plugin is obsolete following the movement to Java 8 and type-based @NonNull annotations.

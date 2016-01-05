@@ -313,9 +313,6 @@
             pattern="org.eclipse.ocl.common.ui"/>
         <predicate
             xsi:type="predicates:NamePredicate"
-            pattern="org.eclipse.ocl.jdt.annotation7"/>
-        <predicate
-            xsi:type="predicates:NamePredicate"
             pattern="org.eclipse.ocl.pivot.*"/>
         <predicate
             xsi:type="predicates:NamePredicate"
