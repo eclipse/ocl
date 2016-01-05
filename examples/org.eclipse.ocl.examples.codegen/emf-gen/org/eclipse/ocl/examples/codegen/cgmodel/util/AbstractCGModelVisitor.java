@@ -30,14 +30,14 @@ public abstract class AbstractCGModelVisitor<R, C>
 	/**
 	 * Context for the AST visitation.
 	 */
-	protected final @NonNull C context;
+	protected final C context;
 
 	/**
 	 * Initializes me with an initial value for my result.
 	 * 
 	 * @param context my initial result value
 	 */
-	protected AbstractCGModelVisitor(@NonNull C context) {
+	protected AbstractCGModelVisitor(C context) {
 		this.context = context;
 	}
 

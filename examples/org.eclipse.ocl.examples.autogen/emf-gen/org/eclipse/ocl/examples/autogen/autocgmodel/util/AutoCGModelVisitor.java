@@ -23,8 +23,8 @@ import org.eclipse.jdt.annotation.NonNull;
  */
 public interface AutoCGModelVisitor<R> extends org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor<R>
 {
-	R visitCGASTCallExp( org.eclipse.ocl.examples.autogen.autocgmodel.@NonNull CGASTCallExp object);
-	R visitCGContainmentBody( org.eclipse.ocl.examples.autogen.autocgmodel.@NonNull CGContainmentBody object);
-	R visitCGContainmentPart( org.eclipse.ocl.examples.autogen.autocgmodel.@NonNull CGContainmentPart object);
-	R visitCGContainmentVisit( org.eclipse.ocl.examples.autogen.autocgmodel.@NonNull CGContainmentVisit object);
+	R visitCGASTCallExp(org.eclipse.ocl.examples.autogen.autocgmodel.@NonNull CGASTCallExp object);
+	R visitCGContainmentBody(org.eclipse.ocl.examples.autogen.autocgmodel.@NonNull CGContainmentBody object);
+	R visitCGContainmentPart(org.eclipse.ocl.examples.autogen.autocgmodel.@NonNull CGContainmentPart object);
+	R visitCGContainmentVisit(org.eclipse.ocl.examples.autogen.autocgmodel.@NonNull CGContainmentVisit object);
 }

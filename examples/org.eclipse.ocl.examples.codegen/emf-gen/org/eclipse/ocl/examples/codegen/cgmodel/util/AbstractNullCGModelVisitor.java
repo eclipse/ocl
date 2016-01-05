@@ -23,7 +23,10 @@ import org.eclipse.jdt.annotation.Nullable;
 /**
  * An AbstractNullCGModelVisitor provides a default implementation for each
  * visitXxx method that returns null.
+ *
+ * @deprecated Explicit 'Null' functionality is obsolete with Java 8 @Nullable annotations.  
  */
+ @Deprecated
 public abstract class AbstractNullCGModelVisitor<@Nullable R, C>
 	extends AbstractCGModelVisitor<R, C>
 {
@@ -32,7 +35,7 @@ public abstract class AbstractNullCGModelVisitor<@Nullable R, C>
 	 * 
 	 * @param context my initial result value
 	 */
-	protected AbstractNullCGModelVisitor(@NonNull C context) {
+	protected AbstractNullCGModelVisitor(C context) {
 		super(context);
 	}	
 

@@ -35,27 +35,27 @@ public abstract class AbstractExtendingAutoCGModelVisitor<R, C>
 	 * 
 	 * @param context my initial result value
 	 */
-	protected AbstractExtendingAutoCGModelVisitor(@NonNull C context) {
+	protected AbstractExtendingAutoCGModelVisitor(C context) {
 		super(context);
 	}	
 
 	@Override
-	public R visitCGASTCallExp( org.eclipse.ocl.examples.autogen.autocgmodel.@NonNull CGASTCallExp object) {
+	public R visitCGASTCallExp(org.eclipse.ocl.examples.autogen.autocgmodel.@NonNull CGASTCallExp object) {
 		return visitCGOperationCallExp(object);
 	}
 
 	@Override
-	public R visitCGContainmentBody( org.eclipse.ocl.examples.autogen.autocgmodel.@NonNull CGContainmentBody object) {
+	public R visitCGContainmentBody(org.eclipse.ocl.examples.autogen.autocgmodel.@NonNull CGContainmentBody object) {
 		return visitCGValuedElement(object);
 	}
 
 	@Override
-	public R visitCGContainmentPart( org.eclipse.ocl.examples.autogen.autocgmodel.@NonNull CGContainmentPart object) {
+	public R visitCGContainmentPart(org.eclipse.ocl.examples.autogen.autocgmodel.@NonNull CGContainmentPart object) {
 		return visitCGValuedElement(object);
 	}
 
 	@Override
-	public R visitCGContainmentVisit( org.eclipse.ocl.examples.autogen.autocgmodel.@NonNull CGContainmentVisit object) {
+	public R visitCGContainmentVisit(org.eclipse.ocl.examples.autogen.autocgmodel.@NonNull CGContainmentVisit object) {
 		return visitCGOperation(object);
 	}
 }

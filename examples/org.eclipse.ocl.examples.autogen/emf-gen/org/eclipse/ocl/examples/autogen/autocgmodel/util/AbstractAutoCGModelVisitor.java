@@ -17,7 +17,6 @@
  *******************************************************************************/
 package	org.eclipse.ocl.examples.autogen.autocgmodel.util;
 
-import org.eclipse.jdt.annotation.NonNull;
 
 /*
  * An AbstractAutoCGModelVisitor provides a default implementation of the visitor framework
@@ -32,7 +31,7 @@ public abstract class AbstractAutoCGModelVisitor<R, C>
 	 * 
 	 * @param context my initial result value
 	 */
-	protected AbstractAutoCGModelVisitor(@NonNull C context) {
+	protected AbstractAutoCGModelVisitor(C context) {
 		super(context);
 	}
 }

@@ -35,7 +35,7 @@ public abstract class AbstractExtendingCGModelVisitor<R, C>
 	 * 
 	 * @param context my initial result value
 	 */
-	protected AbstractExtendingCGModelVisitor(@NonNull C context) {
+	protected AbstractExtendingCGModelVisitor(C context) {
 		super(context);
 	}	
 
