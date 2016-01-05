@@ -24,7 +24,7 @@ public abstract class AbstractDelegatingCompleteOCLCSVisitor<R, C, D extends Com
 	extends org.eclipse.ocl.xtext.essentialoclcs.util.AbstractDelegatingEssentialOCLCSVisitor<R, C, D>
 	implements CompleteOCLCSVisitor<R>
 {
-	protected AbstractDelegatingCompleteOCLCSVisitor(@NonNull D delegate, @NonNull C context) {
+	protected AbstractDelegatingCompleteOCLCSVisitor(@NonNull D delegate, C context) {
 		super(delegate, context);
 	}
 

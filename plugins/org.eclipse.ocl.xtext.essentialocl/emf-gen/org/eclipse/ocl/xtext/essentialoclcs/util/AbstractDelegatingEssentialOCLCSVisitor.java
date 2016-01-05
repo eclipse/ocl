@@ -24,7 +24,7 @@ public abstract class AbstractDelegatingEssentialOCLCSVisitor<R, C, D extends Es
 	extends org.eclipse.ocl.xtext.basecs.util.AbstractDelegatingBaseCSVisitor<R, C, D>
 	implements EssentialOCLCSVisitor<R>
 {
-	protected AbstractDelegatingEssentialOCLCSVisitor(@NonNull D delegate, @NonNull C context) {
+	protected AbstractDelegatingEssentialOCLCSVisitor(@NonNull D delegate, C context) {
 		super(delegate, context);
 	}
 

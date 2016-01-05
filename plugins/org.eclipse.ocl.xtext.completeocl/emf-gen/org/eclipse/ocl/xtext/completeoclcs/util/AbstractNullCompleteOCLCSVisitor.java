@@ -21,7 +21,10 @@ import org.eclipse.jdt.annotation.Nullable;
 /**
  * An AbstractNullCompleteOCLCSVisitor provides a default implementation for each
  * visitXxx method that returns null.
+ *
+ * @deprecated Explicit 'Null' functionality is obsolete with Java 8 @Nullable annotations.  
  */
+ @Deprecated
 public abstract class AbstractNullCompleteOCLCSVisitor<@Nullable R, C>
 	extends org.eclipse.ocl.xtext.essentialoclcs.util.AbstractNullEssentialOCLCSVisitor<R, C> implements CompleteOCLCSVisitor<R>
 {
@@ -30,7 +33,7 @@ public abstract class AbstractNullCompleteOCLCSVisitor<@Nullable R, C>
 	 * 
 	 * @param context my initial result value
 	 */
-	protected AbstractNullCompleteOCLCSVisitor(@NonNull C context) {
+	protected AbstractNullCompleteOCLCSVisitor(C context) {
 		super(context);
 	}	
 

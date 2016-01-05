@@ -15,7 +15,6 @@
  *******************************************************************************/
 package	org.eclipse.ocl.xtext.essentialoclcs.util;
 
-import org.eclipse.jdt.annotation.NonNull;
 
 /*
  * An AbstractEssentialOCLCSVisitor provides a default implementation of the visitor framework
@@ -30,7 +29,7 @@ public abstract class AbstractEssentialOCLCSVisitor<R, C>
 	 * 
 	 * @param context my initial result value
 	 */
-	protected AbstractEssentialOCLCSVisitor(@NonNull C context) {
+	protected AbstractEssentialOCLCSVisitor(C context) {
 		super(context);
 	}
 }

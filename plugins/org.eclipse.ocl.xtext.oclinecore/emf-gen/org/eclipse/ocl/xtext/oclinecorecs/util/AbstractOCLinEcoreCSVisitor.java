@@ -15,7 +15,6 @@
  *******************************************************************************/
 package	org.eclipse.ocl.xtext.oclinecorecs.util;
 
-import org.eclipse.jdt.annotation.NonNull;
 
 /*
  * An AbstractOCLinEcoreCSVisitor provides a default implementation of the visitor framework
@@ -30,7 +29,7 @@ public abstract class AbstractOCLinEcoreCSVisitor<R, C>
 	 * 
 	 * @param context my initial result value
 	 */
-	protected AbstractOCLinEcoreCSVisitor(@NonNull C context) {
+	protected AbstractOCLinEcoreCSVisitor(C context) {
 		super(context);
 	}
 }

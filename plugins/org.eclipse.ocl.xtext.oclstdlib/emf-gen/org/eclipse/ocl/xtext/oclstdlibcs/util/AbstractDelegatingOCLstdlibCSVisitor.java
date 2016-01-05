@@ -24,7 +24,7 @@ public abstract class AbstractDelegatingOCLstdlibCSVisitor<R, C, D extends OCLst
 	extends org.eclipse.ocl.xtext.essentialoclcs.util.AbstractDelegatingEssentialOCLCSVisitor<R, C, D>
 	implements OCLstdlibCSVisitor<R>
 {
-	protected AbstractDelegatingOCLstdlibCSVisitor(@NonNull D delegate, @NonNull C context) {
+	protected AbstractDelegatingOCLstdlibCSVisitor(@NonNull D delegate, C context) {
 		super(delegate, context);
 	}
 

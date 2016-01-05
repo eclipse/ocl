@@ -33,7 +33,7 @@ public abstract class AbstractExtendingOCLstdlibCSVisitor<R, C>
 	 * 
 	 * @param context my initial result value
 	 */
-	protected AbstractExtendingOCLstdlibCSVisitor(@NonNull C context) {
+	protected AbstractExtendingOCLstdlibCSVisitor(C context) {
 		super(context);
 	}	
 

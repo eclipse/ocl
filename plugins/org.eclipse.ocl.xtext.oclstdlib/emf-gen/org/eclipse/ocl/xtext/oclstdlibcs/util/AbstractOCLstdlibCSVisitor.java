@@ -15,7 +15,6 @@
  *******************************************************************************/
 package	org.eclipse.ocl.xtext.oclstdlibcs.util;
 
-import org.eclipse.jdt.annotation.NonNull;
 
 /*
  * An AbstractOCLstdlibCSVisitor provides a default implementation of the visitor framework
@@ -30,7 +29,7 @@ public abstract class AbstractOCLstdlibCSVisitor<R, C>
 	 * 
 	 * @param context my initial result value
 	 */
-	protected AbstractOCLstdlibCSVisitor(@NonNull C context) {
+	protected AbstractOCLstdlibCSVisitor(C context) {
 		super(context);
 	}
 }

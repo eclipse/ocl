@@ -21,7 +21,10 @@ import org.eclipse.jdt.annotation.Nullable;
 /**
  * An AbstractNullBaseCSVisitor provides a default implementation for each
  * visitXxx method that returns null.
+ *
+ * @deprecated Explicit 'Null' functionality is obsolete with Java 8 @Nullable annotations.  
  */
+ @Deprecated
 public abstract class AbstractNullBaseCSVisitor<@Nullable R, C>
 	extends AbstractBaseCSVisitor<R, C>
 {
@@ -30,7 +33,7 @@ public abstract class AbstractNullBaseCSVisitor<@Nullable R, C>
 	 * 
 	 * @param context my initial result value
 	 */
-	protected AbstractNullBaseCSVisitor(@NonNull C context) {
+	protected AbstractNullBaseCSVisitor(C context) {
 		super(context);
 	}	
 

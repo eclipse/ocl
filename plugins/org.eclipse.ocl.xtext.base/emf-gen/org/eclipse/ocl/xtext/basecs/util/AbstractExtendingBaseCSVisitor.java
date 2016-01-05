@@ -33,7 +33,7 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 	 * 
 	 * @param context my initial result value
 	 */
-	protected AbstractExtendingBaseCSVisitor(@NonNull C context) {
+	protected AbstractExtendingBaseCSVisitor(C context) {
 		super(context);
 	}	
 

@@ -28,14 +28,14 @@ public abstract class AbstractBaseCSVisitor<R, C>
 	/**
 	 * Context for the AST visitation.
 	 */
-	protected final @NonNull C context;
+	protected final C context;
 
 	/**
 	 * Initializes me with an initial value for my result.
 	 * 
 	 * @param context my initial result value
 	 */
-	protected AbstractBaseCSVisitor(@NonNull C context) {
+	protected AbstractBaseCSVisitor(C context) {
 		this.context = context;
 	}
 

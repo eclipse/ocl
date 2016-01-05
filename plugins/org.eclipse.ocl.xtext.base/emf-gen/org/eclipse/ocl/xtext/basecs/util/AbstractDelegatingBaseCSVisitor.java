@@ -26,7 +26,7 @@ public abstract class AbstractDelegatingBaseCSVisitor<R, C, D extends BaseCSVisi
 {
 	protected final D delegate;
 	
-	protected AbstractDelegatingBaseCSVisitor(@NonNull D delegate, @NonNull C context) {
+	protected AbstractDelegatingBaseCSVisitor(@NonNull D delegate, C context) {
 		super(context);
 	//	assert delegate != null : "cannot decorate a null visitor"; //$NON-NLS-1$
 		this.delegate = delegate;		

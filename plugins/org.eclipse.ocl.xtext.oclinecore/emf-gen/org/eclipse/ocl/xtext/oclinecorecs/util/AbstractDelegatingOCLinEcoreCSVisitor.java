@@ -24,7 +24,7 @@ public abstract class AbstractDelegatingOCLinEcoreCSVisitor<R, C, D extends OCLi
 	extends org.eclipse.ocl.xtext.essentialoclcs.util.AbstractDelegatingEssentialOCLCSVisitor<R, C, D>
 	implements OCLinEcoreCSVisitor<R>
 {
-	protected AbstractDelegatingOCLinEcoreCSVisitor(@NonNull D delegate, @NonNull C context) {
+	protected AbstractDelegatingOCLinEcoreCSVisitor(@NonNull D delegate, C context) {
 		super(delegate, context);
 	}
 

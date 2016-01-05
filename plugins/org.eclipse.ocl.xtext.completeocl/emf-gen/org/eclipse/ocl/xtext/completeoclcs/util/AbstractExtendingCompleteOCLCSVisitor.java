@@ -33,7 +33,7 @@ public abstract class AbstractExtendingCompleteOCLCSVisitor<R, C>
 	 * 
 	 * @param context my initial result value
 	 */
-	protected AbstractExtendingCompleteOCLCSVisitor(@NonNull C context) {
+	protected AbstractExtendingCompleteOCLCSVisitor(C context) {
 		super(context);
 	}	
 
