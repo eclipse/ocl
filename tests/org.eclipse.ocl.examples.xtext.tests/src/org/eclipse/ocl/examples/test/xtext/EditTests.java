@@ -81,7 +81,7 @@ public class EditTests extends XtextTestCase
 		super.setUp();
 	}
 
-	private void assertHasComments(@NonNull Resource aResource, @NonNull String[] comments) {
+	private void assertHasComments(@NonNull Resource aResource, @NonNull String @NonNull [] comments) {
 		Map<String, Integer> expected = new HashMap<String, Integer>();
 		for (String comment : comments) {
 			Integer count = expected.get(comment);
@@ -596,9 +596,9 @@ public class EditTests extends XtextTestCase
 		Resource ecoreResource_uncommented = getEcoreFromCS(ocl_uncommented, testDocument_uncommented, ecoreURI_uncommented);
 		Resource ecoreResource_commented = getEcoreFromCS(ocl_commented, testDocument_commented, ecoreURI_commented);
 		Resource ecoreResource_recommented = getEcoreFromCS(ocl_recommented, testDocument_recommented, ecoreURI_recommented);
-		assertHasComments(ecoreResource_uncommented, new String[]{});
-		assertHasComments(ecoreResource_commented, new String[]{"a comment"});
-		assertHasComments(ecoreResource_recommented, new String[]{"yet\nanother\ncomment"});
+		assertHasComments(ecoreResource_uncommented, new @NonNull String @NonNull []{});
+		assertHasComments(ecoreResource_commented, new @NonNull String @NonNull []{"a comment"});
+		assertHasComments(ecoreResource_recommented, new @NonNull String @NonNull []{"yet\nanother\ncomment"});
 		CSResource xtextResource;
 		Resource asResource;
 		{

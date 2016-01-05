@@ -18,9 +18,9 @@ import org.eclipse.ocl.pivot.ids.IdManager;
 /**
  * BindingsIdImpl provides a hashable list of elementIds suitable for use when indexing specializations.
  */
-public class BindingsIdImpl implements BindingsId, WeakHashMapOfListOfWeakReference2.MatchableId<ElementId[]>
+public class BindingsIdImpl implements BindingsId, WeakHashMapOfListOfWeakReference2.MatchableId<@NonNull ElementId @NonNull []>
 {
-	protected class Iterator implements java.util.Iterator<ElementId>
+	protected class Iterator implements java.util.Iterator<@NonNull ElementId>
 	{
 		private int index = 0;
 		
@@ -30,7 +30,6 @@ public class BindingsIdImpl implements BindingsId, WeakHashMapOfListOfWeakRefere
 		}
 
 		@Override
-		@SuppressWarnings("null")
 		public @NonNull ElementId next() {
 			return elementIds[index++];
 		}
@@ -41,13 +40,13 @@ public class BindingsIdImpl implements BindingsId, WeakHashMapOfListOfWeakRefere
 		}
 	}
 
-	private final @NonNull ElementId[] elementIds;
+	private final @NonNull ElementId @NonNull [] elementIds;
 	private final @NonNull Integer hashCode;
 
 	/**
 	 * Construct a BindingsId for an idManager that has computed the hashCode for the typeIds.
 	 */
-	public BindingsIdImpl(@NonNull IdManager idManager, @NonNull Integer hashCode, @NonNull ElementId[] elementIds) {
+	public BindingsIdImpl(@NonNull IdManager idManager, @NonNull Integer hashCode, @NonNull ElementId @NonNull [] elementIds) {
 		this.hashCode = hashCode;
 		this.elementIds = elementIds;
 	}
@@ -58,7 +57,6 @@ public class BindingsIdImpl implements BindingsId, WeakHashMapOfListOfWeakRefere
 	}
 
 	@Override
-	@SuppressWarnings("null")
 	public @NonNull ElementId get(int i) {
 		return elementIds[i];
 	}
@@ -74,7 +72,7 @@ public class BindingsIdImpl implements BindingsId, WeakHashMapOfListOfWeakRefere
 	}
 
 	@Override
-	public boolean matches(@NonNull ElementId[] thoseElementIds) {
+	public boolean matches(@NonNull ElementId @NonNull [] thoseElementIds) {
 		if (elementIds.length != thoseElementIds.length) {
 			return false;
 		}

@@ -19,7 +19,7 @@ import org.eclipse.ocl.pivot.internal.library.executor.ExecutorTypeParameter;
 
 public class EcoreExecutorVoidType extends EcoreExecutorType
 {
-	public EcoreExecutorVoidType(@NonNull BuiltInTypeId typeId, @NonNull ExecutorPackage evaluationPackage, int flags, @NonNull ExecutorTypeParameter... typeParameters) {
+	public EcoreExecutorVoidType(@NonNull BuiltInTypeId typeId, @NonNull ExecutorPackage evaluationPackage, int flags, @NonNull ExecutorTypeParameter @NonNull ... typeParameters) {
 		super(typeId, evaluationPackage, flags | OCL_VOID, typeParameters);
 	}
 

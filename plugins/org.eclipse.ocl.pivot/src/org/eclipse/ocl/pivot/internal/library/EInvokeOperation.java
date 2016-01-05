@@ -68,7 +68,7 @@ public class EInvokeOperation extends AbstractOperation
 		if (arguments.size() == 2) {
 			return evaluate(executor, typeId, sourceValue, firstArgument, secondArgument);
 		}
-		Object[] argumentValues = new Object[arguments.size()];
+		@Nullable Object[] argumentValues = new @Nullable Object[arguments.size()];
 		argumentValues[0] = firstArgument;
 		argumentValues[1] = secondArgument;
 		for (int i = 2; i < arguments.size(); i++) {
@@ -81,7 +81,7 @@ public class EInvokeOperation extends AbstractOperation
 	
 	/** @deprecated use Executor */
 	@Deprecated
-	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue, @Nullable Object... boxedArgumentValues) {
+	public @Nullable Object evaluate(@NonNull Evaluator evaluator, @NonNull TypeId returnTypeId, @Nullable Object sourceValue, @Nullable Object @NonNull ... boxedArgumentValues) {
 		return evaluate(getExecutor(evaluator), returnTypeId, sourceValue, boxedArgumentValues); 
 	}
 

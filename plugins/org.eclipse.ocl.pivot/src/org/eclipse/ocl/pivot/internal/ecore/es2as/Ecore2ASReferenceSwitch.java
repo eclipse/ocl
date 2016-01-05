@@ -54,6 +54,7 @@ import org.eclipse.ocl.pivot.internal.library.JavaCompareToOperation;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
@@ -88,7 +89,7 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 		@SuppressWarnings("null") @NonNull EAnnotation eObject2 = eObject;
 		Annotation pivotElement = converter.getCreated(Annotation.class, eObject2);
 		if (pivotElement != null) {
-			doSwitchAll(Element.class, pivotElement.getReferences(), eObject2.getReferences());
+			doSwitchAll(Element.class, ClassUtil.nullFree(pivotElement.getReferences()), eObject2.getReferences());
 		}
 		return null;
 	}
@@ -98,7 +99,7 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 		@SuppressWarnings("null") @NonNull EClass eObject2 = eObject;
 		org.eclipse.ocl.pivot.Class pivotElement = converter.getCreated(org.eclipse.ocl.pivot.Class.class, eObject2);
 		if (pivotElement != null) {
-			doSwitchAll(org.eclipse.ocl.pivot.Class.class, pivotElement.getSuperClasses(), eObject2.getEGenericSuperTypes());
+			doSwitchAll(org.eclipse.ocl.pivot.Class.class, ClassUtil.nullFree(pivotElement.getSuperClasses()), eObject2.getEGenericSuperTypes());
 			if (pivotElement.getSuperClasses().isEmpty()) {
 				org.eclipse.ocl.pivot.Class oclElementType = standardLibrary.getOclElementType();
 				pivotElement.getSuperClasses().add(oclElementType);
@@ -174,7 +175,7 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 						}
 					}
 				}
-				doSwitchAll(Type.class, pivotElement.getRaisedExceptions(), eObject2.getEGenericExceptions());
+				doSwitchAll(Type.class, ClassUtil.nullFree(pivotElement.getRaisedExceptions()), eObject2.getEGenericExceptions());
 			}
 			return pivotElement;
 		}
@@ -184,7 +185,7 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 	public Object caseEReference(EReference eObject) {
 //		Property pivotElement = converter.getCreated(Property.class, eObject);		
 		Property pivotElement = caseEStructuralFeature(eObject);
-		doSwitchAll(Property.class, pivotElement.getKeys(), eObject.getEKeys());
+		doSwitchAll(Property.class, ClassUtil.nullFree(pivotElement.getKeys()), eObject.getEKeys());
 		Property oppositeProperty = null;
 		EReference eOpposite = eObject.getEOpposite();
 		if (eOpposite != null) {
@@ -495,7 +496,7 @@ public class Ecore2ASReferenceSwitch extends EcoreSwitch<Object>
 		@SuppressWarnings("null") @NonNull ETypeParameter eObject2 = eObject;
 		TemplateParameter pivotElement = converter.getCreated(TemplateParameter.class, eObject2);
 		if (pivotElement != null) {
-			doSwitchAll(org.eclipse.ocl.pivot.Class.class, pivotElement.getConstrainingClasses(), eObject2.getEBounds());
+			doSwitchAll(org.eclipse.ocl.pivot.Class.class, ClassUtil.nullFree(pivotElement.getConstrainingClasses()), eObject2.getEBounds());
 		}
 		return null;
 	}

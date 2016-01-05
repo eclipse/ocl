@@ -43,7 +43,7 @@ import org.eclipse.ocl.xtext.base.cs2as.Continuation;
  * CS2ASCG2JavaVisitor refines the regular generation of Java code from an optimized Auto CG transformation tree
  * to add contributions that are inadequately represented by the CG model.
  */
-public class CS2ASCG2JavaVisitor extends AutoCG2JavaVisitor<CS2ASCodeGenerator>
+public class CS2ASCG2JavaVisitor extends AutoCG2JavaVisitor<@NonNull CS2ASCodeGenerator>
 {
 	public CS2ASCG2JavaVisitor(@NonNull CS2ASCodeGenerator codeGenerator, @NonNull CGPackage cgPackage,
 			@Nullable List<CGValuedElement> sortedGlobals) {

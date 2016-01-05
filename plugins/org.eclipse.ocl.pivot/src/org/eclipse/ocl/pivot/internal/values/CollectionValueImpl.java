@@ -79,14 +79,14 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 	 */
 	private static class ArrayIterator<T> implements Iterator<T>
 	{
-		protected final @NonNull T[] elements;
+		protected final T @NonNull [] elements;
 		protected final int size;
 		private int index;
 
 		/**
 		 * Returns new array iterator over the given object array
 		 */
-		public ArrayIterator(@NonNull T[] elements, int size) {
+		public ArrayIterator(T @NonNull [] elements, int size) {
 			this.elements = elements;
 			index = 0;
 			this.size = size;
@@ -639,8 +639,8 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 		if (elements instanceof BasicEList) {
 			@SuppressWarnings("unchecked")
 			BasicEList<Object> castElements = (BasicEList<Object>)elements;
-			Object[] data = castElements.data();
-			return data != null ? new ArrayIterator<Object>(data, elements.size()) : EMPTY_ITERATOR;
+			@SuppressWarnings("null")@Nullable Object[] data = castElements.data();
+			return data != null ? new ArrayIterator<@Nullable Object>(data, elements.size()) : EMPTY_ITERATOR;
 		}
 		if (elements instanceof List<?>) {
 			@SuppressWarnings("unchecked")

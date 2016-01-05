@@ -43,9 +43,10 @@ public class OCLinEcoreAS2CS extends EssentialOCLAS2CS
 			return new BaseReferenceVisitor(converter);
 		}
 
+		@SuppressWarnings("null")
 		@Override
-		public @NonNull EClass[] getEClasses() {
-			return new EClass[] {
+		public @NonNull EClass @NonNull [] getEClasses() {
+			return new EClass @NonNull [] {
 				PivotPackage.Literals.ANNOTATION,
 				PivotPackage.Literals.CONSTRAINT,
 				PivotPackage.Literals.EXPRESSION_IN_OCL

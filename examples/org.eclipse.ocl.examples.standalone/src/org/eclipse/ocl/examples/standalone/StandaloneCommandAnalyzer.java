@@ -53,7 +53,7 @@ public class StandaloneCommandAnalyzer
 	 *            the application arguments.
 	 * @return the application return code.
 	 */
-	public @Nullable StandaloneCommand parse(@NonNull String[] args) {
+	public @Nullable StandaloneCommand parse(@NonNull String @NonNull [] args) {
 		if (args.length <= 0) {
 			logger.error("Missing command keyword");
 			return null;

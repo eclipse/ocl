@@ -50,13 +50,13 @@ public class OCLinEcoreEditorCallback extends ValidatingEditorCallback
 			this.editor = editor;
 		}
 
-		@SuppressWarnings("unchecked")
+		@SuppressWarnings({"unchecked", "null"})
 		@Override
-		public Object getAdapter(Object adaptableObject, @SuppressWarnings("rawtypes") Class adapterType) {
+		public <T> T getAdapter(Object adaptableObject, Class<T> adapterType) {
 			if ((adapterType == EcoreEditor.class) && (adaptableObject instanceof XtextEditor)) {
-				return new XtextEditor_EcoreEditor(editor);
+				return (T) new XtextEditor_EcoreEditor(editor);
 			}
-			return null;
+			return (T)null;
 		}
 
 		@Override

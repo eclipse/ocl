@@ -82,7 +82,7 @@ public abstract class VMSourcePathComputer implements ISourcePathComputer
 	
 	public abstract @NonNull String getId();
 	
-	public @NonNull ISourceContainer[] computeSourceContainers(ILaunchConfiguration configuration, IProgressMonitor monitor) throws CoreException {
+	public @NonNull ISourceContainer @NonNull [] computeSourceContainers(ILaunchConfiguration configuration, IProgressMonitor monitor) throws CoreException {
 		assert configuration != null;
 		URI moduleURI = getModuleFile(configuration);
 		ISourceContainer sourceContainer;
@@ -120,7 +120,7 @@ public abstract class VMSourcePathComputer implements ISourcePathComputer
 	    List<ISourceContainer> result = new ArrayList<ISourceContainer>();
 		result.add(sourceContainer);		
 //		result.addAll(Arrays.asList(fJavaSourcePathComputer.computeSourceContainers(configuration, monitor)));
-		@SuppressWarnings("null")@NonNull ISourceContainer[] array = result.toArray(new ISourceContainer[result.size()]);
+		@SuppressWarnings("null")@NonNull ISourceContainer @NonNull [] array = result.toArray(new ISourceContainer[result.size()]);
 		return array;
 	}
 

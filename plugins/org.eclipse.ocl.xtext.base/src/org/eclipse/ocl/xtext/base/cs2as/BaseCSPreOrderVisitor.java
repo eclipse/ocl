@@ -68,7 +68,7 @@ import org.eclipse.ocl.xtext.basecs.WildcardTypeRefCS;
 import org.eclipse.ocl.xtext.basecs.util.AbstractExtendingBaseCSVisitor;
 import org.eclipse.ocl.xtext.basecs.util.VisitableCS;
 
-public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continuation<?>, CS2ASConversion>
+public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continuation<?>, @NonNull CS2ASConversion>
 {
 	protected static class ClassSupersContinuation extends SingleContinuation<StructuredClassCS>
 	{
@@ -92,7 +92,7 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 		public BasicContinuation<?> execute() {
 			org.eclipse.ocl.pivot.Class pivotElement = PivotUtil.getPivot(org.eclipse.ocl.pivot.Class.class, csElement);
 			if (pivotElement != null) {
-				List<org.eclipse.ocl.pivot.Class> superClasses = pivotElement.getSuperClasses();
+				List<org.eclipse.ocl.pivot.@NonNull Class> superClasses = ClassUtil.nullFree(pivotElement.getSuperClasses());
 				context.refreshList(org.eclipse.ocl.pivot.Class.class, superClasses, csElement.getOwnedSuperTypes());
 				if (superClasses.isEmpty()) {
 					org.eclipse.ocl.pivot.Class oclElementType = context.getStandardLibrary().getOclElementType();

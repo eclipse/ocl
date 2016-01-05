@@ -84,7 +84,7 @@ public class OclVoidTypeIdImpl extends UnscopedId implements OclVoidTypeId
 	}
 
 	@Override
-	public @NonNull TuplePartId[] getPartIds() {
+	public @NonNull TuplePartId @NonNull [] getPartIds() {
 		return NULL_TUPLE_PART_ID_ARRAY;
 	}
 

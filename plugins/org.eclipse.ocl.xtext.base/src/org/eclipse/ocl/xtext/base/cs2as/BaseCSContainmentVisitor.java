@@ -89,7 +89,7 @@ import org.eclipse.ocl.xtext.basecs.WildcardTypeRefCS;
 import org.eclipse.ocl.xtext.basecs.util.AbstractExtendingBaseCSVisitor;
 import org.eclipse.ocl.xtext.basecs.util.VisitableCS;
 
-public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Continuation<?>, CS2ASConversion>
+public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Continuation<?>, @NonNull CS2ASConversion>
 {
 	protected final @NonNull PivotMetamodelManager metamodelManager;
 	protected final @NonNull StandardLibraryInternal standardLibrary;
@@ -203,7 +203,7 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 	/**
 	 * Method used to refresh every {@link RootCS} element.
 	 */
-	protected @NonNull <T extends Model> T refreshRoot(@NonNull Class<T> pivotClass, /*@NonNull*/ EClass pivotEClass, @NonNull RootCS csElement) {
+	protected <T extends Model> T refreshRoot(@NonNull Class<T> pivotClass, /*@NonNull*/ EClass pivotEClass, @NonNull RootCS csElement) {
 		assert pivotEClass != null;
 		Resource csResource = csElement.eResource();
 		if (csResource == null) {
@@ -256,8 +256,8 @@ public class BaseCSContainmentVisitor extends AbstractExtendingBaseCSVisitor<Con
 	 * 
 	 * There are some Roots which may own packages like those created in OCLinEcore or StdLin documents 
 	 */
-	protected @NonNull <T extends Model> T refreshRootPackage(@NonNull Class<T> pivotClass, /*@NonNull*/ EClass pivotEClass, @NonNull RootPackageCS csElement) {
-		@NonNull T pivotElement = refreshRoot(pivotClass, pivotEClass,  csElement);
+	protected @NonNull <@NonNull T extends Model> T refreshRootPackage(@NonNull Class<T> pivotClass, /*@NonNull*/ EClass pivotEClass, @NonNull RootPackageCS csElement) {
+		@NonNull T pivotElement = refreshRoot(pivotClass, pivotEClass, csElement);
 		context.refreshPivotList(org.eclipse.ocl.pivot.Package.class, pivotElement.getOwnedPackages(), csElement.getOwnedPackages());
 		return pivotElement;
 	}

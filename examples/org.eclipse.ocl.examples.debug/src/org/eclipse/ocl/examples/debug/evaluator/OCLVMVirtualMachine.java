@@ -37,7 +37,7 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 public class OCLVMVirtualMachine extends VMVirtualMachine
 {
-	public static VMStackFrameData[] createStackFrame(List<UnitLocation> stack) {
+	public static @NonNull VMStackFrameData @NonNull [] createStackFrame(@NonNull List<UnitLocation> stack) {
 		List<VMStackFrameData> result = new ArrayList<VMStackFrameData>();
 		
 		int i = 0;
@@ -47,8 +47,8 @@ public class OCLVMVirtualMachine extends VMVirtualMachine
 				result.add(createStackFrame(location, i++ == 0));
 			}
 		}
-
-		return result.toArray(new VMStackFrameData[result.size()]);
+		@SuppressWarnings("null")@NonNull VMStackFrameData @NonNull [] array = result.toArray(new @NonNull VMStackFrameData @NonNull [result.size()]);
+		return array;
 	}
 	
 	private static boolean appendElementSignature(@NonNull StringBuilder s, @Nullable EObject eObject) {
@@ -126,7 +126,7 @@ public class OCLVMVirtualMachine extends VMVirtualMachine
 		
 		List<VMVariableData> vars = VariableFinder.getVariables(evalEnv);
 		String uriString = ClassUtil.nonNullState(location.getURI().toString());
-		@SuppressWarnings("null")@NonNull VMVariableData[] varsArray = vars.toArray(new VMVariableData[vars.size()]);
+		@SuppressWarnings("null")@NonNull VMVariableData @NonNull [] varsArray = vars.toArray(new VMVariableData[vars.size()]);
 		VMStackFrameData vmStackFrame = new VMStackFrameData(evalEnv.getID(), uriString, moduleName, 
 					operSignature, location.getLineNum(), location.getStartPosition(), location.getEndPosition(), varsArray);
 		return vmStackFrame;

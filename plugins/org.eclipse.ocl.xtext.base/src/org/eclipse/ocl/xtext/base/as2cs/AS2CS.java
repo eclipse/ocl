@@ -39,7 +39,7 @@ public class AS2CS extends AbstractConversion
 		/**
 		 * Return a list of classes for which this AS2CS overrides a base AS2CS.
 		 */
-		@NonNull EClass[] getEClasses();
+		@NonNull EClass @NonNull [] getEClasses();
 	}
 	
 	private @NonNull Map<EClass, Factory> factoryMap = new HashMap<EClass, Factory>();

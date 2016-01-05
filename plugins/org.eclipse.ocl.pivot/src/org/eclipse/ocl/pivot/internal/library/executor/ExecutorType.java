@@ -42,7 +42,7 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 	/**
 	 * Depth ordered inheritance fragments. OclAny at depth 0, OclSelf at depth size-1.
 	 */
-	private ExecutorFragment[] fragments = null;
+	private @NonNull ExecutorFragment @Nullable [] fragments = null;
 	
 	/**
 	 * The index in fragments at which inheritance fragments at a given depth start.
@@ -56,7 +56,7 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 	private final @NonNull TemplateParameters typeParameters;
 	private /*@LazyNonNull*/ DomainProperties allProperties;
 	
-	public ExecutorType(@NonNull String name, @NonNull ExecutorPackage evaluationPackage, int flags, @NonNull ExecutorTypeParameter... typeParameters) {
+	public ExecutorType(@NonNull String name, @NonNull ExecutorPackage evaluationPackage, int flags, @NonNull ExecutorTypeParameter @NonNull ... typeParameters) {
 		super(name, flags);
 		this.evaluationPackage = evaluationPackage;
 		this.typeParameters = TypeUtil.createTemplateParameters(typeParameters);
@@ -78,7 +78,7 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 	
 	@Override
 	public final @NonNull FragmentIterable getAllProperSuperFragments() {
-		InheritanceFragment[] fragments2 = ClassUtil.nonNullState(fragments);
+		@NonNull InheritanceFragment @NonNull [] fragments2 = ClassUtil.nonNullState(fragments);
 		return new FragmentIterable(fragments2, 0, fragments2.length-1);
 	}
 	
@@ -109,8 +109,8 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 	}
 
 	@Override
-	public ExecutorFragment getFragment(int fragmentNumber) {
-		return fragments[fragmentNumber];
+	public @NonNull ExecutorFragment getFragment(int fragmentNumber) {
+		return ClassUtil.nonNullState(fragments)[fragmentNumber];
 	}
 	
 	@Override
@@ -184,7 +184,7 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 
 	@Override
 	public @NonNull ExecutorFragment getSelfFragment() {
-		return ClassUtil.nonNullState(getFragment(fragments.length-1));
+		return getFragment(ClassUtil.nonNullState(fragments).length-1);
 	}
 
 	public @NonNull StandardLibrary getStandardLibrary() {
@@ -210,7 +210,7 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 		return typeParameters;
 	}
 
-	public void initFragments(@NonNull ExecutorFragment[] fragments, int[] depthCounts) {
+	public void initFragments(@NonNull ExecutorFragment @NonNull [] fragments, int[] depthCounts) {
 		int[] indexes = new int[depthCounts.length+1];
 		indexes[0] = 0;
 		for (int i = 0; i <  depthCounts.length; i++) {

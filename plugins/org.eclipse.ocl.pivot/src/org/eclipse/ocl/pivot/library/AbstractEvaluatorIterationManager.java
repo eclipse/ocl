@@ -82,25 +82,23 @@ public abstract class AbstractEvaluatorIterationManager extends AbstractIteratio
 
 	/** @deprecated use Executor */
 	@Deprecated
-	protected static ValueIterator[] createIterators(@NonNull TypedElement[] referredIterators, @NonNull Evaluator evaluator, @NonNull CollectionValue collectionValue) {
+	protected static @NonNull ValueIterator @Nullable [] createIterators(@NonNull TypedElement @NonNull [] referredIterators, @NonNull Evaluator evaluator, @NonNull CollectionValue collectionValue) {
 		return createIterators(referredIterators, ValueUtil.getExecutor(evaluator), collectionValue);
 	}
 	
 	/**
 	 * @since 1.1
 	 */
-	protected static ValueIterator[] createIterators(@NonNull TypedElement[] referredIterators, @NonNull Executor executor, @NonNull CollectionValue collectionValue) {
+	protected static @NonNull ValueIterator @Nullable [] createIterators(@NonNull TypedElement @NonNull [] referredIterators, @NonNull Executor executor, @NonNull CollectionValue collectionValue) {
 		int iMax = referredIterators.length;
-		ValueIterator[] iterators = new ValueIterator[iMax];
+		@NonNull ValueIterator @Nullable [] iterators = new @NonNull ValueIterator[iMax];
 		for (int i = 0; i < iMax; i++) {
 			TypedElement referredIterator = referredIterators[i];
-			if (referredIterator != null) {
-				ValueIterator valueIterator = new ValueIterator(executor, collectionValue, referredIterator);
-				if (!valueIterator.hasCurrent()) {
-					return null;
-				}
-				iterators[i] = valueIterator;
+			ValueIterator valueIterator = new ValueIterator(executor, collectionValue, referredIterator);
+			if (!valueIterator.hasCurrent()) {
+				return null;
 			}
+			iterators[i] = valueIterator;
 		}
 		return iterators;
 	}

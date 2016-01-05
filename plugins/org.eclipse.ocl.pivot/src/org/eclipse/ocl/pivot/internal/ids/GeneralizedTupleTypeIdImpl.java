@@ -17,13 +17,13 @@ import org.eclipse.ocl.pivot.ids.IdVisitor;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
 
-public class GeneralizedTupleTypeIdImpl extends AbstractTypeId implements TupleTypeId, WeakHashMapOfListOfWeakReference3.MatchableId<String, TuplePartId[]>
+public class GeneralizedTupleTypeIdImpl extends AbstractTypeId implements TupleTypeId, WeakHashMapOfListOfWeakReference3.MatchableId<String, @NonNull TuplePartId @NonNull []>
 {
 	protected final @NonNull Integer hashCode;
 	protected final @NonNull String name;
-	protected final @NonNull TuplePartId[] partIds;
+	protected final @NonNull TuplePartId @NonNull [] partIds;
 	
-	public GeneralizedTupleTypeIdImpl(@NonNull IdManager idManager, @NonNull Integer hashCode, @NonNull String name, @NonNull TuplePartId[] orderedPartIds) {
+	public GeneralizedTupleTypeIdImpl(@NonNull IdManager idManager, @NonNull Integer hashCode, @NonNull String name, @NonNull TuplePartId @NonNull [] orderedPartIds) {
 		this.hashCode = hashCode;
 		this.name = name;
 		this.partIds = orderedPartIds;
@@ -79,7 +79,7 @@ public class GeneralizedTupleTypeIdImpl extends AbstractTypeId implements TupleT
 	}
 	
 	@Override
-	public @NonNull TuplePartId[] getPartIds() {
+	public @NonNull TuplePartId @NonNull [] getPartIds() {
 		return partIds;
 	}
 
@@ -89,7 +89,7 @@ public class GeneralizedTupleTypeIdImpl extends AbstractTypeId implements TupleT
 	}
 
 	@Override
-	public boolean matches(@NonNull String thatName, @NonNull TuplePartId[] thoseOrderedParts) {
+	public boolean matches(@NonNull String thatName, @NonNull TuplePartId @NonNull [] thoseOrderedParts) {
 		for (int i = 0; i < partIds.length; i++) {
 			if (partIds[i] != thoseOrderedParts[i]) {
 				return false;

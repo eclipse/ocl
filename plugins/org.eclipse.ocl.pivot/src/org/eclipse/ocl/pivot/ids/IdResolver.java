@@ -110,7 +110,7 @@ public interface IdResolver extends IdVisitor<Element>
 
 	@NonNull Type getDynamicTypeOf(@Nullable Object value);
 
-	@Nullable Type getDynamicTypeOf(@NonNull Object... values);
+	@Nullable Type getDynamicTypeOf(@NonNull Object @NonNull ... values);
 
 	@Nullable Type getDynamicTypeOf(@NonNull Iterable<?> values);
 

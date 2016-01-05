@@ -156,8 +156,8 @@ public class CompletionProposalTests extends XtextTestCase
 		TestUIUtil.flushEvents();
 	}
 
-	public void doTestEditor(@NonNull String testContent, @Nullable IReferenceCompletionProposal[] expectedProposals,
-			@Nullable IReferenceCompletionProposal[] unexpectedProposals) throws Exception {
+	public void doTestEditor(@NonNull String testContent, @NonNull IReferenceCompletionProposal @Nullable [] expectedProposals,
+			@NonNull IReferenceCompletionProposal @Nullable [] unexpectedProposals) throws Exception {
 		int cursorIndex = testContent.indexOf("$");
 		String trueContent = testContent.replace("$",  "");
 		IXtextDocument document = editor.getDocument();

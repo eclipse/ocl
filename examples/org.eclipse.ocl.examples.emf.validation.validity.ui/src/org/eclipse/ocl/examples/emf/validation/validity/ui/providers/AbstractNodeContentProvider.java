@@ -22,7 +22,7 @@ import org.eclipse.ocl.examples.emf.validation.validity.manager.ValidityManager;
 
 public abstract class AbstractNodeContentProvider implements ITreeContentProvider
 {
-	public static final @NonNull Object[] NO_OBJECTS = new Object[0];
+	public static final @NonNull Object @NonNull [] NO_OBJECTS = new @NonNull Object[0];
 	
 	private final @NonNull ValidityManager validityManager;
 

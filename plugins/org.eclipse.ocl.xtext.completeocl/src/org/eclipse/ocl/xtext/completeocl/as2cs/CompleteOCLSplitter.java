@@ -243,8 +243,7 @@ public class CompleteOCLSplitter
 			String name = object.getName();
 			@Nullable T separateObject = NameUtil.getNameable(separateSiblings, name);
 			if (separateObject == null) {
-				@SuppressWarnings("unchecked")
-				@NonNull T castObject = (T) object.eClass().getEPackage().getEFactoryInstance().create(object.eClass());
+				@SuppressWarnings({"unchecked", "null"})@NonNull T castObject = (T) object.eClass().getEPackage().getEFactoryInstance().create(object.eClass());
 				separateObject = castObject;
 				separateObject.setName(name);
 				separateSiblings.add(separateObject);

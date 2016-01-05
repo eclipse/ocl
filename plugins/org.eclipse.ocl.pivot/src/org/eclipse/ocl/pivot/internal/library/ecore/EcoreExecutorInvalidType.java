@@ -19,7 +19,7 @@ import org.eclipse.ocl.pivot.internal.library.executor.ExecutorTypeParameter;
 
 public class EcoreExecutorInvalidType extends EcoreExecutorType
 {
-	public EcoreExecutorInvalidType(@NonNull BuiltInTypeId typeId, @NonNull ExecutorPackage evaluationPackage, int flags, @NonNull ExecutorTypeParameter... typeParameters) {
+	public EcoreExecutorInvalidType(@NonNull BuiltInTypeId typeId, @NonNull ExecutorPackage evaluationPackage, int flags, @NonNull ExecutorTypeParameter @NonNull ... typeParameters) {
 		super(typeId, evaluationPackage, flags | OCL_INVALID, typeParameters);
 	}
 

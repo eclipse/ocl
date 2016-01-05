@@ -373,7 +373,7 @@ public class JavaClassScope extends AbstractJavaClassScope
 		}
 	} */
 	
-/*	private void scanClassPath(@NonNull IClasspathEntry[] resolvedClasspath, @NonNull Set<String> classNames) {
+/*	private void scanClassPath(@NonNull IClasspathEntry @NonNull [] resolvedClasspath, @NonNull Set<String> classNames) {
 //		String property = System.getProperty("java.class.path");
 //		String separator = System.getProperty("path.separator");
 //		if (property != null) {

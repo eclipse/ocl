@@ -20,5 +20,5 @@ public interface TupleTypeId extends TypeId
 {
 	@NonNull String getName();
 	@Nullable TuplePartId getPartId(@NonNull String name);
-	@NonNull TuplePartId[] getPartIds();
+	@NonNull TuplePartId @NonNull [] getPartIds();
 }

@@ -59,6 +59,7 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.swt.SWT;
@@ -623,8 +624,7 @@ public class EmbeddedXtextEditor
 			fSourceViewer.getControl().addDisposeListener(new DisposeListener() {
 				@Override
 				public void widgetDisposed(DisposeEvent e) {
-					@SuppressWarnings("cast")			// Cast not needed after Mars M6
-					IHandlerService handlerService = (IHandlerService) PlatformUI.getWorkbench().getAdapter(IHandlerService.class);
+					IHandlerService handlerService = ClassUtil.getAdapter(PlatformUI.getWorkbench(), IHandlerService.class);
 					if (handlerService != null) {
 						handlerService.deactivateHandlers(fHandlerActivations);
 					}
@@ -649,8 +649,7 @@ public class EmbeddedXtextEditor
 					}
 				}
 			}
-			@SuppressWarnings("cast")			// Cast not needed after Mars M6
-			IHandlerService handlerService = (IHandlerService) PlatformUI.getWorkbench().getAdapter(IHandlerService.class);
+			@Nullable IHandlerService handlerService = ClassUtil.getAdapter(PlatformUI.getWorkbench(), IHandlerService.class);
 			if (handlerService != null) {
 				handlerService.deactivateHandlers(fHandlerActivations);
 			}
@@ -673,8 +672,7 @@ public class EmbeddedXtextEditor
 					fContextActivation = null;
 				}
 			}
-			@SuppressWarnings("cast")			// Cast not needed after Mars M6
-			IHandlerService handlerService = (IHandlerService) workbench.getAdapter(IHandlerService.class);
+			IHandlerService handlerService = ClassUtil.getAdapter(workbench, IHandlerService.class);
 			if (handlerService != null) {
 				for (ActionHandler actionHandler : fActionHandlers) {
 					fHandlerActivations.add(handlerService.activateHandler(actionHandler.getAction().getId(), actionHandler, fExpression));

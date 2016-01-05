@@ -44,9 +44,10 @@ public class CompleteOCLAS2CS extends EssentialOCLAS2CS
 			return new EssentialOCLReferenceVisitor(converter, scope);
 		}
 
+		@SuppressWarnings("null")
 		@Override
-		public @NonNull EClass[] getEClasses() {
-			return new EClass[] {
+		public @NonNull EClass @NonNull [] getEClasses() {
+			return new @NonNull EClass @NonNull [] {
 				PivotPackage.Literals.CLASS,
 				PivotPackage.Literals.CONSTRAINT,
 				PivotPackage.Literals.OPERATION,

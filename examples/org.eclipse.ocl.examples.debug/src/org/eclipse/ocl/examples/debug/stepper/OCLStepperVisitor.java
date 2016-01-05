@@ -28,7 +28,7 @@ import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
-public class OCLStepperVisitor extends AbstractExtendingVisitor<IStepper, Object> implements IStepperVisitor
+public class OCLStepperVisitor extends AbstractExtendingVisitor<@Nullable IStepper, @NonNull Object> implements IStepperVisitor
 {
 	public static @NonNull OCLStepperVisitor INSTANCE = new OCLStepperVisitor(OCLStepperVisitor.class);
 	

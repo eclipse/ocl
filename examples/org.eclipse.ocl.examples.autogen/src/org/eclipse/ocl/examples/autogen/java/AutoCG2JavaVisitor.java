@@ -31,7 +31,7 @@ import org.eclipse.ocl.examples.codegen.java.CG2JavaVisitor;
  * AutoCG2JavaVisitor refines the regular generation of Java code from an optimized Auto CG transformation tree
  * to add contributions that are inadequately represented by the CG model.
  */
-public abstract class AutoCG2JavaVisitor<CG extends AutoCodeGenerator> extends CG2JavaVisitor<CG> implements AutoCGModelVisitor<Boolean>
+public abstract class AutoCG2JavaVisitor<@NonNull CG extends AutoCodeGenerator> extends CG2JavaVisitor<CG> implements AutoCGModelVisitor<Boolean>
 {
 	protected final @NonNull AutoAnalyzer analyzer;
 	protected final @NonNull CGPackage cgPackage;
@@ -65,7 +65,7 @@ public abstract class AutoCG2JavaVisitor<CG extends AutoCodeGenerator> extends C
 		}
 	}
 
-	protected boolean isDerivedVisitor(CGClass cgClass) {
+	protected boolean isDerivedVisitor(@NonNull CGClass cgClass) {
 		return cgClass.getSuperTypes().size() > 1;
 	}
 	

@@ -26,7 +26,7 @@ import org.eclipse.ocl.examples.codegen.java.JavaConstants;
  * LookupCG2JavaVisitor refines the regular generation of Java code from an optimized Auto CG transformation tree
  * to add contributions that are inadequately represented by the CG model.
  */
-public class LookupCG2JavaVisitor extends AutoCG2JavaVisitor<LookupCodeGenerator>
+public class LookupCG2JavaVisitor extends AutoCG2JavaVisitor<@NonNull LookupCodeGenerator>
 {
 	public LookupCG2JavaVisitor(@NonNull LookupCodeGenerator codeGenerator, @NonNull CGPackage cgPackage,
 			@Nullable List<CGValuedElement> sortedGlobals) {
@@ -160,7 +160,7 @@ public class LookupCG2JavaVisitor extends AutoCG2JavaVisitor<LookupCodeGenerator
 	}
 	
 	@Override
-	protected boolean isDerivedVisitor(CGClass cgClass) {		
+	protected boolean isDerivedVisitor(@NonNull CGClass cgClass) {		
 		return LookupCGUtil.isDeriverdVisitorClass(cgClass);
 	}
 	

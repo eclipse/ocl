@@ -409,9 +409,7 @@ public class LoadCompleteOCLResourceHandler extends AbstractHandler
 		if (!(o instanceof IEditorPart)) {
 			return null;
 		}
-		@SuppressWarnings("cast")			// Cast not needed after Mars M6
-		IEditingDomainProvider adapter = (IEditingDomainProvider) ((IEditorPart)o).getAdapter(IEditingDomainProvider.class);
-		IEditingDomainProvider editor = adapter;
+		IEditingDomainProvider editor = ClassUtil.getAdapter((IEditorPart)o, IEditingDomainProvider.class);
 		if (editor == null) {
 			return null;
 		}
@@ -427,9 +425,7 @@ public class LoadCompleteOCLResourceHandler extends AbstractHandler
 		if (!(o instanceof IEditorPart)) {
 			return null;
 		}
-		@SuppressWarnings("cast")			// Cast not needed after Mars M6
-		IEditingDomainProvider adapter = (IEditingDomainProvider) ((IEditorPart)o).getAdapter(IEditingDomainProvider.class);
-		IEditingDomainProvider editingDomainProvider = adapter;
+		IEditingDomainProvider editingDomainProvider = ClassUtil.getAdapter((IEditorPart)o, IEditingDomainProvider.class);
 		if (editingDomainProvider != null) {
 			EditingDomain editingDomain = editingDomainProvider.getEditingDomain();
 			if (editingDomain == null) {
@@ -438,9 +434,7 @@ public class LoadCompleteOCLResourceHandler extends AbstractHandler
 			ResourceSet resourceSet = editingDomain.getResourceSet();
 			return resourceSet;
 		}
-		@SuppressWarnings("cast")			// Cast not needed after Mars M6
-		XtextEditor adapter2 = (XtextEditor) ((IEditorPart)o).getAdapter(XtextEditor.class);
-		XtextEditor xtextEditor = adapter2;
+		XtextEditor xtextEditor = ClassUtil.getAdapter((IEditorPart)o, XtextEditor.class);
 		if (xtextEditor != null) {
 			IXtextDocument document = xtextEditor.getDocument();
 			ResourceSet resourceSet = document.readOnly(new IUnitOfWork<ResourceSet, XtextResource>() {

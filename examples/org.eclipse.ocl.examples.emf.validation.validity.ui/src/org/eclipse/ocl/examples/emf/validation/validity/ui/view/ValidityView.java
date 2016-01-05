@@ -83,6 +83,7 @@ import org.eclipse.ocl.examples.emf.validation.validity.ui.providers.Validatable
 import org.eclipse.ocl.examples.emf.validation.validity.ui.ripoffs.DecoratingColumnLabelProvider;
 import org.eclipse.ocl.examples.emf.validation.validity.ui.ripoffs.FilteredCheckboxTree;
 import org.eclipse.ocl.examples.emf.validation.validity.utilities.IVisibilityFilter;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.events.DisposeEvent;
@@ -578,11 +579,12 @@ public class ValidityView extends ViewPart implements ISelectionListener
 		}
 		if (selection != null) {
 			if (selection instanceof IAdaptable) {
-				Object adapted = ((IAdaptable)selection).getAdapter(EObject.class);
+				IAdaptable selection2 = (IAdaptable)selection;
+				Object adapted = ClassUtil.getAdapter(selection2, EObject.class);
 				if (adapted == null) {
-					adapted = ((IAdaptable)selection).getAdapter(Resource.class);
+					adapted = ClassUtil.getAdapter(selection2, Resource.class);
 					if (adapted == null) {
-						adapted = ((IAdaptable)selection).getAdapter(IResource.class);
+						adapted = ClassUtil.getAdapter(selection2, IResource.class);
 					}
 				}
 				if (adapted != null) {

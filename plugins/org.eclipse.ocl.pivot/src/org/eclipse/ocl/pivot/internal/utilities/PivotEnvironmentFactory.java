@@ -32,8 +32,8 @@ import org.eclipse.ocl.pivot.utilities.Option;
  */
 public class PivotEnvironmentFactory extends AbstractEnvironmentFactory
 {
-	private @Nullable IProject project = null;		// Eclipse project for project-specifuc preferences
-	private @Nullable IScopeContext[] scopeContexts = null;
+	private @Nullable IProject project = null;		// Eclipse project for project-specific preferences
+	private /*@NonNull*/ IScopeContext @Nullable [] scopeContexts = null;		// FIXME BUG 485092
 	
 	/**
 	 * Initializes me with an optional <code>StandaloneProjectMap</code> of accessible resources and
@@ -55,7 +55,8 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory
 		}
 		if (option instanceof PreferenceableOption<?>) {
 			if (project != null) {
-				scopeContexts = new IScopeContext[]{ new ProjectScope(project), ConfigurationScope.INSTANCE};
+				@SuppressWarnings("null")@NonNull IScopeContext instance = ConfigurationScope.INSTANCE;
+				scopeContexts = new @NonNull IScopeContext @NonNull []{ new ProjectScope(project), instance};
 			}
 			else {
 				scopeContexts = null;

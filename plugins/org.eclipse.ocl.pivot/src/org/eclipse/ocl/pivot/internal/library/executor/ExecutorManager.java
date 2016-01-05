@@ -115,7 +115,7 @@ public abstract class ExecutorManager implements Executor
 		}
 
 		@Override
-		public boolean isEnabled(@NonNull Option<Boolean> option) {
+		public boolean isEnabled(@NonNull Option<@Nullable Boolean> option) {
 			return false;
 		}
 

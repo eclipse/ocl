@@ -137,7 +137,7 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 	@Override
 	public abstract @NonNull CG2JavaPreVisitor createCG2JavaPreVisitor();
 
-	protected abstract @NonNull AutoCG2JavaVisitor<? extends AutoCodeGenerator> createCG2JavaVisitor(@NonNull CGPackage cgPackage, @Nullable List<CGValuedElement> sortedGlobals);
+	protected abstract @NonNull AutoCG2JavaVisitor<@NonNull ? extends AutoCodeGenerator> createCG2JavaVisitor(@NonNull CGPackage cgPackage, @Nullable List<CGValuedElement> sortedGlobals);
 
 	protected abstract @NonNull List<CGPackage> createCGPackages() throws ParserException;
 
@@ -170,11 +170,11 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 		
 		optimize(cgPackage);
 		List<CGValuedElement> sortedGlobals = prepareGlobals();
-		AutoCG2JavaVisitor<?> generator = createCG2JavaVisitor(cgPackage, sortedGlobals);
+		AutoCG2JavaVisitor<@NonNull ?> generator = createCG2JavaVisitor(cgPackage, sortedGlobals);
 		generator.safeVisit(cgPackage);
 		Set<String> allImports = generator.getAllImports();
-		Map<String, String> long2ShortImportNames = ImportUtils.getLong2ShortImportNames(allImports);
-		return ImportUtils.resolveImports(generator.toString(), long2ShortImportNames);
+		Map<@NonNull String, @Nullable String> long2ShortImportNames = ImportUtils.getLong2ShortImportNames(allImports);
+		return ImportUtils.resolveImports(generator.toString(), long2ShortImportNames, false);
 	}
 
 	@Override

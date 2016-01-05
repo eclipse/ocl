@@ -86,7 +86,7 @@ public class EnvironmentView
 	    public abstract int compare(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull T o1, @NonNull T o2);
 	}
 	
-	private static final class ImplicitDisambiguator extends Disambiguator<Object>
+	private static final class ImplicitDisambiguator extends Disambiguator<@NonNull Object>
 	{
 		@Override
 		public int compare(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Object match1, @NonNull Object match2) {
@@ -101,7 +101,7 @@ public class EnvironmentView
 		}
 	}
 	
-	private static final class MetamodelMergeDisambiguator extends Disambiguator<Feature>
+	private static final class MetamodelMergeDisambiguator extends Disambiguator<@NonNull Feature>
 	{
 		@Override
 		public int compare(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Feature match1, @NonNull Feature match2) {
@@ -125,7 +125,7 @@ public class EnvironmentView
 		}
 	}
 
-	private static final class OperationDisambiguator extends Disambiguator<Operation>
+	private static final class OperationDisambiguator extends Disambiguator<@NonNull Operation>
 	{
 		@Override
 		public int compare(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Operation match1, @NonNull Operation match2) {
@@ -154,7 +154,7 @@ public class EnvironmentView
 		}
 	}
 
-	private static final class MergedPackageDisambiguator extends Disambiguator<org.eclipse.ocl.pivot.Package>
+	private static final class MergedPackageDisambiguator extends Disambiguator<org.eclipse.ocl.pivot.@NonNull Package>
 	{
 		@Override
 		public int compare(@NonNull EnvironmentFactoryInternal environmentFactory, org.eclipse.ocl.pivot.@NonNull Package match1, org.eclipse.ocl.pivot.@NonNull Package match2) {
@@ -168,7 +168,7 @@ public class EnvironmentView
 		}
 	}
 
-	private static final class PropertyDisambiguator extends Disambiguator<Property>
+	private static final class PropertyDisambiguator extends Disambiguator<@NonNull Property>
 	{
 		@Override
 		public int compare(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Property match1, @NonNull Property match2) {

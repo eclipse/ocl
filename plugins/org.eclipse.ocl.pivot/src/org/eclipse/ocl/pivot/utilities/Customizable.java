@@ -62,7 +62,7 @@ public interface Customizable {
      * 
      * @return whether the option is enabled
      */
-    boolean isEnabled(@NonNull Option<Boolean> option);
+    boolean isEnabled(@NonNull Option<@Nullable Boolean> option);
     
     /**
      * Add an option to apply to my behaviour.

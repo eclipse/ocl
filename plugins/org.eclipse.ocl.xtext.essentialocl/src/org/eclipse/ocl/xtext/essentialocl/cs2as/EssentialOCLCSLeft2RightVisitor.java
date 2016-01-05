@@ -1247,7 +1247,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 		//
 		LibraryFeature implementationClass = operation.getImplementation();
 		if (implementationClass != null) {
-			@SuppressWarnings("null")@NonNull Class<? extends LibraryFeature> className = implementationClass.getClass();
+			Class<? extends LibraryFeature> className = implementationClass.getClass();
 			TemplateParameterSubstitutionHelper helper = TemplateParameterSubstitutionHelper.getHelper(className);
 			if (helper != null) {
 				returnType = helper.resolveReturnType(metamodelManager, callExp, returnType);

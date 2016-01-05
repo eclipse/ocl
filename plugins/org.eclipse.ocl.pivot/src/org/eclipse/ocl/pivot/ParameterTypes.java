@@ -24,7 +24,7 @@ import org.eclipse.ocl.pivot.ids.ParametersId;
  */
 public interface ParameterTypes
 {
-	@NonNull Type[] get();
+	@NonNull Type @NonNull [] get();
 	@NonNull Type get(int index);
 	@NonNull ParametersId getParametersId();
 	@NonNull List<Parameter> getParameters();

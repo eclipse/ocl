@@ -65,11 +65,11 @@ public class VMStackFrameData implements Serializable
 	private final int charEnd;	
 	public final @NonNull String module;
 	public final @Nullable String elementSignature;	
-	public final @NonNull VMVariableData[] visibleVariables;
+	public final @NonNull VMVariableData @NonNull [] visibleVariables;
 	
 	private transient VMLocationData location;	
 	
-	public VMStackFrameData(long id, @NonNull String uri, @NonNull String module, @Nullable String elementSignature, int line, int startPosition, int endPosition, @NonNull VMVariableData[] vars) {
+	public VMStackFrameData(long id, @NonNull String uri, @NonNull String module, @Nullable String elementSignature, int line, int startPosition, int endPosition, @NonNull VMVariableData @NonNull [] vars) {
 		if (/*vars.length == 0 ||*/ Arrays.asList(vars).contains(null)) {
 			throw new IllegalArgumentException();
 		}

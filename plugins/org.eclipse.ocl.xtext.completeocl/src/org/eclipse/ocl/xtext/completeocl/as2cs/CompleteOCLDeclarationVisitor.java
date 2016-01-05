@@ -131,7 +131,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 		}
 		org.eclipse.ocl.pivot.Package objectPackage = object.getOwningPackage();
 		ClassifierContextDeclCS csContext = context.refreshElement(ClassifierContextDeclCS.class, CompleteOCLCSPackage.Literals.CLASSIFIER_CONTEXT_DECL_CS, object);
-		if ((csContext != null) && (objectPackage != null)) {
+		if (objectPackage != null) {
 			refreshPathNamedElement(csContext, object, objectPackage);
 			importPackage(objectPackage);
 			context.refreshList(csContext.getOwnedInvariants(), context.visitDeclarations(ConstraintCS.class, ownedInvariant, null));
@@ -142,42 +142,40 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 	@Override
 	public ElementCS visitConstraint(@NonNull Constraint object) {
 		ConstraintCS csElement = context.refreshNamedElement(ConstraintCS.class, BaseCSPackage.Literals.CONSTRAINT_CS, object);
-		if (csElement != null) {
-			Namespace namespace = PivotUtil.getNamespace(object);
-			LanguageExpression specification = object.getOwnedSpecification();
-			if ((specification != null) && (namespace != null)) {
-				specification.accept(this);					// Deep search for references
-				ExpSpecificationCS csSpec = context.refreshElement(ExpSpecificationCS.class, EssentialOCLCSPackage.Literals.EXP_SPECIFICATION_CS, specification);
-				csElement.setOwnedSpecification(csSpec);
-				//
-				PivotMetamodelManager metamodelManager = context.getMetamodelManager();
-				PrettyPrintOptions.Global prettyPrintOptions = PrettyPrinter.createOptions(null); //metamodelManager.getPrimaryElement(namespace));
-				@SuppressWarnings("null")@NonNull ArrayList<String> newArrayList = Lists.newArrayList("body", "context", "def", "endpackage", "inv", "package", "post", "inv");
-				prettyPrintOptions.addReservedNames(newArrayList);	// FIXME use grammar
-				prettyPrintOptions.setEnvironmentFactory(metamodelManager.getEnvironmentFactory());
-				prettyPrintOptions.setLinelength(80);
-				Resource resource = object.eResource();
-				AliasAnalysis adapter = resource != null ? AliasAnalysis.getAdapter(resource) : null;
-				if (adapter != null) {
-					for (@SuppressWarnings("null")@NonNull CompletePackage aliased : adapter.getAliases()) {
-						org.eclipse.ocl.pivot.Package primary = aliased.getPrimaryPackage();
-						if (primary != null) {
-							String alias = adapter.getAlias(primary, null);
-							if (alias != null) {
-								prettyPrintOptions.addAliases(primary, alias);
-							}
+		Namespace namespace = PivotUtil.getNamespace(object);
+		LanguageExpression specification = object.getOwnedSpecification();
+		if ((specification != null) && (namespace != null)) {
+			specification.accept(this);					// Deep search for references
+			ExpSpecificationCS csSpec = context.refreshElement(ExpSpecificationCS.class, EssentialOCLCSPackage.Literals.EXP_SPECIFICATION_CS, specification);
+			csElement.setOwnedSpecification(csSpec);
+			//
+			PivotMetamodelManager metamodelManager = context.getMetamodelManager();
+			PrettyPrintOptions.Global prettyPrintOptions = PrettyPrinter.createOptions(null); //metamodelManager.getPrimaryElement(namespace));
+			@SuppressWarnings("null")@NonNull ArrayList<String> newArrayList = Lists.newArrayList("body", "context", "def", "endpackage", "inv", "package", "post", "inv");
+			prettyPrintOptions.addReservedNames(newArrayList);	// FIXME use grammar
+			prettyPrintOptions.setEnvironmentFactory(metamodelManager.getEnvironmentFactory());
+			prettyPrintOptions.setLinelength(80);
+			Resource resource = object.eResource();
+			AliasAnalysis adapter = resource != null ? AliasAnalysis.getAdapter(resource) : null;
+			if (adapter != null) {
+				for (@SuppressWarnings("null")@NonNull CompletePackage aliased : adapter.getAliases()) {
+					org.eclipse.ocl.pivot.Package primary = aliased.getPrimaryPackage();
+					if (primary != null) {
+						String alias = adapter.getAlias(primary, null);
+						if (alias != null) {
+							prettyPrintOptions.addAliases(primary, alias);
 						}
 					}
 				}
-				// FIXME BUG 419132 Need to do this in a deferred pass
-				String expr = PrettyPrinter.print(specification, prettyPrintOptions);		
-				csSpec.setExprString("\t" + expr.trim().replaceAll("\\r", "").replaceAll("\\n", "\n\t\t"));
 			}
-			else {
-				ExpSpecificationCS csSpec = EssentialOCLCSFactory.eINSTANCE.createExpSpecificationCS();
-				csElement.setOwnedSpecification(csSpec);
-				csSpec.setExprString("\tnull");
-			}
+			// FIXME BUG 419132 Need to do this in a deferred pass
+			String expr = PrettyPrinter.print(specification, prettyPrintOptions);		
+			csSpec.setExprString("\t" + expr.trim().replaceAll("\\r", "").replaceAll("\\n", "\n\t\t"));
+		}
+		else {
+			ExpSpecificationCS csSpec = EssentialOCLCSFactory.eINSTANCE.createExpSpecificationCS();
+			csElement.setOwnedSpecification(csSpec);
+			csSpec.setExprString("\tnull");
 		}
 		return csElement;
 	}
@@ -207,20 +205,18 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 		org.eclipse.ocl.pivot.Package modelPackage = modelType.getOwningPackage();
 		org.eclipse.ocl.pivot.Class savedScope = context.setScope(modelType);
 		OperationContextDeclCS csContext = context.refreshElement(OperationContextDeclCS.class, CompleteOCLCSPackage.Literals.OPERATION_CONTEXT_DECL_CS, object);
-		if (csContext != null) {
-			refreshPathNamedElement(csContext, object, modelPackage);
-//			csContext.getNamespace().add(owningType);
-			csContext.setOwnedType(convertTypeRef(object));
-			org.eclipse.ocl.pivot.Package owningPackage = object.getOwningClass().getOwningPackage();
-			if (owningPackage != null) {
-				importPackage(owningPackage);
-			}
-			context.refreshList(csContext.getOwnedParameters(), context.visitDeclarations(ParameterCS.class, object.getOwnedParameters(), null));
-			context.refreshList(csContext.getOwnedPreconditions(), context.visitDeclarations(ConstraintCS.class, object.getOwnedPreconditions(), null));
-			context.refreshList(csContext.getOwnedPostconditions(), context.visitDeclarations(ConstraintCS.class, object.getOwnedPostconditions(), null));
-			context.refreshList(csContext.getOwnedBodies(), context.visitDeclarationAsList(ExpSpecificationCS.class, object.getBodyExpression()));
-			context.setScope(savedScope);
+		refreshPathNamedElement(csContext, object, modelPackage);
+//		csContext.getNamespace().add(owningType);
+		csContext.setOwnedType(convertTypeRef(object));
+		org.eclipse.ocl.pivot.Package owningPackage = object.getOwningClass().getOwningPackage();
+		if (owningPackage != null) {
+			importPackage(owningPackage);
 		}
+		context.refreshList(csContext.getOwnedParameters(), context.visitDeclarations(ParameterCS.class, object.getOwnedParameters(), null));
+		context.refreshList(csContext.getOwnedPreconditions(), context.visitDeclarations(ConstraintCS.class, object.getOwnedPreconditions(), null));
+		context.refreshList(csContext.getOwnedPostconditions(), context.visitDeclarations(ConstraintCS.class, object.getOwnedPostconditions(), null));
+		context.refreshList(csContext.getOwnedBodies(), context.visitDeclarationAsList(ExpSpecificationCS.class, object.getBodyExpression()));
+		context.setScope(savedScope);
 		return csContext;
 	}
 
@@ -252,13 +248,11 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 		}
 		if (contexts.size() > 0) {
 			PackageDeclarationCS csPackage = context.refreshElement(PackageDeclarationCS.class, CompleteOCLCSPackage.Literals.PACKAGE_DECLARATION_CS, object);
-			if (csPackage != null) {
-//				context.refreshList(csPackage.getOwnedType(), context.visitDeclarations(ClassifierCS.class, object.getOwnedType(), null));
-				refreshPathNamedElement(csPackage, object, PivotUtil.getContainingNamespace(object));
-				importPackage(object);
-				context.refreshList(csPackage.getOwnedContexts(), contexts);
-				csElement = csPackage;
-			}
+//			context.refreshList(csPackage.getOwnedType(), context.visitDeclarations(ClassifierCS.class, object.getOwnedType(), null));
+			refreshPathNamedElement(csPackage, object, PivotUtil.getContainingNamespace(object));
+			importPackage(object);
+			context.refreshList(csPackage.getOwnedContexts(), contexts);
+			csElement = csPackage;
 		}
 		return csElement;
 	}
@@ -280,7 +274,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 		org.eclipse.ocl.pivot.Package modelPackage = modelType.getOwningPackage();
 		org.eclipse.ocl.pivot.Class savedScope = context.setScope(modelType);
 		PropertyContextDeclCS csContext = context.refreshElement(PropertyContextDeclCS.class, CompleteOCLCSPackage.Literals.PROPERTY_CONTEXT_DECL_CS, object);
-		if ((csContext != null) && (modelPackage != null)) {
+		if (modelPackage != null) {
 			refreshPathNamedElement(csContext, object, modelPackage);
 	//		csContext.getNamespace().add(owningType);
 			csContext.setOwnedType(convertTypeRef(object));
@@ -293,7 +287,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 		return csContext;
 	}
 
-	protected <T extends ConstraintCS> void refreshPropertyConstraints(@NonNull Class<T> csConstraintClass, @NonNull List<? super T> csPropertyConstraints, Property object) {
+	protected <T extends ConstraintCS> void refreshPropertyConstraints(@NonNull Class<T> csConstraintClass, @NonNull List<@NonNull ? super T> csPropertyConstraints, Property object) {
 		@Nullable T csConstraint = null;
 		LanguageExpression defaultExpression = object.getOwnedExpression();
 		if (defaultExpression != null) {

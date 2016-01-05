@@ -460,8 +460,7 @@ public abstract class AbstractProjectPreferencePage extends PreferencePage
 	 * @see org.eclipse.ui.IWorkbenchPropertyPage#setElement(org.eclipse.core.runtime.IAdaptable)
 	 */
 	public void setElement(IAdaptable element) {
-		@SuppressWarnings("cast")			// Cast not needed after Mars M6
-		IProject adapter = (IProject) element.getAdapter(IProject.class);
+		IProject adapter = element.getAdapter(IProject.class);
 		this.project = adapter;
 		if (project != null) {
 			projectStore = new ScopedPreferenceStore(new ProjectScope(project), pluginId);

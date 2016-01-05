@@ -79,12 +79,12 @@ public class ExecutorFragment extends AbstractFragment
 		throw new UnsupportedOperationException();		// WIP 
 	}
 
-	public void initOperations(@NonNull ExecutorOperation[] operations) {
+	public void initOperations(@NonNull ExecutorOperation @NonNull [] operations) {
 		assert this.operations == null;
 		this.operations = operations;
 	}
 
-	public void initProperties(@NonNull ExecutorProperty[] properties) {
+	public void initProperties(@NonNull ExecutorProperty @NonNull [] properties) {
 		assert this.properties == null;
 		this.properties = properties;
 	}

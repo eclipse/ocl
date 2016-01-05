@@ -74,10 +74,8 @@ public class OCLinEcoreDeclarationVisitor extends EssentialOCLDeclarationVisitor
 	@Override
 	public ElementCS visitConstraint(@NonNull Constraint object) {
 		OCLinEcoreConstraintCS csElement = context.refreshNamedElement(OCLinEcoreConstraintCS.class, OCLinEcoreCSPackage.Literals.OC_LIN_ECORE_CONSTRAINT_CS, object);
-		if (csElement != null) {
-			csElement.setIsCallable(object.isIsCallable());
-			refreshConstraint(csElement, object);
-		}
+		csElement.setIsCallable(object.isIsCallable());
+		refreshConstraint(csElement, object);
 		return csElement;
 	}
 	

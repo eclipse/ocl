@@ -91,7 +91,7 @@ public abstract class AbstractCustomizable implements Adaptable, Customizable
 	}
 
     @Override
-	public boolean isEnabled(@NonNull Option<Boolean> option) {
+	public boolean isEnabled(@NonNull Option<@Nullable Boolean> option) {
 		Boolean result = getValue(option);
 		return (result == null)? false : result.booleanValue();
 	}

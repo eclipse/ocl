@@ -245,7 +245,7 @@ public abstract class VMVirtualMachine implements IVMVirtualMachineShell
         lv.valueObject = localChecker.evaluate(fInterpreter2);
         lv.valueType = localChecker.getConditionType();
         
-		return new VMLocalValue(debugTarget, frameID, new String[] {expressionText}, lv, 
+		return new VMLocalValue(debugTarget, frameID, new @NonNull String @NonNull [] {expressionText}, lv, 
 				fInterpreter2.getVMEvaluationEnvironment());
 	}
 

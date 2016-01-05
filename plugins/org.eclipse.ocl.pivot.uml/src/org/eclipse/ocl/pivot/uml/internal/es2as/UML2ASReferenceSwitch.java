@@ -36,6 +36,7 @@ import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.External2AS;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.uml2.uml.util.UMLSwitch;
 
 //
@@ -81,7 +82,7 @@ public class UML2ASReferenceSwitch extends UMLSwitch<Object>
 		assert umlClass != null;
 		org.eclipse.ocl.pivot.Class pivotElement = converter.getCreated(org.eclipse.ocl.pivot.Class.class, umlClass);
 		if (pivotElement != null) {
-			doSwitchAll(org.eclipse.ocl.pivot.Class.class, pivotElement.getSuperClasses(), umlClass.getSuperClasses());
+			doSwitchAll(org.eclipse.ocl.pivot.Class.class, ClassUtil.nullFree(pivotElement.getSuperClasses()), umlClass.getSuperClasses());
 			if (pivotElement.getSuperClasses().isEmpty()) {
 				org.eclipse.ocl.pivot.Class oclElementType = standardLibrary.getOclElementType();
 				pivotElement.getSuperClasses().add(oclElementType);

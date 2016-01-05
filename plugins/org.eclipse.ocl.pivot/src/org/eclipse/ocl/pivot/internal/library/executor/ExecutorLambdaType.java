@@ -24,7 +24,7 @@ public class ExecutorLambdaType extends AbstractExecutorClass implements Executo
 {
 	protected final @NonNull TypeId typeId;
 
-	public ExecutorLambdaType(@NonNull String name, @NonNull ExecutorTypeArgument... typeArguments) {
+	public ExecutorLambdaType(@NonNull String name, @NonNull ExecutorTypeArgument @NonNull ... typeArguments) {
 		super(name, 0);
 		typeId = IdManager.getLambdaTypeId(name, IdManager.getParametersId(typeArguments));
 	}

@@ -28,6 +28,7 @@ import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.basecs.AnnotationCS;
 import org.eclipse.ocl.xtext.basecs.AnnotationElementCS;
@@ -65,7 +66,7 @@ import org.eclipse.ocl.xtext.basecs.WildcardTypeRefCS;
 import org.eclipse.ocl.xtext.basecs.util.AbstractExtendingBaseCSVisitor;
 import org.eclipse.ocl.xtext.basecs.util.VisitableCS;
 
-public class BaseCSPostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continuation<?>, CS2ASConversion>
+public class BaseCSPostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continuation<?>, @NonNull CS2ASConversion>
 {
 	public static class ListCompletion<CST extends ModelElementCS, P extends NamedElement> extends MultipleContinuation<CST>
 	{
@@ -234,7 +235,7 @@ public class BaseCSPostOrderVisitor extends AbstractExtendingBaseCSVisitor<Conti
 	public Continuation<?> visitOperationCS(@NonNull OperationCS csElement) {
 		Operation pivotOperation = PivotUtil.getPivot(Operation.class, csElement);
 		if (pivotOperation != null) {
-			context.refreshList(Type.class, pivotOperation.getRaisedExceptions(), csElement.getOwnedExceptions());
+			context.refreshList(Type.class, ClassUtil.nullFree(pivotOperation.getRaisedExceptions()), csElement.getOwnedExceptions());
 			TypedRefCS ownedType = csElement.getOwnedType();
 			boolean isTypeof = false;
 			if (ownedType  instanceof TypedTypeRefCS) {

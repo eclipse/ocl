@@ -21,7 +21,7 @@ public class VMSuspendEvent extends VMEvent
 	private static final long serialVersionUID = 2494519177689939386L;
 
 	public @NonNull VMLocationData location;
-	public @NonNull VMStackFrameData[] stackFrames;
+	public @NonNull VMStackFrameData @NonNull [] stackFrames;
 	public Long breakpointID;
 
 	// TODO - currently using DebugEvent constants, OCL should define its own
@@ -30,7 +30,7 @@ public class VMSuspendEvent extends VMEvent
 	public String reason;
 	public String reasonDetail;
 
-	public VMSuspendEvent(@NonNull VMStackFrameData[] stack, @NonNull VMSuspension suspension) {
+	public VMSuspendEvent(@NonNull VMStackFrameData @NonNull [] stack, @NonNull VMSuspension suspension) {
 		if (stack.length == 0) {
 			throw new IllegalArgumentException("empty stack"); //$NON-NLS-1$
 		}

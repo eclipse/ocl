@@ -258,7 +258,7 @@ public class ValidateCommand extends StandaloneCommand
 			return true;
 		}
 
-		public int parseArgument(@NonNull List<String> strings, @NonNull String[] arguments, int i) {
+		public int parseArgument(@NonNull List<String> strings, @NonNull String @NonNull [] arguments, int i) {
 			if (i < arguments.length){
 				String argument = arguments[i++];
 				checkOclFile(strings, argument);
@@ -431,7 +431,7 @@ public class ValidateCommand extends StandaloneCommand
 		}
 
 		@Override
-		public int parseArgument(@NonNull List<String> strings, @NonNull String[] arguments, int i) {
+		public int parseArgument(@NonNull List<String> strings, @NonNull String @NonNull [] arguments, int i) {
 			if (i < arguments.length){
 				String argument = arguments[i++];
 				String[] locators = argument.split(",");

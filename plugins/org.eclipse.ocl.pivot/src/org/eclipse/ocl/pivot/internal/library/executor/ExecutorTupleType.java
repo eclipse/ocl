@@ -27,7 +27,7 @@ public class ExecutorTupleType extends AbstractExecutorClass implements Executor
 {
 	protected final @NonNull TypeId typeId;
 
-	public ExecutorTupleType(@NonNull String name, @NonNull Collection<? extends TuplePartId> parts) {
+	public ExecutorTupleType(@NonNull String name, @NonNull Collection<@NonNull ? extends TuplePartId> parts) {
 		super(name, 0);
 		typeId = IdManager.getTupleTypeId(name, parts);
 	}

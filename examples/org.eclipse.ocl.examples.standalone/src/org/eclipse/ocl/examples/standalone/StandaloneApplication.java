@@ -73,7 +73,7 @@ public class StandaloneApplication implements IApplication
 	 *            the application arguments.
 	 * @return the application return code.
 	 */
-	public @NonNull StandaloneResponse execute(@NonNull String[] args) {
+	public @NonNull StandaloneResponse execute(@NonNull String @NonNull [] args) {
 		StandaloneCommand command = commandAnalyzer.parse(args);
 		if (command == null) {
 			return StandaloneResponse.FAIL;

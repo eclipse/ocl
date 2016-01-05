@@ -160,7 +160,7 @@ class BreakpointLocationVerifier {
 	protected void report(final String message) {
 		DebugVMUIPlugin.getStandardDisplay().asyncExec(new Runnable() {
 			public void run() {
-				IEditorStatusLine statusLine = (IEditorStatusLine) fEditor.getAdapter(IEditorStatusLine.class);
+				@Nullable IEditorStatusLine statusLine = (IEditorStatusLine) fEditor.getAdapter(IEditorStatusLine.class);
 				if (statusLine != null) {
 					statusLine.setMessage(true, message, null);
 				}

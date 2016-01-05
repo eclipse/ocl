@@ -37,14 +37,14 @@ public class ValidityViewRefreshJob extends Job
 	private class DisplayRefresh implements Runnable
 	{
 		protected final @Nullable IProgressMonitor monitor;
-		private final @Nullable AbstractNode[] grayedValidatableNodes;
-		private final @Nullable AbstractNode[] grayedConstrainingNodes;
+		private final @NonNull AbstractNode @Nullable [] grayedValidatableNodes;
+		private final @NonNull AbstractNode @Nullable [] grayedConstrainingNodes;
 
 		public DisplayRefresh(@Nullable IProgressMonitor monitor, @Nullable List<AbstractNode> grayedValidatableNodes,
 				@Nullable List<AbstractNode> grayedConstrainingNodes) {
 			this.monitor = monitor;
-			this.grayedValidatableNodes = grayedValidatableNodes != null ? grayedValidatableNodes.toArray(new AbstractNode[grayedValidatableNodes.size()]) : null;
-			this.grayedConstrainingNodes = grayedConstrainingNodes != null ? grayedConstrainingNodes.toArray(new AbstractNode[grayedConstrainingNodes.size()]) : null;
+			this.grayedValidatableNodes = grayedValidatableNodes != null ? grayedValidatableNodes.toArray(new @NonNull AbstractNode[grayedValidatableNodes.size()]) : null;
+			this.grayedConstrainingNodes = grayedConstrainingNodes != null ? grayedConstrainingNodes.toArray(new @NonNull AbstractNode[grayedConstrainingNodes.size()]) : null;
 		}
 
 		public void run() {

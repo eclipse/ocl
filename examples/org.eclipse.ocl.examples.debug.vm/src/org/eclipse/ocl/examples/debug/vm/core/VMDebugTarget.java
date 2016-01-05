@@ -358,7 +358,7 @@ public abstract class VMDebugTarget extends VMDebugElement implements IVMDebugTa
 			VMLineBreakpoint vmBreakpoint = (VMLineBreakpoint) breakpoint;
 			if (nowEnabled && !beforeEnabled) {
 				// just to be added to VM
-				changeRequest = VMBreakpointRequest.createAdd(new VMNewBreakpointData[] { vmBreakpoint.createNewBreakpointData() });
+				changeRequest = VMBreakpointRequest.createAdd(new @NonNull VMNewBreakpointData[] { vmBreakpoint.createNewBreakpointData() });
 			} else if (!nowEnabled && beforeEnabled) {
 				// just to be removed from VM
 				changeRequest = VMBreakpointRequest.createRemove(vmBreakpoint.getID());

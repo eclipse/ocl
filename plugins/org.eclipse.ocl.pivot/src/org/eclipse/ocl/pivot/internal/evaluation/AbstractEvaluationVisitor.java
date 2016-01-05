@@ -46,7 +46,7 @@ import org.eclipse.ocl.pivot.utilities.ValueUtil;
  * </p>
  */
 public abstract class AbstractEvaluationVisitor
-	extends AbstractExtendingVisitor<Object, ExecutorInternal> implements EvaluationVisitor.EvaluationVisitorExtension
+	extends AbstractExtendingVisitor<@Nullable Object, @NonNull ExecutorInternal> implements EvaluationVisitor.EvaluationVisitorExtension
 {
 	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
 	protected final @NonNull PivotMetamodelManager metamodelManager;	

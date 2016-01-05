@@ -21,6 +21,7 @@ import org.eclipse.debug.core.model.ISuspendResume;
 import org.eclipse.debug.ui.actions.IRunToLineTarget;
 import org.eclipse.debug.ui.actions.RunToLineHandler;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextSelection;
@@ -54,8 +55,9 @@ public abstract class VMRunToLineAdapter implements IRunToLineTarget
 			throw new CoreException(DebugVMUIPlugin.createErrorStatus(DebugVMUIMessages.RunToLineAdapter_NoDocument));
 		}
 		
-		IFile file = (IFile)input.getAdapter(IFile.class);
-		if (file == null) {
+		@Nullable IFile file = (IFile)input.getAdapter(IFile.class);
+		boolean isNull = file == null;			// FIXME BUG 485093
+		if (isNull) {
 			throw new CoreException(DebugVMUIPlugin.createErrorStatus(DebugVMUIMessages.RunToLineAdapter_NoFile)); 
 		}
 		
@@ -76,7 +78,7 @@ public abstract class VMRunToLineAdapter implements IRunToLineTarget
 
 		
 		IAdaptable adaptableTarget = (IAdaptable)target;
-		IDebugTarget debugTarget = (IDebugTarget) adaptableTarget.getAdapter(IDebugTarget.class);
+		@Nullable IDebugTarget debugTarget = (IDebugTarget) adaptableTarget.getAdapter(IDebugTarget.class);
 		if (debugTarget != null) {
             RunToLineHandler handler = new RunToLineHandler(debugTarget, target, vmBreakpoint);
             handler.run(new NullProgressMonitor());

@@ -78,6 +78,7 @@ public abstract class AbstractStepper implements IStepper
 			if (stepperVisitor instanceof OCLStepperVisitor) {
 				OCLStepperVisitor oclStepperVisitor = (OCLStepperVisitor)stepperVisitor;
 				while (true) {
+					assert element != null;
 					IStepper nextStepper = oclStepperVisitor.getStepper(element);
 					if (!(nextStepper instanceof AbstractStepper)) {
 						break;

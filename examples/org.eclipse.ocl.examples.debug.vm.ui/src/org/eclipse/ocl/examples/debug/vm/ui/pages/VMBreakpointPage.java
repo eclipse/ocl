@@ -26,6 +26,7 @@ import org.eclipse.debug.core.DebugException;
 import org.eclipse.ocl.examples.debug.vm.core.VMLineBreakpoint;
 import org.eclipse.ocl.examples.debug.vm.ui.DebugVMUIPlugin;
 import org.eclipse.ocl.examples.debug.vm.ui.messages.DebugVMUIMessages;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -215,7 +216,7 @@ public abstract class VMBreakpointPage extends PropertyPage {
      * @return the name of the element
      */
     private String getName(IAdaptable element) {
-        IWorkbenchAdapter adapter = (IWorkbenchAdapter) element.getAdapter(IWorkbenchAdapter.class);
+        IWorkbenchAdapter adapter = ClassUtil.getAdapter(element, IWorkbenchAdapter.class);
         if (adapter != null) {
             return adapter.getLabel(element);
         } 

@@ -13,7 +13,6 @@ package org.eclipse.ocl.examples.debug.vm.ui.actions;
 
 import java.util.List;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -31,6 +30,7 @@ import org.eclipse.ocl.examples.debug.core.OCLLineBreakpoint;
 import org.eclipse.ocl.examples.debug.vm.core.VMLineBreakpoint;
 import org.eclipse.ocl.examples.debug.vm.ui.DebugVMUIPlugin;
 import org.eclipse.ocl.examples.debug.vm.ui.messages.DebugVMUIMessages;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.texteditor.ITextEditor;
 
@@ -38,7 +38,10 @@ public abstract class VMToggleBreakpointAdapter implements IToggleBreakpointsTar
 {
 	public void toggleLineBreakpoints(final IWorkbenchPart part, ISelection selection) throws CoreException {
 		final ITextEditor oclEditor = (ITextEditor)part;
-		IFile unitFile = (IFile) oclEditor.getEditorInput().getAdapter(IResource.class);		
+		IResource unitFile = ClassUtil.getAdapter(oclEditor.getEditorInput(), IResource.class);
+		if (unitFile == null) {
+			return;
+		}
 		ITextSelection textSelection = (ITextSelection) selection;
 		int lineNumber = textSelection.getStartLine() + 1;
 		

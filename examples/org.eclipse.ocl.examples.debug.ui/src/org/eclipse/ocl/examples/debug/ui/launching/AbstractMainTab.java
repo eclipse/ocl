@@ -108,7 +108,7 @@ public abstract class AbstractMainTab extends AbstractLaunchConfigurationTab
 					if (selection instanceof IStructuredSelection) {
 						Object selectedObject = ((IStructuredSelection)selection).getFirstElement();
 						if (selectedObject instanceof IAdaptable) {
-							Object adaptedObject = ((IAdaptable) selectedObject).getAdapter(IFile.class);
+							@Nullable Object adaptedObject = ((IAdaptable) selectedObject).getAdapter(IFile.class);
 							if (adaptedObject instanceof IFile) {
 								iFile = (IFile) adaptedObject;
 							}

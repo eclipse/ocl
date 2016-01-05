@@ -109,7 +109,7 @@ public class HelpCommand extends StandaloneCommand
 	}
 
 	@Override
-	public @Nullable Map<CommandToken, List<String>> parse(@NonNull String[] arguments) {
+	public @Nullable Map<CommandToken, List<String>> parse(@NonNull String @NonNull [] arguments) {
 		Map<CommandToken, List<String>> tokens = super.parse(arguments);
 		if (tokens.size() > 0) {
 			logger.error(StandaloneMessages.HelpCommand_Bad);

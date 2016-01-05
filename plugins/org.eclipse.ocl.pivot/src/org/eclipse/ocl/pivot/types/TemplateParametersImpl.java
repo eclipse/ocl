@@ -24,11 +24,11 @@ import org.eclipse.ocl.pivot.Type;
 public class TemplateParametersImpl implements TemplateParameters
 {
 	
-	private final @NonNull Type[] typeParameters;
+	private final @NonNull Type @NonNull [] typeParameters;
 	private final int hashCode;
 
 	public TemplateParametersImpl(@NonNull TemplateParameter... typeParameters) {
-		this.typeParameters = new Type[typeParameters.length];
+		this.typeParameters = new @NonNull Type[typeParameters.length];
 		int hash = 0;
 		for (int i = 0; i < typeParameters.length; i++) {
 			Type parameter = typeParameters[i];
@@ -39,7 +39,7 @@ public class TemplateParametersImpl implements TemplateParameters
 	}
 	
 	public TemplateParametersImpl(@NonNull List<? extends Type> parameters) {
-		typeParameters = new Type[parameters.size()];
+		typeParameters = new @NonNull Type[parameters.size()];
 		int hash = 0;
 		for (int i = 0; i < typeParameters.length; i++) {
 			Type parameter = parameters.get(i);
@@ -63,31 +63,16 @@ public class TemplateParametersImpl implements TemplateParameters
 			return false;
 		}
 		for (int i = 0; i < iMax; i++) {
-			Type thisParameter = this.typeParameters[i];
-			Type thatParameter = that.typeParameters[i];
-			if (thisParameter != null) {
-				if (thatParameter != null) {
-					if (!thisParameter.equals(thatParameter)) {
-						return false;
-					}
-				}
-				else {
-					return false;
-				}				
-			}
-			else {
-				if (thatParameter != null) {
-					return false;
-				}
-				else {
-				}				
+			@NonNull Type thisParameter = this.typeParameters[i];
+			@NonNull Type thatParameter = that.typeParameters[i];
+			if (!thisParameter.equals(thatParameter)) {
+				return false;
 			}
 		}
 		return true;
 	}
 
 	@Override
-	@SuppressWarnings("null")
 	public @NonNull Type get(int i) {
 		return typeParameters[i];
 	}		

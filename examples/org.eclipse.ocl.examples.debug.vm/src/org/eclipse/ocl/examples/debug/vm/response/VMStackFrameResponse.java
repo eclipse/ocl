@@ -25,15 +25,15 @@ public class VMStackFrameResponse extends VMResponse
 	public boolean isDeferredExecution;
 	
 	public VMStackFrameResponse(@NonNull VMStackFrameData frame) {
-		this(new @NonNull VMStackFrameData[] { frame });
+		this(new @NonNull VMStackFrameData @NonNull [] { frame });
 	}
 
-	public VMStackFrameResponse(@NonNull VMStackFrameData[] frames) {
+	public VMStackFrameResponse(@NonNull VMStackFrameData @NonNull [] frames) {
 		this.frames = frames; 
 		this.variables = null;
 	}
 	
-	public VMStackFrameResponse(@NonNull VMVariableData[] variables) {
+	public VMStackFrameResponse(@NonNull VMVariableData @NonNull [] variables) {
 		this.variables = variables;
 		this.frames = null;
 	}

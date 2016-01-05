@@ -103,7 +103,7 @@ public abstract class ValueUtil
 
 	private static final int NEGATIVE_INTEGERS = 256;
 	private static final int POSITIVE_INTEGERS = 1025;
-	private static final @NonNull IntegerValue[] INTEGER_VALUES = new IntegerValue[NEGATIVE_INTEGERS + POSITIVE_INTEGERS];
+	private static final @Nullable IntegerValue @NonNull [] INTEGER_VALUES = new @Nullable IntegerValue[NEGATIVE_INTEGERS + POSITIVE_INTEGERS];
 
 	public static @NonNull Bag<?> EMPTY_BAG = new BagImpl<Object>();	
 	@SuppressWarnings("null")
@@ -475,7 +475,7 @@ public abstract class ValueUtil
 		return new BagValueImpl.Accumulator(collectedId);
 	}	
 
-	public static @NonNull BagValue createBagOfEach(@NonNull CollectionTypeId typeId, @Nullable Object... boxedValues) {
+	public static @NonNull BagValue createBagOfEach(@NonNull CollectionTypeId typeId, @Nullable Object @NonNull ... boxedValues) {
 		return new BagValueImpl(typeId, BagValueImpl.createBagOfEach(boxedValues));
 	}
 
@@ -521,7 +521,7 @@ public abstract class ValueUtil
 		}
 	}
 	
-	public static @NonNull MapValue createMapOfEach(@NonNull MapTypeId typeId, @NonNull MapEntry... mapEntries) {
+	public static @NonNull MapValue createMapOfEach(@NonNull MapTypeId typeId, @NonNull MapEntry @NonNull ... mapEntries) {
 		return MapValueImpl.createMapValueOfEach(typeId, mapEntries);
 	}
 
@@ -545,7 +545,7 @@ public abstract class ValueUtil
 //		return new RangeOrderedSetValueImpl(typeId, range);
 //	}
 
-	public static @NonNull OrderedSetValue createOrderedSetOfEach(@NonNull CollectionTypeId typeId, @Nullable Object... boxedValues) {
+	public static @NonNull OrderedSetValue createOrderedSetOfEach(@NonNull CollectionTypeId typeId, @Nullable Object @NonNull ... boxedValues) {
 		return new SparseOrderedSetValueImpl(typeId, SparseOrderedSetValueImpl.createOrderedSetOfEach(boxedValues));
 	}
 
@@ -574,7 +574,7 @@ public abstract class ValueUtil
 		return new SparseSequenceValueImpl.Accumulator(collectedId);
 	}	
 
-	public static @NonNull SequenceValue createSequenceOfEach(@NonNull CollectionTypeId typeId, @Nullable Object... boxedValues) {
+	public static @NonNull SequenceValue createSequenceOfEach(@NonNull CollectionTypeId typeId, @Nullable Object @NonNull ... boxedValues) {
 		return new SparseSequenceValueImpl(typeId, SparseSequenceValueImpl.createSequenceOfEach(boxedValues));
 	}
 
@@ -603,7 +603,7 @@ public abstract class ValueUtil
 		return new SetValueImpl.Accumulator(collectedId);
 	}	
 
-	public static @NonNull SetValue createSetOfEach(@NonNull CollectionTypeId typeId, @Nullable Object... boxedValues) {
+	public static @NonNull SetValue createSetOfEach(@NonNull CollectionTypeId typeId, @Nullable Object @NonNull ... boxedValues) {
 		return new SetValueImpl(typeId, SetValueImpl.createSetOfEach(boxedValues));
 	}
 

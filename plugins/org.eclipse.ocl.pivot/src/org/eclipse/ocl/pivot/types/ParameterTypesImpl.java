@@ -30,11 +30,11 @@ public class ParameterTypesImpl implements ParameterTypes
 	public static final @NonNull ParameterTypesImpl EMPTY_LIST = new ParameterTypesImpl();
 	
 	private final @NonNull ParametersId parametersId;
-	private final @NonNull Type[] parameterTypes;
+	private final @NonNull Type @NonNull [] parameterTypes;
 	private final int hashCode;
 	private /*@LazyNonNull*/ List<Parameter> parameters = null;
 	
-	public ParameterTypesImpl(@NonNull Type... parameterTypes) {
+	public ParameterTypesImpl(@NonNull Type @NonNull ... parameterTypes) {
 		this.parametersId = IdManager.getParametersId(parameterTypes);
 		this.parameterTypes = parameterTypes;
 		hashCode = parametersId.hashCode() + 0x999;
@@ -69,7 +69,7 @@ public class ParameterTypesImpl implements ParameterTypes
 	}
 
 	@Override
-	public @NonNull Type[] get() {
+	public @NonNull Type @NonNull [] get() {
 		return parameterTypes;
 	}
 
@@ -84,7 +84,7 @@ public class ParameterTypesImpl implements ParameterTypes
 		if (parameters2 == null) {
 			parameters = parameters2 = new ArrayList<Parameter>();
 			for (int i = 0; i < parameterTypes.length; i++) {
-				@SuppressWarnings("null")@NonNull Type type = parameterTypes[i];
+				Type type = parameterTypes[i];
 				parameters2.add(new AbstractExecutorParameter("_" + i, type, false));
 			}
 		}

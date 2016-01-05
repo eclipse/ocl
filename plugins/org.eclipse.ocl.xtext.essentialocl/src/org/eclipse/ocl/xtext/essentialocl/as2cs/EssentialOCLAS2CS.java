@@ -41,8 +41,8 @@ public class EssentialOCLAS2CS extends BaseAS2CS
 		}
 
 		@Override
-		public @NonNull EClass[] getEClasses() {
-			return new EClass[]{};
+		public @NonNull EClass @NonNull [] getEClasses() {
+			return new @NonNull EClass @NonNull []{};
 		}
 	}
 		

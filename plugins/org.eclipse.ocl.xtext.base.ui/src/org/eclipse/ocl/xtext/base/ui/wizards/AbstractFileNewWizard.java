@@ -115,8 +115,7 @@ public abstract class AbstractFileNewWizard extends Wizard implements INewWizard
 			if (object instanceof IResource) {
 				selectedResource = (IResource) object;
 			} else if (object instanceof IAdaptable) {
-				@SuppressWarnings("cast")			// Cast not needed after Mars M6
-				IResource adapter = (IResource) ((IAdaptable) object).getAdapter(IResource.class);
+				@Nullable IResource adapter = ((IAdaptable) object).getAdapter(IResource.class);
 				selectedResource = adapter;
 			}
 		}

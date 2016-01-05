@@ -138,7 +138,7 @@ public class TupleTypeManager
 		if (iSize != rightProperties.size()) {
 			return null;
 		}
-		List<TuplePartId> commonPartIds = new ArrayList<TuplePartId>(iSize);
+		List<@NonNull TuplePartId> commonPartIds = new ArrayList<@NonNull TuplePartId>(iSize);
 		for (int i = 0; i < iSize; i++) {
 			Property leftProperty = leftProperties.get(i);
 			if (leftProperty == null) {
@@ -227,7 +227,7 @@ public class TupleTypeManager
 		//	Create the tuple part ids
 		//
 		int partsCount = parts.size();
-		TuplePartId[] newPartIds = new TuplePartId[partsCount];
+		@NonNull TuplePartId[] newPartIds = new @NonNull TuplePartId[partsCount];
 		List<String> sortedPartNames = new ArrayList<String>(parts.keySet());
 		Collections.sort(sortedPartNames);
 		for (int i = 0; i < partsCount; i++) {
@@ -271,7 +271,7 @@ public class TupleTypeManager
 			}
 		}
 		if (resolutions != null) {
-			List<TuplePartId> partIds = new ArrayList<TuplePartId>(parts.size());
+			List<@NonNull TuplePartId> partIds = new ArrayList<@NonNull TuplePartId>(parts.size());
 			for (int i = 0; i < parts.size(); i++) {
 				@SuppressWarnings("null") @NonNull Property part = parts.get(i);
 				String partName = NameUtil.getSafeName(part);

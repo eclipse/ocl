@@ -34,7 +34,7 @@ public interface Invocation
 	/**
 	 * Return true if a mapping invocation with thoseValues would be a re-invocation of this invocation.
 	 */
-	boolean isEqual(@NonNull IdResolver idResolver, @NonNull Object[] thoseValues);
+	boolean isEqual(@NonNull IdResolver idResolver, @NonNull Object @NonNull [] thoseValues);
 
 	/**
 	 * Remove this Invocation from the blocked or waiting invocations linked list.

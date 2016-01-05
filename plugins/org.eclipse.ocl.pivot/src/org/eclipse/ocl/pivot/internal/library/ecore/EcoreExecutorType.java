@@ -36,7 +36,7 @@ public class EcoreExecutorType extends ExecutorType
 	 * Construct an executable type descriptor in the absence of a known EClassifier. A subsequent
 	 * call of {@link #initFragments(ExecutorFragment[], int[], EClassifier)} may define an EClassifier.
 	 */
-	public EcoreExecutorType(@NonNull String name, @NonNull ExecutorPackage evaluationPackage, int flags, @NonNull ExecutorTypeParameter... typeParameters) {
+	public EcoreExecutorType(@NonNull String name, @NonNull ExecutorPackage evaluationPackage, int flags, @NonNull ExecutorTypeParameter @NonNull ... typeParameters) {
 		super(name, evaluationPackage, flags, typeParameters);
 		this.eClassifier = null;		
 	}
@@ -45,7 +45,7 @@ public class EcoreExecutorType extends ExecutorType
 	 * Construct an executable type descriptor in the absence of a known EClassifier. A subsequent
 	 * call of {@link #initFragments(ExecutorFragment[], int[], EClassifier)} may define an EClassifier.
 	 */
-	public EcoreExecutorType(@NonNull BuiltInTypeId typeId, @NonNull ExecutorPackage evaluationPackage, int flags, @NonNull ExecutorTypeParameter... typeParameters) {
+	public EcoreExecutorType(@NonNull BuiltInTypeId typeId, @NonNull ExecutorPackage evaluationPackage, int flags, @NonNull ExecutorTypeParameter @NonNull ... typeParameters) {
 		super(typeId.getName(), evaluationPackage, flags, typeParameters);
 		this.eClassifier = null;		
 		this.typeId = typeId;		
@@ -54,7 +54,7 @@ public class EcoreExecutorType extends ExecutorType
 	/**
 	 * Construct an executable type descriptor for a known EClassifier.
 	 */
-	public EcoreExecutorType(/*@NonNull*/ EClassifier eClassifier, @NonNull EcoreExecutorPackage evaluationPackage, int flags, @NonNull ExecutorTypeParameter... typeParameters) {
+	public EcoreExecutorType(/*@NonNull*/ EClassifier eClassifier, @NonNull EcoreExecutorPackage evaluationPackage, int flags, @NonNull ExecutorTypeParameter @NonNull ... typeParameters) {
 		super(ClassUtil.nonNullModel(eClassifier.getName()), evaluationPackage, flags, typeParameters);
 		this.eClassifier = eClassifier;		
 	}
@@ -130,7 +130,7 @@ public class EcoreExecutorType extends ExecutorType
 	 * enhance an Ecore-unaware package. This occurs for the PivotTables that enhance the
 	 * OCLstdlibTables.
 	 */
-	public @NonNull EcoreExecutorType initFragments(@NonNull ExecutorFragment[] fragments, int[] depthCounts, /*@NonNull*/ EClassifier eClassifier) {
+	public @NonNull EcoreExecutorType initFragments(@NonNull ExecutorFragment @NonNull [] fragments, int[] depthCounts, /*@NonNull*/ EClassifier eClassifier) {
 		assert eClassifier != null;
 		assert this.eClassifier == null;
 		assert name.equals(eClassifier.getName());

@@ -25,9 +25,9 @@ public class LookupCGUtil {
 
 	
 	
-	public static List<Package> getTargetPackages(GenPackage genPackage, EnvironmentFactory envFact, String oclDocFilePath, String oclDocProjectName, String projectPrefix) {
+	public static List<@NonNull Package> getTargetPackages(GenPackage genPackage, EnvironmentFactory envFact, String oclDocFilePath, String oclDocProjectName, String projectPrefix) {
 		
-		List<Package> result = new ArrayList<Package>();
+		List<@NonNull Package> result = new ArrayList<@NonNull Package>();
 		URI projectResourceURI = URI.createPlatformResourceURI("/" + oclDocProjectName + "/", true);
 		@SuppressWarnings("null")@NonNull URI nameResoURI = URI.createURI(oclDocFilePath).resolve(projectResourceURI);
 		OCL ocl = envFact.createOCL();

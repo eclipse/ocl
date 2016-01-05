@@ -26,7 +26,7 @@ public class OCLVMEvaluationStepper extends AbstractVMEvaluationStepper
 		super(evaluationVisitor, vmContext, OCLStepperVisitor.INSTANCE);
 	}
 
-	protected VMStackFrameData[] createStackFrame() {
+	protected @NonNull VMStackFrameData @NonNull [] createStackFrame() {
 		return OCLVMVirtualMachine.createStackFrame(getLocationStack());
 	}
 

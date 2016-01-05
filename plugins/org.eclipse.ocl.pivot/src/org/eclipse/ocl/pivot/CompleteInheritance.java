@@ -28,7 +28,7 @@ import org.eclipse.ocl.pivot.utilities.Nameable;
  */
 public interface CompleteInheritance extends Nameable
 {
-	public static @NonNull CompleteInheritance[] EMPTY_ARRAY = new CompleteInheritance[0];
+	public static @NonNull CompleteInheritance @NonNull [] EMPTY_ARRAY = new CompleteInheritance[0];
 	
 	/**
 	 * Return a depth ordered, OclAny-first, OclSelf-last, Iterable of all the super-adapters excluding this one.

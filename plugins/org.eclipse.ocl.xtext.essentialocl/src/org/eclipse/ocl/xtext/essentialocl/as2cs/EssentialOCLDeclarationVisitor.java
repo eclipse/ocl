@@ -375,9 +375,7 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 	@Override
 	public ElementCS visitConstraint(@NonNull Constraint object) {
 		ConstraintCS csElement = context.refreshNamedElement(ConstraintCS.class, BaseCSPackage.Literals.CONSTRAINT_CS, object);
-		if (csElement != null) {
-			refreshConstraint(csElement, object);
-		}
+		refreshConstraint(csElement, object);
 		return csElement;
 	}
 

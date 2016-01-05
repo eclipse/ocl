@@ -21,7 +21,7 @@ import org.eclipse.jdt.annotation.Nullable;
  */
 public interface TemplateableId extends ElementId
 {
-	public static final @NonNull TemplateableId[] NULL_TEMPLATEABLE_ID_ARRAY = new TemplateableId[0];	
+	public static final @NonNull TemplateableId @NonNull [] NULL_TEMPLATEABLE_ID_ARRAY = new @NonNull TemplateableId[0];	
 
 	@NonNull TemplateableId getGeneralizedId();
 	@Nullable String getLiteralName();

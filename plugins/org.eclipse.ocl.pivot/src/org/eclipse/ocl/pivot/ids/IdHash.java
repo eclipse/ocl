@@ -43,7 +43,7 @@ public class IdHash
 		return (int)hash;
 	}
 
-	public static int createParametersHash(@NonNull Class<?> globalContext, @NonNull ElementId[] typeIds) {
+	public static int createParametersHash(@NonNull Class<?> globalContext, @NonNull ElementId @NonNull [] typeIds) {
 		long hash = 0;
 		for (ElementId typeId : typeIds) {
 			hash = FUNCTION_PARAMETER_SCALING * hash + longValueOf(typeId.hashCode());
@@ -59,7 +59,7 @@ public class IdHash
 		return (int)hash;
 	}
 
-	public static int createTupleHash(@NonNull String name, @NonNull TuplePartId[] orderedParts) {
+	public static int createTupleHash(@NonNull String name, @NonNull TuplePartId @NonNull [] orderedParts) {
 		int hash = 0;
 		for (TuplePartId partId : orderedParts) {
 			hash = PART_SCALING * hash + partId.hashCode();

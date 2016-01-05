@@ -61,8 +61,7 @@ public abstract class AbstractPivotNameResolver {
 //		return computeUnnamedResult(lookupElement, env, context);
 //	}
 	
-	@NonNull
-	abstract protected  AbstractPivotUnqualifiedLookupVisitor createLookupVisitor(@NonNull LookupEnvironment env );
+	abstract protected @NonNull AbstractPivotUnqualifiedLookupVisitor createLookupVisitor(@NonNull LookupEnvironment env);
 	
 	@NonNull
 	protected  SingleResultLookupEnvironment createLookupEnvironment(@NonNull EnvironmentFactory mmManager, 

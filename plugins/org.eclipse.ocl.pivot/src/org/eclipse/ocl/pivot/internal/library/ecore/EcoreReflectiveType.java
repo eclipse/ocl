@@ -46,7 +46,7 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 	protected final @NonNull TemplateParameters typeParameters;
 	private /*@LazyNonNull*/ DomainProperties allProperties;
 	
-	public EcoreReflectiveType(@NonNull EcoreReflectivePackage evaluationPackage, int flags, @NonNull EClassifier eClassifier, @NonNull TemplateParameter... typeParameters) {
+	public EcoreReflectiveType(@NonNull EcoreReflectivePackage evaluationPackage, int flags, @NonNull EClassifier eClassifier, @NonNull TemplateParameter @NonNull ... typeParameters) {
 		super(ClassUtil.nonNullEMF(eClassifier.getName()), flags);
 		this.evaluationPackage = evaluationPackage;
 		this.eClassifier = eClassifier;

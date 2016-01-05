@@ -20,9 +20,9 @@ public class VMVariableResponse extends VMResponse
 	private static final long serialVersionUID = -8851333069785318138L;
 
 	public final @NonNull VMVariableData variable;
-	public final @Nullable VMVariableData[] childVariables;
+	public final @NonNull VMVariableData @Nullable [] childVariables;
 	
-	public VMVariableResponse(@NonNull VMVariableData variable, @Nullable VMVariableData[] childVariables) {
+	public VMVariableResponse(@NonNull VMVariableData variable, @NonNull VMVariableData @Nullable [] childVariables) {
 		this.variable = variable;
 		this.childVariables = childVariables;
 	}
@@ -36,7 +36,7 @@ public class VMVariableResponse extends VMResponse
 		s.append(getClass().getSimpleName() + "(" + toStatusString(status));
 		s.append(", ");
 		s.append(variable);
-		VMVariableData[] childVariables2 = childVariables;
+		@NonNull VMVariableData @Nullable [] childVariables2 = childVariables;
 		if (childVariables2 != null) {
 			s.append(", {");
 			for (int i = 0; i < childVariables2.length; i++) {

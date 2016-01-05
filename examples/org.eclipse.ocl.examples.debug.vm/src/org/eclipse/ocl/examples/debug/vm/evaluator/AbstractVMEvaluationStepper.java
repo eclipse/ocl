@@ -81,11 +81,11 @@ public abstract class AbstractVMEvaluationStepper implements VMEvaluationStepper
 		invalidVariable.setType(vmExecutor.getEnvironmentFactory().getMetamodelManager().getASClass(typeName));
 	}
 
-	protected abstract VMStackFrameData[] createStackFrame();
+	protected abstract @NonNull VMStackFrameData @NonNull [] createStackFrame();
 
 	protected /*private*/ @NonNull VMSuspendEvent createVMSuspendEvent(@NonNull VMSuspension suspension) {
 		// build the VM stack frames
-		VMStackFrameData[] vmStack = createStackFrame();		
+		@NonNull VMStackFrameData @NonNull [] vmStack = createStackFrame();		
 		assert vmStack.length > 0;
 		return new VMSuspendEvent(vmStack, suspension);
 	}

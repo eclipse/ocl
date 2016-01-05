@@ -31,15 +31,15 @@ public class VMBreakpointRequest extends VMRequest
 	}	
 	
 	public static @NonNull VMBreakpointRequest createAdd(@NonNull VMNewBreakpointData bpData) {
-		return new VMBreakpointRequest(-1, new @NonNull VMNewBreakpointData[] { bpData }, ActionKind.ADD);
+		return new VMBreakpointRequest(-1, new @NonNull VMNewBreakpointData @NonNull [] { bpData }, ActionKind.ADD);
 	}	
 
-	public static @NonNull VMBreakpointRequest createAdd(@NonNull VMNewBreakpointData @NonNull [] bpData) {
+	public static @NonNull VMBreakpointRequest createAdd(@NonNull VMNewBreakpointData @Nullable  [] bpData) {
 		return new VMBreakpointRequest(-1, bpData, ActionKind.ADD);
 	}
 
 	public static @NonNull VMBreakpointRequest createChange(long id, @NonNull VMBreakpointData bpData) {
-		return new VMBreakpointRequest((long)-1, new @NonNull VMBreakpointData[] { bpData }, ActionKind.CHANGE);
+		return new VMBreakpointRequest((long)-1, new @NonNull VMBreakpointData @NonNull [] { bpData }, ActionKind.CHANGE);
 	}	
 	
 	public static @NonNull VMBreakpointRequest createRemove(long id) {

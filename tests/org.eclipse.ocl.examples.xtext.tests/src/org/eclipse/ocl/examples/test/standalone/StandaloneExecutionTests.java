@@ -33,6 +33,7 @@ import org.eclipse.ocl.examples.standalone.StandaloneApplication;
 import org.eclipse.ocl.examples.standalone.StandaloneResponse;
 import org.eclipse.ocl.examples.validity.locator.AbstractPivotConstraintLocator;
 import org.eclipse.ocl.examples.xtext.tests.TestUtil;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.junit.Test;
 
 public class StandaloneExecutionTests extends StandaloneTestCase
@@ -42,14 +43,14 @@ public class StandaloneExecutionTests extends StandaloneTestCase
 		assertFalse(file.exists());
 	}
 
-	private void doFailingTest(@NonNull String[] arguments) throws CoreException {
+	private void doFailingTest(@NonNull String @NonNull [] arguments) throws CoreException {
 		StandaloneApplication validityApplication = new StandaloneApplication();
 		StandaloneResponse applicationResponse = validityApplication.execute(arguments);
 		assertEquals(StandaloneResponse.FAIL, applicationResponse);
 		validityApplication.stop();
 	}
 
-	private void doOKTest(@NonNull String[] arguments) throws CoreException {
+	private void doOKTest(@NonNull String @NonNull [] arguments) throws CoreException {
 		StandaloneApplication validityApplication = new StandaloneApplication();
 		StandaloneResponse applicationResponse = validityApplication.execute(arguments);
 		assertEquals(StandaloneResponse.OK, applicationResponse);
@@ -85,13 +86,13 @@ public class StandaloneExecutionTests extends StandaloneTestCase
 
 	@Test
 	public void test_help() throws CoreException {
-		String[] arguments = {"help"};
+		@NonNull String @NonNull [] arguments = new @NonNull String @NonNull []{"help"};
 		doOKTest(arguments);
 	}
 
 	@Test
 	public void test_mandatoryArgumentsOnly() throws CoreException {
-		String[] arguments = {"validate",
+		@NonNull String @NonNull [] arguments = new @NonNull String @NonNull []{"validate",
 			"-model", inputModelName,
 			"-rules", inputOCLFileName};
 		doOKTest(arguments);
@@ -100,7 +101,7 @@ public class StandaloneExecutionTests extends StandaloneTestCase
 
 	@Test
 	public void test_missingOutputArgument() throws CoreException, IOException {
-		String[] arguments = {"validate", 
+		@NonNull String @NonNull [] arguments = new @NonNull String @NonNull []{"validate", 
 			"-model", inputModelName, 
 			"-rules", inputOCLFileName, 
 			"-output"
@@ -111,7 +112,7 @@ public class StandaloneExecutionTests extends StandaloneTestCase
 
 	@Test
 	public void test_missingExporterArgument() throws CoreException, IOException {
-		String[] arguments = {"validate",
+		@NonNull String @NonNull [] arguments = new @NonNull String @NonNull []{"validate",
 			"-model", inputModelName,
 			"-rules", inputOCLFileName,
 			"-exporter"
@@ -122,7 +123,7 @@ public class StandaloneExecutionTests extends StandaloneTestCase
 
 	@Test
 	public void test_missingUsingArgument() throws CoreException, IOException {
-		String[] arguments = {"validate",
+		@NonNull String @NonNull [] arguments = new @NonNull String @NonNull []{"validate",
 			"-model", inputModelName,
 			"-rules", inputOCLFileName,
 			"-using"
@@ -134,7 +135,7 @@ public class StandaloneExecutionTests extends StandaloneTestCase
 	@Test
 	public void test_textExportedFile() throws CoreException, IOException {
 		String textLogFileName = getTextLogFileName();
-		String[] arguments = {"validate",
+		@NonNull String @NonNull [] arguments = new @NonNull String @NonNull []{"validate",
 			"-model", inputModelName,
 			"-rules", inputOCLFileName,
 			"-output", textLogFileName,
@@ -146,7 +147,7 @@ public class StandaloneExecutionTests extends StandaloneTestCase
 	@Test
 	public void test_modelExportedFile() throws CoreException, IOException, InterruptedException {
 		String modelLogFileName = getLogFileName(ModelExporter.INSTANCE);
-		String[] arguments = {"validate",
+		@NonNull String @NonNull [] arguments = new @NonNull String @NonNull []{"validate",
 			"-model", inputModelName,
 			"-rules", inputOCLFileName,
 			"-output", modelLogFileName,
@@ -167,7 +168,7 @@ public class StandaloneExecutionTests extends StandaloneTestCase
 
 	@Test
 	public void test_htmlExportedFile() throws CoreException {
-		String[] arguments = {"validate",
+		@NonNull String @NonNull [] arguments = new @NonNull String @NonNull []{"validate",
 			"-model", inputModelName,
 			"-rules", inputOCLFileName,
 			"-output", getHTMLLogFileName(),
@@ -179,7 +180,7 @@ public class StandaloneExecutionTests extends StandaloneTestCase
 
 	@Test
 	public void test_unknownExporter() throws CoreException {
-		String[] arguments = {"validate",
+		@NonNull String @NonNull [] arguments = new @NonNull String @NonNull []{"validate",
 			"-model", inputModelName,
 			"-rules", inputOCLFileName,
 			"-output", getTextLogFileName(),
@@ -191,8 +192,8 @@ public class StandaloneExecutionTests extends StandaloneTestCase
 	@Test
 	public void test_nonExistentModelFile() throws CoreException {
 		String textLogFileName = getTextLogFileName();
-		String[] arguments = {"validate",
-			"-model", getProjectFileURI("models/nonExistentModel.ecore").toString(),
+		@NonNull String @NonNull [] arguments = new @NonNull String @NonNull []{"validate",
+			"-model", ClassUtil.toString(getProjectFileURI("models/nonExistentModel.ecore")),
 			"-rules", inputOCLFileName,
 			"-output", textLogFileName,
 			"-exporter", TextExporter.EXPORTER_TYPE};
@@ -203,9 +204,9 @@ public class StandaloneExecutionTests extends StandaloneTestCase
 	@Test
 	public void test_nonExistentOclFile() throws CoreException, IOException {
 		String textLogFileName = getTextLogFileName();
-		String[] arguments = {"validate",
+		@NonNull String @NonNull [] arguments = new @NonNull String @NonNull []{"validate",
 			"-model", inputModelName,
-			"-rules", getProjectFileURI("models/nonExistentFile.ocl").toString(),
+			"-rules", ClassUtil.toString(getProjectFileURI("models/nonExistentFile.ocl")),
 			"-output", textLogFileName,
 			"-exporter", TextExporter.EXPORTER_TYPE};
 		doOKTest(arguments);				// Missing file is ignored
@@ -214,7 +215,7 @@ public class StandaloneExecutionTests extends StandaloneTestCase
 
 /*	@Test
 	public void test_unexistingOutputFileTest() throws CoreException, IOException {
-		String[] arguments = {"validate",
+		@NonNull String @NonNull [] arguments = {"validate",
 			"-model", inputModelName,
 			"-rules", inputOCLFileName,
 			"-output", "unexistingFile",
@@ -232,7 +233,7 @@ public class StandaloneExecutionTests extends StandaloneTestCase
 	@Test
 	public void test_nonExistentOutputFolder() throws CoreException {
 		String nonExistentOutputFolderPath = "nonExistent" + "/" + "anotherName.txt"; //$NON-NLS-3$
-		String[] arguments = {"validate",
+		@NonNull String @NonNull [] arguments = new @NonNull String @NonNull []{"validate",
 			"-model", inputModelName,
 			"-rules", inputOCLFileName,
 			"-output", nonExistentOutputFolderPath,
@@ -244,7 +245,7 @@ public class StandaloneExecutionTests extends StandaloneTestCase
 	@Test
 	public void test_listOfOCLFiles() throws CoreException, IOException {
 		String textLogFileName = getTextLogFileName();
-		String[] arguments = {"validate",
+		@NonNull String @NonNull [] arguments = new @NonNull String @NonNull []{"validate",
 			"-model", inputModelName,
 			"-rules", textInputOCLFileName,
 			"-output", textLogFileName,
@@ -255,7 +256,7 @@ public class StandaloneExecutionTests extends StandaloneTestCase
 
 	@Test
 	public void test_listOfOCLFilesToStdout() throws CoreException {
-		String[] arguments = {"validate",
+		@NonNull String @NonNull [] arguments = new @NonNull String @NonNull []{"validate",
 			"-model", inputModelName,
 			"-rules", textInputOCLFileName,
 			"-exporter", TextExporter.EXPORTER_TYPE};

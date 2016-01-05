@@ -30,7 +30,7 @@ public class VMLocalValue extends VMValue {
 	}
 	
 	public VMLocalValue(IVMDebugTarget debugTarget, long frameID,
-			String[] varPath, LocalValue evalResult, @NonNull VMEvaluationEnvironment evaluationEnvironment) {
+			@NonNull String @NonNull [] varPath, LocalValue evalResult, @NonNull VMEvaluationEnvironment evaluationEnvironment) {
 		super(debugTarget, createVmVar(varPath, evalResult, evaluationEnvironment), frameID);
 		myFrameID = frameID;
 		this.evaluationEnvironment = evaluationEnvironment;
@@ -56,7 +56,7 @@ public class VMLocalValue extends VMValue {
 		return vars;
 	}
 	
-	private static VMVariableData createVmVar(String[] varPath, LocalValue evalResult, @NonNull VMEvaluationEnvironment evalEnv) {
+	private static VMVariableData createVmVar(@NonNull String @NonNull [] varPath, LocalValue evalResult, @NonNull VMEvaluationEnvironment evalEnv) {
 		@SuppressWarnings("null")@NonNull String varName = String.valueOf(varPath.length > 0 ? varPath[varPath.length-1] : null);
 		VMVariableData var = new VMVariableData(varName, VariableFinder.createURI(varPath).toString());
 		var.kind = VMVariableData.LOCAL;

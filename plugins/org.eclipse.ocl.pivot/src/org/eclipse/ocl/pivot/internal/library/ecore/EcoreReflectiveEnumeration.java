@@ -29,7 +29,7 @@ public class EcoreReflectiveEnumeration extends EcoreReflectiveType implements E
 	private /*@LazyNonNull*/ List<EnumerationLiteral> literals = null;
 	private /*@LazyNonNull*/ Map<String, EnumerationLiteral> name2literal = null;
 
-	public EcoreReflectiveEnumeration(@NonNull EcoreReflectivePackage evaluationPackage, int flags, @NonNull EEnum eEnum, @NonNull TemplateParameter... typeParameters) {
+	public EcoreReflectiveEnumeration(@NonNull EcoreReflectivePackage evaluationPackage, int flags, @NonNull EEnum eEnum, @NonNull TemplateParameter @NonNull ... typeParameters) {
 		super(evaluationPackage, flags, eEnum, typeParameters);
 	}
 

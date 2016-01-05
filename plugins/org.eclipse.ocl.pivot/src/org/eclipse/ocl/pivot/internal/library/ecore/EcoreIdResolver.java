@@ -133,9 +133,9 @@ public class EcoreIdResolver extends AbstractIdResolver implements Adapter
 		return ((ExecutableStandardLibrary)standardLibrary).getTupleType(typeId);
 	}
 	
-	public @NonNull TupleType getTupleType(TypedElement ... parts) {
+	public @NonNull TupleType getTupleType(@NonNull TypedElement @NonNull ... parts) {
 		int iSize = parts.length;
-		List<TuplePartId> partsList = new ArrayList<TuplePartId>(iSize);
+		List<@NonNull TuplePartId> partsList = new ArrayList<@NonNull TuplePartId>(iSize);
 		for (int i = 0; i < iSize; i++) {
 			TypedElement part = parts[i];
 			String partName = NameUtil.getSafeName(part);

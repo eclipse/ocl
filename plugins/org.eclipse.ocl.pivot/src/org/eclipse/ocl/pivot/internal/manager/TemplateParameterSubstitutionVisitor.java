@@ -211,7 +211,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 		if (implementationClass == null) {
 			return  null;
 		}
-		@SuppressWarnings("null")@NonNull Class<? extends LibraryFeature> className = implementationClass.getClass();
+		Class<? extends LibraryFeature> className = implementationClass.getClass();
 		return TemplateParameterSubstitutionHelper.getHelper(className);
 	}
 
@@ -235,7 +235,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 			}
 		}
 		if (resolutions != null) {
-			List<TuplePartId> partIds = new ArrayList<TuplePartId>(parts.size());
+			List<@NonNull TuplePartId> partIds = new ArrayList<@NonNull TuplePartId>(parts.size());
 			for (int i = 0; i < parts.size(); i++) {
 				@SuppressWarnings("null") @NonNull Property part = parts.get(i);
 				String partName = NameUtil.getSafeName(part);

@@ -60,7 +60,7 @@ public abstract class ReflectiveInheritance extends AbstractExecutorClass
 	/**
 	 * Depth ordered inheritance fragments. OclAny at depth 0, OclSelf at depth size-1.
 	 */
-	private InheritanceFragment[] fragments = null;
+	private @NonNull InheritanceFragment @Nullable [] fragments = null;
 	
 	/**
 	 * The index in fragments at which inheritance fragments at a given depth start.
@@ -68,7 +68,7 @@ public abstract class ReflectiveInheritance extends AbstractExecutorClass
 	 * depthIndexes[depthIndexes.length-2] is always depthIndexes.length-1 since OclSelf is always at depth depthIndexes.length-2.
 	 * depthIndexes[depthIndexes.length-1] is always depthIndexes.length to provide an easy end stop.
 	 */
-	private int[] indexes = null;
+	private int @Nullable [] indexes = null;
 	
 	/**
 	 * The Inheritances of sub-types that have been installed, and which must be
@@ -87,7 +87,7 @@ public abstract class ReflectiveInheritance extends AbstractExecutorClass
 		knownSubInheritances.add(subInheritance);
 	}
 
-	protected abstract AbstractFragment createFragment(@NonNull CompleteInheritance baseInheritance);
+	protected abstract @NonNull AbstractFragment createFragment(@NonNull CompleteInheritance baseInheritance);
 
 	@Override
 	public @NonNull EObject createInstance() {
@@ -131,7 +131,7 @@ public abstract class ReflectiveInheritance extends AbstractExecutorClass
 		if (fragments == null) {
 			initialize();
 		}
-		InheritanceFragment[] fragments2 = ClassUtil.nonNullState(fragments);
+		@NonNull InheritanceFragment[] fragments2 = ClassUtil.nonNullState(fragments);
 		return new FragmentIterable(fragments2, 0, fragments2.length-1);
 	}
 
@@ -148,7 +148,9 @@ public abstract class ReflectiveInheritance extends AbstractExecutorClass
 		if (indexes == null) {
 			initialize();
 		}
-		return indexes.length-2;
+		int @Nullable [] indexes2 = indexes;
+		assert indexes2 != null;
+		return indexes2.length-2;
 	}
 
 	@Override
@@ -156,12 +158,13 @@ public abstract class ReflectiveInheritance extends AbstractExecutorClass
 		if ((fragments == null) && isOclAny()) {
 			installOclAny();
 		}
+		assert fragments != null;
 		return fragments[fragmentNumber];
 	}
 	
 	@Override
 	public @NonNull Iterable<InheritanceFragment> getFragments() {
-		InheritanceFragment[] fragments2 = fragments;
+		@NonNull InheritanceFragment[] fragments2 = fragments;
 		if (fragments2 == null) {
 			initialize();
 			fragments2 = fragments;
@@ -172,12 +175,16 @@ public abstract class ReflectiveInheritance extends AbstractExecutorClass
 
 	@Override
 	public int getIndex(int fragmentNumber) {
-		return indexes[fragmentNumber];
+		int @Nullable [] indexes2 = indexes;
+		assert indexes2 != null;
+		return indexes2[fragmentNumber];
 	}
 
 	@Override
 	public int getIndexes(){
-		return indexes.length;
+		int @Nullable [] indexes2 = indexes;
+		assert indexes2 != null;
+		return indexes2.length;
 	}
 
 	/**
@@ -190,7 +197,9 @@ public abstract class ReflectiveInheritance extends AbstractExecutorClass
 		if (indexes == null) {
 			initialize();
 		}
-		InheritanceFragment fragment = getFragment(fragments.length-1);
+		@NonNull InheritanceFragment @Nullable [] fragments2 = fragments;
+		assert fragments2 != null;
+		InheritanceFragment fragment = getFragment(fragments2.length-1);
 		if (fragment == null) {
 			throw new IllegalStateException("No self fragment"); //$NON-NLS-1$
 		}
@@ -199,7 +208,9 @@ public abstract class ReflectiveInheritance extends AbstractExecutorClass
 	
 	@Override
 	public final @NonNull FragmentIterable getSuperFragments(int depth) {
-		return new FragmentIterable(ClassUtil.nonNullState(fragments), indexes[depth], indexes[depth+1]);
+		int @Nullable [] indexes2 = indexes;
+		assert indexes2 != null;
+		return new FragmentIterable(ClassUtil.nonNullState(fragments), indexes2[depth], indexes2[depth+1]);
 	}
 
 	protected synchronized void initialize() {
@@ -299,21 +310,21 @@ public abstract class ReflectiveInheritance extends AbstractExecutorClass
 				superInheritances += some.size();
 			}
 			assert superDepths > 0;
-			fragments = new InheritanceFragment[superInheritances+1];	// +1 for OclSelf
-			indexes = new int[superDepths+2];		// +1 for OclSelf, +1 for tail pointer
+			@NonNull InheritanceFragment @NonNull [] fragments2 = fragments = new @NonNull InheritanceFragment[superInheritances+1];	// +1 for OclSelf
+			int @NonNull [] indexes2 = indexes = new int[superDepths+2];		// +1 for OclSelf, +1 for tail pointer
 			int j = 0;
-			indexes[0] = 0;
+			indexes2[0] = 0;
 			for (int i = 0; i < superDepths; i++) {
 				for (CompleteInheritance some : all.get(i)) {
 					if (some != null) {
-						fragments[j++] = createFragment(some);
+						fragments2[j++] = createFragment(some);
 					}
 				}
-				indexes[i+1] = j;
+				indexes2[i+1] = j;
 			}
-			indexes[superDepths++] = j;
-			fragments[j++] = createFragment(this);
-			indexes[superDepths++] = j;
+			indexes2[superDepths++] = j;
+			fragments2[j++] = createFragment(this);
+			indexes2[superDepths++] = j;
 		}
 		return true;
 	}
@@ -323,7 +334,7 @@ public abstract class ReflectiveInheritance extends AbstractExecutorClass
 	 */
 	protected final void installOclAny() {
 		assert fragments == null;
-		fragments = new InheritanceFragment[] { createFragment(this) };
+		fragments = new @NonNull InheritanceFragment[] { createFragment(this) };
 		indexes = new int[] { 0, 1 };
 	}
 	
@@ -364,9 +375,11 @@ public abstract class ReflectiveInheritance extends AbstractExecutorClass
 	}
 
 	public void uninstall() {
-		if (fragments != null) {
+		@NonNull InheritanceFragment @Nullable [] fragments2 = fragments;
+		@SuppressWarnings("null")boolean isNonNull = fragments2 != null;		// FIXME needed for JDT 4.5, not needed for JDT 4.6M4
+		if (isNonNull && (fragments2 != null)) {
 //			System.out.println("Uninstall " + this);
-			for (InheritanceFragment fragment : fragments) {
+			for (InheritanceFragment fragment : fragments2) {
 				CompleteInheritance baseInheritance = fragment.getBaseInheritance();
 				if (baseInheritance instanceof ReflectiveInheritance) {
 					((ReflectiveInheritance)baseInheritance).removeSubInheritance(this);

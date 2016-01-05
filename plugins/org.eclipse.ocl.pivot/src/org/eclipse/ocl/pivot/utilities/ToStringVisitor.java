@@ -112,7 +112,7 @@ import org.eclipse.ocl.pivot.values.Unlimited;
  * @author Christian W. Damus (cdamus)
  * @author Edward Willink (ewillink)
  */
-public class ToStringVisitor extends AbstractExtendingVisitor<String, StringBuilder>
+public class ToStringVisitor extends AbstractExtendingVisitor<@Nullable String, @NonNull StringBuilder>
 {	
 	private static final Logger logger = Logger.getLogger(ToStringVisitor.class);
 

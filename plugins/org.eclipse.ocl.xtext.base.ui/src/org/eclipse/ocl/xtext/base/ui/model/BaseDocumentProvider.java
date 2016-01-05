@@ -19,6 +19,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.xtext.resource.XtextResource;
@@ -71,7 +72,7 @@ public class BaseDocumentProvider extends DeferredDocumentProvider
 	@Override
 	protected boolean setDocumentContent(IDocument document, IEditorInput editorInput, String encoding) throws CoreException {
 		if (editorInput != null) {
-			IResource resource = editorInput.getAdapter(IResource.class);
+			IResource resource = ClassUtil.getAdapter(editorInput, IResource.class);
 			if (resource != null) {
 				IProject project = resource.getProject();
 				EnvironmentFactoryInternal environmentFactory = getEnvironmentFactory();

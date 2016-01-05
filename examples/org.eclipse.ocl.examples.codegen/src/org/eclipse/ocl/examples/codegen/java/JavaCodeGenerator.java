@@ -296,11 +296,11 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 	 * Return true for an @NonNull annotation, false for an @Nullable annotation, null otherwise.
 	 */
 	public Boolean getIsNonNull(@NonNull Method method) {
-		@NonNull NonNull[] nonNullAnnotations = method.getReturnType().getAnnotationsByType(NonNull.class);
+		@SuppressWarnings("null")@NonNull NonNull @NonNull [] nonNullAnnotations = method.getReturnType().getAnnotationsByType(NonNull.class);
 		if (nonNullAnnotations.length > 0) {
 			return true;
 		}
-		@NonNull Nullable[] nullableAnnotations = method.getReturnType().getAnnotationsByType(Nullable.class);
+		@SuppressWarnings("null")@NonNull Nullable @NonNull [] nullableAnnotations = method.getReturnType().getAnnotationsByType(Nullable.class);
 		if (nullableAnnotations.length > 0) {
 			return false;
 		}

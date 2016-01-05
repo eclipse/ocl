@@ -106,7 +106,7 @@ public class EcoreExecutorPackage extends ExecutorPackage
 		return null;
 	}
 	
-	public void init(@Nullable ExecutorStandardLibrary standardLibrary, @NonNull ExecutorType[] types) {
+	public void init(@Nullable ExecutorStandardLibrary standardLibrary, @NonNull ExecutorType @NonNull [] types) {
 		assert this.standardLibrary == null;
 		assert this.types == null;
 		this.standardLibrary = standardLibrary;

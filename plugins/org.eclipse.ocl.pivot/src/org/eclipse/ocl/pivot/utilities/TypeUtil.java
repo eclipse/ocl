@@ -147,11 +147,11 @@ public class TypeUtil
 		return new MapTypeParametersImpl<Type, Type>(keyType, valueType);
 	}
 
-	public static @NonNull ParameterTypes createParameterTypes(@NonNull Type... parameterTypes) {
+	public static @NonNull ParameterTypes createParameterTypes(@NonNull Type @NonNull ... parameterTypes) {
 		return new ParameterTypesImpl(parameterTypes);
 	}
 
-	public static @NonNull TemplateParameters createTemplateParameters(@NonNull TemplateParameter... parameters) {
+	public static @NonNull TemplateParameters createTemplateParameters(@NonNull TemplateParameter @NonNull ... parameters) {
 		return new TemplateParametersImpl(parameters);
 	}
 
@@ -159,39 +159,39 @@ public class TypeUtil
 		return new TemplateParametersImpl(parameters);
 	}
 
-	public static @NonNull Type[] getLambdaParameterTypes(@NonNull LambdaType lambdaType) {
+	public static @NonNull Type @NonNull [] getLambdaParameterTypes(@NonNull LambdaType lambdaType) {
 		int iParameter = 0;
 		List<? extends Type> ownedParameters = lambdaType.getParameterTypes();
-		Type[] parameterTypes = new Type[ownedParameters.size() + 2];
-		parameterTypes[iParameter++] = lambdaType.getContextType();
-		parameterTypes[iParameter++] = lambdaType.getResultType();
+		@NonNull Type @NonNull [] parameterTypes = new @NonNull Type[ownedParameters.size() + 2];
+		parameterTypes[iParameter++] = ClassUtil.nonNullState(lambdaType.getContextType());
+		parameterTypes[iParameter++] = ClassUtil.nonNullState(lambdaType.getResultType());
 		for (Type parameterType : ownedParameters) {
-			parameterTypes[iParameter++] = parameterType;
+			parameterTypes[iParameter++] = ClassUtil.nonNullState(parameterType);
 		}
 		return parameterTypes;
 	}
 
-	public static @NonNull Type[] getOperationParameterTypes(@NonNull Operation anOperation) {
-		Type[] parameterTypes;
+	public static @NonNull Type @NonNull [] getOperationParameterTypes(@NonNull Operation anOperation) {
+		@NonNull Type @NonNull [] parameterTypes;
 		int iParameter = 0;
 		List<? extends TypedElement> ownedParameters = anOperation.getOwnedParameters();
 		if (anOperation instanceof Iteration) {
 			Iteration anIteration = (Iteration)anOperation;
 			List<? extends TypedElement> ownedIterators = anIteration.getOwnedIterators();
 			List<? extends TypedElement> ownedAccumulators = anIteration.getOwnedAccumulators();
-			parameterTypes = new Type[ownedIterators.size() + ownedAccumulators.size() + ownedParameters.size()];
+			parameterTypes = new @NonNull Type[ownedIterators.size() + ownedAccumulators.size() + ownedParameters.size()];
 			for (TypedElement ownedIterator : ownedIterators) {
-				parameterTypes[iParameter++] = ownedIterator.getType();
+				parameterTypes[iParameter++] = ClassUtil.nonNullState(ownedIterator.getType());
 			}
 			for (TypedElement ownedAccumulator : ownedAccumulators) {
-				parameterTypes[iParameter++] = ownedAccumulator.getType();
+				parameterTypes[iParameter++] = ClassUtil.nonNullState(ownedAccumulator.getType());
 			}
 		}
 		else {
-			parameterTypes = new Type[ownedParameters.size()];
+			parameterTypes = new @NonNull Type[ownedParameters.size()];
 		}
 		for (TypedElement ownedParameter : ownedParameters) {
-			parameterTypes[iParameter++] = ownedParameter.getType();
+			parameterTypes[iParameter++] = ClassUtil.nonNullState(ownedParameter.getType());
 		}
 		return parameterTypes;
 	}

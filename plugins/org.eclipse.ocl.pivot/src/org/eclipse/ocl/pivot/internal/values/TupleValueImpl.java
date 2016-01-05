@@ -42,7 +42,7 @@ public class TupleValueImpl extends ValueImpl implements TupleValue
 	}
 
 	protected final @NonNull TupleTypeId tupleTypeId;
-    private final @NonNull Object[] partValues;
+    private final @Nullable Object @NonNull [] partValues;
     private Integer hashCode = null;
 
     /**
@@ -53,7 +53,7 @@ public class TupleValueImpl extends ValueImpl implements TupleValue
      */
     public TupleValueImpl(@NonNull TupleTypeId tupleTypeId, @NonNull Map<? extends TuplePartId, Object> values) {
 		this.tupleTypeId = tupleTypeId;
-	    partValues = new Object[tupleTypeId.getPartIds().length];
+	    partValues = new @Nullable Object[tupleTypeId.getPartIds().length];
         for (Map.Entry<? extends TuplePartId, Object> entry : values.entrySet()) {
         	partValues[entry.getKey().getIndex()] = entry.getValue();
         }
@@ -72,7 +72,7 @@ public class TupleValueImpl extends ValueImpl implements TupleValue
 		if (partIds.length != values.length) {
 			throw new InvalidValueException("Mismatching tuple values");
 		}
-	    partValues = new Object[partIds.length];
+	    partValues = new @Nullable Object[partIds.length];
 		for (int i = 0; i < values.length; i++) {
 			partValues[i] = values[i];
 		}
@@ -101,8 +101,9 @@ public class TupleValueImpl extends ValueImpl implements TupleValue
     	if (this.tupleTypeId != that.tupleTypeId) {
     		return false;
     	}
-		for (int i = 0; i < partValues.length; i++) {
-			Object thisPart = partValues[i];
+    	@Nullable Object @NonNull [] partValues2 = partValues;			// Avoids a null-error on JDT 4.5
+		for (int i = 0; i < partValues2.length; i++) {
+			Object thisPart = partValues2[i];
 			Object thatPart = that.partValues[i];
 			if (thisPart == null) {
 				if (thatPart != null) {
@@ -140,7 +141,7 @@ public class TupleValueImpl extends ValueImpl implements TupleValue
     public int hashCode() {
     	if (hashCode == null) {
             int hash = tupleTypeId.hashCode();
-    		for (Object partValue : partValues) {
+    		for (@Nullable Object partValue : partValues) {
     			hash = 37* hash + (partValue != null ? partValue.hashCode() : 0);
     		}
     		hashCode = hash;

@@ -232,6 +232,7 @@ public class EvaluateUMLTest4 extends PivotTestSuite
 		IdResolver idResolver = ocl.getIdResolver();
 		EObject context = doLoadUML(ocl, "Bug455394", "Model.Class1.class2");
 		assertNotNull(context);
+		assert context != null;
 		org.eclipse.ocl.pivot.Class contextType = idResolver.getStaticTypeOf(context);
 		ocl.assertQueryTrue(context, "self.aggregation=UML::AggregationKind::composite");	
 		ocl.assertQueryResults(context, "UML::AggregationKind::composite", "self.aggregation");	

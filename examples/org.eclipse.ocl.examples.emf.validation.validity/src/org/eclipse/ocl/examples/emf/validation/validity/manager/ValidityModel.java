@@ -851,8 +851,8 @@ public class ValidityModel
 		RootNode rootNode = validityManager.getRootNode();
 		if (rootNode != null) {
 //			long start = System.currentTimeMillis();
-			List<RootValidatableNode> validatableNodes = new ArrayList<RootValidatableNode>(rootNode.getValidatableNodes());  // Avoid CME
-			List<RootConstrainingNode> constrainingNodes = new ArrayList<RootConstrainingNode>(rootNode.getConstrainingNodes());  // Avoid CME
+			@NonNull List<RootValidatableNode> validatableNodes = new ArrayList<RootValidatableNode>(rootNode.getValidatableNodes());  // Avoid CME
+			@NonNull List<RootConstrainingNode> constrainingNodes = new ArrayList<RootConstrainingNode>(rootNode.getConstrainingNodes());  // Avoid CME
 //			System.out.format(Thread.currentThread().getName() + " %3.3f revisible ValidatableNodes\n", (System.currentTimeMillis() - start) * 0.001);
 			for (AbstractNode aNode : validatableNodes) {
 				aNode.refreshVisibleChildren(validatableFilters);
@@ -869,15 +869,17 @@ public class ValidityModel
 			for (AbstractNode aNode : constrainingNodes) {
 				aNode.refreshGrayed();
 			}
-			if (grayedValidatableNodes != null) {
+			List<AbstractNode> grayedValidatableNodes2 = grayedValidatableNodes;
+			if (grayedValidatableNodes2 != null) {
 //				System.out.format(Thread.currentThread().getName() + " %3.3f Redraw compute grays\n", (System.currentTimeMillis() - start) * 0.001);
 				for (AbstractNode abstractNode : validatableNodes) {
-					abstractNode.getGrayedElements(grayedValidatableNodes);
+					abstractNode.getGrayedElements(grayedValidatableNodes2);
 				}
 			}
-			if (grayedConstrainingNodes != null) {
+			List<AbstractNode> grayedConstrainingNodes2 = grayedConstrainingNodes;
+			if (grayedConstrainingNodes2 != null) {
 				for (AbstractNode abstractNode : constrainingNodes) {
-					abstractNode.getGrayedElements(grayedConstrainingNodes);
+					abstractNode.getGrayedElements(grayedConstrainingNodes2);
 				}
 			}
 		}

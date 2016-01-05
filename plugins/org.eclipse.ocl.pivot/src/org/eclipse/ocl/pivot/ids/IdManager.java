@@ -72,7 +72,7 @@ public final class IdManager
 	/**
 	 * Map from the BindingsId hashCode to the elements with the same hash. 
 	 */
-	private static @Nullable WeakHashMapOfListOfWeakReference2<Integer, ElementId[], BindingsIdImpl> bindingsIds;
+	private static @Nullable WeakHashMapOfListOfWeakReference2<Integer, @NonNull ElementId @NonNull [], BindingsIdImpl> bindingsIds;
 
 	/**
 	 * Map from a Collection type name to the corresponding CollectionTypeId. 
@@ -140,12 +140,12 @@ public final class IdManager
 	/**
 	 * Map from the Tuple hashCode to the tuple typeIds with the same hash. 
 	 */
-	private static @Nullable WeakHashMapOfListOfWeakReference3<Integer, String, TuplePartId[], GeneralizedTupleTypeIdImpl> tupleTypes = null;
+	private static @Nullable WeakHashMapOfListOfWeakReference3<@NonNull Integer, @NonNull String, @NonNull TuplePartId @NonNull [], GeneralizedTupleTypeIdImpl> tupleTypes = null;
 
 	/**
 	 * Map from the ParametersId hashCode to the parametersId with the same hash. 
 	 */
-	private static @Nullable WeakHashMapOfListOfWeakReference2<Integer, TypeId[], ParametersIdImpl> parametersIds;
+	private static @Nullable WeakHashMapOfListOfWeakReference2<@NonNull Integer, @NonNull TypeId @NonNull [], ParametersIdImpl> parametersIds;
 
 	/**
 	 * Map from a Primitive type name to the corresponding PrimitiveTypeId. 
@@ -174,7 +174,7 @@ public final class IdManager
 	}
 		
 	public static @NonNull BindingsId getBindingsId(@NonNull Type... types) {
-		ElementId[] elementIds = new ElementId[types.length];
+		@NonNull ElementId @NonNull [] elementIds = new @NonNull ElementId @NonNull [types.length];
 		for (int i = 0; i < types.length; i++) {
 			elementIds[i] = types[i].getTypeId();
 		}
@@ -184,16 +184,16 @@ public final class IdManager
 	/**
 	 * Return the bindingsId for a given type list.
 	 */
-    public static @NonNull BindingsId getBindingsId(@NonNull ElementId... elementIds) {
-		WeakHashMapOfListOfWeakReference2<Integer, ElementId[], BindingsIdImpl> bindingsIds2 = bindingsIds;
+    public static @NonNull BindingsId getBindingsId(@NonNull ElementId @NonNull ... elementIds) {
+		WeakHashMapOfListOfWeakReference2<Integer, @NonNull ElementId @NonNull [], BindingsIdImpl> bindingsIds2 = bindingsIds;
 		if (bindingsIds2 == null) {
     		synchronized (IdManager.class) {
     			bindingsIds2 = bindingsIds;
     	    	if (bindingsIds2 == null) {
-    	    		bindingsIds = bindingsIds2 = new WeakHashMapOfListOfWeakReference2<Integer, ElementId[], BindingsIdImpl>()
+    	    		bindingsIds = bindingsIds2 = new WeakHashMapOfListOfWeakReference2<Integer, @NonNull ElementId @NonNull [], BindingsIdImpl>()
     				{
     	    			@Override
-    	    			protected @NonNull BindingsIdImpl newId(@NonNull Integer hashCode, @NonNull ElementId[] elementIds) {
+    	    			protected @NonNull BindingsIdImpl newId(@NonNull Integer hashCode, @NonNull ElementId @NonNull [] elementIds) {
     	    			   	return new BindingsIdImpl(PRIVATE_INSTANCE, hashCode, elementIds);
     	    			}		
 					};
@@ -297,7 +297,7 @@ public final class IdManager
 	/**
 	 * Return the named lambda typeId with the defined type parameters.
 	 */
-	public static @NonNull LambdaTypeId getLambdaTypeId(@NonNull String name, @NonNull TypeId... typeIds) {
+	public static @NonNull LambdaTypeId getLambdaTypeId(@NonNull String name, @NonNull TypeId @NonNull ... typeIds) {
     	return getLambdaTypeId(name, getParametersId(typeIds));
 	}
 
@@ -367,7 +367,7 @@ public final class IdManager
 		String name = NameUtil.getSafeName(anOperation);
 		org.eclipse.ocl.pivot.Class parentType = anOperation.getOwningClass();
 		TypeId parentTypeId = parentType.getTypeId();
-		Type[] parameterTypes = TypeUtil.getOperationParameterTypes(anOperation);
+		@NonNull Type @NonNull [] parameterTypes = TypeUtil.getOperationParameterTypes(anOperation);
 		TemplateParameters typeParameters = anOperation.getTypeParameters();
 		ParametersId parametersId = getParametersId(parameterTypes);
 		return parentTypeId.getOperationId(typeParameters.parametersSize(), name, parametersId);
@@ -376,16 +376,16 @@ public final class IdManager
 	/**
 	 * Return the named tuple typeId with the defined parts (which are alphabetically ordered by part name).
 	 */
-    public static @NonNull TupleTypeId getOrderedTupleTypeId(@NonNull String name, @NonNull TuplePartId[] parts) {
-		WeakHashMapOfListOfWeakReference3<Integer, String, TuplePartId[], GeneralizedTupleTypeIdImpl> tupleTypes2 = tupleTypes;
+    public static @NonNull TupleTypeId getOrderedTupleTypeId(@NonNull String name, @NonNull TuplePartId @NonNull [] parts) {
+		WeakHashMapOfListOfWeakReference3<@NonNull Integer, @NonNull String, @NonNull TuplePartId @NonNull [], GeneralizedTupleTypeIdImpl> tupleTypes2 = tupleTypes;
 		if (tupleTypes2 == null) {
     		synchronized (IdManager.class) {
     			tupleTypes2 = tupleTypes;
     	    	if (tupleTypes2 == null) {
-    	    		tupleTypes = tupleTypes2 = new WeakHashMapOfListOfWeakReference3<Integer, String, TuplePartId[], GeneralizedTupleTypeIdImpl>()
+    	    		tupleTypes = tupleTypes2 = new WeakHashMapOfListOfWeakReference3<@NonNull Integer, @NonNull String, @NonNull TuplePartId @NonNull [], GeneralizedTupleTypeIdImpl>()
     				{
     	    			@Override
-    	    			protected @NonNull GeneralizedTupleTypeIdImpl newId(@NonNull Integer hashCode, @NonNull String name, @NonNull TuplePartId[] parts) {
+    	    			protected @NonNull GeneralizedTupleTypeIdImpl newId(@NonNull Integer hashCode, @NonNull String name, @NonNull TuplePartId @NonNull [] parts) {
     	    				return new GeneralizedTupleTypeIdImpl(PRIVATE_INSTANCE, hashCode, name, parts);
     	    			}		
 					};
@@ -447,12 +447,13 @@ public final class IdManager
 		return getNsURIPackageId(name, aPackage.getNsPrefix(), null);
 	}
 	
-	public static @NonNull ParametersId getParametersId(@NonNull Type[] parameterTypes) {
+	public static @NonNull ParametersId getParametersId(@NonNull Type @NonNull [] parameterTypes) {
 		int iSize = parameterTypes.length;
-		TypeId[] typeIds = new TypeId[iSize];
+		@NonNull TypeId @NonNull [] typeIds = new @NonNull TypeId[iSize];
 		for (int i = 0; i < iSize; i++) {
 			Type parameterType = parameterTypes[i];
-			typeIds[i] = parameterType != null ? parameterType.getTypeId() : TypeId.OCL_INVALID;		// Never happens NPE guard
+			@SuppressWarnings("null")boolean isNonNull = parameterType != null;
+			typeIds[i] = isNonNull ? parameterType.getTypeId() : TypeId.OCL_INVALID;		// Never happens NPE guard
 		}
 		return getParametersId(typeIds);
 	}
@@ -460,16 +461,16 @@ public final class IdManager
 	/**
 	 * Return the parametersId for a given type list.
 	 */
-    public static @NonNull ParametersId getParametersId(@NonNull TypeId... typeIds) {
-		WeakHashMapOfListOfWeakReference2<Integer, TypeId[], ParametersIdImpl> parametersIds2 = parametersIds;
+    public static @NonNull ParametersId getParametersId(@NonNull TypeId @NonNull ... typeIds) {
+		WeakHashMapOfListOfWeakReference2<@NonNull Integer, @NonNull TypeId @NonNull [], ParametersIdImpl> parametersIds2 = parametersIds;
 		if (parametersIds2 == null) {
     		synchronized (IdManager.class) {
     			parametersIds2 = parametersIds;
     	    	if (parametersIds2 == null) {
-    	    		parametersIds = parametersIds2 = new WeakHashMapOfListOfWeakReference2<Integer, TypeId[], ParametersIdImpl>()
+    	    		parametersIds = parametersIds2 = new WeakHashMapOfListOfWeakReference2<@NonNull Integer, @NonNull TypeId @NonNull [], ParametersIdImpl>()
     				{
     	    			@Override
-    	    			protected @NonNull ParametersIdImpl newId(@NonNull Integer hashCode, @NonNull TypeId[] typeIds) {
+    	    			protected @NonNull ParametersIdImpl newId(@NonNull Integer hashCode, @NonNull TypeId @NonNull [] typeIds) {
     	    			   	return new ParametersIdImpl(PRIVATE_INSTANCE, hashCode, typeIds);
     	    			}		
 					};
@@ -566,8 +567,8 @@ public final class IdManager
 	/**
 	 * Return the named tuple typeId with the defined parts (which need not be alphabetically ordered).
 	 */
-	public static @NonNull TupleTypeId getTupleTypeId(@NonNull String name, @NonNull Collection<? extends TuplePartId> parts) {
-		TuplePartId[] orderedParts = new TuplePartId[parts.size()];
+	public static @NonNull TupleTypeId getTupleTypeId(@NonNull String name, @NonNull Collection<@NonNull ? extends TuplePartId> parts) {
+		@NonNull TuplePartId @NonNull [] orderedParts = new @NonNull TuplePartId[parts.size()];
 		int i = 0;
 		for (TuplePartId part : parts) {
 			orderedParts[i++] = part;
@@ -576,8 +577,8 @@ public final class IdManager
 		return getOrderedTupleTypeId(name, orderedParts);
 	}
 
-	public static @NonNull TupleTypeId getTupleTypeId(@NonNull String name, @NonNull TuplePartId... parts) {
-		TuplePartId[] orderedParts = new TuplePartId[parts.length];
+	public static @NonNull TupleTypeId getTupleTypeId(@NonNull String name, @NonNull TuplePartId @NonNull ... parts) {
+		@NonNull TuplePartId @NonNull [] orderedParts = new @NonNull TuplePartId[parts.length];
 		int i = 0;
 		for (TuplePartId part : parts) {
 			orderedParts[i++] = part;

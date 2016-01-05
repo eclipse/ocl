@@ -43,7 +43,7 @@ public class ConstrainedOperation extends AbstractOperation
 	@Override
 	public @Nullable Object dispatch(@NonNull Executor executor, @NonNull OperationCallExp callExp, @Nullable Object sourceValue) {
 		List<? extends OCLExpression> arguments = callExp.getOwnedArguments();
-		Object[] argumentValues = new Object[arguments.size()];
+		@Nullable Object[] argumentValues = new @Nullable Object[arguments.size()];
 		for (int i = 0; i < arguments.size(); i++) {
 			OCLExpression argument = arguments.get(i);
 			assert argument != null;
@@ -52,7 +52,7 @@ public class ConstrainedOperation extends AbstractOperation
 		return evaluate(executor, callExp, sourceValue, argumentValues);
 	}
 
-	private @Nullable Object evaluate(@NonNull Executor executor, @NonNull OperationCallExp callExp, @Nullable Object sourceValue, @NonNull Object... argumentValues) {
+	private @Nullable Object evaluate(@NonNull Executor executor, @NonNull OperationCallExp callExp, @Nullable Object sourceValue, @Nullable Object @NonNull ... argumentValues) {
 		PivotUtil.checkExpression(expressionInOCL);
 		EvaluationEnvironment nestedEvaluationEnvironment = executor.pushEvaluationEnvironment(expressionInOCL, callExp);
 		nestedEvaluationEnvironment.add(ClassUtil.nonNullModel(expressionInOCL.getOwnedContext()), sourceValue);

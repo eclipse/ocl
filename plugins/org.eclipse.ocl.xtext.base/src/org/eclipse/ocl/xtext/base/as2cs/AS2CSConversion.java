@@ -306,7 +306,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 		}
 	}
 
-	protected <T extends ClassCS> T refreshClassifier(@NonNull Class<T> csClass, /*@NonNull*/ EClass csEClass, org.eclipse.ocl.pivot.@NonNull Class object) {
+	protected <@NonNull T extends ClassCS> T refreshClassifier(@NonNull Class<T> csClass, /*@NonNull*/ EClass csEClass, org.eclipse.ocl.pivot.@NonNull Class object) {
 		T csElement = refreshNamedElement(csClass, csEClass, object);
 		List<ConstraintCS> csInvariants = visitDeclarations(ConstraintCS.class, object.getOwnedInvariants(), null);
 		for (ConstraintCS csInvariant : csInvariants) {
@@ -326,7 +326,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 		return csElement;
 	}
 
-	public <T extends ModelElementCS> T refreshElement(@NonNull Class<T> csClass, /*@NonNull*/ EClass csEClass, @NonNull Element object) {
+	public <@NonNull T extends ModelElementCS> T refreshElement(@NonNull Class<T> csClass, /*@NonNull*/ EClass csEClass, @NonNull Element object) {
 		assert csClass == csEClass.getInstanceClass();
 		EFactory eFactoryInstance = csEClass.getEPackage().getEFactoryInstance();
 		ModelElementCS csElement = (ModelElementCS) eFactoryInstance.create(csEClass);
@@ -339,11 +339,11 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 		return castElement;
 	}
 
-	public <T extends NamedElementCS> T refreshNamedElement(@NonNull Class<T> csClass, /*@NonNull */EClass csEClass, @NonNull NamedElement object) {
+	public <@NonNull T extends NamedElementCS> T refreshNamedElement(@NonNull Class<T> csClass, /*@NonNull */EClass csEClass, @NonNull NamedElement object) {
 		return refreshNamedElement(csClass, csEClass, object, "«null»");
 	}
 
-	public <T extends NamedElementCS> T refreshNamedElement(@NonNull Class<T> csClass, /*@NonNull */EClass csEClass, @NonNull NamedElement object, @Nullable String replacementNameForNull) {
+	public <@NonNull T extends NamedElementCS> T refreshNamedElement(@NonNull Class<T> csClass, /*@NonNull */EClass csEClass, @NonNull NamedElement object, @Nullable String replacementNameForNull) {
 		T csElement = refreshElement(csClass, csEClass, object);
 		String name = object.getName();
 		if (name == null) {
@@ -457,7 +457,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 		}
 	}
 
-	public <T extends StructuralFeatureCS> T refreshStructuralFeature(@NonNull Class<T> csClass, /*@NonNull */EClass csEClass, @NonNull Property object) {
+	public <@NonNull T extends StructuralFeatureCS> T refreshStructuralFeature(@NonNull Class<T> csClass, /*@NonNull */EClass csEClass, @NonNull Property object) {
 		T csElement = refreshTypedElement(csClass, csEClass, object);
 		refreshQualifiers(csElement.getQualifiers(), "derived", object.isIsDerived());
 		refreshQualifiers(csElement.getQualifiers(), "readonly", object.isIsReadOnly());
@@ -469,7 +469,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 		return csElement;
 	}
 	
-	public <T extends TypedElementCS> T refreshTypedElement(@NonNull Class<T> csClass, /*@NonNull */EClass csEClass, @NonNull TypedElement object) {
+	public <@NonNull T extends TypedElementCS> T refreshTypedElement(@NonNull Class<T> csClass, /*@NonNull */EClass csEClass, @NonNull TypedElement object) {
 		T csElement = refreshNamedElement(csClass, csEClass, object);
 		final Type type = object.getType();
 		final Type elementType;
@@ -582,7 +582,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 		}
 	}
 
-	public @Nullable <T extends ElementCS> T visitDeclaration(@NonNull Class<T> csClass, @Nullable EObject eObject) {
+	public <T extends ElementCS> @Nullable T visitDeclaration(@NonNull Class<T> csClass, @Nullable EObject eObject) {
 		if (eObject == null) {
 			return null;
 		}
@@ -598,7 +598,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 		return castElement;
 	}
 
-	public @Nullable <T extends ElementCS, V extends EObject> List<T> visitDeclarationAsList(@NonNull Class<T> csClass, @Nullable V eObject) {
+	public <T extends ElementCS, @Nullable  V extends EObject> @Nullable List<@NonNull T> visitDeclarationAsList(@NonNull Class<T> csClass, V eObject) {
 		if (eObject == null) {
 			return null;
 		}

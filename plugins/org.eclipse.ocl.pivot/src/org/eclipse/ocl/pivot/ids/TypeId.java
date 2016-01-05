@@ -111,9 +111,9 @@ public interface TypeId extends ElementId
 	public static final @NonNull TemplateParameterId T_2 = IdManager.getTemplateParameterId(1);
 	public static final @NonNull TemplateParameterId T_3 = IdManager.getTemplateParameterId(2);
 
-	public static final @NonNull String[] NULL_STRING_ARRAY = new String[0];
-	public static final @NonNull TuplePartId[] NULL_TUPLE_PART_ID_ARRAY = new TuplePartId[0];	
-	public static final @NonNull TypeId[] NULL_TYPE_ID_ARRAY = new TypeId[0];	
+	public static final @NonNull String @NonNull [] NULL_STRING_ARRAY = new @NonNull String[0];
+	public static final @NonNull TuplePartId @NonNull [] NULL_TUPLE_PART_ID_ARRAY = new @NonNull TuplePartId[0];	
+	public static final @NonNull TypeId @NonNull [] NULL_TYPE_ID_ARRAY = new @NonNull TypeId[0];	
 
 	@Nullable String getLiteralName();
 

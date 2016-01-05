@@ -27,7 +27,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableLayout;
 import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.jface.viewers.ViewerSorter;
+import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
@@ -78,7 +78,7 @@ public class RegistrationsView extends ViewPart implements ISelectionListener{
 	 * providing objects to the view.
 	 */
 	 
-	class NameSorter extends ViewerSorter {
+	class NameSorter extends ViewerComparator {
 	}
 
 	/**

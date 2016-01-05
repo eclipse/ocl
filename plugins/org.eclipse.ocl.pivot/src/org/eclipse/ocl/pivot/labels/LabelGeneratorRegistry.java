@@ -201,7 +201,7 @@ public class LabelGeneratorRegistry implements ILabelGenerator.Registry
 			labelBuilder.appendString("<null-Object>");
 			return;
 		}
-		@SuppressWarnings("null")@NonNull Class<? extends Object> labelledObjectClass = labelledObject.getClass();
+		Class<? extends Object> labelledObjectClass = labelledObject.getClass();
 		ILabelGenerator<?> labelGenerator = get(labelledObjectClass);
 		if (labelGenerator == null) {
 			labelGenerator = getLabelGenerator(labelledObjectClass);

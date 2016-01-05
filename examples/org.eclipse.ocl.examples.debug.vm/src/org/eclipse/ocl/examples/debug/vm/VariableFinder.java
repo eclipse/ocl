@@ -67,11 +67,11 @@ public class VariableFinder
 		return newInstance(fEvalEnv, true).computeDetail(variableURI);
 	}
 
-	public static @NonNull URI createURI(@NonNull String[] varPath) {
+	public static @NonNull URI createURI(@NonNull String @NonNull [] varPath) {
 		return createURI(varPath, varPath.length - 1);
 	}
 	
-	public static @NonNull URI createURI(@NonNull String[] varPath, int endIndex) {
+	public static @NonNull URI createURI(@NonNull String @NonNull [] varPath, int endIndex) {
 		String[] segments = new String[endIndex + 1];
 		for (int i = 0; i < segments.length; i++) {
 			segments[i] =  URI.encodeSegment(varPath[i], true);
@@ -151,10 +151,10 @@ public class VariableFinder
 		return "this".equals(name);
 	}
 
-	public static @NonNull String[] getVariablePath(@NonNull URI variableURI) {
-		String[] ids = new String[variableURI.segmentCount()];
+	public static @NonNull String @NonNull [] getVariablePath(@NonNull URI variableURI) {
+		@NonNull String @NonNull [] ids = new @NonNull String[variableURI.segmentCount()];
 		for (int i = 0; i < ids.length; i++) {
-			ids[i] = URI.decode(variableURI.segment(i));
+			ids[i] = ClassUtil.toString(URI.decode(variableURI.segment(i)));
 		}
 		return ids;
 	}
@@ -286,8 +286,8 @@ public class VariableFinder
 		fIsStoreValues = isStoreValues;
 	}
 	
-	public void collectChildVars(Object root, @NonNull String[] parentPath, @Nullable String containerType, @NonNull List<VMVariableData> result) {
-		String childPath[] = new String[parentPath.length + 1];
+	public void collectChildVars(Object root, @NonNull String @NonNull [] parentPath, @Nullable String containerType, @NonNull List<VMVariableData> result) {
+		@NonNull String childPath @NonNull [] = new @NonNull String[parentPath.length + 1];
 		System.arraycopy(parentPath, 0, childPath, 0, parentPath.length);
 		
 		if (root instanceof Resource) {
@@ -320,7 +320,7 @@ public class VariableFinder
 				uriBuf.append(index < 0 ? 0 : index);
 				uriBuf.append('.').append(feature.getName());
 				
-				childPath[childPath.length - 1] = uriBuf.toString();
+				childPath[childPath.length - 1] = ClassUtil.toString(uriBuf);
 				VMVariableData elementVar = createFeatureVar(feature, getValue(feature, eObject), createURI(childPath).toString());
 				result.add(elementVar);
 				
@@ -347,7 +347,7 @@ public class VariableFinder
 			
 			int i = 0;
 			for (Object element : elements) {
-				childPath[childPath.length - 1] = String.valueOf(i);
+				childPath[childPath.length - 1] = ClassUtil.toString(i);
 				VMVariableData elementVar;
 //				if(asDictionary == null) {
 					elementVar = createCollectionElementVar(i, element, elementType, createURI(childPath).toString());
@@ -373,7 +373,7 @@ public class VariableFinder
 			
 			int i = 0;
 			for (Object element : elements) {
-				childPath[childPath.length - 1] = String.valueOf(i);
+				childPath[childPath.length - 1] = ClassUtil.toString(i);
 				VMVariableData elementVar;
 //				if(asDictionary == null) {
 					elementVar = createCollectionElementVar(i, element, elementType, createURI(childPath).toString());
@@ -389,7 +389,7 @@ public class VariableFinder
 	}
 
 	public @Nullable String computeDetail(@NonNull URI variableURI) {
-		String[] variablePath = getVariablePath(variableURI);
+		@NonNull String @NonNull [] variablePath = getVariablePath(variableURI);
 		Object valueObject = findStackObject(variablePath);
 		try {
 			return LabelUtil.getLabel(valueObject);
@@ -441,7 +441,7 @@ public class VariableFinder
 		return result;
 	}
 
-	public void find(@NonNull String[] objectPath, boolean fetchChildVariables, @NonNull List<VMVariableData> result) {
+	public void find(@NonNull String @NonNull [] objectPath, boolean fetchChildVariables, @NonNull List<VMVariableData> result) {
 		if (result.contains(null)) {
 			throw new IllegalArgumentException("null result variables"); //$NON-NLS-1$
 		}
@@ -461,7 +461,7 @@ public class VariableFinder
 		}
 	}
 
-	protected Object findChildObject(Object parentObj, @Nullable String optParentDeclaredType, @NonNull String[] varTreePath, int pathIndex) {
+	protected Object findChildObject(Object parentObj, @Nullable String optParentDeclaredType, @NonNull String @NonNull [] varTreePath, int pathIndex) {
 		URI uri = createURI(varTreePath, pathIndex);
 		// FIXME - deduce the type from actual type, ensure null is not propagated
 		
@@ -566,7 +566,7 @@ public class VariableFinder
 		return nextObject;
 	}
 	
-	private @Nullable Object findStackObject(@NonNull String[] varTreePath) {
+	private @Nullable Object findStackObject(@NonNull String @NonNull [] varTreePath) {
 		Object rootObj = null;
 		boolean gotIt = false;
 		String envVarName = ClassUtil.nonNullState(varTreePath[0]);
@@ -609,7 +609,7 @@ public class VariableFinder
 		fRootDeclaredType = getDeclaredType(rootObj);
 		if(rootObj != null && varTreePath.length == 1) {
 			// refers to environment variable only
-			String[] uri = new String[] { envVarName };
+			@NonNull String @NonNull [] uri = new @NonNull String @NonNull [] { envVarName };
 			fTargetVar = createVariable(envVarName, VMVariableData.LOCAL, fRootDeclaredType, rootObj, createURI(uri).toString());
 			return rootObj;
 		}
@@ -845,7 +845,7 @@ public class VariableFinder
 		String variableURIStr = request.variableURI;
 		URI variableURI = parseURI(variableURIStr);
 
-		String[] variablePath = getVariablePath(variableURI);
+		@NonNull String @NonNull [] variablePath = getVariablePath(variableURI);
 		
 		List<VMVariableData> variables = new ArrayList<VMVariableData>();
 		find(variablePath, request.includeChildVars, variables);
@@ -854,10 +854,10 @@ public class VariableFinder
 			return VMResponse.createERROR();
 		}
 
-		VMVariableData[] children = null;
+		@NonNull VMVariableData @Nullable [] children = null;
 		int size = variables.size();
 		if (size > 1) {
-			children = variables.subList(1, size).toArray(new VMVariableData[size - 1]);
+			children = variables.subList(1, size).toArray(new @NonNull VMVariableData @NonNull [size - 1]);
 		}
 		VMVariableData variable0 = variables.get(0);
 		return variable0 != null ? new VMVariableResponse(variable0, children) : null;

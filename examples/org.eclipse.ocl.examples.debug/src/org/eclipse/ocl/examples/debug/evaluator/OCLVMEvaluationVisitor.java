@@ -35,7 +35,7 @@ import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 
-public class OCLVMEvaluationVisitor extends AbstractMergedVisitor<@Nullable Object, Executor> implements VMEvaluationVisitor, EvaluationVisitor.EvaluationVisitorExtension
+public class OCLVMEvaluationVisitor extends AbstractMergedVisitor<@Nullable Object, @NonNull Executor> implements VMEvaluationVisitor, EvaluationVisitor.EvaluationVisitorExtension
 {
 	protected final @NonNull EvaluationVisitor evaluationVisitor;
 	protected final @NonNull VMEvaluationStepper vmEvaluationStepper;

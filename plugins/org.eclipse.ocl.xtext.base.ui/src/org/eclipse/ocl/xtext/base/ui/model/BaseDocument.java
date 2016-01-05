@@ -102,7 +102,7 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 	} */
 
 	public @Nullable ASResource getASResource() throws CoreException {
-		return readOnly(new IUnitOfWork<ASResource, XtextResource>()
+		return readOnly(new IUnitOfWork<@Nullable ASResource, @Nullable XtextResource>()
 			{
 				@Override
 				public ASResource exec(@Nullable XtextResource resource) throws Exception {
@@ -152,7 +152,7 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 	}
 
 	public @Nullable ResourceSet getResourceSet() {
-		return readOnly(new IUnitOfWork<ResourceSet, XtextResource>()
+		return readOnly(new IUnitOfWork<@Nullable ResourceSet, @Nullable XtextResource>()
 			{
 				@Override
 				public ResourceSet exec(@Nullable XtextResource resource) throws Exception {

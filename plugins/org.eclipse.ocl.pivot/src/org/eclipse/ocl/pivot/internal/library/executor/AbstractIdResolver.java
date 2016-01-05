@@ -353,14 +353,14 @@ public abstract class AbstractIdResolver implements IdResolver.IdResolverExtensi
 		}			
 		else if (unboxedValue.getClass().isArray()) {
 			try {
-				Object[] unboxedValues = (Object[])unboxedValue;
+				@NonNull Object @NonNull [] unboxedValues = (@NonNull Object @NonNull [])unboxedValue;
 				Type dynamicType = getDynamicTypeOf(unboxedValues);
 				if (dynamicType == null) {
 					dynamicType = standardLibrary.getOclInvalidType();
 				}
 				TypeId elementTypeId = dynamicType.getTypeId();
 				CollectionTypeId collectedTypeId = TypeId.SEQUENCE.getSpecializedId(elementTypeId);
-				return createSequenceOfEach(collectedTypeId, (Object[])unboxedValue);
+				return createSequenceOfEach(collectedTypeId, (@NonNull Object @NonNull [])unboxedValue);
 			} 
 			catch (IllegalArgumentException e) {}
 		}
@@ -796,7 +796,7 @@ public abstract class AbstractIdResolver implements IdResolver.IdResolverExtensi
 	}
 	
 	@Override
-	public @Nullable Type getDynamicTypeOf(@NonNull Object... values) {
+	public @Nullable Type getDynamicTypeOf(@NonNull Object @NonNull ... values) {
 		Type elementType = null;
 		for (Object value : values) {
 			org.eclipse.ocl.pivot.Class valueType = getDynamicTypeOf(value);

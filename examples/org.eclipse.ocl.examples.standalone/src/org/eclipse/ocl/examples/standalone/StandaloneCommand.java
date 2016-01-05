@@ -59,7 +59,7 @@ public abstract class StandaloneCommand
 			return isRequired;
 		}
 
-		public int parseArgument(@NonNull List<String> strings, @NonNull String[] arguments, int i) {
+		public int parseArgument(@NonNull List<String> strings, @NonNull String @NonNull [] arguments, int i) {
 			return i;
 		}
 
@@ -91,7 +91,7 @@ public abstract class StandaloneCommand
 			return "<string-value>";
 		}
 
-		public int parseArgument(@NonNull List<String> strings, @NonNull String[] arguments, int i) {
+		public int parseArgument(@NonNull List<String> strings, @NonNull String @NonNull [] arguments, int i) {
 			if (i < arguments.length){
 				String argument = arguments[i++];
 				strings.add(argument);
@@ -151,7 +151,7 @@ public abstract class StandaloneCommand
 		return tokens.values();
 	}
 	
-	public @Nullable Map<CommandToken, List<String>> parse(@NonNull String[] arguments) {
+	public @Nullable Map<CommandToken, List<String>> parse(@NonNull String @NonNull [] arguments) {
 		Map<CommandToken, List<String>> parsedTokens = new HashMap<CommandToken, List<String>>();
 		for (int i = 1; i < arguments.length;) {
 			String argument = arguments[i++];

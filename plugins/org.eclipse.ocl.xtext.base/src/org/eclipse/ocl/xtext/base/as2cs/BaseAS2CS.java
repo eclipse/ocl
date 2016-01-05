@@ -37,8 +37,8 @@ public class BaseAS2CS extends AS2CS
 		}
 
 		@Override
-		public @NonNull EClass[] getEClasses() {
-			return new EClass[] {};
+		public @NonNull EClass @NonNull [] getEClasses() {
+			return new @NonNull EClass @NonNull [] {};
 		}
 	}
 

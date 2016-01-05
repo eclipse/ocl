@@ -95,7 +95,7 @@ public class CreateDynamicInstanceHandler extends AbstractHandler
 	@Override
 	public void setEnabled(Object evaluationContext) {
 		selectedClass = null;
-		Object o = HandlerUtil.getVariable(evaluationContext, ISources.ACTIVE_EDITOR_NAME);
+		@Nullable Object o = HandlerUtil.getVariable(evaluationContext, ISources.ACTIVE_EDITOR_NAME);
 		if (!(o instanceof IEditorPart)) {
 			return;
 		}

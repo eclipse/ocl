@@ -54,13 +54,13 @@ public abstract class AbstractInheritance extends AbstractExecutorNamedElement i
 		private final int firstIndex;
 		private final int lastIndex;
 		
-		public FragmentIterable(@NonNull InheritanceFragment[] array) {
+		public FragmentIterable(@NonNull InheritanceFragment @NonNull [] array) {
 			this.array = array;
 			this.firstIndex = 0;
 			this.lastIndex = array.length;
 		}
 		
-		public FragmentIterable(@NonNull InheritanceFragment[] array, int firstIndex, int lastIndex) {
+		public FragmentIterable(@NonNull InheritanceFragment @NonNull [] array, int firstIndex, int lastIndex) {
 			this.array = array;
 			this.firstIndex = firstIndex;
 			this.lastIndex = lastIndex;

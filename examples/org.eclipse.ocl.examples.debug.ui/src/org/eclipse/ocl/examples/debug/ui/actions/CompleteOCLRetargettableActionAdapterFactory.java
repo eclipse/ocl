@@ -27,17 +27,17 @@ public class CompleteOCLRetargettableActionAdapterFactory implements IAdapterFac
 		super();
 	}
 	
-	@SuppressWarnings("unchecked")
-	public Object getAdapter(Object adaptableObject, @SuppressWarnings("rawtypes") Class adapterType) {
+	@SuppressWarnings({ "unchecked", "null" })
+	public <T> T getAdapter(Object adaptableObject, Class<T> adapterType) {
 		if (!(adaptableObject instanceof CompleteOCLEditor)) {
-			return null;
+			return (T)null;
         }
         if (IRunToLineTarget.class == adapterType) {
-			return new CompleteOCLRunToLineAdapter();
+			return (T)new CompleteOCLRunToLineAdapter();
         } else if (IToggleBreakpointsTarget.class == adapterType) {
-			return new CompleteOCLToggleBreakpointAdapter();
+			return (T)new CompleteOCLToggleBreakpointAdapter();
         } 
-		return null;
+		return (T)null;
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
