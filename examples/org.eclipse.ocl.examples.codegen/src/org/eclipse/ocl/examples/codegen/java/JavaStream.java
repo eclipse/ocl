@@ -62,7 +62,7 @@ public class JavaStream
 	 * Awkward characters are replaced by an underscore prefixed decimal string.
 	 * The first character and the character following a decimal string may not be a decimal.
 	 */
-	public static String convertToJavaIdentifier(@NonNull String theString) {
+	public static @NonNull String convertToJavaIdentifier(@NonNull String theString) {
 		int len = theString.length();
 		int bufLen = len * 2;
 		if (bufLen < 0) {
@@ -1033,7 +1033,6 @@ public class JavaStream
 	
 	@Override
 	public @NonNull String toString() {
-		@SuppressWarnings("null")@NonNull String string = s.toString();
-		return string;
+		return s.toString();
 	}
 }

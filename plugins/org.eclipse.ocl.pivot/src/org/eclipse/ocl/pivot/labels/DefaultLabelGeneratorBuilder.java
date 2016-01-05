@@ -36,7 +36,6 @@ public class DefaultLabelGeneratorBuilder extends AbstractLabelGeneratorBuilder
 
 	@Override
 	public @NonNull String toString() {
-		@SuppressWarnings("null")@NonNull String string = s.toString();
-		return string;
+		return s.toString();
 	}
 }

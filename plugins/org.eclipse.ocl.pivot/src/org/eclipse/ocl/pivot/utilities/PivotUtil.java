@@ -572,8 +572,7 @@ public class PivotUtil
 		}
 		s.append("\n\t" + PivotConstants.STATUS_PART_NAME + " : Boolean = " + statusText);		// NB parts in alphabetical order
 		s.append("\n}."+ PivotConstants.STATUS_PART_NAME);
-		@SuppressWarnings("null")@NonNull String string = s.toString();
-		return string;
+		return s.toString();
 	}
 
 	public static @NonNull Variable createVariable(@NonNull String name, @NonNull OCLExpression asInitExpression) {

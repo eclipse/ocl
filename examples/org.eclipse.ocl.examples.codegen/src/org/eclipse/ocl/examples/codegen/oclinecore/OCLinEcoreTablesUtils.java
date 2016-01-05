@@ -388,8 +388,7 @@ public class OCLinEcoreTablesUtils
 		
 		@Override
 		public @NonNull String toString() {
-			@SuppressWarnings("null")@NonNull String string = s.toString();
-			return string;
+			return s.toString();
 		}
 	}
 
@@ -1120,8 +1119,7 @@ public class OCLinEcoreTablesUtils
 					getTemplateBindingsName(s, element);
 				}
 			}
-			@SuppressWarnings("null")@NonNull String string = s.toString();
-			name2 = string;
+			name2 = s.toString();
 			templateBindingsNames.put(templateBindings, name2);
 		}
 		return name2;

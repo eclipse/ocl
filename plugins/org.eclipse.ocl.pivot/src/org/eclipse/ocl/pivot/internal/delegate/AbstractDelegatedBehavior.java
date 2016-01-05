@@ -196,8 +196,7 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 				s.append(diagnostic.getMessage());
 			}
 			if (s != null) {
-				@SuppressWarnings("null")@NonNull String string = s.toString();
-				throw new OCLDelegateException(new EvaluationException(string));
+				throw new OCLDelegateException(new EvaluationException(s.toString()));
 			}
 		}
 	}

@@ -1142,7 +1142,6 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		}
 		s1.append("\n");
 		s1.append(s.toString());
-		@SuppressWarnings("null")@NonNull String string = s1.toString();
-		return string;
+		return s1.toString();
 	}
 }

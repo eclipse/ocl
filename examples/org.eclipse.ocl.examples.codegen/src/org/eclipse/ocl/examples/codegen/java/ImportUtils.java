@@ -153,8 +153,7 @@ public class ImportUtils
 			iStart = iSuffix + IMPORTS_SUFFIX.length();
 		}
 		s.append(source, iStart, iMax);
-		@SuppressWarnings("null")@NonNull String string = s.toString();
-		return string;
+		return s.toString();
 	}
 
 	/**
@@ -220,7 +219,6 @@ public class ImportUtils
 			iStart = iSuffix + IMPORTS_SUFFIX.length();
 		}
 		s.append(source, iStart, iMax);
-		@SuppressWarnings("null")@NonNull String string = s.toString();
-		return string;
+		return s.toString();
 	}
 }

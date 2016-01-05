@@ -996,8 +996,7 @@ public class StandaloneProjectMap implements ProjectManager
 				s.append(" in ");
 			}
 			s.append(NameUtil.debugSimpleName(packageRegistry));
-			@SuppressWarnings("null")@NonNull String string = s.toString();
-			return string;
+			return s.toString();
 		}
 
 		@Override

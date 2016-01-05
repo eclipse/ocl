@@ -460,8 +460,7 @@ public class NameManager
 				prefix = '_';
 			}
 		}
-		@SuppressWarnings("null") @NonNull String string = s.toString();
-		return string;
+		return s.toString();
 	}
 	
 	public class Context {

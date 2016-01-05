@@ -127,8 +127,7 @@ public class AbstractGenModelHelper implements GenModelHelper
 //			if ((''))
 //			prevCharIsLower = charIsLowerCase;
 		}
-		@SuppressWarnings("null")@NonNull String string = s.toString();
-		return string;
+		return s.toString();
 	}
 	
 	protected final @NonNull PivotMetamodelManager metamodelManager;

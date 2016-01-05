@@ -43,8 +43,7 @@ public abstract class IndentingLogger extends AbstractLogger
 			char c = message.charAt(i);
 			s.append(c);
 			if (c == '\n') {
-				@SuppressWarnings("null")@NonNull String string = s.toString();
-				print(string);
+				print(s.toString());
 				s.setLength(0);
 			}
 		}
@@ -53,8 +52,7 @@ public abstract class IndentingLogger extends AbstractLogger
 	@Override
 	public void close() {
 		if (s.length() > 0) {
-			@SuppressWarnings("null")@NonNull String string = s.toString();
-			print(string);
+			print(s.toString());
 			s.setLength(0);
 		}
 	}

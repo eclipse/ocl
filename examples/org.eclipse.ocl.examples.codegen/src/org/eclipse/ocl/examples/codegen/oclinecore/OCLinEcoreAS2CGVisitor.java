@@ -173,7 +173,7 @@ public final class OCLinEcoreAS2CGVisitor extends AS2CGVisitor
 					if (severityExpression == null) {
 						s.append("endif\n");
 					}
-					@SuppressWarnings("null")@NonNull String cgExpression = s.toString();
+					String cgExpression = s.toString();
 					ExpressionInOCL query = parserContext.parse(contextElement, cgExpression);
 					OCLinEcoreLocalContext localContext = (OCLinEcoreLocalContext) globalContext.getLocalContext(cgConstraint);
 					Variable contextVariable = query.getOwnedContext();
