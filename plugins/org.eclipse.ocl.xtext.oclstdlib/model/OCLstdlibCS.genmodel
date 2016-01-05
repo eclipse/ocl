@@ -5,7 +5,7 @@
     editorDirectory="/org.eclipse.ocl.xtext.oclstdlib.editor/emf-gen" modelPluginID="org.eclipse.ocl.xtext.oclstdlib"
     forceOverwrite="true" modelName="OCLstdlibCS" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     codeFormatting="true" testsDirectory="/org.eclipse.ocl.xtext.oclstdlib.tests/emf-gen"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
     editPluginID="org.eclipse.ocl.xtext.oclstdlib.edit" editorPluginID="org.eclipse.ocl.xtext.oclstdlib.editor"
     runtimeVersion="2.7" usedGenPackages="../../org.eclipse.ocl.xtext.base/model/BaseCS.genmodel#//basecs ../../org.eclipse.ocl.pivot/model/Pivot.genmodel#//pivot ../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
     importOrganizing="true">
