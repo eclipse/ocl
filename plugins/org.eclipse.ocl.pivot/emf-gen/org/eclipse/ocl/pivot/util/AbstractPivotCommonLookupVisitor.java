@@ -24,7 +24,7 @@ import org.eclipse.ocl.pivot.util.Visitable;
  * @since 1.1
  */
 public class AbstractPivotCommonLookupVisitor
-	extends AbstractExtendingVisitor<LookupEnvironment, LookupEnvironment>
+	extends AbstractExtendingVisitor<@Nullable LookupEnvironment, @NonNull LookupEnvironment>
 {
     public static final @NonNull /*@NonInvalid*/ RootPackageId PACKid_org_eclipse_ocl_pivot_evaluation = IdManager.getRootPackageId("org.eclipse.ocl.pivot.evaluation");
     public static final @NonNull /*@NonInvalid*/ RootPackageId PACKid_org_eclipse_ocl_pivot_ids = IdManager.getRootPackageId("org.eclipse.ocl.pivot.ids");
@@ -36,7 +36,9 @@ public class AbstractPivotCommonLookupVisitor
     
     public AbstractPivotCommonLookupVisitor(@NonNull LookupEnvironment context) {
         super(context);
-        this.executor = context.getExecutor();
+        Executor executor2 = context.getExecutor();
+        assert executor2 != null;
+		this.executor = executor2;
         this.idResolver = executor.getIdResolver();
     }
     

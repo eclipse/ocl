@@ -180,7 +180,7 @@ public interface AbstractNode extends EObject {
 	/**
 	 * Return the fraction of getChildren() that are visible in an array to suit access by a ContentProvider.
 	 */
-	@NonNull AbstractNode[] getVisibleChildren();
+	@NonNull AbstractNode @NonNull [] getVisibleChildren();
 	
 	/**
 	 * Update the grayed status of this node and all its descendants, returning >0 if this node and its children are consistently enabled,

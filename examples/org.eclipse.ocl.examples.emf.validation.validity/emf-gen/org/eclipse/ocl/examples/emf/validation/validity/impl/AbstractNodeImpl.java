@@ -370,9 +370,9 @@ public abstract class AbstractNodeImpl extends MinimalEObjectImpl.Container impl
 		return String.valueOf(label);
 	}
 	
-	public static final @NonNull AbstractNode[] NO_CHILDREN = new AbstractNode[0];
+	public static final @NonNull AbstractNode @NonNull [] NO_CHILDREN = new AbstractNode[0];
 	
-	private @NonNull AbstractNode[] visibleChildren = NO_CHILDREN;
+	private @NonNull AbstractNode @NonNull [] visibleChildren = NO_CHILDREN;
 
 	public int countVisibleChildren() {
 		int allChildren = 1;
@@ -391,14 +391,14 @@ public abstract class AbstractNodeImpl extends MinimalEObjectImpl.Container impl
 		}
 	}
 
-	public @NonNull AbstractNode[] getVisibleChildren() {
+	public @NonNull AbstractNode @NonNull [] getVisibleChildren() {
 		return visibleChildren;
 	}
 
 	public int refreshGrayed() {
 		boolean isEnabled = enabled;	
 		boolean isDisabled = !isEnabled;
-		for (@SuppressWarnings("null")@NonNull AbstractNode child : visibleChildren) {
+		for (AbstractNode child : visibleChildren) {
 			int childStatus = child.refreshGrayed();
 			if (childStatus >= 0) {
 				isEnabled = true;
@@ -437,7 +437,7 @@ public abstract class AbstractNodeImpl extends MinimalEObjectImpl.Container impl
 				return false;
 			}
 		}
-		@SuppressWarnings("null")@NonNull AbstractNode[] array = list.toArray(new AbstractNode[list.size()]);
+		@SuppressWarnings("null")@NonNull AbstractNode @NonNull [] array = list.toArray(new  @NonNull AbstractNode @NonNull [list.size()]);
 		this.visibleChildren = array;
 		this.visible = true;
 		return true;

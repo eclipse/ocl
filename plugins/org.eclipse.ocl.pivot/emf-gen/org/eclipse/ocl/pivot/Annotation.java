@@ -62,7 +62,7 @@ public interface Annotation
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getAnnotation_OwnedDetails()
 	 * @generated
 	 */
-	List<Detail> getOwnedDetails();
+	@NonNull List<Detail> getOwnedDetails();
 
 	/**
 	 * Returns the value of the '<em><b>References</b></em>' reference list.
@@ -77,6 +77,6 @@ public interface Annotation
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getAnnotation_References()
 	 * @generated
 	 */
-	List<Element> getReferences();
+	@NonNull List<Element> getReferences();
 
 } // Annotation

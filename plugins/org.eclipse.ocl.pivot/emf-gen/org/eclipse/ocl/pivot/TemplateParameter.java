@@ -46,7 +46,7 @@ public interface TemplateParameter extends Type {
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getTemplateParameter_ConstrainingClasses()
 	 * @generated
 	 */
-	List<org.eclipse.ocl.pivot.Class> getConstrainingClasses();
+	@NonNull List<org.eclipse.ocl.pivot.Class> getConstrainingClasses();
 
 	/**
 	 * Returns the value of the '<em><b>Owning Signature</b></em>' container reference.

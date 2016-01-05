@@ -569,7 +569,7 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 				parametersId2 = parametersId;
 				if (parametersId2 == null) {
 					List<Type> parameterTypes = getParameterType();
-					TypeId[] typeIds = new TypeId[2+parameterTypes.size()];
+					@NonNull TypeId @NonNull [] typeIds = new @NonNull TypeId[2+parameterTypes.size()];
 					typeIds[0] = getContextType().getTypeId();
 					typeIds[1] = getResultType().getTypeId();
 					for (int i = 0; i < parameterTypes.size(); i++) {

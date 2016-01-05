@@ -64,7 +64,7 @@ import org.eclipse.ocl.pivot.values.SetValue;
  */
 public class AbstractPivotUnqualifiedLookupVisitor
 	extends AbstractPivotCommonLookupVisitor
-	implements Visitor<LookupEnvironment>
+	implements Visitor<@Nullable LookupEnvironment>
 {
     public static final @NonNull /*@NonInvalid*/ RootPackageId PACKid_$metamodel$ = IdManager.getRootPackageId("$metamodel$");
     public static final @NonNull /*@NonInvalid*/ NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Lookup = IdManager.getNsURIPackageId("http://www.eclipse.org/ocl/2015/Lookup", null, LookupPackage.eINSTANCE);

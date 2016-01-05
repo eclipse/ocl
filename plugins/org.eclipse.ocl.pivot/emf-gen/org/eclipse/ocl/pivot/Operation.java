@@ -82,7 +82,7 @@ public interface Operation extends Feature, Namespace, TemplateableElement {
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getOperation_RedefinedOperations()
 	 * @generated
 	 */
-	List<Operation> getRedefinedOperations();
+	@NonNull List<Operation> getRedefinedOperations();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Parameters</b></em>' containment reference list.
@@ -120,7 +120,7 @@ public interface Operation extends Feature, Namespace, TemplateableElement {
 	 * @see org.eclipse.ocl.pivot.Constraint#getOwningPostContext
 	 * @generated
 	 */
-	List<Constraint> getOwnedPostconditions();
+	@NonNull List<Constraint> getOwnedPostconditions();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Preconditions</b></em>' containment reference list.
@@ -140,7 +140,7 @@ public interface Operation extends Feature, Namespace, TemplateableElement {
 	 * @see org.eclipse.ocl.pivot.Constraint#getOwningPreContext
 	 * @generated
 	 */
-	List<Constraint> getOwnedPreconditions();
+	@NonNull List<Constraint> getOwnedPreconditions();
 
 	/**
 	 * Returns the value of the '<em><b>Precedence</b></em>' reference.

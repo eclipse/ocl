@@ -118,8 +118,9 @@ public class AnnotationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("null")
 	@Override
-	public List<Detail> getOwnedDetails()
+	public @NonNull List<Detail> getOwnedDetails()
 	{
 		if (ownedDetails == null)
 		{
@@ -133,8 +134,9 @@ public class AnnotationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("null")
 	@Override
-	public List<Element> getReferences()
+	public @NonNull List<Element> getReferences()
 	{
 		if (references == null)
 		{

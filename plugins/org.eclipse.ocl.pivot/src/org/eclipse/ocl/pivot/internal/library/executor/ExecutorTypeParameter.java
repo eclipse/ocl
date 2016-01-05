@@ -68,7 +68,7 @@ public class ExecutorTypeParameter extends AbstractExecutorType implements Execu
 	}
 
 	@Override
-	public List<Class> getConstrainingClasses() {
+	public @NonNull List<Class> getConstrainingClasses() {
 		throw new UnsupportedOperationException();
 	}
 

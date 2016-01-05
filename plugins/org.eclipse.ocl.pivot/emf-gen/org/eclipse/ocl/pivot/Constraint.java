@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.jdt.annotation.NonNull;
 
 /**
  * <!-- begin-user-doc -->
@@ -57,7 +58,7 @@ public interface Constraint
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getConstraint_ConstrainedElements()
 	 * @generated
 	 */
-	List<Element> getConstrainedElements();
+	@NonNull List<Element> getConstrainedElements();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Specification</b></em>' containment reference.

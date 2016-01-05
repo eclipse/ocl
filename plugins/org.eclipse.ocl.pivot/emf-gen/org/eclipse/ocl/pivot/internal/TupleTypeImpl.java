@@ -74,7 +74,7 @@ public class TupleTypeImpl
 			String name2 = NameUtil.getSafeName(this);
 			List<Property> parts = getOwnedProperties();
 			int iSize = parts.size();
-			List<TuplePartId> partIds = new ArrayList<TuplePartId>(iSize);
+			List<@NonNull TuplePartId> partIds = new ArrayList<@NonNull TuplePartId>(iSize);
 			for (int i = 0; i < iSize; i++) {
 				@SuppressWarnings("null")@NonNull TypedElement part = parts.get(i);
 				String partName = NameUtil.getSafeName(part);

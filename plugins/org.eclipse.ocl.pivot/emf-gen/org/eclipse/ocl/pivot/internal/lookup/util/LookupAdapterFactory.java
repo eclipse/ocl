@@ -16,6 +16,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.evaluation.Executor;
+import org.eclipse.ocl.pivot.internal.lookup.*;
 import org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment;
 import org.eclipse.ocl.pivot.internal.lookup.LookupPackage;
 
@@ -27,6 +28,7 @@ import org.eclipse.ocl.pivot.internal.lookup.LookupPackage;
  * @see org.eclipse.ocl.pivot.internal.lookup.LookupPackage
  * @generated
  */
+@SuppressWarnings("unused")
 public class LookupAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.

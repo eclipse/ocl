@@ -58,7 +58,7 @@ public abstract class AbstractExecutorProperty extends AbstractExecutorFeature i
 	}
 
 	@Override
-	public List<Property> getKeys() {
+	public @NonNull List<Property> getKeys() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -79,7 +79,7 @@ public abstract class AbstractExecutorProperty extends AbstractExecutorFeature i
 	}
 
 	@Override
-	public List<Property> getRedefinedProperties() {
+	public @NonNull List<Property> getRedefinedProperties() {
 		throw new UnsupportedOperationException();
 	}
 

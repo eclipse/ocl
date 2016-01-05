@@ -27,7 +27,7 @@ public abstract class AbstractWrappingVisitor<R, C, D extends Visitor<R>, P>
 {
 	protected final D delegate;
 	
-	protected AbstractWrappingVisitor(@NonNull D delegate, @NonNull C context) {
+	protected AbstractWrappingVisitor(@NonNull D delegate, C context) {
 		super(context);
 		this.delegate = delegate;		
 	//	delegate.setUndecoratedVisitor(this);

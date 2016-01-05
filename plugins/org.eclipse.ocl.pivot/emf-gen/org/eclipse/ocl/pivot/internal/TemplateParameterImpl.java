@@ -97,8 +97,9 @@ public class TemplateParameterImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("null")
 	@Override
-	public List<org.eclipse.ocl.pivot.Class> getConstrainingClasses()
+	public @NonNull List<org.eclipse.ocl.pivot.Class> getConstrainingClasses()
 	{
 		if (constrainingClasses == null)
 		{

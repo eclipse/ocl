@@ -33,6 +33,7 @@ import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.TemplateableElement;
 import org.eclipse.ocl.pivot.util.Visitor;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.TypeUtil;
 
 /**
@@ -339,9 +340,9 @@ public class TemplateSignatureImpl
 		if (templateSignature == null) {
 			return TemplateParameters.EMPTY_LIST;
 		}
-		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
+		List<@NonNull TemplateParameter> templateParameters = ClassUtil.nullFree(templateSignature.getOwnedParameters());
 		int iMax = templateParameters.size();
-		TemplateParameter[] typeParameters = new TemplateParameter[iMax];
+		@NonNull TemplateParameter[] typeParameters = new @NonNull TemplateParameter[iMax];
 		for (int i = 0; i < iMax; i++) {
 			typeParameters[i] = templateParameters.get(i);
 		}

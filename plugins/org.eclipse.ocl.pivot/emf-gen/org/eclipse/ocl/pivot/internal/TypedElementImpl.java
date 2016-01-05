@@ -28,11 +28,11 @@ import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.ValueSpecification;
-import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.classifier.OclTypeConformsToOperation;
 import org.eclipse.ocl.pivot.util.Visitor;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
@@ -180,23 +180,23 @@ public abstract class TypedElementImpl
 		/**
 		 * bodySpecification.type?.conformsTo(self.type)
 		 */
-		final @NonNull /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
-		final @Nullable /*@Thrown*/ Type type = bodySpecification.getType();
-		@Nullable /*@Caught*/ Object CAUGHT_type;
+		final /*@NonInvalid*/ org.eclipse.ocl.pivot.evaluation.@NonNull Executor executor = PivotUtilInternal.getExecutor(this);
+		final /*@Thrown*/ org.eclipse.ocl.pivot.@Nullable Type type = bodySpecification.getType();
+		/*@Caught*/ @Nullable Object CAUGHT_type;
 		try {
 		    CAUGHT_type = type;
 		}
 		catch (Exception e) {
 		    CAUGHT_type = ValueUtil.createInvalidValue(e);
 		}
-		final @NonNull /*@NonInvalid*/ Object symbol_0 = CAUGHT_type == null;
-		@Nullable /*@Thrown*/ Boolean safe_conformsTo_source;
+		final /*@NonInvalid*/ @NonNull Object symbol_0 = CAUGHT_type == null;
+		/*@Thrown*/ java.lang.@Nullable Boolean safe_conformsTo_source;
 		if (symbol_0 == Boolean.TRUE) {
 		    safe_conformsTo_source = null;
 		}
 		else {
-		    final @Nullable /*@Thrown*/ Type type_0 = this.getType();
-		    final /*@Thrown*/ boolean conformsTo = OclTypeConformsToOperation.INSTANCE.evaluate(executor, type, type_0).booleanValue();
+		    final /*@Thrown*/ org.eclipse.ocl.pivot.@Nullable Type type_0 = this.getType();
+		    final /*@Thrown*/ boolean conformsTo = ClassUtil.nonNullState(OclTypeConformsToOperation.INSTANCE.evaluate(executor, type, type_0).booleanValue());
 		    safe_conformsTo_source = conformsTo;
 		}
 		if (safe_conformsTo_source == null) {

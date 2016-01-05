@@ -20,13 +20,12 @@ import org.eclipse.jdt.annotation.NonNull;
 /**
  * An AbstractMergedVisitor merges all visits direct to visiting().
  * This can be used by a decorating visitor to execute shared code before redispatching to a decorated visitor.
- * @since 1.1
  */
 public abstract class AbstractMergedVisitor<R, C>
 	extends AbstractVisitor<R, C>
 	implements Visitor<R>
 {
-	protected AbstractMergedVisitor(@NonNull C context) {
+	protected AbstractMergedVisitor(C context) {
 		super(context);
 	}
 

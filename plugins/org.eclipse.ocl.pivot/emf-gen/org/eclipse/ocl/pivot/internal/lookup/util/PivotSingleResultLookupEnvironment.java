@@ -38,15 +38,17 @@ public class PivotSingleResultLookupEnvironment extends LookupEnvironmentImpl   
 	private @NonNull EClass typeFilter;
 	private @Nullable PivotLookupFilter expFilter;
 	
-	public PivotSingleResultLookupEnvironment(@NonNull Executor executor, @NonNull EClass typeFilter, @NonNull String name, @Nullable PivotLookupFilter expFilter) {
+	public PivotSingleResultLookupEnvironment(@NonNull Executor executor, /*@NonNull*/ EClass typeFilter, /*@NonNull*/ String name, @Nullable PivotLookupFilter expFilter) {
 		this.executor = executor;
+		assert name != null;
 		this.name = name;
+		assert typeFilter != null;
 		this.typeFilter = typeFilter;
 		this.expFilter = expFilter;
 	}
 
-	public PivotSingleResultLookupEnvironment(@NonNull Executor executor, @NonNull EClass typeFilter, @NonNull String name) {
-		this(executor,typeFilter, name, null);
+	public PivotSingleResultLookupEnvironment(@NonNull Executor executor, /*@NonNull*/ EClass typeFilter, /*@NonNull*/ String name) {
+		this(executor, typeFilter, name, null);
 	}
 	
 	@Override

@@ -333,7 +333,7 @@ public interface Property extends Feature {
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_Keys()
 	 * @generated
 	 */
-	List<Property> getKeys();
+	@NonNull List<Property> getKeys();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.pivot.Property#isIsResolveProxies <em>Is Resolve Proxies</em>}' attribute.
@@ -523,7 +523,7 @@ public interface Property extends Feature {
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getProperty_RedefinedProperties()
 	 * @generated
 	 */
-	List<Property> getRedefinedProperties();
+	@NonNull List<Property> getRedefinedProperties();
 
 	@NonNull PropertyId getPropertyId();
 

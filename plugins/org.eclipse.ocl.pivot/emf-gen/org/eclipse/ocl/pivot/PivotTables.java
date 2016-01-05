@@ -21,19 +21,11 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot;
 
-import java.lang.String;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.ParameterTypes;
 import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.TemplateParameters;
-import org.eclipse.ocl.pivot.ids.ClassId;
-import org.eclipse.ocl.pivot.ids.CollectionTypeId;
-import org.eclipse.ocl.pivot.ids.DataTypeId;
-import org.eclipse.ocl.pivot.ids.EnumerationId;
-import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
 import org.eclipse.ocl.pivot.ids.IdManager;
-import org.eclipse.ocl.pivot.ids.RootPackageId;
-import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.library.ecore.EcoreExecutorEnumeration;
 import org.eclipse.ocl.pivot.internal.library.ecore.EcoreExecutorEnumerationLiteral;
 import org.eclipse.ocl.pivot.internal.library.ecore.EcoreExecutorPackage;
@@ -47,8 +39,6 @@ import org.eclipse.ocl.pivot.internal.library.executor.ExecutorPropertyWithImple
 import org.eclipse.ocl.pivot.internal.library.executor.ExecutorStandardLibrary;
 import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.pivot.utilities.TypeUtil;
-import org.eclipse.ocl.pivot.utilities.ValueUtil;
-import org.eclipse.ocl.pivot.values.IntegerValue;
 
 /**
  * PivotTables provides the dispatch tables for the pivot for use by the OCL dispatcher.
@@ -76,286 +66,286 @@ public class PivotTables
 	/**
 	 *	Constants used by auto-generated code.
 	 */
-    public static final @NonNull /*@NonInvalid*/ RootPackageId PACKid_$metamodel$ = IdManager.getRootPackageId("$metamodel$");
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Annotation = PivotTables.PACKid_$metamodel$.getClassId("Annotation", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_AssociationClass = PivotTables.PACKid_$metamodel$.getClassId("AssociationClass", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_AssociationClassCallExp = PivotTables.PACKid_$metamodel$.getClassId("AssociationClassCallExp", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_BagType = PivotTables.PACKid_$metamodel$.getClassId("BagType", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Behavior = PivotTables.PACKid_$metamodel$.getClassId("Behavior", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_BooleanLiteralExp = PivotTables.PACKid_$metamodel$.getClassId("BooleanLiteralExp", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_CallExp = PivotTables.PACKid_$metamodel$.getClassId("CallExp", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_CallOperationAction = PivotTables.PACKid_$metamodel$.getClassId("CallOperationAction", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Class = PivotTables.PACKid_$metamodel$.getClassId("Class", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_CollectionItem = PivotTables.PACKid_$metamodel$.getClassId("CollectionItem", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_CollectionLiteralExp = PivotTables.PACKid_$metamodel$.getClassId("CollectionLiteralExp", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_CollectionLiteralPart = PivotTables.PACKid_$metamodel$.getClassId("CollectionLiteralPart", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_CollectionRange = PivotTables.PACKid_$metamodel$.getClassId("CollectionRange", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_CollectionType = PivotTables.PACKid_$metamodel$.getClassId("CollectionType", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Comment = PivotTables.PACKid_$metamodel$.getClassId("Comment", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_CompleteClass = PivotTables.PACKid_$metamodel$.getClassId("CompleteClass", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_CompleteEnvironment = PivotTables.PACKid_$metamodel$.getClassId("CompleteEnvironment", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_CompleteModel = PivotTables.PACKid_$metamodel$.getClassId("CompleteModel", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_CompletePackage = PivotTables.PACKid_$metamodel$.getClassId("CompletePackage", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_ConnectionPointReference = PivotTables.PACKid_$metamodel$.getClassId("ConnectionPointReference", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Constraint = PivotTables.PACKid_$metamodel$.getClassId("Constraint", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_DataType = PivotTables.PACKid_$metamodel$.getClassId("DataType", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Detail = PivotTables.PACKid_$metamodel$.getClassId("Detail", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_DynamicElement = PivotTables.PACKid_$metamodel$.getClassId("DynamicElement", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_DynamicProperty = PivotTables.PACKid_$metamodel$.getClassId("DynamicProperty", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_DynamicType = PivotTables.PACKid_$metamodel$.getClassId("DynamicType", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Element = PivotTables.PACKid_$metamodel$.getClassId("Element", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_ElementExtension = PivotTables.PACKid_$metamodel$.getClassId("ElementExtension", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_EnumLiteralExp = PivotTables.PACKid_$metamodel$.getClassId("EnumLiteralExp", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Enumeration = PivotTables.PACKid_$metamodel$.getClassId("Enumeration", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_EnumerationLiteral = PivotTables.PACKid_$metamodel$.getClassId("EnumerationLiteral", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_ExpressionInOCL = PivotTables.PACKid_$metamodel$.getClassId("ExpressionInOCL", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Feature = PivotTables.PACKid_$metamodel$.getClassId("Feature", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_IfExp = PivotTables.PACKid_$metamodel$.getClassId("IfExp", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Import = PivotTables.PACKid_$metamodel$.getClassId("Import", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_InstanceSpecification = PivotTables.PACKid_$metamodel$.getClassId("InstanceSpecification", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_IntegerLiteralExp = PivotTables.PACKid_$metamodel$.getClassId("IntegerLiteralExp", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_IterateExp = PivotTables.PACKid_$metamodel$.getClassId("IterateExp", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Iteration = PivotTables.PACKid_$metamodel$.getClassId("Iteration", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_IteratorExp = PivotTables.PACKid_$metamodel$.getClassId("IteratorExp", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_LambdaType = PivotTables.PACKid_$metamodel$.getClassId("LambdaType", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_LanguageExpression = PivotTables.PACKid_$metamodel$.getClassId("LanguageExpression", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_LetExp = PivotTables.PACKid_$metamodel$.getClassId("LetExp", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Library = PivotTables.PACKid_$metamodel$.getClassId("Library", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_LoopExp = PivotTables.PACKid_$metamodel$.getClassId("LoopExp", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_MapLiteralExp = PivotTables.PACKid_$metamodel$.getClassId("MapLiteralExp", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_MapLiteralPart = PivotTables.PACKid_$metamodel$.getClassId("MapLiteralPart", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_MapType = PivotTables.PACKid_$metamodel$.getClassId("MapType", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_MessageExp = PivotTables.PACKid_$metamodel$.getClassId("MessageExp", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_MessageType = PivotTables.PACKid_$metamodel$.getClassId("MessageType", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Model = PivotTables.PACKid_$metamodel$.getClassId("Model", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Namespace = PivotTables.PACKid_$metamodel$.getClassId("Namespace", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_NavigationCallExp = PivotTables.PACKid_$metamodel$.getClassId("NavigationCallExp", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_OCLExpression = PivotTables.PACKid_$metamodel$.getClassId("OCLExpression", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_OclElement = PivotTables.PACKid_$metamodel$.getClassId("OclElement", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Operation = PivotTables.PACKid_$metamodel$.getClassId("Operation", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_OperationCallExp = PivotTables.PACKid_$metamodel$.getClassId("OperationCallExp", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_OppositePropertyCallExp = PivotTables.PACKid_$metamodel$.getClassId("OppositePropertyCallExp", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_OrderedSetType = PivotTables.PACKid_$metamodel$.getClassId("OrderedSetType", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_OrphanCompletePackage = PivotTables.PACKid_$metamodel$.getClassId("OrphanCompletePackage", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Package = PivotTables.PACKid_$metamodel$.getClassId("Package", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Parameter = PivotTables.PACKid_$metamodel$.getClassId("Parameter", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Precedence = PivotTables.PACKid_$metamodel$.getClassId("Precedence", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_PrimitiveCompletePackage = PivotTables.PACKid_$metamodel$.getClassId("PrimitiveCompletePackage", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_PrimitiveType = PivotTables.PACKid_$metamodel$.getClassId("PrimitiveType", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Profile = PivotTables.PACKid_$metamodel$.getClassId("Profile", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_ProfileApplication = PivotTables.PACKid_$metamodel$.getClassId("ProfileApplication", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Property = PivotTables.PACKid_$metamodel$.getClassId("Property", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_PropertyCallExp = PivotTables.PACKid_$metamodel$.getClassId("PropertyCallExp", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Pseudostate = PivotTables.PACKid_$metamodel$.getClassId("Pseudostate", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Region = PivotTables.PACKid_$metamodel$.getClassId("Region", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_SelfType = PivotTables.PACKid_$metamodel$.getClassId("SelfType", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_SendSignalAction = PivotTables.PACKid_$metamodel$.getClassId("SendSignalAction", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_SequenceType = PivotTables.PACKid_$metamodel$.getClassId("SequenceType", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_SetType = PivotTables.PACKid_$metamodel$.getClassId("SetType", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_ShadowExp = PivotTables.PACKid_$metamodel$.getClassId("ShadowExp", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_ShadowPart = PivotTables.PACKid_$metamodel$.getClassId("ShadowPart", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Signal = PivotTables.PACKid_$metamodel$.getClassId("Signal", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Slot = PivotTables.PACKid_$metamodel$.getClassId("Slot", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_StandardLibrary = PivotTables.PACKid_$metamodel$.getClassId("StandardLibrary", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_State = PivotTables.PACKid_$metamodel$.getClassId("State", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_StateExp = PivotTables.PACKid_$metamodel$.getClassId("StateExp", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_StateMachine = PivotTables.PACKid_$metamodel$.getClassId("StateMachine", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Stereotype = PivotTables.PACKid_$metamodel$.getClassId("Stereotype", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_StereotypeExtender = PivotTables.PACKid_$metamodel$.getClassId("StereotypeExtender", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_TemplateBinding = PivotTables.PACKid_$metamodel$.getClassId("TemplateBinding", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_TemplateParameter = PivotTables.PACKid_$metamodel$.getClassId("TemplateParameter", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_TemplateParameterSubstitution = PivotTables.PACKid_$metamodel$.getClassId("TemplateParameterSubstitution", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_TemplateSignature = PivotTables.PACKid_$metamodel$.getClassId("TemplateSignature", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_TemplateableElement = PivotTables.PACKid_$metamodel$.getClassId("TemplateableElement", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Transition = PivotTables.PACKid_$metamodel$.getClassId("Transition", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Trigger = PivotTables.PACKid_$metamodel$.getClassId("Trigger", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_TupleLiteralExp = PivotTables.PACKid_$metamodel$.getClassId("TupleLiteralExp", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_TupleLiteralPart = PivotTables.PACKid_$metamodel$.getClassId("TupleLiteralPart", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Type = PivotTables.PACKid_$metamodel$.getClassId("Type", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_TypeExp = PivotTables.PACKid_$metamodel$.getClassId("TypeExp", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_TypedElement = PivotTables.PACKid_$metamodel$.getClassId("TypedElement", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_ValueSpecification = PivotTables.PACKid_$metamodel$.getClassId("ValueSpecification", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Variable = PivotTables.PACKid_$metamodel$.getClassId("Variable", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_VariableDeclaration = PivotTables.PACKid_$metamodel$.getClassId("VariableDeclaration", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_VariableExp = PivotTables.PACKid_$metamodel$.getClassId("VariableExp", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_Vertex = PivotTables.PACKid_$metamodel$.getClassId("Vertex", 0);
-    public static final @NonNull /*@NonInvalid*/ ClassId CLSSid_WildcardType = PivotTables.PACKid_$metamodel$.getClassId("WildcardType", 0);
-    public static final @NonNull /*@NonInvalid*/ DataTypeId DATAid_LibraryFeature = PivotTables.PACKid_$metamodel$.getDataTypeId("LibraryFeature", 0);
-    public static final @NonNull /*@NonInvalid*/ DataTypeId DATAid_Object = PivotTables.PACKid_$metamodel$.getDataTypeId("Object", 0);
-    public static final @NonNull /*@NonInvalid*/ EnumerationId ENUMid_AssociativityKind = PivotTables.PACKid_$metamodel$.getEnumerationId("AssociativityKind");
-    public static final @NonNull /*@NonInvalid*/ EnumerationId ENUMid_CollectionKind = PivotTables.PACKid_$metamodel$.getEnumerationId("CollectionKind");
-    public static final @NonNull /*@NonInvalid*/ EnumerationId ENUMid_PseudostateKind = PivotTables.PACKid_$metamodel$.getEnumerationId("PseudostateKind");
-    public static final @NonNull /*@NonInvalid*/ EnumerationId ENUMid_TransitionKind = PivotTables.PACKid_$metamodel$.getEnumerationId("TransitionKind");
-    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_0 = ValueUtil.integerValueOf("0");
-    public static final @NonNull /*@NonInvalid*/ IntegerValue INT_1 = ValueUtil.integerValueOf("1");
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_PRIMid_Integer = TypeId.SEQUENCE.getSpecializedId(TypeId.INTEGER);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_PRIMid_String = TypeId.SET.getSpecializedId(TypeId.STRING);
-    public static final @NonNull /*@NonInvalid*/ String STR_Boolean = "Boolean";
-    public static final @NonNull /*@NonInvalid*/ String STR_BooleanLiteralExp_c_c_TypeIsBoolean = "BooleanLiteralExp::TypeIsBoolean";
-    public static final @NonNull /*@NonInvalid*/ String STR_CallExp_c_c_TypeIsNotInvalid = "CallExp::TypeIsNotInvalid";
-    public static final @NonNull /*@NonInvalid*/ String STR_Class_c_c_UniqueInvariantName = "Class::UniqueInvariantName";
-    public static final @NonNull /*@NonInvalid*/ String STR_CollectionItem_c_c_TypeIsItemType = "CollectionItem::TypeIsItemType";
-    public static final @NonNull /*@NonInvalid*/ String STR_CollectionLiteralExp_c_c_BagKindIsBag = "CollectionLiteralExp::BagKindIsBag";
-    public static final @NonNull /*@NonInvalid*/ String STR_CollectionLiteralExp_c_c_CollectionKindIsConcrete = "CollectionLiteralExp::CollectionKindIsConcrete";
-    public static final @NonNull /*@NonInvalid*/ String STR_CollectionLiteralExp_c_c_OrderedSetKindIsOrderedSet = "CollectionLiteralExp::OrderedSetKindIsOrderedSet";
-    public static final @NonNull /*@NonInvalid*/ String STR_CollectionLiteralExp_c_c_SequenceKindIsSequence = "CollectionLiteralExp::SequenceKindIsSequence";
-    public static final @NonNull /*@NonInvalid*/ String STR_CollectionLiteralExp_c_c_SetKindIsSet = "CollectionLiteralExp::SetKindIsSet";
-    public static final @NonNull /*@NonInvalid*/ String STR_CollectionLiteralPart_c_c_TypeIsNotInvalid = "CollectionLiteralPart::TypeIsNotInvalid";
-    public static final @NonNull /*@NonInvalid*/ String STR_Constraint_c_c_UniqueName = "Constraint::UniqueName";
-    public static final @NonNull /*@NonInvalid*/ String STR_EnumLiteralExp_c_c_TypeIsEnumerationType = "EnumLiteralExp::TypeIsEnumerationType";
-    public static final @NonNull /*@NonInvalid*/ String STR_Feature_c_c_TypeIsNotInvalid = "Feature::TypeIsNotInvalid";
-    public static final @NonNull /*@NonInvalid*/ String STR_IfExp_c_c_ConditionTypeIsBoolean = "IfExp::ConditionTypeIsBoolean";
-    public static final @NonNull /*@NonInvalid*/ String STR_IfExp_c_c_TypeIsNotInvalid = "IfExp::TypeIsNotInvalid";
-    public static final @NonNull /*@NonInvalid*/ String STR_IntegerLiteralExp_c_c_TypeIsInteger = "IntegerLiteralExp::TypeIsInteger";
-    public static final @NonNull /*@NonInvalid*/ String STR_IterateExp_c_c_BodyTypeConformsToResultType = "IterateExp::BodyTypeConformsToResultType";
-    public static final @NonNull /*@NonInvalid*/ String STR_IterateExp_c_c_OneInitializer = "IterateExp::OneInitializer";
-    public static final @NonNull /*@NonInvalid*/ String STR_IterateExp_c_c_SafeIteratorIsRequired = "IterateExp::SafeIteratorIsRequired";
-    public static final @NonNull /*@NonInvalid*/ String STR_IterateExp_c_c_SafeSourceCanBeNull = "IterateExp::SafeSourceCanBeNull";
-    public static final @NonNull /*@NonInvalid*/ String STR_IterateExp_c_c_TypeIsResultType = "IterateExp::TypeIsResultType";
-    public static final @NonNull /*@NonInvalid*/ String STR_IterateExp_c_c_UnsafeSourceCanNotBeNull = "IterateExp::UnsafeSourceCanNotBeNull";
-    public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_AnyBodyTypeIsBoolean = "IteratorExp::AnyBodyTypeIsBoolean";
-    public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_AnyHasOneIterator = "IteratorExp::AnyHasOneIterator";
-    public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_AnyTypeIsSourceElementType = "IteratorExp::AnyTypeIsSourceElementType";
-    public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_ClosureBodyTypeIsConformanttoIteratorType = "IteratorExp::ClosureBodyTypeIsConformanttoIteratorType";
-    public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_ClosureElementTypeIsSourceElementType = "IteratorExp::ClosureElementTypeIsSourceElementType";
-    public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_ClosureHasOneIterator = "IteratorExp::ClosureHasOneIterator";
-    public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_ClosureSourceElementTypeIsBodyElementType = "IteratorExp::ClosureSourceElementTypeIsBodyElementType";
-    public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_ClosureTypeIsUniqueCollection = "IteratorExp::ClosureTypeIsUniqueCollection";
-    public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_CollectElementTypeIsFlattenedBodyType = "IteratorExp::CollectElementTypeIsFlattenedBodyType";
-    public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_CollectTypeIsUnordered = "IteratorExp::CollectTypeIsUnordered";
-    public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_IteratorTypeIsSourceElementType = "IteratorExp::IteratorTypeIsSourceElementType";
-    public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_SafeIteratorIsRequired = "IteratorExp::SafeIteratorIsRequired";
-    public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_SafeSourceCanBeNull = "IteratorExp::SafeSourceCanBeNull";
-    public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_SortedByElementTypeIsSourceElementType = "IteratorExp::SortedByElementTypeIsSourceElementType";
-    public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_SortedByIsOrderedIfSourceIsOrdered = "IteratorExp::SortedByIsOrderedIfSourceIsOrdered";
-    public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_SortedByIteratorTypeIsComparable = "IteratorExp::SortedByIteratorTypeIsComparable";
-    public static final @NonNull /*@NonInvalid*/ String STR_IteratorExp_c_c_UnsafeSourceCanNotBeNull = "IteratorExp::UnsafeSourceCanNotBeNull";
-    public static final @NonNull /*@NonInvalid*/ String STR_LetExp_c_c_TypeIsInType = "LetExp::TypeIsInType";
-    public static final @NonNull /*@NonInvalid*/ String STR_LetExp_c_c_TypeIsNotInvalid = "LetExp::TypeIsNotInvalid";
-    public static final @NonNull /*@NonInvalid*/ String STR_LoopExp_c_c_NoInitializers = "LoopExp::NoInitializers";
-    public static final @NonNull /*@NonInvalid*/ String STR_LoopExp_c_c_SourceIsCollection = "LoopExp::SourceIsCollection";
-    public static final @NonNull /*@NonInvalid*/ String STR_MessageExp_c_c_OneCallOrOneSend = "MessageExp::OneCallOrOneSend";
-    public static final @NonNull /*@NonInvalid*/ String STR_MessageExp_c_c_TargetIsNotACollection = "MessageExp::TargetIsNotACollection";
-    public static final @NonNull /*@NonInvalid*/ String STR_OperationCallExp_c_c_ArgumentCount = "OperationCallExp::ArgumentCount";
-    public static final @NonNull /*@NonInvalid*/ String STR_OperationCallExp_c_c_ArgumentTypeIsConformant = "OperationCallExp::ArgumentTypeIsConformant";
-    public static final @NonNull /*@NonInvalid*/ String STR_OperationCallExp_c_c_SafeSourceCanBeNull = "OperationCallExp::SafeSourceCanBeNull";
-    public static final @NonNull /*@NonInvalid*/ String STR_Operation_c_c_CompatibleReturn = "Operation::CompatibleReturn";
-    public static final @NonNull /*@NonInvalid*/ String STR_Operation_c_c_LoadableImplementation = "Operation::LoadableImplementation";
-    public static final @NonNull /*@NonInvalid*/ String STR_Operation_c_c_UniquePostconditionName = "Operation::UniquePostconditionName";
-    public static final @NonNull /*@NonInvalid*/ String STR_Operation_c_c_UniquePreconditionName = "Operation::UniquePreconditionName";
-    public static final @NonNull /*@NonInvalid*/ String STR_PropertyCallExp_c_c_CompatibleResultType = "PropertyCallExp::CompatibleResultType";
-    public static final @NonNull /*@NonInvalid*/ String STR_PropertyCallExp_c_c_NonStaticSourceTypeIsConformant = "PropertyCallExp::NonStaticSourceTypeIsConformant";
-    public static final @NonNull /*@NonInvalid*/ String STR_PropertyCallExp_c_c_SafeSourceCanBeNull = "PropertyCallExp::SafeSourceCanBeNull";
-    public static final @NonNull /*@NonInvalid*/ String STR_PropertyCallExp_c_c_UnsafeSourceCanNotBeNull = "PropertyCallExp::UnsafeSourceCanNotBeNull";
-    public static final @NonNull /*@NonInvalid*/ String STR_Property_c_c_CompatibleDefaultExpression = "Property::CompatibleDefaultExpression";
-    public static final @NonNull /*@NonInvalid*/ String STR_ShadowExp_c_c_TypeIsNotInvalid = "ShadowExp::TypeIsNotInvalid";
-    public static final @NonNull /*@NonInvalid*/ String STR_ShadowPart_c_c_TypeIsNotInvalid = "ShadowPart::TypeIsNotInvalid";
-    public static final @NonNull /*@NonInvalid*/ String STR_StateExp_c_c_TypeIsNotInvalid = "StateExp::TypeIsNotInvalid";
-    public static final @NonNull /*@NonInvalid*/ String STR_VariableDeclaration_c_c_TypeIsNotInvalid = "VariableDeclaration::TypeIsNotInvalid";
-    public static final @NonNull /*@NonInvalid*/ String STR_VariableExp_c_c_TypeIsNotInvalid = "VariableExp::TypeIsNotInvalid";
-    public static final @NonNull /*@NonInvalid*/ String STR_Variable_c_c_CompatibleInitialiserType = "Variable::CompatibleInitialiserType";
-    public static final @NonNull /*@NonInvalid*/ String STR_any = "any";
-    public static final @NonNull /*@NonInvalid*/ String STR_closure = "closure";
-    public static final @NonNull /*@NonInvalid*/ String STR_collect = "collect";
-    public static final @NonNull /*@NonInvalid*/ String STR_sortedBy = "sortedBy";
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Annotation = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_Annotation);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_AssociationClassCallExp = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_AssociationClassCallExp);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_CallOperationAction = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_CallOperationAction);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Class = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_Class);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_CollectionType = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_CollectionType);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_CompleteClass = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_CompleteClass);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_CompleteModel = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_CompleteModel);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_CompletePackage = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_CompletePackage);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_ConnectionPointReference = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_ConnectionPointReference);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Constraint = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_Constraint);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_DataType = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_DataType);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_DynamicElement = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_DynamicElement);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_DynamicProperty = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_DynamicProperty);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_ElementExtension = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_ElementExtension);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_EnumLiteralExp = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_EnumLiteralExp);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Import = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_Import);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_InstanceSpecification = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_InstanceSpecification);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_LambdaType = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_LambdaType);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_LoopExp = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_LoopExp);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_MapType = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_MapType);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_MessageType = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_MessageType);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_NavigationCallExp = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_NavigationCallExp);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Operation = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_Operation);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_OperationCallExp = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_OperationCallExp);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_OppositePropertyCallExp = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_OppositePropertyCallExp);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Package = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_Package);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_PrimitiveType = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_PrimitiveType);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Property = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_Property);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_PropertyCallExp = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_PropertyCallExp);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Region = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_Region);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_SendSignalAction = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_SendSignalAction);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_ShadowPart = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_ShadowPart);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Slot = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_Slot);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_State = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_State);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_StateExp = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_StateExp);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_StateMachine = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_StateMachine);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_TemplateBinding = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_TemplateBinding);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_TemplateParameter = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_TemplateParameter);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_TemplateParameterSubstitution = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_TemplateParameterSubstitution);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_TypeExp = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_TypeExp);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_TypedElement = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_TypedElement);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Variable = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_Variable);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_VariableExp = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_VariableExp);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_WildcardType = TypeId.BAG.getSpecializedId(PivotTables.CLSSid_WildcardType);
-    public static final @NonNull /*@NonInvalid*/ EnumerationLiteralId ELITid_Bag = PivotTables.ENUMid_CollectionKind.getEnumerationLiteralId("Bag");
-    public static final @NonNull /*@NonInvalid*/ EnumerationLiteralId ELITid_Collection = PivotTables.ENUMid_CollectionKind.getEnumerationLiteralId("Collection");
-    public static final @NonNull /*@NonInvalid*/ EnumerationLiteralId ELITid_OrderedSet = PivotTables.ENUMid_CollectionKind.getEnumerationLiteralId("OrderedSet");
-    public static final @NonNull /*@NonInvalid*/ EnumerationLiteralId ELITid_Sequence = PivotTables.ENUMid_CollectionKind.getEnumerationLiteralId("Sequence");
-    public static final @NonNull /*@NonInvalid*/ EnumerationLiteralId ELITid_Set = PivotTables.ENUMid_CollectionKind.getEnumerationLiteralId("Set");
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_CollectionLiteralPart = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_CollectionLiteralPart);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Detail = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_Detail);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Element = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_Element);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_EnumerationLiteral = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_EnumerationLiteral);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Import = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_Import);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_MapLiteralPart = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_MapLiteralPart);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_OCLExpression = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_OCLExpression);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Operation = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_Operation);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Parameter = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_Parameter);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Precedence = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_Precedence);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Property = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_Property);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_ShadowPart = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_ShadowPart);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_TemplateParameter = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_TemplateParameter);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_TupleLiteralPart = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_TupleLiteralPart);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_ValueSpecification = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_ValueSpecification);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Variable = TypeId.ORDERED_SET.getSpecializedId(PivotTables.CLSSid_Variable);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SEQ_CLSSid_Type = TypeId.SEQUENCE.getSpecializedId(PivotTables.CLSSid_Type);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Behavior = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Behavior);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_CallOperationAction = TypeId.SET.getSpecializedId(PivotTables.CLSSid_CallOperationAction);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Class = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Class);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Comment = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Comment);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_CompleteClass = TypeId.SET.getSpecializedId(PivotTables.CLSSid_CompleteClass);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_CompletePackage = TypeId.SET.getSpecializedId(PivotTables.CLSSid_CompletePackage);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_ConnectionPointReference = TypeId.SET.getSpecializedId(PivotTables.CLSSid_ConnectionPointReference);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Constraint = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Constraint);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_DynamicProperty = TypeId.SET.getSpecializedId(PivotTables.CLSSid_DynamicProperty);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Element = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Element);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_ElementExtension = TypeId.SET.getSpecializedId(PivotTables.CLSSid_ElementExtension);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_InstanceSpecification = TypeId.SET.getSpecializedId(PivotTables.CLSSid_InstanceSpecification);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Model = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Model);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_OCLExpression = TypeId.SET.getSpecializedId(PivotTables.CLSSid_OCLExpression);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_OclElement = TypeId.SET.getSpecializedId(PivotTables.CLSSid_OclElement);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Operation = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Operation);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Package = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Package);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_ProfileApplication = TypeId.SET.getSpecializedId(PivotTables.CLSSid_ProfileApplication);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Property = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Property);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Pseudostate = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Pseudostate);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Region = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Region);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_SendSignalAction = TypeId.SET.getSpecializedId(PivotTables.CLSSid_SendSignalAction);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Slot = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Slot);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_State = TypeId.SET.getSpecializedId(PivotTables.CLSSid_State);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_StateMachine = TypeId.SET.getSpecializedId(PivotTables.CLSSid_StateMachine);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_StereotypeExtender = TypeId.SET.getSpecializedId(PivotTables.CLSSid_StereotypeExtender);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_TemplateBinding = TypeId.SET.getSpecializedId(PivotTables.CLSSid_TemplateBinding);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_TemplateParameterSubstitution = TypeId.SET.getSpecializedId(PivotTables.CLSSid_TemplateParameterSubstitution);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Transition = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Transition);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Trigger = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Trigger);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Type = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Type);
-    public static final @NonNull /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Vertex = TypeId.SET.getSpecializedId(PivotTables.CLSSid_Vertex);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull RootPackageId PACKid_$metamodel$ = org.eclipse.ocl.pivot.ids.IdManager.getRootPackageId("$metamodel$");
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Annotation = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("Annotation", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_AssociationClass = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("AssociationClass", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_AssociationClassCallExp = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("AssociationClassCallExp", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_BagType = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("BagType", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Behavior = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("Behavior", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_BooleanLiteralExp = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("BooleanLiteralExp", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_CallExp = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("CallExp", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_CallOperationAction = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("CallOperationAction", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Class = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("Class", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_CollectionItem = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("CollectionItem", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_CollectionLiteralExp = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("CollectionLiteralExp", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_CollectionLiteralPart = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("CollectionLiteralPart", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_CollectionRange = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("CollectionRange", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_CollectionType = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("CollectionType", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Comment = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("Comment", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_CompleteClass = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("CompleteClass", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_CompleteEnvironment = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("CompleteEnvironment", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_CompleteModel = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("CompleteModel", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_CompletePackage = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("CompletePackage", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_ConnectionPointReference = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("ConnectionPointReference", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Constraint = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("Constraint", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_DataType = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("DataType", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Detail = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("Detail", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_DynamicElement = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("DynamicElement", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_DynamicProperty = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("DynamicProperty", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_DynamicType = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("DynamicType", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Element = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("Element", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_ElementExtension = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("ElementExtension", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_EnumLiteralExp = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("EnumLiteralExp", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Enumeration = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("Enumeration", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_EnumerationLiteral = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("EnumerationLiteral", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_ExpressionInOCL = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("ExpressionInOCL", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Feature = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("Feature", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_IfExp = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("IfExp", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Import = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("Import", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_InstanceSpecification = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("InstanceSpecification", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_IntegerLiteralExp = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("IntegerLiteralExp", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_IterateExp = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("IterateExp", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Iteration = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("Iteration", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_IteratorExp = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("IteratorExp", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_LambdaType = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("LambdaType", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_LanguageExpression = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("LanguageExpression", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_LetExp = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("LetExp", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Library = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("Library", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_LoopExp = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("LoopExp", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_MapLiteralExp = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("MapLiteralExp", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_MapLiteralPart = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("MapLiteralPart", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_MapType = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("MapType", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_MessageExp = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("MessageExp", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_MessageType = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("MessageType", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Model = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("Model", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Namespace = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("Namespace", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_NavigationCallExp = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("NavigationCallExp", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_OCLExpression = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("OCLExpression", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_OclElement = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("OclElement", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Operation = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("Operation", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_OperationCallExp = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("OperationCallExp", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_OppositePropertyCallExp = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("OppositePropertyCallExp", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_OrderedSetType = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("OrderedSetType", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_OrphanCompletePackage = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("OrphanCompletePackage", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Package = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("Package", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Parameter = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("Parameter", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Precedence = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("Precedence", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_PrimitiveCompletePackage = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("PrimitiveCompletePackage", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_PrimitiveType = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("PrimitiveType", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Profile = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("Profile", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_ProfileApplication = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("ProfileApplication", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Property = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("Property", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_PropertyCallExp = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("PropertyCallExp", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Pseudostate = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("Pseudostate", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Region = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("Region", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_SelfType = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("SelfType", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_SendSignalAction = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("SendSignalAction", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_SequenceType = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("SequenceType", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_SetType = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("SetType", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_ShadowExp = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("ShadowExp", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_ShadowPart = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("ShadowPart", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Signal = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("Signal", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Slot = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("Slot", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_StandardLibrary = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("StandardLibrary", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_State = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("State", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_StateExp = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("StateExp", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_StateMachine = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("StateMachine", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Stereotype = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("Stereotype", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_StereotypeExtender = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("StereotypeExtender", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_TemplateBinding = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("TemplateBinding", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_TemplateParameter = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("TemplateParameter", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_TemplateParameterSubstitution = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("TemplateParameterSubstitution", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_TemplateSignature = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("TemplateSignature", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_TemplateableElement = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("TemplateableElement", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Transition = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("Transition", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Trigger = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("Trigger", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_TupleLiteralExp = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("TupleLiteralExp", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_TupleLiteralPart = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("TupleLiteralPart", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Type = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("Type", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_TypeExp = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("TypeExp", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_TypedElement = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("TypedElement", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_ValueSpecification = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("ValueSpecification", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Variable = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("Variable", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_VariableDeclaration = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("VariableDeclaration", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_VariableExp = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("VariableExp", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Vertex = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("Vertex", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_WildcardType = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getClassId("WildcardType", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull DataTypeId DATAid_LibraryFeature = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getDataTypeId("LibraryFeature", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull DataTypeId DATAid_Object = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getDataTypeId("Object", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull EnumerationId ENUMid_AssociativityKind = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getEnumerationId("AssociativityKind");
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull EnumerationId ENUMid_CollectionKind = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getEnumerationId("CollectionKind");
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull EnumerationId ENUMid_PseudostateKind = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getEnumerationId("PseudostateKind");
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull EnumerationId ENUMid_TransitionKind = org.eclipse.ocl.pivot.PivotTables.PACKid_$metamodel$.getEnumerationId("TransitionKind");
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.values.@org.eclipse.jdt.annotation.NonNull IntegerValue INT_0 = org.eclipse.ocl.pivot.utilities.ValueUtil.integerValueOf("0");
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.values.@org.eclipse.jdt.annotation.NonNull IntegerValue INT_1 = org.eclipse.ocl.pivot.utilities.ValueUtil.integerValueOf("1");
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SEQ_PRIMid_Integer = org.eclipse.ocl.pivot.ids.TypeId.SEQUENCE.getSpecializedId(org.eclipse.ocl.pivot.ids.TypeId.INTEGER);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_PRIMid_String = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(org.eclipse.ocl.pivot.ids.TypeId.STRING);
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_Boolean = "Boolean";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_BooleanLiteralExp_c_c_TypeIsBoolean = "BooleanLiteralExp::TypeIsBoolean";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_CallExp_c_c_TypeIsNotInvalid = "CallExp::TypeIsNotInvalid";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_Class_c_c_UniqueInvariantName = "Class::UniqueInvariantName";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_CollectionItem_c_c_TypeIsItemType = "CollectionItem::TypeIsItemType";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_CollectionLiteralExp_c_c_BagKindIsBag = "CollectionLiteralExp::BagKindIsBag";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_CollectionLiteralExp_c_c_CollectionKindIsConcrete = "CollectionLiteralExp::CollectionKindIsConcrete";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_CollectionLiteralExp_c_c_OrderedSetKindIsOrderedSet = "CollectionLiteralExp::OrderedSetKindIsOrderedSet";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_CollectionLiteralExp_c_c_SequenceKindIsSequence = "CollectionLiteralExp::SequenceKindIsSequence";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_CollectionLiteralExp_c_c_SetKindIsSet = "CollectionLiteralExp::SetKindIsSet";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_CollectionLiteralPart_c_c_TypeIsNotInvalid = "CollectionLiteralPart::TypeIsNotInvalid";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_Constraint_c_c_UniqueName = "Constraint::UniqueName";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_EnumLiteralExp_c_c_TypeIsEnumerationType = "EnumLiteralExp::TypeIsEnumerationType";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_Feature_c_c_TypeIsNotInvalid = "Feature::TypeIsNotInvalid";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_IfExp_c_c_ConditionTypeIsBoolean = "IfExp::ConditionTypeIsBoolean";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_IfExp_c_c_TypeIsNotInvalid = "IfExp::TypeIsNotInvalid";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_IntegerLiteralExp_c_c_TypeIsInteger = "IntegerLiteralExp::TypeIsInteger";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_IterateExp_c_c_BodyTypeConformsToResultType = "IterateExp::BodyTypeConformsToResultType";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_IterateExp_c_c_OneInitializer = "IterateExp::OneInitializer";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_IterateExp_c_c_SafeIteratorIsRequired = "IterateExp::SafeIteratorIsRequired";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_IterateExp_c_c_SafeSourceCanBeNull = "IterateExp::SafeSourceCanBeNull";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_IterateExp_c_c_TypeIsResultType = "IterateExp::TypeIsResultType";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_IterateExp_c_c_UnsafeSourceCanNotBeNull = "IterateExp::UnsafeSourceCanNotBeNull";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_IteratorExp_c_c_AnyBodyTypeIsBoolean = "IteratorExp::AnyBodyTypeIsBoolean";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_IteratorExp_c_c_AnyHasOneIterator = "IteratorExp::AnyHasOneIterator";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_IteratorExp_c_c_AnyTypeIsSourceElementType = "IteratorExp::AnyTypeIsSourceElementType";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_IteratorExp_c_c_ClosureBodyTypeIsConformanttoIteratorType = "IteratorExp::ClosureBodyTypeIsConformanttoIteratorType";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_IteratorExp_c_c_ClosureElementTypeIsSourceElementType = "IteratorExp::ClosureElementTypeIsSourceElementType";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_IteratorExp_c_c_ClosureHasOneIterator = "IteratorExp::ClosureHasOneIterator";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_IteratorExp_c_c_ClosureSourceElementTypeIsBodyElementType = "IteratorExp::ClosureSourceElementTypeIsBodyElementType";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_IteratorExp_c_c_ClosureTypeIsUniqueCollection = "IteratorExp::ClosureTypeIsUniqueCollection";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_IteratorExp_c_c_CollectElementTypeIsFlattenedBodyType = "IteratorExp::CollectElementTypeIsFlattenedBodyType";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_IteratorExp_c_c_CollectTypeIsUnordered = "IteratorExp::CollectTypeIsUnordered";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_IteratorExp_c_c_IteratorTypeIsSourceElementType = "IteratorExp::IteratorTypeIsSourceElementType";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_IteratorExp_c_c_SafeIteratorIsRequired = "IteratorExp::SafeIteratorIsRequired";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_IteratorExp_c_c_SafeSourceCanBeNull = "IteratorExp::SafeSourceCanBeNull";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_IteratorExp_c_c_SortedByElementTypeIsSourceElementType = "IteratorExp::SortedByElementTypeIsSourceElementType";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_IteratorExp_c_c_SortedByIsOrderedIfSourceIsOrdered = "IteratorExp::SortedByIsOrderedIfSourceIsOrdered";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_IteratorExp_c_c_SortedByIteratorTypeIsComparable = "IteratorExp::SortedByIteratorTypeIsComparable";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_IteratorExp_c_c_UnsafeSourceCanNotBeNull = "IteratorExp::UnsafeSourceCanNotBeNull";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_LetExp_c_c_TypeIsInType = "LetExp::TypeIsInType";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_LetExp_c_c_TypeIsNotInvalid = "LetExp::TypeIsNotInvalid";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_LoopExp_c_c_NoInitializers = "LoopExp::NoInitializers";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_LoopExp_c_c_SourceIsCollection = "LoopExp::SourceIsCollection";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_MessageExp_c_c_OneCallOrOneSend = "MessageExp::OneCallOrOneSend";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_MessageExp_c_c_TargetIsNotACollection = "MessageExp::TargetIsNotACollection";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_OperationCallExp_c_c_ArgumentCount = "OperationCallExp::ArgumentCount";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_OperationCallExp_c_c_ArgumentTypeIsConformant = "OperationCallExp::ArgumentTypeIsConformant";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_OperationCallExp_c_c_SafeSourceCanBeNull = "OperationCallExp::SafeSourceCanBeNull";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_Operation_c_c_CompatibleReturn = "Operation::CompatibleReturn";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_Operation_c_c_LoadableImplementation = "Operation::LoadableImplementation";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_Operation_c_c_UniquePostconditionName = "Operation::UniquePostconditionName";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_Operation_c_c_UniquePreconditionName = "Operation::UniquePreconditionName";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_PropertyCallExp_c_c_CompatibleResultType = "PropertyCallExp::CompatibleResultType";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_PropertyCallExp_c_c_NonStaticSourceTypeIsConformant = "PropertyCallExp::NonStaticSourceTypeIsConformant";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_PropertyCallExp_c_c_SafeSourceCanBeNull = "PropertyCallExp::SafeSourceCanBeNull";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_PropertyCallExp_c_c_UnsafeSourceCanNotBeNull = "PropertyCallExp::UnsafeSourceCanNotBeNull";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_Property_c_c_CompatibleDefaultExpression = "Property::CompatibleDefaultExpression";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_ShadowExp_c_c_TypeIsNotInvalid = "ShadowExp::TypeIsNotInvalid";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_ShadowPart_c_c_TypeIsNotInvalid = "ShadowPart::TypeIsNotInvalid";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_StateExp_c_c_TypeIsNotInvalid = "StateExp::TypeIsNotInvalid";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_VariableDeclaration_c_c_TypeIsNotInvalid = "VariableDeclaration::TypeIsNotInvalid";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_VariableExp_c_c_TypeIsNotInvalid = "VariableExp::TypeIsNotInvalid";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_Variable_c_c_CompatibleInitialiserType = "Variable::CompatibleInitialiserType";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_any = "any";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_closure = "closure";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_collect = "collect";
+    public static final /*@NonInvalid*/ java.lang.@org.eclipse.jdt.annotation.NonNull String STR_sortedBy = "sortedBy";
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_Annotation = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Annotation);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_AssociationClassCallExp = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_AssociationClassCallExp);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_CallOperationAction = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_CallOperationAction);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_Class = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Class);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_CollectionType = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_CollectionType);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_CompleteClass = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_CompleteClass);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_CompleteModel = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_CompleteModel);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_CompletePackage = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_CompletePackage);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_ConnectionPointReference = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_ConnectionPointReference);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_Constraint = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Constraint);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_DataType = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_DataType);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_DynamicElement = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_DynamicElement);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_DynamicProperty = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_DynamicProperty);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_ElementExtension = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_ElementExtension);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_EnumLiteralExp = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_EnumLiteralExp);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_Import = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Import);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_InstanceSpecification = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_InstanceSpecification);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_LambdaType = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_LambdaType);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_LoopExp = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_LoopExp);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_MapType = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_MapType);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_MessageType = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_MessageType);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_NavigationCallExp = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_NavigationCallExp);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_Operation = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Operation);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_OperationCallExp = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_OperationCallExp);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_OppositePropertyCallExp = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_OppositePropertyCallExp);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_Package = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Package);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_PrimitiveType = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_PrimitiveType);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_Property = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Property);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_PropertyCallExp = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_PropertyCallExp);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_Region = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Region);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_SendSignalAction = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_SendSignalAction);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_ShadowPart = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_ShadowPart);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_Slot = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Slot);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_State = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_State);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_StateExp = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_StateExp);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_StateMachine = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_StateMachine);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_TemplateBinding = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_TemplateBinding);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_TemplateParameter = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_TemplateParameter);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_TemplateParameterSubstitution = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_TemplateParameterSubstitution);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_TypeExp = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_TypeExp);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_TypedElement = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_TypedElement);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_Variable = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Variable);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_VariableExp = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_VariableExp);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId BAG_CLSSid_WildcardType = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_WildcardType);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull EnumerationLiteralId ELITid_Bag = org.eclipse.ocl.pivot.PivotTables.ENUMid_CollectionKind.getEnumerationLiteralId("Bag");
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull EnumerationLiteralId ELITid_Collection = org.eclipse.ocl.pivot.PivotTables.ENUMid_CollectionKind.getEnumerationLiteralId("Collection");
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull EnumerationLiteralId ELITid_OrderedSet = org.eclipse.ocl.pivot.PivotTables.ENUMid_CollectionKind.getEnumerationLiteralId("OrderedSet");
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull EnumerationLiteralId ELITid_Sequence = org.eclipse.ocl.pivot.PivotTables.ENUMid_CollectionKind.getEnumerationLiteralId("Sequence");
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull EnumerationLiteralId ELITid_Set = org.eclipse.ocl.pivot.PivotTables.ENUMid_CollectionKind.getEnumerationLiteralId("Set");
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId ORD_CLSSid_CollectionLiteralPart = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_CollectionLiteralPart);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId ORD_CLSSid_Detail = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Detail);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId ORD_CLSSid_Element = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Element);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId ORD_CLSSid_EnumerationLiteral = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_EnumerationLiteral);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId ORD_CLSSid_Import = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Import);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId ORD_CLSSid_MapLiteralPart = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_MapLiteralPart);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId ORD_CLSSid_OCLExpression = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_OCLExpression);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId ORD_CLSSid_Operation = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Operation);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId ORD_CLSSid_Parameter = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Parameter);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId ORD_CLSSid_Precedence = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Precedence);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId ORD_CLSSid_Property = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Property);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId ORD_CLSSid_ShadowPart = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_ShadowPart);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId ORD_CLSSid_TemplateParameter = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_TemplateParameter);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId ORD_CLSSid_TupleLiteralPart = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_TupleLiteralPart);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId ORD_CLSSid_ValueSpecification = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_ValueSpecification);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId ORD_CLSSid_Variable = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Variable);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SEQ_CLSSid_Type = org.eclipse.ocl.pivot.ids.TypeId.SEQUENCE.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Type);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_Behavior = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Behavior);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_CallOperationAction = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_CallOperationAction);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_Class = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Class);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_Comment = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Comment);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_CompleteClass = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_CompleteClass);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_CompletePackage = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_CompletePackage);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_ConnectionPointReference = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_ConnectionPointReference);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_Constraint = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Constraint);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_DynamicProperty = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_DynamicProperty);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_Element = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Element);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_ElementExtension = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_ElementExtension);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_InstanceSpecification = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_InstanceSpecification);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_Model = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Model);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_OCLExpression = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_OCLExpression);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_OclElement = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_OclElement);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_Operation = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Operation);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_Package = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Package);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_ProfileApplication = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_ProfileApplication);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_Property = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Property);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_Pseudostate = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Pseudostate);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_Region = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Region);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_SendSignalAction = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_SendSignalAction);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_Slot = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Slot);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_State = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_State);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_StateMachine = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_StateMachine);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_StereotypeExtender = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_StereotypeExtender);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_TemplateBinding = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_TemplateBinding);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_TemplateParameterSubstitution = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_TemplateParameterSubstitution);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_Transition = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Transition);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_Trigger = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Trigger);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_Type = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Type);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_Vertex = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(org.eclipse.ocl.pivot.PivotTables.CLSSid_Vertex);
 
 	/**
 	 *	The type parameters for templated types and operations.
@@ -518,7 +508,7 @@ public class PivotTables
 		public static final @NonNull EcoreExecutorType _VoidType = new EcoreExecutorType(PivotPackage.Literals.VOID_TYPE, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _WildcardType = new EcoreExecutorType(PivotPackage.Literals.WILDCARD_TYPE, PACKAGE, 0);
 
-		private static final @NonNull EcoreExecutorType[] types = {
+		private static final @NonNull EcoreExecutorType @NonNull [] types = {
 			_Annotation,
 			_AnyType,
 			_AssociationClass,
@@ -2627,7 +2617,7 @@ public class PivotTables
 			Properties.init();
 		}
 
-		private static final @NonNull ExecutorFragment[] _Annotation =
+		private static final @NonNull ExecutorFragment @NonNull [] _Annotation =
 		{
 			Fragments._Annotation__OclAny /* 0 */,
 			Fragments._Annotation__OclElement /* 1 */,
@@ -2639,7 +2629,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __Annotation = { 1,1,2,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _AnyType =
+		private static final @NonNull ExecutorFragment @NonNull [] _AnyType =
 		{
 			Fragments._AnyType__OclAny /* 0 */,
 			Fragments._AnyType__OclElement /* 1 */,
@@ -2656,7 +2646,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __AnyType = { 1,1,3,1,2,2,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _AssociationClass =
+		private static final @NonNull ExecutorFragment @NonNull [] _AssociationClass =
 		{
 			Fragments._AssociationClass__OclAny /* 0 */,
 			Fragments._AssociationClass__OclElement /* 1 */,
@@ -2673,7 +2663,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __AssociationClass = { 1,1,3,1,2,2,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _AssociationClassCallExp =
+		private static final @NonNull ExecutorFragment @NonNull [] _AssociationClassCallExp =
 		{
 			Fragments._AssociationClassCallExp__OclAny /* 0 */,
 			Fragments._AssociationClassCallExp__OclElement /* 1 */,
@@ -2690,7 +2680,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __AssociationClassCallExp = { 1,1,2,1,1,1,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _AssociativityKind =
+		private static final @NonNull ExecutorFragment @NonNull [] _AssociativityKind =
 		{
 			Fragments._AssociativityKind__OclAny /* 0 */,
 			Fragments._AssociativityKind__OclElement /* 1 */,
@@ -2709,7 +2699,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __AssociativityKind = { 1,1,3,1,2,2,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _BagType =
+		private static final @NonNull ExecutorFragment @NonNull [] _BagType =
 		{
 			Fragments._BagType__OclAny /* 0 */,
 			Fragments._BagType__OclElement /* 1 */,
@@ -2728,7 +2718,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __BagType = { 1,1,3,1,2,2,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Behavior =
+		private static final @NonNull ExecutorFragment @NonNull [] _Behavior =
 		{
 			Fragments._Behavior__OclAny /* 0 */,
 			Fragments._Behavior__OclElement /* 1 */,
@@ -2745,7 +2735,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __Behavior = { 1,1,3,1,2,2,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _BooleanLiteralExp =
+		private static final @NonNull ExecutorFragment @NonNull [] _BooleanLiteralExp =
 		{
 			Fragments._BooleanLiteralExp__OclAny /* 0 */,
 			Fragments._BooleanLiteralExp__OclElement /* 1 */,
@@ -2761,7 +2751,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __BooleanLiteralExp = { 1,1,2,1,1,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _CallExp =
+		private static final @NonNull ExecutorFragment @NonNull [] _CallExp =
 		{
 			Fragments._CallExp__OclAny /* 0 */,
 			Fragments._CallExp__OclElement /* 1 */,
@@ -2775,7 +2765,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __CallExp = { 1,1,2,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _CallOperationAction =
+		private static final @NonNull ExecutorFragment @NonNull [] _CallOperationAction =
 		{
 			Fragments._CallOperationAction__OclAny /* 0 */,
 			Fragments._CallOperationAction__OclElement /* 1 */,
@@ -2787,7 +2777,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __CallOperationAction = { 1,1,2,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Class =
+		private static final @NonNull ExecutorFragment @NonNull [] _Class =
 		{
 			Fragments._Class__OclAny /* 0 */,
 			Fragments._Class__OclElement /* 1 */,
@@ -2803,7 +2793,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __Class = { 1,1,3,1,2,2,1 };
 
-		private static final @NonNull ExecutorFragment[] _CollectionItem =
+		private static final @NonNull ExecutorFragment @NonNull [] _CollectionItem =
 		{
 			Fragments._CollectionItem__OclAny /* 0 */,
 			Fragments._CollectionItem__OclElement /* 1 */,
@@ -2817,7 +2807,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __CollectionItem = { 1,1,2,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _CollectionKind =
+		private static final @NonNull ExecutorFragment @NonNull [] _CollectionKind =
 		{
 			Fragments._CollectionKind__OclAny /* 0 */,
 			Fragments._CollectionKind__OclElement /* 1 */,
@@ -2836,7 +2826,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __CollectionKind = { 1,1,3,1,2,2,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _CollectionLiteralExp =
+		private static final @NonNull ExecutorFragment @NonNull [] _CollectionLiteralExp =
 		{
 			Fragments._CollectionLiteralExp__OclAny /* 0 */,
 			Fragments._CollectionLiteralExp__OclElement /* 1 */,
@@ -2851,7 +2841,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __CollectionLiteralExp = { 1,1,2,1,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _CollectionLiteralPart =
+		private static final @NonNull ExecutorFragment @NonNull [] _CollectionLiteralPart =
 		{
 			Fragments._CollectionLiteralPart__OclAny /* 0 */,
 			Fragments._CollectionLiteralPart__OclElement /* 1 */,
@@ -2864,7 +2854,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __CollectionLiteralPart = { 1,1,2,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _CollectionRange =
+		private static final @NonNull ExecutorFragment @NonNull [] _CollectionRange =
 		{
 			Fragments._CollectionRange__OclAny /* 0 */,
 			Fragments._CollectionRange__OclElement /* 1 */,
@@ -2878,7 +2868,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __CollectionRange = { 1,1,2,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _CollectionType =
+		private static final @NonNull ExecutorFragment @NonNull [] _CollectionType =
 		{
 			Fragments._CollectionType__OclAny /* 0 */,
 			Fragments._CollectionType__OclElement /* 1 */,
@@ -2896,7 +2886,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __CollectionType = { 1,1,3,1,2,2,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Comment =
+		private static final @NonNull ExecutorFragment @NonNull [] _Comment =
 		{
 			Fragments._Comment__OclAny /* 0 */,
 			Fragments._Comment__OclElement /* 1 */,
@@ -2906,7 +2896,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __Comment = { 1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _CompleteClass =
+		private static final @NonNull ExecutorFragment @NonNull [] _CompleteClass =
 		{
 			Fragments._CompleteClass__OclAny /* 0 */,
 			Fragments._CompleteClass__OclElement /* 1 */,
@@ -2918,7 +2908,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __CompleteClass = { 1,1,2,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _CompleteEnvironment =
+		private static final @NonNull ExecutorFragment @NonNull [] _CompleteEnvironment =
 		{
 			Fragments._CompleteEnvironment__OclAny /* 0 */,
 			Fragments._CompleteEnvironment__OclElement /* 1 */,
@@ -2928,7 +2918,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __CompleteEnvironment = { 1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _CompleteModel =
+		private static final @NonNull ExecutorFragment @NonNull [] _CompleteModel =
 		{
 			Fragments._CompleteModel__OclAny /* 0 */,
 			Fragments._CompleteModel__OclElement /* 1 */,
@@ -2940,7 +2930,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __CompleteModel = { 1,1,2,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _CompletePackage =
+		private static final @NonNull ExecutorFragment @NonNull [] _CompletePackage =
 		{
 			Fragments._CompletePackage__OclAny /* 0 */,
 			Fragments._CompletePackage__OclElement /* 1 */,
@@ -2952,7 +2942,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __CompletePackage = { 1,1,2,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _ConnectionPointReference =
+		private static final @NonNull ExecutorFragment @NonNull [] _ConnectionPointReference =
 		{
 			Fragments._ConnectionPointReference__OclAny /* 0 */,
 			Fragments._ConnectionPointReference__OclElement /* 1 */,
@@ -2965,7 +2955,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __ConnectionPointReference = { 1,1,2,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Constraint =
+		private static final @NonNull ExecutorFragment @NonNull [] _Constraint =
 		{
 			Fragments._Constraint__OclAny /* 0 */,
 			Fragments._Constraint__OclElement /* 1 */,
@@ -2977,7 +2967,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __Constraint = { 1,1,2,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _DataType =
+		private static final @NonNull ExecutorFragment @NonNull [] _DataType =
 		{
 			Fragments._DataType__OclAny /* 0 */,
 			Fragments._DataType__OclElement /* 1 */,
@@ -2994,7 +2984,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __DataType = { 1,1,3,1,2,2,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Detail =
+		private static final @NonNull ExecutorFragment @NonNull [] _Detail =
 		{
 			Fragments._Detail__OclAny /* 0 */,
 			Fragments._Detail__OclElement /* 1 */,
@@ -3006,7 +2996,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __Detail = { 1,1,2,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _DynamicBehavior =
+		private static final @NonNull ExecutorFragment @NonNull [] _DynamicBehavior =
 		{
 			Fragments._DynamicBehavior__OclAny /* 0 */,
 			Fragments._DynamicBehavior__OclElement /* 1 */,
@@ -3026,7 +3016,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __DynamicBehavior = { 1,1,3,1,3,2,1,2,1 };
 
-		private static final @NonNull ExecutorFragment[] _DynamicElement =
+		private static final @NonNull ExecutorFragment @NonNull [] _DynamicElement =
 		{
 			Fragments._DynamicElement__OclAny /* 0 */,
 			Fragments._DynamicElement__OclElement /* 1 */,
@@ -3036,7 +3026,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __DynamicElement = { 1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _DynamicProperty =
+		private static final @NonNull ExecutorFragment @NonNull [] _DynamicProperty =
 		{
 			Fragments._DynamicProperty__OclAny /* 0 */,
 			Fragments._DynamicProperty__OclElement /* 1 */,
@@ -3046,7 +3036,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __DynamicProperty = { 1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _DynamicType =
+		private static final @NonNull ExecutorFragment @NonNull [] _DynamicType =
 		{
 			Fragments._DynamicType__OclAny /* 0 */,
 			Fragments._DynamicType__OclElement /* 1 */,
@@ -3064,7 +3054,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __DynamicType = { 1,1,3,1,3,2,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _DynamicValueSpecification =
+		private static final @NonNull ExecutorFragment @NonNull [] _DynamicValueSpecification =
 		{
 			Fragments._DynamicValueSpecification__OclAny /* 0 */,
 			Fragments._DynamicValueSpecification__OclElement /* 1 */,
@@ -3078,7 +3068,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __DynamicValueSpecification = { 1,1,2,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Element =
+		private static final @NonNull ExecutorFragment @NonNull [] _Element =
 		{
 			Fragments._Element__OclAny /* 0 */,
 			Fragments._Element__OclElement /* 1 */,
@@ -3087,7 +3077,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __Element = { 1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _ElementExtension =
+		private static final @NonNull ExecutorFragment @NonNull [] _ElementExtension =
 		{
 			Fragments._ElementExtension__OclAny /* 0 */,
 			Fragments._ElementExtension__OclElement /* 1 */,
@@ -3104,7 +3094,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __ElementExtension = { 1,1,3,1,2,2,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _EnumLiteralExp =
+		private static final @NonNull ExecutorFragment @NonNull [] _EnumLiteralExp =
 		{
 			Fragments._EnumLiteralExp__OclAny /* 0 */,
 			Fragments._EnumLiteralExp__OclElement /* 1 */,
@@ -3119,7 +3109,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __EnumLiteralExp = { 1,1,2,1,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Enumeration =
+		private static final @NonNull ExecutorFragment @NonNull [] _Enumeration =
 		{
 			Fragments._Enumeration__OclAny /* 0 */,
 			Fragments._Enumeration__OclElement /* 1 */,
@@ -3137,7 +3127,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __Enumeration = { 1,1,3,1,2,2,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _EnumerationLiteral =
+		private static final @NonNull ExecutorFragment @NonNull [] _EnumerationLiteral =
 		{
 			Fragments._EnumerationLiteral__OclAny /* 0 */,
 			Fragments._EnumerationLiteral__OclElement /* 1 */,
@@ -3150,7 +3140,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __EnumerationLiteral = { 1,1,2,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _ExpressionInOCL =
+		private static final @NonNull ExecutorFragment @NonNull [] _ExpressionInOCL =
 		{
 			Fragments._ExpressionInOCL__OclAny /* 0 */,
 			Fragments._ExpressionInOCL__OclElement /* 1 */,
@@ -3165,7 +3155,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __ExpressionInOCL = { 1,1,2,1,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Feature =
+		private static final @NonNull ExecutorFragment @NonNull [] _Feature =
 		{
 			Fragments._Feature__OclAny /* 0 */,
 			Fragments._Feature__OclElement /* 1 */,
@@ -3178,7 +3168,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __Feature = { 1,1,2,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _FeatureCallExp =
+		private static final @NonNull ExecutorFragment @NonNull [] _FeatureCallExp =
 		{
 			Fragments._FeatureCallExp__OclAny /* 0 */,
 			Fragments._FeatureCallExp__OclElement /* 1 */,
@@ -3193,7 +3183,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __FeatureCallExp = { 1,1,2,1,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _FinalState =
+		private static final @NonNull ExecutorFragment @NonNull [] _FinalState =
 		{
 			Fragments._FinalState__OclAny /* 0 */,
 			Fragments._FinalState__OclElement /* 1 */,
@@ -3209,7 +3199,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __FinalState = { 1,2,2,1,1,2,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _IfExp =
+		private static final @NonNull ExecutorFragment @NonNull [] _IfExp =
 		{
 			Fragments._IfExp__OclAny /* 0 */,
 			Fragments._IfExp__OclElement /* 1 */,
@@ -3223,7 +3213,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __IfExp = { 1,1,2,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Import =
+		private static final @NonNull ExecutorFragment @NonNull [] _Import =
 		{
 			Fragments._Import__OclAny /* 0 */,
 			Fragments._Import__OclElement /* 1 */,
@@ -3235,7 +3225,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __Import = { 1,1,2,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _InstanceSpecification =
+		private static final @NonNull ExecutorFragment @NonNull [] _InstanceSpecification =
 		{
 			Fragments._InstanceSpecification__OclAny /* 0 */,
 			Fragments._InstanceSpecification__OclElement /* 1 */,
@@ -3247,7 +3237,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __InstanceSpecification = { 1,1,2,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _IntegerLiteralExp =
+		private static final @NonNull ExecutorFragment @NonNull [] _IntegerLiteralExp =
 		{
 			Fragments._IntegerLiteralExp__OclAny /* 0 */,
 			Fragments._IntegerLiteralExp__OclElement /* 1 */,
@@ -3264,7 +3254,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __IntegerLiteralExp = { 1,1,2,1,1,1,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _InvalidLiteralExp =
+		private static final @NonNull ExecutorFragment @NonNull [] _InvalidLiteralExp =
 		{
 			Fragments._InvalidLiteralExp__OclAny /* 0 */,
 			Fragments._InvalidLiteralExp__OclElement /* 1 */,
@@ -3279,7 +3269,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __InvalidLiteralExp = { 1,1,2,1,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _InvalidType =
+		private static final @NonNull ExecutorFragment @NonNull [] _InvalidType =
 		{
 			Fragments._InvalidType__OclAny /* 0 */,
 			Fragments._InvalidType__OclElement /* 1 */,
@@ -3296,7 +3286,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __InvalidType = { 1,1,3,1,2,2,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _IterateExp =
+		private static final @NonNull ExecutorFragment @NonNull [] _IterateExp =
 		{
 			Fragments._IterateExp__OclAny /* 0 */,
 			Fragments._IterateExp__OclElement /* 1 */,
@@ -3313,7 +3303,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __IterateExp = { 1,1,3,1,1,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Iteration =
+		private static final @NonNull ExecutorFragment @NonNull [] _Iteration =
 		{
 			Fragments._Iteration__OclAny /* 0 */,
 			Fragments._Iteration__OclElement /* 1 */,
@@ -3330,7 +3320,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __Iteration = { 1,1,2,1,2,2,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _IteratorExp =
+		private static final @NonNull ExecutorFragment @NonNull [] _IteratorExp =
 		{
 			Fragments._IteratorExp__OclAny /* 0 */,
 			Fragments._IteratorExp__OclElement /* 1 */,
@@ -3347,7 +3337,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __IteratorExp = { 1,1,3,1,1,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _LambdaType =
+		private static final @NonNull ExecutorFragment @NonNull [] _LambdaType =
 		{
 			Fragments._LambdaType__OclAny /* 0 */,
 			Fragments._LambdaType__OclElement /* 1 */,
@@ -3365,7 +3355,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __LambdaType = { 1,1,3,1,2,2,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _LanguageExpression =
+		private static final @NonNull ExecutorFragment @NonNull [] _LanguageExpression =
 		{
 			Fragments._LanguageExpression__OclAny /* 0 */,
 			Fragments._LanguageExpression__OclElement /* 1 */,
@@ -3379,7 +3369,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __LanguageExpression = { 1,1,2,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _LetExp =
+		private static final @NonNull ExecutorFragment @NonNull [] _LetExp =
 		{
 			Fragments._LetExp__OclAny /* 0 */,
 			Fragments._LetExp__OclElement /* 1 */,
@@ -3393,7 +3383,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __LetExp = { 1,1,2,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Library =
+		private static final @NonNull ExecutorFragment @NonNull [] _Library =
 		{
 			Fragments._Library__OclAny /* 0 */,
 			Fragments._Library__OclElement /* 1 */,
@@ -3407,14 +3397,14 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __Library = { 1,1,2,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _LibraryFeature =
+		private static final @NonNull ExecutorFragment @NonNull [] _LibraryFeature =
 		{
 			Fragments._LibraryFeature__OclAny /* 0 */,
 			Fragments._LibraryFeature__LibraryFeature /* 1 */
 		};
 		private static final int @NonNull [] __LibraryFeature = { 1,1 };
 
-		private static final @NonNull ExecutorFragment[] _LiteralExp =
+		private static final @NonNull ExecutorFragment @NonNull [] _LiteralExp =
 		{
 			Fragments._LiteralExp__OclAny /* 0 */,
 			Fragments._LiteralExp__OclElement /* 1 */,
@@ -3428,7 +3418,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __LiteralExp = { 1,1,2,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _LoopExp =
+		private static final @NonNull ExecutorFragment @NonNull [] _LoopExp =
 		{
 			Fragments._LoopExp__OclAny /* 0 */,
 			Fragments._LoopExp__OclElement /* 1 */,
@@ -3443,7 +3433,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __LoopExp = { 1,1,2,1,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _MapLiteralExp =
+		private static final @NonNull ExecutorFragment @NonNull [] _MapLiteralExp =
 		{
 			Fragments._MapLiteralExp__OclAny /* 0 */,
 			Fragments._MapLiteralExp__OclElement /* 1 */,
@@ -3458,7 +3448,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __MapLiteralExp = { 1,1,2,1,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _MapLiteralPart =
+		private static final @NonNull ExecutorFragment @NonNull [] _MapLiteralPart =
 		{
 			Fragments._MapLiteralPart__OclAny /* 0 */,
 			Fragments._MapLiteralPart__OclElement /* 1 */,
@@ -3468,7 +3458,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __MapLiteralPart = { 1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _MapType =
+		private static final @NonNull ExecutorFragment @NonNull [] _MapType =
 		{
 			Fragments._MapType__OclAny /* 0 */,
 			Fragments._MapType__OclElement /* 1 */,
@@ -3486,7 +3476,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __MapType = { 1,1,3,1,2,2,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _MessageExp =
+		private static final @NonNull ExecutorFragment @NonNull [] _MessageExp =
 		{
 			Fragments._MessageExp__OclAny /* 0 */,
 			Fragments._MessageExp__OclElement /* 1 */,
@@ -3500,7 +3490,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __MessageExp = { 1,1,2,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _MessageType =
+		private static final @NonNull ExecutorFragment @NonNull [] _MessageType =
 		{
 			Fragments._MessageType__OclAny /* 0 */,
 			Fragments._MessageType__OclElement /* 1 */,
@@ -3517,7 +3507,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __MessageType = { 1,1,3,1,2,2,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Model =
+		private static final @NonNull ExecutorFragment @NonNull [] _Model =
 		{
 			Fragments._Model__OclAny /* 0 */,
 			Fragments._Model__OclElement /* 1 */,
@@ -3530,7 +3520,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __Model = { 1,1,2,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _MorePivotable =
+		private static final @NonNull ExecutorFragment @NonNull [] _MorePivotable =
 		{
 			Fragments._MorePivotable__OclAny /* 0 */,
 			Fragments._MorePivotable__OclElement /* 1 */,
@@ -3538,7 +3528,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __MorePivotable = { 1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Nameable =
+		private static final @NonNull ExecutorFragment @NonNull [] _Nameable =
 		{
 			Fragments._Nameable__OclAny /* 0 */,
 			Fragments._Nameable__OclElement /* 1 */,
@@ -3546,7 +3536,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __Nameable = { 1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _NamedElement =
+		private static final @NonNull ExecutorFragment @NonNull [] _NamedElement =
 		{
 			Fragments._NamedElement__OclAny /* 0 */,
 			Fragments._NamedElement__OclElement /* 1 */,
@@ -3557,7 +3547,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __NamedElement = { 1,1,2,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Namespace =
+		private static final @NonNull ExecutorFragment @NonNull [] _Namespace =
 		{
 			Fragments._Namespace__OclAny /* 0 */,
 			Fragments._Namespace__OclElement /* 1 */,
@@ -3569,7 +3559,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __Namespace = { 1,1,2,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _NavigationCallExp =
+		private static final @NonNull ExecutorFragment @NonNull [] _NavigationCallExp =
 		{
 			Fragments._NavigationCallExp__OclAny /* 0 */,
 			Fragments._NavigationCallExp__OclElement /* 1 */,
@@ -3585,7 +3575,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __NavigationCallExp = { 1,1,2,1,1,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _NullLiteralExp =
+		private static final @NonNull ExecutorFragment @NonNull [] _NullLiteralExp =
 		{
 			Fragments._NullLiteralExp__OclAny /* 0 */,
 			Fragments._NullLiteralExp__OclElement /* 1 */,
@@ -3601,7 +3591,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __NullLiteralExp = { 1,1,2,1,1,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _NumericLiteralExp =
+		private static final @NonNull ExecutorFragment @NonNull [] _NumericLiteralExp =
 		{
 			Fragments._NumericLiteralExp__OclAny /* 0 */,
 			Fragments._NumericLiteralExp__OclElement /* 1 */,
@@ -3617,7 +3607,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __NumericLiteralExp = { 1,1,2,1,1,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _OCLExpression =
+		private static final @NonNull ExecutorFragment @NonNull [] _OCLExpression =
 		{
 			Fragments._OCLExpression__OclAny /* 0 */,
 			Fragments._OCLExpression__OclElement /* 1 */,
@@ -3630,14 +3620,14 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __OCLExpression = { 1,1,2,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Object =
+		private static final @NonNull ExecutorFragment @NonNull [] _Object =
 		{
 			Fragments._Object__OclAny /* 0 */,
 			Fragments._Object__Object /* 1 */
 		};
 		private static final int @NonNull [] __Object = { 1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Operation =
+		private static final @NonNull ExecutorFragment @NonNull [] _Operation =
 		{
 			Fragments._Operation__OclAny /* 0 */,
 			Fragments._Operation__OclElement /* 1 */,
@@ -3653,7 +3643,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __Operation = { 1,1,2,1,2,2,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _OperationCallExp =
+		private static final @NonNull ExecutorFragment @NonNull [] _OperationCallExp =
 		{
 			Fragments._OperationCallExp__OclAny /* 0 */,
 			Fragments._OperationCallExp__OclElement /* 1 */,
@@ -3670,7 +3660,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __OperationCallExp = { 1,1,3,1,1,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _OppositePropertyCallExp =
+		private static final @NonNull ExecutorFragment @NonNull [] _OppositePropertyCallExp =
 		{
 			Fragments._OppositePropertyCallExp__OclAny /* 0 */,
 			Fragments._OppositePropertyCallExp__OclElement /* 1 */,
@@ -3687,7 +3677,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __OppositePropertyCallExp = { 1,1,2,1,1,1,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _OrderedSetType =
+		private static final @NonNull ExecutorFragment @NonNull [] _OrderedSetType =
 		{
 			Fragments._OrderedSetType__OclAny /* 0 */,
 			Fragments._OrderedSetType__OclElement /* 1 */,
@@ -3706,7 +3696,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __OrderedSetType = { 1,1,3,1,2,2,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _OrphanCompletePackage =
+		private static final @NonNull ExecutorFragment @NonNull [] _OrphanCompletePackage =
 		{
 			Fragments._OrphanCompletePackage__OclAny /* 0 */,
 			Fragments._OrphanCompletePackage__OclElement /* 1 */,
@@ -3719,7 +3709,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __OrphanCompletePackage = { 1,1,2,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Package =
+		private static final @NonNull ExecutorFragment @NonNull [] _Package =
 		{
 			Fragments._Package__OclAny /* 0 */,
 			Fragments._Package__OclElement /* 1 */,
@@ -3732,7 +3722,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __Package = { 1,1,2,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Parameter =
+		private static final @NonNull ExecutorFragment @NonNull [] _Parameter =
 		{
 			Fragments._Parameter__OclAny /* 0 */,
 			Fragments._Parameter__OclElement /* 1 */,
@@ -3746,7 +3736,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __Parameter = { 1,1,2,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Pivotable =
+		private static final @NonNull ExecutorFragment @NonNull [] _Pivotable =
 		{
 			Fragments._Pivotable__OclAny /* 0 */,
 			Fragments._Pivotable__OclElement /* 1 */,
@@ -3754,7 +3744,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __Pivotable = { 1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Precedence =
+		private static final @NonNull ExecutorFragment @NonNull [] _Precedence =
 		{
 			Fragments._Precedence__OclAny /* 0 */,
 			Fragments._Precedence__OclElement /* 1 */,
@@ -3766,7 +3756,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __Precedence = { 1,1,2,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _PrimitiveCompletePackage =
+		private static final @NonNull ExecutorFragment @NonNull [] _PrimitiveCompletePackage =
 		{
 			Fragments._PrimitiveCompletePackage__OclAny /* 0 */,
 			Fragments._PrimitiveCompletePackage__OclElement /* 1 */,
@@ -3779,7 +3769,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __PrimitiveCompletePackage = { 1,1,2,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _PrimitiveLiteralExp =
+		private static final @NonNull ExecutorFragment @NonNull [] _PrimitiveLiteralExp =
 		{
 			Fragments._PrimitiveLiteralExp__OclAny /* 0 */,
 			Fragments._PrimitiveLiteralExp__OclElement /* 1 */,
@@ -3794,7 +3784,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __PrimitiveLiteralExp = { 1,1,2,1,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _PrimitiveType =
+		private static final @NonNull ExecutorFragment @NonNull [] _PrimitiveType =
 		{
 			Fragments._PrimitiveType__OclAny /* 0 */,
 			Fragments._PrimitiveType__OclElement /* 1 */,
@@ -3812,7 +3802,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __PrimitiveType = { 1,1,3,1,2,2,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Profile =
+		private static final @NonNull ExecutorFragment @NonNull [] _Profile =
 		{
 			Fragments._Profile__OclAny /* 0 */,
 			Fragments._Profile__OclElement /* 1 */,
@@ -3826,7 +3816,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __Profile = { 1,1,2,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _ProfileApplication =
+		private static final @NonNull ExecutorFragment @NonNull [] _ProfileApplication =
 		{
 			Fragments._ProfileApplication__OclAny /* 0 */,
 			Fragments._ProfileApplication__OclElement /* 1 */,
@@ -3836,7 +3826,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __ProfileApplication = { 1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Property =
+		private static final @NonNull ExecutorFragment @NonNull [] _Property =
 		{
 			Fragments._Property__OclAny /* 0 */,
 			Fragments._Property__OclElement /* 1 */,
@@ -3850,7 +3840,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __Property = { 1,1,2,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _PropertyCallExp =
+		private static final @NonNull ExecutorFragment @NonNull [] _PropertyCallExp =
 		{
 			Fragments._PropertyCallExp__OclAny /* 0 */,
 			Fragments._PropertyCallExp__OclElement /* 1 */,
@@ -3868,7 +3858,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __PropertyCallExp = { 1,1,3,1,1,1,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Pseudostate =
+		private static final @NonNull ExecutorFragment @NonNull [] _Pseudostate =
 		{
 			Fragments._Pseudostate__OclAny /* 0 */,
 			Fragments._Pseudostate__OclElement /* 1 */,
@@ -3881,7 +3871,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __Pseudostate = { 1,1,2,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _PseudostateKind =
+		private static final @NonNull ExecutorFragment @NonNull [] _PseudostateKind =
 		{
 			Fragments._PseudostateKind__OclAny /* 0 */,
 			Fragments._PseudostateKind__OclElement /* 1 */,
@@ -3900,7 +3890,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __PseudostateKind = { 1,1,3,1,2,2,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _RealLiteralExp =
+		private static final @NonNull ExecutorFragment @NonNull [] _RealLiteralExp =
 		{
 			Fragments._RealLiteralExp__OclAny /* 0 */,
 			Fragments._RealLiteralExp__OclElement /* 1 */,
@@ -3917,7 +3907,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __RealLiteralExp = { 1,1,2,1,1,1,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _ReferringElement =
+		private static final @NonNull ExecutorFragment @NonNull [] _ReferringElement =
 		{
 			Fragments._ReferringElement__OclAny /* 0 */,
 			Fragments._ReferringElement__OclElement /* 1 */,
@@ -3925,7 +3915,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __ReferringElement = { 1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Region =
+		private static final @NonNull ExecutorFragment @NonNull [] _Region =
 		{
 			Fragments._Region__OclAny /* 0 */,
 			Fragments._Region__OclElement /* 1 */,
@@ -3938,7 +3928,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __Region = { 1,1,2,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _SelfType =
+		private static final @NonNull ExecutorFragment @NonNull [] _SelfType =
 		{
 			Fragments._SelfType__OclAny /* 0 */,
 			Fragments._SelfType__OclElement /* 1 */,
@@ -3955,7 +3945,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __SelfType = { 1,1,3,1,2,2,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _SendSignalAction =
+		private static final @NonNull ExecutorFragment @NonNull [] _SendSignalAction =
 		{
 			Fragments._SendSignalAction__OclAny /* 0 */,
 			Fragments._SendSignalAction__OclElement /* 1 */,
@@ -3967,7 +3957,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __SendSignalAction = { 1,1,2,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _SequenceType =
+		private static final @NonNull ExecutorFragment @NonNull [] _SequenceType =
 		{
 			Fragments._SequenceType__OclAny /* 0 */,
 			Fragments._SequenceType__OclElement /* 1 */,
@@ -3986,7 +3976,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __SequenceType = { 1,1,3,1,2,2,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _SetType =
+		private static final @NonNull ExecutorFragment @NonNull [] _SetType =
 		{
 			Fragments._SetType__OclAny /* 0 */,
 			Fragments._SetType__OclElement /* 1 */,
@@ -4005,7 +3995,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __SetType = { 1,1,3,1,2,2,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _ShadowExp =
+		private static final @NonNull ExecutorFragment @NonNull [] _ShadowExp =
 		{
 			Fragments._ShadowExp__OclAny /* 0 */,
 			Fragments._ShadowExp__OclElement /* 1 */,
@@ -4019,7 +4009,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __ShadowExp = { 1,1,2,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _ShadowPart =
+		private static final @NonNull ExecutorFragment @NonNull [] _ShadowPart =
 		{
 			Fragments._ShadowPart__OclAny /* 0 */,
 			Fragments._ShadowPart__OclElement /* 1 */,
@@ -4032,7 +4022,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __ShadowPart = { 1,1,2,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Signal =
+		private static final @NonNull ExecutorFragment @NonNull [] _Signal =
 		{
 			Fragments._Signal__OclAny /* 0 */,
 			Fragments._Signal__OclElement /* 1 */,
@@ -4049,7 +4039,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __Signal = { 1,1,3,1,2,2,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Slot =
+		private static final @NonNull ExecutorFragment @NonNull [] _Slot =
 		{
 			Fragments._Slot__OclAny /* 0 */,
 			Fragments._Slot__OclElement /* 1 */,
@@ -4059,7 +4049,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __Slot = { 1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _StandardLibrary =
+		private static final @NonNull ExecutorFragment @NonNull [] _StandardLibrary =
 		{
 			Fragments._StandardLibrary__OclAny /* 0 */,
 			Fragments._StandardLibrary__OclElement /* 1 */,
@@ -4069,7 +4059,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __StandardLibrary = { 1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _State =
+		private static final @NonNull ExecutorFragment @NonNull [] _State =
 		{
 			Fragments._State__OclAny /* 0 */,
 			Fragments._State__OclElement /* 1 */,
@@ -4084,7 +4074,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __State = { 1,2,2,1,1,2,1 };
 
-		private static final @NonNull ExecutorFragment[] _StateExp =
+		private static final @NonNull ExecutorFragment @NonNull [] _StateExp =
 		{
 			Fragments._StateExp__OclAny /* 0 */,
 			Fragments._StateExp__OclElement /* 1 */,
@@ -4098,7 +4088,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __StateExp = { 1,1,2,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _StateMachine =
+		private static final @NonNull ExecutorFragment @NonNull [] _StateMachine =
 		{
 			Fragments._StateMachine__OclAny /* 0 */,
 			Fragments._StateMachine__OclElement /* 1 */,
@@ -4116,7 +4106,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __StateMachine = { 1,1,3,1,2,2,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Stereotype =
+		private static final @NonNull ExecutorFragment @NonNull [] _Stereotype =
 		{
 			Fragments._Stereotype__OclAny /* 0 */,
 			Fragments._Stereotype__OclElement /* 1 */,
@@ -4133,7 +4123,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __Stereotype = { 1,1,3,1,2,2,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _StereotypeExtender =
+		private static final @NonNull ExecutorFragment @NonNull [] _StereotypeExtender =
 		{
 			Fragments._StereotypeExtender__OclAny /* 0 */,
 			Fragments._StereotypeExtender__OclElement /* 1 */,
@@ -4143,7 +4133,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __StereotypeExtender = { 1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _StringLiteralExp =
+		private static final @NonNull ExecutorFragment @NonNull [] _StringLiteralExp =
 		{
 			Fragments._StringLiteralExp__OclAny /* 0 */,
 			Fragments._StringLiteralExp__OclElement /* 1 */,
@@ -4159,7 +4149,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __StringLiteralExp = { 1,1,2,1,1,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _TemplateBinding =
+		private static final @NonNull ExecutorFragment @NonNull [] _TemplateBinding =
 		{
 			Fragments._TemplateBinding__OclAny /* 0 */,
 			Fragments._TemplateBinding__OclElement /* 1 */,
@@ -4169,7 +4159,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __TemplateBinding = { 1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _TemplateParameter =
+		private static final @NonNull ExecutorFragment @NonNull [] _TemplateParameter =
 		{
 			Fragments._TemplateParameter__OclAny /* 0 */,
 			Fragments._TemplateParameter__OclElement /* 1 */,
@@ -4183,7 +4173,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __TemplateParameter = { 1,1,3,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _TemplateParameterSubstitution =
+		private static final @NonNull ExecutorFragment @NonNull [] _TemplateParameterSubstitution =
 		{
 			Fragments._TemplateParameterSubstitution__OclAny /* 0 */,
 			Fragments._TemplateParameterSubstitution__OclElement /* 1 */,
@@ -4193,7 +4183,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __TemplateParameterSubstitution = { 1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _TemplateSignature =
+		private static final @NonNull ExecutorFragment @NonNull [] _TemplateSignature =
 		{
 			Fragments._TemplateSignature__OclAny /* 0 */,
 			Fragments._TemplateSignature__OclElement /* 1 */,
@@ -4203,7 +4193,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __TemplateSignature = { 1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _TemplateableElement =
+		private static final @NonNull ExecutorFragment @NonNull [] _TemplateableElement =
 		{
 			Fragments._TemplateableElement__OclAny /* 0 */,
 			Fragments._TemplateableElement__OclElement /* 1 */,
@@ -4213,14 +4203,14 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __TemplateableElement = { 1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Throwable =
+		private static final @NonNull ExecutorFragment @NonNull [] _Throwable =
 		{
 			Fragments._Throwable__OclAny /* 0 */,
 			Fragments._Throwable__Throwable /* 1 */
 		};
 		private static final int @NonNull [] __Throwable = { 1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Transition =
+		private static final @NonNull ExecutorFragment @NonNull [] _Transition =
 		{
 			Fragments._Transition__OclAny /* 0 */,
 			Fragments._Transition__OclElement /* 1 */,
@@ -4233,7 +4223,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __Transition = { 1,1,2,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _TransitionKind =
+		private static final @NonNull ExecutorFragment @NonNull [] _TransitionKind =
 		{
 			Fragments._TransitionKind__OclAny /* 0 */,
 			Fragments._TransitionKind__OclElement /* 1 */,
@@ -4252,7 +4242,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __TransitionKind = { 1,1,3,1,2,2,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Trigger =
+		private static final @NonNull ExecutorFragment @NonNull [] _Trigger =
 		{
 			Fragments._Trigger__OclAny /* 0 */,
 			Fragments._Trigger__OclElement /* 1 */,
@@ -4264,7 +4254,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __Trigger = { 1,1,2,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _TupleLiteralExp =
+		private static final @NonNull ExecutorFragment @NonNull [] _TupleLiteralExp =
 		{
 			Fragments._TupleLiteralExp__OclAny /* 0 */,
 			Fragments._TupleLiteralExp__OclElement /* 1 */,
@@ -4279,7 +4269,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __TupleLiteralExp = { 1,1,2,1,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _TupleLiteralPart =
+		private static final @NonNull ExecutorFragment @NonNull [] _TupleLiteralPart =
 		{
 			Fragments._TupleLiteralPart__OclAny /* 0 */,
 			Fragments._TupleLiteralPart__OclElement /* 1 */,
@@ -4293,7 +4283,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __TupleLiteralPart = { 1,1,2,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _TupleType =
+		private static final @NonNull ExecutorFragment @NonNull [] _TupleType =
 		{
 			Fragments._TupleType__OclAny /* 0 */,
 			Fragments._TupleType__OclElement /* 1 */,
@@ -4311,7 +4301,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __TupleType = { 1,1,3,1,2,2,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Type =
+		private static final @NonNull ExecutorFragment @NonNull [] _Type =
 		{
 			Fragments._Type__OclAny /* 0 */,
 			Fragments._Type__OclElement /* 1 */,
@@ -4324,7 +4314,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __Type = { 1,1,3,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _TypeExp =
+		private static final @NonNull ExecutorFragment @NonNull [] _TypeExp =
 		{
 			Fragments._TypeExp__OclAny /* 0 */,
 			Fragments._TypeExp__OclElement /* 1 */,
@@ -4339,7 +4329,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __TypeExp = { 1,1,3,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _TypedElement =
+		private static final @NonNull ExecutorFragment @NonNull [] _TypedElement =
 		{
 			Fragments._TypedElement__OclAny /* 0 */,
 			Fragments._TypedElement__OclElement /* 1 */,
@@ -4351,7 +4341,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __TypedElement = { 1,1,2,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _UnlimitedNaturalLiteralExp =
+		private static final @NonNull ExecutorFragment @NonNull [] _UnlimitedNaturalLiteralExp =
 		{
 			Fragments._UnlimitedNaturalLiteralExp__OclAny /* 0 */,
 			Fragments._UnlimitedNaturalLiteralExp__OclElement /* 1 */,
@@ -4368,7 +4358,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __UnlimitedNaturalLiteralExp = { 1,1,2,1,1,1,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _UnspecifiedValueExp =
+		private static final @NonNull ExecutorFragment @NonNull [] _UnspecifiedValueExp =
 		{
 			Fragments._UnspecifiedValueExp__OclAny /* 0 */,
 			Fragments._UnspecifiedValueExp__OclElement /* 1 */,
@@ -4382,7 +4372,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __UnspecifiedValueExp = { 1,1,2,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _ValueSpecification =
+		private static final @NonNull ExecutorFragment @NonNull [] _ValueSpecification =
 		{
 			Fragments._ValueSpecification__OclAny /* 0 */,
 			Fragments._ValueSpecification__OclElement /* 1 */,
@@ -4395,7 +4385,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __ValueSpecification = { 1,1,2,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Variable =
+		private static final @NonNull ExecutorFragment @NonNull [] _Variable =
 		{
 			Fragments._Variable__OclAny /* 0 */,
 			Fragments._Variable__OclElement /* 1 */,
@@ -4409,7 +4399,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __Variable = { 1,1,2,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _VariableDeclaration =
+		private static final @NonNull ExecutorFragment @NonNull [] _VariableDeclaration =
 		{
 			Fragments._VariableDeclaration__OclAny /* 0 */,
 			Fragments._VariableDeclaration__OclElement /* 1 */,
@@ -4422,7 +4412,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __VariableDeclaration = { 1,1,2,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _VariableExp =
+		private static final @NonNull ExecutorFragment @NonNull [] _VariableExp =
 		{
 			Fragments._VariableExp__OclAny /* 0 */,
 			Fragments._VariableExp__OclElement /* 1 */,
@@ -4437,7 +4427,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __VariableExp = { 1,1,3,1,1,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Vertex =
+		private static final @NonNull ExecutorFragment @NonNull [] _Vertex =
 		{
 			Fragments._Vertex__OclAny /* 0 */,
 			Fragments._Vertex__OclElement /* 1 */,
@@ -4449,7 +4439,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __Vertex = { 1,1,2,1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _Visitable =
+		private static final @NonNull ExecutorFragment @NonNull [] _Visitable =
 		{
 			Fragments._Visitable__OclAny /* 0 */,
 			Fragments._Visitable__OclElement /* 1 */,
@@ -4457,7 +4447,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __Visitable = { 1,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _VoidType =
+		private static final @NonNull ExecutorFragment @NonNull [] _VoidType =
 		{
 			Fragments._VoidType__OclAny /* 0 */,
 			Fragments._VoidType__OclElement /* 1 */,
@@ -4474,7 +4464,7 @@ public class PivotTables
 		};
 		private static final int @NonNull [] __VoidType = { 1,1,3,1,2,2,1,1 };
 
-		private static final @NonNull ExecutorFragment[] _WildcardType =
+		private static final @NonNull ExecutorFragment @NonNull [] _WildcardType =
 		{
 			Fragments._WildcardType__OclAny /* 0 */,
 			Fragments._WildcardType__OclElement /* 1 */,
@@ -4646,14 +4636,14 @@ public class PivotTables
 			TypeFragments.init();
 		}
 
-		private static final @NonNull ExecutorOperation[] _Annotation__Annotation = {};
-		private static final @NonNull ExecutorOperation[] _Annotation__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Annotation__Annotation = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Annotation__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Annotation__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _Annotation__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _Annotation__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Annotation__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Annotation__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Annotation__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -4669,23 +4659,23 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _Annotation__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Annotation__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _Annotation__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Annotation__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _AnyType__AnyType = {};
-		private static final @NonNull ExecutorOperation[] _AnyType__Class = {};
-		private static final @NonNull ExecutorOperation[] _AnyType__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _AnyType__AnyType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _AnyType__Class = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _AnyType__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _AnyType__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _AnyType__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _AnyType__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _AnyType__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _AnyType__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _AnyType__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _AnyType__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _AnyType__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -4701,34 +4691,34 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _AnyType__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _AnyType__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _AnyType__OclType = {
+		private static final @NonNull ExecutorOperation @NonNull [] _AnyType__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _AnyType__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation[] _AnyType__Type = {
+		private static final @NonNull ExecutorOperation @NonNull [] _AnyType__TemplateableElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _AnyType__Type = {
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _AnyType__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _AnyType__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _AssociationClass__AssociationClass = {};
-		private static final @NonNull ExecutorOperation[] _AssociationClass__Class = {};
-		private static final @NonNull ExecutorOperation[] _AssociationClass__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociationClass__AssociationClass = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociationClass__Class = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociationClass__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _AssociationClass__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _AssociationClass__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _AssociationClass__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _AssociationClass__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociationClass__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociationClass__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociationClass__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociationClass__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -4744,36 +4734,36 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _AssociationClass__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociationClass__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _AssociationClass__OclType = {
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociationClass__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _AssociationClass__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation[] _AssociationClass__Type = {
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociationClass__TemplateableElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociationClass__Type = {
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _AssociationClass__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociationClass__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _AssociationClassCallExp__AssociationClassCallExp = {};
-		private static final @NonNull ExecutorOperation[] _AssociationClassCallExp__CallExp = {};
-		private static final @NonNull ExecutorOperation[] _AssociationClassCallExp__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociationClassCallExp__AssociationClassCallExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociationClassCallExp__CallExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociationClassCallExp__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _AssociationClassCallExp__FeatureCallExp = {};
-		private static final @NonNull ExecutorOperation[] _AssociationClassCallExp__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _AssociationClassCallExp__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _AssociationClassCallExp__NavigationCallExp = {};
-		private static final @NonNull ExecutorOperation[] _AssociationClassCallExp__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _AssociationClassCallExp__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociationClassCallExp__FeatureCallExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociationClassCallExp__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociationClassCallExp__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociationClassCallExp__NavigationCallExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociationClassCallExp__OCLExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociationClassCallExp__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -4789,30 +4779,30 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _AssociationClassCallExp__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociationClassCallExp__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _AssociationClassCallExp__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociationClassCallExp__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _AssociationClassCallExp__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociationClassCallExp__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _AssociativityKind__AssociativityKind = {};
-		private static final @NonNull ExecutorOperation[] _AssociativityKind__Class = {};
-		private static final @NonNull ExecutorOperation[] _AssociativityKind__DataType = {};
-		private static final @NonNull ExecutorOperation[] _AssociativityKind__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociativityKind__AssociativityKind = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociativityKind__Class = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociativityKind__DataType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociativityKind__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _AssociativityKind__Enumeration = {
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociativityKind__Enumeration = {
 			PivotTables.Operations._Enumeration__allInstances /* allInstances() */
 		};
-		private static final @NonNull ExecutorOperation[] _AssociativityKind__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _AssociativityKind__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _AssociativityKind__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _AssociativityKind__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociativityKind__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociativityKind__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociativityKind__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociativityKind__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -4828,36 +4818,36 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _AssociativityKind__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociativityKind__OclElement = {
 			PivotTables.Operations._Enumeration__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _AssociativityKind__OclType = {
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociativityKind__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _AssociativityKind__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation[] _AssociativityKind__Type = {
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociativityKind__TemplateableElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociativityKind__Type = {
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _AssociativityKind__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _AssociativityKind__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _BagType__BagType = {};
-		private static final @NonNull ExecutorOperation[] _BagType__Class = {};
-		private static final @NonNull ExecutorOperation[] _BagType__CollectionType = {};
-		private static final @NonNull ExecutorOperation[] _BagType__DataType = {};
-		private static final @NonNull ExecutorOperation[] _BagType__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _BagType__BagType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _BagType__Class = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _BagType__CollectionType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _BagType__DataType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _BagType__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _BagType__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _BagType__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _BagType__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _BagType__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _BagType__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _BagType__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _BagType__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _BagType__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -4873,34 +4863,34 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _BagType__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _BagType__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _BagType__OclType = {
+		private static final @NonNull ExecutorOperation @NonNull [] _BagType__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _BagType__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation[] _BagType__Type = {
+		private static final @NonNull ExecutorOperation @NonNull [] _BagType__TemplateableElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _BagType__Type = {
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _BagType__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _BagType__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _Behavior__Behavior = {};
-		private static final @NonNull ExecutorOperation[] _Behavior__Class = {};
-		private static final @NonNull ExecutorOperation[] _Behavior__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Behavior__Behavior = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Behavior__Class = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Behavior__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Behavior__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _Behavior__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _Behavior__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _Behavior__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Behavior__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Behavior__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Behavior__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Behavior__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -4916,34 +4906,34 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _Behavior__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Behavior__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _Behavior__OclType = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Behavior__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Behavior__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation[] _Behavior__Type = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Behavior__TemplateableElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Behavior__Type = {
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Behavior__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Behavior__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _BooleanLiteralExp__BooleanLiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _BooleanLiteralExp__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _BooleanLiteralExp__BooleanLiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _BooleanLiteralExp__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _BooleanLiteralExp__LiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _BooleanLiteralExp__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _BooleanLiteralExp__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _BooleanLiteralExp__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _BooleanLiteralExp__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _BooleanLiteralExp__LiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _BooleanLiteralExp__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _BooleanLiteralExp__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _BooleanLiteralExp__OCLExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _BooleanLiteralExp__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -4959,26 +4949,26 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _BooleanLiteralExp__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _BooleanLiteralExp__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _BooleanLiteralExp__PrimitiveLiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _BooleanLiteralExp__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _BooleanLiteralExp__PrimitiveLiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _BooleanLiteralExp__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _BooleanLiteralExp__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _BooleanLiteralExp__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _CallExp__CallExp = {};
-		private static final @NonNull ExecutorOperation[] _CallExp__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CallExp__CallExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CallExp__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _CallExp__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _CallExp__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _CallExp__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _CallExp__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CallExp__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CallExp__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CallExp__OCLExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CallExp__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -4994,24 +4984,24 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _CallExp__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CallExp__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _CallExp__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CallExp__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _CallExp__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CallExp__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _CallOperationAction__CallOperationAction = {};
-		private static final @NonNull ExecutorOperation[] _CallOperationAction__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CallOperationAction__CallOperationAction = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CallOperationAction__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _CallOperationAction__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _CallOperationAction__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _CallOperationAction__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CallOperationAction__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CallOperationAction__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CallOperationAction__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -5027,22 +5017,22 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _CallOperationAction__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CallOperationAction__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _CallOperationAction__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CallOperationAction__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _Class__Class = {};
-		private static final @NonNull ExecutorOperation[] _Class__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Class__Class = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Class__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Class__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _Class__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _Class__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _Class__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Class__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Class__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Class__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Class__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -5058,33 +5048,33 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _Class__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Class__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _Class__OclType = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Class__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Class__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation[] _Class__Type = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Class__TemplateableElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Class__Type = {
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Class__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Class__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _CollectionItem__CollectionItem = {};
-		private static final @NonNull ExecutorOperation[] _CollectionItem__CollectionLiteralPart = {};
-		private static final @NonNull ExecutorOperation[] _CollectionItem__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionItem__CollectionItem = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionItem__CollectionLiteralPart = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionItem__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _CollectionItem__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _CollectionItem__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _CollectionItem__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionItem__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionItem__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionItem__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -5100,30 +5090,30 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _CollectionItem__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionItem__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _CollectionItem__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionItem__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _CollectionItem__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionItem__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _CollectionKind__CollectionKind = {};
-		private static final @NonNull ExecutorOperation[] _CollectionKind__Class = {};
-		private static final @NonNull ExecutorOperation[] _CollectionKind__DataType = {};
-		private static final @NonNull ExecutorOperation[] _CollectionKind__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionKind__CollectionKind = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionKind__Class = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionKind__DataType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionKind__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _CollectionKind__Enumeration = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionKind__Enumeration = {
 			PivotTables.Operations._Enumeration__allInstances /* allInstances() */
 		};
-		private static final @NonNull ExecutorOperation[] _CollectionKind__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _CollectionKind__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _CollectionKind__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _CollectionKind__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionKind__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionKind__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionKind__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionKind__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -5139,34 +5129,34 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _CollectionKind__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionKind__OclElement = {
 			PivotTables.Operations._Enumeration__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _CollectionKind__OclType = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionKind__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _CollectionKind__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation[] _CollectionKind__Type = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionKind__TemplateableElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionKind__Type = {
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _CollectionKind__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionKind__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _CollectionLiteralExp__CollectionLiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _CollectionLiteralExp__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionLiteralExp__CollectionLiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionLiteralExp__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _CollectionLiteralExp__LiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _CollectionLiteralExp__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _CollectionLiteralExp__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _CollectionLiteralExp__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _CollectionLiteralExp__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionLiteralExp__LiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionLiteralExp__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionLiteralExp__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionLiteralExp__OCLExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionLiteralExp__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -5182,24 +5172,24 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _CollectionLiteralExp__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionLiteralExp__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _CollectionLiteralExp__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionLiteralExp__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _CollectionLiteralExp__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionLiteralExp__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _CollectionLiteralPart__CollectionLiteralPart = {};
-		private static final @NonNull ExecutorOperation[] _CollectionLiteralPart__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionLiteralPart__CollectionLiteralPart = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionLiteralPart__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _CollectionLiteralPart__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _CollectionLiteralPart__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _CollectionLiteralPart__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionLiteralPart__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionLiteralPart__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionLiteralPart__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -5215,25 +5205,25 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _CollectionLiteralPart__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionLiteralPart__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _CollectionLiteralPart__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionLiteralPart__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _CollectionLiteralPart__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionLiteralPart__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _CollectionRange__CollectionRange = {};
-		private static final @NonNull ExecutorOperation[] _CollectionRange__CollectionLiteralPart = {};
-		private static final @NonNull ExecutorOperation[] _CollectionRange__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionRange__CollectionRange = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionRange__CollectionLiteralPart = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionRange__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _CollectionRange__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _CollectionRange__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _CollectionRange__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionRange__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionRange__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionRange__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -5249,27 +5239,27 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _CollectionRange__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionRange__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _CollectionRange__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionRange__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _CollectionRange__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionRange__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _CollectionType__CollectionType = {};
-		private static final @NonNull ExecutorOperation[] _CollectionType__Class = {};
-		private static final @NonNull ExecutorOperation[] _CollectionType__DataType = {};
-		private static final @NonNull ExecutorOperation[] _CollectionType__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionType__CollectionType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionType__Class = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionType__DataType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionType__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _CollectionType__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _CollectionType__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _CollectionType__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _CollectionType__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionType__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionType__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionType__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionType__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -5285,30 +5275,30 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _CollectionType__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionType__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _CollectionType__OclType = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionType__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _CollectionType__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation[] _CollectionType__Type = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionType__TemplateableElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionType__Type = {
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _CollectionType__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CollectionType__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _Comment__Comment = {};
-		private static final @NonNull ExecutorOperation[] _Comment__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Comment__Comment = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Comment__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Comment__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Comment__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -5324,21 +5314,21 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _Comment__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Comment__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _Comment__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Comment__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _CompleteClass__CompleteClass = {};
-		private static final @NonNull ExecutorOperation[] _CompleteClass__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CompleteClass__CompleteClass = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CompleteClass__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _CompleteClass__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _CompleteClass__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _CompleteClass__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CompleteClass__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CompleteClass__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CompleteClass__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -5354,19 +5344,19 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _CompleteClass__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CompleteClass__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _CompleteClass__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CompleteClass__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _CompleteEnvironment__CompleteEnvironment = {};
-		private static final @NonNull ExecutorOperation[] _CompleteEnvironment__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CompleteEnvironment__CompleteEnvironment = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CompleteEnvironment__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _CompleteEnvironment__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CompleteEnvironment__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -5382,23 +5372,23 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _CompleteEnvironment__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CompleteEnvironment__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _CompleteEnvironment__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CompleteEnvironment__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _CompleteModel__CompleteModel = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CompleteModel__CompleteModel = {
 			PivotTables.Operations._CompleteModel__getOwnedCompletePackage /* getOwnedCompletePackage(String[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _CompleteModel__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CompleteModel__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _CompleteModel__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _CompleteModel__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _CompleteModel__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CompleteModel__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CompleteModel__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CompleteModel__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -5414,23 +5404,23 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _CompleteModel__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CompleteModel__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _CompleteModel__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CompleteModel__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _CompletePackage__CompletePackage = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CompletePackage__CompletePackage = {
 			PivotTables.Operations._CompletePackage__getOwnedCompleteClass /* getOwnedCompleteClass(String[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _CompletePackage__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CompletePackage__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _CompletePackage__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _CompletePackage__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _CompletePackage__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CompletePackage__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CompletePackage__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CompletePackage__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -5446,21 +5436,21 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _CompletePackage__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _CompletePackage__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _CompletePackage__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _CompletePackage__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _ConnectionPointReference__ConnectionPointReference = {};
-		private static final @NonNull ExecutorOperation[] _ConnectionPointReference__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _ConnectionPointReference__ConnectionPointReference = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _ConnectionPointReference__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _ConnectionPointReference__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _ConnectionPointReference__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _ConnectionPointReference__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _ConnectionPointReference__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _ConnectionPointReference__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _ConnectionPointReference__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -5476,22 +5466,22 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _ConnectionPointReference__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _ConnectionPointReference__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _ConnectionPointReference__Vertex = {};
-		private static final @NonNull ExecutorOperation[] _ConnectionPointReference__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _ConnectionPointReference__Vertex = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _ConnectionPointReference__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _Constraint__Constraint = {};
-		private static final @NonNull ExecutorOperation[] _Constraint__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Constraint__Constraint = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Constraint__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Constraint__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _Constraint__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _Constraint__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Constraint__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Constraint__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Constraint__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -5507,23 +5497,23 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _Constraint__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Constraint__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _Constraint__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Constraint__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _DataType__DataType = {};
-		private static final @NonNull ExecutorOperation[] _DataType__Class = {};
-		private static final @NonNull ExecutorOperation[] _DataType__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _DataType__DataType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _DataType__Class = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _DataType__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _DataType__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _DataType__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _DataType__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _DataType__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _DataType__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _DataType__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _DataType__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _DataType__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -5539,32 +5529,32 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _DataType__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _DataType__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _DataType__OclType = {
+		private static final @NonNull ExecutorOperation @NonNull [] _DataType__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _DataType__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation[] _DataType__Type = {
+		private static final @NonNull ExecutorOperation @NonNull [] _DataType__TemplateableElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _DataType__Type = {
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _DataType__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _DataType__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _Detail__Detail = {};
-		private static final @NonNull ExecutorOperation[] _Detail__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Detail__Detail = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Detail__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Detail__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _Detail__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _Detail__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Detail__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Detail__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Detail__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -5580,26 +5570,26 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _Detail__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Detail__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _Detail__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Detail__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _DynamicBehavior__DynamicBehavior = {};
-		private static final @NonNull ExecutorOperation[] _DynamicBehavior__Behavior = {};
-		private static final @NonNull ExecutorOperation[] _DynamicBehavior__Class = {};
-		private static final @NonNull ExecutorOperation[] _DynamicBehavior__DynamicElement = {};
-		private static final @NonNull ExecutorOperation[] _DynamicBehavior__DynamicType = {};
-		private static final @NonNull ExecutorOperation[] _DynamicBehavior__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicBehavior__DynamicBehavior = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicBehavior__Behavior = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicBehavior__Class = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicBehavior__DynamicElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicBehavior__DynamicType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicBehavior__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _DynamicBehavior__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _DynamicBehavior__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _DynamicBehavior__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _DynamicBehavior__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicBehavior__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicBehavior__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicBehavior__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicBehavior__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -5615,30 +5605,30 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _DynamicBehavior__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicBehavior__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _DynamicBehavior__OclType = {
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicBehavior__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _DynamicBehavior__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation[] _DynamicBehavior__Type = {
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicBehavior__TemplateableElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicBehavior__Type = {
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _DynamicBehavior__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicBehavior__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _DynamicElement__DynamicElement = {};
-		private static final @NonNull ExecutorOperation[] _DynamicElement__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicElement__DynamicElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicElement__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _DynamicElement__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicElement__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -5654,19 +5644,19 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _DynamicElement__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicElement__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _DynamicElement__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicElement__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _DynamicProperty__DynamicProperty = {};
-		private static final @NonNull ExecutorOperation[] _DynamicProperty__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicProperty__DynamicProperty = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicProperty__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _DynamicProperty__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicProperty__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -5682,24 +5672,24 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _DynamicProperty__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicProperty__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _DynamicProperty__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicProperty__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _DynamicType__DynamicType = {};
-		private static final @NonNull ExecutorOperation[] _DynamicType__Class = {};
-		private static final @NonNull ExecutorOperation[] _DynamicType__DynamicElement = {};
-		private static final @NonNull ExecutorOperation[] _DynamicType__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicType__DynamicType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicType__Class = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicType__DynamicElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicType__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _DynamicType__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _DynamicType__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _DynamicType__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _DynamicType__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicType__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicType__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicType__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicType__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -5715,32 +5705,32 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _DynamicType__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicType__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _DynamicType__OclType = {
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicType__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _DynamicType__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation[] _DynamicType__Type = {
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicType__TemplateableElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicType__Type = {
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _DynamicType__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicType__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _DynamicValueSpecification__DynamicValueSpecification = {};
-		private static final @NonNull ExecutorOperation[] _DynamicValueSpecification__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicValueSpecification__DynamicValueSpecification = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicValueSpecification__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _DynamicValueSpecification__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _DynamicValueSpecification__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _DynamicValueSpecification__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicValueSpecification__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicValueSpecification__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicValueSpecification__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -5756,15 +5746,15 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _DynamicValueSpecification__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicValueSpecification__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _DynamicValueSpecification__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicValueSpecification__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _DynamicValueSpecification__ValueSpecification = {
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicValueSpecification__ValueSpecification = {
 			PivotTables.Operations._ValueSpecification__booleanValue /* booleanValue() */,
 			PivotTables.Operations._ValueSpecification__integerValue /* integerValue() */,
 			PivotTables.Operations._ValueSpecification__isComputable /* isComputable() */,
@@ -5772,13 +5762,13 @@ public class PivotTables
 			PivotTables.Operations._ValueSpecification__stringValue /* stringValue() */,
 			PivotTables.Operations._ValueSpecification__unlimitedValue /* unlimitedValue() */
 		};
-		private static final @NonNull ExecutorOperation[] _DynamicValueSpecification__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _DynamicValueSpecification__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _Element__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Element__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Element__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Element__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -5794,23 +5784,23 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _Element__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Element__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _Element__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Element__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _ElementExtension__ElementExtension = {};
-		private static final @NonNull ExecutorOperation[] _ElementExtension__Class = {};
-		private static final @NonNull ExecutorOperation[] _ElementExtension__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _ElementExtension__ElementExtension = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _ElementExtension__Class = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _ElementExtension__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _ElementExtension__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _ElementExtension__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _ElementExtension__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _ElementExtension__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _ElementExtension__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _ElementExtension__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _ElementExtension__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _ElementExtension__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -5826,34 +5816,34 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _ElementExtension__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _ElementExtension__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _ElementExtension__OclType = {
+		private static final @NonNull ExecutorOperation @NonNull [] _ElementExtension__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _ElementExtension__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation[] _ElementExtension__Type = {
+		private static final @NonNull ExecutorOperation @NonNull [] _ElementExtension__TemplateableElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _ElementExtension__Type = {
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _ElementExtension__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _ElementExtension__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _EnumLiteralExp__EnumLiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _EnumLiteralExp__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _EnumLiteralExp__EnumLiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _EnumLiteralExp__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _EnumLiteralExp__LiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _EnumLiteralExp__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _EnumLiteralExp__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _EnumLiteralExp__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _EnumLiteralExp__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _EnumLiteralExp__LiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _EnumLiteralExp__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _EnumLiteralExp__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _EnumLiteralExp__OCLExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _EnumLiteralExp__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -5869,29 +5859,29 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _EnumLiteralExp__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _EnumLiteralExp__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _EnumLiteralExp__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _EnumLiteralExp__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _EnumLiteralExp__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _EnumLiteralExp__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _Enumeration__Enumeration = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Enumeration__Enumeration = {
 			PivotTables.Operations._Enumeration__allInstances /* allInstances() */
 		};
-		private static final @NonNull ExecutorOperation[] _Enumeration__Class = {};
-		private static final @NonNull ExecutorOperation[] _Enumeration__DataType = {};
-		private static final @NonNull ExecutorOperation[] _Enumeration__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Enumeration__Class = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Enumeration__DataType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Enumeration__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Enumeration__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _Enumeration__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _Enumeration__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _Enumeration__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Enumeration__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Enumeration__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Enumeration__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Enumeration__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -5907,33 +5897,33 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _Enumeration__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Enumeration__OclElement = {
 			PivotTables.Operations._Enumeration__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _Enumeration__OclType = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Enumeration__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Enumeration__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation[] _Enumeration__Type = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Enumeration__TemplateableElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Enumeration__Type = {
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Enumeration__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Enumeration__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _EnumerationLiteral__EnumerationLiteral = {};
-		private static final @NonNull ExecutorOperation[] _EnumerationLiteral__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _EnumerationLiteral__EnumerationLiteral = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _EnumerationLiteral__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _EnumerationLiteral__InstanceSpecification = {};
-		private static final @NonNull ExecutorOperation[] _EnumerationLiteral__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _EnumerationLiteral__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _EnumerationLiteral__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _EnumerationLiteral__InstanceSpecification = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _EnumerationLiteral__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _EnumerationLiteral__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _EnumerationLiteral__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -5949,22 +5939,22 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _EnumerationLiteral__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _EnumerationLiteral__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _EnumerationLiteral__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _EnumerationLiteral__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _ExpressionInOCL__ExpressionInOCL = {};
-		private static final @NonNull ExecutorOperation[] _ExpressionInOCL__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _ExpressionInOCL__ExpressionInOCL = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _ExpressionInOCL__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _ExpressionInOCL__LanguageExpression = {};
-		private static final @NonNull ExecutorOperation[] _ExpressionInOCL__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _ExpressionInOCL__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _ExpressionInOCL__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _ExpressionInOCL__LanguageExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _ExpressionInOCL__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _ExpressionInOCL__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _ExpressionInOCL__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -5980,15 +5970,15 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _ExpressionInOCL__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _ExpressionInOCL__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _ExpressionInOCL__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _ExpressionInOCL__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _ExpressionInOCL__ValueSpecification = {
+		private static final @NonNull ExecutorOperation @NonNull [] _ExpressionInOCL__ValueSpecification = {
 			PivotTables.Operations._ValueSpecification__booleanValue /* booleanValue() */,
 			PivotTables.Operations._ValueSpecification__integerValue /* integerValue() */,
 			PivotTables.Operations._ValueSpecification__isComputable /* isComputable() */,
@@ -5996,16 +5986,16 @@ public class PivotTables
 			PivotTables.Operations._ValueSpecification__stringValue /* stringValue() */,
 			PivotTables.Operations._ValueSpecification__unlimitedValue /* unlimitedValue() */
 		};
-		private static final @NonNull ExecutorOperation[] _ExpressionInOCL__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _ExpressionInOCL__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _Feature__Feature = {};
-		private static final @NonNull ExecutorOperation[] _Feature__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Feature__Feature = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Feature__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Feature__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _Feature__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _Feature__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Feature__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Feature__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Feature__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -6021,26 +6011,26 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _Feature__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Feature__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _Feature__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Feature__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Feature__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Feature__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _FeatureCallExp__FeatureCallExp = {};
-		private static final @NonNull ExecutorOperation[] _FeatureCallExp__CallExp = {};
-		private static final @NonNull ExecutorOperation[] _FeatureCallExp__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _FeatureCallExp__FeatureCallExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _FeatureCallExp__CallExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _FeatureCallExp__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _FeatureCallExp__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _FeatureCallExp__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _FeatureCallExp__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _FeatureCallExp__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _FeatureCallExp__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _FeatureCallExp__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _FeatureCallExp__OCLExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _FeatureCallExp__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -6056,25 +6046,25 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _FeatureCallExp__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _FeatureCallExp__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _FeatureCallExp__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _FeatureCallExp__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _FeatureCallExp__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _FeatureCallExp__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _FinalState__FinalState = {};
-		private static final @NonNull ExecutorOperation[] _FinalState__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _FinalState__FinalState = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _FinalState__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _FinalState__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _FinalState__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _FinalState__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _FinalState__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _FinalState__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _FinalState__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _FinalState__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _FinalState__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -6090,25 +6080,25 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _FinalState__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _FinalState__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _FinalState__OclState = {};
-		private static final @NonNull ExecutorOperation[] _FinalState__State = {};
-		private static final @NonNull ExecutorOperation[] _FinalState__Vertex = {};
-		private static final @NonNull ExecutorOperation[] _FinalState__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _FinalState__OclState = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _FinalState__State = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _FinalState__Vertex = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _FinalState__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _IfExp__IfExp = {};
-		private static final @NonNull ExecutorOperation[] _IfExp__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _IfExp__IfExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _IfExp__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _IfExp__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _IfExp__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _IfExp__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _IfExp__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _IfExp__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _IfExp__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _IfExp__OCLExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _IfExp__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -6124,24 +6114,24 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _IfExp__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _IfExp__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _IfExp__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _IfExp__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _IfExp__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _IfExp__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _Import__Import = {};
-		private static final @NonNull ExecutorOperation[] _Import__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Import__Import = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Import__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Import__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _Import__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _Import__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Import__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Import__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Import__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -6157,21 +6147,21 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _Import__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Import__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _Import__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Import__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _InstanceSpecification__InstanceSpecification = {};
-		private static final @NonNull ExecutorOperation[] _InstanceSpecification__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _InstanceSpecification__InstanceSpecification = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _InstanceSpecification__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _InstanceSpecification__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _InstanceSpecification__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _InstanceSpecification__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _InstanceSpecification__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _InstanceSpecification__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _InstanceSpecification__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -6187,24 +6177,24 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _InstanceSpecification__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _InstanceSpecification__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _InstanceSpecification__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _InstanceSpecification__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _IntegerLiteralExp__IntegerLiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _IntegerLiteralExp__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _IntegerLiteralExp__IntegerLiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _IntegerLiteralExp__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _IntegerLiteralExp__LiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _IntegerLiteralExp__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _IntegerLiteralExp__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _IntegerLiteralExp__NumericLiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _IntegerLiteralExp__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _IntegerLiteralExp__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _IntegerLiteralExp__LiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _IntegerLiteralExp__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _IntegerLiteralExp__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _IntegerLiteralExp__NumericLiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _IntegerLiteralExp__OCLExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _IntegerLiteralExp__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -6220,27 +6210,27 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _IntegerLiteralExp__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _IntegerLiteralExp__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _IntegerLiteralExp__PrimitiveLiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _IntegerLiteralExp__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _IntegerLiteralExp__PrimitiveLiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _IntegerLiteralExp__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _IntegerLiteralExp__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _IntegerLiteralExp__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _InvalidLiteralExp__InvalidLiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _InvalidLiteralExp__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _InvalidLiteralExp__InvalidLiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _InvalidLiteralExp__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _InvalidLiteralExp__LiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _InvalidLiteralExp__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _InvalidLiteralExp__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _InvalidLiteralExp__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _InvalidLiteralExp__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _InvalidLiteralExp__LiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _InvalidLiteralExp__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _InvalidLiteralExp__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _InvalidLiteralExp__OCLExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _InvalidLiteralExp__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -6256,26 +6246,26 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _InvalidLiteralExp__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _InvalidLiteralExp__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _InvalidLiteralExp__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _InvalidLiteralExp__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _InvalidLiteralExp__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _InvalidLiteralExp__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _InvalidType__InvalidType = {};
-		private static final @NonNull ExecutorOperation[] _InvalidType__Class = {};
-		private static final @NonNull ExecutorOperation[] _InvalidType__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _InvalidType__InvalidType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _InvalidType__Class = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _InvalidType__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _InvalidType__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _InvalidType__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _InvalidType__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _InvalidType__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _InvalidType__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _InvalidType__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _InvalidType__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _InvalidType__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -6291,35 +6281,35 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _InvalidType__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _InvalidType__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _InvalidType__OclType = {
+		private static final @NonNull ExecutorOperation @NonNull [] _InvalidType__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _InvalidType__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation[] _InvalidType__Type = {
+		private static final @NonNull ExecutorOperation @NonNull [] _InvalidType__TemplateableElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _InvalidType__Type = {
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _InvalidType__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _InvalidType__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _IterateExp__IterateExp = {};
-		private static final @NonNull ExecutorOperation[] _IterateExp__CallExp = {};
-		private static final @NonNull ExecutorOperation[] _IterateExp__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _IterateExp__IterateExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _IterateExp__CallExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _IterateExp__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _IterateExp__LoopExp = {};
-		private static final @NonNull ExecutorOperation[] _IterateExp__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _IterateExp__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _IterateExp__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _IterateExp__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _IterateExp__LoopExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _IterateExp__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _IterateExp__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _IterateExp__OCLExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _IterateExp__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -6335,29 +6325,29 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _IterateExp__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _IterateExp__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _IterateExp__ReferringElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _IterateExp__ReferringElement = {
 			PivotTables.Operations._ReferringElement__getReferredElement /* getReferredElement() */
 		};
-		private static final @NonNull ExecutorOperation[] _IterateExp__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _IterateExp__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _IterateExp__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _IterateExp__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _Iteration__Iteration = {};
-		private static final @NonNull ExecutorOperation[] _Iteration__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Iteration__Iteration = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Iteration__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Iteration__Feature = {};
-		private static final @NonNull ExecutorOperation[] _Iteration__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _Iteration__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _Iteration__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _Iteration__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Iteration__Feature = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Iteration__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Iteration__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Iteration__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Iteration__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -6373,29 +6363,29 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _Iteration__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Iteration__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _Iteration__Operation = {};
-		private static final @NonNull ExecutorOperation[] _Iteration__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation[] _Iteration__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Iteration__Operation = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Iteration__TemplateableElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Iteration__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Iteration__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Iteration__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _IteratorExp__IteratorExp = {};
-		private static final @NonNull ExecutorOperation[] _IteratorExp__CallExp = {};
-		private static final @NonNull ExecutorOperation[] _IteratorExp__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _IteratorExp__IteratorExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _IteratorExp__CallExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _IteratorExp__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _IteratorExp__LoopExp = {};
-		private static final @NonNull ExecutorOperation[] _IteratorExp__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _IteratorExp__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _IteratorExp__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _IteratorExp__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _IteratorExp__LoopExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _IteratorExp__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _IteratorExp__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _IteratorExp__OCLExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _IteratorExp__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -6411,30 +6401,30 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _IteratorExp__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _IteratorExp__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _IteratorExp__ReferringElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _IteratorExp__ReferringElement = {
 			PivotTables.Operations._ReferringElement__getReferredElement /* getReferredElement() */
 		};
-		private static final @NonNull ExecutorOperation[] _IteratorExp__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _IteratorExp__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _IteratorExp__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _IteratorExp__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _LambdaType__LambdaType = {};
-		private static final @NonNull ExecutorOperation[] _LambdaType__Class = {};
-		private static final @NonNull ExecutorOperation[] _LambdaType__DataType = {};
-		private static final @NonNull ExecutorOperation[] _LambdaType__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _LambdaType__LambdaType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _LambdaType__Class = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _LambdaType__DataType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _LambdaType__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _LambdaType__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _LambdaType__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _LambdaType__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _LambdaType__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _LambdaType__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _LambdaType__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _LambdaType__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _LambdaType__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -6450,32 +6440,32 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _LambdaType__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _LambdaType__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _LambdaType__OclType = {
+		private static final @NonNull ExecutorOperation @NonNull [] _LambdaType__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _LambdaType__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation[] _LambdaType__Type = {
+		private static final @NonNull ExecutorOperation @NonNull [] _LambdaType__TemplateableElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _LambdaType__Type = {
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _LambdaType__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _LambdaType__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _LanguageExpression__LanguageExpression = {};
-		private static final @NonNull ExecutorOperation[] _LanguageExpression__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _LanguageExpression__LanguageExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _LanguageExpression__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _LanguageExpression__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _LanguageExpression__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _LanguageExpression__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _LanguageExpression__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _LanguageExpression__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _LanguageExpression__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -6491,15 +6481,15 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _LanguageExpression__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _LanguageExpression__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _LanguageExpression__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _LanguageExpression__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _LanguageExpression__ValueSpecification = {
+		private static final @NonNull ExecutorOperation @NonNull [] _LanguageExpression__ValueSpecification = {
 			PivotTables.Operations._ValueSpecification__booleanValue /* booleanValue() */,
 			PivotTables.Operations._ValueSpecification__integerValue /* integerValue() */,
 			PivotTables.Operations._ValueSpecification__isComputable /* isComputable() */,
@@ -6507,17 +6497,17 @@ public class PivotTables
 			PivotTables.Operations._ValueSpecification__stringValue /* stringValue() */,
 			PivotTables.Operations._ValueSpecification__unlimitedValue /* unlimitedValue() */
 		};
-		private static final @NonNull ExecutorOperation[] _LanguageExpression__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _LanguageExpression__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _LetExp__LetExp = {};
-		private static final @NonNull ExecutorOperation[] _LetExp__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _LetExp__LetExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _LetExp__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _LetExp__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _LetExp__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _LetExp__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _LetExp__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _LetExp__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _LetExp__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _LetExp__OCLExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _LetExp__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -6533,25 +6523,25 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _LetExp__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _LetExp__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _LetExp__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _LetExp__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _LetExp__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _LetExp__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _Library__Library = {};
-		private static final @NonNull ExecutorOperation[] _Library__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Library__Library = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Library__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Library__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _Library__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _Library__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _Library__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Library__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Library__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Library__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Library__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -6567,16 +6557,16 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _Library__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Library__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _Library__Package = {};
-		private static final @NonNull ExecutorOperation[] _Library__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Library__Package = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Library__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _LibraryFeature__LibraryFeature = {};
-		private static final @NonNull ExecutorOperation[] _LibraryFeature__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _LibraryFeature__LibraryFeature = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _LibraryFeature__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -6593,15 +6583,15 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 
-		private static final @NonNull ExecutorOperation[] _LiteralExp__LiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _LiteralExp__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _LiteralExp__LiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _LiteralExp__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _LiteralExp__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _LiteralExp__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _LiteralExp__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _LiteralExp__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _LiteralExp__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _LiteralExp__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _LiteralExp__OCLExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _LiteralExp__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -6617,26 +6607,26 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _LiteralExp__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _LiteralExp__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _LiteralExp__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _LiteralExp__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _LiteralExp__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _LiteralExp__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _LoopExp__LoopExp = {};
-		private static final @NonNull ExecutorOperation[] _LoopExp__CallExp = {};
-		private static final @NonNull ExecutorOperation[] _LoopExp__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _LoopExp__LoopExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _LoopExp__CallExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _LoopExp__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _LoopExp__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _LoopExp__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _LoopExp__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _LoopExp__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _LoopExp__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _LoopExp__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _LoopExp__OCLExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _LoopExp__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -6652,26 +6642,26 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _LoopExp__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _LoopExp__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _LoopExp__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _LoopExp__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _LoopExp__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _LoopExp__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _MapLiteralExp__MapLiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _MapLiteralExp__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _MapLiteralExp__MapLiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _MapLiteralExp__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _MapLiteralExp__LiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _MapLiteralExp__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _MapLiteralExp__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _MapLiteralExp__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _MapLiteralExp__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _MapLiteralExp__LiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _MapLiteralExp__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _MapLiteralExp__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _MapLiteralExp__OCLExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _MapLiteralExp__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -6687,22 +6677,22 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _MapLiteralExp__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _MapLiteralExp__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _MapLiteralExp__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _MapLiteralExp__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _MapLiteralExp__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _MapLiteralExp__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _MapLiteralPart__MapLiteralPart = {};
-		private static final @NonNull ExecutorOperation[] _MapLiteralPart__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _MapLiteralPart__MapLiteralPart = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _MapLiteralPart__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _MapLiteralPart__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _MapLiteralPart__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -6718,24 +6708,24 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _MapLiteralPart__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _MapLiteralPart__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _MapLiteralPart__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _MapLiteralPart__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _MapType__MapType = {};
-		private static final @NonNull ExecutorOperation[] _MapType__Class = {};
-		private static final @NonNull ExecutorOperation[] _MapType__DataType = {};
-		private static final @NonNull ExecutorOperation[] _MapType__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _MapType__MapType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _MapType__Class = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _MapType__DataType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _MapType__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _MapType__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _MapType__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _MapType__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _MapType__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _MapType__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _MapType__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _MapType__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _MapType__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -6751,33 +6741,33 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _MapType__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _MapType__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _MapType__OclType = {
+		private static final @NonNull ExecutorOperation @NonNull [] _MapType__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _MapType__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation[] _MapType__Type = {
+		private static final @NonNull ExecutorOperation @NonNull [] _MapType__TemplateableElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _MapType__Type = {
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _MapType__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _MapType__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _MessageExp__MessageExp = {};
-		private static final @NonNull ExecutorOperation[] _MessageExp__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _MessageExp__MessageExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _MessageExp__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _MessageExp__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _MessageExp__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _MessageExp__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _MessageExp__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _MessageExp__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _MessageExp__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _MessageExp__OCLExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _MessageExp__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -6793,26 +6783,26 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _MessageExp__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _MessageExp__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _MessageExp__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _MessageExp__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _MessageExp__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _MessageExp__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _MessageType__MessageType = {};
-		private static final @NonNull ExecutorOperation[] _MessageType__Class = {};
-		private static final @NonNull ExecutorOperation[] _MessageType__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _MessageType__MessageType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _MessageType__Class = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _MessageType__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _MessageType__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _MessageType__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _MessageType__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _MessageType__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _MessageType__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _MessageType__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _MessageType__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _MessageType__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -6828,33 +6818,33 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _MessageType__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _MessageType__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _MessageType__OclType = {
+		private static final @NonNull ExecutorOperation @NonNull [] _MessageType__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _MessageType__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation[] _MessageType__Type = {
+		private static final @NonNull ExecutorOperation @NonNull [] _MessageType__TemplateableElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _MessageType__Type = {
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _MessageType__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _MessageType__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _Model__Model = {};
-		private static final @NonNull ExecutorOperation[] _Model__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Model__Model = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Model__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Model__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _Model__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _Model__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _Model__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Model__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Model__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Model__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Model__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -6870,15 +6860,15 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _Model__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Model__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _Model__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Model__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _MorePivotable__MorePivotable = {};
-		private static final @NonNull ExecutorOperation[] _MorePivotable__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _MorePivotable__MorePivotable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _MorePivotable__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -6894,14 +6884,14 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _MorePivotable__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _MorePivotable__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 
-		private static final @NonNull ExecutorOperation[] _Nameable__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _Nameable__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Nameable__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Nameable__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -6917,19 +6907,19 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _Nameable__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Nameable__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 
-		private static final @NonNull ExecutorOperation[] _NamedElement__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _NamedElement__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _NamedElement__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _NamedElement__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _NamedElement__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _NamedElement__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _NamedElement__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _NamedElement__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -6945,21 +6935,21 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _NamedElement__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _NamedElement__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _NamedElement__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _NamedElement__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _Namespace__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _Namespace__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Namespace__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Namespace__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Namespace__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _Namespace__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _Namespace__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Namespace__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Namespace__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Namespace__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -6975,24 +6965,24 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _Namespace__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Namespace__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _Namespace__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Namespace__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _NavigationCallExp__NavigationCallExp = {};
-		private static final @NonNull ExecutorOperation[] _NavigationCallExp__CallExp = {};
-		private static final @NonNull ExecutorOperation[] _NavigationCallExp__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _NavigationCallExp__NavigationCallExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _NavigationCallExp__CallExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _NavigationCallExp__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _NavigationCallExp__FeatureCallExp = {};
-		private static final @NonNull ExecutorOperation[] _NavigationCallExp__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _NavigationCallExp__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _NavigationCallExp__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _NavigationCallExp__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _NavigationCallExp__FeatureCallExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _NavigationCallExp__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _NavigationCallExp__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _NavigationCallExp__OCLExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _NavigationCallExp__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -7008,26 +6998,26 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _NavigationCallExp__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _NavigationCallExp__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _NavigationCallExp__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _NavigationCallExp__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _NavigationCallExp__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _NavigationCallExp__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _NullLiteralExp__NullLiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _NullLiteralExp__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _NullLiteralExp__NullLiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _NullLiteralExp__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _NullLiteralExp__LiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _NullLiteralExp__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _NullLiteralExp__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _NullLiteralExp__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _NullLiteralExp__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _NullLiteralExp__LiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _NullLiteralExp__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _NullLiteralExp__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _NullLiteralExp__OCLExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _NullLiteralExp__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -7043,27 +7033,27 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _NullLiteralExp__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _NullLiteralExp__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _NullLiteralExp__PrimitiveLiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _NullLiteralExp__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _NullLiteralExp__PrimitiveLiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _NullLiteralExp__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _NullLiteralExp__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _NullLiteralExp__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _NumericLiteralExp__NumericLiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _NumericLiteralExp__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _NumericLiteralExp__NumericLiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _NumericLiteralExp__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _NumericLiteralExp__LiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _NumericLiteralExp__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _NumericLiteralExp__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _NumericLiteralExp__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _NumericLiteralExp__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _NumericLiteralExp__LiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _NumericLiteralExp__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _NumericLiteralExp__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _NumericLiteralExp__OCLExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _NumericLiteralExp__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -7079,25 +7069,25 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _NumericLiteralExp__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _NumericLiteralExp__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _NumericLiteralExp__PrimitiveLiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _NumericLiteralExp__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _NumericLiteralExp__PrimitiveLiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _NumericLiteralExp__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _NumericLiteralExp__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _NumericLiteralExp__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _OCLExpression__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _OCLExpression__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _OCLExpression__OCLExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _OCLExpression__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _OCLExpression__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _OCLExpression__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _OCLExpression__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _OCLExpression__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _OCLExpression__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _OCLExpression__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -7113,18 +7103,18 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _OCLExpression__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _OCLExpression__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _OCLExpression__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _OCLExpression__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _OCLExpression__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _OCLExpression__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _Object__Object = {};
-		private static final @NonNull ExecutorOperation[] _Object__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Object__Object = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Object__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -7141,16 +7131,16 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 
-		private static final @NonNull ExecutorOperation[] _Operation__Operation = {};
-		private static final @NonNull ExecutorOperation[] _Operation__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Operation__Operation = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Operation__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Operation__Feature = {};
-		private static final @NonNull ExecutorOperation[] _Operation__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _Operation__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _Operation__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _Operation__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Operation__Feature = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Operation__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Operation__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Operation__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Operation__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -7166,28 +7156,28 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _Operation__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Operation__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _Operation__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation[] _Operation__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Operation__TemplateableElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Operation__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Operation__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Operation__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _OperationCallExp__OperationCallExp = {};
-		private static final @NonNull ExecutorOperation[] _OperationCallExp__CallExp = {};
-		private static final @NonNull ExecutorOperation[] _OperationCallExp__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _OperationCallExp__OperationCallExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _OperationCallExp__CallExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _OperationCallExp__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _OperationCallExp__FeatureCallExp = {};
-		private static final @NonNull ExecutorOperation[] _OperationCallExp__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _OperationCallExp__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _OperationCallExp__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _OperationCallExp__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _OperationCallExp__FeatureCallExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _OperationCallExp__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _OperationCallExp__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _OperationCallExp__OCLExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _OperationCallExp__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -7203,31 +7193,31 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _OperationCallExp__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _OperationCallExp__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _OperationCallExp__ReferringElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _OperationCallExp__ReferringElement = {
 			PivotTables.Operations._ReferringElement__getReferredElement /* getReferredElement() */
 		};
-		private static final @NonNull ExecutorOperation[] _OperationCallExp__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _OperationCallExp__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _OperationCallExp__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _OperationCallExp__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _OppositePropertyCallExp__OppositePropertyCallExp = {};
-		private static final @NonNull ExecutorOperation[] _OppositePropertyCallExp__CallExp = {};
-		private static final @NonNull ExecutorOperation[] _OppositePropertyCallExp__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _OppositePropertyCallExp__OppositePropertyCallExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _OppositePropertyCallExp__CallExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _OppositePropertyCallExp__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _OppositePropertyCallExp__FeatureCallExp = {};
-		private static final @NonNull ExecutorOperation[] _OppositePropertyCallExp__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _OppositePropertyCallExp__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _OppositePropertyCallExp__NavigationCallExp = {};
-		private static final @NonNull ExecutorOperation[] _OppositePropertyCallExp__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _OppositePropertyCallExp__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _OppositePropertyCallExp__FeatureCallExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _OppositePropertyCallExp__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _OppositePropertyCallExp__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _OppositePropertyCallExp__NavigationCallExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _OppositePropertyCallExp__OCLExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _OppositePropertyCallExp__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -7243,28 +7233,28 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _OppositePropertyCallExp__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _OppositePropertyCallExp__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _OppositePropertyCallExp__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _OppositePropertyCallExp__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _OppositePropertyCallExp__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _OppositePropertyCallExp__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _OrderedSetType__OrderedSetType = {};
-		private static final @NonNull ExecutorOperation[] _OrderedSetType__Class = {};
-		private static final @NonNull ExecutorOperation[] _OrderedSetType__CollectionType = {};
-		private static final @NonNull ExecutorOperation[] _OrderedSetType__DataType = {};
-		private static final @NonNull ExecutorOperation[] _OrderedSetType__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _OrderedSetType__OrderedSetType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _OrderedSetType__Class = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _OrderedSetType__CollectionType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _OrderedSetType__DataType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _OrderedSetType__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _OrderedSetType__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _OrderedSetType__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _OrderedSetType__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _OrderedSetType__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _OrderedSetType__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _OrderedSetType__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _OrderedSetType__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _OrderedSetType__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -7280,35 +7270,35 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _OrderedSetType__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _OrderedSetType__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _OrderedSetType__OclType = {
+		private static final @NonNull ExecutorOperation @NonNull [] _OrderedSetType__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _OrderedSetType__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation[] _OrderedSetType__Type = {
+		private static final @NonNull ExecutorOperation @NonNull [] _OrderedSetType__TemplateableElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _OrderedSetType__Type = {
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _OrderedSetType__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _OrderedSetType__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _OrphanCompletePackage__OrphanCompletePackage = {};
-		private static final @NonNull ExecutorOperation[] _OrphanCompletePackage__CompletePackage = {
+		private static final @NonNull ExecutorOperation @NonNull [] _OrphanCompletePackage__OrphanCompletePackage = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _OrphanCompletePackage__CompletePackage = {
 			PivotTables.Operations._CompletePackage__getOwnedCompleteClass /* getOwnedCompleteClass(String[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _OrphanCompletePackage__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _OrphanCompletePackage__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _OrphanCompletePackage__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _OrphanCompletePackage__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _OrphanCompletePackage__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _OrphanCompletePackage__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _OrphanCompletePackage__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _OrphanCompletePackage__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -7324,22 +7314,22 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _OrphanCompletePackage__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _OrphanCompletePackage__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _OrphanCompletePackage__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _OrphanCompletePackage__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _Package__Package = {};
-		private static final @NonNull ExecutorOperation[] _Package__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Package__Package = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Package__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Package__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _Package__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _Package__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _Package__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Package__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Package__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Package__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Package__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -7355,21 +7345,21 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _Package__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Package__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _Package__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Package__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _Parameter__Parameter = {};
-		private static final @NonNull ExecutorOperation[] _Parameter__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Parameter__Parameter = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Parameter__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Parameter__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _Parameter__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _Parameter__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Parameter__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Parameter__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Parameter__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -7385,19 +7375,19 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _Parameter__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Parameter__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _Parameter__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Parameter__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Parameter__VariableDeclaration = {};
-		private static final @NonNull ExecutorOperation[] _Parameter__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Parameter__VariableDeclaration = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Parameter__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _Pivotable__Pivotable = {};
-		private static final @NonNull ExecutorOperation[] _Pivotable__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Pivotable__Pivotable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Pivotable__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -7413,20 +7403,20 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _Pivotable__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Pivotable__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 
-		private static final @NonNull ExecutorOperation[] _Precedence__Precedence = {};
-		private static final @NonNull ExecutorOperation[] _Precedence__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Precedence__Precedence = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Precedence__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Precedence__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _Precedence__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _Precedence__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Precedence__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Precedence__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Precedence__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -7442,24 +7432,24 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _Precedence__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Precedence__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _Precedence__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Precedence__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _PrimitiveCompletePackage__PrimitiveCompletePackage = {};
-		private static final @NonNull ExecutorOperation[] _PrimitiveCompletePackage__CompletePackage = {
+		private static final @NonNull ExecutorOperation @NonNull [] _PrimitiveCompletePackage__PrimitiveCompletePackage = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _PrimitiveCompletePackage__CompletePackage = {
 			PivotTables.Operations._CompletePackage__getOwnedCompleteClass /* getOwnedCompleteClass(String[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _PrimitiveCompletePackage__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _PrimitiveCompletePackage__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _PrimitiveCompletePackage__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _PrimitiveCompletePackage__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _PrimitiveCompletePackage__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _PrimitiveCompletePackage__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _PrimitiveCompletePackage__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _PrimitiveCompletePackage__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -7475,23 +7465,23 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _PrimitiveCompletePackage__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _PrimitiveCompletePackage__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _PrimitiveCompletePackage__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _PrimitiveCompletePackage__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _PrimitiveLiteralExp__PrimitiveLiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _PrimitiveLiteralExp__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _PrimitiveLiteralExp__PrimitiveLiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _PrimitiveLiteralExp__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _PrimitiveLiteralExp__LiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _PrimitiveLiteralExp__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _PrimitiveLiteralExp__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _PrimitiveLiteralExp__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _PrimitiveLiteralExp__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _PrimitiveLiteralExp__LiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _PrimitiveLiteralExp__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _PrimitiveLiteralExp__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _PrimitiveLiteralExp__OCLExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _PrimitiveLiteralExp__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -7507,27 +7497,27 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _PrimitiveLiteralExp__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _PrimitiveLiteralExp__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _PrimitiveLiteralExp__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _PrimitiveLiteralExp__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _PrimitiveLiteralExp__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _PrimitiveLiteralExp__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _PrimitiveType__PrimitiveType = {};
-		private static final @NonNull ExecutorOperation[] _PrimitiveType__Class = {};
-		private static final @NonNull ExecutorOperation[] _PrimitiveType__DataType = {};
-		private static final @NonNull ExecutorOperation[] _PrimitiveType__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _PrimitiveType__PrimitiveType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _PrimitiveType__Class = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _PrimitiveType__DataType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _PrimitiveType__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _PrimitiveType__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _PrimitiveType__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _PrimitiveType__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _PrimitiveType__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _PrimitiveType__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _PrimitiveType__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _PrimitiveType__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _PrimitiveType__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -7543,33 +7533,33 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _PrimitiveType__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _PrimitiveType__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _PrimitiveType__OclType = {
+		private static final @NonNull ExecutorOperation @NonNull [] _PrimitiveType__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _PrimitiveType__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation[] _PrimitiveType__Type = {
+		private static final @NonNull ExecutorOperation @NonNull [] _PrimitiveType__TemplateableElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _PrimitiveType__Type = {
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _PrimitiveType__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _PrimitiveType__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _Profile__Profile = {};
-		private static final @NonNull ExecutorOperation[] _Profile__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Profile__Profile = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Profile__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Profile__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _Profile__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _Profile__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _Profile__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Profile__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Profile__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Profile__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Profile__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -7585,20 +7575,20 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _Profile__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Profile__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _Profile__Package = {};
-		private static final @NonNull ExecutorOperation[] _Profile__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Profile__Package = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Profile__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _ProfileApplication__ProfileApplication = {};
-		private static final @NonNull ExecutorOperation[] _ProfileApplication__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _ProfileApplication__ProfileApplication = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _ProfileApplication__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _ProfileApplication__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _ProfileApplication__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -7614,24 +7604,24 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _ProfileApplication__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _ProfileApplication__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _ProfileApplication__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _ProfileApplication__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _Property__Property = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Property__Property = {
 			PivotTables.Operations._Property__isAttribute /* isAttribute(Property[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Property__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Property__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Property__Feature = {};
-		private static final @NonNull ExecutorOperation[] _Property__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _Property__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _Property__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Property__Feature = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Property__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Property__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Property__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -7647,31 +7637,31 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _Property__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Property__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _Property__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Property__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Property__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Property__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _PropertyCallExp__PropertyCallExp = {
+		private static final @NonNull ExecutorOperation @NonNull [] _PropertyCallExp__PropertyCallExp = {
 			PivotTables.Operations._PropertyCallExp__getSpecializedReferredPropertyOwningType /* getSpecializedReferredPropertyOwningType() */,
 			PivotTables.Operations._PropertyCallExp__getSpecializedReferredPropertyType /* getSpecializedReferredPropertyType() */
 		};
-		private static final @NonNull ExecutorOperation[] _PropertyCallExp__CallExp = {};
-		private static final @NonNull ExecutorOperation[] _PropertyCallExp__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _PropertyCallExp__CallExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _PropertyCallExp__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _PropertyCallExp__FeatureCallExp = {};
-		private static final @NonNull ExecutorOperation[] _PropertyCallExp__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _PropertyCallExp__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _PropertyCallExp__NavigationCallExp = {};
-		private static final @NonNull ExecutorOperation[] _PropertyCallExp__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _PropertyCallExp__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _PropertyCallExp__FeatureCallExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _PropertyCallExp__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _PropertyCallExp__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _PropertyCallExp__NavigationCallExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _PropertyCallExp__OCLExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _PropertyCallExp__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -7687,27 +7677,27 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _PropertyCallExp__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _PropertyCallExp__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _PropertyCallExp__ReferringElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _PropertyCallExp__ReferringElement = {
 			PivotTables.Operations._ReferringElement__getReferredElement /* getReferredElement() */
 		};
-		private static final @NonNull ExecutorOperation[] _PropertyCallExp__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _PropertyCallExp__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _PropertyCallExp__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _PropertyCallExp__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _Pseudostate__Pseudostate = {};
-		private static final @NonNull ExecutorOperation[] _Pseudostate__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Pseudostate__Pseudostate = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Pseudostate__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Pseudostate__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _Pseudostate__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _Pseudostate__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Pseudostate__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Pseudostate__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Pseudostate__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -7723,28 +7713,28 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _Pseudostate__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Pseudostate__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _Pseudostate__Vertex = {};
-		private static final @NonNull ExecutorOperation[] _Pseudostate__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Pseudostate__Vertex = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Pseudostate__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _PseudostateKind__PseudostateKind = {};
-		private static final @NonNull ExecutorOperation[] _PseudostateKind__Class = {};
-		private static final @NonNull ExecutorOperation[] _PseudostateKind__DataType = {};
-		private static final @NonNull ExecutorOperation[] _PseudostateKind__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _PseudostateKind__PseudostateKind = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _PseudostateKind__Class = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _PseudostateKind__DataType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _PseudostateKind__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _PseudostateKind__Enumeration = {
+		private static final @NonNull ExecutorOperation @NonNull [] _PseudostateKind__Enumeration = {
 			PivotTables.Operations._Enumeration__allInstances /* allInstances() */
 		};
-		private static final @NonNull ExecutorOperation[] _PseudostateKind__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _PseudostateKind__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _PseudostateKind__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _PseudostateKind__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _PseudostateKind__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _PseudostateKind__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _PseudostateKind__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _PseudostateKind__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -7760,35 +7750,35 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _PseudostateKind__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _PseudostateKind__OclElement = {
 			PivotTables.Operations._Enumeration__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _PseudostateKind__OclType = {
+		private static final @NonNull ExecutorOperation @NonNull [] _PseudostateKind__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _PseudostateKind__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation[] _PseudostateKind__Type = {
+		private static final @NonNull ExecutorOperation @NonNull [] _PseudostateKind__TemplateableElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _PseudostateKind__Type = {
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _PseudostateKind__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _PseudostateKind__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _RealLiteralExp__RealLiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _RealLiteralExp__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _RealLiteralExp__RealLiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _RealLiteralExp__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _RealLiteralExp__LiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _RealLiteralExp__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _RealLiteralExp__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _RealLiteralExp__NumericLiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _RealLiteralExp__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _RealLiteralExp__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _RealLiteralExp__LiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _RealLiteralExp__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _RealLiteralExp__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _RealLiteralExp__NumericLiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _RealLiteralExp__OCLExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _RealLiteralExp__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -7804,21 +7794,21 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _RealLiteralExp__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _RealLiteralExp__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _RealLiteralExp__PrimitiveLiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _RealLiteralExp__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _RealLiteralExp__PrimitiveLiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _RealLiteralExp__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _RealLiteralExp__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _RealLiteralExp__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _ReferringElement__ReferringElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _ReferringElement__ReferringElement = {
 			PivotTables.Operations._ReferringElement__getReferredElement /* getReferredElement() */
 		};
-		private static final @NonNull ExecutorOperation[] _ReferringElement__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _ReferringElement__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -7834,21 +7824,21 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _ReferringElement__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _ReferringElement__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 
-		private static final @NonNull ExecutorOperation[] _Region__Region = {};
-		private static final @NonNull ExecutorOperation[] _Region__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Region__Region = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Region__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Region__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _Region__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _Region__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _Region__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Region__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Region__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Region__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Region__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -7864,25 +7854,25 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _Region__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Region__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _Region__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Region__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _SelfType__SelfType = {
+		private static final @NonNull ExecutorOperation @NonNull [] _SelfType__SelfType = {
 			PivotTables.Operations._SelfType__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _SelfType__Class = {};
-		private static final @NonNull ExecutorOperation[] _SelfType__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _SelfType__Class = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _SelfType__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _SelfType__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _SelfType__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _SelfType__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _SelfType__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _SelfType__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _SelfType__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _SelfType__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _SelfType__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -7898,32 +7888,32 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _SelfType__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _SelfType__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _SelfType__OclType = {
+		private static final @NonNull ExecutorOperation @NonNull [] _SelfType__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _SelfType__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation[] _SelfType__Type = {
+		private static final @NonNull ExecutorOperation @NonNull [] _SelfType__TemplateableElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _SelfType__Type = {
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
 			PivotTables.Operations._SelfType__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _SelfType__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _SelfType__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _SendSignalAction__SendSignalAction = {};
-		private static final @NonNull ExecutorOperation[] _SendSignalAction__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _SendSignalAction__SendSignalAction = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _SendSignalAction__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _SendSignalAction__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _SendSignalAction__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _SendSignalAction__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _SendSignalAction__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _SendSignalAction__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _SendSignalAction__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -7939,25 +7929,25 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _SendSignalAction__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _SendSignalAction__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _SendSignalAction__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _SendSignalAction__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _SequenceType__SequenceType = {};
-		private static final @NonNull ExecutorOperation[] _SequenceType__Class = {};
-		private static final @NonNull ExecutorOperation[] _SequenceType__CollectionType = {};
-		private static final @NonNull ExecutorOperation[] _SequenceType__DataType = {};
-		private static final @NonNull ExecutorOperation[] _SequenceType__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _SequenceType__SequenceType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _SequenceType__Class = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _SequenceType__CollectionType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _SequenceType__DataType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _SequenceType__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _SequenceType__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _SequenceType__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _SequenceType__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _SequenceType__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _SequenceType__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _SequenceType__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _SequenceType__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _SequenceType__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -7973,36 +7963,36 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _SequenceType__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _SequenceType__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _SequenceType__OclType = {
+		private static final @NonNull ExecutorOperation @NonNull [] _SequenceType__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _SequenceType__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation[] _SequenceType__Type = {
+		private static final @NonNull ExecutorOperation @NonNull [] _SequenceType__TemplateableElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _SequenceType__Type = {
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _SequenceType__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _SequenceType__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _SetType__SetType = {};
-		private static final @NonNull ExecutorOperation[] _SetType__Class = {};
-		private static final @NonNull ExecutorOperation[] _SetType__CollectionType = {};
-		private static final @NonNull ExecutorOperation[] _SetType__DataType = {};
-		private static final @NonNull ExecutorOperation[] _SetType__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _SetType__SetType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _SetType__Class = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _SetType__CollectionType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _SetType__DataType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _SetType__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _SetType__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _SetType__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _SetType__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _SetType__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _SetType__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _SetType__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _SetType__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _SetType__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -8018,33 +8008,33 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _SetType__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _SetType__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _SetType__OclType = {
+		private static final @NonNull ExecutorOperation @NonNull [] _SetType__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _SetType__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation[] _SetType__Type = {
+		private static final @NonNull ExecutorOperation @NonNull [] _SetType__TemplateableElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _SetType__Type = {
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _SetType__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _SetType__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _ShadowExp__ShadowExp = {};
-		private static final @NonNull ExecutorOperation[] _ShadowExp__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _ShadowExp__ShadowExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _ShadowExp__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _ShadowExp__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _ShadowExp__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _ShadowExp__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _ShadowExp__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _ShadowExp__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _ShadowExp__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _ShadowExp__OCLExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _ShadowExp__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -8060,24 +8050,24 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _ShadowExp__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _ShadowExp__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _ShadowExp__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _ShadowExp__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _ShadowExp__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _ShadowExp__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _ShadowPart__ShadowPart = {};
-		private static final @NonNull ExecutorOperation[] _ShadowPart__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _ShadowPart__ShadowPart = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _ShadowPart__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _ShadowPart__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _ShadowPart__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _ShadowPart__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _ShadowPart__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _ShadowPart__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _ShadowPart__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -8093,26 +8083,26 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _ShadowPart__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _ShadowPart__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _ShadowPart__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _ShadowPart__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _ShadowPart__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _ShadowPart__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _Signal__Signal = {};
-		private static final @NonNull ExecutorOperation[] _Signal__Class = {};
-		private static final @NonNull ExecutorOperation[] _Signal__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Signal__Signal = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Signal__Class = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Signal__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Signal__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _Signal__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _Signal__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _Signal__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Signal__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Signal__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Signal__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Signal__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -8128,30 +8118,30 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _Signal__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Signal__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _Signal__OclType = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Signal__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Signal__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation[] _Signal__Type = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Signal__TemplateableElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Signal__Type = {
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Signal__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Signal__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _Slot__Slot = {};
-		private static final @NonNull ExecutorOperation[] _Slot__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Slot__Slot = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Slot__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Slot__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Slot__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -8167,19 +8157,19 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _Slot__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Slot__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _Slot__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Slot__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _StandardLibrary__StandardLibrary = {};
-		private static final @NonNull ExecutorOperation[] _StandardLibrary__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _StandardLibrary__StandardLibrary = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _StandardLibrary__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _StandardLibrary__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _StandardLibrary__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -8195,22 +8185,22 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _StandardLibrary__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _StandardLibrary__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _StandardLibrary__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _StandardLibrary__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _State__State = {};
-		private static final @NonNull ExecutorOperation[] _State__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _State__State = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _State__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _State__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _State__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _State__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _State__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _State__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _State__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _State__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _State__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -8226,24 +8216,24 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _State__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _State__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _State__OclState = {};
-		private static final @NonNull ExecutorOperation[] _State__Vertex = {};
-		private static final @NonNull ExecutorOperation[] _State__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _State__OclState = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _State__Vertex = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _State__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _StateExp__StateExp = {};
-		private static final @NonNull ExecutorOperation[] _StateExp__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _StateExp__StateExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _StateExp__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _StateExp__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _StateExp__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _StateExp__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _StateExp__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _StateExp__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _StateExp__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _StateExp__OCLExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _StateExp__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -8259,27 +8249,27 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _StateExp__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _StateExp__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _StateExp__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _StateExp__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _StateExp__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _StateExp__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _StateMachine__StateMachine = {};
-		private static final @NonNull ExecutorOperation[] _StateMachine__Behavior = {};
-		private static final @NonNull ExecutorOperation[] _StateMachine__Class = {};
-		private static final @NonNull ExecutorOperation[] _StateMachine__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _StateMachine__StateMachine = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _StateMachine__Behavior = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _StateMachine__Class = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _StateMachine__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _StateMachine__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _StateMachine__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _StateMachine__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _StateMachine__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _StateMachine__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _StateMachine__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _StateMachine__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _StateMachine__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -8295,34 +8285,34 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _StateMachine__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _StateMachine__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _StateMachine__OclType = {
+		private static final @NonNull ExecutorOperation @NonNull [] _StateMachine__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _StateMachine__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation[] _StateMachine__Type = {
+		private static final @NonNull ExecutorOperation @NonNull [] _StateMachine__TemplateableElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _StateMachine__Type = {
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _StateMachine__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _StateMachine__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _Stereotype__Stereotype = {};
-		private static final @NonNull ExecutorOperation[] _Stereotype__Class = {};
-		private static final @NonNull ExecutorOperation[] _Stereotype__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Stereotype__Stereotype = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Stereotype__Class = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Stereotype__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Stereotype__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _Stereotype__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _Stereotype__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _Stereotype__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Stereotype__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Stereotype__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Stereotype__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Stereotype__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -8338,30 +8328,30 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _Stereotype__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Stereotype__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _Stereotype__OclType = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Stereotype__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Stereotype__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation[] _Stereotype__Type = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Stereotype__TemplateableElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Stereotype__Type = {
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Stereotype__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Stereotype__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _StereotypeExtender__StereotypeExtender = {};
-		private static final @NonNull ExecutorOperation[] _StereotypeExtender__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _StereotypeExtender__StereotypeExtender = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _StereotypeExtender__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _StereotypeExtender__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _StereotypeExtender__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -8377,23 +8367,23 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _StereotypeExtender__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _StereotypeExtender__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _StereotypeExtender__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _StereotypeExtender__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _StringLiteralExp__StringLiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _StringLiteralExp__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _StringLiteralExp__StringLiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _StringLiteralExp__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _StringLiteralExp__LiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _StringLiteralExp__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _StringLiteralExp__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _StringLiteralExp__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _StringLiteralExp__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _StringLiteralExp__LiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _StringLiteralExp__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _StringLiteralExp__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _StringLiteralExp__OCLExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _StringLiteralExp__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -8409,23 +8399,23 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _StringLiteralExp__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _StringLiteralExp__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _StringLiteralExp__PrimitiveLiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _StringLiteralExp__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _StringLiteralExp__PrimitiveLiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _StringLiteralExp__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _StringLiteralExp__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _StringLiteralExp__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _TemplateBinding__TemplateBinding = {};
-		private static final @NonNull ExecutorOperation[] _TemplateBinding__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TemplateBinding__TemplateBinding = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TemplateBinding__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _TemplateBinding__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TemplateBinding__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -8441,21 +8431,21 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _TemplateBinding__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TemplateBinding__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _TemplateBinding__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TemplateBinding__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _TemplateParameter__TemplateParameter = {};
-		private static final @NonNull ExecutorOperation[] _TemplateParameter__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TemplateParameter__TemplateParameter = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TemplateParameter__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _TemplateParameter__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _TemplateParameter__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _TemplateParameter__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TemplateParameter__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TemplateParameter__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TemplateParameter__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -8471,29 +8461,29 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _TemplateParameter__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TemplateParameter__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _TemplateParameter__OclType = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TemplateParameter__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _TemplateParameter__Type = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TemplateParameter__Type = {
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _TemplateParameter__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TemplateParameter__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _TemplateParameterSubstitution__TemplateParameterSubstitution = {};
-		private static final @NonNull ExecutorOperation[] _TemplateParameterSubstitution__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TemplateParameterSubstitution__TemplateParameterSubstitution = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TemplateParameterSubstitution__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _TemplateParameterSubstitution__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TemplateParameterSubstitution__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -8509,19 +8499,19 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _TemplateParameterSubstitution__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TemplateParameterSubstitution__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _TemplateParameterSubstitution__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TemplateParameterSubstitution__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _TemplateSignature__TemplateSignature = {};
-		private static final @NonNull ExecutorOperation[] _TemplateSignature__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TemplateSignature__TemplateSignature = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TemplateSignature__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _TemplateSignature__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TemplateSignature__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -8537,19 +8527,19 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _TemplateSignature__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TemplateSignature__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _TemplateSignature__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TemplateSignature__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _TemplateableElement__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation[] _TemplateableElement__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TemplateableElement__TemplateableElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TemplateableElement__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _TemplateableElement__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TemplateableElement__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -8565,15 +8555,15 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _TemplateableElement__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TemplateableElement__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _TemplateableElement__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TemplateableElement__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _Throwable__Throwable = {};
-		private static final @NonNull ExecutorOperation[] _Throwable__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Throwable__Throwable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Throwable__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -8590,15 +8580,15 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 
-		private static final @NonNull ExecutorOperation[] _Transition__Transition = {};
-		private static final @NonNull ExecutorOperation[] _Transition__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Transition__Transition = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Transition__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Transition__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _Transition__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _Transition__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _Transition__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Transition__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Transition__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Transition__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Transition__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -8614,27 +8604,27 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _Transition__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Transition__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _Transition__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Transition__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _TransitionKind__TransitionKind = {};
-		private static final @NonNull ExecutorOperation[] _TransitionKind__Class = {};
-		private static final @NonNull ExecutorOperation[] _TransitionKind__DataType = {};
-		private static final @NonNull ExecutorOperation[] _TransitionKind__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TransitionKind__TransitionKind = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TransitionKind__Class = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TransitionKind__DataType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TransitionKind__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _TransitionKind__Enumeration = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TransitionKind__Enumeration = {
 			PivotTables.Operations._Enumeration__allInstances /* allInstances() */
 		};
-		private static final @NonNull ExecutorOperation[] _TransitionKind__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _TransitionKind__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _TransitionKind__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _TransitionKind__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TransitionKind__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TransitionKind__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TransitionKind__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TransitionKind__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -8650,32 +8640,32 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _TransitionKind__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TransitionKind__OclElement = {
 			PivotTables.Operations._Enumeration__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _TransitionKind__OclType = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TransitionKind__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _TransitionKind__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation[] _TransitionKind__Type = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TransitionKind__TemplateableElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TransitionKind__Type = {
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _TransitionKind__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TransitionKind__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _Trigger__Trigger = {};
-		private static final @NonNull ExecutorOperation[] _Trigger__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Trigger__Trigger = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Trigger__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Trigger__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _Trigger__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _Trigger__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Trigger__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Trigger__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Trigger__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -8691,23 +8681,23 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _Trigger__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Trigger__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _Trigger__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Trigger__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _TupleLiteralExp__TupleLiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _TupleLiteralExp__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TupleLiteralExp__TupleLiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TupleLiteralExp__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _TupleLiteralExp__LiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _TupleLiteralExp__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _TupleLiteralExp__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _TupleLiteralExp__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _TupleLiteralExp__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TupleLiteralExp__LiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TupleLiteralExp__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TupleLiteralExp__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TupleLiteralExp__OCLExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TupleLiteralExp__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -8723,24 +8713,24 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _TupleLiteralExp__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TupleLiteralExp__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _TupleLiteralExp__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TupleLiteralExp__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _TupleLiteralExp__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TupleLiteralExp__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _TupleLiteralPart__TupleLiteralPart = {};
-		private static final @NonNull ExecutorOperation[] _TupleLiteralPart__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TupleLiteralPart__TupleLiteralPart = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TupleLiteralPart__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _TupleLiteralPart__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _TupleLiteralPart__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _TupleLiteralPart__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TupleLiteralPart__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TupleLiteralPart__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TupleLiteralPart__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -8756,28 +8746,28 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _TupleLiteralPart__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TupleLiteralPart__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _TupleLiteralPart__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TupleLiteralPart__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _TupleLiteralPart__VariableDeclaration = {};
-		private static final @NonNull ExecutorOperation[] _TupleLiteralPart__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TupleLiteralPart__VariableDeclaration = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TupleLiteralPart__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _TupleType__TupleType = {};
-		private static final @NonNull ExecutorOperation[] _TupleType__Class = {};
-		private static final @NonNull ExecutorOperation[] _TupleType__DataType = {};
-		private static final @NonNull ExecutorOperation[] _TupleType__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TupleType__TupleType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TupleType__Class = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TupleType__DataType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TupleType__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _TupleType__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _TupleType__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _TupleType__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _TupleType__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TupleType__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TupleType__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TupleType__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TupleType__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -8793,38 +8783,38 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _TupleType__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TupleType__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _TupleType__OclType = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TupleType__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _TupleType__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation[] _TupleType__Type = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TupleType__TemplateableElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TupleType__Type = {
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _TupleType__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TupleType__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _Type__Type = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Type__Type = {
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Type__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Type__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Type__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _Type__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _Type__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Type__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Type__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Type__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -8840,25 +8830,25 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _Type__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Type__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _Type__OclType = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Type__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Type__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Type__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _TypeExp__TypeExp = {};
-		private static final @NonNull ExecutorOperation[] _TypeExp__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TypeExp__TypeExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TypeExp__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _TypeExp__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _TypeExp__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _TypeExp__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _TypeExp__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TypeExp__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TypeExp__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TypeExp__OCLExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TypeExp__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -8874,29 +8864,29 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _TypeExp__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TypeExp__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _TypeExp__ReferringElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TypeExp__ReferringElement = {
 			PivotTables.Operations._ReferringElement__getReferredElement /* getReferredElement() */
 		};
-		private static final @NonNull ExecutorOperation[] _TypeExp__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TypeExp__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _TypeExp__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TypeExp__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _TypedElement__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TypedElement__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _TypedElement__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TypedElement__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _TypedElement__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _TypedElement__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _TypedElement__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TypedElement__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TypedElement__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TypedElement__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -8912,24 +8902,24 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _TypedElement__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _TypedElement__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _TypedElement__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _TypedElement__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _UnlimitedNaturalLiteralExp__UnlimitedNaturalLiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _UnlimitedNaturalLiteralExp__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _UnlimitedNaturalLiteralExp__UnlimitedNaturalLiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _UnlimitedNaturalLiteralExp__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _UnlimitedNaturalLiteralExp__LiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _UnlimitedNaturalLiteralExp__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _UnlimitedNaturalLiteralExp__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _UnlimitedNaturalLiteralExp__NumericLiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _UnlimitedNaturalLiteralExp__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _UnlimitedNaturalLiteralExp__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _UnlimitedNaturalLiteralExp__LiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _UnlimitedNaturalLiteralExp__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _UnlimitedNaturalLiteralExp__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _UnlimitedNaturalLiteralExp__NumericLiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _UnlimitedNaturalLiteralExp__OCLExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _UnlimitedNaturalLiteralExp__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -8945,26 +8935,26 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _UnlimitedNaturalLiteralExp__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _UnlimitedNaturalLiteralExp__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _UnlimitedNaturalLiteralExp__PrimitiveLiteralExp = {};
-		private static final @NonNull ExecutorOperation[] _UnlimitedNaturalLiteralExp__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _UnlimitedNaturalLiteralExp__PrimitiveLiteralExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _UnlimitedNaturalLiteralExp__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _UnlimitedNaturalLiteralExp__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _UnlimitedNaturalLiteralExp__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _UnspecifiedValueExp__UnspecifiedValueExp = {};
-		private static final @NonNull ExecutorOperation[] _UnspecifiedValueExp__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _UnspecifiedValueExp__UnspecifiedValueExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _UnspecifiedValueExp__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _UnspecifiedValueExp__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _UnspecifiedValueExp__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _UnspecifiedValueExp__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _UnspecifiedValueExp__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _UnspecifiedValueExp__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _UnspecifiedValueExp__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _UnspecifiedValueExp__OCLExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _UnspecifiedValueExp__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -8980,17 +8970,17 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _UnspecifiedValueExp__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _UnspecifiedValueExp__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _UnspecifiedValueExp__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _UnspecifiedValueExp__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _UnspecifiedValueExp__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _UnspecifiedValueExp__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _ValueSpecification__ValueSpecification = {
+		private static final @NonNull ExecutorOperation @NonNull [] _ValueSpecification__ValueSpecification = {
 			PivotTables.Operations._ValueSpecification__booleanValue /* booleanValue() */,
 			PivotTables.Operations._ValueSpecification__integerValue /* integerValue() */,
 			PivotTables.Operations._ValueSpecification__isComputable /* isComputable() */,
@@ -8998,13 +8988,13 @@ public class PivotTables
 			PivotTables.Operations._ValueSpecification__stringValue /* stringValue() */,
 			PivotTables.Operations._ValueSpecification__unlimitedValue /* unlimitedValue() */
 		};
-		private static final @NonNull ExecutorOperation[] _ValueSpecification__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _ValueSpecification__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _ValueSpecification__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _ValueSpecification__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _ValueSpecification__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _ValueSpecification__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _ValueSpecification__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _ValueSpecification__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -9020,24 +9010,24 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _ValueSpecification__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _ValueSpecification__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _ValueSpecification__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _ValueSpecification__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _ValueSpecification__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _ValueSpecification__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _Variable__Variable = {};
-		private static final @NonNull ExecutorOperation[] _Variable__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Variable__Variable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Variable__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Variable__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _Variable__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _Variable__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Variable__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Variable__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Variable__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -9053,25 +9043,25 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _Variable__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Variable__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _Variable__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Variable__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Variable__VariableDeclaration = {};
-		private static final @NonNull ExecutorOperation[] _Variable__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Variable__VariableDeclaration = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Variable__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _VariableDeclaration__VariableDeclaration = {};
-		private static final @NonNull ExecutorOperation[] _VariableDeclaration__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _VariableDeclaration__VariableDeclaration = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _VariableDeclaration__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _VariableDeclaration__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _VariableDeclaration__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _VariableDeclaration__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _VariableDeclaration__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _VariableDeclaration__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _VariableDeclaration__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -9087,25 +9077,25 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _VariableDeclaration__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _VariableDeclaration__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _VariableDeclaration__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _VariableDeclaration__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _VariableDeclaration__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _VariableDeclaration__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _VariableExp__VariableExp = {};
-		private static final @NonNull ExecutorOperation[] _VariableExp__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _VariableExp__VariableExp = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _VariableExp__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _VariableExp__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _VariableExp__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _VariableExp__OCLExpression = {};
-		private static final @NonNull ExecutorOperation[] _VariableExp__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _VariableExp__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _VariableExp__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _VariableExp__OCLExpression = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _VariableExp__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -9121,27 +9111,27 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _VariableExp__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _VariableExp__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _VariableExp__ReferringElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _VariableExp__ReferringElement = {
 			PivotTables.Operations._ReferringElement__getReferredElement /* getReferredElement() */
 		};
-		private static final @NonNull ExecutorOperation[] _VariableExp__TypedElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _VariableExp__TypedElement = {
 			PivotTables.Operations._TypedElement__CompatibleBody /* CompatibleBody(ValueSpecification[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _VariableExp__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _VariableExp__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _Vertex__Vertex = {};
-		private static final @NonNull ExecutorOperation[] _Vertex__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Vertex__Vertex = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Vertex__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _Vertex__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _Vertex__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _Vertex__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Vertex__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Vertex__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Vertex__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -9157,15 +9147,15 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _Vertex__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Vertex__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _Vertex__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Vertex__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _Visitable__Visitable = {};
-		private static final @NonNull ExecutorOperation[] _Visitable__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Visitable__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _Visitable__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -9181,22 +9171,22 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _Visitable__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _Visitable__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 
-		private static final @NonNull ExecutorOperation[] _VoidType__VoidType = {};
-		private static final @NonNull ExecutorOperation[] _VoidType__Class = {};
-		private static final @NonNull ExecutorOperation[] _VoidType__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _VoidType__VoidType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _VoidType__Class = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _VoidType__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _VoidType__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _VoidType__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _VoidType__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _VoidType__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _VoidType__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _VoidType__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _VoidType__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _VoidType__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -9212,34 +9202,34 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _VoidType__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _VoidType__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _VoidType__OclType = {
+		private static final @NonNull ExecutorOperation @NonNull [] _VoidType__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _VoidType__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation[] _VoidType__Type = {
+		private static final @NonNull ExecutorOperation @NonNull [] _VoidType__TemplateableElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _VoidType__Type = {
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _VoidType__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _VoidType__Visitable = {};
 
-		private static final @NonNull ExecutorOperation[] _WildcardType__WildcardType = {};
-		private static final @NonNull ExecutorOperation[] _WildcardType__Class = {};
-		private static final @NonNull ExecutorOperation[] _WildcardType__Element = {
+		private static final @NonNull ExecutorOperation @NonNull [] _WildcardType__WildcardType = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _WildcardType__Class = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _WildcardType__Element = {
 			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
 			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _WildcardType__Nameable = {};
-		private static final @NonNull ExecutorOperation[] _WildcardType__NamedElement = {};
-		private static final @NonNull ExecutorOperation[] _WildcardType__Namespace = {};
-		private static final @NonNull ExecutorOperation[] _WildcardType__OclAny = {
+		private static final @NonNull ExecutorOperation @NonNull [] _WildcardType__Nameable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _WildcardType__NamedElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _WildcardType__Namespace = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _WildcardType__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -9255,23 +9245,23 @@ public class PivotTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final @NonNull ExecutorOperation[] _WildcardType__OclElement = {
+		private static final @NonNull ExecutorOperation @NonNull [] _WildcardType__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
 			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
-		private static final @NonNull ExecutorOperation[] _WildcardType__OclType = {
+		private static final @NonNull ExecutorOperation @NonNull [] _WildcardType__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
-		private static final @NonNull ExecutorOperation[] _WildcardType__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation[] _WildcardType__Type = {
+		private static final @NonNull ExecutorOperation @NonNull [] _WildcardType__TemplateableElement = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _WildcardType__Type = {
 			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
 			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
 			PivotTables.Operations._Type__isClass /* isClass() */,
 			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
 			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
 		};
-		private static final @NonNull ExecutorOperation[] _WildcardType__Visitable = {};
+		private static final @NonNull ExecutorOperation @NonNull [] _WildcardType__Visitable = {};
 
 		/*
 		 *	Install the operation descriptors in the fragment descriptors.
@@ -10631,7 +10621,7 @@ public class PivotTables
 			FragmentOperations.init();
 		}
 
-		private static final @NonNull ExecutorProperty[] _Annotation = {
+		private static final @NonNull ExecutorProperty @NonNull [] _Annotation = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._Element__ownedAnnotations,
@@ -10646,7 +10636,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Element__ownedAnnotations
 		};
 
-		private static final @NonNull ExecutorProperty[] _AnyType = {
+		private static final @NonNull ExecutorProperty @NonNull [] _AnyType = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Class__extenders,
 			PivotTables.Properties._Class__instanceClassName,
@@ -10693,7 +10683,7 @@ public class PivotTables
 			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
-		private static final @NonNull ExecutorProperty[] _AssociationClass = {
+		private static final @NonNull ExecutorProperty @NonNull [] _AssociationClass = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Class__extenders,
 			PivotTables.Properties._Class__instanceClassName,
@@ -10742,7 +10732,7 @@ public class PivotTables
 			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
-		private static final @NonNull ExecutorProperty[] _AssociationClassCallExp = {
+		private static final @NonNull ExecutorProperty @NonNull [] _AssociationClassCallExp = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._CallExp__isImplicit,
 			PivotTables.Properties._TypedElement__isMany,
@@ -10784,7 +10774,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
 
-		private static final @NonNull ExecutorProperty[] _AssociativityKind = {
+		private static final @NonNull ExecutorProperty @NonNull [] _AssociativityKind = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._DataType__behavioralClass,
 			PivotTables.Properties._Class__extenders,
@@ -10834,7 +10824,7 @@ public class PivotTables
 			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
-		private static final @NonNull ExecutorProperty[] _BagType = {
+		private static final @NonNull ExecutorProperty @NonNull [] _BagType = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._DataType__behavioralClass,
 			PivotTables.Properties._CollectionType__elementType,
@@ -10887,7 +10877,7 @@ public class PivotTables
 			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
-		private static final @NonNull ExecutorProperty[] _Behavior = {
+		private static final @NonNull ExecutorProperty @NonNull [] _Behavior = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Class__extenders,
 			PivotTables.Properties._Class__instanceClassName,
@@ -10939,7 +10929,7 @@ public class PivotTables
 			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
-		private static final @NonNull ExecutorProperty[] _BooleanLiteralExp = {
+		private static final @NonNull ExecutorProperty @NonNull [] _BooleanLiteralExp = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._BooleanLiteralExp__booleanSymbol,
 			PivotTables.Properties._TypedElement__isMany,
@@ -10975,7 +10965,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
 
-		private static final @NonNull ExecutorProperty[] _CallExp = {
+		private static final @NonNull ExecutorProperty @NonNull [] _CallExp = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._CallExp__isImplicit,
 			PivotTables.Properties._TypedElement__isMany,
@@ -11013,7 +11003,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
 
-		private static final @NonNull ExecutorProperty[] _CallOperationAction = {
+		private static final @NonNull ExecutorProperty @NonNull [] _CallOperationAction = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._CallOperationAction__operation,
@@ -11027,7 +11017,7 @@ public class PivotTables
 			PivotTables.Properties._CallOperationAction__MessageExp__ownedCalledOperation
 		};
 
-		private static final @NonNull ExecutorProperty[] _Class = {
+		private static final @NonNull ExecutorProperty @NonNull [] _Class = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Class__extenders,
 			PivotTables.Properties._Class__instanceClassName,
@@ -11074,7 +11064,7 @@ public class PivotTables
 			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
-		private static final @NonNull ExecutorProperty[] _CollectionItem = {
+		private static final @NonNull ExecutorProperty @NonNull [] _CollectionItem = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
@@ -11091,7 +11081,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Element__ownedAnnotations
 		};
 
-		private static final @NonNull ExecutorProperty[] _CollectionKind = {
+		private static final @NonNull ExecutorProperty @NonNull [] _CollectionKind = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._DataType__behavioralClass,
 			PivotTables.Properties._Class__extenders,
@@ -11141,7 +11131,7 @@ public class PivotTables
 			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
-		private static final @NonNull ExecutorProperty[] _CollectionLiteralExp = {
+		private static final @NonNull ExecutorProperty @NonNull [] _CollectionLiteralExp = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
@@ -11178,7 +11168,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
 
-		private static final @NonNull ExecutorProperty[] _CollectionLiteralPart = {
+		private static final @NonNull ExecutorProperty @NonNull [] _CollectionLiteralPart = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
@@ -11194,7 +11184,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Element__ownedAnnotations
 		};
 
-		private static final @NonNull ExecutorProperty[] _CollectionRange = {
+		private static final @NonNull ExecutorProperty @NonNull [] _CollectionRange = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
@@ -11212,7 +11202,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Element__ownedAnnotations
 		};
 
-		private static final @NonNull ExecutorProperty[] _CollectionType = {
+		private static final @NonNull ExecutorProperty @NonNull [] _CollectionType = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._DataType__behavioralClass,
 			PivotTables.Properties._CollectionType__elementType,
@@ -11265,7 +11255,7 @@ public class PivotTables
 			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
-		private static final @NonNull ExecutorProperty[] _Comment = {
+		private static final @NonNull ExecutorProperty @NonNull [] _Comment = {
 			PivotTables.Properties._Comment__annotatedElements,
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Comment__body,
@@ -11279,7 +11269,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Element__ownedAnnotations
 		};
 
-		private static final @NonNull ExecutorProperty[] _CompleteClass = {
+		private static final @NonNull ExecutorProperty @NonNull [] _CompleteClass = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._Element__ownedAnnotations,
@@ -11293,7 +11283,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Element__ownedAnnotations
 		};
 
-		private static final @NonNull ExecutorProperty[] _CompleteEnvironment = {
+		private static final @NonNull ExecutorProperty @NonNull [] _CompleteEnvironment = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Element__ownedAnnotations,
 			PivotTables.Properties._Element__ownedComments,
@@ -11306,7 +11296,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Element__ownedAnnotations
 		};
 
-		private static final @NonNull ExecutorProperty[] _CompleteModel = {
+		private static final @NonNull ExecutorProperty @NonNull [] _CompleteModel = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._CompleteModel__orphanCompletePackage,
@@ -11323,7 +11313,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Element__ownedAnnotations
 		};
 
-		private static final @NonNull ExecutorProperty[] _CompletePackage = {
+		private static final @NonNull ExecutorProperty @NonNull [] _CompletePackage = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._Element__ownedAnnotations,
@@ -11340,7 +11330,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Element__ownedAnnotations
 		};
 
-		private static final @NonNull ExecutorProperty[] _ConnectionPointReference = {
+		private static final @NonNull ExecutorProperty @NonNull [] _ConnectionPointReference = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._ConnectionPointReference__entries,
 			PivotTables.Properties._ConnectionPointReference__exits,
@@ -11358,7 +11348,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Element__ownedAnnotations
 		};
 
-		private static final @NonNull ExecutorProperty[] _Constraint = {
+		private static final @NonNull ExecutorProperty @NonNull [] _Constraint = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Constraint__constrainedElements,
 			PivotTables.Properties._Constraint__context,
@@ -11382,7 +11372,7 @@ public class PivotTables
 			PivotTables.Properties._Constraint__Namespace__ownedConstraints
 		};
 
-		private static final @NonNull ExecutorProperty[] _DataType = {
+		private static final @NonNull ExecutorProperty @NonNull [] _DataType = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._DataType__behavioralClass,
 			PivotTables.Properties._Class__extenders,
@@ -11431,7 +11421,7 @@ public class PivotTables
 			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
-		private static final @NonNull ExecutorProperty[] _Detail = {
+		private static final @NonNull ExecutorProperty @NonNull [] _Detail = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._Element__ownedAnnotations,
@@ -11445,7 +11435,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Element__ownedAnnotations
 		};
 
-		private static final @NonNull ExecutorProperty[] _DynamicBehavior = {
+		private static final @NonNull ExecutorProperty @NonNull [] _DynamicBehavior = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Class__extenders,
 			PivotTables.Properties._Class__instanceClassName,
@@ -11499,7 +11489,7 @@ public class PivotTables
 			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
-		private static final @NonNull ExecutorProperty[] _DynamicElement = {
+		private static final @NonNull ExecutorProperty @NonNull [] _DynamicElement = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._DynamicElement__metaType,
 			PivotTables.Properties._Element__ownedAnnotations,
@@ -11511,7 +11501,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Element__ownedAnnotations
 		};
 
-		private static final @NonNull ExecutorProperty[] _DynamicProperty = {
+		private static final @NonNull ExecutorProperty @NonNull [] _DynamicProperty = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._DynamicProperty__default,
 			PivotTables.Properties._Element__ownedAnnotations,
@@ -11525,7 +11515,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Element__ownedAnnotations
 		};
 
-		private static final @NonNull ExecutorProperty[] _DynamicType = {
+		private static final @NonNull ExecutorProperty @NonNull [] _DynamicType = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Class__extenders,
 			PivotTables.Properties._Class__instanceClassName,
@@ -11574,7 +11564,7 @@ public class PivotTables
 			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
-		private static final @NonNull ExecutorProperty[] _DynamicValueSpecification = {
+		private static final @NonNull ExecutorProperty @NonNull [] _DynamicValueSpecification = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
@@ -11590,7 +11580,7 @@ public class PivotTables
 			PivotTables.Properties._ValueSpecification__Slot__ownedValues
 		};
 
-		private static final @NonNull ExecutorProperty[] _Element = {
+		private static final @NonNull ExecutorProperty @NonNull [] _Element = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Element__ownedAnnotations,
 			PivotTables.Properties._Element__ownedComments,
@@ -11601,7 +11591,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Element__ownedAnnotations
 		};
 
-		private static final @NonNull ExecutorProperty[] _ElementExtension = {
+		private static final @NonNull ExecutorProperty @NonNull [] _ElementExtension = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._ElementExtension__base,
 			PivotTables.Properties._Class__extenders,
@@ -11652,7 +11642,7 @@ public class PivotTables
 			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
-		private static final @NonNull ExecutorProperty[] _EnumLiteralExp = {
+		private static final @NonNull ExecutorProperty @NonNull [] _EnumLiteralExp = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
@@ -11688,7 +11678,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
 
-		private static final @NonNull ExecutorProperty[] _Enumeration = {
+		private static final @NonNull ExecutorProperty @NonNull [] _Enumeration = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._DataType__behavioralClass,
 			PivotTables.Properties._Class__extenders,
@@ -11738,7 +11728,7 @@ public class PivotTables
 			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
-		private static final @NonNull ExecutorProperty[] _EnumerationLiteral = {
+		private static final @NonNull ExecutorProperty @NonNull [] _EnumerationLiteral = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._InstanceSpecification__classes,
 			PivotTables.Properties._NamedElement__name,
@@ -11757,7 +11747,7 @@ public class PivotTables
 			PivotTables.Properties._EnumerationLiteral__EnumLiteralExp__referredLiteral
 		};
 
-		private static final @NonNull ExecutorProperty[] _ExpressionInOCL = {
+		private static final @NonNull ExecutorProperty @NonNull [] _ExpressionInOCL = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._LanguageExpression__body,
 			PivotTables.Properties._TypedElement__isMany,
@@ -11783,7 +11773,7 @@ public class PivotTables
 			PivotTables.Properties._ValueSpecification__Slot__ownedValues
 		};
 
-		private static final @NonNull ExecutorProperty[] _Feature = {
+		private static final @NonNull ExecutorProperty @NonNull [] _Feature = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Feature__implementation,
 			PivotTables.Properties._Feature__implementationClass,
@@ -11801,7 +11791,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Element__ownedAnnotations
 		};
 
-		private static final @NonNull ExecutorProperty[] _FeatureCallExp = {
+		private static final @NonNull ExecutorProperty @NonNull [] _FeatureCallExp = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._CallExp__isImplicit,
 			PivotTables.Properties._TypedElement__isMany,
@@ -11840,7 +11830,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
 
-		private static final @NonNull ExecutorProperty[] _FinalState = {
+		private static final @NonNull ExecutorProperty @NonNull [] _FinalState = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Vertex__incomingTransitions,
 			PivotTables.Properties._State__isComposite,
@@ -11874,7 +11864,7 @@ public class PivotTables
 			PivotTables.Properties._State__StateExp__referredState
 		};
 
-		private static final @NonNull ExecutorProperty[] _IfExp = {
+		private static final @NonNull ExecutorProperty @NonNull [] _IfExp = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
@@ -11912,7 +11902,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
 
-		private static final @NonNull ExecutorProperty[] _Import = {
+		private static final @NonNull ExecutorProperty @NonNull [] _Import = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Import__importedNamespace,
 			PivotTables.Properties._NamedElement__name,
@@ -11926,7 +11916,7 @@ public class PivotTables
 			PivotTables.Properties._Import__Model__ownedImports
 		};
 
-		private static final @NonNull ExecutorProperty[] _InstanceSpecification = {
+		private static final @NonNull ExecutorProperty @NonNull [] _InstanceSpecification = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._InstanceSpecification__classes,
 			PivotTables.Properties._NamedElement__name,
@@ -11942,7 +11932,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Element__ownedAnnotations
 		};
 
-		private static final @NonNull ExecutorProperty[] _IntegerLiteralExp = {
+		private static final @NonNull ExecutorProperty @NonNull [] _IntegerLiteralExp = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._IntegerLiteralExp__integerSymbol,
 			PivotTables.Properties._TypedElement__isMany,
@@ -11978,7 +11968,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
 
-		private static final @NonNull ExecutorProperty[] _InvalidLiteralExp = {
+		private static final @NonNull ExecutorProperty @NonNull [] _InvalidLiteralExp = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
@@ -12013,7 +12003,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
 
-		private static final @NonNull ExecutorProperty[] _InvalidType = {
+		private static final @NonNull ExecutorProperty @NonNull [] _InvalidType = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Class__extenders,
 			PivotTables.Properties._Class__instanceClassName,
@@ -12060,7 +12050,7 @@ public class PivotTables
 			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
-		private static final @NonNull ExecutorProperty[] _IterateExp = {
+		private static final @NonNull ExecutorProperty @NonNull [] _IterateExp = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._CallExp__isImplicit,
 			PivotTables.Properties._TypedElement__isMany,
@@ -12102,7 +12092,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
 
-		private static final @NonNull ExecutorProperty[] _Iteration = {
+		private static final @NonNull ExecutorProperty @NonNull [] _Iteration = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Operation__bodyExpression,
 			PivotTables.Properties._Feature__implementation,
@@ -12145,7 +12135,7 @@ public class PivotTables
 			PivotTables.Properties._Operation__PrimitiveType__coercions
 		};
 
-		private static final @NonNull ExecutorProperty[] _IteratorExp = {
+		private static final @NonNull ExecutorProperty @NonNull [] _IteratorExp = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._CallExp__isImplicit,
 			PivotTables.Properties._TypedElement__isMany,
@@ -12186,7 +12176,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
 
-		private static final @NonNull ExecutorProperty[] _LambdaType = {
+		private static final @NonNull ExecutorProperty @NonNull [] _LambdaType = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._DataType__behavioralClass,
 			PivotTables.Properties._LambdaType__contextType,
@@ -12238,7 +12228,7 @@ public class PivotTables
 			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
-		private static final @NonNull ExecutorProperty[] _LanguageExpression = {
+		private static final @NonNull ExecutorProperty @NonNull [] _LanguageExpression = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._LanguageExpression__body,
 			PivotTables.Properties._TypedElement__isMany,
@@ -12260,7 +12250,7 @@ public class PivotTables
 			PivotTables.Properties._ValueSpecification__Slot__ownedValues
 		};
 
-		private static final @NonNull ExecutorProperty[] _LetExp = {
+		private static final @NonNull ExecutorProperty @NonNull [] _LetExp = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
@@ -12297,7 +12287,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
 
-		private static final @NonNull ExecutorProperty[] _Library = {
+		private static final @NonNull ExecutorProperty @NonNull [] _Library = {
 			PivotTables.Properties._Package__URI,
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Package__importedPackages,
@@ -12324,9 +12314,9 @@ public class PivotTables
 			PivotTables.Properties._Package__Package__importedPackages
 		};
 
-		private static final @NonNull ExecutorProperty[] _LibraryFeature = {};
+		private static final @NonNull ExecutorProperty @NonNull [] _LibraryFeature = {};
 
-		private static final @NonNull ExecutorProperty[] _LiteralExp = {
+		private static final @NonNull ExecutorProperty @NonNull [] _LiteralExp = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
@@ -12361,7 +12351,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
 
-		private static final @NonNull ExecutorProperty[] _LoopExp = {
+		private static final @NonNull ExecutorProperty @NonNull [] _LoopExp = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._CallExp__isImplicit,
 			PivotTables.Properties._TypedElement__isMany,
@@ -12402,7 +12392,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
 
-		private static final @NonNull ExecutorProperty[] _MapLiteralExp = {
+		private static final @NonNull ExecutorProperty @NonNull [] _MapLiteralExp = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
@@ -12438,7 +12428,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
 
-		private static final @NonNull ExecutorProperty[] _MapLiteralPart = {
+		private static final @NonNull ExecutorProperty @NonNull [] _MapLiteralPart = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Element__ownedAnnotations,
 			PivotTables.Properties._Element__ownedComments,
@@ -12452,7 +12442,7 @@ public class PivotTables
 			PivotTables.Properties._MapLiteralPart__MapLiteralExp__ownedParts
 		};
 
-		private static final @NonNull ExecutorProperty[] _MapType = {
+		private static final @NonNull ExecutorProperty @NonNull [] _MapType = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._DataType__behavioralClass,
 			PivotTables.Properties._Class__extenders,
@@ -12503,7 +12493,7 @@ public class PivotTables
 			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
-		private static final @NonNull ExecutorProperty[] _MessageExp = {
+		private static final @NonNull ExecutorProperty @NonNull [] _MessageExp = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
@@ -12542,7 +12532,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
 
-		private static final @NonNull ExecutorProperty[] _MessageType = {
+		private static final @NonNull ExecutorProperty @NonNull [] _MessageType = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Class__extenders,
 			PivotTables.Properties._Class__instanceClassName,
@@ -12591,7 +12581,7 @@ public class PivotTables
 			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
-		private static final @NonNull ExecutorProperty[] _Model = {
+		private static final @NonNull ExecutorProperty @NonNull [] _Model = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Model__externalURI,
 			PivotTables.Properties._NamedElement__name,
@@ -12610,11 +12600,11 @@ public class PivotTables
 			PivotTables.Properties._Namespace__Import__importedNamespace
 		};
 
-		private static final @NonNull ExecutorProperty[] _MorePivotable = {};
+		private static final @NonNull ExecutorProperty @NonNull [] _MorePivotable = {};
 
-		private static final @NonNull ExecutorProperty[] _Nameable = {};
+		private static final @NonNull ExecutorProperty @NonNull [] _Nameable = {};
 
-		private static final @NonNull ExecutorProperty[] _NamedElement = {
+		private static final @NonNull ExecutorProperty @NonNull [] _NamedElement = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._Element__ownedAnnotations,
@@ -12626,7 +12616,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Element__ownedAnnotations
 		};
 
-		private static final @NonNull ExecutorProperty[] _Namespace = {
+		private static final @NonNull ExecutorProperty @NonNull [] _Namespace = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._Element__ownedAnnotations,
@@ -12641,7 +12631,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__Import__importedNamespace
 		};
 
-		private static final @NonNull ExecutorProperty[] _NavigationCallExp = {
+		private static final @NonNull ExecutorProperty @NonNull [] _NavigationCallExp = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._CallExp__isImplicit,
 			PivotTables.Properties._TypedElement__isMany,
@@ -12682,7 +12672,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
 
-		private static final @NonNull ExecutorProperty[] _NullLiteralExp = {
+		private static final @NonNull ExecutorProperty @NonNull [] _NullLiteralExp = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
@@ -12717,7 +12707,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
 
-		private static final @NonNull ExecutorProperty[] _NumericLiteralExp = {
+		private static final @NonNull ExecutorProperty @NonNull [] _NumericLiteralExp = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
@@ -12752,7 +12742,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
 
-		private static final @NonNull ExecutorProperty[] _OCLExpression = {
+		private static final @NonNull ExecutorProperty @NonNull [] _OCLExpression = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
@@ -12787,9 +12777,9 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
 
-		private static final @NonNull ExecutorProperty[] _Object = {};
+		private static final @NonNull ExecutorProperty @NonNull [] _Object = {};
 
-		private static final @NonNull ExecutorProperty[] _Operation = {
+		private static final @NonNull ExecutorProperty @NonNull [] _Operation = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Operation__bodyExpression,
 			PivotTables.Properties._Feature__implementation,
@@ -12829,7 +12819,7 @@ public class PivotTables
 			PivotTables.Properties._Operation__PrimitiveType__coercions
 		};
 
-		private static final @NonNull ExecutorProperty[] _OperationCallExp = {
+		private static final @NonNull ExecutorProperty @NonNull [] _OperationCallExp = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._CallExp__isImplicit,
 			PivotTables.Properties._TypedElement__isMany,
@@ -12870,7 +12860,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
 
-		private static final @NonNull ExecutorProperty[] _OppositePropertyCallExp = {
+		private static final @NonNull ExecutorProperty @NonNull [] _OppositePropertyCallExp = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._CallExp__isImplicit,
 			PivotTables.Properties._TypedElement__isMany,
@@ -12912,7 +12902,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
 
-		private static final @NonNull ExecutorProperty[] _OrderedSetType = {
+		private static final @NonNull ExecutorProperty @NonNull [] _OrderedSetType = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._DataType__behavioralClass,
 			PivotTables.Properties._CollectionType__elementType,
@@ -12965,7 +12955,7 @@ public class PivotTables
 			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
-		private static final @NonNull ExecutorProperty[] _OrphanCompletePackage = {
+		private static final @NonNull ExecutorProperty @NonNull [] _OrphanCompletePackage = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._Element__ownedAnnotations,
@@ -12983,7 +12973,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Element__ownedAnnotations
 		};
 
-		private static final @NonNull ExecutorProperty[] _Package = {
+		private static final @NonNull ExecutorProperty @NonNull [] _Package = {
 			PivotTables.Properties._Package__URI,
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Package__importedPackages,
@@ -13009,7 +12999,7 @@ public class PivotTables
 			PivotTables.Properties._Package__Package__importedPackages
 		};
 
-		private static final @NonNull ExecutorProperty[] _Parameter = {
+		private static final @NonNull ExecutorProperty @NonNull [] _Parameter = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
@@ -13031,9 +13021,9 @@ public class PivotTables
 			PivotTables.Properties._VariableDeclaration__VariableExp__referredVariable
 		};
 
-		private static final @NonNull ExecutorProperty[] _Pivotable = {};
+		private static final @NonNull ExecutorProperty @NonNull [] _Pivotable = {};
 
-		private static final @NonNull ExecutorProperty[] _Precedence = {
+		private static final @NonNull ExecutorProperty @NonNull [] _Precedence = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Precedence__associativity,
 			PivotTables.Properties._NamedElement__name,
@@ -13049,7 +13039,7 @@ public class PivotTables
 			PivotTables.Properties._Precedence__Operation__precedence
 		};
 
-		private static final @NonNull ExecutorProperty[] _PrimitiveCompletePackage = {
+		private static final @NonNull ExecutorProperty @NonNull [] _PrimitiveCompletePackage = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._Element__ownedAnnotations,
@@ -13067,7 +13057,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Element__ownedAnnotations
 		};
 
-		private static final @NonNull ExecutorProperty[] _PrimitiveLiteralExp = {
+		private static final @NonNull ExecutorProperty @NonNull [] _PrimitiveLiteralExp = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
@@ -13102,7 +13092,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
 
-		private static final @NonNull ExecutorProperty[] _PrimitiveType = {
+		private static final @NonNull ExecutorProperty @NonNull [] _PrimitiveType = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._DataType__behavioralClass,
 			PivotTables.Properties._PrimitiveType__coercions,
@@ -13152,7 +13142,7 @@ public class PivotTables
 			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
-		private static final @NonNull ExecutorProperty[] _Profile = {
+		private static final @NonNull ExecutorProperty @NonNull [] _Profile = {
 			PivotTables.Properties._Package__URI,
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Package__importedPackages,
@@ -13179,7 +13169,7 @@ public class PivotTables
 			PivotTables.Properties._Package__Package__importedPackages
 		};
 
-		private static final @NonNull ExecutorProperty[] _ProfileApplication = {
+		private static final @NonNull ExecutorProperty @NonNull [] _ProfileApplication = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._ProfileApplication__appliedProfile,
 			PivotTables.Properties._ProfileApplication__isStrict,
@@ -13193,7 +13183,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Element__ownedAnnotations
 		};
 
-		private static final @NonNull ExecutorProperty[] _Property = {
+		private static final @NonNull ExecutorProperty @NonNull [] _Property = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Property__associationClass,
 			PivotTables.Properties._Property__defaultValue,
@@ -13241,7 +13231,7 @@ public class PivotTables
 			PivotTables.Properties._Property__Slot__definingProperty
 		};
 
-		private static final @NonNull ExecutorProperty[] _PropertyCallExp = {
+		private static final @NonNull ExecutorProperty @NonNull [] _PropertyCallExp = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._CallExp__isImplicit,
 			PivotTables.Properties._TypedElement__isMany,
@@ -13283,7 +13273,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
 
-		private static final @NonNull ExecutorProperty[] _Pseudostate = {
+		private static final @NonNull ExecutorProperty @NonNull [] _Pseudostate = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Vertex__incomingTransitions,
 			PivotTables.Properties._Pseudostate__kind,
@@ -13303,7 +13293,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Element__ownedAnnotations
 		};
 
-		private static final @NonNull ExecutorProperty[] _PseudostateKind = {
+		private static final @NonNull ExecutorProperty @NonNull [] _PseudostateKind = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._DataType__behavioralClass,
 			PivotTables.Properties._Class__extenders,
@@ -13353,7 +13343,7 @@ public class PivotTables
 			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
-		private static final @NonNull ExecutorProperty[] _RealLiteralExp = {
+		private static final @NonNull ExecutorProperty @NonNull [] _RealLiteralExp = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
@@ -13389,9 +13379,9 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
 
-		private static final @NonNull ExecutorProperty[] _ReferringElement = {};
+		private static final @NonNull ExecutorProperty @NonNull [] _ReferringElement = {};
 
-		private static final @NonNull ExecutorProperty[] _Region = {
+		private static final @NonNull ExecutorProperty @NonNull [] _Region = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Region__extendedRegion,
 			PivotTables.Properties._NamedElement__name,
@@ -13412,7 +13402,7 @@ public class PivotTables
 			PivotTables.Properties._Region__Region__extendedRegion
 		};
 
-		private static final @NonNull ExecutorProperty[] _SelfType = {
+		private static final @NonNull ExecutorProperty @NonNull [] _SelfType = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Class__extenders,
 			PivotTables.Properties._Class__instanceClassName,
@@ -13459,7 +13449,7 @@ public class PivotTables
 			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
-		private static final @NonNull ExecutorProperty[] _SendSignalAction = {
+		private static final @NonNull ExecutorProperty @NonNull [] _SendSignalAction = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._Element__ownedAnnotations,
@@ -13473,7 +13463,7 @@ public class PivotTables
 			PivotTables.Properties._SendSignalAction__MessageExp__ownedSentSignal
 		};
 
-		private static final @NonNull ExecutorProperty[] _SequenceType = {
+		private static final @NonNull ExecutorProperty @NonNull [] _SequenceType = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._DataType__behavioralClass,
 			PivotTables.Properties._CollectionType__elementType,
@@ -13526,7 +13516,7 @@ public class PivotTables
 			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
-		private static final @NonNull ExecutorProperty[] _SetType = {
+		private static final @NonNull ExecutorProperty @NonNull [] _SetType = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._DataType__behavioralClass,
 			PivotTables.Properties._CollectionType__elementType,
@@ -13579,7 +13569,7 @@ public class PivotTables
 			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
-		private static final @NonNull ExecutorProperty[] _ShadowExp = {
+		private static final @NonNull ExecutorProperty @NonNull [] _ShadowExp = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
@@ -13616,7 +13606,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
 
-		private static final @NonNull ExecutorProperty[] _ShadowPart = {
+		private static final @NonNull ExecutorProperty @NonNull [] _ShadowPart = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
@@ -13634,7 +13624,7 @@ public class PivotTables
 			PivotTables.Properties._ShadowPart__ShadowExp__ownedParts
 		};
 
-		private static final @NonNull ExecutorProperty[] _Signal = {
+		private static final @NonNull ExecutorProperty @NonNull [] _Signal = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Class__extenders,
 			PivotTables.Properties._Class__instanceClassName,
@@ -13683,7 +13673,7 @@ public class PivotTables
 			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
-		private static final @NonNull ExecutorProperty[] _Slot = {
+		private static final @NonNull ExecutorProperty @NonNull [] _Slot = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Slot__definingProperty,
 			PivotTables.Properties._Element__ownedAnnotations,
@@ -13697,7 +13687,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Element__ownedAnnotations
 		};
 
-		private static final @NonNull ExecutorProperty[] _StandardLibrary = {
+		private static final @NonNull ExecutorProperty @NonNull [] _StandardLibrary = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Element__ownedAnnotations,
 			PivotTables.Properties._Element__ownedComments,
@@ -13709,7 +13699,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Element__ownedAnnotations
 		};
 
-		private static final @NonNull ExecutorProperty[] _State = {
+		private static final @NonNull ExecutorProperty @NonNull [] _State = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Vertex__incomingTransitions,
 			PivotTables.Properties._State__isComposite,
@@ -13743,7 +13733,7 @@ public class PivotTables
 			PivotTables.Properties._State__StateExp__referredState
 		};
 
-		private static final @NonNull ExecutorProperty[] _StateExp = {
+		private static final @NonNull ExecutorProperty @NonNull [] _StateExp = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
@@ -13779,7 +13769,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
 
-		private static final @NonNull ExecutorProperty[] _StateMachine = {
+		private static final @NonNull ExecutorProperty @NonNull [] _StateMachine = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._StateMachine__extendedStateMachines,
 			PivotTables.Properties._Class__extenders,
@@ -13836,7 +13826,7 @@ public class PivotTables
 			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
-		private static final @NonNull ExecutorProperty[] _Stereotype = {
+		private static final @NonNull ExecutorProperty @NonNull [] _Stereotype = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Class__extenders,
 			PivotTables.Properties._Class__instanceClassName,
@@ -13885,7 +13875,7 @@ public class PivotTables
 			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
-		private static final @NonNull ExecutorProperty[] _StereotypeExtender = {
+		private static final @NonNull ExecutorProperty @NonNull [] _StereotypeExtender = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._StereotypeExtender__class,
 			PivotTables.Properties._StereotypeExtender__isRequired,
@@ -13899,7 +13889,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Element__ownedAnnotations
 		};
 
-		private static final @NonNull ExecutorProperty[] _StringLiteralExp = {
+		private static final @NonNull ExecutorProperty @NonNull [] _StringLiteralExp = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
@@ -13935,7 +13925,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
 
-		private static final @NonNull ExecutorProperty[] _TemplateBinding = {
+		private static final @NonNull ExecutorProperty @NonNull [] _TemplateBinding = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Element__ownedAnnotations,
 			PivotTables.Properties._Element__ownedComments,
@@ -13949,7 +13939,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Element__ownedAnnotations
 		};
 
-		private static final @NonNull ExecutorProperty[] _TemplateParameter = {
+		private static final @NonNull ExecutorProperty @NonNull [] _TemplateParameter = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._TemplateParameter__constrainingClasses,
 			PivotTables.Properties._NamedElement__name,
@@ -13977,7 +13967,7 @@ public class PivotTables
 			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
-		private static final @NonNull ExecutorProperty[] _TemplateParameterSubstitution = {
+		private static final @NonNull ExecutorProperty @NonNull [] _TemplateParameterSubstitution = {
 			PivotTables.Properties._TemplateParameterSubstitution__actual,
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._TemplateParameterSubstitution__formal,
@@ -13992,7 +13982,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Element__ownedAnnotations
 		};
 
-		private static final @NonNull ExecutorProperty[] _TemplateSignature = {
+		private static final @NonNull ExecutorProperty @NonNull [] _TemplateSignature = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Element__ownedAnnotations,
 			PivotTables.Properties._Element__ownedComments,
@@ -14006,7 +13996,7 @@ public class PivotTables
 			PivotTables.Properties._TemplateSignature__TemplateBinding__templateSignature
 		};
 
-		private static final @NonNull ExecutorProperty[] _TemplateableElement = {
+		private static final @NonNull ExecutorProperty @NonNull [] _TemplateableElement = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Element__ownedAnnotations,
 			PivotTables.Properties._TemplateableElement__ownedBindings,
@@ -14020,9 +14010,9 @@ public class PivotTables
 			PivotTables.Properties._Element__Element__ownedAnnotations
 		};
 
-		private static final @NonNull ExecutorProperty[] _Throwable = {};
+		private static final @NonNull ExecutorProperty @NonNull [] _Throwable = {};
 
-		private static final @NonNull ExecutorProperty[] _Transition = {
+		private static final @NonNull ExecutorProperty @NonNull [] _Transition = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Transition__kind,
 			PivotTables.Properties._NamedElement__name,
@@ -14044,7 +14034,7 @@ public class PivotTables
 			PivotTables.Properties._Namespace__Import__importedNamespace
 		};
 
-		private static final @NonNull ExecutorProperty[] _TransitionKind = {
+		private static final @NonNull ExecutorProperty @NonNull [] _TransitionKind = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._DataType__behavioralClass,
 			PivotTables.Properties._Class__extenders,
@@ -14094,7 +14084,7 @@ public class PivotTables
 			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
-		private static final @NonNull ExecutorProperty[] _Trigger = {
+		private static final @NonNull ExecutorProperty @NonNull [] _Trigger = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._Element__ownedAnnotations,
@@ -14108,7 +14098,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Element__ownedAnnotations
 		};
 
-		private static final @NonNull ExecutorProperty[] _TupleLiteralExp = {
+		private static final @NonNull ExecutorProperty @NonNull [] _TupleLiteralExp = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
@@ -14144,7 +14134,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
 
-		private static final @NonNull ExecutorProperty[] _TupleLiteralPart = {
+		private static final @NonNull ExecutorProperty @NonNull [] _TupleLiteralPart = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
@@ -14163,7 +14153,7 @@ public class PivotTables
 			PivotTables.Properties._VariableDeclaration__VariableExp__referredVariable
 		};
 
-		private static final @NonNull ExecutorProperty[] _TupleType = {
+		private static final @NonNull ExecutorProperty @NonNull [] _TupleType = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._DataType__behavioralClass,
 			PivotTables.Properties._Class__extenders,
@@ -14212,7 +14202,7 @@ public class PivotTables
 			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
-		private static final @NonNull ExecutorProperty[] _Type = {
+		private static final @NonNull ExecutorProperty @NonNull [] _Type = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._NamedElement__name,
 			PivotTables.Properties._Element__ownedAnnotations,
@@ -14237,7 +14227,7 @@ public class PivotTables
 			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
-		private static final @NonNull ExecutorProperty[] _TypeExp = {
+		private static final @NonNull ExecutorProperty @NonNull [] _TypeExp = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
@@ -14273,7 +14263,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
 
-		private static final @NonNull ExecutorProperty[] _TypedElement = {
+		private static final @NonNull ExecutorProperty @NonNull [] _TypedElement = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
@@ -14288,7 +14278,7 @@ public class PivotTables
 			PivotTables.Properties._Element__Element__ownedAnnotations
 		};
 
-		private static final @NonNull ExecutorProperty[] _UnlimitedNaturalLiteralExp = {
+		private static final @NonNull ExecutorProperty @NonNull [] _UnlimitedNaturalLiteralExp = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
@@ -14324,7 +14314,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
 
-		private static final @NonNull ExecutorProperty[] _UnspecifiedValueExp = {
+		private static final @NonNull ExecutorProperty @NonNull [] _UnspecifiedValueExp = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
@@ -14359,7 +14349,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
 
-		private static final @NonNull ExecutorProperty[] _ValueSpecification = {
+		private static final @NonNull ExecutorProperty @NonNull [] _ValueSpecification = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
@@ -14375,7 +14365,7 @@ public class PivotTables
 			PivotTables.Properties._ValueSpecification__Slot__ownedValues
 		};
 
-		private static final @NonNull ExecutorProperty[] _Variable = {
+		private static final @NonNull ExecutorProperty @NonNull [] _Variable = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Variable__isImplicit,
 			PivotTables.Properties._TypedElement__isMany,
@@ -14401,7 +14391,7 @@ public class PivotTables
 			PivotTables.Properties._VariableDeclaration__VariableExp__referredVariable
 		};
 
-		private static final @NonNull ExecutorProperty[] _VariableDeclaration = {
+		private static final @NonNull ExecutorProperty @NonNull [] _VariableDeclaration = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._TypedElement__isMany,
 			PivotTables.Properties._TypedElement__isRequired,
@@ -14418,7 +14408,7 @@ public class PivotTables
 			PivotTables.Properties._VariableDeclaration__VariableExp__referredVariable
 		};
 
-		private static final @NonNull ExecutorProperty[] _VariableExp = {
+		private static final @NonNull ExecutorProperty @NonNull [] _VariableExp = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._VariableExp__isImplicit,
 			PivotTables.Properties._TypedElement__isMany,
@@ -14455,7 +14445,7 @@ public class PivotTables
 			PivotTables.Properties._OCLExpression__Variable__ownedInit
 		};
 
-		private static final @NonNull ExecutorProperty[] _Vertex = {
+		private static final @NonNull ExecutorProperty @NonNull [] _Vertex = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Vertex__incomingTransitions,
 			PivotTables.Properties._NamedElement__name,
@@ -14470,9 +14460,9 @@ public class PivotTables
 			PivotTables.Properties._Element__Element__ownedAnnotations
 		};
 
-		private static final @NonNull ExecutorProperty[] _Visitable = {};
+		private static final @NonNull ExecutorProperty @NonNull [] _Visitable = {};
 
-		private static final @NonNull ExecutorProperty[] _VoidType = {
+		private static final @NonNull ExecutorProperty @NonNull [] _VoidType = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Class__extenders,
 			PivotTables.Properties._Class__instanceClassName,
@@ -14519,7 +14509,7 @@ public class PivotTables
 			PivotTables.Properties._Type__WildcardType__upperBound
 		};
 
-		private static final @NonNull ExecutorProperty[] _WildcardType = {
+		private static final @NonNull ExecutorProperty @NonNull [] _WildcardType = {
 			PivotTables.Properties._Element__annotatingComments,
 			PivotTables.Properties._Class__extenders,
 			PivotTables.Properties._Class__instanceClassName,
@@ -14726,7 +14716,7 @@ public class PivotTables
 
 		public static final @NonNull EcoreExecutorEnumerationLiteral _AssociativityKind__left = new EcoreExecutorEnumerationLiteral(PivotPackage.Literals.ASSOCIATIVITY_KIND.getEEnumLiteral("left"), Types._AssociativityKind, 0);
 		public static final @NonNull EcoreExecutorEnumerationLiteral _AssociativityKind__right = new EcoreExecutorEnumerationLiteral(PivotPackage.Literals.ASSOCIATIVITY_KIND.getEEnumLiteral("right"), Types._AssociativityKind, 1);
-		private static final @NonNull EcoreExecutorEnumerationLiteral[] _AssociativityKind = {
+		private static final @NonNull EcoreExecutorEnumerationLiteral @NonNull [] _AssociativityKind = {
 			_AssociativityKind__left,
 			_AssociativityKind__right
 		};
@@ -14736,7 +14726,7 @@ public class PivotTables
 		public static final @NonNull EcoreExecutorEnumerationLiteral _CollectionKind__OrderedSet = new EcoreExecutorEnumerationLiteral(PivotPackage.Literals.COLLECTION_KIND.getEEnumLiteral("OrderedSet"), Types._CollectionKind, 2);
 		public static final @NonNull EcoreExecutorEnumerationLiteral _CollectionKind__Bag = new EcoreExecutorEnumerationLiteral(PivotPackage.Literals.COLLECTION_KIND.getEEnumLiteral("Bag"), Types._CollectionKind, 3);
 		public static final @NonNull EcoreExecutorEnumerationLiteral _CollectionKind__Sequence = new EcoreExecutorEnumerationLiteral(PivotPackage.Literals.COLLECTION_KIND.getEEnumLiteral("Sequence"), Types._CollectionKind, 4);
-		private static final @NonNull EcoreExecutorEnumerationLiteral[] _CollectionKind = {
+		private static final @NonNull EcoreExecutorEnumerationLiteral @NonNull [] _CollectionKind = {
 			_CollectionKind__Collection,
 			_CollectionKind__Set,
 			_CollectionKind__OrderedSet,
@@ -14754,7 +14744,7 @@ public class PivotTables
 		public static final @NonNull EcoreExecutorEnumerationLiteral _PseudostateKind__entryPoint = new EcoreExecutorEnumerationLiteral(PivotPackage.Literals.PSEUDOSTATE_KIND.getEEnumLiteral("entryPoint"), Types._PseudostateKind, 7);
 		public static final @NonNull EcoreExecutorEnumerationLiteral _PseudostateKind__exitPoint = new EcoreExecutorEnumerationLiteral(PivotPackage.Literals.PSEUDOSTATE_KIND.getEEnumLiteral("exitPoint"), Types._PseudostateKind, 8);
 		public static final @NonNull EcoreExecutorEnumerationLiteral _PseudostateKind__terminate = new EcoreExecutorEnumerationLiteral(PivotPackage.Literals.PSEUDOSTATE_KIND.getEEnumLiteral("terminate"), Types._PseudostateKind, 9);
-		private static final @NonNull EcoreExecutorEnumerationLiteral[] _PseudostateKind = {
+		private static final @NonNull EcoreExecutorEnumerationLiteral @NonNull [] _PseudostateKind = {
 			_PseudostateKind__initial,
 			_PseudostateKind__deepHistory,
 			_PseudostateKind__shallowHistory,
@@ -14770,7 +14760,7 @@ public class PivotTables
 		public static final @NonNull EcoreExecutorEnumerationLiteral _TransitionKind__internal = new EcoreExecutorEnumerationLiteral(PivotPackage.Literals.TRANSITION_KIND.getEEnumLiteral("internal"), Types._TransitionKind, 0);
 		public static final @NonNull EcoreExecutorEnumerationLiteral _TransitionKind__local = new EcoreExecutorEnumerationLiteral(PivotPackage.Literals.TRANSITION_KIND.getEEnumLiteral("local"), Types._TransitionKind, 1);
 		public static final @NonNull EcoreExecutorEnumerationLiteral _TransitionKind__external = new EcoreExecutorEnumerationLiteral(PivotPackage.Literals.TRANSITION_KIND.getEEnumLiteral("external"), Types._TransitionKind, 2);
-		private static final @NonNull EcoreExecutorEnumerationLiteral[] _TransitionKind = {
+		private static final @NonNull EcoreExecutorEnumerationLiteral @NonNull [] _TransitionKind = {
 			_TransitionKind__internal,
 			_TransitionKind__local,
 			_TransitionKind__external
