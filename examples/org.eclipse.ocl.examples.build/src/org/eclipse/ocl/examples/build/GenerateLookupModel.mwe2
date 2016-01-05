@@ -9,7 +9,7 @@
  *     Adolfo Sanchez-Barbudo Herrera (University of York) - initial API and implementation
  * 
  *******************************************************************************/
-module org.eclipse.qvtd.cs2as.compiler.tests.GenerateExample1Models
+module GenerateLookupModel
 
 import org.eclipse.ocl.examples.build.utilities.*
 import org.eclipse.ocl.examples.build.xtend.*

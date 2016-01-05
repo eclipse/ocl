@@ -108,7 +108,7 @@ public class TestUtil
 		return outFile;
 	}
 
-	public static void createClassPath(@NonNull IProject project, @Nullable String[] srcPaths) throws IOException, CoreException {
+	public static void createClassPath(@NonNull IProject project, @NonNull String @Nullable [] srcPaths) throws IOException, CoreException {
 		StringBuilder s = new StringBuilder();
 		s.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"); 
 		s.append("<classpath>\n");
@@ -173,7 +173,7 @@ public class TestUtil
 	}
 
 	public static void createManifest(@NonNull IProject project, @NonNull String projectName,
-			@Nullable String[] requireBundles, @Nullable String[] additionalBundles, @Nullable String[] exportPackages) throws CoreException {
+			@NonNull String @Nullable [] requireBundles, @NonNull String @Nullable [] additionalBundles, @NonNull String @Nullable [] exportPackages) throws CoreException {
 		IFolder folder = project.getFolder("META-INF");
 		folder.create(true, false, null);
 		IFile file = folder.getFile("MANIFEST.MF");

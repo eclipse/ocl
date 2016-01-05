@@ -11,6 +11,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jdt.annotation.Nullable;
 
 /**
  * <!-- begin-user-doc -->
@@ -66,8 +67,8 @@ public class CompanyAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CompanySwitch<Adapter> modelSwitch =
-		new CompanySwitch<Adapter>() {
+	protected CompanySwitch<@Nullable Adapter> modelSwitch =
+		new CompanySwitch<@Nullable Adapter>() {
 			@Override
 			public Adapter caseCompany(Company object) {
 				return createCompanyAdapter();

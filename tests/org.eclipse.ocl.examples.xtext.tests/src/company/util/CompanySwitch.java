@@ -7,6 +7,7 @@ import company.*;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.jdt.annotation.Nullable;
 
 import company.Company;
 import company.CompanyPackage;
@@ -25,7 +26,7 @@ import company.Employee;
  * @see company.CompanyPackage
  * @generated
  */
-public class CompanySwitch<T> extends Switch<T> {
+public class CompanySwitch<@Nullable T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->

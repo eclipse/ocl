@@ -45,7 +45,6 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.URIUtil;
 import org.eclipse.emf.codegen.ecore.generator.Generator;
 import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory;
-import org.eclipse.emf.codegen.ecore.genmodel.GenJDKLevel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenBaseGeneratorAdapter;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory;
@@ -282,7 +281,7 @@ public class UsageTests
 		s.append("    modelPluginID=\"" + fileName + "." + fileName + "\"\n");
 		s.append("    modelName=\"" + fileName + "\"\n");
 		s.append("    importerID=\"org.eclipse.emf.importer.ecore\"\n");
-		s.append("    complianceLevel=\"6.0\"\n");
+		s.append("    complianceLevel=\"8.0\"\n");
 		s.append("    operationReflection=\"true\"\n");
 		s.append("    copyrightFields=\"false\"\n");
 		s.append("    bundleManifest=\"false\"\n");
@@ -337,8 +336,8 @@ public class UsageTests
 		List<String> classpathProjects = new ArrayList<String>();
 		classpathProjects.add("org.eclipse.emf.common");
 		classpathProjects.add("org.eclipse.emf.ecore");
+		classpathProjects.add("org.eclipse.jdt.annotation");
 		classpathProjects.add("org.eclipse.ocl.pivot");
-		classpathProjects.add("org.eclipse.ocl.jdt.annotation7");
 		classpathProjects.add("org.eclipse.osgi");
 		for (String extraClasspathProject : extraClasspathProjects) {
 			classpathProjects.add(extraClasspathProject);
@@ -346,10 +345,10 @@ public class UsageTests
 		List<String> compilationOptions = new ArrayList<String>();
 		compilationOptions.add("-d");
 		compilationOptions.add("bin");
-		compilationOptions.add("-source");
-		compilationOptions.add("1.5");
-		compilationOptions.add("-target");
-		compilationOptions.add("1.5");
+//		compilationOptions.add("-source");
+//		compilationOptions.add("1.5");
+//		compilationOptions.add("-target");
+//		compilationOptions.add("1.5");
 		compilationOptions.add("-g");
 		List<JavaFileObject> compilationUnits = new ArrayList<JavaFileObject>();
 		Object context = null;
@@ -494,7 +493,7 @@ public class UsageTests
 		// genModel.setValidateModel(true);
 		genModel.setBundleManifest(false); // New manifests should be generated manually
 		genModel.setUpdateClasspath(false); // New class-paths should be generated manually
-		genModel.setComplianceLevel(GenJDKLevel.JDK50_LITERAL);
+//		genModel.setComplianceLevel(GenJDKLevel.JDK50_LITERAL);
 		// genModel.setRootExtendsClass("org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container");
 		Diagnostic diagnostic = genModel.diagnose();
 		if (diagnostic.getSeverity() != Diagnostic.OK) {
@@ -856,11 +855,11 @@ public class UsageTests
 				@SuppressWarnings("null")@NonNull URI ecoreURI = URI.createPlatformPluginURI("/" + ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS + "/model/SysML_ValueTypes_QUDV.ecore", true);
 				@SuppressWarnings("null")@NonNull URI genModelURI = URI.createPlatformPluginURI("/" + ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS + "/model/SysML_ValueTypes_QUDV.genmodel", true);
 				IProject project = TestUtil.createJavaProject(ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS);
-				TestUtil.createClassPath(project, new String[]{"src-gen"});
+				TestUtil.createClassPath(project, new @NonNull String @NonNull []{"src-gen"});
 				TestUtil.createManifest(project, testProjectPath,
-					new String[]{"org.eclipse.osgi", "org.eclipse.emf.ecore", "org.eclipse.ocl.pivot"},
-					new String[]{"org.eclipse.ocl.jdt.annotation7"},
-					new String[]{"SysML_ValueTypes_QUDV", "SysML_ValueTypes_QUDV.PrimitiveValueTypes", "SysML_ValueTypes_QUDV.QUDV", "SysML_ValueTypes_QUDV.UnitAndQuantityKind"});
+					new @NonNull String @NonNull []{"org.eclipse.osgi", "org.eclipse.emf.ecore", "org.eclipse.jdt.annotation", "org.eclipse.ocl.pivot"},
+					null,
+					new @NonNull String @NonNull []{"SysML_ValueTypes_QUDV", "SysML_ValueTypes_QUDV.PrimitiveValueTypes", "SysML_ValueTypes_QUDV.QUDV", "SysML_ValueTypes_QUDV.UnitAndQuantityKind"});
 				TestUtil.copyIFile(ocl, genModelURI, project, "model/SysML_ValueTypes_QUDV.genmodel");
 				TestUtil.copyIFile(ocl, ecoreURI, project, "model/SysML_ValueTypes_QUDV.ecore");
 			}
@@ -915,11 +914,11 @@ public class UsageTests
 				@SuppressWarnings("null")@NonNull URI ecoreURI = URI.createPlatformPluginURI("/" + ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS + "/model/Company.ecore", true);
 				@SuppressWarnings("null")@NonNull URI genModelURI = URI.createPlatformPluginURI("/" + ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS + "/model/CodeGenCompany.genmodel", true);
 				IProject project = TestUtil.createJavaProject(ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS);
-				TestUtil.createClassPath(project, new String[]{"src-gen"});
+				TestUtil.createClassPath(project, new @NonNull String @NonNull []{"src-gen"});
 				TestUtil.createManifest(project, testProjectPath,
-					new String[]{"org.eclipse.osgi", "org.eclipse.emf.ecore", "org.eclipse.ocl.pivot"},
-					new String[]{"org.eclipse.ocl.jdt.annotation7"},
-					new String[]{"company"});
+					new @NonNull String @NonNull []{"org.eclipse.osgi", "org.eclipse.emf.ecore", "org.eclipse.jdt.annotation", "org.eclipse.ocl.pivot"},
+					null,
+					new @NonNull String @NonNull []{"company"});
 				TestUtil.copyIFile(ocl, genModelURI, project, "model/CodeGenCompany.genmodel");
 				TestUtil.copyIFile(ocl, ecoreURI, project, "model/Company.ecore");
 			}

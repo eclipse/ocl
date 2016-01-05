@@ -10,6 +10,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jdt.annotation.Nullable;
 
 /**
  * <!-- begin-user-doc -->
@@ -65,8 +66,8 @@ public class Bug477283BAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Bug477283BSwitch<Adapter> modelSwitch =
-		new Bug477283BSwitch<Adapter>() {
+	protected Bug477283BSwitch<@Nullable Adapter> modelSwitch =
+		new Bug477283BSwitch<@Nullable Adapter>() {
 			@Override
 			public Adapter caseB(B object) {
 				return createBAdapter();
