@@ -14,6 +14,7 @@ package org.eclipse.ocl.examples.debug.ui.actions;
 import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.debug.ui.actions.IRunToLineTarget;
 import org.eclipse.debug.ui.actions.IToggleBreakpointsTarget;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.xtext.oclinecore.ui.OCLinEcoreEditor;
 
 /**
@@ -27,17 +28,17 @@ public class OCLinEcoreRetargettableActionAdapterFactory implements IAdapterFact
 		super();
 	}
 	
-	@SuppressWarnings({ "unchecked", "null" })
-	public <T> T getAdapter(Object adaptableObject, Class<T> adapterType) {
+	@SuppressWarnings("unchecked")
+	public <T> @Nullable T getAdapter(Object adaptableObject, Class<T> adapterType) {
 		if (!(adaptableObject instanceof OCLinEcoreEditor)) {
-			return (T) null;
+			return null;
         }
         if (IRunToLineTarget.class == adapterType) {
 			return (T) new OCLinEcoreRunToLineAdapter();
         } else if (IToggleBreakpointsTarget.class == adapterType) {
 			return (T) new OCLinEcoreToggleBreakpointAdapter();
         } 
-		return (T) null;
+		return null;
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
