@@ -21,7 +21,7 @@ import org.eclipse.emf.mwe.utils.*
 import org.eclipse.emf.ecore.resource.impl.*
 
 /**
- *	Generate the EXtension to the Abstract Syntax Models used by the Xtext editors.
+ *	Generate the Extension to the Abstract Syntax Models used by the Xtext editors.
  */
 Workflow {
 	bean = ResourceSetImpl : resourceSet {}
@@ -30,10 +30,7 @@ Workflow {
     	scanClassPath = true
     }
     bean = EcoreGenModelSetup { resourceSet = resourceSet }
-//    bean = UMLGenModelSetup { resourceSet = resourceSet }
-//    component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
-//    	genModel = "/org.eclipse.ocl.xtext.markup/model/Markup.genmodel"
-//    }
+
     component = @SubGenerateAutoASModel { resourceSet = resourceSet
     	projectName = "org.eclipse.ocl.pivot"
     	modelName = "pivot"

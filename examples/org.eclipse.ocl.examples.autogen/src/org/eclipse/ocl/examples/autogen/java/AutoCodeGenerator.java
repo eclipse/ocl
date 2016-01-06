@@ -29,19 +29,8 @@ import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.autogen.AutoCodeGenOptions;
-import org.eclipse.ocl.examples.autogen.analyzer.AutoAnalysisVisitor;
-import org.eclipse.ocl.examples.autogen.analyzer.AutoAnalyzer;
-import org.eclipse.ocl.examples.autogen.analyzer.AutoBoxingAnalyzer;
-import org.eclipse.ocl.examples.autogen.analyzer.AutoDependencyVisitor;
-import org.eclipse.ocl.examples.autogen.analyzer.AutoFieldingAnalyzer;
-import org.eclipse.ocl.examples.autogen.analyzer.AutoReferencesVisitor;
-import org.eclipse.ocl.examples.autogen.utilities.AutoCGModelResourceFactory;
 import org.eclipse.ocl.examples.codegen.analyzer.AS2CGVisitor;
-import org.eclipse.ocl.examples.codegen.analyzer.AnalysisVisitor;
-import org.eclipse.ocl.examples.codegen.analyzer.BoxingAnalyzer;
-import org.eclipse.ocl.examples.codegen.analyzer.DependencyVisitor;
-import org.eclipse.ocl.examples.codegen.analyzer.FieldingAnalyzer;
-import org.eclipse.ocl.examples.codegen.analyzer.ReferencesVisitor;
+import org.eclipse.ocl.examples.codegen.analyzer.CodeGenAnalyzer;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGClass;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelFactory;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
@@ -63,7 +52,7 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 {
 //	private static final Logger logger = Logger.getLogger(AutoCodeGenerator.class);
 	
-	protected final @NonNull AutoAnalyzer cgAnalyzer;
+	protected final @NonNull CodeGenAnalyzer cgAnalyzer;
 	protected final org.eclipse.ocl.pivot.@NonNull Package asPackage;
 	protected final org.eclipse.ocl.pivot.@Nullable Package asSuperPackage;
 	protected final @NonNull GenModel genModel;
@@ -99,7 +88,7 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 		super(environmentFactory);
 		this.genModel = ClassUtil.nonNullState(genPackage.getGenModel());
 		getOptions().setUseNullAnnotations(OCLinEcoreGenModelGeneratorAdapter.useNullAnnotations(genModel));
-		cgAnalyzer = new AutoAnalyzer(this);
+		cgAnalyzer = new CodeGenAnalyzer(this);
 		this.asPackage = asPackage;
 		this.asSuperPackage = asSuperPackage;
 		this.genPackage = genPackage;
@@ -123,48 +112,22 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 	protected @NonNull AS2CGVisitor createAS2CGVisitor() {
 		return new AS2CGVisitor(cgAnalyzer);
 	}
-
-	@Override
-	public @NonNull AnalysisVisitor createAnalysisVisitor() {
-		return new AutoAnalysisVisitor(cgAnalyzer);
-	}
-
-	@Override
-	public @NonNull BoxingAnalyzer createBoxingAnalyzer() {
-		return new AutoBoxingAnalyzer(cgAnalyzer);
-	}
-
+	
 	@Override
 	public abstract @NonNull CG2JavaPreVisitor createCG2JavaPreVisitor();
 
 	protected abstract @NonNull AutoCG2JavaVisitor<@NonNull ? extends AutoCodeGenerator> createCG2JavaVisitor(@NonNull CGPackage cgPackage, @Nullable List<CGValuedElement> sortedGlobals);
 
 	protected abstract @NonNull List<CGPackage> createCGPackages() throws ParserException;
+	
 
-	@Override
-	public @NonNull AutoCGModelResourceFactory getCGResourceFactory() {
-		return AutoCGModelResourceFactory.INSTANCE;
-	}
-
-	@Override
-	public @NonNull DependencyVisitor createDependencyVisitor() {
-		return new AutoDependencyVisitor(cgAnalyzer, getGlobalContext(), getGlobalPlace());
-	}
-
-	@Override
-	public @NonNull FieldingAnalyzer createFieldingAnalyzer() {
-		return new AutoFieldingAnalyzer(cgAnalyzer);
-	}
 
 	@Override
 	protected @NonNull AutoCodeGenOptions createOptions() {
 		return new AutoCodeGenOptions();
 	}
 
-	@Override
-	public @NonNull ReferencesVisitor createReferencesVisitor() {
-		return AutoReferencesVisitor.INSTANCE;
-	}
+
 
 	public @NonNull String generateClassFile(@NonNull CGPackage cgPackage) {
 		
@@ -178,7 +141,7 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 	}
 
 	@Override
-	public @NonNull AutoAnalyzer getAnalyzer() {
+	public @NonNull CodeGenAnalyzer getAnalyzer() {		
 		return cgAnalyzer;
 	}
 
