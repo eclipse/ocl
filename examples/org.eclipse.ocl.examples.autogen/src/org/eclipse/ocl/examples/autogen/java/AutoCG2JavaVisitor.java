@@ -15,14 +15,8 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.autogen.analyzer.AutoAnalyzer;
-import org.eclipse.ocl.examples.autogen.autocgmodel.CGASTCallExp;
-import org.eclipse.ocl.examples.autogen.autocgmodel.CGContainmentBody;
-import org.eclipse.ocl.examples.autogen.autocgmodel.CGContainmentPart;
-import org.eclipse.ocl.examples.autogen.autocgmodel.CGContainmentVisit;
-import org.eclipse.ocl.examples.autogen.autocgmodel.util.AutoCGModelVisitor;
+import org.eclipse.ocl.examples.codegen.analyzer.CodeGenAnalyzer;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGClass;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGEcoreOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.java.CG2JavaVisitor;
@@ -31,9 +25,9 @@ import org.eclipse.ocl.examples.codegen.java.CG2JavaVisitor;
  * AutoCG2JavaVisitor refines the regular generation of Java code from an optimized Auto CG transformation tree
  * to add contributions that are inadequately represented by the CG model.
  */
-public abstract class AutoCG2JavaVisitor<@NonNull CG extends AutoCodeGenerator> extends CG2JavaVisitor<CG> implements AutoCGModelVisitor<Boolean>
+public abstract class AutoCG2JavaVisitor<@NonNull CG extends AutoCodeGenerator> extends CG2JavaVisitor<CG>
 {
-	protected final @NonNull AutoAnalyzer analyzer;
+	protected final @NonNull CodeGenAnalyzer analyzer;
 	protected final @NonNull CGPackage cgPackage;
 	protected final @Nullable List<CGValuedElement> sortedGlobals;
 	
@@ -90,38 +84,5 @@ public abstract class AutoCG2JavaVisitor<@NonNull CG extends AutoCodeGenerator> 
 		js.popIndentation();
 		js.append("}\n");
 	}
-	
-//	@Override 
-//	protected void appendAtOverride(@NonNull CGOperation cgOperation) {
-//		// FIXME CGOperation is not properly modelled to wisely discern if the operation needs an Override or not
-//		// Custom logic based on specific visitors design
-//		if (!isDerivedVisitor(cgOperation.getContainingClass())) {
-//			js.append("@Override\n");
-//		}
-//	}
 
-	@Override
-	public @NonNull Boolean visitCGASTCallExp(@NonNull CGASTCallExp object) {
-		return visiting(object);
-	}
-
-	@Override
-	public @NonNull Boolean visitCGContainmentBody(@NonNull CGContainmentBody object) {
-		return visiting(object);
-	}
-
-	@Override
-	public @NonNull Boolean visitCGContainmentPart(@NonNull CGContainmentPart object) {
-		return visiting(object);
-	}
-
-	@Override
-	public @NonNull Boolean visitCGContainmentVisit(@NonNull CGContainmentVisit object) {
-		return visiting(object);
-	}
-
-	@Override
-	public @NonNull Boolean visitCGEcoreOperation(@NonNull CGEcoreOperation object) {
-		return visiting(object);
-	}
 }

@@ -21,7 +21,7 @@ import org.eclipse.emf.mwe.utils.*
 import org.eclipse.emf.ecore.resource.impl.*
 
 /**
- *	Generate the Concrete Syntax Models used by the Xtext editors.
+ *	Generate the Concrete Syntax 2 Abstract Syntax infrastructure
  */
 Workflow {
 	bean = ResourceSetImpl : resourceSet {}
@@ -30,66 +30,12 @@ Workflow {
     	scanClassPath = true
     }
     bean = EcoreGenModelSetup { resourceSet = resourceSet }
-    component = @SubGenerateAutoCSModel { resourceSet = resourceSet
-    	projectName = "org.eclipse.ocl.xtext.base"
-    	visitablePackageName = "org.eclipse.ocl.xtext.basecs.util"
-    	visitorPackageName = "org.eclipse.ocl.xtext.basecs.util"
-    	modelName = "basecs"
-    	modelPackageName = "org.eclipse.ocl.xtext.basecs"
-    	projectPrefix = "BaseCS"
-    	superProjectName = ""
-    	superModelName = ""
-    }
-    component = @SubGenerateAutoCSModel { resourceSet = resourceSet
-    	projectName = "org.eclipse.ocl.xtext.essentialocl"
-    	visitablePackageName = "org.eclipse.ocl.xtext.basecs.util"
-    	visitorPackageName = "org.eclipse.ocl.xtext.essentialoclcs.util"
-    	modelName = "essentialoclcs"
-    	modelPackageName = "org.eclipse.ocl.xtext.essentialoclcs"
-    	projectPrefix = "EssentialOCLCS"
-    	superProjectName = "org.eclipse.ocl.xtext.base"
-    	superModelName = "basecs"
-    	superProjectPrefix = "BaseCS"
-    }
-    component = @SubGenerateAutoCSModel { resourceSet = resourceSet
-    	projectName = "org.eclipse.ocl.xtext.oclstdlib"
-    	visitablePackageName = "org.eclipse.ocl.xtext.basecs.util"
-    	visitorPackageName = "org.eclipse.ocl.xtext.oclstdlibcs.util"
-    	modelName = "oclstdlibcs"
-    	modelPackageName = "org.eclipse.ocl.xtext.oclstdlibcs"
-    	projectPrefix = "OCLstdlibCS"
-    	superProjectName = "org.eclipse.ocl.xtext.essentialocl"
-    	superModelName = "essentialoclcs"
-    	superProjectPrefix = "EssentialOCLCS"
-    }
-    component = @SubGenerateAutoCSModel { resourceSet = resourceSet
-    	projectName = "org.eclipse.ocl.xtext.oclinecore"
-    	visitablePackageName = "org.eclipse.ocl.xtext.basecs.util"
-    	visitorPackageName = "org.eclipse.ocl.xtext.oclinecorecs.util"
-    	modelName = "oclinecorecs"
-    	modelPackageName = "org.eclipse.ocl.xtext.oclinecorecs"
-    	projectPrefix = "OCLinEcoreCS"
-    	superProjectName = "org.eclipse.ocl.xtext.essentialocl"
-    	superModelName = "essentialoclcs"
-    	superProjectPrefix = "EssentialOCLCS"
-    }
-    component = @SubGenerateAutoCSModel { resourceSet = resourceSet
-    	projectName = "org.eclipse.ocl.xtext.completeocl"
-    	visitablePackageName = "org.eclipse.ocl.xtext.basecs.util"
-    	visitorPackageName = "org.eclipse.ocl.xtext.completeoclcs.util"
-    	modelName = "completeoclcs"
-    	modelPackageName = "org.eclipse.ocl.xtext.completeoclcs"
-    	projectPrefix = "CompleteOCLCS"
-    	superProjectName = "org.eclipse.ocl.xtext.essentialocl"
-    	superModelName = "essentialoclcs"
-    	superProjectPrefix = "EssentialOCLCS"
-    }
     
-    //  CS2AS components
+    //  Generate the CS2AS CGed transformation
     component = @GenerateCGedQVTiTransformation { 
 		resourceSet = resourceSet
 		oclFileURI = "platform:/resource/org.eclipse.ocl.xtext.base/model/BaseCS2AS.ocl"
-		// FIXME the following only work if the output project are in the same FS folder. Better use a projectName and improve generator 
+		// FIXME the following only works if the output project are in the same FS folder. Better use a projectName and improve generator 
 		javaFolder = "../org.eclipse.ocl.xtext.base/src-gen"
 		javaPackage = "org.eclipse.ocl.xtext.base.cs2as"
 		lookupSolverClassName = "org.eclipse.ocl.pivot.internal.lookup.util.PivotLookupSolver"

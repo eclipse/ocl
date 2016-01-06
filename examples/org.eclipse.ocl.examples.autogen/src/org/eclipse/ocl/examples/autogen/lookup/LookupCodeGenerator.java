@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.autogen.analyzer.AutoCG2StringVisitor;
 import org.eclipse.ocl.examples.autogen.java.AutoCG2JavaPreVisitor;
 import org.eclipse.ocl.examples.autogen.java.AutoCodeGenerator;
 import org.eclipse.ocl.examples.codegen.analyzer.AS2CGVisitor;
@@ -99,8 +98,6 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 			@Nullable String baseVisitorPackage) {
 		EPackage ePackage = genPackage.getEcorePackage();
 		assert ePackage != null;
-
-		AutoCG2StringVisitor.FACTORY.getClass();
 
 		Resource eResource = ClassUtil.nonNullState(ePackage.eResource());
 		EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.getEnvironmentFactory(eResource);
