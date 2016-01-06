@@ -879,7 +879,7 @@ public class JavaStream
 		boolean isRequired = !isPrimitive && !cgElement.isAssertedNonNull() && cgElement.isNonNull() && !(cgElement instanceof CGUnboxExp)/*|| cgElement.isRequired()*/;	// FIXME Ugh!
 		appendIsCaught(cgElement.isNonInvalid(), cgElement.isCaught());
 		append(" ");
-		appendClassReference(isRequired, cgElement);
+		appendClassReference(isPrimitive ? null : isRequired, cgElement);
 	}
 
 	public void appendTypeParameters(boolean useExtends, @NonNull Class<?>... typeParameters) {
