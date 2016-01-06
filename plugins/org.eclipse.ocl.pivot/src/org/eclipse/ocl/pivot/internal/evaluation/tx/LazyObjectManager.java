@@ -11,9 +11,11 @@
 package org.eclipse.ocl.pivot.internal.evaluation.tx;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
@@ -592,7 +594,7 @@ public class LazyObjectManager extends AbstractObjectManager
 	 * This unpleasant Map of Maps is a pathfinder before embarking on slotted objects that merge user and overhead
 	 * in a single object. The first map is then a null lookup and the nested map is an index within the object. 
 	 */
-	private Map<@NonNull EObject, @NonNull Map<@NonNull EStructuralFeature, @NonNull SlotState>> object2feature2slotState = new HashMap<@NonNull EObject, @NonNull Map<@NonNull EStructuralFeature, @NonNull SlotState>>();
+	private @NonNull Map<@NonNull EObject, @NonNull Map<@NonNull EStructuralFeature, @NonNull SlotState>> object2feature2slotState = new HashMap<@NonNull EObject, @NonNull Map<@NonNull EStructuralFeature, @NonNull SlotState>>();
 	
 	public LazyObjectManager(@NonNull LazyInvocationManager invocationManager) {
 		super(invocationManager);
@@ -669,7 +671,7 @@ public class LazyObjectManager extends AbstractObjectManager
 	}
 
 	@Override
-	public void assigned(@NonNull Incremental invocation, @NonNull EObject eObject, EStructuralFeature eFeature, @Nullable Object ecoreValue) {
+	public void assigned(Invocation.@NonNull Incremental invocation, @NonNull EObject eObject, EStructuralFeature eFeature, @Nullable Object ecoreValue) {
 		assigned(eObject, eFeature, ecoreValue);		// Delegate incremental API to non-incremental API
 	}
 
@@ -726,8 +728,9 @@ public class LazyObjectManager extends AbstractObjectManager
 	}
 
 	@Override
-	public @NonNull Iterable<? extends Object> getObjects() {
-		return object2feature2slotState.keySet();
+	public @NonNull Iterable<@NonNull ? extends Object> getObjects() {
+		@NonNull Set<@NonNull EObject> keySet = object2feature2slotState.keySet();
+		return keySet;
 	}
 
 	public synchronized @NonNull SlotState getSlotState(@NonNull EObject eObject, @NonNull EStructuralFeature eFeature) {
@@ -780,9 +783,15 @@ public class LazyObjectManager extends AbstractObjectManager
 	}
 
 	@Override
-	public @NonNull Iterable<SlotState> getSlotStates(@NonNull Object object) {
-		Map<EStructuralFeature, SlotState> feature2slotState = object2feature2slotState.get(object);;
-		return feature2slotState != null ? feature2slotState.values() : EMPTY_SLOT_STATE_LIST;
+	public @NonNull Iterable<@NonNull SlotState> getSlotStates(@NonNull Object object) {
+		Map<@NonNull EStructuralFeature, @NonNull SlotState> feature2slotState = object2feature2slotState.get(object);;
+		if (feature2slotState != null) {
+			@NonNull Collection<@NonNull SlotState> values = feature2slotState.values();
+			return values;
+		}
+		else {
+			return EMPTY_SLOT_STATE_LIST;
+		}
 	}
 
 	@Override

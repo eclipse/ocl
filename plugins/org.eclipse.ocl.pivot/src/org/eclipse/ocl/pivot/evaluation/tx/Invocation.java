@@ -48,8 +48,8 @@ public interface Invocation extends ExecutionVisitable
 		void addCreatedObject(@NonNull Object createdObject);
 		void addReadSlot(SlotState.@NonNull Incremental readSlot);
 		void addWriteSlot(SlotState.@NonNull Incremental writeSlot);
-		@NonNull Iterable<Object> getCreatedObjects();
-		@NonNull Iterable<SlotState.Incremental> getReadSlots();
-		@NonNull Iterable<SlotState.Incremental> getWriteSlots();
+		@NonNull Iterable<@NonNull Object> getCreatedObjects();
+		@NonNull Iterable<SlotState.@NonNull Incremental> getReadSlots();
+		@NonNull Iterable<SlotState.@NonNull Incremental> getWriteSlots();
 	}
 }

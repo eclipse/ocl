@@ -627,7 +627,7 @@ public class IncrementalObjectManager extends AbstractObjectManager
 	 * This unpleasant Map of Maps is a pathfinder before embarking on slotted objects that merge user and overhead
 	 * in a single object. The first map is then a null lookup and the nested map is an index within the object. 
 	 */
-	private Map<EObject, Map<EStructuralFeature, BasicSlotState>> object2feature2slotState = new HashMap<EObject, Map<EStructuralFeature, BasicSlotState>>();
+	private Map<@NonNull EObject, @NonNull Map<@NonNull EStructuralFeature, @NonNull BasicSlotState>> object2feature2slotState = new HashMap<@NonNull EObject, @NonNull Map<@NonNull EStructuralFeature, @NonNull BasicSlotState>>();
 	
 	public IncrementalObjectManager(@NonNull IncrementalInvocationManager invocationManager) {
 		super(invocationManager);
@@ -704,7 +704,7 @@ public class IncrementalObjectManager extends AbstractObjectManager
 	}
 
 	@Override
-	public void assigned(@NonNull Incremental invocation, @NonNull EObject eObject, EStructuralFeature eFeature, @Nullable Object ecoreValue) {
+	public void assigned(Invocation.@NonNull Incremental invocation, @NonNull EObject eObject, EStructuralFeature eFeature, @Nullable Object ecoreValue) {
 		assigned(eObject, eFeature, ecoreValue);
 		assert eFeature != null;
 		BasicSlotState slotState = getSlotState(eObject, eFeature);
@@ -755,16 +755,16 @@ public class IncrementalObjectManager extends AbstractObjectManager
 	}
 
 	public @NonNull Map<EStructuralFeature, BasicSlotState> getObjectState(@NonNull EObject eObject) {
-		Map<EStructuralFeature, BasicSlotState> feature2state = object2feature2slotState.get(eObject);
+		Map<@NonNull EStructuralFeature, @NonNull BasicSlotState> feature2state = object2feature2slotState.get(eObject);
 		if (feature2state == null) {
-			feature2state = new HashMap<EStructuralFeature, BasicSlotState>();
+			feature2state = new HashMap<@NonNull EStructuralFeature, @NonNull BasicSlotState>();
 			object2feature2slotState.put(eObject, feature2state);
 		}
 		return feature2state;
 	}
 
 	@Override
-	public @NonNull Iterable<? extends Object> getObjects() {
+	public @NonNull Iterable<@NonNull ? extends Object> getObjects() {
 		return object2feature2slotState.keySet();
 	}
 
@@ -818,8 +818,8 @@ public class IncrementalObjectManager extends AbstractObjectManager
 	}
 
 	@Override
-	public @NonNull Iterable<? extends SlotState> getSlotStates(@NonNull Object object) {
-		Map<EStructuralFeature, BasicSlotState> feature2slotState = object2feature2slotState.get(object);;
+	public @NonNull Iterable<@NonNull ? extends SlotState> getSlotStates(@NonNull Object object) {
+		Map<@NonNull EStructuralFeature, @NonNull BasicSlotState> feature2slotState = object2feature2slotState.get(object);;
 		return feature2slotState != null ? feature2slotState.values() : EMPTY_SLOT_STATE_LIST;
 	}
 

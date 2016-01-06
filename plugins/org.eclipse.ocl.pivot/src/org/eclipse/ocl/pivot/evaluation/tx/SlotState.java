@@ -42,7 +42,7 @@ public interface SlotState extends ExecutionVisitable
 		@NonNull EStructuralFeature getEFeature();
 		SlotState.@NonNull Incremental getPrimarySlotState();
 		@Nullable Object getValue();
-		@NonNull Iterable<Invocation.Incremental> getSources();
-		@NonNull Iterable<Invocation.Incremental> getTargets();
+		@NonNull Iterable<Invocation.@NonNull Incremental> getSources();
+		@NonNull Iterable<Invocation.@NonNull Incremental> getTargets();
 	}
 }

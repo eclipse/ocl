@@ -42,8 +42,8 @@ public interface ObjectManager extends ExecutionVisitable
 	 */
 	void created(Invocation.@NonNull Incremental invocation, @NonNull EObject eObject);
 
-	@NonNull Iterable<? extends Object> getObjects();
-	@NonNull Iterable<? extends SlotState> getSlotStates(@NonNull Object object);
+	@NonNull Iterable<@NonNull ? extends Object> getObjects();
+	@NonNull Iterable<@NonNull ? extends SlotState> getSlotStates(@NonNull Object object);
 	
 	/**
 	 * Throw an InvocationFailedException if the eFeature of eObject has not yet been assigned.

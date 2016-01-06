@@ -22,7 +22,7 @@ import org.eclipse.jdt.annotation.Nullable;
  */
 public abstract class AbstractObjectManager implements ObjectManager
 {
-	protected static final @SuppressWarnings("null")@NonNull List<SlotState> EMPTY_SLOT_STATE_LIST = Collections.emptyList();
+	protected static final @NonNull List<@NonNull SlotState> EMPTY_SLOT_STATE_LIST = Collections.emptyList();
 
 	protected final @NonNull InvocationManager invocationManager;
 	

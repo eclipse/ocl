@@ -27,16 +27,17 @@ public abstract class AbstractInvocation extends AbstractInvocationInternal
 {
 	public abstract static class Incremental extends AbstractInvocation implements Invocation.Incremental
 	{
-		public static final @NonNull List<SlotState.Incremental> EMPTY_SLOT_LIST = Collections.<SlotState.Incremental>emptyList();
+		public static final @NonNull List<@NonNull Object> EMPTY_OBJECT_LIST = Collections.emptyList();
+		public static final @NonNull List<SlotState.@NonNull Incremental> EMPTY_SLOT_LIST = Collections.emptyList();
 
-		private Set<Object> createdObjects = null;
-		private Set<SlotState.Incremental> readSlots = null;
-		private Set<SlotState.Incremental> writeSlots = null;
+		private Set<@NonNull Object> createdObjects = null;
+		private Set<SlotState.@NonNull Incremental> readSlots = null;
+		private Set<SlotState.@NonNull Incremental> writeSlots = null;
 
 		@Override
 		public void addCreatedObject(@NonNull Object createdObject) {
 			if (createdObjects == null) {
-				createdObjects = new HashSet<Object>();
+				createdObjects = new HashSet<@NonNull Object>();
 			}
 			createdObjects.add(createdObject);
 		}
@@ -44,7 +45,7 @@ public abstract class AbstractInvocation extends AbstractInvocationInternal
 		@Override
 		public void addReadSlot(SlotState.@NonNull Incremental readSlot) {
 			if (readSlots == null) {
-				readSlots = new HashSet<SlotState.Incremental>();
+				readSlots = new HashSet<SlotState.@NonNull Incremental>();
 			}
 			readSlots.add(readSlot);
 			readSlot.addTargetInternal(this);
@@ -53,24 +54,24 @@ public abstract class AbstractInvocation extends AbstractInvocationInternal
 		@Override
 		public void addWriteSlot(SlotState.@NonNull Incremental writeSlot) {
 			if (writeSlots == null) {
-				writeSlots = new HashSet<SlotState.Incremental>();
+				writeSlots = new HashSet<SlotState.@NonNull Incremental>();
 			}
 			writeSlots.add(writeSlot);
 			writeSlot.addSourceInternal(this);
 		}
 
 		@Override
-		public @NonNull Iterable<Object> getCreatedObjects() {
-			return createdObjects != null ? createdObjects : Collections.emptyList();
+		public @NonNull Iterable<@NonNull Object> getCreatedObjects() {
+			return createdObjects != null ? createdObjects : EMPTY_OBJECT_LIST;
 		}
 
 		@Override
-		public @NonNull Iterable<SlotState.Incremental> getReadSlots() {
+		public @NonNull Iterable<SlotState.@NonNull Incremental> getReadSlots() {
 			return readSlots != null ? readSlots : EMPTY_SLOT_LIST;
 		}
 
 		@Override
-		public @NonNull Iterable<SlotState.Incremental> getWriteSlots() {
+		public @NonNull Iterable<SlotState.@NonNull Incremental> getWriteSlots() {
 			return writeSlots != null ? writeSlots : EMPTY_SLOT_LIST;
 		}
 	}
