@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:RootElement="http:///schemas/RootElement/_qxwpkLUyEeWSV7DXeOPrdA/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/RootElement/_qxwpkLUyEeWSV7DXeOPrdA/2 Bug485225.profile.uml#_qxwpkbUyEeWSV7DXeOPrdA">
+  <uml:Model xmi:id="_tcLBYLUyEeWSV7DXeOPrdA" name="RootElement">
+    <packagedElement xmi:type="uml:Class" xmi:id="_zKtRgLUyEeWSV7DXeOPrdA" name="Train1"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_8MYGULUyEeWSV7DXeOPrdA" name="Train2"/>
+    <profileApplication xmi:id="_tckC8LUyEeWSV7DXeOPrdA">
+      <eAnnotations xmi:id="_tclRELUyEeWSV7DXeOPrdA" source="PapyrusVersion">
+        <details xmi:id="_tclREbUyEeWSV7DXeOPrdA" key="Version" value="0.0.3"/>
+        <details xmi:id="_tclRErUyEeWSV7DXeOPrdA" key="Comment" value=""/>
+        <details xmi:id="_tclRE7UyEeWSV7DXeOPrdA" key="Copyright" value=""/>
+        <details xmi:id="_tclRFLUyEeWSV7DXeOPrdA" key="Date" value="2016-01-07"/>
+        <details xmi:id="_tclRFbUyEeWSV7DXeOPrdA" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:id="_tckqALUyEeWSV7DXeOPrdA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="Bug485225.profile.uml#_qxwpkbUyEeWSV7DXeOPrdA"/>
+      </eAnnotations>
+      <appliedProfile href="Bug485225.profile.uml#_8gXOwLUxEeWSV7DXeOPrdA"/>
+    </profileApplication>
+  </uml:Model>
+  <RootElement:Train xmi:id="_zLFE8LUyEeWSV7DXeOPrdA" base_Class="_zKtRgLUyEeWSV7DXeOPrdA" name="K1234"/>
+  <RootElement:Train xmi:id="_8MmIwLUyEeWSV7DXeOPrdA" base_Class="_8MYGULUyEeWSV7DXeOPrdA" name="P1234"/>
+</xmi:XMI>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_8gXOwLUxEeWSV7DXeOPrdA" name="TestProfile" metaclassReference="__etPMLUxEeWSV7DXeOPrdA">
+  <eAnnotations xmi:id="_JE0N0bUyEeWSV7DXeOPrdA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_qxwpkbUyEeWSV7DXeOPrdA" name="TestProfile" nsURI="http:///schemas/RootElement/_qxwpkLUyEeWSV7DXeOPrdA/2" nsPrefix="RootElement">
+      <eAnnotations xmi:id="_qxwpkrUyEeWSV7DXeOPrdA" source="http://www.eclipse.org/emf/2002/Ecore">
+        <details xmi:id="_qxwpk7UyEeWSV7DXeOPrdA" key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_qxwplLUyEeWSV7DXeOPrdA" name="Train">
+        <eAnnotations xmi:id="_qxwplbUyEeWSV7DXeOPrdA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_AB7RALUyEeWSV7DXeOPrdA"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_qxwpsrUyEeWSV7DXeOPrdA" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_qxwptLUyEeWSV7DXeOPrdA" name="name" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <elementImport xmi:id="__etPMLUxEeWSV7DXeOPrdA" alias="Class">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_AB7RALUyEeWSV7DXeOPrdA" name="Train">
+    <ownedAttribute xmi:id="_AgElkbUyEeWSV7DXeOPrdA" name="base_Class" association="_AgDXcLUyEeWSV7DXeOPrdA">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_DviLMLUyEeWSV7DXeOPrdA" name="name">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_AgDXcLUyEeWSV7DXeOPrdA" name="E_Train_Class1" memberEnd="_AgElkLUyEeWSV7DXeOPrdA _AgElkbUyEeWSV7DXeOPrdA">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_AgElkLUyEeWSV7DXeOPrdA" name="extension_Train" type="_AB7RALUyEeWSV7DXeOPrdA" aggregation="composite" association="_AgDXcLUyEeWSV7DXeOPrdA"/>
+  </packagedElement>
+</uml:Profile>
