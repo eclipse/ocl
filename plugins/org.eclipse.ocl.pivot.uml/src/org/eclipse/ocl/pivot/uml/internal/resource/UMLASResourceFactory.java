@@ -38,6 +38,7 @@ import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
 import org.eclipse.ocl.pivot.uml.internal.utilities.UMLEcoreTechnology;
 import org.eclipse.ocl.pivot.uml.internal.validation.UMLOCLEValidator;
+import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -102,6 +103,13 @@ public final class UMLASResourceFactory extends AbstractASResourceFactory
 					eObject = umlConstraint;
 				}
 			}
+			else if (eObject instanceof EClass) {
+				EClass eStereotype = (EClass)eObject;
+				org.eclipse.uml2.uml.Stereotype umlStereotype = getStereotypeForEClass(environmentFactory, eStereotype);
+				if (umlStereotype != null) {
+					eObject = umlStereotype;
+				}
+			}
 		}
 		return uml2as.getCreated(pivotClass, eObject);
 	}
@@ -111,7 +119,7 @@ public final class UMLASResourceFactory extends AbstractASResourceFactory
 		return getInstance();
 	}
 
-	protected org.eclipse.uml2.uml.Constraint getConstraintForEOperation(@NonNull EnvironmentFactoryInternal environmentFactory, EOperation eOperation) {
+	protected org.eclipse.uml2.uml.Constraint getConstraintForEOperation(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull EOperation eOperation) {
 		if (EcoreUtil.isInvariant(eOperation)) {
 			EClass eContainingClass = eOperation.getEContainingClass();
 			EAnnotation eAnnotation = eContainingClass.getEAnnotation("http://www.eclipse.org/uml2/2.0.0/UML"); // UMLUtil.UML2_UML_PACKAGE_2_0_NS_URI
@@ -268,6 +276,25 @@ public final class UMLASResourceFactory extends AbstractASResourceFactory
 	@Override
 	public @Nullable String getResourceClassName() {
 		return UMLResource.class.getName();
+	}
+
+	protected org.eclipse.uml2.uml.Stereotype getStereotypeForEClass(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull EClass eClass) {
+		EObject eAnnotationParent = null;
+		for (EObject eObject = eClass; true; eObject = eObject.eContainer()) {
+			if (eObject == null) {
+				return null;
+			}
+			if (eObject instanceof EAnnotation) {
+				eAnnotationParent = eObject.eContainer();
+				break;
+			}
+		}
+		if (!(eAnnotationParent instanceof org.eclipse.uml2.uml.Profile)) {
+			return null;
+		}
+		org.eclipse.uml2.uml.Profile umlProfile = (org.eclipse.uml2.uml.Profile)eAnnotationParent;		// FIXME could there be hierarchy ?
+		org.eclipse.uml2.uml.Stereotype umlStereotype = umlProfile.getOwnedStereotype(NameUtil.getOriginalName(eClass));
+		return umlStereotype;
 	}
 
 	@Override
