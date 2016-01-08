@@ -640,6 +640,13 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	}
 
 	public @NonNull CGValuedElement getEvaluatorVariable() {
+		// When generating lookup visitors for derived languages, the common lookup visitor is no
+		// not generated. Therefore we have to add this hack to provide CG for executor property
+		// accesses
+		if (cgEvaluatorVariable == null) {
+			Property prop = createNativeProperty(JavaConstants.EXECUTOR_NAME, Executor.class, true);
+			cgEvaluatorVariable = as2cgVisitor.visitProperty(prop);
+		}
 		return ClassUtil.nonNullState(cgEvaluatorVariable);
 	}
 	
@@ -653,6 +660,13 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	}
 
 	public @NonNull CGValuedElement getIdResolverVariable() {
+		// When generating lookup visitors for derived languages, the common lookup visitor is no
+		// not generated. Therefore we have to add this hack to provide CG for idResolver property
+		// accesses
+		if (cgIdResolverVariable == null) {
+			Property prop = createNativeProperty(JavaConstants.ID_RESOLVER_NAME, IdResolver.class, true);
+			cgIdResolverVariable = as2cgVisitor.visitProperty(prop);
+		}
 		return ClassUtil.nonNullState(cgIdResolverVariable);
 	}
 	
