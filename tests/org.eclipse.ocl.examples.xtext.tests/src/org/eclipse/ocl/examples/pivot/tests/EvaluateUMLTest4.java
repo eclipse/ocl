@@ -41,6 +41,7 @@ import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.util.UMLUtil.UML2EcoreConverter;
 import org.junit.After;
@@ -238,6 +239,27 @@ public class EvaluateUMLTest4 extends PivotTestSuite
 		EObject associationContext = doLoadUML(ocl, "Bug455394", "Model.A_class2_class1");
 		CollectionTypeId collectionTypeId = TypeId.ORDERED_SET.getSpecializedId(contextType.getTypeId());
 		ocl.assertQueryEquals(associationContext, idResolver.createOrderedSetOfEach(collectionTypeId, context), "self.memberEnd?->select(e|e.aggregation=AggregationKind::composite)");	
+		ocl.dispose();
+	}
+	
+	/**
+	 * Tests uses of allInstances on a stereotype
+	 */
+	@Test public void test_stereotype_allinstances_Bug485225() throws Exception {
+		UMLStandaloneSetup.init();
+		MyOCL ocl = createOCL();
+		IdResolver idResolver = ocl.getIdResolver();
+		EObject train1 = doLoadUML(ocl, "Bug485225", "_zKtRgLUyEeWSV7DXeOPrdA"); //RootElement.Train1");
+		org.eclipse.ocl.pivot.Class contextType = idResolver.getStaticTypeOf(train1);
+		EObject application1 = doLoadUML(ocl, "Bug485225", "_zLFE8LUyEeWSV7DXeOPrdA");
+		EObject application2 = doLoadUML(ocl, "Bug485225", "_8MmIwLUyEeWSV7DXeOPrdA");
+		assert train1 != null;
+		assert application1 != null;
+		assert application2 != null;
+		CollectionTypeId setTypeId = TypeId.SET.getSpecializedId(contextType.getTypeId());
+		ocl.assertQueryEquals(train1, ValueUtil.createSetOfEach(setTypeId, application1, application2), "TestProfile::Train.allInstances()");	
+		ocl.assertQueryEquals(train1, ValueUtil.createSetOfEach(setTypeId, application1, application2), "self.extension_Train.oclType().allInstances()");	
+		ocl.assertQueryResults(train1, "Bag{'Train1','Train2'}", "TestProfile::Train.allInstances().base_Class.name");	
 		ocl.dispose();
 	}
 }
