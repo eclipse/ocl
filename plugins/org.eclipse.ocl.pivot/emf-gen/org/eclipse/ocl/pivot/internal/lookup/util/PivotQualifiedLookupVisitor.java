@@ -19,9 +19,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment;
 import org.eclipse.ocl.pivot.util.AbstractPivotQualifiedLookupVisitor;
 
-/**
- * @since 1.1
- */
 public class PivotQualifiedLookupVisitor extends AbstractPivotQualifiedLookupVisitor {
 
 	public PivotQualifiedLookupVisitor(@NonNull LookupEnvironment context) {

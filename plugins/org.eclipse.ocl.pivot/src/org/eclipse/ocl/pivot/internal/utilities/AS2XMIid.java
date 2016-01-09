@@ -138,7 +138,8 @@ public class AS2XMIid
 				String idAuto = idVisitor.getID(element, internalUUIDs);
 				String idNew = idOld != null ? idOld : idAuto;
 				if (idNew != null) {
-					boolean badId = (idNew.length() <= 0) || allIds.containsKey(idNew);
+					@SuppressWarnings("unused") EObject oldElement = allIds.get(idNew);
+					boolean badId = (idNew.length() <= 0) || (oldElement != null);
 					boolean changedId = (idAuto != null) && !idNew.equals(idAuto);
 					if (badId) {
 						idNew = EcoreUtil.generateUUID();
@@ -152,6 +153,7 @@ public class AS2XMIid
 						}
 						s.append("\n " + element.eClass().getName() + " '" + idAuto + "'");
 					}
+					assert element != null;
 					allIds.put(idNew, element);
 					if (idNew != idOld) {
 						asResource.setID(element, idNew);

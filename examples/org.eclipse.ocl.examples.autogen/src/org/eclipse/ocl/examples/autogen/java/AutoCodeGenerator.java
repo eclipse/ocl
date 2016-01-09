@@ -243,12 +243,16 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 
 	public void saveSourceFile() {
 		try {
-			for (CGPackage cgPackage : createCGPackages()){
+			@NonNull
+			List<CGPackage> allCGPackages = createCGPackages();
+			for (CGPackage cgPackage : allCGPackages){
 				String className = cgPackage.getClasses().get(0).getName();
 				URI uri = URI.createPlatformResourceURI(getSourceFileName(className+".java"), true);
+				System.out.println("Creating " + uri);
 				String javaCodeSource = generateClassFile(cgPackage);;
 				try {
 					
+					System.out.println("Saving " + uri);
 					OutputStream outputStream = URIConverter.INSTANCE.createOutputStream(uri);
 					Writer writer = new OutputStreamWriter(outputStream);
 					writer.append(javaCodeSource);

@@ -22,9 +22,6 @@ import java.util.List;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
-/**
- * @since 1.1
- */
 public class PivotLookupResultImpl<NE> implements PivotLookupResult<NE> {
 	
 	private List<NE> results = new ArrayList<NE>();
