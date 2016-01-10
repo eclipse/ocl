@@ -139,6 +139,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	protected final @NonNull Operation asEnvironmentHasFinalResultOperation;
 	protected final @NonNull Operation asEnvironmentNestedEnvOperation;
 	protected final @NonNull Operation asElementEnvOperation;
+	protected final @NonNull Operation asElementExportedEnvOperation;
 	
 	protected final org.eclipse.ocl.pivot.@NonNull Class asEnvironmentType;
 	
@@ -194,6 +195,8 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		CompleteClass asElementCompleteClass = metamodelManager.getCompletePackage(metamodelManager.getStandardLibrary().getPackage()).getCompleteClass(asOclElement);
 		OperationId envOperationId = asOclElement.getTypeId().getOperationId(0, LookupClassContext.ENV_NAME, IdManager.getParametersId(asOclElement.getTypeId()));
 		this.asElementEnvOperation = ClassUtil.nonNullState(asElementCompleteClass.getOperation(envOperationId));
+		OperationId exportedEnvOperationId = asOclElement.getTypeId().getOperationId(0, LookupClassContext.EXPORTED_ENV_NAME, IdManager.getParametersId(asOclElement.getTypeId()));
+		asElementExportedEnvOperation = ClassUtil.nonNullState(asElementCompleteClass.getOperation(exportedEnvOperationId));
 		OperationId parentEnvOperationId = asOclElement.getTypeId().getOperationId(0, LookupClassContext.PARENT_ENV_NAME, emptyParametersId);
 		this.asElementParentEnvOperation = ClassUtil.nonNullState(asElementCompleteClass.getOperation(parentEnvOperationId));
 		this.asEnvironmentType = ClassUtil.nonNullState(asElementParentEnvOperation.getType().isClass());
@@ -461,7 +464,8 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		Map<Operation, @NonNull Operation> envOperation2asOperation = new HashMap<Operation, @NonNull Operation>();
 		for (@SuppressWarnings("null")org.eclipse.ocl.pivot.@NonNull Class asType : asPackage.getOwnedClasses()) {
 			for (Operation envOperation : asType.getOwnedOperations()) {
-				if (LookupClassContext.ENV_NAME.equals(envOperation.getName())) {
+				if (LookupClassContext.ENV_NAME.equals(envOperation.getName())
+					&& envOperation != asElementEnvOperation) {
 					List<Parameter> asParameters = envOperation.getOwnedParameters();
 					if (asParameters.size() == 1) {
 						Operation asOperation = createUnqualifiedVisitOperationDeclaration(reDefinitions, envOperation, asChildProperty);
@@ -559,6 +563,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		for (@SuppressWarnings("null")org.eclipse.ocl.pivot.@NonNull Class asType : asPackage.getOwnedClasses()) {
 			for (Operation envOperation : asType.getOwnedOperations()) {
 				if (LookupClassContext.EXPORTED_ENV_NAME.equals(envOperation.getName())
+					&& envOperation != asElementExportedEnvOperation
 					&& envOperation.getOwnedParameters().size() == 1) {
 						Operation asOperation = createExportedVisitOperationDeclaration(reDefinitions, envOperation, asImporterProperty);
 						envOperation2asOperation.put(envOperation, asOperation);

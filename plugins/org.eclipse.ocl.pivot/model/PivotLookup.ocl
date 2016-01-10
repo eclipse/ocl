@@ -13,7 +13,10 @@ def : env() : lookup::LookupEnvironment =
 	
 def : _env(child : OclElement) : lookup::LookupEnvironment =
 	parentEnv()
-	
+
+def : _exported_env(importer : OclElement) : lookup::LookupEnvironment =
+	lookup::LookupEnvironment { }
+		
 def : lookupVariables(vName : String) : OrderedSet(Variable) =
 	self._env(null).namedElements->selectByKind(Variable)->select(name = vName)
 	
