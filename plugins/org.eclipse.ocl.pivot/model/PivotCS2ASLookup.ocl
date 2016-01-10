@@ -3,7 +3,7 @@ import  as : 'Pivot.ecore#/'
 import 'Lookup.ecore'
 import 'PivotCS2ASHelpers.ocl'
 
-package ocl
+package pivot
 ---- Default Environment related functionality
 context OclElement
 --	

@@ -15,10 +15,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.ecore.EObject;
@@ -48,7 +46,6 @@ import org.eclipse.ocl.examples.codegen.library.NativeVisitorOperation;
 import org.eclipse.ocl.examples.codegen.utilities.RereferencingCopier;
 import org.eclipse.ocl.pivot.CallExp;
 import org.eclipse.ocl.pivot.CompleteClass;
-import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.IfExp;
@@ -106,12 +103,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.getEnvironmentFactory(eResource);
 		
 		List<org.eclipse.ocl.pivot.@NonNull Package> targetPackages = LookupCGUtil.getTargetPackages(genPackage,environmentFactory, lookupFilePath, projectName, projectPrefix);
-		Set<CompletePackage> processedCompletePackages = new HashSet<CompletePackage>();
 		for (org.eclipse.ocl.pivot.Package oclDocPackage : targetPackages){
-			CompletePackage completePackage = environmentFactory.getCompleteModel().getCompletePackage(oclDocPackage);
-			if (!processedCompletePackages.add(completePackage)) {
-				continue;
-			}
 			org.eclipse.ocl.pivot.Package asSuperPackage = null;
 			if (superProjectPrefix != null) {
 				asSuperPackage = LookupCGUtil.getPackage(genPackage, superProjectPrefix, environmentFactory);

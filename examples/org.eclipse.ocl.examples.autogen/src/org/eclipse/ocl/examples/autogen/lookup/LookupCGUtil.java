@@ -13,7 +13,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGClass;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModel;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
-import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -38,10 +37,8 @@ public class LookupCGUtil {
 				if (root instanceof Model) {
 					Package asPackage = ClassUtil.nonNullState(getPackage(genPackage, projectPrefix, envFact));
 					for (@SuppressWarnings("null")org.eclipse.ocl.pivot.@NonNull Package oclDocPackage : ((Model)root).getOwnedPackages()) {
-						if (samePrimaryPackage(oclDocPackage, asPackage, envFact)) { 
-							if (samePrimaryPackage(oclDocPackage, asPackage, envFact)) { 
-								result.add(oclDocPackage);
-							}
+						if (samePrimaryPackage(oclDocPackage, asPackage, envFact)) {
+							result.add(oclDocPackage);
 						}
 					}
 				}
@@ -66,11 +63,7 @@ public class LookupCGUtil {
 	
 	private static boolean samePrimaryPackage(org.eclipse.ocl.pivot.@NonNull Package p1, org.eclipse.ocl.pivot.@NonNull Package p2, @NonNull EnvironmentFactory envFactory) {
 		MetamodelManager mm = envFactory.getMetamodelManager();
-		CompletePackage completePackage1 = mm.getCompleteModel().getCompletePackage(p1);
-		CompletePackage completePackage2 = mm.getCompleteModel().getCompletePackage(p2);
-		org.eclipse.ocl.pivot.@NonNull Package primaryPackage1 = mm.getPrimaryPackage(p1);
-		org.eclipse.ocl.pivot.@NonNull Package primaryPackage2 = mm.getPrimaryPackage(p2);
-		return primaryPackage1.equals(primaryPackage2);
+		return mm.getPrimaryPackage(p1).equals(mm.getPrimaryPackage(p2));
 	}
 	
 	
