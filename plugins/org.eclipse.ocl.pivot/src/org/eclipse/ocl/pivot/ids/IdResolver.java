@@ -47,6 +47,7 @@ public interface IdResolver extends IdVisitor<Element>
 	 */
 	public interface IdResolverExtension extends IdResolver
 	{
+		org.eclipse.ocl.pivot.@Nullable Package basicGetPackage(@NonNull PackageId packageId);
 		@NonNull <T> EList<T> ecoreValueOfAll(@Nullable Class<T> instanceClass, @NonNull Iterable<? extends Object> values);
 		int oclHashCode(@Nullable Object anObject);
 	}

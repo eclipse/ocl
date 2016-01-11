@@ -51,6 +51,7 @@ import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.TemplateSignature;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Vertex;
+import org.eclipse.ocl.pivot.ids.IdResolver.IdResolverExtension;
 import org.eclipse.ocl.pivot.ids.OperationId;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.ids.ParametersId;
@@ -870,13 +871,15 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 			if (pivotPackage != null) {
 				EnvironmentFactoryInternal environmentFactory = getEnvironmentFactory();
 				PackageId metapackageId = environmentFactory.getTechnology().getMetapackageId(environmentFactory, pivotPackage);
-				org.eclipse.ocl.pivot.Package metapackage = environmentFactory.getIdResolver().getPackage(metapackageId);
-				CompletePackage metaCompletePackage = getMetamodelManager().getCompletePackage(metapackage);
-				Type metatype = metaCompletePackage.getType(metatypeName);
-				if (metatype != null) {
-					CompleteClass metaCompleteClass = getCompleteModel().getCompleteClass(metatype);
-					for (@SuppressWarnings("null")@NonNull Property property : metaCompleteClass.getProperties(FeatureFilter.SELECT_STATIC)) {
-						didAddProperty(property);
+				org.eclipse.ocl.pivot.Package metapackage = ((IdResolverExtension)environmentFactory.getIdResolver()).basicGetPackage(metapackageId);
+				if (metapackage != null) {
+					CompletePackage metaCompletePackage = getMetamodelManager().getCompletePackage(metapackage);
+					Type metatype = metaCompletePackage.getType(metatypeName);
+					if (metatype != null) {
+						CompleteClass metaCompleteClass = getCompleteModel().getCompleteClass(metatype);
+						for (@SuppressWarnings("null")@NonNull Property property : metaCompleteClass.getProperties(FeatureFilter.SELECT_STATIC)) {
+							didAddProperty(property);
+						}
 					}
 				}
 			}

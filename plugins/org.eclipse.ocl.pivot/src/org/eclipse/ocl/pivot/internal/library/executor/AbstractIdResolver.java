@@ -317,6 +317,18 @@ public abstract class AbstractIdResolver implements IdResolver.IdResolverExtensi
 		directRoots.add(eObject);
 	}
 
+	/**
+	 * @since 1.1
+	 */
+	@Override
+	public org.eclipse.ocl.pivot.@Nullable Package basicGetPackage(@NonNull PackageId packageId) {
+		Element element = packageId.accept(this);
+		if (element instanceof org.eclipse.ocl.pivot.Package) {
+			return (org.eclipse.ocl.pivot.Package) element;
+		}
+		return null;
+	}
+
 	@Override
 	public @Nullable Object boxedValueOf(@Nullable Object unboxedValue) {
 		if (unboxedValue == null) {
@@ -1699,7 +1711,7 @@ public abstract class AbstractIdResolver implements IdResolver.IdResolverExtensi
 	} */
 
 	@Override
-	public org.eclipse.ocl.pivot.@NonNull Package visitRootPackageId(@NonNull RootPackageId id) {
+	public org.eclipse.ocl.pivot.@Nullable Package visitRootPackageId(@NonNull RootPackageId id) {
 		if (id == IdManager.METAMODEL) {
 			return ClassUtil.nonNullState(getStandardLibrary().getPackage());
 		}
