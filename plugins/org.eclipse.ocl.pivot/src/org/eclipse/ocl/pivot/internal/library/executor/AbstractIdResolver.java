@@ -1444,7 +1444,7 @@ public abstract class AbstractIdResolver implements IdResolver
 	} */
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Package visitRootPackageId(@NonNull RootPackageId id) {
+	public @Nullable org.eclipse.ocl.pivot.Package visitRootPackageId(@NonNull RootPackageId id) {
 		if (id == IdManager.METAMODEL) {
 			return ClassUtil.nonNullState(getStandardLibrary().getPackage());
 		}

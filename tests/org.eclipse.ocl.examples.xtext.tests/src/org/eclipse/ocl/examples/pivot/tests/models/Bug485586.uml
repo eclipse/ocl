@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_lOem4K9CEeWLhvH9pcm5wA" name="honka" URI="xyzzy">
+  <packagedElement xmi:type="uml:Class" xmi:id="_5HmtcK9CEeWLhvH9pcm5wA" name="TestB" isActive="true">
+    <ownedRule xmi:id="_za1wMK9IEeWLhvH9pcm5wA" name="const" constrainedElement="_5HmtcK9CEeWLhvH9pcm5wA">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_1nSZoK9IEeWLhvH9pcm5wA">
+        <language>OCL</language>
+        <body>self.testa &lt;> null</body>
+      </specification>
+    </ownedRule>
+    <ownedAttribute xmi:id="_buhr4a9IEeWLhvH9pcm5wA" name="testa" visibility="protected" type="_6eCfcK9DEeWLhvH9pcm5wA" isUnique="false" association="_buhE0K9IEeWLhvH9pcm5wA"/>
+    <ownedAttribute xmi:id="_kco_ELiqEeWag-FlvYhsEA" name="zz"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_6eCfcK9DEeWLhvH9pcm5wA" name="TestA">
+    <ownedAttribute xmi:id="_buhr4q9IEeWLhvH9pcm5wA" name="testb" type="_5HmtcK9CEeWLhvH9pcm5wA" association="_buhE0K9IEeWLhvH9pcm5wA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_buhE0K9IEeWLhvH9pcm5wA" memberEnd="_buhr4a9IEeWLhvH9pcm5wA _buhr4q9IEeWLhvH9pcm5wA"/>
+</uml:Model>

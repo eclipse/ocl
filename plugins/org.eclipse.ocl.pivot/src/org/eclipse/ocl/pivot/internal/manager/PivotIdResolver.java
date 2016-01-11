@@ -182,15 +182,14 @@ public class PivotIdResolver extends AbstractIdResolver
 	}
 
 	@Override
-	public @NonNull org.eclipse.ocl.pivot.Package visitRootPackageId(@NonNull RootPackageId id) {
+	public @Nullable org.eclipse.ocl.pivot.Package visitRootPackageId(@NonNull RootPackageId id) {
 		String completeURIorName = id.getName();
 		org.eclipse.ocl.pivot.Package rootPackage = standardLibrary.getRootPackage(completeURIorName);
 		if (rootPackage == null) {
 			Orphanage orphanage = metamodelManager.getCompleteModel().getOrphanage();
 			rootPackage = NameUtil.getNameable(orphanage.getOwnedPackages(), completeURIorName);
 			if (rootPackage == null) {
-//				return super.visitRootPackageId(id);
-				throw new UnsupportedOperationException();
+				return null;
 			}
 		}
 		return rootPackage;

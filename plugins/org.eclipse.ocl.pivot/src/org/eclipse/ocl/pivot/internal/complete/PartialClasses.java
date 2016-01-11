@@ -57,8 +57,8 @@ import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.ids.ParametersId;
 import org.eclipse.ocl.pivot.internal.ClassImpl;
 import org.eclipse.ocl.pivot.internal.CompleteClassImpl;
-import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.Orphanage;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.util.DerivedConstants;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
@@ -881,13 +881,15 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 			if (pivotPackage != null) {
 				EnvironmentFactoryInternal environmentFactory = getEnvironmentFactory();
 				PackageId metapackageId = environmentFactory.getTechnology().getMetapackageId(environmentFactory, pivotPackage);
-				org.eclipse.ocl.pivot.Package metapackage = environmentFactory.getIdResolver().getPackage(metapackageId);
-				CompletePackage metaCompletePackage = getMetamodelManager().getCompletePackage(metapackage);
-				Type metatype = metaCompletePackage.getType(metatypeName);
-				if (metatype != null) {
-					CompleteClass metaCompleteClass = getCompleteModel().getCompleteClass(metatype);
-					for (@SuppressWarnings("null")@NonNull Property property : metaCompleteClass.getProperties(FeatureFilter.SELECT_STATIC)) {
-						didAddProperty(property);
+				Element element = metapackageId.accept(environmentFactory.getIdResolver());
+				if (element instanceof org.eclipse.ocl.pivot.Package) {
+					CompletePackage metaCompletePackage = getMetamodelManager().getCompletePackage((org.eclipse.ocl.pivot.Package)element);
+					Type metatype = metaCompletePackage.getType(metatypeName);
+					if (metatype != null) {
+						CompleteClass metaCompleteClass = getCompleteModel().getCompleteClass(metatype);
+						for (@SuppressWarnings("null")@NonNull Property property : metaCompleteClass.getProperties(FeatureFilter.SELECT_STATIC)) {
+							didAddProperty(property);
+						}
 					}
 				}
 			}
