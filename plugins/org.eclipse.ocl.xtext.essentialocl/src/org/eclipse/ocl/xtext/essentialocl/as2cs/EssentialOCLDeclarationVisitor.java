@@ -22,10 +22,6 @@ import org.eclipse.ocl.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.pivot.CollectionRange;
 import org.eclipse.ocl.pivot.Constraint;
-import org.eclipse.ocl.pivot.MapLiteralExp;
-import org.eclipse.ocl.pivot.MapLiteralPart;
-import org.eclipse.ocl.pivot.ShadowExp;
-import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.EnumLiteralExp;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
@@ -36,6 +32,8 @@ import org.eclipse.ocl.pivot.IterateExp;
 import org.eclipse.ocl.pivot.IteratorExp;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.LetExp;
+import org.eclipse.ocl.pivot.MapLiteralExp;
+import org.eclipse.ocl.pivot.MapLiteralPart;
 import org.eclipse.ocl.pivot.MessageExp;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Namespace;
@@ -49,6 +47,8 @@ import org.eclipse.ocl.pivot.Precedence;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.PropertyCallExp;
 import org.eclipse.ocl.pivot.RealLiteralExp;
+import org.eclipse.ocl.pivot.ShadowExp;
+import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.StateExp;
 import org.eclipse.ocl.pivot.StringLiteralExp;
 import org.eclipse.ocl.pivot.TupleLiteralExp;
@@ -81,10 +81,6 @@ import org.eclipse.ocl.xtext.essentialoclcs.BooleanLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CollectionLiteralPartCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CollectionTypeCS;
-import org.eclipse.ocl.xtext.essentialoclcs.MapLiteralExpCS;
-import org.eclipse.ocl.xtext.essentialoclcs.MapLiteralPartCS;
-import org.eclipse.ocl.xtext.essentialoclcs.MapTypeCS;
-import org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CurlyBracketedClauseCS;
 import org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSFactory;
 import org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage;
@@ -95,6 +91,9 @@ import org.eclipse.ocl.xtext.essentialoclcs.InfixExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.InvalidLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.LetExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.LetVariableCS;
+import org.eclipse.ocl.xtext.essentialoclcs.MapLiteralExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.MapLiteralPartCS;
+import org.eclipse.ocl.xtext.essentialoclcs.MapTypeCS;
 import org.eclipse.ocl.xtext.essentialoclcs.NameExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.NavigatingArgCS;
 import org.eclipse.ocl.xtext.essentialoclcs.NestedExpCS;
@@ -102,6 +101,7 @@ import org.eclipse.ocl.xtext.essentialoclcs.NullLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.NumberLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.PrefixExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.RoundBracketedClauseCS;
+import org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS;
 import org.eclipse.ocl.xtext.essentialoclcs.StringLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.TupleLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.TupleLiteralPartCS;
@@ -169,7 +169,8 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		return csNavigatingArg;
 	}
 
-	protected @NonNull ExpCS createNavigationOperatorCS(@Nullable OCLExpression asSource, @NonNull ExpCS csArgument, boolean isConverted) {
+	protected @NonNull ExpCS createNavigationOperatorCS(@NonNull CallExp asCallExp, @NonNull ExpCS csArgument, boolean isConverted) {
+		OCLExpression asSource = asCallExp.getOwnedSource();
 		if (asSource == null) {
 			return csArgument;
 		}
@@ -181,8 +182,7 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		}
 		Type asType = asSource.getType();
 		boolean isAggregate = PivotUtil.isAggregate(asType) ^ isConverted;
-		boolean isSafe = (asSource instanceof CallExp) && (((CallExp)asSource).isIsSafe() || ((asSource.eContainer() instanceof IteratorExp) && (((IteratorExp)asSource.eContainer()).isIsSafe())));
-		String operationName = PivotUtil.getNavigationOperator(isSafe, isAggregate);
+		String operationName = PivotUtil.getNavigationOperator(asCallExp.isIsSafe(), isAggregate);
 		ExpCS csSource = context.visitDeclaration(ExpCS.class, asSource);
 		return createInfixExpCS(csSource, operationName, csArgument);
 	}
@@ -456,7 +456,7 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		Variable asResult = asIterateExp.getOwnedResult();
 		csRoundBracketedClause.getOwnedArguments().add(createNavigatingArgCS(";", asResult, asResult, asResult.getOwnedInit()));
 		csRoundBracketedClause.getOwnedArguments().add(createNavigatingArgCS("|", asIterateExp.getOwnedBody()));
-		return createNavigationOperatorCS(asIterateExp.getOwnedSource(), csNameExp, false);
+		return createNavigationOperatorCS(asIterateExp, csNameExp, false);
 	}
 
 	@Override
@@ -465,7 +465,7 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		if (asIteratorExp.isIsImplicit()) {					// Flatten implicit collect/oclAsSet
 			ElementCS csExp = body.accept(this);
 			if (csExp instanceof ExpCS) {
-				return createNavigationOperatorCS(asIteratorExp.getOwnedSource(), (ExpCS) csExp, true);
+				return createNavigationOperatorCS(asIteratorExp, (ExpCS) csExp, true);
 			}
 		}
 		Operation asIteration = getNonNullOperation(asIteratorExp.getReferredIteration());
@@ -485,7 +485,7 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 			prefix = "|";
 		}
 		csRoundBracketedClause.getOwnedArguments().add(createNavigatingArgCS(prefix, body));
-		return createNavigationOperatorCS(asIteratorExp.getOwnedSource(), csNameExp, false);
+		return createNavigationOperatorCS(asIteratorExp, csNameExp, false);
 	}
 	
 	@Override
@@ -561,7 +561,7 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 				csRoundBracketedClause.getOwnedArguments().add(createNavigatingArgCS(prefix, asArgument));
 				prefix = ",";
 			}
-			return createNavigationOperatorCS(asSource, csNameExp, false);
+			return createNavigationOperatorCS(asOperationCallExp, csNameExp, false);
 		}
 		else if (asArguments.size() == 1) {
 			ExpCS csSource;
@@ -613,15 +613,14 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		Property reverseProperty = asOppositePropertyCallExp.getReferredProperty();
 		Property asProperty = getNonNullProperty(reverseProperty != null ? reverseProperty.getOpposite() : null);
 		NameExpCS csNameExp = createNameExpCS(asProperty);
-		return createNavigationOperatorCS(asOppositePropertyCallExp.getOwnedSource(), csNameExp, false);
+		return createNavigationOperatorCS(asOppositePropertyCallExp, csNameExp, false);
 	}
 
 	@Override
 	public @Nullable ElementCS visitPropertyCallExp(@NonNull PropertyCallExp asPropertyCallExp) {
-		OCLExpression asSource = asPropertyCallExp.getOwnedSource();
 		Property asProperty = getNonNullProperty(asPropertyCallExp.getReferredProperty());
 		NameExpCS csNameExp = createNameExpCS(asProperty);
-		return createNavigationOperatorCS(asSource, csNameExp, false);
+		return createNavigationOperatorCS(asPropertyCallExp, csNameExp, false);
 	}
 
 	@Override
