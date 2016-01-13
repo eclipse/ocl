@@ -39,11 +39,11 @@ public class GeneralizedLambdaTypeIdImpl extends AbstractGeneralizedIdImpl<Lambd
 	@Override
 	public @NonNull String getDisplayName() {
 		StringBuilder s = new StringBuilder();
-		if (templateParameters > 0) {
-			s.append("<");
-			s.append(templateParameters);
-			s.append(">");
-		}
+//		if (templateParameters > 0) {
+//			s.append("<");
+//			s.append(templateParameters);
+//			s.append(">");
+//		}
 		s.append(name);
 		for (int i = 0; i < parametersId.size(); i++) {
 			TypeId parameterId = parametersId.get(i);
@@ -69,9 +69,7 @@ public class GeneralizedLambdaTypeIdImpl extends AbstractGeneralizedIdImpl<Lambd
 		else {
 			s.append("?");
 		}
-		String string2 = s.toString();
-		assert string2 != null;
-		return string2;
+		return s.toString();
 	}
 
 	@Override

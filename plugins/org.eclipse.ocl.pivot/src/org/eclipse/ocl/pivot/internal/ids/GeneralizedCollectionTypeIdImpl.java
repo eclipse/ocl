@@ -39,7 +39,10 @@ public class GeneralizedCollectionTypeIdImpl extends GeneralizedTypeIdImpl<Colle
 
 	@Override
 	public @NonNull String getDisplayName() {
-		return name;
+		StringBuilder s = new StringBuilder();
+		s.append(name);
+		s.append(IdManager.getParametersId(CollectionTypeId.T_1));
+		return s.toString();
 	}
 
 	@Override

@@ -41,16 +41,14 @@ public class GeneralizedOperationIdImpl extends AbstractGeneralizedIdImpl<Operat
 	@Override
 	public @NonNull String getDisplayName() {
 		StringBuilder s = new StringBuilder();
-		if (templateParameters > 0) {
-			s.append("<" + templateParameters + ">");
-		}
+//		if (templateParameters > 0) {
+//			s.append("<" + templateParameters + ">");
+//		}
 		s.append(parentId);
 		s.append("::");
 		s.append(name);
 		s.append(parametersId);
-		String string2 = s.toString();
-		assert string2 != null;
-		return string2;
+		return s.toString();
 	}
 
 	@Override

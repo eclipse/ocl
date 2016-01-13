@@ -49,9 +49,7 @@ public class GeneralizedTupleTypeIdImpl extends AbstractTypeId implements TupleT
 			isFirst = false;
 		}
 		s.append("}");
-		String string2 = s.toString();
-		assert string2 != null;
-		return string2;
+		return s.toString();
 	}
 
 	public @NonNull TupleTypeId getGeneralizedId() {

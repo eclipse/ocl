@@ -41,8 +41,7 @@ public class PropertyIdImpl extends AbstractElementId implements PropertyId //, 
 		s.append(parentId);
 		s.append("::");
 		s.append(name);
-		@SuppressWarnings("null")@NonNull String string2 = s.toString();
-		return string2;
+		return s.toString();
 	}
 	
 //	public @Nullable EStructuralFeature getEFeature() {

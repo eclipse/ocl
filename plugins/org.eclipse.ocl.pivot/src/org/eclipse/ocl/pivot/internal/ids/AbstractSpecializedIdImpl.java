@@ -43,9 +43,7 @@ public abstract class AbstractSpecializedIdImpl<T extends TemplateableId> extend
 			s.append(templateBindings.get(i));
 		}
 		s.append(">");
-		String string2 = s.toString();
-		assert string2 != null;
-		return string2;
+		return s.toString();
 	}
 
 	@Override
