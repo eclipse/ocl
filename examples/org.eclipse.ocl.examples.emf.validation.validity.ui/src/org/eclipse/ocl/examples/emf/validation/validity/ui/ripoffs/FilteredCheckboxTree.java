@@ -113,6 +113,7 @@ public class FilteredCheckboxTree extends FilteredTree {
 			if (testFindItem == null) {
 				if (itemCache.containsKey(element)) {
 					FilteredCheckboxTreeItem item = itemCache.get(element);
+					assert item != null;
 					if (item.state.equals(CHECKED))
 						return true;
 					if (item.state.equals(CHECKED_GRAYED))
@@ -158,6 +159,7 @@ public class FilteredCheckboxTree extends FilteredTree {
 		public boolean setChecked(Object element, boolean state) {
 			if (itemCache.containsKey(element)) {
 				FilteredCheckboxTreeItem item = itemCache.get(element);
+				assert item != null;
 				item.state = state ? CHECKED : NONE;
 			}
 			return super.setChecked(element, state);
@@ -251,7 +253,9 @@ public class FilteredCheckboxTree extends FilteredTree {
 			// Update the checked state
 			TreeItem treeItem = (TreeItem) item;
 			if (itemCache.containsKey(element)) {
-				String state = itemCache.get(element).state;
+				FilteredCheckboxTreeItem filteredCheckboxTreeItem = itemCache.get(element);
+				assert filteredCheckboxTreeItem != null;
+				String state = filteredCheckboxTreeItem.state;
 				if (state.equals(CHECKED_GRAYED)) {
 					treeItem.setGrayed(true);
 					treeItem.setChecked(true);
@@ -292,6 +296,7 @@ public class FilteredCheckboxTree extends FilteredTree {
 					new FilteredCheckboxTreeItem(item.getData(), getItemState(item), itemCache, null);
 				}
 				FilteredCheckboxTreeItem filteredCheckboxTreeItem = itemCache.get(item.getData());
+				assert filteredCheckboxTreeItem != null;
 				filteredCheckboxTreeItem.state = getItemState(item);
 				saveCheckedState(filteredCheckboxTreeItem, item);
 			}
@@ -308,6 +313,7 @@ public class FilteredCheckboxTree extends FilteredTree {
 					new FilteredCheckboxTreeItem(item.getData(), getItemState(item), itemCache, parent);
 				}
 				FilteredCheckboxTreeItem filteredCheckboxTreeItem = itemCache.get(item.getData());
+				assert filteredCheckboxTreeItem != null;
 				filteredCheckboxTreeItem.state = getItemState(item);
 				saveCheckedState(filteredCheckboxTreeItem, item);
 			}
