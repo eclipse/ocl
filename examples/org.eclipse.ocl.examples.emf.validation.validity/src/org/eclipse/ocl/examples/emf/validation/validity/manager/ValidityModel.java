@@ -789,7 +789,8 @@ public class ValidityModel
 					monitor.subTask("'" + nsURI + "'");
 					Iterable<ConstraintLocator> list = getConstraintLocators(nsURI);
 					if (list != null) {
-						@SuppressWarnings("null")@NonNull Set<Resource> ePackageResources = ePackage2resources.get(ePackage);
+						Set<Resource> ePackageResources = ePackage2resources.get(ePackage);
+						assert ePackageResources != null;
 						for (ConstraintLocator constraintLocator : list) {
 							if (monitor.isCanceled()) {
 								return null;

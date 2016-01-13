@@ -191,7 +191,7 @@ public interface ProjectManager extends Adapter
 		/**
 		 * Create an IResourceDescriptor for a projectRelativeGenModelUri comprsising a map of NsURI to className. 
 		 */
-		@NonNull IResourceDescriptor createResourceDescriptor(@NonNull String projectRelativeGenModelUri, @NonNull Map<URI, String> nsURI2className);
+		@NonNull IResourceDescriptor createResourceDescriptor(@NonNull String projectRelativeGenModelUri, @NonNull Map<URI, @NonNull String> nsURI2className);
 
 		/**
 		 * Return the physical location of this project.

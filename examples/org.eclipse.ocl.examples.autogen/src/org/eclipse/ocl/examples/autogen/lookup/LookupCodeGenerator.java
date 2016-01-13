@@ -400,7 +400,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	}
 	
 	protected void createCGPackageForVisitor(@NonNull CGModel cgModel, @NonNull String packageName, @NonNull String classNAme, org.eclipse.ocl.pivot.@NonNull Class asClass, 
-			@NonNull Map<Operation, Operation> envOperation2asOperation, @NonNull Map<Element,Element> reDefinitions) throws ParserException {
+			@NonNull Map<Operation, @NonNull Operation> envOperation2asOperation, @NonNull Map<Element,Element> reDefinitions) throws ParserException {
 		
 		CGPackage cgPackage = CGModelFactory.eINSTANCE.createCGPackage();
 		cgPackage.setName(visitorPackage);
@@ -413,10 +413,8 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		
 		rewriteVisitOperationBodies(reDefinitions, envOperation2asOperation);
 		Collection<Operation> asOperations = envOperation2asOperation.values();
-		if (asOperations != null) {
-			rewriteOperationCalls(asOperations);
-			convertOperations(cgClass, asOperations);
-		}
+		rewriteOperationCalls(asOperations);
+		convertOperations(cgClass, asOperations);
 		/*Resource dummyResource = EssentialOCLASResourceFactory.getInstance().createResource(URI.createURI("dummy.essentialocl"));
 		dummyResource.getContents().addAll(asOperations);		// PrettyPrinter needs containment*/
 	}
@@ -461,8 +459,8 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		return metamodelManager.createNullLiteralExp();
 	}
 
-	protected @NonNull Map<Operation, Operation> createUnqualifiedVisitOperationDeclarations(@NonNull Map<Element, Element> reDefinitions) throws ParserException {
-		Map<Operation,Operation> envOperation2asOperation = new HashMap<Operation,Operation>();
+	protected @NonNull Map<Operation, @NonNull Operation> createUnqualifiedVisitOperationDeclarations(@NonNull Map<Element, Element> reDefinitions) throws ParserException {
+		Map<Operation, @NonNull Operation> envOperation2asOperation = new HashMap<Operation, @NonNull Operation>();
 		for (@SuppressWarnings("null")org.eclipse.ocl.pivot.@NonNull Class asType : asPackage.getOwnedClasses()) {
 			for (Operation envOperation : asType.getOwnedOperations()) {
 				if (LookupClassContext.ENV_NAME.equals(envOperation.getName())) {
@@ -509,8 +507,8 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		return asOperation;
 	}
 	
-	protected @NonNull Map<Operation, Operation> createQualifiedVisitOperationDeclarations(@NonNull Map<Element, Element> reDefinitions) throws ParserException {
-		Map<Operation,Operation> envOperation2asOperation = new HashMap<Operation,Operation>();
+	protected @NonNull Map<Operation, @NonNull Operation> createQualifiedVisitOperationDeclarations(@NonNull Map<Element, Element> reDefinitions) throws ParserException {
+		Map<Operation, @NonNull Operation> envOperation2asOperation = new HashMap<Operation, @NonNull Operation>();
 		for (@SuppressWarnings("null")org.eclipse.ocl.pivot.@NonNull Class asType : asPackage.getOwnedClasses()) {
 			for (Operation envOperation : asType.getOwnedOperations()) {
 				if (LookupClassContext.QUALIFIED_ENV_NAME.equals(envOperation.getName())
@@ -558,8 +556,8 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		
 	}
 	
-	protected @NonNull Map<Operation, Operation> createExportedVisitOperationDeclarations(@NonNull Map<Element, Element> reDefinitions) throws ParserException {
-		Map<Operation,Operation> envOperation2asOperation = new HashMap<Operation,Operation>();
+	protected @NonNull Map<Operation, @NonNull Operation> createExportedVisitOperationDeclarations(@NonNull Map<Element, Element> reDefinitions) throws ParserException {
+		Map<Operation, @NonNull Operation> envOperation2asOperation = new HashMap<Operation, @NonNull Operation>();
 		for (@SuppressWarnings("null")org.eclipse.ocl.pivot.@NonNull Class asType : asPackage.getOwnedClasses()) {
 			for (Operation envOperation : asType.getOwnedOperations()) {
 				if (LookupClassContext.EXPORTED_ENV_NAME.equals(envOperation.getName())
@@ -810,9 +808,10 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	/**
 	 * Copy all the visitXXX operation bodies from the _env bodies replacing references to redefined parameters.
 	 */
-	protected void rewriteVisitOperationBodies(@NonNull Map<Element, Element> reDefinitions, @NonNull Map<Operation, Operation> envOperation2asOperation) throws ParserException {
+	protected void rewriteVisitOperationBodies(@NonNull Map<Element, Element> reDefinitions, @NonNull Map<Operation, @NonNull Operation> envOperation2asOperation) throws ParserException {
 		for (@SuppressWarnings("null")@NonNull Operation envOperation : envOperation2asOperation.keySet()) {
-			@SuppressWarnings("null")@NonNull Operation asOperation = envOperation2asOperation.get(envOperation);
+			Operation asOperation = envOperation2asOperation.get(envOperation);
+			assert asOperation != null;
 			LanguageExpression envSpecification = ClassUtil.nonNullState(envOperation.getBodyExpression());
 			ExpressionInOCL envExpressionInOCL = metamodelManager.parseSpecification(envSpecification);
 			Variable asElement = (Variable) reDefinitions.get(envExpressionInOCL.getOwnedContext());

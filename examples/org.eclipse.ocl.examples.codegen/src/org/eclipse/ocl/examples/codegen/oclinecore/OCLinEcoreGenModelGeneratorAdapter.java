@@ -673,6 +673,7 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 			    Map<@NonNull String, @NonNull String> results = stateAdapter.createFeatureBodies(genModel);
 				for (String key : results.keySet()) {
 					String oldBody = results.get(key);
+					assert oldBody != null;
 					String newBody = ImportUtils.rewriteManagedImports(oldBody, null);	// FIXME transfer imports between CG sessions
 					results.put(key, newBody);
 				}

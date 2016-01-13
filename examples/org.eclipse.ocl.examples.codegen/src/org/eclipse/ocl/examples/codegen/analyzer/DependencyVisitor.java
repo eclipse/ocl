@@ -193,7 +193,7 @@ public class DependencyVisitor extends AbstractExtendingCGModelVisitor<Object, C
 	}
 
 	public @NonNull List<CGValuedElement> getSortedDependencies(boolean isGlobal) {
-		final Map<CGValuedElement, Integer> dependencyDepths = new HashMap<CGValuedElement, Integer>();
+		final Map<CGValuedElement, @NonNull Integer> dependencyDepths = new HashMap<CGValuedElement, @NonNull Integer>();
 		for (@SuppressWarnings("null")@NonNull CGValuedElement cgElement : directDependencies.keySet()) {
 			computeDepths(cgElement, dependencyDepths, isGlobal);
 		}
@@ -208,8 +208,9 @@ public class DependencyVisitor extends AbstractExtendingCGModelVisitor<Object, C
 		{
 			@Override
 			public int compare(CGValuedElement o1, CGValuedElement o2) {
-				int d1 = dependencyDepths.get(o1);
-				int d2 = dependencyDepths.get(o2);
+				Integer d1 = dependencyDepths.get(o1);
+				Integer d2 = dependencyDepths.get(o2);
+				assert (d1 != null) && (d2 != null);
 				if (d1 != d2) {
 					return d1 - d2;
 				}

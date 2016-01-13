@@ -42,7 +42,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 		«FOR pkge : sortedPackages»
 
-			«FOR type : pkge2classTypes.get(pkge)»
+			«FOR type : ClassUtil.nullFree(pkge2classTypes.get(pkge))»
 				private final @NonNull «type.eClass.name» «type.getPrefixedSymbolName("_" + type.partialName())» = create«type.
 				eClass.name»("«type.name»");
 			«ENDFOR»
@@ -57,12 +57,12 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 		«FOR pkge : sortedPackages»
 
-			«FOR type : pkge2collectionTypes.get(pkge)»«var typeName = type.getPrefixedSymbolName("_" + type.getName() + "_" + type.getElementType().partialName() + (if (type.isIsNullFree()) "_NullFree" else "") )»
+			«FOR type : ClassUtil.nullFree(pkge2collectionTypes.get(pkge))»«var typeName = type.getPrefixedSymbolName("_" + type.getName() + "_" + type.getElementType().partialName() + (if (type.isIsNullFree()) "_NullFree" else "") )»
 			«IF type.getOwnedSignature() != null»
 			private final @NonNull «type.eClass.name» «typeName» = create«type.eClass.name»("«type.name»"/*«type.elementType.name»*/, "«type.lower.toString()»", "«type.upper.toString()»"«IF type.getOwnedSignature() != null»«FOR templateParameter : type.getOwnedSignature().getOwnedParameters()», «templateParameter.getSymbolName()»«ENDFOR»«ENDIF»);
 			«ENDIF»
 			«ENDFOR»
-			«FOR type : pkge2collectionTypes.get(pkge)»«var typeName = type.getPrefixedSymbolName("_" + type.getName() + "_" + type.getElementType().partialName() + (if (type.isIsNullFree()) "_NullFree" else "") )»
+			«FOR type : ClassUtil.nullFree(pkge2collectionTypes.get(pkge))»«var typeName = type.getPrefixedSymbolName("_" + type.getName() + "_" + type.getElementType().partialName() + (if (type.isIsNullFree()) "_NullFree" else "") )»
 			«IF type.getOwnedSignature() == null»
 			private final @NonNull «type.eClass.name» «typeName» = create«type.eClass.name»(«type.getUnspecializedElement().getSymbolName()», «type.elementType.getSymbolName()»);
 			«ENDIF»
@@ -78,7 +78,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 		
 		«FOR pkge : sortedPackages»
-			«FOR enumeration : pkge2enumerations.get(pkge)»
+			«FOR enumeration : ClassUtil.nullFree(pkge2enumerations.get(pkge))»
 				«var enumerationName = enumeration.getPrefixedSymbolName("_" + enumeration.partialName())»
 				private final @NonNull Enumeration «enumerationName» = createEnumeration("«enumeration.name»");
 				«FOR enumerationLiteral : enumeration.ownedLiterals»
@@ -97,13 +97,13 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 
 		«FOR pkge : sortedPackages»
-			«FOR type : pkge2mapTypes.get(pkge)»
+			«FOR type : ClassUtil.nullFree(pkge2mapTypes.get(pkge))»
 				«IF type.getOwnedSignature() != null»
 					private final @NonNull «type.eClass.name» «type.getPrefixedSymbolName("_" + type.getName() + "_" + type.getKeyType().partialName() + "_" + type.getValueType().partialName())» = create«type.
 					eClass.name»("«type.name»"/*«type.keyType.name» «type.valueType.name»*/«IF type.getOwnedSignature() != null»«FOR templateParameter : type.getOwnedSignature().getOwnedParameters()», «templateParameter.getSymbolName()»«ENDFOR»«ENDIF»);
 				«ENDIF»
 			«ENDFOR»
-			«FOR type : pkge2mapTypes.get(pkge)»
+			«FOR type : ClassUtil.nullFree(pkge2mapTypes.get(pkge))»
 				«IF type.getOwnedSignature() == null»
 					private final @NonNull «type.eClass.name» «type.getPrefixedSymbolName("_" + type.getName() + "_" + type.getKeyType().partialName() + "_" + type.getValueType().partialName())» = create«type.
 					eClass.name»(«type.getUnspecializedElement().getSymbolName()», «type.keyType.getSymbolName()», «type.valueType.getSymbolName()»);
@@ -120,7 +120,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 			«FOR pkge : sortedPackages»
 
-				«FOR type : pkge2primitiveTypes.get(pkge)»
+				«FOR type : ClassUtil.nullFree(pkge2primitiveTypes.get(pkge))»
 				private final @NonNull PrimitiveType «type.getPrefixedSymbolName("_" + type.partialName())» = createPrimitiveType("«type.name»");
 				«ENDFOR»
 			«ENDFOR»
@@ -134,7 +134,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 			«FOR pkge : sortedPackages»
 
-				«FOR property : pkge2properties.get(pkge)»
+				«FOR property : ClassUtil.nullFree(pkge2properties.get(pkge))»
 				private final @NonNull Property «property.getPrefixedSymbolName("pr_" + property.partialName())» = createProperty(«property.getNameLiteral()», «property.type.getSymbolName()»);
 				«ENDFOR»
 			«ENDFOR»
@@ -188,7 +188,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 				«FOR pkge : sortedPackages»
 
 					ownedClasses = «pkge.getSymbolName()».getOwnedClasses();
-					«FOR type : pkge2classTypes.get(pkge)»
+					«FOR type : ClassUtil.nullFree(pkge2classTypes.get(pkge))»
 						ownedClasses.add(type = «type.getSymbolName()»);
 						«IF !(type instanceof AnyType)»
 							«type.emitSuperClasses("type")»
@@ -212,7 +212,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 				«FOR pkge : sortedPackages»
 
 					ownedClasses = «pkge.getSymbolName()».getOwnedClasses();
-					«FOR type : pkge2collectionTypes.get(pkge)»
+					«FOR type : ClassUtil.nullFree(pkge2collectionTypes.get(pkge))»
 						ownedClasses.add(type = «type.getSymbolName()»);
 						«IF type.isNullFree»
 						type.setIsNullFree(true);
@@ -250,7 +250,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 				«FOR pkge : sortedPackages»
 
 					ownedClasses = «pkge.getSymbolName()».getOwnedClasses();
-					«FOR enumeration : pkge2enumerations.get(pkge)»
+					«FOR enumeration : ClassUtil.nullFree(pkge2enumerations.get(pkge))»
 						ownedClasses.add(type = «enumeration.getSymbolName()»);
 						enumerationLiterals = type.getOwnedLiterals();
 						«FOR enumerationLiteral : enumeration.ownedLiterals»
@@ -268,7 +268,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		if (externals.isEmpty()) return "";
 		'''
 
-			«FOR name : externals»«var element = name2external.get(name)»
+			«FOR name : externals»«var element = ClassUtil.nonNullState(name2external.get(name))»
 			«IF element instanceof Package»
 			private final @NonNull Package «getPrefixedSymbolName(element, name)» = «element.getExternalReference()»;
 			«ELSE»
@@ -286,7 +286,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 
 			«FOR pkge : sortedPackages»
-				«FOR iteration : pkge2iterations.get(pkge)»
+				«FOR iteration : ClassUtil.nullFree(pkge2iterations.get(pkge))»
 				private final @NonNull Iteration «iteration.getPrefixedSymbolName("it_" + iteration.partialName())» = createIteration("«iteration.
 				name»", «iteration.type.getSymbolName()», «IF iteration.implementationClass != null»"«iteration.
 				implementationClass»", «iteration.implementationClass».INSTANCE«ELSE»null, null«ENDIF»«IF iteration.getOwnedSignature() != null»«FOR templateParameter : iteration.getOwnedSignature().getOwnedParameters()», «templateParameter.getSymbolName()»«ENDFOR»«ENDIF»);
@@ -299,7 +299,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 				Iteration iteration;
 				Parameter parameter;
 				«FOR pkge : sortedPackages»
-					«FOR iteration : pkge2iterations.get(pkge)»«var newType = iteration.getOwningClass()»
+					«FOR iteration : ClassUtil.nullFree(pkge2iterations.get(pkge))»«var newType = iteration.getOwningClass()»
 					«IF newType != oldType»
 
 						ownedIterations = «(oldType = newType).getSymbolName()».getOwnedOperations();
@@ -395,7 +395,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 				«FOR pkge : sortedPackages»
 
 					ownedClasses = «pkge.getSymbolName()».getOwnedClasses();
-					«FOR type : pkge2mapTypes.get(pkge)»
+					«FOR type : ClassUtil.nullFree(pkge2mapTypes.get(pkge))»
 						ownedClasses.add(type = «type.getSymbolName()»);
 						«type.emitSuperClasses("type")»
 					«ENDFOR»
@@ -412,7 +412,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 		'''
 
 			«FOR pkge : sortedPackages»
-				«FOR operation : pkge2operations.get(pkge)»
+				«FOR operation : ClassUtil.nullFree(pkge2operations.get(pkge))»
 				private final @NonNull Operation «operation.getPrefixedSymbolName("op_" + operation.partialName())» = createOperation("«operation.
 				name»", «operation.type.getSymbolName()», «IF operation.implementationClass != null»"«operation.
 				implementationClass»", «operation.implementationClass».INSTANCE«ELSE»null, null«ENDIF»«IF operation.getOwnedSignature() != null»«FOR templateParameter : operation.getOwnedSignature().getOwnedParameters()», «templateParameter.getSymbolName()»«ENDFOR»«ENDIF»);
@@ -425,7 +425,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 				Operation operation;
 				Parameter parameter;
 				«FOR pkge : sortedPackages»
-					«FOR operation : pkge2operations.get(pkge)»«var newType = operation.getOwningClass()»
+					«FOR operation : ClassUtil.nullFree(pkge2operations.get(pkge))»«var newType = operation.getOwningClass()»
 					«IF newType != oldType»
 
 						ownedOperations = «(oldType = newType).getSymbolName()».getOwnedOperations();
@@ -531,7 +531,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 				«FOR pkge : sortedPackages»
 
 					ownedClasses = «pkge.getSymbolName()».getOwnedClasses();
-					«FOR type : pkge2primitiveTypes.get(pkge)»
+					«FOR type : ClassUtil.nullFree(pkge2primitiveTypes.get(pkge))»
 						«var superClasses = type.getSuperclassesInPackage()»
 						ownedClasses.add(type = «type.getSymbolName()»);
 						«FOR superClass : superClasses»
@@ -554,7 +554,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 				List<Property> ownedProperties;
 				Property property;
 				«FOR pkge : sortedPackages»
-					«FOR property : pkge2properties.get(pkge)»«var newType = property.getOwningClass()»
+					«FOR property : ClassUtil.nullFree(pkge2properties.get(pkge))»«var newType = property.getOwningClass()»
 					«IF newType != oldType»
 
 						ownedProperties = «(oldType = newType).getSymbolName()».getOwnedProperties();

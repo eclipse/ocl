@@ -45,9 +45,9 @@ public class EValidatorConstraintLocator extends AbstractConstraintLocator
 {
 	public static @NonNull EValidatorConstraintLocator INSTANCE = new EValidatorConstraintLocator();
 	
-	public @Nullable Map<EObject, List<LeafConstrainingNode>> getConstraints(@NonNull ValidityModel validityModel,
+	public @Nullable Map<EObject, @NonNull List<LeafConstrainingNode>> getConstraints(@NonNull ValidityModel validityModel,
 			@NonNull EPackage ePackage, @NonNull Set<Resource> resources, @NonNull Monitor monitor) {
-		Map<EObject, List<LeafConstrainingNode>> map = null;
+		Map<EObject, @NonNull List<LeafConstrainingNode>> map = null;
 		Object object = EValidator.Registry.INSTANCE.get(ePackage);
 		if (object instanceof EValidator) {
 			map = getConstraints(map, validityModel, ePackage, (EValidator) object, monitor);
@@ -61,6 +61,7 @@ public class EValidatorConstraintLocator extends AbstractConstraintLocator
 					return null;
 				}
 				List<LeafConstrainingNode> oldList = map.get(eClassifier);
+				assert oldList != null;
 				if (oldList.size() > 1) {
 					ArrayList<LeafConstrainingNode> newList = new ArrayList<LeafConstrainingNode>(oldList);
 					for (LeafConstrainingNode constraint : newList) {
@@ -78,7 +79,7 @@ public class EValidatorConstraintLocator extends AbstractConstraintLocator
 		return map;
 	}
 
-	protected @Nullable Map<EObject, List<LeafConstrainingNode>> getConstraints(@Nullable Map<EObject, List<LeafConstrainingNode>> map,
+	protected @Nullable Map<EObject, @NonNull List<LeafConstrainingNode>> getConstraints(@Nullable Map<EObject, @NonNull List<LeafConstrainingNode>> map,
 			@NonNull ValidityModel validityModel, @NonNull EPackage ePackage, @NonNull EValidator eValidator, @NonNull Monitor monitor) {
 		if (eValidator instanceof ComposedEValidator) {
 			for (@SuppressWarnings("null")@NonNull EValidator child : ((ComposedEValidator) eValidator).getChildren()) {
@@ -162,7 +163,7 @@ public class EValidatorConstraintLocator extends AbstractConstraintLocator
 		return ((Method)constrainingObject).toString();
 	}
 
-	protected @NonNull String print(@NonNull Map<EClassifier, List<LeafConstrainingNode>> map) {
+	protected @NonNull String print(@NonNull Map<EClassifier, @NonNull List<LeafConstrainingNode>> map) {
 		StringBuilder s = new StringBuilder();
 		ArrayList<EClassifier> sortedList = new ArrayList<EClassifier>(map.keySet());
 		Collections.sort(sortedList, new Comparator<EClassifier>()
@@ -173,7 +174,9 @@ public class EValidatorConstraintLocator extends AbstractConstraintLocator
 		});
 		for (EClassifier eClassifier : sortedList) {
 			s.append("\t" + eClassifier.getName() + ":");
-			for (LeafConstrainingNode constraint : map.get(eClassifier)) {
+			List<LeafConstrainingNode> constraints = map.get(eClassifier);
+			assert constraints != null;
+			for (LeafConstrainingNode constraint : constraints) {
 				s.append(" \'" + constraint.getLabel() + "'");
 			}
 			s.append("\n");

@@ -84,7 +84,7 @@ import org.eclipse.xtext.util.Strings;
 public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowComponent
 {
 	private final @NonNull Map<Element, String> element2moniker = new HashMap<Element, String>();
-	private final @NonNull Map<NamedElement, String> external2name = new HashMap<NamedElement, String>();
+	private final @NonNull Map<NamedElement, @NonNull String> external2name = new HashMap<NamedElement, @NonNull String>();
 	protected final @NonNull Map<String, NamedElement> name2external = new HashMap<String, NamedElement>();
 	protected final @NonNull Map<String, String> generatedClassNameMap = new HashMap<String, String>();
 	protected EnvironmentFactoryInternal environmentFactory;
@@ -155,6 +155,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 			}
 			String m1 = external2name.get(o1); 
 			String m2 = external2name.get(o2);
+			assert (m1 != null) && (m2 != null);
 			return m1.compareTo(m2);
 		}
 

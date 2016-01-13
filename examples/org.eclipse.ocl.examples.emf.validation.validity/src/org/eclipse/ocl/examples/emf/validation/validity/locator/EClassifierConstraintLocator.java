@@ -33,7 +33,7 @@ public class EClassifierConstraintLocator extends AbstractConstraintLocator
 {
 	public static @NonNull EClassifierConstraintLocator INSTANCE = new EClassifierConstraintLocator();
 	
-	public @Nullable Map<EObject, List<LeafConstrainingNode>> getConstraints(@NonNull ValidityModel validityModel,
+	public @Nullable Map<EObject, @NonNull List<LeafConstrainingNode>> getConstraints(@NonNull ValidityModel validityModel,
 			@NonNull EPackage ePackage, @NonNull Set<Resource> resources, @NonNull Monitor monitor) {
 /*		EClassifier eClassifier = (EClassifier) eObject;
 		List<Constraint> constraints = null;

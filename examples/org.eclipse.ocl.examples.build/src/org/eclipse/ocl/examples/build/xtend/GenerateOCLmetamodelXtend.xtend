@@ -12,6 +12,7 @@ package org.eclipse.ocl.examples.build.xtend
 
 import org.eclipse.ocl.pivot.Model
 import org.eclipse.ocl.pivot.Package
+import org.eclipse.ocl.pivot.utilities.ClassUtil
 
 public class GenerateOCLmetamodelXtend extends GenerateOCLmetamodel
 {
@@ -22,7 +23,7 @@ public class GenerateOCLmetamodelXtend extends GenerateOCLmetamodel
 		'''
 		«FOR pkge : sortedPackages»
 
-			«FOR type : pkge2classTypes.get(pkge)»
+			«FOR type : ClassUtil.nullFree(pkge2classTypes.get(pkge))»
 				private final @NonNull «type.eClass().name» «type.getPrefixedSymbolName("_"+type.partialName())» = create«type.eClass().name»(«getEcoreLiteral(type)»);
 			«ENDFOR»
 		«ENDFOR»
@@ -36,7 +37,7 @@ public class GenerateOCLmetamodelXtend extends GenerateOCLmetamodel
 		'''
 
 		«FOR pkge : sortedPackages»
-			«FOR enumeration : pkge2enumerations.get(pkge)»
+			«FOR enumeration : ClassUtil.nullFree(pkge2enumerations.get(pkge))»
 				«var enumerationName = enumeration.getPrefixedSymbolName("_" + enumeration.partialName())»
 				private final @NonNull Enumeration «enumerationName» = createEnumeration(«getEcoreLiteral(enumeration)»);
 				«FOR enumerationLiteral : enumeration.ownedLiterals»

@@ -65,7 +65,7 @@ public interface ConstraintLocator
 	 * Return a constrainedType-to-constraint map for all types in the given resources that have an ePackage whose URI complies with
 	 * the registration of this ConstraintLocator. The validityModel is used to create the LeafConstrainingNodes for each constraint.
 	 */
-	@Nullable Map<EObject, List<LeafConstrainingNode>> getConstraints(@NonNull ValidityModel validityModel, @NonNull EPackage ePackage,
+	@Nullable Map<EObject, @NonNull List<LeafConstrainingNode>> getConstraints(@NonNull ValidityModel validityModel, @NonNull EPackage ePackage,
 			@NonNull Set<Resource> resources, @NonNull Monitor monitor);
 
 	/**

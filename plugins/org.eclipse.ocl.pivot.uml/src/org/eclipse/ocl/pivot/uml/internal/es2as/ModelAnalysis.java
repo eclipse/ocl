@@ -99,7 +99,7 @@ public class ModelAnalysis
 	/**
 	 * Map from the each package to all the profiles aplied to the package.
 	 */
-	private final @NonNull Map<org.eclipse.ocl.pivot.Package, Set<Profile>> package2appliedProfileClosure = new HashMap<org.eclipse.ocl.pivot.Package, Set<Profile>>();
+	private final @NonNull Map<org.eclipse.ocl.pivot.Package, @NonNull Set<Profile>> package2appliedProfileClosure = new HashMap<org.eclipse.ocl.pivot.Package, @NonNull Set<Profile>>();
 
 	private final @NonNull Map<EClass, Type> eClass2metatype = new HashMap<EClass, Type>();
 
@@ -168,10 +168,11 @@ public class ModelAnalysis
 	 */
 	private void computeExplicitElementExtensions(@NonNull Map<Element, Map<Stereotype, ElementExtension>> element2stereotype2extension,
 			@NonNull Map<EObject, List<org.eclipse.uml2.uml.Element>> umlStereotypeApplication2umlStereotypedElements,
-			@NonNull Map<Element, List<EObject>> asElement2umlStereotypeApplications) {
+			@NonNull Map<Element, @NonNull List<EObject>> asElement2umlStereotypeApplications) {
 		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 		for (@SuppressWarnings("null")@NonNull Element asStereotypedElement : asElement2umlStereotypeApplications.keySet()) {
 			List<EObject> umlStereotypeApplications = asElement2umlStereotypeApplications.get(asStereotypedElement);
+			assert umlStereotypeApplications != null;
 			Map<Stereotype, ElementExtension> stereotype2extension = element2stereotype2extension.get(asStereotypedElement);
 			if (stereotype2extension == null) {
 				stereotype2extension = new HashMap<Stereotype, ElementExtension>();
@@ -179,8 +180,8 @@ public class ModelAnalysis
 			}
 			for (@SuppressWarnings("null")@NonNull EObject umlStereotypeApplication : umlStereotypeApplications) {
 //					EClass eClass = umlStereotypeApplication.eClass();
-				@SuppressWarnings("null")@NonNull List<org.eclipse.uml2.uml.Element> umlStereotypedElements = umlStereotypeApplication2umlStereotypedElements.get(umlStereotypeApplication);
-//					assert umlStereotypedElements != null;
+				List<org.eclipse.uml2.uml.Element> umlStereotypedElements = umlStereotypeApplication2umlStereotypedElements.get(umlStereotypeApplication);
+					assert umlStereotypedElements != null;
 				Stereotype asStereotype = converter.resolveStereotype(umlStereotypeApplication, umlStereotypedElements);
 				if (asStereotype == null) {
 					asStereotype = converter.resolveStereotype(umlStereotypeApplication, umlStereotypedElements);		// FIXME debugging
@@ -296,12 +297,12 @@ public class ModelAnalysis
 	 * and explicit ElementsExtenmsions for all the applied Stereotype applications.
 	 * @param umlStereotypeApplications 
 	 */
-	private void installElementExtensionPropertyValues(@NonNull Map<Element, Map<Stereotype, ElementExtension>> element2stereotype2extension,
-			@NonNull Map<EObject, List<org.eclipse.uml2.uml.Element>> umlStereotypeApplication2umlStereotypedElements) {
+	private void installElementExtensionPropertyValues(@NonNull Map<Element, @NonNull Map<Stereotype, ElementExtension>> element2stereotype2extension,
+			@NonNull Map<EObject, @NonNull List<org.eclipse.uml2.uml.Element>> umlStereotypeApplication2umlStereotypedElements) {
 		//
 		// Compute the list of UML stereotype application for each stereotyped pivot element.
 		//
-		Map<Element, List<EObject>> asElement2umlStereotypeApplications = resolveStereotypeApplications(umlStereotypeApplication2umlStereotypedElements);
+		Map<Element, @NonNull List<EObject>> asElement2umlStereotypeApplications = resolveStereotypeApplications(umlStereotypeApplication2umlStereotypedElements);
 		//
 		//	Compute and install the ElementExtensions from required ExtensionEnds and Stereotype applications
 		//
@@ -319,6 +320,7 @@ public class ModelAnalysis
 		//
 		for (@SuppressWarnings("null")@NonNull Element asElement : element2stereotype2extension.keySet()) {
 			Map<Stereotype, ElementExtension> stereotype2extension = element2stereotype2extension.get(asElement);
+			assert stereotype2extension != null;
 			List<ElementExtension> newElementExtensions = new ArrayList<ElementExtension>(stereotype2extension.values());
 			List<ElementExtension> oldElementExtensions = asElement.getOwnedExtensions();
 			converter.refreshList(oldElementExtensions, newElementExtensions);
@@ -352,10 +354,11 @@ public class ModelAnalysis
 //				Map<Element, Map<Stereotype, ElementExtension>> element2stereotype2extension = new HashMap<Element, Map<Stereotype, ElementExtension>>();
 //		for (org.eclipse.ocl.pivot.Package asPackage : package2appliedProfileClosure.keySet()) {
 //			if ((asPackage != null) /*&& !(asPackage instanceof Profile)*/) {
-		Map<Element, Map<Stereotype, ElementExtension>> element2stereotype2extension = new HashMap<Element, Map<Stereotype, ElementExtension>>();
+		Map<Element, @NonNull Map<Stereotype, ElementExtension>> element2stereotype2extension = new HashMap<Element, @NonNull Map<Stereotype, ElementExtension>>();
 		for (org.eclipse.ocl.pivot.Package asPackage : package2appliedProfileClosure.keySet()) {
 			if ((asPackage != null) && !(asPackage instanceof Profile)) {
-				@SuppressWarnings("null")@NonNull Set<Profile> appliedProfileClosure = package2appliedProfileClosure.get(asPackage);
+				Set<Profile> appliedProfileClosure = package2appliedProfileClosure.get(asPackage);
+				assert appliedProfileClosure != null;
 				Map<Type, Set<StereotypeExtender>> metatype2typeExtensions = profileAnalysis.computeMetatypes2typeExtensions(appliedProfileClosure);
 				printMetatypes2StereotypeExtensions(asPackage, metatype2typeExtensions);
 				for (TreeIterator<EObject> tit = asPackage.eAllContents(); tit.hasNext(); ) {
@@ -386,7 +389,7 @@ public class ModelAnalysis
 		}
 		List<EObject> umlStereotypeApplications2 = umlStereotypeApplications;
 		if (umlStereotypeApplications2 != null) {
-			Map<EObject, List<org.eclipse.uml2.uml.Element>> umlStereotypeApplication2umlStereotypedElements = UML2ASUtil.computeAppliedStereotypes(umlStereotypeApplications2);
+			Map<EObject, @NonNull List<org.eclipse.uml2.uml.Element>> umlStereotypeApplication2umlStereotypedElements = UML2ASUtil.computeAppliedStereotypes(umlStereotypeApplications2);
 			installElementExtensionPropertyValues(element2stereotype2extension, umlStereotypeApplication2umlStereotypedElements);
 		}
 //			Map<Metaclass<?>, List<Property>> metaclass2properties = new HashMap<Metaclass<?>, List<Property>>();
@@ -419,7 +422,7 @@ public class ModelAnalysis
 	}
 
 	protected void printMetatypes2StereotypeExtensions(org.eclipse.ocl.pivot.@NonNull Package asPackage,
-			@NonNull Map<Type, Set<StereotypeExtender>> metatype2typeExtensions) {
+			@NonNull Map<Type, @NonNull Set<StereotypeExtender>> metatype2typeExtensions) {
 		if (UML2AS.TYPE_EXTENSIONS.isActive()) {
 			StringBuffer s = new StringBuffer();
 			s.append(NameUtil.qualifiedNameFor(asPackage) + " : " + asPackage.getURI());
@@ -429,6 +432,7 @@ public class ModelAnalysis
 				if (metatype != null) {
 					s.append("\n\t" + NameUtil.qualifiedNameFor(metatype) + " ++"); //+ " : " + asProfile.getNsURI());
 					Set<StereotypeExtender> typeExtensions = metatype2typeExtensions.get(metatype);
+					assert typeExtensions != null;
 					List<Stereotype> stereotypes = new ArrayList<Stereotype>();
 					for (StereotypeExtender typeExtension : typeExtensions) {
 						stereotypes.add(typeExtension.getOwningStereotype());
@@ -450,10 +454,11 @@ public class ModelAnalysis
 	 * of stereotyped UML elements for each UML stereotype application.
 	 * @param umlStereotypeApplications 
 	 */
-	private @NonNull Map<Element, List<EObject>> resolveStereotypeApplications(@NonNull Map<EObject, List<org.eclipse.uml2.uml.Element>> umlStereotypeApplication2umlStereotypedElements) {
-		Map<Element, List<EObject>> asElement2umlStereotypeApplications = new HashMap<Element, List<EObject>>();
+	private @NonNull Map<Element, @NonNull List<EObject>> resolveStereotypeApplications(@NonNull Map<EObject, @NonNull List<org.eclipse.uml2.uml.Element>> umlStereotypeApplication2umlStereotypedElements) {
+		Map<Element, @NonNull List<EObject>> asElement2umlStereotypeApplications = new HashMap<Element, @NonNull List<EObject>>();
 		for (@SuppressWarnings("null")@NonNull EObject umlStereotypeApplication : umlStereotypeApplication2umlStereotypedElements.keySet()) {
-			@SuppressWarnings("null")@NonNull List<org.eclipse.uml2.uml.Element> umlStereotypedElements = umlStereotypeApplication2umlStereotypedElements.get(umlStereotypeApplication);
+			List<org.eclipse.uml2.uml.Element> umlStereotypedElements = umlStereotypeApplication2umlStereotypedElements.get(umlStereotypeApplication);
+			assert umlStereotypedElements != null;
 			for (@SuppressWarnings("null")org.eclipse.uml2.uml.@NonNull Element umlStereotypedElement : umlStereotypedElements) {
 				Element asStereotypedElement = converter.getCreated(Element.class, umlStereotypedElement);
 				if (asStereotypedElement != null) {

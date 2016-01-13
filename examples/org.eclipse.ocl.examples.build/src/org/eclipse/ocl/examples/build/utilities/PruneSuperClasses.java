@@ -31,6 +31,7 @@ import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.WorkflowComponentWithModelSlot;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
+import org.eclipse.jdt.annotation.NonNull;
 
 /**
  * Alphabeticizes a designated <tt>modelSlot</tt> so that primitive types
@@ -41,7 +42,7 @@ public class PruneSuperClasses extends WorkflowComponentWithModelSlot
 {
 	private static class Orderer implements Comparator<EClass>
 	{
-		private Map<String, Integer> ordering = new HashMap<String, Integer>();
+		private Map<String, @NonNull Integer> ordering = new HashMap<String, @NonNull Integer>();
 
 		public Orderer(List<String> orderedNames, List<EClass> otherClasses) {
 			int order = 0;
@@ -62,6 +63,7 @@ public class PruneSuperClasses extends WorkflowComponentWithModelSlot
 			String n2 = o2.getName();
 			Integer i1 = ordering.get(n1);
 			Integer i2 = ordering.get(n2);
+			assert (i1 !=null) && (i2 != null);
 			return i1 - i2;
 		}
 		

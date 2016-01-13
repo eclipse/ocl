@@ -49,6 +49,7 @@ import org.eclipse.ocl.pivot.internal.utilities.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2AS;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.xtext.base.ui.model.BaseCSorASDocumentProvider;
@@ -264,7 +265,7 @@ public class OCLinEcoreDocumentProvider extends BaseCSorASDocumentProvider
 				displayText = string;
 			}
 			else if (inputStream.available() == 0) {		// Empty document
-				URI uri = uriMap.get(document);
+				URI uri = ClassUtil.nonNullState(uriMap.get(document));
 				Resource.Factory factory = Resource.Factory.Registry.INSTANCE.getFactory(uri);
 				if (factory instanceof EcoreResourceFactoryImpl) {
 					persistAs = PERSIST_AS_ECORE;

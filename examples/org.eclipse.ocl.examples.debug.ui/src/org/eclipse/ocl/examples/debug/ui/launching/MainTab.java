@@ -345,7 +345,7 @@ public class MainTab extends AbstractMainTab implements OCLLaunchConstants
 		if ((0 <= expressionIndex) && (expressionIndex < expressionCombo.getItemCount())) {
 			String expressionText = expressionCombo.getItem(expressionIndex);
 			URI expressionURI = expression2uri.get(expressionText);
-			configuration.setAttribute(CONSTRAINT_URI, expressionURI.toString());
+			configuration.setAttribute(CONSTRAINT_URI, String.valueOf(expressionURI));
 			configuration.removeAttribute(OCL_KEY);
 		}
 		else {
@@ -356,7 +356,7 @@ public class MainTab extends AbstractMainTab implements OCLLaunchConstants
 		if ((0 <= elementIndex) && (elementIndex < elementCombo.getItemCount())) {
 			String contextText = elementCombo.getItem(elementIndex);
 			URI contextURI = element2uri.get(contextText);
-			configuration.setAttribute(CONTEXT_URI, contextURI.toString());
+			configuration.setAttribute(CONTEXT_URI, String.valueOf(contextURI));
 			configuration.removeAttribute(MODEL_URI);
 		}
 		else {

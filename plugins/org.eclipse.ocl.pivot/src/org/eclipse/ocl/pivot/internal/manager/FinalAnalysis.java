@@ -34,7 +34,7 @@ public class FinalAnalysis
 {
 	protected final @NonNull CompleteModelInternal completeModel;
 	protected final @NonNull PivotMetamodelManager metamodelManager;
-	private final @NonNull Map<CompleteClass, Set<CompleteClass>> superCompleteClass2subCompleteClasses = new HashMap<CompleteClass, Set<CompleteClass>>();
+	private final @NonNull Map<CompleteClass, @NonNull Set<CompleteClass>> superCompleteClass2subCompleteClasses = new HashMap<CompleteClass, @NonNull Set<CompleteClass>>();
 	private final @NonNull Map<Operation, Set<Operation>> operation2overrides = new HashMap<Operation, Set<Operation>>();
 
 	public FinalAnalysis(@NonNull CompleteModelInternal completeModel) {
@@ -54,6 +54,7 @@ public class FinalAnalysis
 		}
 		for (CompleteClass superCompleteClass : superCompleteClass2subCompleteClasses.keySet()) {
 			Set<CompleteClass> subCompleteClasses = superCompleteClass2subCompleteClasses.get(superCompleteClass);
+			assert subCompleteClasses != null;
 			for (Operation domainOperation : superCompleteClass.getOperations(null)) {
 				String opName = domainOperation.getName();
 				ParametersId parametersId = domainOperation.getParametersId();
@@ -115,7 +116,7 @@ public class FinalAnalysis
 	
 	public boolean isFinal(@NonNull CompleteClass completeClass) {
 		Set<CompleteClass> subCompleteClasses = superCompleteClass2subCompleteClasses.get(completeClass);
-		return subCompleteClasses.size() <= 1;
+		return (subCompleteClasses != null) && (subCompleteClasses.size() <= 1);
 	}
 	
 	public boolean isFinal(@NonNull Operation operation) {

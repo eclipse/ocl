@@ -22,6 +22,7 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -232,7 +233,9 @@ public class IdAssigner extends AbstractWorkflowComponent
 			    	}
 		    	}
 	    		if (eReplacement != null) {
-		    		for (EStructuralFeature.Setting eSetting : map.get(eObject)) {
+		    		Collection<Setting> eSettings = map.get(eObject);
+		    		assert eSettings != null;
+					for (EStructuralFeature.Setting eSetting : eSettings) {
 		    			if (eSetting instanceof DerivedEObjectEList<?>) {}
 		    			else if (eSetting instanceof EcoreEList.UnmodifiableEList<?>) {}
 		    			else {
@@ -249,6 +252,7 @@ public class IdAssigner extends AbstractWorkflowComponent
 		}
 		for (UMLResource fromResource : resourceMap.keySet()) {
 			UMLResource toResource = resourceMap.get(fromResource);
+			assert toResource != null;
 			toResource.getContents().addAll(fromResource.getContents());
 			if (assignFlatIds) {
 				for (TreeIterator<EObject> tit = toResource.getAllContents(); tit.hasNext(); ) {

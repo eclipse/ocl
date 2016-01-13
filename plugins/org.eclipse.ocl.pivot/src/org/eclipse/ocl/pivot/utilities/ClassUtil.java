@@ -218,8 +218,8 @@ public class ClassUtil
 	 * @since 1.1
 	 */
 	@SuppressWarnings("null")
-	public static <T> @NonNull List<@NonNull T> nullFree(@NonNull List<T> nullFreeList) {
-		return nullFreeList;
+	public static <T> @NonNull List<@NonNull T> nullFree(@Nullable List<T> nullFreeList) {
+		return nullFreeList != null ? nullFreeList : Collections.emptyList();
 	}
 
 	/**

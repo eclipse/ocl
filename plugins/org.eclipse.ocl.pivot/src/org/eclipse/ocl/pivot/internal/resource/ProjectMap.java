@@ -194,7 +194,7 @@ public class ProjectMap extends StandaloneProjectMap
 	protected void scanGenModels(@NonNull SAXParser saxParser) {
 		URIConverter uriConverter = new ExtensibleURIConverterImpl();
 		Map<String, URI> ePackageNsURIToGenModelLocationMap = EMF_2_9.EcorePlugin.getEPackageNsURIToGenModelLocationMap(false);
-		Map<URI, Map<URI, String>> genModel2nsURI2className = new HashMap<URI, Map<URI, String>>();
+		Map<URI, @NonNull Map<URI, String>> genModel2nsURI2className = new HashMap<URI, @NonNull Map<URI, String>>();
 		for (String ePackageNsURI : ePackageNsURIToGenModelLocationMap.keySet()) {
 			URI genModelURI = ePackageNsURIToGenModelLocationMap.get(ePackageNsURI);
 			if (genModelURI != null) {
@@ -209,7 +209,8 @@ public class ProjectMap extends StandaloneProjectMap
 		for (@SuppressWarnings("null")@NonNull URI genModelURI : genModel2nsURI2className.keySet()) {
 			if (genModelURI.isPlatformPlugin()) {
 				IProjectDescriptor projectDescriptor = getProjectDescriptorInternal(genModelURI);
-				@SuppressWarnings("null")@NonNull Map<URI, String> nsURI2className = genModel2nsURI2className.get(genModelURI);
+				Map<URI, String> nsURI2className = genModel2nsURI2className.get(genModelURI);
+				assert nsURI2className != null;
 				@SuppressWarnings("null")@NonNull URI deresolvedGenModelURI = genModelURI.deresolve(projectDescriptor.getLocationURI(), true, true, true);
 				@SuppressWarnings("null")@NonNull String genModelString = deresolvedGenModelURI.toString();
 				IResourceDescriptor resourceDescriptor = projectDescriptor.createResourceDescriptor(genModelString, nsURI2className);

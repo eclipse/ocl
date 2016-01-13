@@ -256,9 +256,10 @@ public class UMLOCLEValidator implements EValidator
 						MetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
 						UML2AS uml2as = UML2AS.getAdapter(umlResource, environmentFactory);
 						uml2as.getASModel();
-						Map<EObject, List<org.eclipse.uml2.uml.Element>> umlStereotypeApplication2umlStereotypedElements = UML2ASUtil.computeAppliedStereotypes(umlStereotypeApplications);
+						Map<EObject, @NonNull List<org.eclipse.uml2.uml.Element>> umlStereotypeApplication2umlStereotypedElements = UML2ASUtil.computeAppliedStereotypes(umlStereotypeApplications);
 						for (@SuppressWarnings("null")@NonNull EObject umlStereotypeApplication : umlStereotypeApplications) {
-							@SuppressWarnings("null")@NonNull List<Element> umlStereotypedElements = umlStereotypeApplication2umlStereotypedElements.get(umlStereotypeApplication);
+							List<Element> umlStereotypedElements = umlStereotypeApplication2umlStereotypedElements.get(umlStereotypeApplication);
+							assert umlStereotypedElements != null;
 							org.eclipse.ocl.pivot.Stereotype stereotype = uml2as.resolveStereotype(umlStereotypeApplication, umlStereotypedElements);
 							if (stereotype != null) {
 								HashSet<org.eclipse.ocl.pivot.Constraint> allConstraints = new HashSet<org.eclipse.ocl.pivot.Constraint>();

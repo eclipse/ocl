@@ -68,7 +68,7 @@ public interface RegisteredContribution<C extends RegisteredContribution<C>> {
 
 		@Override
 		public @Nullable C get(@NonNull String key) {
-			C contribution = map.get(key);
+			@Nullable C contribution = map.get(key);
 			return contribution != null ? contribution.getContribution() : null;
 		}
 
@@ -78,7 +78,7 @@ public interface RegisteredContribution<C extends RegisteredContribution<C>> {
 		}
 
 		@Override
-		public C remove(@NonNull String key) {
+		public @Nullable C remove(@NonNull String key) {
 			return map.remove(key);
 		}
 

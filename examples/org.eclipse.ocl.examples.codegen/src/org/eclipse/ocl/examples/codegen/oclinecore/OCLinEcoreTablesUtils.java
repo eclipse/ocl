@@ -986,12 +986,13 @@ public class OCLinEcoreTablesUtils
 
 	protected @NonNull Operation getOverloadOp(org.eclipse.ocl.pivot.@NonNull Class pClass, @NonNull Operation baseOp) {
 		String baseSignature = getSignature(baseOp);
-		Map<org.eclipse.ocl.pivot.Class, Integer> results = new HashMap<org.eclipse.ocl.pivot.Class, Integer>();
+		Map<org.eclipse.ocl.pivot.Class, @NonNull Integer> results = new HashMap<org.eclipse.ocl.pivot.Class, @NonNull Integer>();
 		getAllSuperClasses(results, pClass);
 		int bestDepth = -1;
 		Operation best = null;
 		for (org.eclipse.ocl.pivot.Class aClass : results.keySet()) {
-			int aDepth = results.get(aClass);
+			Integer aDepth = results.get(aClass);
+			assert aDepth != null;
 			for (Operation op : getOperations(ClassUtil.nonNullState(aClass))) {
 				if (baseSignature.equals(getSignature(ClassUtil.nonNullState(op))) && (aDepth > bestDepth)) {
 					bestDepth = aDepth;

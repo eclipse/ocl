@@ -134,9 +134,9 @@ public class UMLConstraintLocator extends AbstractPivotConstraintLocator
 	}
 
 	@Override
-	public @Nullable Map<EObject, List<LeafConstrainingNode>> getConstraints(@NonNull ValidityModel validityModel,
+	public @Nullable Map<EObject, @NonNull List<LeafConstrainingNode>> getConstraints(@NonNull ValidityModel validityModel,
 		@NonNull EPackage ePackage, @NonNull Set<Resource> resources, @NonNull Monitor monitor) {
-			Map<EObject, List<LeafConstrainingNode>> map = null;
+			Map<EObject, @NonNull List<LeafConstrainingNode>> map = null;
 			for (Resource resource : resources) {
 				if (monitor.isCanceled()) {
 					return null;
@@ -212,8 +212,7 @@ public class UMLConstraintLocator extends AbstractPivotConstraintLocator
 		if (eObject instanceof NamedElement) {			// FIXME debugging - remove UML dependency
 			StringBuilder s = new StringBuilder();
 			appendPath(s, (NamedElement)eObject);
-			@SuppressWarnings("null") @NonNull String string = s.toString();
-			return string;
+			return s.toString();
 		}
 		else {
 			return super.getLabel(eObject);

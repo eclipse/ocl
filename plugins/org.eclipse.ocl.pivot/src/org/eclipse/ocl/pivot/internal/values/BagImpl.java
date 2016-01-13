@@ -18,6 +18,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.Bag;
 
@@ -29,14 +30,14 @@ import org.eclipse.ocl.pivot.values.Bag;
  */
 public class BagImpl<E> extends AbstractCollection<E> implements Bag<E>
 {
-	private Map<E, MutableInteger> coll;
+	private Map<E, @NonNull MutableInteger> coll;
 
 	private int size;
 	
 	
 	public BagImpl() {
 		super();
-		this.coll = new HashMap<E, MutableInteger>();
+		this.coll = new HashMap<E, @NonNull MutableInteger>();
 		this.size = 0;
 	}
 
@@ -113,7 +114,7 @@ public class BagImpl<E> extends AbstractCollection<E> implements Bag<E>
 					Object obj = it.next();
 					MutableInteger count = coll.get(obj);
 					MutableInteger otherCount = b.coll.get(obj);
-					if (otherCount == null || otherCount.i != count.i)
+					if ((count == null) || (otherCount == null) || (otherCount.i != count.i))
 						return false;
 				}
 				return true;
@@ -161,6 +162,7 @@ public class BagImpl<E> extends AbstractCollection<E> implements Bag<E>
 					throw new NoSuchElementException();
 				curr = it.next();
 				MutableInteger count = coll.get(curr);
+				assert count != null;
 				offset = 0;
 				maxOffset = count.i - 1;
 				return curr;

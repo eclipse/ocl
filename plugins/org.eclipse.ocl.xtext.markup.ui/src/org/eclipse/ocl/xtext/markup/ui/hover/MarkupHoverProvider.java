@@ -21,6 +21,7 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.text.IInformationControlCreator;
 import org.eclipse.jface.text.IRegion;
@@ -89,14 +90,15 @@ public class MarkupHoverProvider extends DefaultEObjectHoverProvider
 			return null;
 		}
 		Iterable<INode> parseErrors = parseResult.getSyntaxErrors();
-		Map<Integer, Integer> errorMap = getErrorMap(parseErrors);
+		Map<Integer, @NonNull Integer> errorMap = getErrorMap(parseErrors);
 		if (errorMap != null) {
 			HTMLBuffer htmlBuffer = new HTMLBuffer();
 			int i = 0;
 			List<Integer> starts = new ArrayList<Integer>(errorMap.keySet());
 			Collections.sort(starts);
 			for (int start : starts) {
-				int end = errorMap.get(start);
+				Integer end = errorMap.get(start);
+				assert end != null;
 				while (i < start) {
 					htmlBuffer.append(documentation.charAt(i++));
 				}
@@ -138,11 +140,11 @@ public class MarkupHoverProvider extends DefaultEObjectHoverProvider
 		}
 	}
 
-	protected Map<Integer, Integer> getErrorMap(Iterable<INode> parseErrors) {
-		Map<Integer, Integer> errorMap = null;
+	protected Map<Integer, @NonNull Integer> getErrorMap(Iterable<INode> parseErrors) {
+		Map<Integer, @NonNull Integer> errorMap = null;
 		for (INode parseError : parseErrors) {
 			if (errorMap == null) {
-				errorMap = new HashMap<Integer, Integer>();
+				errorMap = new HashMap<Integer, @NonNull Integer>();
 			}
 			int start = parseError.getOffset();
 			errorMap.put(start, start + parseError.getLength());
@@ -151,7 +153,7 @@ public class MarkupHoverProvider extends DefaultEObjectHoverProvider
 			List<Integer> starts = new ArrayList<Integer>(errorMap.keySet());
 			Collections.sort(starts);
 			Integer currentStart = null;
-			int currentEnd = 0;
+			Integer currentEnd = 0;
 			for (int i = 0; i < starts.size(); i++) {
 				Integer start = starts.get(i);
 				if (currentStart == null) {
@@ -160,6 +162,7 @@ public class MarkupHoverProvider extends DefaultEObjectHoverProvider
 				}
 				else {
 					currentEnd = errorMap.get(start);
+					assert currentEnd != null;
 					if (start > currentEnd) {
 						currentStart = start;
 					}

@@ -51,7 +51,7 @@ public class PrecedenceManager
 	 * e.g. <tt> precedence A B D</tt> and <tt>precedence B C D</tt> merge to
 	 * <tt>A B C D</tt> with duplicate precedence objects for B and D.
 	 */
-	private Map<String, List<Precedence>> nameToPrecedencesMap = null;
+	private Map<String, @NonNull List<Precedence>> nameToPrecedencesMap = null;
 
 	private Map<String, String> infixToPrecedenceNameMap = null;
 
@@ -66,7 +66,7 @@ public class PrecedenceManager
 	public @NonNull List<String> compilePrecedences(@NonNull Iterable<? extends Library> libraries) {
 		List<String> errors = new ArrayList<String>();
 		List<String> orderedPrecedences = new ArrayList<String>();
-		nameToPrecedencesMap = new HashMap<String, List<Precedence>>();
+		nameToPrecedencesMap = new HashMap<String, @NonNull List<Precedence>>();
 		infixToPrecedenceNameMap = new HashMap<String, String>();
 		prefixToPrecedenceNameMap = new HashMap<String, String>();
 		for (Library library : libraries) {
@@ -80,41 +80,35 @@ public class PrecedenceManager
 					name = precedence.getName();
 					int index = orderedPrecedences.indexOf(name);
 					if (index < 0) {
-						index = prevIndex < 0
-							? orderedPrecedences.size()
-							: prevIndex + 1;
+						index = prevIndex < 0 ? orderedPrecedences.size() : prevIndex + 1;
 						orderedPrecedences.add(index, name);
 						list = new ArrayList<Precedence>();
 						nameToPrecedencesMap.put(name, list);
 					} else {
 						list = nameToPrecedencesMap.get(name);
+						assert list != null;
 						if (index <= prevIndex) {
-							errors.add("Inconsistent precedence ordering for '"
-								+ name + "'");
+							errors.add("Inconsistent precedence ordering for '" + name + "'");
 						} else if ((prevIndex >= 0) && (index != prevIndex + 1)) {
-							errors.add("Ambiguous precedence ordering for '"
-								+ name + "'");
+							errors.add("Ambiguous precedence ordering for '" + name + "'");
 						}
-						if (precedence.getAssociativity() != list.get(0)
-							.getAssociativity()) {
-							errors
-								.add("Inconsistent precedence associativity for '"
-									+ name + "'");
+						if (precedence.getAssociativity() != list.get(0).getAssociativity()) {
+							errors.add("Inconsistent precedence associativity for '" + name + "'");
 						}
 					}
 					prevIndex = index;
 					list.add(precedence);
 				}
-				if ((list != null) && (list.size() == 1)
-					&& (prevIndex != orderedPrecedences.size() - 1)) {
-					errors.add("Ambiguous precedence ordering for '" + name
-						+ "' at tail");
+				if ((list != null) && (list.size() == 1) && (prevIndex != orderedPrecedences.size() - 1)) {
+					errors.add("Ambiguous precedence ordering for '" + name + "' at tail");
 				}
 			}
 		}
 		for (int i = 0; i < orderedPrecedences.size(); i++) {
 			String name = orderedPrecedences.get(i);
-			for (Precedence precedence : nameToPrecedencesMap.get(name)) {
+			List<Precedence> precedences = nameToPrecedencesMap.get(name);
+			assert precedences != null;
+			for (Precedence precedence : precedences) {
 				precedence.setOrder(i);
 			}
 		}
@@ -128,16 +122,14 @@ public class PrecedenceManager
 			if (parameters.size() == 0) {
 				String newName = precedence.getName();
 				String operatorName = operation.getName();
-				String oldName = prefixToPrecedenceNameMap.put(operatorName,
-					newName);
+				String oldName = prefixToPrecedenceNameMap.put(operatorName, newName);
 				if ((oldName != null) && !oldName.equals(newName)) {
 					errors.add("Conflicting precedences for prefix operation '" + operatorName + "'");
 				}
 			} else if (parameters.size() == 1) {
 				String newName = precedence.getName();
 				String operatorName = operation.getName();
-				String oldName = infixToPrecedenceNameMap.put(operatorName,
-					newName);
+				String oldName = infixToPrecedenceNameMap.put(operatorName, newName);
 				if ((oldName != null) && !oldName.equals(newName)) {
 					errors.add("Conflicting precedences for infix operation '" + operatorName + "'");
 				}

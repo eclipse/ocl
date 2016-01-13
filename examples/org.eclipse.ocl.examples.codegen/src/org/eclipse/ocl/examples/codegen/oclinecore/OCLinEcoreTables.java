@@ -795,7 +795,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		appendInitializationStart("TypeFragments");	
 		for (/*@NonNull*/ org.eclipse.ocl.pivot.Class pClass : activeClassesSortedByName) {
 			assert pClass != null;
-			final Map<org.eclipse.ocl.pivot.Class, Integer> allSuperTypes = new HashMap<org.eclipse.ocl.pivot.Class, Integer>();
+			final Map<org.eclipse.ocl.pivot.Class, @NonNull Integer> allSuperTypes = new HashMap<org.eclipse.ocl.pivot.Class, @NonNull Integer>();
 			int myDepth = getAllSuperClasses(allSuperTypes, pClass);
 			int[] typesPerDepth = new int[myDepth+1];
 			for (int i = 0; i <= myDepth; i++) {
@@ -811,6 +811,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 				public int compare(Type o1, Type o2) {
 					Integer d1 = allSuperTypes.get(o1);
 					Integer d2 = allSuperTypes.get(o2);
+					assert (d1 != null) && (d2 != null);
 					if (d1 != d2) {
 						return d1.compareTo(d2);
 					}

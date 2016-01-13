@@ -87,9 +87,9 @@ public class DelegateConstraintLocator extends AbstractPivotConstraintLocator
 	}
 	
 	@Override
-	public @Nullable Map<EObject, List<LeafConstrainingNode>> getConstraints(@NonNull ValidityModel validityModel,
+	public @Nullable Map<EObject, @NonNull List<LeafConstrainingNode>> getConstraints(@NonNull ValidityModel validityModel,
 			@NonNull EPackage ePackage, @NonNull Set<Resource> resources, @NonNull Monitor monitor) {
-		Map<EObject, List<LeafConstrainingNode>> map = null;
+		Map<EObject, @NonNull List<LeafConstrainingNode>> map = null;
 		for (@SuppressWarnings("null")@NonNull EClassifier eClassifier : ePackage.getEClassifiers()) {
 			if (monitor.isCanceled()) {
 				return null;
@@ -153,7 +153,7 @@ public class DelegateConstraintLocator extends AbstractPivotConstraintLocator
 		}
 	}
 
-	protected @NonNull String print(@NonNull Map<EClassifier, List<LeafConstrainingNode>> map) {
+	protected @NonNull String print(@NonNull Map<EClassifier, @NonNull List<LeafConstrainingNode>> map) {
 		StringBuilder s = new StringBuilder();
 		ArrayList<EClassifier> sortedList = new ArrayList<EClassifier>(map.keySet());
 		Collections.sort(sortedList, new Comparator<EClassifier>()
@@ -165,13 +165,14 @@ public class DelegateConstraintLocator extends AbstractPivotConstraintLocator
 		});
 		for (EClassifier eClassifier : sortedList) {
 			s.append("\t" + eClassifier.getName() + ":");
-			for (LeafConstrainingNode constraint : map.get(eClassifier)) {
+			List<LeafConstrainingNode> constraints = map.get(eClassifier);
+			assert constraints != null;
+			for (LeafConstrainingNode constraint : constraints) {
 				s.append(" \'" + constraint.getLabel() + "'");
 			}
 			s.append("\n");
 		}
-		@SuppressWarnings("null")@NonNull String string = s.toString();
-		return string;
+		return s.toString();
 	}
 
 	@Override

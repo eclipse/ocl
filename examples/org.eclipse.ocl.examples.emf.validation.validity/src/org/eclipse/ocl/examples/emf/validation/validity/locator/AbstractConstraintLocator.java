@@ -51,14 +51,14 @@ public abstract class AbstractConstraintLocator implements ConstraintLocator, Co
 		ValidityManager.addConstraintLocator(null, EValidatorConstraintLocator.INSTANCE);
 	}
 
-	protected @NonNull Map<EObject, List<LeafConstrainingNode>> createLeafConstrainingNode(@Nullable Map<EObject, List<LeafConstrainingNode>> map,
+	protected @NonNull Map<EObject, @NonNull List<LeafConstrainingNode>> createLeafConstrainingNode(@Nullable Map<EObject, @NonNull List<LeafConstrainingNode>> map,
 			@NonNull ValidityModel validityModel, @NonNull EObject constrainingType, @NonNull Object constrainingObject, @NonNull String label) {
 		LeafConstrainingNode constraint = validityModel.createLeafConstrainingNode();
 		constraint.setConstraintLocator(this);
 		constraint.setLabel(label);
 		constraint.setConstrainingObject(constrainingObject);
 		if (map == null) {
-			map = new HashMap<EObject, List<LeafConstrainingNode>>();
+			map = new HashMap<EObject, @NonNull List<LeafConstrainingNode>>();
 		}
 /*		EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.findEnvironmentFactory(constrainingType);
 		if (environmentFactory != null) {

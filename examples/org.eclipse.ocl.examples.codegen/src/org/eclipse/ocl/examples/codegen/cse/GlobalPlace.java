@@ -37,9 +37,10 @@ import com.google.common.collect.Multimap;
  */
 public class GlobalPlace extends AbstractPlace
 {
-	@SuppressWarnings("null")
 	public static @NonNull AbstractPlace createGlobalPlace(@NonNull Map<CGElement, AbstractPlace> element2place, @NonNull CGElement cgElement) {
-		return element2place.get(null);
+		AbstractPlace abstractPlace = element2place.get(null);
+		assert abstractPlace != null;
+		return abstractPlace;
 	}
 
  	protected final @NonNull CodeGenAnalyzer analyzer;

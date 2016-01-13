@@ -28,6 +28,7 @@ import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.ParserException;
+import org.eclipse.uml2.uml.Element;
 
 /**
  * UML2ASUtil provides a variety of helpful routines for dealing with UML midels in conjunction with the Pivot-based OCL.
@@ -36,14 +37,14 @@ public class UML2ASUtil
 {
 //	private static final Logger logger = Logger.getLogger(UML2ASUtil.class);
 
-	public static @NonNull Map<EObject, List<org.eclipse.uml2.uml.Element>> computeAppliedStereotypes(@NonNull Iterable<EObject> umlStereotypeApplications) {
+	public static @NonNull Map<EObject, @NonNull List<org.eclipse.uml2.uml.Element>> computeAppliedStereotypes(@NonNull Iterable<EObject> umlStereotypeApplications) {
 		//
 		// Compute the list of UML elements stereotyped by each UML stereotype application.
 		//
 		// Note that the UML stereotype application object is an EDynamicObject unless the Profile has been genmodelled as
 		// is the case for the standard UML profile(s).
 		//
-		Map<EObject, List<org.eclipse.uml2.uml.Element>> umlStereotypeApplication2umlStereotypedElements = new HashMap<EObject, List<org.eclipse.uml2.uml.Element>>();
+		Map<EObject, @NonNull List<org.eclipse.uml2.uml.Element>> umlStereotypeApplication2umlStereotypedElements = new HashMap<EObject, @NonNull List<org.eclipse.uml2.uml.Element>>();
 		for (@SuppressWarnings("null")@NonNull EObject umlStereotypeApplication : umlStereotypeApplications) {
 			List<org.eclipse.uml2.uml.Element> umlStereotypedElements = resolveStereotypedElements(umlStereotypeApplication);
 			umlStereotypeApplication2umlStereotypedElements.put(umlStereotypeApplication, umlStereotypedElements);
@@ -62,7 +63,10 @@ public class UML2ASUtil
 			StringBuffer s = new StringBuffer();
 			for (@SuppressWarnings("null")@NonNull EClass umlStereotypeEClass : umlStereotypeEClass2umlStereotypedElements.keySet()) {
 				s.append("\n\t" + NameUtil.qualifiedNameFor(umlStereotypeEClass));
-				for (org.eclipse.uml2.uml.Element umlStereotypedElement : umlStereotypeEClass2umlStereotypedElements.get(umlStereotypeEClass)) {
+				@Nullable
+				Set<Element> umlStereotypedElements = umlStereotypeEClass2umlStereotypedElements.get(umlStereotypeEClass);
+				assert umlStereotypedElements != null;
+				for (org.eclipse.uml2.uml.Element umlStereotypedElement : umlStereotypedElements) {
 					if (umlStereotypedElement != null) {
 						s.append("\n\t\t" + NameUtil.qualifiedNameFor(umlStereotypedElement));
 					}
