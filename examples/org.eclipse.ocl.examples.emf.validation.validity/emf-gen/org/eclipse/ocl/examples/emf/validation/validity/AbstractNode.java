@@ -25,6 +25,7 @@ import org.eclipse.ocl.examples.emf.validation.validity.utilities.IVisibilityFil
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.AbstractNode#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.AbstractNode#isGrayed <em>Grayed</em>}</li>
@@ -32,7 +33,6 @@ import org.eclipse.ocl.examples.emf.validation.validity.utilities.IVisibilityFil
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.AbstractNode#getLabel <em>Label</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.AbstractNode#getWorstResult <em>Worst Result</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.emf.validation.validity.ValidityPackage#getAbstractNode()
  * @model abstract="true"

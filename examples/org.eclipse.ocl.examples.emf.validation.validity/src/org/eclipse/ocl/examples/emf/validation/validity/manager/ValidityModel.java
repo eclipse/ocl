@@ -649,9 +649,7 @@ public class ValidityModel
 	public @NonNull String getResultConstrainingLabel(@NonNull ValidatableNode validatableNode) {
 		StringBuilder s = getResultPath(new StringBuilder(), validatableNode.getParent());
 		s.append(validatableNode.getLabel());
-		@SuppressWarnings("null")
-		@NonNull String string = s.toString();
-		return string;
+		return s.toString();
 	}
 
 	protected @NonNull StringBuilder getResultPath(@NonNull StringBuilder s, @Nullable AbstractNode abstractNode) {
@@ -676,9 +674,7 @@ public class ValidityModel
 	public @NonNull String getResultValidatableLabel(@NonNull ConstrainingNode constrainingNode) {
 		StringBuilder s = getResultPath(new StringBuilder(), constrainingNode.getParent());
 		s.append(constrainingNode.getLabel());
-		@SuppressWarnings("null")
-		@NonNull String string = s.toString();
-		return string;
+		return s.toString();
 	}
 
 	/**

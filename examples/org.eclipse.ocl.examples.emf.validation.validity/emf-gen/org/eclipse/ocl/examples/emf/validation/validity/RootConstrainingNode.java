@@ -18,10 +18,10 @@ package org.eclipse.ocl.examples.emf.validation.validity;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.RootConstrainingNode#getRootNode <em>Root Node</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.emf.validation.validity.ValidityPackage#getRootConstrainingNode()
  * @model

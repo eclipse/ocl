@@ -23,12 +23,12 @@ import org.eclipse.ocl.examples.emf.validation.validity.locator.ConstraintLocato
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.impl.LeafConstrainingNodeImpl#getConstraintLocator <em>Constraint Locator</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.impl.LeafConstrainingNodeImpl#getConstraintResource <em>Constraint Resource</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.impl.LeafConstrainingNodeImpl#getConstraintString <em>Constraint String</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

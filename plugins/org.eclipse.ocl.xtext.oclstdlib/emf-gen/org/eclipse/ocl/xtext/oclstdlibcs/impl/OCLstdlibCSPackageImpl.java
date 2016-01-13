@@ -169,7 +169,8 @@ public class OCLstdlibCSPackageImpl
 		if (isInited) return (OCLstdlibCSPackage)EPackage.Registry.INSTANCE.getEPackage(OCLstdlibCSPackage.eNS_URI);
 
 		// Obtain or create and register package
-		OCLstdlibCSPackageImpl theOCLstdlibCSPackage = (OCLstdlibCSPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof OCLstdlibCSPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new OCLstdlibCSPackageImpl());
+		Object ePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		OCLstdlibCSPackageImpl theOCLstdlibCSPackage = (OCLstdlibCSPackageImpl)(ePackage instanceof OCLstdlibCSPackageImpl ? ePackage : new OCLstdlibCSPackageImpl());
 
 		isInited = true;
 

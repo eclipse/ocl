@@ -322,8 +322,7 @@ public class ValidityManager
 		StringBuilder s = new StringBuilder();
 		s.append(ILabelGenerator.Registry.INSTANCE.labelFor(eObject, LABEL_OPTIONS));
 		appendResourceURI(s, eObject);
-		@SuppressWarnings("null")@NonNull String string = s.toString();
-		return string;
+		return s.toString();
 	}
 	
 	public @Nullable ValidityModel getModel() {
@@ -399,8 +398,7 @@ public class ValidityManager
 		if (withContext) {
 			appendResourceURI(s, eObject);
 		}
-		@SuppressWarnings("null")@NonNull String string = s.toString();
-		return string;
+		return s.toString();
 	}
 
 	public List<Result> getValidatableNodeResults(@NonNull ValidatableNode element) {

@@ -24,10 +24,10 @@ import org.eclipse.ocl.examples.emf.validation.validity.ValidityPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.impl.RootValidatableNodeImpl#getRootNode <em>Root Node</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -65,8 +65,7 @@ public abstract class AbstractExporter implements IValidityExporter
 		try {
 			export(s, rootNode, exportedFileName);
 		} catch (IOException e) { /* StringBuilder doesn't throw IOExceptions */ }
-		@SuppressWarnings("null")@NonNull String string = s.toString();
-		return string;
+		return s.toString();
 	}
 
 	public void export(@NonNull Appendable s, @NonNull RootNode rootNode, @Nullable String exportedFileName) throws IOException {

@@ -195,7 +195,8 @@ public class ValuesPackageImpl extends EPackageImpl implements ValuesPackage {
 		if (isInited) return (ValuesPackage)EPackage.Registry.INSTANCE.getEPackage(ValuesPackage.eNS_URI);
 
 		// Obtain or create and register package
-		ValuesPackageImpl theValuesPackage = (ValuesPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ValuesPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ValuesPackageImpl());
+		Object ePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		ValuesPackageImpl theValuesPackage = (ValuesPackageImpl)(ePackage instanceof ValuesPackageImpl ? ePackage : new ValuesPackageImpl());
 
 		isInited = true;
 

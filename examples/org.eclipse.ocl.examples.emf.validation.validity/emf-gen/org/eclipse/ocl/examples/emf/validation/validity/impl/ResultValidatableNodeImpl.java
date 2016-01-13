@@ -23,10 +23,10 @@ import org.eclipse.ocl.examples.emf.validation.validity.ValidityPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.impl.ResultValidatableNodeImpl#getResultConstrainingNode <em>Result Constraining Node</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

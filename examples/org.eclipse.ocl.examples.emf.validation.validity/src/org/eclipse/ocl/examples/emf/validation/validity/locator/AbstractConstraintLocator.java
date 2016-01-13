@@ -143,8 +143,7 @@ public abstract class AbstractConstraintLocator implements ConstraintLocator, Co
 		else {
 			s.append(String.valueOf(eObject));
 		}
-		@SuppressWarnings("null") @NonNull String string = s.toString();
-		return string;
+		return s.toString();
 	}
 
 	protected @NonNull Severity getSeverity(@NonNull Diagnostic diagnostic) {

@@ -22,12 +22,12 @@ import org.eclipse.jdt.annotation.NonNull;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.ResultSet#getRoot <em>Root</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.ResultSet#getResults <em>Results</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.ResultSet#getTimestamp <em>Timestamp</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.emf.validation.validity.ValidityPackage#getResultSet()
  * @model

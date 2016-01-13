@@ -20,12 +20,12 @@ import org.eclipse.ocl.examples.emf.validation.validity.locator.ConstraintLocato
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.LeafConstrainingNode#getConstraintLocator <em>Constraint Locator</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.LeafConstrainingNode#getConstraintResource <em>Constraint Resource</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.LeafConstrainingNode#getConstraintString <em>Constraint String</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.emf.validation.validity.ValidityPackage#getLeafConstrainingNode()
  * @model

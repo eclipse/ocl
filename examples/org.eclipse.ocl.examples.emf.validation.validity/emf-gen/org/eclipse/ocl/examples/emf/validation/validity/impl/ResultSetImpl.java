@@ -32,12 +32,12 @@ import org.eclipse.ocl.examples.emf.validation.validity.ValidityPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.impl.ResultSetImpl#getRoot <em>Root</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.impl.ResultSetImpl#getResults <em>Results</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.impl.ResultSetImpl#getTimestamp <em>Timestamp</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

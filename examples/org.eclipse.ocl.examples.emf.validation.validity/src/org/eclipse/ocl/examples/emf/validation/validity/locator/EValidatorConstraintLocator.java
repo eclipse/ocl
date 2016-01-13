@@ -178,8 +178,7 @@ public class EValidatorConstraintLocator extends AbstractConstraintLocator
 			}
 			s.append("\n");
 		}
-		@SuppressWarnings("null")@NonNull String string = s.toString();
-		return string;
+		return s.toString();
 	}
 
 	@Override

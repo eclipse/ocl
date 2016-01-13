@@ -31,10 +31,11 @@ public class ValuesFactoryImpl extends EFactoryImpl implements ValuesFactory {
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	public static ValuesFactory init() {
 		try {
-			ValuesFactory theValuesFactory = (ValuesFactory)EPackage.Registry.INSTANCE.getEFactory("http://ww.eclipse.org/OCL/Values"); 
+			ValuesFactory theValuesFactory = (ValuesFactory)EPackage.Registry.INSTANCE.getEFactory(ValuesPackage.eNS_URI);
 			if (theValuesFactory != null) {
 				return theValuesFactory;
 			}
@@ -57,6 +58,7 @@ public class ValuesFactoryImpl extends EFactoryImpl implements ValuesFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {

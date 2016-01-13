@@ -474,7 +474,8 @@ public class EssentialOCLCSPackageImpl
 		if (isInited) return (EssentialOCLCSPackage)EPackage.Registry.INSTANCE.getEPackage(EssentialOCLCSPackage.eNS_URI);
 
 		// Obtain or create and register package
-		EssentialOCLCSPackageImpl theEssentialOCLCSPackage = (EssentialOCLCSPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof EssentialOCLCSPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new EssentialOCLCSPackageImpl());
+		Object ePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		EssentialOCLCSPackageImpl theEssentialOCLCSPackage = (EssentialOCLCSPackageImpl)(ePackage instanceof EssentialOCLCSPackageImpl ? ePackage : new EssentialOCLCSPackageImpl());
 
 		isInited = true;
 

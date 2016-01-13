@@ -915,7 +915,8 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 		if (isInited) return (CGModelPackage)EPackage.Registry.INSTANCE.getEPackage(CGModelPackage.eNS_URI);
 
 		// Obtain or create and register package
-		CGModelPackageImpl theCGModelPackage = (CGModelPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof CGModelPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new CGModelPackageImpl());
+		Object ePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		CGModelPackageImpl theCGModelPackage = (CGModelPackageImpl)(ePackage instanceof CGModelPackageImpl ? ePackage : new CGModelPackageImpl());
 
 		isInited = true;
 

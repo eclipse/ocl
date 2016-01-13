@@ -1163,7 +1163,8 @@ public class PivotPackageImpl
 		if (isInited) return (PivotPackage)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI);
 
 		// Obtain or create and register package
-		PivotPackageImpl thePivotPackage = (PivotPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof PivotPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new PivotPackageImpl());
+		Object ePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		PivotPackageImpl thePivotPackage = (PivotPackageImpl)(ePackage instanceof PivotPackageImpl ? ePackage : new PivotPackageImpl());
 
 		isInited = true;
 

@@ -34,12 +34,12 @@ import org.eclipse.ocl.examples.emf.validation.validity.ValidityPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.impl.RootNodeImpl#getResultSets <em>Result Sets</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.impl.RootNodeImpl#getConstrainingNodes <em>Constraining Nodes</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.impl.RootNodeImpl#getValidatableNodes <em>Validatable Nodes</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -169,7 +169,8 @@ public class CompleteOCLCSPackageImpl
 		if (isInited) return (CompleteOCLCSPackage)EPackage.Registry.INSTANCE.getEPackage(CompleteOCLCSPackage.eNS_URI);
 
 		// Obtain or create and register package
-		CompleteOCLCSPackageImpl theCompleteOCLCSPackage = (CompleteOCLCSPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof CompleteOCLCSPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new CompleteOCLCSPackageImpl());
+		Object ePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		CompleteOCLCSPackageImpl theCompleteOCLCSPackage = (CompleteOCLCSPackageImpl)(ePackage instanceof CompleteOCLCSPackageImpl ? ePackage : new CompleteOCLCSPackageImpl());
 
 		isInited = true;
 

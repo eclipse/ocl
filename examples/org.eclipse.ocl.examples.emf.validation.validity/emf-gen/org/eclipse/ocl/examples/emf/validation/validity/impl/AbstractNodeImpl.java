@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.emf.validation.validity.impl;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +28,7 @@ import org.eclipse.ocl.examples.emf.validation.validity.utilities.IVisibilityFil
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.impl.AbstractNodeImpl#isEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.impl.AbstractNodeImpl#isGrayed <em>Grayed</em>}</li>
@@ -36,7 +36,6 @@ import org.eclipse.ocl.examples.emf.validation.validity.utilities.IVisibilityFil
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.impl.AbstractNodeImpl#getLabel <em>Label</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.impl.AbstractNodeImpl#getWorstResult <em>Worst Result</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -341,22 +340,6 @@ public abstract class AbstractNodeImpl extends MinimalEObjectImpl.Container impl
 				return worstResult != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
-			case ValidityPackage.ABSTRACT_NODE___GET_PARENT:
-				return getParent();
-			case ValidityPackage.ABSTRACT_NODE___GET_CHILDREN:
-				return getChildren();
-		}
-		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

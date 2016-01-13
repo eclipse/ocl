@@ -904,7 +904,8 @@ public class OCLstdlibPackage extends EPackageImpl {
 		if (isInited) return (OCLstdlibPackage)EPackage.Registry.INSTANCE.getEPackage(OCLstdlibPackage.eNS_URI);
 
 		// Obtain or create and register package
-		OCLstdlibPackage theOCLstdlibPackage = (OCLstdlibPackage)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof OCLstdlibPackage ? EPackage.Registry.INSTANCE.get(eNS_URI) : new OCLstdlibPackage());
+		Object ePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		OCLstdlibPackage theOCLstdlibPackage = (OCLstdlibPackage)(ePackage instanceof OCLstdlibPackage ? ePackage : new OCLstdlibPackage());
 
 		isInited = true;
 

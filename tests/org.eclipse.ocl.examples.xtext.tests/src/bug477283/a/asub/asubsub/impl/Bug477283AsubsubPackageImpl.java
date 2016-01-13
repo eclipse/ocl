@@ -75,7 +75,8 @@ public class Bug477283AsubsubPackageImpl extends EPackageImpl implements Bug4772
 		if (isInited) return (Bug477283AsubsubPackage)EPackage.Registry.INSTANCE.getEPackage(Bug477283AsubsubPackage.eNS_URI);
 
 		// Obtain or create and register package
-		Bug477283AsubsubPackageImpl theBug477283AsubsubPackage = (Bug477283AsubsubPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof Bug477283AsubsubPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new Bug477283AsubsubPackageImpl());
+		Object ePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		Bug477283AsubsubPackageImpl theBug477283AsubsubPackage = (Bug477283AsubsubPackageImpl)(ePackage instanceof Bug477283AsubsubPackageImpl ? ePackage : new Bug477283AsubsubPackageImpl());
 
 		isInited = true;
 

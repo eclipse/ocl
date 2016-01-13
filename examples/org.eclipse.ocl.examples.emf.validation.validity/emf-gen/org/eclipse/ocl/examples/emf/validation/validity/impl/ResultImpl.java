@@ -33,6 +33,7 @@ import org.eclipse.ocl.examples.emf.validation.validity.ValidityPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.impl.ResultImpl#getResultSet <em>Result Set</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.impl.ResultImpl#getResultValidatableNode <em>Result Validatable Node</em>}</li>
@@ -43,7 +44,6 @@ import org.eclipse.ocl.examples.emf.validation.validity.ValidityPackage;
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.impl.ResultImpl#getResultConstrainingNode <em>Result Constraining Node</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.impl.ResultImpl#getException <em>Exception</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

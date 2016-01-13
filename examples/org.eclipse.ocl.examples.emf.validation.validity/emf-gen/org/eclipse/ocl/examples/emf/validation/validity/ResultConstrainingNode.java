@@ -18,10 +18,10 @@ package org.eclipse.ocl.examples.emf.validation.validity;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.ResultConstrainingNode#getResultValidatableNode <em>Result Validatable Node</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.emf.validation.validity.ValidityPackage#getResultConstrainingNode()
  * @model

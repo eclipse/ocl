@@ -22,12 +22,12 @@ import org.eclipse.jdt.annotation.NonNull;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.ConstrainingNode#getParent <em>Parent</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.ConstrainingNode#getChildren <em>Children</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.ConstrainingNode#getConstrainingObject <em>Constraining Object</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.emf.validation.validity.ValidityPackage#getConstrainingNode()
  * @model

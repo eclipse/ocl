@@ -99,7 +99,8 @@ public class AutoCGModelPackageImpl extends EPackageImpl implements AutoCGModelP
 		if (isInited) return (AutoCGModelPackage)EPackage.Registry.INSTANCE.getEPackage(AutoCGModelPackage.eNS_URI);
 
 		// Obtain or create and register package
-		AutoCGModelPackageImpl theAutoCGModelPackage = (AutoCGModelPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof AutoCGModelPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new AutoCGModelPackageImpl());
+		Object ePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		AutoCGModelPackageImpl theAutoCGModelPackage = (AutoCGModelPackageImpl)(ePackage instanceof AutoCGModelPackageImpl ? ePackage : new AutoCGModelPackageImpl());
 
 		isInited = true;
 

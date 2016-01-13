@@ -29,12 +29,12 @@ import org.eclipse.ocl.examples.emf.validation.validity.ValidityPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.impl.ConstrainingNodeImpl#getParent <em>Parent</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.impl.ConstrainingNodeImpl#getChildren <em>Children</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.impl.ConstrainingNodeImpl#getConstrainingObject <em>Constraining Object</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

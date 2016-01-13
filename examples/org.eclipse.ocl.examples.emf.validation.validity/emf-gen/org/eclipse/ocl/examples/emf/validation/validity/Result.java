@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.Result#getResultSet <em>Result Set</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.Result#getResultValidatableNode <em>Result Validatable Node</em>}</li>
@@ -29,7 +30,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.Result#getResultConstrainingNode <em>Result Constraining Node</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.Result#getException <em>Exception</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.emf.validation.validity.ValidityPackage#getResult()
  * @model

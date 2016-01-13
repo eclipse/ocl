@@ -71,7 +71,8 @@ public class Bug477283BPackageImpl extends EPackageImpl implements Bug477283BPac
 		if (isInited) return (Bug477283BPackage)EPackage.Registry.INSTANCE.getEPackage(Bug477283BPackage.eNS_URI);
 
 		// Obtain or create and register package
-		Bug477283BPackageImpl theBug477283BPackage = (Bug477283BPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof Bug477283BPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new Bug477283BPackageImpl());
+		Object ePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		Bug477283BPackageImpl theBug477283BPackage = (Bug477283BPackageImpl)(ePackage instanceof Bug477283BPackageImpl ? ePackage : new Bug477283BPackageImpl());
 
 		isInited = true;
 

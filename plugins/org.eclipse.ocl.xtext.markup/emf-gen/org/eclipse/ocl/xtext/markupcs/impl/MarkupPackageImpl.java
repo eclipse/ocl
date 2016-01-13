@@ -187,7 +187,8 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 		if (isInited) return (MarkupPackage)EPackage.Registry.INSTANCE.getEPackage(MarkupPackage.eNS_URI);
 
 		// Obtain or create and register package
-		MarkupPackageImpl theMarkupPackage = (MarkupPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof MarkupPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new MarkupPackageImpl());
+		Object ePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		MarkupPackageImpl theMarkupPackage = (MarkupPackageImpl)(ePackage instanceof MarkupPackageImpl ? ePackage : new MarkupPackageImpl());
 
 		isInited = true;
 

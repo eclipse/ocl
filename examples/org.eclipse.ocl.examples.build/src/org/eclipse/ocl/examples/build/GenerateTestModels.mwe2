@@ -20,15 +20,22 @@ Workflow {
 	bean = ResourceSetImpl : resourceSet {}
     bean = ProjectMapSetup{ resourceSet = resourceSet}
     bean = EcoreGenModelSetup { resourceSet = resourceSet }
-
-/*     bean = StandaloneSetup {
-		scanClassPath = true
-		platformUri = ".."
-//		registerGeneratedEPackage = "org.eclipse.ocl.xtext.completeoclcs.CompleteOCLCSPackage"
-//		registerGenModelFile = "platform:/resource/org.eclipse.ocl.xtext.completeocl/model/CompleteOCLCS.genmodel"
-	} */
-	
-    
+    //
+    //	Models with no script of their own.
+    //
+	component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
+    	genModel = "/org.eclipse.ocl.pivot/model/Values.genmodel"
+    	//
+    	// NB This is irregular, with *Impl largely manual.
+    	// Generate then use GIT diff to keep only the good new bits
+    	//
+    }
+	component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
+    	genModel = "/org.eclipse.ocl.examples.emf.validation.validity/model/Validity.genmodel"
+    }
+    //
+    //	The JUnit test models
+    //
 	component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
     	genModel = "/org.eclipse.ocl.examples.xtext.tests/model/Company.genmodel"
     }

@@ -517,7 +517,8 @@ public class BaseCSPackageImpl extends EPackageImpl implements BaseCSPackage {
 		if (isInited) return (BaseCSPackage)EPackage.Registry.INSTANCE.getEPackage(BaseCSPackage.eNS_URI);
 
 		// Obtain or create and register package
-		BaseCSPackageImpl theBaseCSPackage = (BaseCSPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof BaseCSPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new BaseCSPackageImpl());
+		Object ePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		BaseCSPackageImpl theBaseCSPackage = (BaseCSPackageImpl)(ePackage instanceof BaseCSPackageImpl ? ePackage : new BaseCSPackageImpl());
 
 		isInited = true;
 

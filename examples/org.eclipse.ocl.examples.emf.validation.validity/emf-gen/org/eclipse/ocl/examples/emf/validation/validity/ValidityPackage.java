@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -132,33 +131,6 @@ public interface ValidityPackage extends EPackage {
 	int ABSTRACT_NODE_FEATURE_COUNT = 5;
 
 	/**
-	 * The operation id for the '<em>Get Parent</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_NODE___GET_PARENT = 0;
-
-	/**
-	 * The operation id for the '<em>Get Children</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_NODE___GET_CHILDREN = 1;
-
-	/**
-	 * The number of operations of the '<em>Abstract Node</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_NODE_OPERATION_COUNT = 2;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.emf.validation.validity.impl.ConstrainingNodeImpl <em>Constraining Node</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -248,33 +220,6 @@ public interface ValidityPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONSTRAINING_NODE_FEATURE_COUNT = ABSTRACT_NODE_FEATURE_COUNT + 3;
-
-	/**
-	 * The operation id for the '<em>Get Parent</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINING_NODE___GET_PARENT = ABSTRACT_NODE___GET_PARENT;
-
-	/**
-	 * The operation id for the '<em>Get Children</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINING_NODE___GET_CHILDREN = ABSTRACT_NODE___GET_CHILDREN;
-
-	/**
-	 * The number of operations of the '<em>Constraining Node</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINING_NODE_OPERATION_COUNT = ABSTRACT_NODE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.emf.validation.validity.impl.LeafConstrainingNodeImpl <em>Leaf Constraining Node</em>}' class.
@@ -395,33 +340,6 @@ public interface ValidityPackage extends EPackage {
 	int LEAF_CONSTRAINING_NODE_FEATURE_COUNT = CONSTRAINING_NODE_FEATURE_COUNT + 3;
 
 	/**
-	 * The operation id for the '<em>Get Parent</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LEAF_CONSTRAINING_NODE___GET_PARENT = CONSTRAINING_NODE___GET_PARENT;
-
-	/**
-	 * The operation id for the '<em>Get Children</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LEAF_CONSTRAINING_NODE___GET_CHILDREN = CONSTRAINING_NODE___GET_CHILDREN;
-
-	/**
-	 * The number of operations of the '<em>Leaf Constraining Node</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LEAF_CONSTRAINING_NODE_OPERATION_COUNT = CONSTRAINING_NODE_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.emf.validation.validity.impl.ResultImpl <em>Result</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -511,15 +429,6 @@ public interface ValidityPackage extends EPackage {
 	 * @ordered
 	 */
 	int RESULT_FEATURE_COUNT = 8;
-
-	/**
-	 * The number of operations of the '<em>Result</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESULT_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.emf.validation.validity.impl.ResultConstrainingNodeImpl <em>Result Constraining Node</em>}' class.
@@ -622,33 +531,6 @@ public interface ValidityPackage extends EPackage {
 	int RESULT_CONSTRAINING_NODE_FEATURE_COUNT = CONSTRAINING_NODE_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Get Parent</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESULT_CONSTRAINING_NODE___GET_PARENT = CONSTRAINING_NODE___GET_PARENT;
-
-	/**
-	 * The operation id for the '<em>Get Children</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESULT_CONSTRAINING_NODE___GET_CHILDREN = CONSTRAINING_NODE___GET_CHILDREN;
-
-	/**
-	 * The number of operations of the '<em>Result Constraining Node</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESULT_CONSTRAINING_NODE_OPERATION_COUNT = CONSTRAINING_NODE_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.emf.validation.validity.impl.ResultSetImpl <em>Result Set</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -693,15 +575,6 @@ public interface ValidityPackage extends EPackage {
 	 * @ordered
 	 */
 	int RESULT_SET_FEATURE_COUNT = 3;
-
-	/**
-	 * The number of operations of the '<em>Result Set</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESULT_SET_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.emf.validation.validity.impl.ValidatableNodeImpl <em>Validatable Node</em>}' class.
@@ -793,33 +666,6 @@ public interface ValidityPackage extends EPackage {
 	 * @ordered
 	 */
 	int VALIDATABLE_NODE_FEATURE_COUNT = ABSTRACT_NODE_FEATURE_COUNT + 3;
-
-	/**
-	 * The operation id for the '<em>Get Parent</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALIDATABLE_NODE___GET_PARENT = ABSTRACT_NODE___GET_PARENT;
-
-	/**
-	 * The operation id for the '<em>Get Children</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALIDATABLE_NODE___GET_CHILDREN = ABSTRACT_NODE___GET_CHILDREN;
-
-	/**
-	 * The number of operations of the '<em>Validatable Node</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALIDATABLE_NODE_OPERATION_COUNT = ABSTRACT_NODE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.emf.validation.validity.impl.ResultValidatableNodeImpl <em>Result Validatable Node</em>}' class.
@@ -922,33 +768,6 @@ public interface ValidityPackage extends EPackage {
 	int RESULT_VALIDATABLE_NODE_FEATURE_COUNT = VALIDATABLE_NODE_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Get Parent</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESULT_VALIDATABLE_NODE___GET_PARENT = VALIDATABLE_NODE___GET_PARENT;
-
-	/**
-	 * The operation id for the '<em>Get Children</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESULT_VALIDATABLE_NODE___GET_CHILDREN = VALIDATABLE_NODE___GET_CHILDREN;
-
-	/**
-	 * The number of operations of the '<em>Result Validatable Node</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESULT_VALIDATABLE_NODE_OPERATION_COUNT = VALIDATABLE_NODE_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.emf.validation.validity.impl.RootNodeImpl <em>Root Node</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -993,15 +812,6 @@ public interface ValidityPackage extends EPackage {
 	 * @ordered
 	 */
 	int ROOT_NODE_FEATURE_COUNT = 3;
-
-	/**
-	 * The number of operations of the '<em>Root Node</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROOT_NODE_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.emf.validation.validity.impl.RootConstrainingNodeImpl <em>Root Constraining Node</em>}' class.
@@ -1104,33 +914,6 @@ public interface ValidityPackage extends EPackage {
 	int ROOT_CONSTRAINING_NODE_FEATURE_COUNT = CONSTRAINING_NODE_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Get Parent</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROOT_CONSTRAINING_NODE___GET_PARENT = CONSTRAINING_NODE___GET_PARENT;
-
-	/**
-	 * The operation id for the '<em>Get Children</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROOT_CONSTRAINING_NODE___GET_CHILDREN = CONSTRAINING_NODE___GET_CHILDREN;
-
-	/**
-	 * The number of operations of the '<em>Root Constraining Node</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROOT_CONSTRAINING_NODE_OPERATION_COUNT = CONSTRAINING_NODE_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.emf.validation.validity.impl.RootValidatableNodeImpl <em>Root Validatable Node</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1229,33 +1012,6 @@ public interface ValidityPackage extends EPackage {
 	 * @ordered
 	 */
 	int ROOT_VALIDATABLE_NODE_FEATURE_COUNT = VALIDATABLE_NODE_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Get Parent</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROOT_VALIDATABLE_NODE___GET_PARENT = VALIDATABLE_NODE___GET_PARENT;
-
-	/**
-	 * The operation id for the '<em>Get Children</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROOT_VALIDATABLE_NODE___GET_CHILDREN = VALIDATABLE_NODE___GET_CHILDREN;
-
-	/**
-	 * The number of operations of the '<em>Root Validatable Node</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROOT_VALIDATABLE_NODE_OPERATION_COUNT = VALIDATABLE_NODE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.emf.validation.validity.Severity <em>Severity</em>}' enum.
@@ -1371,26 +1127,6 @@ public interface ValidityPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getAbstractNode_WorstResult();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.emf.validation.validity.AbstractNode#getParent() <em>Get Parent</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Parent</em>' operation.
-	 * @see org.eclipse.ocl.examples.emf.validation.validity.AbstractNode#getParent()
-	 * @generated
-	 */
-	EOperation getAbstractNode__GetParent();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.emf.validation.validity.AbstractNode#getChildren() <em>Get Children</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Children</em>' operation.
-	 * @see org.eclipse.ocl.examples.emf.validation.validity.AbstractNode#getChildren()
-	 * @generated
-	 */
-	EOperation getAbstractNode__GetChildren();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.emf.validation.validity.ConstrainingNode <em>Constraining Node</em>}'.
@@ -1915,22 +1651,6 @@ public interface ValidityPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ABSTRACT_NODE__WORST_RESULT = eINSTANCE.getAbstractNode_WorstResult();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Parent</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation ABSTRACT_NODE___GET_PARENT = eINSTANCE.getAbstractNode__GetParent();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Children</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation ABSTRACT_NODE___GET_CHILDREN = eINSTANCE.getAbstractNode__GetChildren();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.emf.validation.validity.impl.ConstrainingNodeImpl <em>Constraining Node</em>}' class.

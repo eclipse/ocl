@@ -92,7 +92,8 @@ public class NoreflectioncompanyPackageImpl extends EPackageImpl implements Nore
 		if (isInited) return (NoreflectioncompanyPackage)EPackage.Registry.INSTANCE.getEPackage(NoreflectioncompanyPackage.eNS_URI);
 
 		// Obtain or create and register package
-		NoreflectioncompanyPackageImpl theNoreflectioncompanyPackage = (NoreflectioncompanyPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof NoreflectioncompanyPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new NoreflectioncompanyPackageImpl());
+		Object ePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		NoreflectioncompanyPackageImpl theNoreflectioncompanyPackage = (NoreflectioncompanyPackageImpl)(ePackage instanceof NoreflectioncompanyPackageImpl ? ePackage : new NoreflectioncompanyPackageImpl());
 
 		isInited = true;
 

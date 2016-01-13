@@ -91,7 +91,8 @@ public class OCLinEcoreCSPackageImpl extends EPackageImpl implements OCLinEcoreC
 		if (isInited) return (OCLinEcoreCSPackage)EPackage.Registry.INSTANCE.getEPackage(OCLinEcoreCSPackage.eNS_URI);
 
 		// Obtain or create and register package
-		OCLinEcoreCSPackageImpl theOCLinEcoreCSPackage = (OCLinEcoreCSPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof OCLinEcoreCSPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new OCLinEcoreCSPackageImpl());
+		Object ePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		OCLinEcoreCSPackageImpl theOCLinEcoreCSPackage = (OCLinEcoreCSPackageImpl)(ePackage instanceof OCLinEcoreCSPackageImpl ? ePackage : new OCLinEcoreCSPackageImpl());
 
 		isInited = true;
 

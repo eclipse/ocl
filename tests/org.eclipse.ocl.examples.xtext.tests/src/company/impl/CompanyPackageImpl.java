@@ -98,7 +98,8 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 		if (isInited) return (CompanyPackage)EPackage.Registry.INSTANCE.getEPackage(CompanyPackage.eNS_URI);
 
 		// Obtain or create and register package
-		CompanyPackageImpl theCompanyPackage = (CompanyPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof CompanyPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new CompanyPackageImpl());
+		Object ePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		CompanyPackageImpl theCompanyPackage = (CompanyPackageImpl)(ePackage instanceof CompanyPackageImpl ? ePackage : new CompanyPackageImpl());
 
 		isInited = true;
 

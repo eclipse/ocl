@@ -23,12 +23,12 @@ import org.eclipse.jdt.annotation.Nullable;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.ValidatableNode#getParent <em>Parent</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.ValidatableNode#getChildren <em>Children</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.ValidatableNode#getConstrainedObject <em>Constrained Object</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.examples.emf.validation.validity.ValidityPackage#getValidatableNode()
  * @model

@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -197,7 +196,8 @@ public class ValidityPackageImpl extends EPackageImpl implements ValidityPackage
 		if (isInited) return (ValidityPackage)EPackage.Registry.INSTANCE.getEPackage(ValidityPackage.eNS_URI);
 
 		// Obtain or create and register package
-		ValidityPackageImpl theValidityPackage = (ValidityPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ValidityPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ValidityPackageImpl());
+		Object ePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		ValidityPackageImpl theValidityPackage = (ValidityPackageImpl)(ePackage instanceof ValidityPackageImpl ? ePackage : new ValidityPackageImpl());
 
 		isInited = true;
 
@@ -271,24 +271,6 @@ public class ValidityPackageImpl extends EPackageImpl implements ValidityPackage
 	 */
 	public EReference getAbstractNode_WorstResult() {
 		return (EReference)abstractNodeEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getAbstractNode__GetParent() {
-		return abstractNodeEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getAbstractNode__GetChildren() {
-		return abstractNodeEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -703,8 +685,6 @@ public class ValidityPackageImpl extends EPackageImpl implements ValidityPackage
 		createEAttribute(abstractNodeEClass, ABSTRACT_NODE__VISIBLE);
 		createEAttribute(abstractNodeEClass, ABSTRACT_NODE__LABEL);
 		createEReference(abstractNodeEClass, ABSTRACT_NODE__WORST_RESULT);
-		createEOperation(abstractNodeEClass, ABSTRACT_NODE___GET_PARENT);
-		createEOperation(abstractNodeEClass, ABSTRACT_NODE___GET_CHILDREN);
 
 		constrainingNodeEClass = createEClass(CONSTRAINING_NODE);
 		createEReference(constrainingNodeEClass, CONSTRAINING_NODE__PARENT);
@@ -802,7 +782,7 @@ public class ValidityPackageImpl extends EPackageImpl implements ValidityPackage
 		rootValidatableNodeEClass.getESuperTypes().add(this.getValidatableNode());
 		validatableNodeEClass.getESuperTypes().add(this.getAbstractNode());
 
-		// Initialize classes, features, and operations; add parameters
+		// Initialize classes and features; add operations and parameters
 		initEClass(abstractNodeEClass, AbstractNode.class, "AbstractNode", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAbstractNode_Enabled(), ecorePackage.getEBoolean(), "enabled", "true", 1, 1, AbstractNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractNode_Grayed(), ecorePackage.getEBoolean(), "grayed", "false", 1, 1, AbstractNode.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -810,9 +790,9 @@ public class ValidityPackageImpl extends EPackageImpl implements ValidityPackage
 		initEAttribute(getAbstractNode_Label(), theEcorePackage.getEString(), "label", "", 1, 1, AbstractNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractNode_WorstResult(), this.getResult(), null, "worstResult", null, 0, 1, AbstractNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
-		initEOperation(getAbstractNode__GetParent(), this.getAbstractNode(), "getParent", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(abstractNodeEClass, this.getAbstractNode(), "getParent", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEOperation(getAbstractNode__GetChildren(), this.getAbstractNode(), "getChildren", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(abstractNodeEClass, this.getAbstractNode(), "getChildren", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(constrainingNodeEClass, ConstrainingNode.class, "ConstrainingNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConstrainingNode_Parent(), this.getConstrainingNode(), this.getConstrainingNode_Children(), "parent", null, 0, 1, ConstrainingNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -30,12 +30,12 @@ import org.eclipse.ocl.examples.emf.validation.validity.ValidityPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.impl.ValidatableNodeImpl#getParent <em>Parent</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.impl.ValidatableNodeImpl#getChildren <em>Children</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.emf.validation.validity.impl.ValidatableNodeImpl#getConstrainedObject <em>Constrained Object</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
