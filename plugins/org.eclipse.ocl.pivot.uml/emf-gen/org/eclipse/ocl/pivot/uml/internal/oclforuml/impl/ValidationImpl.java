@@ -93,17 +93,14 @@ public class ValidationImpl
 	 */
 	@Override
 	public InstanceSpecification getBase_InstanceSpecification() {
-		if (base_InstanceSpecification != null
-			&& base_InstanceSpecification.eIsProxy()) {
-			InternalEObject oldBase_InstanceSpecification = (InternalEObject) base_InstanceSpecification;
-			base_InstanceSpecification = (InstanceSpecification) eResolveProxy(
-				oldBase_InstanceSpecification);
-			if (base_InstanceSpecification != oldBase_InstanceSpecification) {
+		if (base_InstanceSpecification != null && base_InstanceSpecification.eIsProxy())
+		{
+			InternalEObject oldBase_InstanceSpecification = (InternalEObject)base_InstanceSpecification;
+			base_InstanceSpecification = (InstanceSpecification)eResolveProxy(oldBase_InstanceSpecification);
+			if (base_InstanceSpecification != oldBase_InstanceSpecification)
+			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						OCLforUMLPackage.VALIDATION__BASE_INSTANCE_SPECIFICATION,
-						oldBase_InstanceSpecification,
-						base_InstanceSpecification));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OCLforUMLPackage.VALIDATION__BASE_INSTANCE_SPECIFICATION, oldBase_InstanceSpecification, base_InstanceSpecification));
 			}
 		}
 		return base_InstanceSpecification;
@@ -129,9 +126,7 @@ public class ValidationImpl
 		InstanceSpecification oldBase_InstanceSpecification = base_InstanceSpecification;
 		base_InstanceSpecification = newBase_InstanceSpecification;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCLforUMLPackage.VALIDATION__BASE_INSTANCE_SPECIFICATION,
-				oldBase_InstanceSpecification, base_InstanceSpecification));
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLforUMLPackage.VALIDATION__BASE_INSTANCE_SPECIFICATION, oldBase_InstanceSpecification, base_InstanceSpecification));
 	}
 
 	/**
@@ -154,8 +149,7 @@ public class ValidationImpl
 		boolean oldValidate = validate;
 		validate = newValidate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCLforUMLPackage.VALIDATION__VALIDATE, oldValidate, validate));
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLforUMLPackage.VALIDATION__VALIDATE, oldValidate, validate));
 	}
 
 	/**
@@ -165,12 +159,12 @@ public class ValidationImpl
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case OCLforUMLPackage.VALIDATION__BASE_INSTANCE_SPECIFICATION :
-				if (resolve)
-					return getBase_InstanceSpecification();
+		switch (featureID)
+		{
+			case OCLforUMLPackage.VALIDATION__BASE_INSTANCE_SPECIFICATION:
+				if (resolve) return getBase_InstanceSpecification();
 				return basicGetBase_InstanceSpecification();
-			case OCLforUMLPackage.VALIDATION__VALIDATE :
+			case OCLforUMLPackage.VALIDATION__VALIDATE:
 				return isValidate();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -183,12 +177,13 @@ public class ValidationImpl
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case OCLforUMLPackage.VALIDATION__BASE_INSTANCE_SPECIFICATION :
-				setBase_InstanceSpecification((InstanceSpecification) newValue);
+		switch (featureID)
+		{
+			case OCLforUMLPackage.VALIDATION__BASE_INSTANCE_SPECIFICATION:
+				setBase_InstanceSpecification((InstanceSpecification)newValue);
 				return;
-			case OCLforUMLPackage.VALIDATION__VALIDATE :
-				setValidate((Boolean) newValue);
+			case OCLforUMLPackage.VALIDATION__VALIDATE:
+				setValidate((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -201,11 +196,12 @@ public class ValidationImpl
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case OCLforUMLPackage.VALIDATION__BASE_INSTANCE_SPECIFICATION :
-				setBase_InstanceSpecification((InstanceSpecification) null);
+		switch (featureID)
+		{
+			case OCLforUMLPackage.VALIDATION__BASE_INSTANCE_SPECIFICATION:
+				setBase_InstanceSpecification((InstanceSpecification)null);
 				return;
-			case OCLforUMLPackage.VALIDATION__VALIDATE :
+			case OCLforUMLPackage.VALIDATION__VALIDATE:
 				setValidate(VALIDATE_EDEFAULT);
 				return;
 		}
@@ -219,10 +215,11 @@ public class ValidationImpl
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case OCLforUMLPackage.VALIDATION__BASE_INSTANCE_SPECIFICATION :
+		switch (featureID)
+		{
+			case OCLforUMLPackage.VALIDATION__BASE_INSTANCE_SPECIFICATION:
 				return base_InstanceSpecification != null;
-			case OCLforUMLPackage.VALIDATION__VALIDATE :
+			case OCLforUMLPackage.VALIDATION__VALIDATE:
 				return validate != VALIDATE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -235,8 +232,7 @@ public class ValidationImpl
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (validate: "); //$NON-NLS-1$

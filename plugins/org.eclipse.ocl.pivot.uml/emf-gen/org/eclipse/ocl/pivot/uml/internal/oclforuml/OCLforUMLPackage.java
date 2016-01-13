@@ -66,8 +66,7 @@ public interface OCLforUMLPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	OCLforUMLPackage eINSTANCE = org.eclipse.ocl.pivot.uml.internal.oclforuml.impl.OCLforUMLPackageImpl
-		.init();
+	OCLforUMLPackage eINSTANCE = org.eclipse.ocl.pivot.uml.internal.oclforuml.impl.OCLforUMLPackageImpl.init();
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.impl.IntegerImpl <em>Integer</em>}' class.
@@ -1110,8 +1109,7 @@ public interface OCLforUMLPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute BOUNDED_INTEGER__OVERFLOW = eINSTANCE
-			.getBoundedInteger_Overflow();
+		EAttribute BOUNDED_INTEGER__OVERFLOW = eINSTANCE.getBoundedInteger_Overflow();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.impl.IntegerImpl <em>Integer</em>}' class.
@@ -1129,8 +1127,7 @@ public interface OCLforUMLPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference INTEGER__BASE_DATA_TYPE = eINSTANCE
-			.getInteger_Base_DataType();
+		EReference INTEGER__BASE_DATA_TYPE = eINSTANCE.getInteger_Base_DataType();
 
 		/**
 		 * The meta object literal for the '<em><b>Maximum</b></em>' attribute feature.
@@ -1164,8 +1161,7 @@ public interface OCLforUMLPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COLLECTION__BASE_MULTIPLICITY_ELEMENT = eINSTANCE
-			.getCollection_Base_MultiplicityElement();
+		EReference COLLECTION__BASE_MULTIPLICITY_ELEMENT = eINSTANCE.getCollection_Base_MultiplicityElement();
 
 		/**
 		 * The meta object literal for the '<em><b>Is Null Free</b></em>' attribute feature.
@@ -1173,8 +1169,7 @@ public interface OCLforUMLPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute COLLECTION__IS_NULL_FREE = eINSTANCE
-			.getCollection_IsNullFree();
+		EAttribute COLLECTION__IS_NULL_FREE = eINSTANCE.getCollection_IsNullFree();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.impl.CollectionsImpl <em>Collections</em>}' class.
@@ -1192,8 +1187,7 @@ public interface OCLforUMLPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COLLECTIONS__BASE_CLASS = eINSTANCE
-			.getCollections_Base_Class();
+		EReference COLLECTIONS__BASE_CLASS = eINSTANCE.getCollections_Base_Class();
 
 		/**
 		 * The meta object literal for the '<em><b>Base Package</b></em>' reference feature.
@@ -1201,8 +1195,7 @@ public interface OCLforUMLPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COLLECTIONS__BASE_PACKAGE = eINSTANCE
-			.getCollections_Base_Package();
+		EReference COLLECTIONS__BASE_PACKAGE = eINSTANCE.getCollections_Base_Package();
 
 		/**
 		 * The meta object literal for the '<em><b>Is Null Free</b></em>' attribute feature.
@@ -1210,8 +1203,7 @@ public interface OCLforUMLPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute COLLECTIONS__IS_NULL_FREE = eINSTANCE
-			.getCollections_IsNullFree();
+		EAttribute COLLECTIONS__IS_NULL_FREE = eINSTANCE.getCollections_IsNullFree();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.impl.FixedPointImpl <em>Fixed Point</em>}' class.
@@ -1237,8 +1229,7 @@ public interface OCLforUMLPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute FIXED_POINT__FRACTIONAL_BITS = eINSTANCE
-			.getFixedPoint_FractionalBits();
+		EAttribute FIXED_POINT__FRACTIONAL_BITS = eINSTANCE.getFixedPoint_FractionalBits();
 
 		/**
 		 * The meta object literal for the '<em><b>Integer Bits</b></em>' attribute feature.
@@ -1246,8 +1237,7 @@ public interface OCLforUMLPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute FIXED_POINT__INTEGER_BITS = eINSTANCE
-			.getFixedPoint_IntegerBits();
+		EAttribute FIXED_POINT__INTEGER_BITS = eINSTANCE.getFixedPoint_IntegerBits();
 
 		/**
 		 * The meta object literal for the '<em><b>Overflow</b></em>' attribute feature.
@@ -1323,8 +1313,7 @@ public interface OCLforUMLPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute FLOATING_POINT__OVERFLOW = eINSTANCE
-			.getFloatingPoint_Overflow();
+		EAttribute FLOATING_POINT__OVERFLOW = eINSTANCE.getFloatingPoint_Overflow();
 
 		/**
 		 * The meta object literal for the '<em><b>Rounding</b></em>' attribute feature.
@@ -1332,8 +1321,7 @@ public interface OCLforUMLPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute FLOATING_POINT__ROUNDING = eINSTANCE
-			.getFloatingPoint_Rounding();
+		EAttribute FLOATING_POINT__ROUNDING = eINSTANCE.getFloatingPoint_Rounding();
 
 		/**
 		 * The meta object literal for the '<em><b>Exponent Bits</b></em>' attribute feature.
@@ -1341,8 +1329,7 @@ public interface OCLforUMLPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute FLOATING_POINT__EXPONENT_BITS = eINSTANCE
-			.getFloatingPoint_ExponentBits();
+		EAttribute FLOATING_POINT__EXPONENT_BITS = eINSTANCE.getFloatingPoint_ExponentBits();
 
 		/**
 		 * The meta object literal for the '<em><b>Mantissa Bits</b></em>' attribute feature.
@@ -1350,8 +1337,7 @@ public interface OCLforUMLPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute FLOATING_POINT__MANTISSA_BITS = eINSTANCE
-			.getFloatingPoint_MantissaBits();
+		EAttribute FLOATING_POINT__MANTISSA_BITS = eINSTANCE.getFloatingPoint_MantissaBits();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.impl.ValidationImpl <em>Validation</em>}' class.
@@ -1369,8 +1355,7 @@ public interface OCLforUMLPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VALIDATION__BASE_INSTANCE_SPECIFICATION = eINSTANCE
-			.getValidation_Base_InstanceSpecification();
+		EReference VALIDATION__BASE_INSTANCE_SPECIFICATION = eINSTANCE.getValidation_Base_InstanceSpecification();
 
 		/**
 		 * The meta object literal for the '<em><b>Validate</b></em>' attribute feature.
@@ -1396,8 +1381,7 @@ public interface OCLforUMLPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VALIDATIONS__BASE_PACKAGE = eINSTANCE
-			.getValidations_Base_Package();
+		EReference VALIDATIONS__BASE_PACKAGE = eINSTANCE.getValidations_Base_Package();
 
 		/**
 		 * The meta object literal for the '<em><b>Validate Instance Specifications</b></em>' attribute feature.
@@ -1405,8 +1389,7 @@ public interface OCLforUMLPackage
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute VALIDATIONS__VALIDATE_INSTANCE_SPECIFICATIONS = eINSTANCE
-			.getValidations_ValidateInstanceSpecifications();
+		EAttribute VALIDATIONS__VALIDATE_INSTANCE_SPECIFICATIONS = eINSTANCE.getValidations_ValidateInstanceSpecifications();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.uml.internal.oclforuml.Overflow <em>Overflow</em>}' enum.

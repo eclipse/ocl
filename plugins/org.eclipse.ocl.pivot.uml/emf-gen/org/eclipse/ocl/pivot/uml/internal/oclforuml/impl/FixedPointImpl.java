@@ -179,8 +179,7 @@ public class FixedPointImpl
 		boolean oldBitTrue = bitTrue;
 		bitTrue = newBitTrue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCLforUMLPackage.FIXED_POINT__BIT_TRUE, oldBitTrue, bitTrue));
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLforUMLPackage.FIXED_POINT__BIT_TRUE, oldBitTrue, bitTrue));
 	}
 
 	/**
@@ -203,9 +202,7 @@ public class FixedPointImpl
 		int oldFractionalBits = fractionalBits;
 		fractionalBits = newFractionalBits;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCLforUMLPackage.FIXED_POINT__FRACTIONAL_BITS,
-				oldFractionalBits, fractionalBits));
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLforUMLPackage.FIXED_POINT__FRACTIONAL_BITS, oldFractionalBits, fractionalBits));
 	}
 
 	/**
@@ -228,9 +225,7 @@ public class FixedPointImpl
 		int oldIntegerBits = integerBits;
 		integerBits = newIntegerBits;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCLforUMLPackage.FIXED_POINT__INTEGER_BITS, oldIntegerBits,
-				integerBits));
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLforUMLPackage.FIXED_POINT__INTEGER_BITS, oldIntegerBits, integerBits));
 	}
 
 	/**
@@ -251,12 +246,9 @@ public class FixedPointImpl
 	@Override
 	public void setOverflow(Overflow newOverflow) {
 		Overflow oldOverflow = overflow;
-		overflow = newOverflow == null
-			? OVERFLOW_EDEFAULT
-			: newOverflow;
+		overflow = newOverflow == null ? OVERFLOW_EDEFAULT : newOverflow;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCLforUMLPackage.FIXED_POINT__OVERFLOW, oldOverflow, overflow));
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLforUMLPackage.FIXED_POINT__OVERFLOW, oldOverflow, overflow));
 	}
 
 	/**
@@ -277,12 +269,9 @@ public class FixedPointImpl
 	@Override
 	public void setRounding(Rounding newRounding) {
 		Rounding oldRounding = rounding;
-		rounding = newRounding == null
-			? ROUNDING_EDEFAULT
-			: newRounding;
+		rounding = newRounding == null ? ROUNDING_EDEFAULT : newRounding;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCLforUMLPackage.FIXED_POINT__ROUNDING, oldRounding, rounding));
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLforUMLPackage.FIXED_POINT__ROUNDING, oldRounding, rounding));
 	}
 
 	/**
@@ -292,16 +281,17 @@ public class FixedPointImpl
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case OCLforUMLPackage.FIXED_POINT__BIT_TRUE :
+		switch (featureID)
+		{
+			case OCLforUMLPackage.FIXED_POINT__BIT_TRUE:
 				return isBitTrue();
-			case OCLforUMLPackage.FIXED_POINT__FRACTIONAL_BITS :
+			case OCLforUMLPackage.FIXED_POINT__FRACTIONAL_BITS:
 				return getFractionalBits();
-			case OCLforUMLPackage.FIXED_POINT__INTEGER_BITS :
+			case OCLforUMLPackage.FIXED_POINT__INTEGER_BITS:
 				return getIntegerBits();
-			case OCLforUMLPackage.FIXED_POINT__OVERFLOW :
+			case OCLforUMLPackage.FIXED_POINT__OVERFLOW:
 				return getOverflow();
-			case OCLforUMLPackage.FIXED_POINT__ROUNDING :
+			case OCLforUMLPackage.FIXED_POINT__ROUNDING:
 				return getRounding();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -314,21 +304,22 @@ public class FixedPointImpl
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case OCLforUMLPackage.FIXED_POINT__BIT_TRUE :
-				setBitTrue((Boolean) newValue);
+		switch (featureID)
+		{
+			case OCLforUMLPackage.FIXED_POINT__BIT_TRUE:
+				setBitTrue((Boolean)newValue);
 				return;
-			case OCLforUMLPackage.FIXED_POINT__FRACTIONAL_BITS :
-				setFractionalBits((Integer) newValue);
+			case OCLforUMLPackage.FIXED_POINT__FRACTIONAL_BITS:
+				setFractionalBits((Integer)newValue);
 				return;
-			case OCLforUMLPackage.FIXED_POINT__INTEGER_BITS :
-				setIntegerBits((Integer) newValue);
+			case OCLforUMLPackage.FIXED_POINT__INTEGER_BITS:
+				setIntegerBits((Integer)newValue);
 				return;
-			case OCLforUMLPackage.FIXED_POINT__OVERFLOW :
-				setOverflow((Overflow) newValue);
+			case OCLforUMLPackage.FIXED_POINT__OVERFLOW:
+				setOverflow((Overflow)newValue);
 				return;
-			case OCLforUMLPackage.FIXED_POINT__ROUNDING :
-				setRounding((Rounding) newValue);
+			case OCLforUMLPackage.FIXED_POINT__ROUNDING:
+				setRounding((Rounding)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -341,20 +332,21 @@ public class FixedPointImpl
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case OCLforUMLPackage.FIXED_POINT__BIT_TRUE :
+		switch (featureID)
+		{
+			case OCLforUMLPackage.FIXED_POINT__BIT_TRUE:
 				setBitTrue(BIT_TRUE_EDEFAULT);
 				return;
-			case OCLforUMLPackage.FIXED_POINT__FRACTIONAL_BITS :
+			case OCLforUMLPackage.FIXED_POINT__FRACTIONAL_BITS:
 				setFractionalBits(FRACTIONAL_BITS_EDEFAULT);
 				return;
-			case OCLforUMLPackage.FIXED_POINT__INTEGER_BITS :
+			case OCLforUMLPackage.FIXED_POINT__INTEGER_BITS:
 				setIntegerBits(INTEGER_BITS_EDEFAULT);
 				return;
-			case OCLforUMLPackage.FIXED_POINT__OVERFLOW :
+			case OCLforUMLPackage.FIXED_POINT__OVERFLOW:
 				setOverflow(OVERFLOW_EDEFAULT);
 				return;
-			case OCLforUMLPackage.FIXED_POINT__ROUNDING :
+			case OCLforUMLPackage.FIXED_POINT__ROUNDING:
 				setRounding(ROUNDING_EDEFAULT);
 				return;
 		}
@@ -368,16 +360,17 @@ public class FixedPointImpl
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case OCLforUMLPackage.FIXED_POINT__BIT_TRUE :
+		switch (featureID)
+		{
+			case OCLforUMLPackage.FIXED_POINT__BIT_TRUE:
 				return bitTrue != BIT_TRUE_EDEFAULT;
-			case OCLforUMLPackage.FIXED_POINT__FRACTIONAL_BITS :
+			case OCLforUMLPackage.FIXED_POINT__FRACTIONAL_BITS:
 				return fractionalBits != FRACTIONAL_BITS_EDEFAULT;
-			case OCLforUMLPackage.FIXED_POINT__INTEGER_BITS :
+			case OCLforUMLPackage.FIXED_POINT__INTEGER_BITS:
 				return integerBits != INTEGER_BITS_EDEFAULT;
-			case OCLforUMLPackage.FIXED_POINT__OVERFLOW :
+			case OCLforUMLPackage.FIXED_POINT__OVERFLOW:
 				return overflow != OVERFLOW_EDEFAULT;
-			case OCLforUMLPackage.FIXED_POINT__ROUNDING :
+			case OCLforUMLPackage.FIXED_POINT__ROUNDING:
 				return rounding != ROUNDING_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -390,8 +383,7 @@ public class FixedPointImpl
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (bitTrue: "); //$NON-NLS-1$

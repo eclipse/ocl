@@ -53,7 +53,8 @@ public class OCLforUMLAdapterFactory
 	 * @generated
 	 */
 	public OCLforUMLAdapterFactory() {
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = OCLforUMLPackage.eINSTANCE;
 		}
 	}
@@ -68,11 +69,13 @@ public class OCLforUMLAdapterFactory
 	 */
 	@Override
 	public boolean isFactoryForType(Object object) {
-		if (object == modelPackage) {
+		if (object == modelPackage)
+		{
 			return true;
 		}
-		if (object instanceof EObject) {
-			return ((EObject) object).eClass().getEPackage() == modelPackage;
+		if (object instanceof EObject)
+		{
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -83,59 +86,59 @@ public class OCLforUMLAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected OCLforUMLSwitch<@Nullable Adapter> modelSwitch = new OCLforUMLSwitch<@Nullable Adapter>() {
-
-		@Override
-		public Adapter caseBoundedInteger(BoundedInteger object) {
-			return createBoundedIntegerAdapter();
-		}
-
-		@Override
-		public Adapter caseInteger(
-				org.eclipse.ocl.pivot.uml.internal.oclforuml.Integer object) {
-			return createIntegerAdapter();
-		}
-
-		@Override
-		public Adapter caseCollection(Collection object) {
-			return createCollectionAdapter();
-		}
-
-		@Override
-		public Adapter caseCollections(Collections object) {
-			return createCollectionsAdapter();
-		}
-
-		@Override
-		public Adapter caseFixedPoint(FixedPoint object) {
-			return createFixedPointAdapter();
-		}
-
-		@Override
-		public Adapter caseReal(Real object) {
-			return createRealAdapter();
-		}
-
-		@Override
-		public Adapter caseFloatingPoint(FloatingPoint object) {
-			return createFloatingPointAdapter();
-		}
-
-		@Override
-		public Adapter caseValidation(Validation object) {
-			return createValidationAdapter();
-		}
-
-		@Override
-		public Adapter caseValidations(Validations object) {
-			return createValidationsAdapter();
-		}
-
-		@Override
-		public Adapter defaultCase(EObject object) {
-			return createEObjectAdapter();
-		}
-	};
+	protected OCLforUMLSwitch<@Nullable Adapter> modelSwitch = new OCLforUMLSwitch<@Nullable Adapter>()
+		{
+			@Override
+			public Adapter caseBoundedInteger(BoundedInteger object)
+			{
+				return createBoundedIntegerAdapter();
+			}
+			@Override
+			public Adapter caseInteger(org.eclipse.ocl.pivot.uml.internal.oclforuml.Integer object)
+			{
+				return createIntegerAdapter();
+			}
+			@Override
+			public Adapter caseCollection(Collection object)
+			{
+				return createCollectionAdapter();
+			}
+			@Override
+			public Adapter caseCollections(Collections object)
+			{
+				return createCollectionsAdapter();
+			}
+			@Override
+			public Adapter caseFixedPoint(FixedPoint object)
+			{
+				return createFixedPointAdapter();
+			}
+			@Override
+			public Adapter caseReal(Real object)
+			{
+				return createRealAdapter();
+			}
+			@Override
+			public Adapter caseFloatingPoint(FloatingPoint object)
+			{
+				return createFloatingPointAdapter();
+			}
+			@Override
+			public Adapter caseValidation(Validation object)
+			{
+				return createValidationAdapter();
+			}
+			@Override
+			public Adapter caseValidations(Validations object)
+			{
+				return createValidationsAdapter();
+			}
+			@Override
+			public Adapter defaultCase(EObject object)
+			{
+				return createEObjectAdapter();
+			}
+		};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -147,7 +150,7 @@ public class OCLforUMLAdapterFactory
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject) target);
+		return modelSwitch.doSwitch((EObject)target);
 	}
 
 	/**

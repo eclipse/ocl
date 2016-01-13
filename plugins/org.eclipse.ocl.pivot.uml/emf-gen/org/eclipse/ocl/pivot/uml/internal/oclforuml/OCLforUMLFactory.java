@@ -29,8 +29,7 @@ public interface OCLforUMLFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	OCLforUMLFactory eINSTANCE = org.eclipse.ocl.pivot.uml.internal.oclforuml.impl.OCLforUMLFactoryImpl
-		.init();
+	OCLforUMLFactory eINSTANCE = org.eclipse.ocl.pivot.uml.internal.oclforuml.impl.OCLforUMLFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Bounded Integer</em>'.

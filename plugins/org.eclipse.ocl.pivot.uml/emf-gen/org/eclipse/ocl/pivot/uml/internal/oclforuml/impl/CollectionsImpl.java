@@ -112,15 +112,14 @@ public class CollectionsImpl
 	 */
 	@Override
 	public org.eclipse.uml2.uml.Class getBase_Class() {
-		if (base_Class != null && base_Class.eIsProxy()) {
-			InternalEObject oldBase_Class = (InternalEObject) base_Class;
-			base_Class = (org.eclipse.uml2.uml.Class) eResolveProxy(
-				oldBase_Class);
-			if (base_Class != oldBase_Class) {
+		if (base_Class != null && base_Class.eIsProxy())
+		{
+			InternalEObject oldBase_Class = (InternalEObject)base_Class;
+			base_Class = (org.eclipse.uml2.uml.Class)eResolveProxy(oldBase_Class);
+			if (base_Class != oldBase_Class)
+			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						OCLforUMLPackage.COLLECTIONS__BASE_CLASS, oldBase_Class,
-						base_Class));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OCLforUMLPackage.COLLECTIONS__BASE_CLASS, oldBase_Class, base_Class));
 			}
 		}
 		return base_Class;
@@ -145,9 +144,7 @@ public class CollectionsImpl
 		org.eclipse.uml2.uml.Class oldBase_Class = base_Class;
 		base_Class = newBase_Class;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCLforUMLPackage.COLLECTIONS__BASE_CLASS, oldBase_Class,
-				base_Class));
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLforUMLPackage.COLLECTIONS__BASE_CLASS, oldBase_Class, base_Class));
 	}
 
 	/**
@@ -157,15 +154,14 @@ public class CollectionsImpl
 	 */
 	@Override
 	public org.eclipse.uml2.uml.Package getBase_Package() {
-		if (base_Package != null && base_Package.eIsProxy()) {
-			InternalEObject oldBase_Package = (InternalEObject) base_Package;
-			base_Package = (org.eclipse.uml2.uml.Package) eResolveProxy(
-				oldBase_Package);
-			if (base_Package != oldBase_Package) {
+		if (base_Package != null && base_Package.eIsProxy())
+		{
+			InternalEObject oldBase_Package = (InternalEObject)base_Package;
+			base_Package = (org.eclipse.uml2.uml.Package)eResolveProxy(oldBase_Package);
+			if (base_Package != oldBase_Package)
+			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						OCLforUMLPackage.COLLECTIONS__BASE_PACKAGE,
-						oldBase_Package, base_Package));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OCLforUMLPackage.COLLECTIONS__BASE_PACKAGE, oldBase_Package, base_Package));
 			}
 		}
 		return base_Package;
@@ -190,9 +186,7 @@ public class CollectionsImpl
 		org.eclipse.uml2.uml.Package oldBase_Package = base_Package;
 		base_Package = newBase_Package;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCLforUMLPackage.COLLECTIONS__BASE_PACKAGE, oldBase_Package,
-				base_Package));
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLforUMLPackage.COLLECTIONS__BASE_PACKAGE, oldBase_Package, base_Package));
 	}
 
 	/**
@@ -217,9 +211,7 @@ public class CollectionsImpl
 		boolean oldIsNullFreeESet = isNullFreeESet;
 		isNullFreeESet = true;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCLforUMLPackage.COLLECTIONS__IS_NULL_FREE, oldIsNullFree,
-				isNullFree, !oldIsNullFreeESet));
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLforUMLPackage.COLLECTIONS__IS_NULL_FREE, oldIsNullFree, isNullFree, !oldIsNullFreeESet));
 	}
 
 	/**
@@ -234,9 +226,7 @@ public class CollectionsImpl
 		isNullFree = IS_NULL_FREE_EDEFAULT;
 		isNullFreeESet = false;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET,
-				OCLforUMLPackage.COLLECTIONS__IS_NULL_FREE, oldIsNullFree,
-				IS_NULL_FREE_EDEFAULT, oldIsNullFreeESet));
+			eNotify(new ENotificationImpl(this, Notification.UNSET, OCLforUMLPackage.COLLECTIONS__IS_NULL_FREE, oldIsNullFree, IS_NULL_FREE_EDEFAULT, oldIsNullFreeESet));
 	}
 
 	/**
@@ -256,16 +246,15 @@ public class CollectionsImpl
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case OCLforUMLPackage.COLLECTIONS__BASE_CLASS :
-				if (resolve)
-					return getBase_Class();
+		switch (featureID)
+		{
+			case OCLforUMLPackage.COLLECTIONS__BASE_CLASS:
+				if (resolve) return getBase_Class();
 				return basicGetBase_Class();
-			case OCLforUMLPackage.COLLECTIONS__BASE_PACKAGE :
-				if (resolve)
-					return getBase_Package();
+			case OCLforUMLPackage.COLLECTIONS__BASE_PACKAGE:
+				if (resolve) return getBase_Package();
 				return basicGetBase_Package();
-			case OCLforUMLPackage.COLLECTIONS__IS_NULL_FREE :
+			case OCLforUMLPackage.COLLECTIONS__IS_NULL_FREE:
 				return isNullFree();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -278,15 +267,16 @@ public class CollectionsImpl
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case OCLforUMLPackage.COLLECTIONS__BASE_CLASS :
-				setBase_Class((org.eclipse.uml2.uml.Class) newValue);
+		switch (featureID)
+		{
+			case OCLforUMLPackage.COLLECTIONS__BASE_CLASS:
+				setBase_Class((org.eclipse.uml2.uml.Class)newValue);
 				return;
-			case OCLforUMLPackage.COLLECTIONS__BASE_PACKAGE :
-				setBase_Package((org.eclipse.uml2.uml.Package) newValue);
+			case OCLforUMLPackage.COLLECTIONS__BASE_PACKAGE:
+				setBase_Package((org.eclipse.uml2.uml.Package)newValue);
 				return;
-			case OCLforUMLPackage.COLLECTIONS__IS_NULL_FREE :
-				setIsNullFree((Boolean) newValue);
+			case OCLforUMLPackage.COLLECTIONS__IS_NULL_FREE:
+				setIsNullFree((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -299,14 +289,15 @@ public class CollectionsImpl
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case OCLforUMLPackage.COLLECTIONS__BASE_CLASS :
-				setBase_Class((org.eclipse.uml2.uml.Class) null);
+		switch (featureID)
+		{
+			case OCLforUMLPackage.COLLECTIONS__BASE_CLASS:
+				setBase_Class((org.eclipse.uml2.uml.Class)null);
 				return;
-			case OCLforUMLPackage.COLLECTIONS__BASE_PACKAGE :
-				setBase_Package((org.eclipse.uml2.uml.Package) null);
+			case OCLforUMLPackage.COLLECTIONS__BASE_PACKAGE:
+				setBase_Package((org.eclipse.uml2.uml.Package)null);
 				return;
-			case OCLforUMLPackage.COLLECTIONS__IS_NULL_FREE :
+			case OCLforUMLPackage.COLLECTIONS__IS_NULL_FREE:
 				unsetIsNullFree();
 				return;
 		}
@@ -320,12 +311,13 @@ public class CollectionsImpl
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case OCLforUMLPackage.COLLECTIONS__BASE_CLASS :
+		switch (featureID)
+		{
+			case OCLforUMLPackage.COLLECTIONS__BASE_CLASS:
 				return base_Class != null;
-			case OCLforUMLPackage.COLLECTIONS__BASE_PACKAGE :
+			case OCLforUMLPackage.COLLECTIONS__BASE_PACKAGE:
 				return base_Package != null;
-			case OCLforUMLPackage.COLLECTIONS__IS_NULL_FREE :
+			case OCLforUMLPackage.COLLECTIONS__IS_NULL_FREE:
 				return isSetIsNullFree();
 		}
 		return super.eIsSet(featureID);
@@ -338,15 +330,11 @@ public class CollectionsImpl
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (isNullFree: "); //$NON-NLS-1$
-		if (isNullFreeESet)
-			result.append(isNullFree);
-		else
-			result.append("<unset>"); //$NON-NLS-1$
+		if (isNullFreeESet) result.append(isNullFree); else result.append("<unset>"); //$NON-NLS-1$
 		result.append(')');
 		return result.toString();
 	}

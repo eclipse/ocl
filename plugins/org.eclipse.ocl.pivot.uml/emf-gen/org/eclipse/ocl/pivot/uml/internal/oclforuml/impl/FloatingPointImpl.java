@@ -156,13 +156,9 @@ public class FloatingPointImpl
 	@Override
 	public void setOverflow(Overflow newOverflow) {
 		Overflow oldOverflow = overflow;
-		overflow = newOverflow == null
-			? OVERFLOW_EDEFAULT
-			: newOverflow;
+		overflow = newOverflow == null ? OVERFLOW_EDEFAULT : newOverflow;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCLforUMLPackage.FLOATING_POINT__OVERFLOW, oldOverflow,
-				overflow));
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLforUMLPackage.FLOATING_POINT__OVERFLOW, oldOverflow, overflow));
 	}
 
 	/**
@@ -183,13 +179,9 @@ public class FloatingPointImpl
 	@Override
 	public void setRounding(Rounding newRounding) {
 		Rounding oldRounding = rounding;
-		rounding = newRounding == null
-			? ROUNDING_EDEFAULT
-			: newRounding;
+		rounding = newRounding == null ? ROUNDING_EDEFAULT : newRounding;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCLforUMLPackage.FLOATING_POINT__ROUNDING, oldRounding,
-				rounding));
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLforUMLPackage.FLOATING_POINT__ROUNDING, oldRounding, rounding));
 	}
 
 	/**
@@ -212,9 +204,7 @@ public class FloatingPointImpl
 		int oldExponentBits = exponentBits;
 		exponentBits = newExponentBits;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCLforUMLPackage.FLOATING_POINT__EXPONENT_BITS, oldExponentBits,
-				exponentBits));
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLforUMLPackage.FLOATING_POINT__EXPONENT_BITS, oldExponentBits, exponentBits));
 	}
 
 	/**
@@ -237,9 +227,7 @@ public class FloatingPointImpl
 		int oldMantissaBits = mantissaBits;
 		mantissaBits = newMantissaBits;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCLforUMLPackage.FLOATING_POINT__MANTISSA_BITS, oldMantissaBits,
-				mantissaBits));
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLforUMLPackage.FLOATING_POINT__MANTISSA_BITS, oldMantissaBits, mantissaBits));
 	}
 
 	/**
@@ -249,14 +237,15 @@ public class FloatingPointImpl
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case OCLforUMLPackage.FLOATING_POINT__EXPONENT_BITS :
+		switch (featureID)
+		{
+			case OCLforUMLPackage.FLOATING_POINT__EXPONENT_BITS:
 				return getExponentBits();
-			case OCLforUMLPackage.FLOATING_POINT__MANTISSA_BITS :
+			case OCLforUMLPackage.FLOATING_POINT__MANTISSA_BITS:
 				return getMantissaBits();
-			case OCLforUMLPackage.FLOATING_POINT__OVERFLOW :
+			case OCLforUMLPackage.FLOATING_POINT__OVERFLOW:
 				return getOverflow();
-			case OCLforUMLPackage.FLOATING_POINT__ROUNDING :
+			case OCLforUMLPackage.FLOATING_POINT__ROUNDING:
 				return getRounding();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -269,18 +258,19 @@ public class FloatingPointImpl
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case OCLforUMLPackage.FLOATING_POINT__EXPONENT_BITS :
-				setExponentBits((Integer) newValue);
+		switch (featureID)
+		{
+			case OCLforUMLPackage.FLOATING_POINT__EXPONENT_BITS:
+				setExponentBits((Integer)newValue);
 				return;
-			case OCLforUMLPackage.FLOATING_POINT__MANTISSA_BITS :
-				setMantissaBits((Integer) newValue);
+			case OCLforUMLPackage.FLOATING_POINT__MANTISSA_BITS:
+				setMantissaBits((Integer)newValue);
 				return;
-			case OCLforUMLPackage.FLOATING_POINT__OVERFLOW :
-				setOverflow((Overflow) newValue);
+			case OCLforUMLPackage.FLOATING_POINT__OVERFLOW:
+				setOverflow((Overflow)newValue);
 				return;
-			case OCLforUMLPackage.FLOATING_POINT__ROUNDING :
-				setRounding((Rounding) newValue);
+			case OCLforUMLPackage.FLOATING_POINT__ROUNDING:
+				setRounding((Rounding)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -293,17 +283,18 @@ public class FloatingPointImpl
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case OCLforUMLPackage.FLOATING_POINT__EXPONENT_BITS :
+		switch (featureID)
+		{
+			case OCLforUMLPackage.FLOATING_POINT__EXPONENT_BITS:
 				setExponentBits(EXPONENT_BITS_EDEFAULT);
 				return;
-			case OCLforUMLPackage.FLOATING_POINT__MANTISSA_BITS :
+			case OCLforUMLPackage.FLOATING_POINT__MANTISSA_BITS:
 				setMantissaBits(MANTISSA_BITS_EDEFAULT);
 				return;
-			case OCLforUMLPackage.FLOATING_POINT__OVERFLOW :
+			case OCLforUMLPackage.FLOATING_POINT__OVERFLOW:
 				setOverflow(OVERFLOW_EDEFAULT);
 				return;
-			case OCLforUMLPackage.FLOATING_POINT__ROUNDING :
+			case OCLforUMLPackage.FLOATING_POINT__ROUNDING:
 				setRounding(ROUNDING_EDEFAULT);
 				return;
 		}
@@ -317,14 +308,15 @@ public class FloatingPointImpl
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case OCLforUMLPackage.FLOATING_POINT__EXPONENT_BITS :
+		switch (featureID)
+		{
+			case OCLforUMLPackage.FLOATING_POINT__EXPONENT_BITS:
 				return exponentBits != EXPONENT_BITS_EDEFAULT;
-			case OCLforUMLPackage.FLOATING_POINT__MANTISSA_BITS :
+			case OCLforUMLPackage.FLOATING_POINT__MANTISSA_BITS:
 				return mantissaBits != MANTISSA_BITS_EDEFAULT;
-			case OCLforUMLPackage.FLOATING_POINT__OVERFLOW :
+			case OCLforUMLPackage.FLOATING_POINT__OVERFLOW:
 				return overflow != OVERFLOW_EDEFAULT;
-			case OCLforUMLPackage.FLOATING_POINT__ROUNDING :
+			case OCLforUMLPackage.FLOATING_POINT__ROUNDING:
 				return rounding != ROUNDING_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -337,8 +329,7 @@ public class FloatingPointImpl
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (exponentBits: "); //$NON-NLS-1$

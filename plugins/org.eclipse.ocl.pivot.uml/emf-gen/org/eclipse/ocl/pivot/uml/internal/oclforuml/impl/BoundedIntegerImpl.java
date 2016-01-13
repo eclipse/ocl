@@ -91,13 +91,9 @@ public class BoundedIntegerImpl
 	@Override
 	public void setOverflow(Overflow newOverflow) {
 		Overflow oldOverflow = overflow;
-		overflow = newOverflow == null
-			? OVERFLOW_EDEFAULT
-			: newOverflow;
+		overflow = newOverflow == null ? OVERFLOW_EDEFAULT : newOverflow;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCLforUMLPackage.BOUNDED_INTEGER__OVERFLOW, oldOverflow,
-				overflow));
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLforUMLPackage.BOUNDED_INTEGER__OVERFLOW, oldOverflow, overflow));
 	}
 
 	/**
@@ -107,8 +103,9 @@ public class BoundedIntegerImpl
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case OCLforUMLPackage.BOUNDED_INTEGER__OVERFLOW :
+		switch (featureID)
+		{
+			case OCLforUMLPackage.BOUNDED_INTEGER__OVERFLOW:
 				return getOverflow();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -121,9 +118,10 @@ public class BoundedIntegerImpl
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case OCLforUMLPackage.BOUNDED_INTEGER__OVERFLOW :
-				setOverflow((Overflow) newValue);
+		switch (featureID)
+		{
+			case OCLforUMLPackage.BOUNDED_INTEGER__OVERFLOW:
+				setOverflow((Overflow)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -136,8 +134,9 @@ public class BoundedIntegerImpl
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case OCLforUMLPackage.BOUNDED_INTEGER__OVERFLOW :
+		switch (featureID)
+		{
+			case OCLforUMLPackage.BOUNDED_INTEGER__OVERFLOW:
 				setOverflow(OVERFLOW_EDEFAULT);
 				return;
 		}
@@ -151,8 +150,9 @@ public class BoundedIntegerImpl
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case OCLforUMLPackage.BOUNDED_INTEGER__OVERFLOW :
+		switch (featureID)
+		{
+			case OCLforUMLPackage.BOUNDED_INTEGER__OVERFLOW:
 				return overflow != OVERFLOW_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -165,8 +165,7 @@ public class BoundedIntegerImpl
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (overflow: "); //$NON-NLS-1$

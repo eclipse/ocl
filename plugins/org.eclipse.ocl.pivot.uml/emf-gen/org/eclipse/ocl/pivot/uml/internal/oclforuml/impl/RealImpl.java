@@ -162,14 +162,14 @@ public class RealImpl
 	 */
 	@Override
 	public DataType getBase_DataType() {
-		if (base_DataType != null && base_DataType.eIsProxy()) {
-			InternalEObject oldBase_DataType = (InternalEObject) base_DataType;
-			base_DataType = (DataType) eResolveProxy(oldBase_DataType);
-			if (base_DataType != oldBase_DataType) {
+		if (base_DataType != null && base_DataType.eIsProxy())
+		{
+			InternalEObject oldBase_DataType = (InternalEObject)base_DataType;
+			base_DataType = (DataType)eResolveProxy(oldBase_DataType);
+			if (base_DataType != oldBase_DataType)
+			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						OCLforUMLPackage.REAL__BASE_DATA_TYPE, oldBase_DataType,
-						base_DataType));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OCLforUMLPackage.REAL__BASE_DATA_TYPE, oldBase_DataType, base_DataType));
 			}
 		}
 		return base_DataType;
@@ -194,9 +194,7 @@ public class RealImpl
 		DataType oldBase_DataType = base_DataType;
 		base_DataType = newBase_DataType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCLforUMLPackage.REAL__BASE_DATA_TYPE, oldBase_DataType,
-				base_DataType));
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLforUMLPackage.REAL__BASE_DATA_TYPE, oldBase_DataType, base_DataType));
 	}
 
 	/**
@@ -221,9 +219,7 @@ public class RealImpl
 		boolean oldEpsilonESet = epsilonESet;
 		epsilonESet = true;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCLforUMLPackage.REAL__EPSILON, oldEpsilon, epsilon,
-				!oldEpsilonESet));
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLforUMLPackage.REAL__EPSILON, oldEpsilon, epsilon, !oldEpsilonESet));
 	}
 
 	/**
@@ -238,9 +234,7 @@ public class RealImpl
 		epsilon = EPSILON_EDEFAULT;
 		epsilonESet = false;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET,
-				OCLforUMLPackage.REAL__EPSILON, oldEpsilon, EPSILON_EDEFAULT,
-				oldEpsilonESet));
+			eNotify(new ENotificationImpl(this, Notification.UNSET, OCLforUMLPackage.REAL__EPSILON, oldEpsilon, EPSILON_EDEFAULT, oldEpsilonESet));
 	}
 
 	/**
@@ -275,9 +269,7 @@ public class RealImpl
 		boolean oldMaximumESet = maximumESet;
 		maximumESet = true;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCLforUMLPackage.REAL__MAXIMUM, oldMaximum, maximum,
-				!oldMaximumESet));
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLforUMLPackage.REAL__MAXIMUM, oldMaximum, maximum, !oldMaximumESet));
 	}
 
 	/**
@@ -292,9 +284,7 @@ public class RealImpl
 		maximum = MAXIMUM_EDEFAULT;
 		maximumESet = false;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET,
-				OCLforUMLPackage.REAL__MAXIMUM, oldMaximum, MAXIMUM_EDEFAULT,
-				oldMaximumESet));
+			eNotify(new ENotificationImpl(this, Notification.UNSET, OCLforUMLPackage.REAL__MAXIMUM, oldMaximum, MAXIMUM_EDEFAULT, oldMaximumESet));
 	}
 
 	/**
@@ -329,9 +319,7 @@ public class RealImpl
 		boolean oldMinimumESet = minimumESet;
 		minimumESet = true;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCLforUMLPackage.REAL__MINIMUM, oldMinimum, minimum,
-				!oldMinimumESet));
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLforUMLPackage.REAL__MINIMUM, oldMinimum, minimum, !oldMinimumESet));
 	}
 
 	/**
@@ -346,9 +334,7 @@ public class RealImpl
 		minimum = MINIMUM_EDEFAULT;
 		minimumESet = false;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET,
-				OCLforUMLPackage.REAL__MINIMUM, oldMinimum, MINIMUM_EDEFAULT,
-				oldMinimumESet));
+			eNotify(new ENotificationImpl(this, Notification.UNSET, OCLforUMLPackage.REAL__MINIMUM, oldMinimum, MINIMUM_EDEFAULT, oldMinimumESet));
 	}
 
 	/**
@@ -368,16 +354,16 @@ public class RealImpl
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case OCLforUMLPackage.REAL__BASE_DATA_TYPE :
-				if (resolve)
-					return getBase_DataType();
+		switch (featureID)
+		{
+			case OCLforUMLPackage.REAL__BASE_DATA_TYPE:
+				if (resolve) return getBase_DataType();
 				return basicGetBase_DataType();
-			case OCLforUMLPackage.REAL__EPSILON :
+			case OCLforUMLPackage.REAL__EPSILON:
 				return getEpsilon();
-			case OCLforUMLPackage.REAL__MAXIMUM :
+			case OCLforUMLPackage.REAL__MAXIMUM:
 				return getMaximum();
-			case OCLforUMLPackage.REAL__MINIMUM :
+			case OCLforUMLPackage.REAL__MINIMUM:
 				return getMinimum();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -390,18 +376,19 @@ public class RealImpl
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case OCLforUMLPackage.REAL__BASE_DATA_TYPE :
-				setBase_DataType((DataType) newValue);
+		switch (featureID)
+		{
+			case OCLforUMLPackage.REAL__BASE_DATA_TYPE:
+				setBase_DataType((DataType)newValue);
 				return;
-			case OCLforUMLPackage.REAL__EPSILON :
-				setEpsilon((Double) newValue);
+			case OCLforUMLPackage.REAL__EPSILON:
+				setEpsilon((Double)newValue);
 				return;
-			case OCLforUMLPackage.REAL__MAXIMUM :
-				setMaximum((Double) newValue);
+			case OCLforUMLPackage.REAL__MAXIMUM:
+				setMaximum((Double)newValue);
 				return;
-			case OCLforUMLPackage.REAL__MINIMUM :
-				setMinimum((Double) newValue);
+			case OCLforUMLPackage.REAL__MINIMUM:
+				setMinimum((Double)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -414,17 +401,18 @@ public class RealImpl
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case OCLforUMLPackage.REAL__BASE_DATA_TYPE :
-				setBase_DataType((DataType) null);
+		switch (featureID)
+		{
+			case OCLforUMLPackage.REAL__BASE_DATA_TYPE:
+				setBase_DataType((DataType)null);
 				return;
-			case OCLforUMLPackage.REAL__EPSILON :
+			case OCLforUMLPackage.REAL__EPSILON:
 				unsetEpsilon();
 				return;
-			case OCLforUMLPackage.REAL__MAXIMUM :
+			case OCLforUMLPackage.REAL__MAXIMUM:
 				unsetMaximum();
 				return;
-			case OCLforUMLPackage.REAL__MINIMUM :
+			case OCLforUMLPackage.REAL__MINIMUM:
 				unsetMinimum();
 				return;
 		}
@@ -438,14 +426,15 @@ public class RealImpl
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case OCLforUMLPackage.REAL__BASE_DATA_TYPE :
+		switch (featureID)
+		{
+			case OCLforUMLPackage.REAL__BASE_DATA_TYPE:
 				return base_DataType != null;
-			case OCLforUMLPackage.REAL__EPSILON :
+			case OCLforUMLPackage.REAL__EPSILON:
 				return isSetEpsilon();
-			case OCLforUMLPackage.REAL__MAXIMUM :
+			case OCLforUMLPackage.REAL__MAXIMUM:
 				return isSetMaximum();
-			case OCLforUMLPackage.REAL__MINIMUM :
+			case OCLforUMLPackage.REAL__MINIMUM:
 				return isSetMinimum();
 		}
 		return super.eIsSet(featureID);
@@ -458,25 +447,15 @@ public class RealImpl
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (epsilon: "); //$NON-NLS-1$
-		if (epsilonESet)
-			result.append(epsilon);
-		else
-			result.append("<unset>"); //$NON-NLS-1$
+		if (epsilonESet) result.append(epsilon); else result.append("<unset>"); //$NON-NLS-1$
 		result.append(", maximum: "); //$NON-NLS-1$
-		if (maximumESet)
-			result.append(maximum);
-		else
-			result.append("<unset>"); //$NON-NLS-1$
+		if (maximumESet) result.append(maximum); else result.append("<unset>"); //$NON-NLS-1$
 		result.append(", minimum: "); //$NON-NLS-1$
-		if (minimumESet)
-			result.append(minimum);
-		else
-			result.append("<unset>"); //$NON-NLS-1$
+		if (minimumESet) result.append(minimum); else result.append("<unset>"); //$NON-NLS-1$
 		result.append(')');
 		return result.toString();
 	}

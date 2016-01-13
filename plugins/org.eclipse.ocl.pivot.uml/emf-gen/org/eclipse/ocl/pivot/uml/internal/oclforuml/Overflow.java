@@ -108,8 +108,12 @@ public enum Overflow
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final Overflow[] VALUES_ARRAY = new Overflow[]{INVALID,
-		SATURATE, MODULO,};
+	private static final Overflow[] VALUES_ARRAY = new Overflow[]
+		{
+			INVALID,
+			SATURATE,
+			MODULO,
+		};
 
 	/**
 	 * A public read-only list of all the '<em><b>Overflow</b></em>' enumerators.
@@ -117,8 +121,7 @@ public enum Overflow
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<Overflow> VALUES = Collections
-		.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<Overflow> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Overflow</b></em>' literal with the specified literal value.
@@ -129,9 +132,11 @@ public enum Overflow
 	 * @generated
 	 */
 	public static Overflow get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			Overflow result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if (result.toString().equals(literal))
+			{
 				return result;
 			}
 		}
@@ -147,9 +152,11 @@ public enum Overflow
 	 * @generated
 	 */
 	public static Overflow getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			Overflow result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if (result.getName().equals(name))
+			{
 				return result;
 			}
 		}
@@ -165,13 +172,11 @@ public enum Overflow
 	 * @generated
 	 */
 	public static Overflow get(int value) {
-		switch (value) {
-			case INVALID_VALUE :
-				return INVALID;
-			case SATURATE_VALUE :
-				return SATURATE;
-			case MODULO_VALUE :
-				return MODULO;
+		switch (value)
+		{
+			case INVALID_VALUE: return INVALID;
+			case SATURATE_VALUE: return SATURATE;
+			case MODULO_VALUE: return MODULO;
 		}
 		return null;
 	}
@@ -216,7 +221,7 @@ public enum Overflow
 	 */
 	@Override
 	public int getValue() {
-		return value;
+	  return value;
 	}
 
 	/**
@@ -226,7 +231,7 @@ public enum Overflow
 	 */
 	@Override
 	public String getName() {
-		return name;
+	  return name;
 	}
 
 	/**
@@ -236,7 +241,7 @@ public enum Overflow
 	 */
 	@Override
 	public String getLiteral() {
-		return literal;
+	  return literal;
 	}
 
 	/**

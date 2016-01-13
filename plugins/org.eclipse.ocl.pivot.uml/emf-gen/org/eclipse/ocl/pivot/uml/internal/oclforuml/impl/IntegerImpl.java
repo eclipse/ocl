@@ -132,14 +132,14 @@ public class IntegerImpl
 	 */
 	@Override
 	public DataType getBase_DataType() {
-		if (base_DataType != null && base_DataType.eIsProxy()) {
-			InternalEObject oldBase_DataType = (InternalEObject) base_DataType;
-			base_DataType = (DataType) eResolveProxy(oldBase_DataType);
-			if (base_DataType != oldBase_DataType) {
+		if (base_DataType != null && base_DataType.eIsProxy())
+		{
+			InternalEObject oldBase_DataType = (InternalEObject)base_DataType;
+			base_DataType = (DataType)eResolveProxy(oldBase_DataType);
+			if (base_DataType != oldBase_DataType)
+			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						OCLforUMLPackage.INTEGER__BASE_DATA_TYPE,
-						oldBase_DataType, base_DataType));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OCLforUMLPackage.INTEGER__BASE_DATA_TYPE, oldBase_DataType, base_DataType));
 			}
 		}
 		return base_DataType;
@@ -164,9 +164,7 @@ public class IntegerImpl
 		DataType oldBase_DataType = base_DataType;
 		base_DataType = newBase_DataType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCLforUMLPackage.INTEGER__BASE_DATA_TYPE, oldBase_DataType,
-				base_DataType));
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLforUMLPackage.INTEGER__BASE_DATA_TYPE, oldBase_DataType, base_DataType));
 	}
 
 	/**
@@ -191,9 +189,7 @@ public class IntegerImpl
 		boolean oldMaximumESet = maximumESet;
 		maximumESet = true;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCLforUMLPackage.INTEGER__MAXIMUM, oldMaximum, maximum,
-				!oldMaximumESet));
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLforUMLPackage.INTEGER__MAXIMUM, oldMaximum, maximum, !oldMaximumESet));
 	}
 
 	/**
@@ -208,9 +204,7 @@ public class IntegerImpl
 		maximum = MAXIMUM_EDEFAULT;
 		maximumESet = false;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET,
-				OCLforUMLPackage.INTEGER__MAXIMUM, oldMaximum, MAXIMUM_EDEFAULT,
-				oldMaximumESet));
+			eNotify(new ENotificationImpl(this, Notification.UNSET, OCLforUMLPackage.INTEGER__MAXIMUM, oldMaximum, MAXIMUM_EDEFAULT, oldMaximumESet));
 	}
 
 	/**
@@ -245,9 +239,7 @@ public class IntegerImpl
 		boolean oldMinimumESet = minimumESet;
 		minimumESet = true;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCLforUMLPackage.INTEGER__MINIMUM, oldMinimum, minimum,
-				!oldMinimumESet));
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLforUMLPackage.INTEGER__MINIMUM, oldMinimum, minimum, !oldMinimumESet));
 	}
 
 	/**
@@ -262,9 +254,7 @@ public class IntegerImpl
 		minimum = MINIMUM_EDEFAULT;
 		minimumESet = false;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET,
-				OCLforUMLPackage.INTEGER__MINIMUM, oldMinimum, MINIMUM_EDEFAULT,
-				oldMinimumESet));
+			eNotify(new ENotificationImpl(this, Notification.UNSET, OCLforUMLPackage.INTEGER__MINIMUM, oldMinimum, MINIMUM_EDEFAULT, oldMinimumESet));
 	}
 
 	/**
@@ -284,14 +274,14 @@ public class IntegerImpl
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case OCLforUMLPackage.INTEGER__BASE_DATA_TYPE :
-				if (resolve)
-					return getBase_DataType();
+		switch (featureID)
+		{
+			case OCLforUMLPackage.INTEGER__BASE_DATA_TYPE:
+				if (resolve) return getBase_DataType();
 				return basicGetBase_DataType();
-			case OCLforUMLPackage.INTEGER__MAXIMUM :
+			case OCLforUMLPackage.INTEGER__MAXIMUM:
 				return getMaximum();
-			case OCLforUMLPackage.INTEGER__MINIMUM :
+			case OCLforUMLPackage.INTEGER__MINIMUM:
 				return getMinimum();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -304,15 +294,16 @@ public class IntegerImpl
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case OCLforUMLPackage.INTEGER__BASE_DATA_TYPE :
-				setBase_DataType((DataType) newValue);
+		switch (featureID)
+		{
+			case OCLforUMLPackage.INTEGER__BASE_DATA_TYPE:
+				setBase_DataType((DataType)newValue);
 				return;
-			case OCLforUMLPackage.INTEGER__MAXIMUM :
-				setMaximum((Integer) newValue);
+			case OCLforUMLPackage.INTEGER__MAXIMUM:
+				setMaximum((Integer)newValue);
 				return;
-			case OCLforUMLPackage.INTEGER__MINIMUM :
-				setMinimum((Integer) newValue);
+			case OCLforUMLPackage.INTEGER__MINIMUM:
+				setMinimum((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -325,14 +316,15 @@ public class IntegerImpl
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case OCLforUMLPackage.INTEGER__BASE_DATA_TYPE :
-				setBase_DataType((DataType) null);
+		switch (featureID)
+		{
+			case OCLforUMLPackage.INTEGER__BASE_DATA_TYPE:
+				setBase_DataType((DataType)null);
 				return;
-			case OCLforUMLPackage.INTEGER__MAXIMUM :
+			case OCLforUMLPackage.INTEGER__MAXIMUM:
 				unsetMaximum();
 				return;
-			case OCLforUMLPackage.INTEGER__MINIMUM :
+			case OCLforUMLPackage.INTEGER__MINIMUM:
 				unsetMinimum();
 				return;
 		}
@@ -346,12 +338,13 @@ public class IntegerImpl
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case OCLforUMLPackage.INTEGER__BASE_DATA_TYPE :
+		switch (featureID)
+		{
+			case OCLforUMLPackage.INTEGER__BASE_DATA_TYPE:
 				return base_DataType != null;
-			case OCLforUMLPackage.INTEGER__MAXIMUM :
+			case OCLforUMLPackage.INTEGER__MAXIMUM:
 				return isSetMaximum();
-			case OCLforUMLPackage.INTEGER__MINIMUM :
+			case OCLforUMLPackage.INTEGER__MINIMUM:
 				return isSetMinimum();
 		}
 		return super.eIsSet(featureID);
@@ -364,20 +357,13 @@ public class IntegerImpl
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (maximum: "); //$NON-NLS-1$
-		if (maximumESet)
-			result.append(maximum);
-		else
-			result.append("<unset>"); //$NON-NLS-1$
+		if (maximumESet) result.append(maximum); else result.append("<unset>"); //$NON-NLS-1$
 		result.append(", minimum: "); //$NON-NLS-1$
-		if (minimumESet)
-			result.append(minimum);
-		else
-			result.append("<unset>"); //$NON-NLS-1$
+		if (minimumESet) result.append(minimum); else result.append("<unset>"); //$NON-NLS-1$
 		result.append(')');
 		return result.toString();
 	}

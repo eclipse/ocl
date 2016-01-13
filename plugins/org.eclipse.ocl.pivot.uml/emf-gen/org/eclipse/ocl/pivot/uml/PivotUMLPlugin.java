@@ -52,7 +52,7 @@ public final class PivotUMLPlugin
 	 * @generated
 	 */
 	public PivotUMLPlugin() {
-		super(new ResourceLocator[]{});
+		super(new ResourceLocator [] {});
 	}
 
 	/**

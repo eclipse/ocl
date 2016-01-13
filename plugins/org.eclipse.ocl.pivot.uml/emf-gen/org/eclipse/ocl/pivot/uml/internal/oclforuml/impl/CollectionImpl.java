@@ -102,16 +102,14 @@ public class CollectionImpl
 	 */
 	@Override
 	public MultiplicityElement getBase_MultiplicityElement() {
-		if (base_MultiplicityElement != null
-			&& base_MultiplicityElement.eIsProxy()) {
-			InternalEObject oldBase_MultiplicityElement = (InternalEObject) base_MultiplicityElement;
-			base_MultiplicityElement = (MultiplicityElement) eResolveProxy(
-				oldBase_MultiplicityElement);
-			if (base_MultiplicityElement != oldBase_MultiplicityElement) {
+		if (base_MultiplicityElement != null && base_MultiplicityElement.eIsProxy())
+		{
+			InternalEObject oldBase_MultiplicityElement = (InternalEObject)base_MultiplicityElement;
+			base_MultiplicityElement = (MultiplicityElement)eResolveProxy(oldBase_MultiplicityElement);
+			if (base_MultiplicityElement != oldBase_MultiplicityElement)
+			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						OCLforUMLPackage.COLLECTION__BASE_MULTIPLICITY_ELEMENT,
-						oldBase_MultiplicityElement, base_MultiplicityElement));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OCLforUMLPackage.COLLECTION__BASE_MULTIPLICITY_ELEMENT, oldBase_MultiplicityElement, base_MultiplicityElement));
 			}
 		}
 		return base_MultiplicityElement;
@@ -137,9 +135,7 @@ public class CollectionImpl
 		MultiplicityElement oldBase_MultiplicityElement = base_MultiplicityElement;
 		base_MultiplicityElement = newBase_MultiplicityElement;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCLforUMLPackage.COLLECTION__BASE_MULTIPLICITY_ELEMENT,
-				oldBase_MultiplicityElement, base_MultiplicityElement));
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLforUMLPackage.COLLECTION__BASE_MULTIPLICITY_ELEMENT, oldBase_MultiplicityElement, base_MultiplicityElement));
 	}
 
 	/**
@@ -164,9 +160,7 @@ public class CollectionImpl
 		boolean oldIsNullFreeESet = isNullFreeESet;
 		isNullFreeESet = true;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OCLforUMLPackage.COLLECTION__IS_NULL_FREE, oldIsNullFree,
-				isNullFree, !oldIsNullFreeESet));
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLforUMLPackage.COLLECTION__IS_NULL_FREE, oldIsNullFree, isNullFree, !oldIsNullFreeESet));
 	}
 
 	/**
@@ -181,9 +175,7 @@ public class CollectionImpl
 		isNullFree = IS_NULL_FREE_EDEFAULT;
 		isNullFreeESet = false;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET,
-				OCLforUMLPackage.COLLECTION__IS_NULL_FREE, oldIsNullFree,
-				IS_NULL_FREE_EDEFAULT, oldIsNullFreeESet));
+			eNotify(new ENotificationImpl(this, Notification.UNSET, OCLforUMLPackage.COLLECTION__IS_NULL_FREE, oldIsNullFree, IS_NULL_FREE_EDEFAULT, oldIsNullFreeESet));
 	}
 
 	/**
@@ -203,12 +195,12 @@ public class CollectionImpl
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case OCLforUMLPackage.COLLECTION__BASE_MULTIPLICITY_ELEMENT :
-				if (resolve)
-					return getBase_MultiplicityElement();
+		switch (featureID)
+		{
+			case OCLforUMLPackage.COLLECTION__BASE_MULTIPLICITY_ELEMENT:
+				if (resolve) return getBase_MultiplicityElement();
 				return basicGetBase_MultiplicityElement();
-			case OCLforUMLPackage.COLLECTION__IS_NULL_FREE :
+			case OCLforUMLPackage.COLLECTION__IS_NULL_FREE:
 				return isNullFree();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -221,12 +213,13 @@ public class CollectionImpl
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case OCLforUMLPackage.COLLECTION__BASE_MULTIPLICITY_ELEMENT :
-				setBase_MultiplicityElement((MultiplicityElement) newValue);
+		switch (featureID)
+		{
+			case OCLforUMLPackage.COLLECTION__BASE_MULTIPLICITY_ELEMENT:
+				setBase_MultiplicityElement((MultiplicityElement)newValue);
 				return;
-			case OCLforUMLPackage.COLLECTION__IS_NULL_FREE :
-				setIsNullFree((Boolean) newValue);
+			case OCLforUMLPackage.COLLECTION__IS_NULL_FREE:
+				setIsNullFree((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -239,11 +232,12 @@ public class CollectionImpl
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case OCLforUMLPackage.COLLECTION__BASE_MULTIPLICITY_ELEMENT :
-				setBase_MultiplicityElement((MultiplicityElement) null);
+		switch (featureID)
+		{
+			case OCLforUMLPackage.COLLECTION__BASE_MULTIPLICITY_ELEMENT:
+				setBase_MultiplicityElement((MultiplicityElement)null);
 				return;
-			case OCLforUMLPackage.COLLECTION__IS_NULL_FREE :
+			case OCLforUMLPackage.COLLECTION__IS_NULL_FREE:
 				unsetIsNullFree();
 				return;
 		}
@@ -257,10 +251,11 @@ public class CollectionImpl
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case OCLforUMLPackage.COLLECTION__BASE_MULTIPLICITY_ELEMENT :
+		switch (featureID)
+		{
+			case OCLforUMLPackage.COLLECTION__BASE_MULTIPLICITY_ELEMENT:
 				return base_MultiplicityElement != null;
-			case OCLforUMLPackage.COLLECTION__IS_NULL_FREE :
+			case OCLforUMLPackage.COLLECTION__IS_NULL_FREE:
 				return isSetIsNullFree();
 		}
 		return super.eIsSet(featureID);
@@ -273,15 +268,11 @@ public class CollectionImpl
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (isNullFree: "); //$NON-NLS-1$
-		if (isNullFreeESet)
-			result.append(isNullFree);
-		else
-			result.append("<unset>"); //$NON-NLS-1$
+		if (isNullFreeESet) result.append(isNullFree); else result.append("<unset>"); //$NON-NLS-1$
 		result.append(')');
 		return result.toString();
 	}

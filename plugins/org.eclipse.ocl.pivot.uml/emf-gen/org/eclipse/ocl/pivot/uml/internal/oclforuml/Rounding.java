@@ -133,8 +133,13 @@ public enum Rounding
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final Rounding[] VALUES_ARRAY = new Rounding[]{NEAREST,
-		CEILING, FLOOR, CONGRUENT,};
+	private static final Rounding[] VALUES_ARRAY = new Rounding[]
+		{
+			NEAREST,
+			CEILING,
+			FLOOR,
+			CONGRUENT,
+		};
 
 	/**
 	 * A public read-only list of all the '<em><b>Rounding</b></em>' enumerators.
@@ -142,8 +147,7 @@ public enum Rounding
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<Rounding> VALUES = Collections
-		.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<Rounding> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Rounding</b></em>' literal with the specified literal value.
@@ -154,9 +158,11 @@ public enum Rounding
 	 * @generated
 	 */
 	public static Rounding get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			Rounding result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if (result.toString().equals(literal))
+			{
 				return result;
 			}
 		}
@@ -172,9 +178,11 @@ public enum Rounding
 	 * @generated
 	 */
 	public static Rounding getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i)
+		{
 			Rounding result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if (result.getName().equals(name))
+			{
 				return result;
 			}
 		}
@@ -190,15 +198,12 @@ public enum Rounding
 	 * @generated
 	 */
 	public static Rounding get(int value) {
-		switch (value) {
-			case NEAREST_VALUE :
-				return NEAREST;
-			case CEILING_VALUE :
-				return CEILING;
-			case FLOOR_VALUE :
-				return FLOOR;
-			case CONGRUENT_VALUE :
-				return CONGRUENT;
+		switch (value)
+		{
+			case NEAREST_VALUE: return NEAREST;
+			case CEILING_VALUE: return CEILING;
+			case FLOOR_VALUE: return FLOOR;
+			case CONGRUENT_VALUE: return CONGRUENT;
 		}
 		return null;
 	}
@@ -243,7 +248,7 @@ public enum Rounding
 	 */
 	@Override
 	public int getValue() {
-		return value;
+	  return value;
 	}
 
 	/**
@@ -253,7 +258,7 @@ public enum Rounding
 	 */
 	@Override
 	public String getName() {
-		return name;
+	  return name;
 	}
 
 	/**
@@ -263,7 +268,7 @@ public enum Rounding
 	 */
 	@Override
 	public String getLiteral() {
-		return literal;
+	  return literal;
 	}
 
 	/**

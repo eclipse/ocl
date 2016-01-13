@@ -56,7 +56,8 @@ public class OCLforUMLSwitch<@Nullable T>
 	 * @generated
 	 */
 	public OCLforUMLSwitch() {
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = OCLforUMLPackage.eINSTANCE;
 		}
 	}
@@ -83,78 +84,75 @@ public class OCLforUMLSwitch<@Nullable T>
 	 */
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch (classifierID) {
-			case OCLforUMLPackage.BOUNDED_INTEGER : {
-				BoundedInteger boundedInteger = (BoundedInteger) theEObject;
+		switch (classifierID)
+		{
+			case OCLforUMLPackage.BOUNDED_INTEGER:
+			{
+				BoundedInteger boundedInteger = (BoundedInteger)theEObject;
 				T result = caseBoundedInteger(boundedInteger);
-				if (result == null)
-					result = caseInteger(boundedInteger);
-				if (result == null)
-					result = defaultCase(theEObject);
+				if (result == null) result = caseInteger(boundedInteger);
+				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case OCLforUMLPackage.INTEGER : {
-				org.eclipse.ocl.pivot.uml.internal.oclforuml.Integer integer = (org.eclipse.ocl.pivot.uml.internal.oclforuml.Integer) theEObject;
+			case OCLforUMLPackage.INTEGER:
+			{
+				org.eclipse.ocl.pivot.uml.internal.oclforuml.Integer integer = (org.eclipse.ocl.pivot.uml.internal.oclforuml.Integer)theEObject;
 				T result = caseInteger(integer);
-				if (result == null)
-					result = defaultCase(theEObject);
+				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case OCLforUMLPackage.COLLECTION : {
-				Collection collection = (Collection) theEObject;
+			case OCLforUMLPackage.COLLECTION:
+			{
+				Collection collection = (Collection)theEObject;
 				T result = caseCollection(collection);
-				if (result == null)
-					result = defaultCase(theEObject);
+				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case OCLforUMLPackage.COLLECTIONS : {
-				Collections collections = (Collections) theEObject;
+			case OCLforUMLPackage.COLLECTIONS:
+			{
+				Collections collections = (Collections)theEObject;
 				T result = caseCollections(collections);
-				if (result == null)
-					result = defaultCase(theEObject);
+				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case OCLforUMLPackage.FIXED_POINT : {
-				FixedPoint fixedPoint = (FixedPoint) theEObject;
+			case OCLforUMLPackage.FIXED_POINT:
+			{
+				FixedPoint fixedPoint = (FixedPoint)theEObject;
 				T result = caseFixedPoint(fixedPoint);
-				if (result == null)
-					result = caseReal(fixedPoint);
-				if (result == null)
-					result = defaultCase(theEObject);
+				if (result == null) result = caseReal(fixedPoint);
+				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case OCLforUMLPackage.REAL : {
-				Real real = (Real) theEObject;
+			case OCLforUMLPackage.REAL:
+			{
+				Real real = (Real)theEObject;
 				T result = caseReal(real);
-				if (result == null)
-					result = defaultCase(theEObject);
+				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case OCLforUMLPackage.FLOATING_POINT : {
-				FloatingPoint floatingPoint = (FloatingPoint) theEObject;
+			case OCLforUMLPackage.FLOATING_POINT:
+			{
+				FloatingPoint floatingPoint = (FloatingPoint)theEObject;
 				T result = caseFloatingPoint(floatingPoint);
-				if (result == null)
-					result = caseReal(floatingPoint);
-				if (result == null)
-					result = defaultCase(theEObject);
+				if (result == null) result = caseReal(floatingPoint);
+				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case OCLforUMLPackage.VALIDATION : {
-				Validation validation = (Validation) theEObject;
+			case OCLforUMLPackage.VALIDATION:
+			{
+				Validation validation = (Validation)theEObject;
 				T result = caseValidation(validation);
-				if (result == null)
-					result = defaultCase(theEObject);
+				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case OCLforUMLPackage.VALIDATIONS : {
-				Validations validations = (Validations) theEObject;
+			case OCLforUMLPackage.VALIDATIONS:
+			{
+				Validations validations = (Validations)theEObject;
 				T result = caseValidations(validations);
-				if (result == null)
-					result = defaultCase(theEObject);
+				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			default :
-				return defaultCase(theEObject);
+			default: return defaultCase(theEObject);
 		}
 	}
 

@@ -13,10 +13,10 @@ package org.eclipse.ocl.examples.build.utilities;
 import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.ocl.examples.build.genmodel.OCLBuildUMLGenModelGeneratorAdapterFactory;
 import org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage;
 import org.eclipse.uml2.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory;
 import org.eclipse.uml2.codegen.ecore.genmodel.generator.UML2GenModelGeneratorAdapterFactory;
-//import org.eclipse.uml2.uml.ecore.importer.UMLImporter;
 
 /**
  * Initializes the UML-based genmodel support for GenerateModel.mwe2.
@@ -58,5 +58,8 @@ public class UMLGenModelSetup
 	     (GenModelPackage.eNS_URI, UML_DESCRIPTOR1);
 		GeneratorAdapterFactory.Descriptor.Registry.INSTANCE.addDescriptor
 	     (GenModelPackage.eNS_URI, UML_DESCRIPTOR2);
+		GeneratorAdapterFactory.Descriptor.Registry.INSTANCE.addDescriptor
+	     (GenModelPackage.eNS_URI, OCLBuildUMLGenModelGeneratorAdapterFactory.DESCRIPTOR);
+		org.eclipse.ocl.xtext.essentialocl.EssentialOCLStandaloneSetup.doSetup();
 	}
 }

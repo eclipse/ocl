@@ -46,13 +46,16 @@ public class OCLforUMLFactoryImpl
 	 * @generated
 	 */
 	public static OCLforUMLFactory init() {
-		try {
-			OCLforUMLFactory theOCLforUMLFactory = (OCLforUMLFactory) EPackage.Registry.INSTANCE
-				.getEFactory(OCLforUMLPackage.eNS_URI);
-			if (theOCLforUMLFactory != null) {
+		try
+		{
+			OCLforUMLFactory theOCLforUMLFactory = (OCLforUMLFactory)EPackage.Registry.INSTANCE.getEFactory(OCLforUMLPackage.eNS_URI);
+			if (theOCLforUMLFactory != null)
+			{
 				return theOCLforUMLFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception)
+		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new OCLforUMLFactoryImpl();
@@ -75,28 +78,19 @@ public class OCLforUMLFactoryImpl
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case OCLforUMLPackage.BOUNDED_INTEGER :
-				return createBoundedInteger();
-			case OCLforUMLPackage.INTEGER :
-				return createInteger();
-			case OCLforUMLPackage.COLLECTION :
-				return createCollection();
-			case OCLforUMLPackage.COLLECTIONS :
-				return createCollections();
-			case OCLforUMLPackage.FIXED_POINT :
-				return createFixedPoint();
-			case OCLforUMLPackage.REAL :
-				return createReal();
-			case OCLforUMLPackage.FLOATING_POINT :
-				return createFloatingPoint();
-			case OCLforUMLPackage.VALIDATION :
-				return createValidation();
-			case OCLforUMLPackage.VALIDATIONS :
-				return createValidations();
-			default :
-				throw new IllegalArgumentException("The class '" //$NON-NLS-1$
-					+ eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$
+		switch (eClass.getClassifierID())
+		{
+			case OCLforUMLPackage.BOUNDED_INTEGER: return createBoundedInteger();
+			case OCLforUMLPackage.INTEGER: return createInteger();
+			case OCLforUMLPackage.COLLECTION: return createCollection();
+			case OCLforUMLPackage.COLLECTIONS: return createCollections();
+			case OCLforUMLPackage.FIXED_POINT: return createFixedPoint();
+			case OCLforUMLPackage.REAL: return createReal();
+			case OCLforUMLPackage.FLOATING_POINT: return createFloatingPoint();
+			case OCLforUMLPackage.VALIDATION: return createValidation();
+			case OCLforUMLPackage.VALIDATIONS: return createValidations();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -107,14 +101,14 @@ public class OCLforUMLFactoryImpl
 	 */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case OCLforUMLPackage.OVERFLOW :
+		switch (eDataType.getClassifierID())
+		{
+			case OCLforUMLPackage.OVERFLOW:
 				return createOverflowFromString(eDataType, initialValue);
-			case OCLforUMLPackage.ROUNDING :
+			case OCLforUMLPackage.ROUNDING:
 				return createRoundingFromString(eDataType, initialValue);
-			default :
-				throw new IllegalArgumentException("The datatype '" //$NON-NLS-1$
-					+ eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -125,14 +119,14 @@ public class OCLforUMLFactoryImpl
 	 */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-			case OCLforUMLPackage.OVERFLOW :
+		switch (eDataType.getClassifierID())
+		{
+			case OCLforUMLPackage.OVERFLOW:
 				return convertOverflowToString(eDataType, instanceValue);
-			case OCLforUMLPackage.ROUNDING :
+			case OCLforUMLPackage.ROUNDING:
 				return convertRoundingToString(eDataType, instanceValue);
-			default :
-				throw new IllegalArgumentException("The datatype '" //$NON-NLS-1$
-					+ eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -243,10 +237,7 @@ public class OCLforUMLFactoryImpl
 	public Overflow createOverflowFromString(EDataType eDataType,
 			String initialValue) {
 		Overflow result = Overflow.get(initialValue);
-		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue //$NON-NLS-1$
-				+ "' is not a valid enumerator of '" + eDataType.getName() //$NON-NLS-1$
-				+ "'"); //$NON-NLS-1$
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		return result;
 	}
 
@@ -257,9 +248,7 @@ public class OCLforUMLFactoryImpl
 	 */
 	public String convertOverflowToString(EDataType eDataType,
 			Object instanceValue) {
-		return instanceValue == null
-			? null
-			: instanceValue.toString();
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**
@@ -270,10 +259,7 @@ public class OCLforUMLFactoryImpl
 	public Rounding createRoundingFromString(EDataType eDataType,
 			String initialValue) {
 		Rounding result = Rounding.get(initialValue);
-		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue //$NON-NLS-1$
-				+ "' is not a valid enumerator of '" + eDataType.getName() //$NON-NLS-1$
-				+ "'"); //$NON-NLS-1$
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		return result;
 	}
 
@@ -284,9 +270,7 @@ public class OCLforUMLFactoryImpl
 	 */
 	public String convertRoundingToString(EDataType eDataType,
 			Object instanceValue) {
-		return instanceValue == null
-			? null
-			: instanceValue.toString();
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**
@@ -296,7 +280,7 @@ public class OCLforUMLFactoryImpl
 	 */
 	@Override
 	public OCLforUMLPackage getOCLforUMLPackage() {
-		return (OCLforUMLPackage) getEPackage();
+		return (OCLforUMLPackage)getEPackage();
 	}
 
 	/**
