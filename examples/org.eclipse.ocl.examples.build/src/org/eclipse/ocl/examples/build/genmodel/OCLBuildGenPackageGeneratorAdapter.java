@@ -18,34 +18,22 @@ import org.eclipse.emf.codegen.ecore.genmodel.generator.GenPackageGeneratorAdapt
 //
 public class OCLBuildGenPackageGeneratorAdapter extends GenPackageGeneratorAdapter
 {
-	private static final JETEmitterDescriptor[] JET_EMITTER_DESCRIPTORS = {
-	    new JETEmitterDescriptor("model/PackageClass.javajet", "org.eclipse.emf.codegen.ecore.templates.model.PackageClass"),
-	    new JETEmitterDescriptor("model/FactoryClass.javajet", "org.eclipse.emf.codegen.ecore.templates.model.FactoryClass"),
-	    new JETEmitterDescriptor("model/XMLProcessorClass.javajet", "org.eclipse.emf.codegen.ecore.templates.model.XMLProcessorClass"),
-	    new JETEmitterDescriptor("model/ValidatorClass.javajet", "org.eclipse.emf.codegen.ecore.templates.model.ValidatorClass"),
-		new JETEmitterDescriptor("model/SwitchClass.javajet", "org.eclipse.ocl.examples.build.templates.model.SwitchClass"),
-	    new JETEmitterDescriptor("model/AdapterFactoryClass.javajet", "org.eclipse.ocl.examples.build.templates.model.AdapterFactoryClass"),
-	    new JETEmitterDescriptor("model/ResourceFactoryClass.javajet", "org.eclipse.emf.codegen.ecore.templates.model.ResourceFactoryClass"),
-	    new JETEmitterDescriptor("model/ResourceClass.javajet", "org.eclipse.emf.codegen.ecore.templates.model.ResourceClass"),
-	    new JETEmitterDescriptor("edit/ItemProviderAdapterFactory.javajet", "org.eclipse.emf.codegen.ecore.templates.edit.ItemProviderAdapterFactory"),
-	    new JETEmitterDescriptor("editor/Editor.javajet", "org.eclipse.emf.codegen.ecore.templates.editor.Editor"),
-	    new JETEmitterDescriptor("editor/ModelWizard.javajet", "org.eclipse.emf.codegen.ecore.templates.editor.ModelWizard"),
-	    new JETEmitterDescriptor("editor/ActionBarContributor.javajet", "org.eclipse.emf.codegen.ecore.templates.editor.ActionBarContributor"),
-	    new JETEmitterDescriptor("model.tests/PackageTestSuite.javajet", "org.eclipse.emf.codegen.ecore.templates.model.tests.PackageTestSuite"),
-	    new JETEmitterDescriptor("model.tests/PackageExample.javajet", "org.eclipse.emf.codegen.ecore.templates.model.tests.PackageExample")};
-
-	/**
-	 * Returns the set of <code>JETEmitterDescriptor</code>s used by the
-	 * adapter. The contents of the returned array should never be changed.
-	 * Rather, subclasses may override this method to return a different array
-	 * altogether.
-	 */
-	@Override
-	protected JETEmitterDescriptor[] getJETEmitterDescriptors() {
-		return JET_EMITTER_DESCRIPTORS;
-	}
+	private static JETEmitterDescriptor[] JET_EMITTER_DESCRIPTORS = null;
 
 	public OCLBuildGenPackageGeneratorAdapter(GeneratorAdapterFactory generatorAdapterFactory) {
 		super(generatorAdapterFactory);
+	}
+
+	@Override
+	protected JETEmitterDescriptor[] getJETEmitterDescriptors() {
+		if (JET_EMITTER_DESCRIPTORS == null) {
+			JETEmitterDescriptor[] superJETEmitterDescriptors = super.getJETEmitterDescriptors();
+			JET_EMITTER_DESCRIPTORS = new JETEmitterDescriptor[superJETEmitterDescriptors.length];
+			System.arraycopy(superJETEmitterDescriptors, 0, JET_EMITTER_DESCRIPTORS, 0, superJETEmitterDescriptors.length);
+			JET_EMITTER_DESCRIPTORS[PACKAGE_CLASS_ID] = new JETEmitterDescriptor("model/PackageClass.javajet", "org.eclipse.ocl.examples.build.templates.model.PackageClass");  // FIXME BUG 485764
+			JET_EMITTER_DESCRIPTORS[SWITCH_CLASS_ID] = new JETEmitterDescriptor("model/SwitchClass.javajet", "org.eclipse.ocl.examples.build.templates.model.SwitchClass");  // FIXME BUG 485089
+			JET_EMITTER_DESCRIPTORS[ADAPTER_FACTORY_CLASS_ID] = new JETEmitterDescriptor("model/AdapterFactoryClass.javajet", "org.eclipse.ocl.examples.build.templates.model.AdapterFactoryClass");  // FIXME BUG 485089
+		}
+		return JET_EMITTER_DESCRIPTORS;
 	}
 }
