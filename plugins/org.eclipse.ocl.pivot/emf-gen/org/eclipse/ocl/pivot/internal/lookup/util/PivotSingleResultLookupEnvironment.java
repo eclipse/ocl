@@ -16,6 +16,7 @@
 package	org.eclipse.ocl.pivot.internal.lookup.util;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
@@ -83,7 +84,7 @@ public class PivotSingleResultLookupEnvironment extends LookupEnvironmentImpl   
 	@Override
 	@NonNull
 	public <NE extends NamedElement > LookupEnvironment addElements(
-			@Nullable EList<NE> namedElements) {
+			@Nullable Collection<NE> namedElements) {
 		
 		if (namedElements != null) {
 			for (NamedElement namedElement : namedElements) {
