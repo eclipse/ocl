@@ -129,7 +129,7 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVis
 		}
 	}
 	
-	protected def void generateAutoLookupFilter(/*@NonNull*/ EPackage ePackage) {
+	protected def void generateAutoLookupFilterItf(/*@NonNull*/ EPackage ePackage) {
 		val boolean isDerived = isDerived();
 		if (!isDerived) {
 			val itfName =  projectPrefix + "LookupFilter"
@@ -387,10 +387,12 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVis
 		
 		ePackage.generateAutoLookupResultClass;
 		ePackage.generateAutoLookupResultItf;
+		ePackage.generateAutoLookupFilterItf;
 		ePackage.generateSingleResultLookupEnvironment;
 		ePackage.generateUnqualifiedLookupVisitor;
 		ePackage.generateQualifiedLookupVisitor;
 		ePackage.generateExportedLookupVisitor;
+		
 		genPackage.generateAutoLookupSolver;
 	}
 

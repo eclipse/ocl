@@ -408,6 +408,13 @@
             </message_arguments>
         </filter>
     </resource>
+    <resource path="emf-gen/org/eclipse/ocl/pivot/internal/lookup/util/PivotLookupFilter.java" type="org.eclipse.ocl.pivot.internal.lookup.util.PivotLookupFilter">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.util.PivotLookupFilter"/>
+            </message_arguments>
+        </filter>
+    </resource>
     <resource path="emf-gen/org/eclipse/ocl/pivot/internal/lookup/util/PivotLookupResult.java" type="org.eclipse.ocl.pivot.internal.lookup.util.PivotLookupResult">
         <filter id="1110441988">
             <message_arguments>
