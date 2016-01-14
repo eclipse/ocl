@@ -209,6 +209,15 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 			}
 		}
 	};
+	
+	protected final @NonNull Comparator<EObject> symbolNameComparator = new Comparator<EObject>()
+	{
+		public int compare(EObject o1, EObject o2) {
+			String m1 = getSymbolName(o1);
+			String m2 = getSymbolName(o2);
+			return m1.compareTo(m2);
+		}
+	};
 
 	protected void addExternalReference(@Nullable NamedElement reference, @NonNull Model root) {
 		if (reference == null) {
@@ -1229,7 +1238,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 		return sortedElements;
 	}
 
-	protected List<TemplateableElement> getSortedTemplateableElements(@NonNull Model root) {
+	protected List<TemplateableElement> getSortedTemplateableElements(@NonNull Model root, @Nullable Comparator<EObject> nameComparator) {
 		Set<TemplateableElement> allElements = new HashSet<TemplateableElement>();
 		TreeIterator<EObject> tit = root.eAllContents();
 		while (tit.hasNext()) {
@@ -1242,7 +1251,7 @@ public abstract class GenerateOCLCommon extends GenerateMetamodelWorkflowCompone
 			}
 		}
 		List<TemplateableElement> sortedElements = new ArrayList<TemplateableElement>(allElements);
-		Collections.sort(sortedElements, monikerComparator);
+		Collections.sort(sortedElements, nameComparator != null ? nameComparator : monikerComparator);
 		return sortedElements;
 	}
 

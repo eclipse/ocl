@@ -2538,12 +2538,8 @@ public class OCLstdlib extends ASResourceImpl
 				createTemplateParameterSubstitution(tp_Bag_T, tp_Set_collectNested_V)));
 			_Bag_Set_collect_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Bag_T, tp_Set_collect_V)));
-			_Collection_Integer.getOwnedBindings().add(createTemplateBinding(
-				createTemplateParameterSubstitution(tp_Collection_T, _Integer)));
-			_Collection_String.getOwnedBindings().add(createTemplateBinding(
-				createTemplateParameterSubstitution(tp_Collection_T, _String)));
-			_Collection_Tuple.getOwnedBindings().add(createTemplateBinding(
-				createTemplateParameterSubstitution(tp_Collection_T, _Tuple)));
+			_Collection_Bag_T.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(tp_Collection_T, tp_Bag_T)));
 			_Collection_Bag_collectNested_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Bag_collectNested_V)));
 			_Collection_Bag_collect_V.getOwnedBindings().add(createTemplateBinding(
@@ -2554,8 +2550,8 @@ public class OCLstdlib extends ASResourceImpl
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Bag_selectByKind_TT)));
 			_Collection_Bag_selectByType_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Bag_selectByType_TT)));
-			_Collection_Bag_T.getOwnedBindings().add(createTemplateBinding(
-				createTemplateParameterSubstitution(tp_Collection_T, tp_Bag_T)));
+			_Collection_Collection_T_1.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(tp_Collection_T, tp_Collection_T)));
 			_Collection_Collection_collectNested_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Collection_collectNested_V)));
 			_Collection_Collection_collect_V.getOwnedBindings().add(createTemplateBinding(
@@ -2572,20 +2568,20 @@ public class OCLstdlib extends ASResourceImpl
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Collection_selectByKind_TT)));
 			_Collection_Collection_selectByType_TT_NullFree.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Collection_selectByType_TT)));
-			_Collection_Collection_T_1.getOwnedBindings().add(createTemplateBinding(
-				createTemplateParameterSubstitution(tp_Collection_T, tp_Collection_T)));
-			_Collection_EnumerationLiteral.getOwnedBindings().add(createTemplateBinding(
-				createTemplateParameterSubstitution(tp_Collection_T, _EnumerationLiteral)));
 			_Collection_Enumeration.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, _Enumeration)));
-			_Collection_Map_excludesAll_K2.getOwnedBindings().add(createTemplateBinding(
-				createTemplateParameterSubstitution(tp_Collection_T, tp_Map_excludesAll_K2)));
-			_Collection_Map_includesAll_K2.getOwnedBindings().add(createTemplateBinding(
-				createTemplateParameterSubstitution(tp_Collection_T, tp_Map_includesAll_K2)));
+			_Collection_EnumerationLiteral.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(tp_Collection_T, _EnumerationLiteral)));
+			_Collection_Integer.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(tp_Collection_T, _Integer)));
 			_Collection_Map_K.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Map_K)));
 			_Collection_Map_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Map_V)));
+			_Collection_Map_excludesAll_K2.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(tp_Collection_T, tp_Map_excludesAll_K2)));
+			_Collection_Map_includesAll_K2.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(tp_Collection_T, tp_Map_includesAll_K2)));
 			_Collection_OclAny.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, _OclAny)));
 			_Collection_OclElement.getOwnedBindings().add(createTemplateBinding(
@@ -2594,6 +2590,8 @@ public class OCLstdlib extends ASResourceImpl
 				createTemplateParameterSubstitution(tp_Collection_T, _OclSelf)));
 			_Collection_OrderedCollection_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_OrderedCollection_T)));
+			_Collection_OrderedSet_T.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(tp_Collection_T, tp_OrderedSet_T)));
 			_Collection_OrderedSet_collectNested_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_OrderedSet_collectNested_V)));
 			_Collection_OrderedSet_collect_V.getOwnedBindings().add(createTemplateBinding(
@@ -2604,8 +2602,8 @@ public class OCLstdlib extends ASResourceImpl
 				createTemplateParameterSubstitution(tp_Collection_T, tp_OrderedSet_selectByKind_TT)));
 			_Collection_OrderedSet_selectByType_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_OrderedSet_selectByType_TT)));
-			_Collection_OrderedSet_T.getOwnedBindings().add(createTemplateBinding(
-				createTemplateParameterSubstitution(tp_Collection_T, tp_OrderedSet_T)));
+			_Collection_Sequence_T.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(tp_Collection_T, tp_Sequence_T)));
 			_Collection_Sequence_collectNested_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Sequence_collectNested_V)));
 			_Collection_Sequence_collect_V.getOwnedBindings().add(createTemplateBinding(
@@ -2616,8 +2614,8 @@ public class OCLstdlib extends ASResourceImpl
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Sequence_selectByKind_TT)));
 			_Collection_Sequence_selectByType_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Sequence_selectByType_TT)));
-			_Collection_Sequence_T.getOwnedBindings().add(createTemplateBinding(
-				createTemplateParameterSubstitution(tp_Collection_T, tp_Sequence_T)));
+			_Collection_Set_T.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(tp_Collection_T, tp_Set_T)));
 			_Collection_Set_collectNested_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Set_collectNested_V)));
 			_Collection_Set_collect_V.getOwnedBindings().add(createTemplateBinding(
@@ -2628,8 +2626,10 @@ public class OCLstdlib extends ASResourceImpl
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Set_selectByKind_TT)));
 			_Collection_Set_selectByType_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_Set_selectByType_TT)));
-			_Collection_Set_T.getOwnedBindings().add(createTemplateBinding(
-				createTemplateParameterSubstitution(tp_Collection_T, tp_Set_T)));
+			_Collection_String.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(tp_Collection_T, _String)));
+			_Collection_Tuple.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(tp_Collection_T, _Tuple)));
 			_Collection_UniqueCollection_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Collection_T, tp_UniqueCollection_T)));
 			_Map_Map_excludesMap_K2_Map_excludesMap_V2.getOwnedBindings().add(createTemplateBinding(
@@ -2644,16 +2644,16 @@ public class OCLstdlib extends ASResourceImpl
 			_Map_Map_includingMap_K2_Map_includingMap_V2.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Map_K, tp_Map_includingMap_K2),
 						createTemplateParameterSubstitution(tp_Map_V, tp_Map_includingMap_V2)));
-			_OrderedCollection_Integer.getOwnedBindings().add(createTemplateBinding(
-				createTemplateParameterSubstitution(tp_OrderedCollection_T, _Integer)));
-			_OrderedCollection_String.getOwnedBindings().add(createTemplateBinding(
-				createTemplateParameterSubstitution(tp_OrderedCollection_T, _String)));
 			_OrderedCollection_Bag_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedCollection_T, tp_Bag_T)));
 			_OrderedCollection_Collection_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedCollection_T, tp_Collection_T)));
 			_OrderedCollection_EnumerationLiteral.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedCollection_T, _EnumerationLiteral)));
+			_OrderedCollection_Integer.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(tp_OrderedCollection_T, _Integer)));
+			_OrderedCollection_OrderedSet_T.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(tp_OrderedCollection_T, tp_OrderedSet_T)));
 			_OrderedCollection_OrderedSet_collectNested_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedCollection_T, tp_OrderedSet_collectNested_V)));
 			_OrderedCollection_OrderedSet_collect_V.getOwnedBindings().add(createTemplateBinding(
@@ -2664,8 +2664,8 @@ public class OCLstdlib extends ASResourceImpl
 				createTemplateParameterSubstitution(tp_OrderedCollection_T, tp_OrderedSet_selectByKind_TT)));
 			_OrderedCollection_OrderedSet_selectByType_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedCollection_T, tp_OrderedSet_selectByType_TT)));
-			_OrderedCollection_OrderedSet_T.getOwnedBindings().add(createTemplateBinding(
-				createTemplateParameterSubstitution(tp_OrderedCollection_T, tp_OrderedSet_T)));
+			_OrderedCollection_Sequence_T.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(tp_OrderedCollection_T, tp_Sequence_T)));
 			_OrderedCollection_Sequence_collectNested_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedCollection_T, tp_Sequence_collectNested_V)));
 			_OrderedCollection_Sequence_collect_V.getOwnedBindings().add(createTemplateBinding(
@@ -2676,10 +2676,10 @@ public class OCLstdlib extends ASResourceImpl
 				createTemplateParameterSubstitution(tp_OrderedCollection_T, tp_Sequence_selectByKind_TT)));
 			_OrderedCollection_Sequence_selectByType_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedCollection_T, tp_Sequence_selectByType_TT)));
-			_OrderedCollection_Sequence_T.getOwnedBindings().add(createTemplateBinding(
-				createTemplateParameterSubstitution(tp_OrderedCollection_T, tp_Sequence_T)));
 			_OrderedCollection_Set_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedCollection_T, tp_Set_T)));
+			_OrderedCollection_String.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(tp_OrderedCollection_T, _String)));
 			_OrderedCollection_UniqueCollection_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedCollection_T, tp_UniqueCollection_T)));
 			_OrderedSet_Collection_T.getOwnedBindings().add(createTemplateBinding(
@@ -2698,14 +2698,12 @@ public class OCLstdlib extends ASResourceImpl
 				createTemplateParameterSubstitution(tp_OrderedSet_T, tp_Set_T)));
 			_OrderedSet_UniqueCollection_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_OrderedSet_T, tp_UniqueCollection_T)));
-			_Sequence_Integer_NullFree.getOwnedBindings().add(createTemplateBinding(
-				createTemplateParameterSubstitution(tp_Sequence_T, _Integer)));
-			_Sequence_String.getOwnedBindings().add(createTemplateBinding(
-				createTemplateParameterSubstitution(tp_Sequence_T, _String)));
 			_Sequence_Bag_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Sequence_T, tp_Bag_T)));
 			_Sequence_Collection_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Sequence_T, tp_Collection_T)));
+			_Sequence_Integer_NullFree.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(tp_Sequence_T, _Integer)));
 			_Sequence_OrderedSet_collectNested_V.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Sequence_T, tp_OrderedSet_collectNested_V)));
 			_Sequence_OrderedSet_collect_V.getOwnedBindings().add(createTemplateBinding(
@@ -2720,8 +2718,8 @@ public class OCLstdlib extends ASResourceImpl
 				createTemplateParameterSubstitution(tp_Sequence_T, tp_Sequence_selectByKind_TT)));
 			_Sequence_Sequence_selectByType_TT_NullFree.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Sequence_T, tp_Sequence_selectByType_TT)));
-			_Set_Tuple_NullFree.getOwnedBindings().add(createTemplateBinding(
-				createTemplateParameterSubstitution(tp_Set_T, _Tuple)));
+			_Sequence_String.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(tp_Sequence_T, _String)));
 			_Set_Bag_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Set_T, tp_Bag_T)));
 			_Set_Collection_T.getOwnedBindings().add(createTemplateBinding(
@@ -2740,10 +2738,10 @@ public class OCLstdlib extends ASResourceImpl
 				createTemplateParameterSubstitution(tp_Set_T, tp_Set_selectByKind_TT)));
 			_Set_Set_selectByType_TT_NullFree.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Set_T, tp_Set_selectByType_TT)));
+			_Set_Tuple_NullFree.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(tp_Set_T, _Tuple)));
 			_Set_UniqueCollection_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_Set_T, tp_UniqueCollection_T)));
-			_UniqueCollection_Tuple.getOwnedBindings().add(createTemplateBinding(
-				createTemplateParameterSubstitution(tp_UniqueCollection_T, _Tuple)));
 			_UniqueCollection_Bag_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_UniqueCollection_T, tp_Bag_T)));
 			_UniqueCollection_Collection_T.getOwnedBindings().add(createTemplateBinding(
@@ -2758,24 +2756,26 @@ public class OCLstdlib extends ASResourceImpl
 				createTemplateParameterSubstitution(tp_UniqueCollection_T, _OclElement)));
 			_UniqueCollection_OclSelf.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_UniqueCollection_T, _OclSelf)));
+			_UniqueCollection_OrderedSet_T.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(tp_UniqueCollection_T, tp_OrderedSet_T)));
 			_UniqueCollection_OrderedSet_flatten_T2.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_UniqueCollection_T, tp_OrderedSet_flatten_T2)));
 			_UniqueCollection_OrderedSet_selectByKind_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_UniqueCollection_T, tp_OrderedSet_selectByKind_TT)));
 			_UniqueCollection_OrderedSet_selectByType_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_UniqueCollection_T, tp_OrderedSet_selectByType_TT)));
-			_UniqueCollection_OrderedSet_T.getOwnedBindings().add(createTemplateBinding(
-				createTemplateParameterSubstitution(tp_UniqueCollection_T, tp_OrderedSet_T)));
 			_UniqueCollection_Sequence_T.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_UniqueCollection_T, tp_Sequence_T)));
+			_UniqueCollection_Set_T.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(tp_UniqueCollection_T, tp_Set_T)));
 			_UniqueCollection_Set_flatten_T2.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_UniqueCollection_T, tp_Set_flatten_T2)));
 			_UniqueCollection_Set_selectByKind_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_UniqueCollection_T, tp_Set_selectByKind_TT)));
 			_UniqueCollection_Set_selectByType_TT.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_UniqueCollection_T, tp_Set_selectByType_TT)));
-			_UniqueCollection_Set_T.getOwnedBindings().add(createTemplateBinding(
-				createTemplateParameterSubstitution(tp_UniqueCollection_T, tp_Set_T)));
+			_UniqueCollection_Tuple.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(tp_UniqueCollection_T, _Tuple)));
 			_UniqueCollection_UniqueCollection_T_1.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(tp_UniqueCollection_T, tp_UniqueCollection_T)));
 		}
@@ -3042,9 +3042,9 @@ public class OCLstdlib extends ASResourceImpl
 			installComment(op_OclComparable_compareTo, "Return -ve, 0, +ve according to whether self is less than, equal to , or greater than that.\n\nThe compareTo operation should be commutative.");
 			installComment(_OclElement, "The type OclElement is the implicit supertype of any user-defined type that has no explicit supertypes. Operations defined\nfor OclElement are therefore applicable to all user-defined types.");
 			installComment(op_OclElement_allInstances, "Return a set of all instances of the type and derived types of self.");
-			installComment(pr_OclElement_oclContainer, "Evaluates to the type of the collection elements.");
+			installComment(pr_OclElement_oclContainer, "The object for which self is a composed content or null if there is no such object.");
 			installComment(op_OclElement_oclContainer, "Returns the object for which self is a composed content or null if there is no such object.");
-			installComment(pr_OclElement_oclContents, "Returns the composed contents of self.");
+			installComment(pr_OclElement_oclContents, "The composed contents of self.");
 			installComment(op_OclElement_oclContents, "Returns the composed contents of self.");
 			installComment(_OclInvalid, "The type OclInvalid is a type that conforms to all other types.\nIt has one single instance, identified as  oclText[invalid].\nAny property call applied on invalid results in oclText[invalid], except for the operations oclIsUndefined() and oclIsInvalid().\nOclInvalid is itself an instance of the metatype InvalidType.");
 			installComment(op_OclInvalid__lt__gt_, "Returns oclText[invalid].");

@@ -610,7 +610,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 	}
 
 	protected def String defineTemplateBindings(/*@NonNull*/ Model root) {
-		var allTemplateableElements = root.getSortedTemplateableElements();
+		var allTemplateableElements = root.getSortedTemplateableElements(symbolNameComparator);
 		if (allTemplateableElements.isEmpty()) return "";
 		'''
 
@@ -785,7 +785,7 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 	}
 	
 	protected def String installTemplateBindings(/*@NonNull*/ Model root) {
-		var allTemplateableElements = root.getSortedTemplateableElements();
+		var allTemplateableElements = root.getSortedTemplateableElements(null);
 		if (allTemplateableElements.isEmpty()) return "";
 		'''installTemplateBindings();'''
 	}

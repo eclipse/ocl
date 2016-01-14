@@ -1402,11 +1402,11 @@
       </ownedOperations>
       <ownedProperties xmi:id="p.ocl.OclElement.oclContainer" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclElementOclContainerProperty"
           isRequired="false" name="oclContainer" opposite="#//@ownedPackages.0/@ownedClasses.13/@ownedProperties.2" type="#T.ocl.OclElement">
-        <ownedComments body="Evaluates to the type of the collection elements.&#xA;"/>
+        <ownedComments body="The object for which self is a composed content or null if there is no such object.&#xA;"/>
       </ownedProperties>
       <ownedProperties xmi:id="p.ocl.OclElement.oclContents" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclElementOclContentsProperty"
           name="oclContents" opposite="#//@ownedPackages.0/@ownedClasses.13/@ownedProperties.3" type="#//@ownedPackages.1/@ownedClasses.131">
-        <ownedComments body="Returns the composed contents of self."/>
+        <ownedComments body="The composed contents of self."/>
       </ownedProperties>
       <ownedProperties isImplicit="true" name="OclElement" opposite="#p.ocl.OclElement.oclContainer" type="#//@ownedPackages.1/@ownedClasses.35"/>
       <ownedProperties isImplicit="true" name="OclElement" opposite="#p.ocl.OclElement.oclContents" type="#//@ownedPackages.1/@ownedClasses.35"/>

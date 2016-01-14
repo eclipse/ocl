@@ -46,13 +46,13 @@
       abstract="true" interface="true" eSuperTypes="#//OclAny">
     <eStructuralFeatures xsi:type="ecore:EReference" name="oclContainer" eType="#//OclElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Evaluates to the type of the collection elements.&#xA;"/>
+        <details key="documentation" value="The object for which self is a composed content or null if there is no such object.&#xA;"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="oclContents" ordered="false"
         upperBound="-1" eType="#//OclElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Returns the composed contents of self."/>
+        <details key="documentation" value="The composed contents of self."/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="true"/>
