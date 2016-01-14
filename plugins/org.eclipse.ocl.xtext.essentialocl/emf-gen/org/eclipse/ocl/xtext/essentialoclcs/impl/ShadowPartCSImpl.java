@@ -18,12 +18,13 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.xtext.basecs.impl.ModelElementCSImpl;
 import org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor;
-import org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS;
 import org.eclipse.ocl.xtext.essentialoclcs.CurlyBracketedClauseCS;
 import org.eclipse.ocl.xtext.essentialoclcs.EssentialOCLCSPackage;
 import org.eclipse.ocl.xtext.essentialoclcs.ExpCS;
+import org.eclipse.ocl.xtext.essentialoclcs.ShadowPartCS;
 import org.eclipse.ocl.xtext.essentialoclcs.util.EssentialOCLCSVisitor;
 
 /**
@@ -374,6 +375,11 @@ public class ShadowPartCSImpl
 	 */
 	@Override
 	public String getName() {
-		return getReferredProperty().getName();
+		if ((basicGetReferredProperty() == null) || basicGetReferredProperty().eIsProxy()) {
+			return ElementUtil.getText(this, EssentialOCLCSPackage.Literals.SHADOW_PART_CS__REFERRED_PROPERTY);
+		}
+		else {
+			return getReferredProperty().getName();
+		}
 	}
 } //ConstructorPartCSImpl

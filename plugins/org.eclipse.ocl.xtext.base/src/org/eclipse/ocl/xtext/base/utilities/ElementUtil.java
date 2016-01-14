@@ -378,7 +378,7 @@ public class ElementUtil
 		return node != null ? NodeModelUtils.getTokenText(node) : null;
 	}
 
-	public static @Nullable String getText(@NonNull TypedTypeRefCS csElement, @NonNull EReference feature) {
+	public static @Nullable String getText(@NonNull ElementCS csElement, /*@NonNull*/ EReference feature) {
 		@SuppressWarnings("null")@NonNull List<INode> nodes = NodeModelUtils.findNodesForFeature(csElement, feature);
 //		assert (nodes.size() == 1;
 		if (nodes.isEmpty()) {
