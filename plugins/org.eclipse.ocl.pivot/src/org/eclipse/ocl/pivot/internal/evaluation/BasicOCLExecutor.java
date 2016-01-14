@@ -19,7 +19,23 @@ import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
  */
 public class BasicOCLExecutor extends AbstractExecutor implements OCLExecutor
 {
+	protected final @NonNull ModelManager modelManager;
+
 	public BasicOCLExecutor(EnvironmentFactoryInternal.@NonNull EnvironmentFactoryInternalExtension environmentFactory, @NonNull ModelManager modelManager) {
-		super(environmentFactory, modelManager);
+		super(environmentFactory);
+		this.modelManager = modelManager;
+	}
+	
+	@Override	
+	public void dispose() {
+		if (modelManager instanceof ModelManager.ModelManagerExtension) {
+			((ModelManager.ModelManagerExtension)modelManager).dispose();
+		}
+		super.dispose();
+	}
+
+	@Override
+	public @NonNull ModelManager getModelManager() {
+		return modelManager;
 	}
 }

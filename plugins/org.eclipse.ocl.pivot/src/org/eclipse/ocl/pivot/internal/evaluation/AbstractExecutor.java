@@ -51,7 +51,11 @@ public abstract class AbstractExecutor implements ExecutorInternal
 	private static final float DEFAULT_REGEX_CACHE_LOAD_FACTOR = 0.75f;
 	
 	protected final EnvironmentFactoryInternal.@NonNull EnvironmentFactoryInternalExtension environmentFactory;
-	protected final @NonNull ModelManager modelManager;
+	/**
+	 * @deprecated implement modelManager in derived class
+	 */
+	@Deprecated
+	protected final ModelManager modelManager;
 	private /*@LazyNonNull*/ EvaluationEnvironment.EvaluationEnvironmentExtension rootEvaluationEnvironment = null;
 	private /*@LazyNonNull*/ EvaluationEnvironment.EvaluationEnvironmentExtension evaluationEnvironment = null;
 	private /*@LazyNonNull*/ EvaluationVisitor.EvaluationVisitorExtension evaluationVisitor;
@@ -64,6 +68,15 @@ public abstract class AbstractExecutor implements ExecutorInternal
 
 	private EvaluationLogger logger = IndentingLogger.OUT;
 
+	protected AbstractExecutor(EnvironmentFactoryInternal.@NonNull EnvironmentFactoryInternalExtension environmentFactory) {
+		this.environmentFactory = environmentFactory;
+		this.modelManager = null;
+	}
+
+	/**
+	 * @deprecated implement modelManager in derived class
+	 */
+	@Deprecated
 	protected AbstractExecutor(EnvironmentFactoryInternal.@NonNull EnvironmentFactoryInternalExtension environmentFactory, @NonNull ModelManager modelManager) {
 		this.environmentFactory = environmentFactory;
 		this.modelManager = modelManager;
@@ -84,7 +97,7 @@ public abstract class AbstractExecutor implements ExecutorInternal
 	    
 	    return result;
 	}
-	
+
 	/**
 	 * Creates (on demand) the regular-expression matcher cache. The default
 	 * implementation creates an access-ordered LRU cache with a limit of 16
@@ -125,11 +138,7 @@ public abstract class AbstractExecutor implements ExecutorInternal
 	} 
 	
 	@Override	
-	public void dispose() {
-		if (modelManager instanceof ModelManager.ModelManagerExtension) {
-			((ModelManager.ModelManagerExtension)modelManager).dispose();
-		}
-	}
+	public void dispose() {}
 
 	@Override
 	public @Nullable Object evaluate(@NonNull OCLExpression body) {
@@ -191,11 +200,6 @@ public abstract class AbstractExecutor implements ExecutorInternal
 	@Override
 	public @NonNull MetamodelManagerInternal getMetamodelManager() {
 		return environmentFactory.getMetamodelManager();
-	}
-
-	@Override
-	public @NonNull ModelManager getModelManager() {
-		return modelManager;
 	}
 
 	/**
