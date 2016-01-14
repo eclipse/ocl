@@ -1364,7 +1364,6 @@ public class StandaloneProjectMap implements ProjectManager
 			this.genModelURI = genModelURI;
 			for (@SuppressWarnings("null")@NonNull URI nsURI : nsURI2className.keySet()) {
 				String className = nsURI2className.get(nsURI);
-				assert className != null;
 				IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(nsURI);
 				if (packageDescriptor == null) {
 					if (PROJECT_MAP_ADD_GENERATED_PACKAGE.isActive()) {
