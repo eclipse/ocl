@@ -20,9 +20,6 @@ import org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 
-/**
- * @since 1.1
- */
 public class AbstractPivotCommonLookupVisitor
 	extends AbstractExtendingVisitor<LookupEnvironment, LookupEnvironment>
 {

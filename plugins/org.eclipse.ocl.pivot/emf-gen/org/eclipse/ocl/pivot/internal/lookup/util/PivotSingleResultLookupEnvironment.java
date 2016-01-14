@@ -28,9 +28,6 @@ import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment;
 import org.eclipse.ocl.pivot.internal.lookup.impl.LookupEnvironmentImpl;
 
-/**
- * @since 1.1
- */
 public class PivotSingleResultLookupEnvironment extends LookupEnvironmentImpl   {
 	
 	private @NonNull Executor executor;

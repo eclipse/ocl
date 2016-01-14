@@ -22,7 +22,6 @@ import org.eclipse.jdt.annotation.Nullable;
 
 /**
  * The lookup result returned by the name lookup solver
- * @since 1.1
  */
 public interface PivotLookupResult<NE> {
 
