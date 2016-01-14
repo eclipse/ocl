@@ -59,6 +59,8 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGOppositePropertyCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGParameter;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGPropertyCallExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGShadowPart;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTextParameter;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGThrowExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTupleExp;
@@ -81,6 +83,8 @@ import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.PropertyCallExp;
+import org.eclipse.ocl.pivot.ShadowExp;
+import org.eclipse.ocl.pivot.ShadowPart;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.LibraryOperation;
@@ -697,6 +701,30 @@ public class CG2StringVisitor extends AbstractExtendingCGModelVisitor<String, Ob
 		} */
 		return null;
 	}
+
+	@Override
+	public @Nullable String visitCGShadowExp(@NonNull CGShadowExp cgShadowExp) {
+		appendName(((ShadowExp)cgShadowExp.getAst()).getType());
+		append("{");//$NON-NLS-1$
+        boolean isFirst = true;
+		for (CGShadowPart cgPart : cgShadowExp.getParts()) {
+			if (!isFirst) {
+				append(", ");
+			}
+            safeVisit(cgPart);
+			isFirst = false;
+		}
+		append("}");
+		return null;
+	}
+    
+    @Override
+	public @Nullable String visitCGShadowPart(@NonNull CGShadowPart cgShadowPart) {
+		appendName(((ShadowPart)cgShadowPart.getAst()).getReferredProperty());
+    	append(" <- ");
+		safeVisit(cgShadowPart.getInit());
+        return null;
+    }
 	
 	@Override
 	public @Nullable String visitCGTextParameter(@NonNull CGTextParameter cgTextParameter) {
