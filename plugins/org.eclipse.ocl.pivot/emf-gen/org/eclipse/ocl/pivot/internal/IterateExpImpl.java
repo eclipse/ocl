@@ -13,7 +13,6 @@ package org.eclipse.ocl.pivot.internal;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -589,7 +588,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 		            /*@Caught*/ @NonNull Object CAUGHT_exists;
 		            try {
 		                @SuppressWarnings("null")
-		                final /*@Thrown*/ List<Variable> ownedIterators = this.getOwnedIterators();
+		                final /*@Thrown*/ java.util.@NonNull List<Variable> ownedIterators = this.getOwnedIterators();
 		                final /*@Thrown*/ org.eclipse.ocl.pivot.values.@NonNull OrderedSetValue BOXED_ownedIterators = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Variable, ownedIterators);
 		                final /*@Thrown*/ org.eclipse.ocl.pivot.values.@NonNull OrderedSetValue safe_null_sources = ClassUtil.nonNullState((OrderedSetValue)CollectionExcludingOperation.INSTANCE.evaluate(BOXED_ownedIterators, null));
 		                /*@Thrown*/ java.lang.@Nullable Object accumulator = ValueUtil.FALSE_VALUE;
@@ -858,7 +857,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 		        /*@Caught*/ @NonNull Object CAUGHT_forAll;
 		        try {
 		            @SuppressWarnings("null")
-		            final /*@Thrown*/ List<Variable> ownedIterators = this.getOwnedIterators();
+		            final /*@Thrown*/ java.util.@NonNull List<Variable> ownedIterators = this.getOwnedIterators();
 		            final /*@Thrown*/ org.eclipse.ocl.pivot.values.@NonNull OrderedSetValue BOXED_ownedIterators = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Variable, ownedIterators);
 		            final /*@Thrown*/ org.eclipse.ocl.pivot.values.@NonNull OrderedSetValue safe_null_sources = ClassUtil.nonNullState((OrderedSetValue)CollectionExcludingOperation.INSTANCE.evaluate(BOXED_ownedIterators, null));
 		            /*@Thrown*/ java.lang.@Nullable Object accumulator = ValueUtil.TRUE_VALUE;

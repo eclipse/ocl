@@ -328,7 +328,7 @@ public abstract class LoopExpImpl
 		    /*@Caught*/ @NonNull Object CAUGHT_status;
 		    try {
 		        @SuppressWarnings("null")
-		        final /*@Thrown*/ List<Variable> ownedIterators = this.getOwnedIterators();
+		        final /*@Thrown*/ java.util.@NonNull List<Variable> ownedIterators = this.getOwnedIterators();
 		        final /*@Thrown*/ org.eclipse.ocl.pivot.values.@NonNull OrderedSetValue BOXED_ownedIterators = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Variable, ownedIterators);
 		        /*@Thrown*/ java.lang.@Nullable Object accumulator = ValueUtil.TRUE_VALUE;
 		        @Nullable Iterator<?> ITERATOR_p = BOXED_ownedIterators.iterator();

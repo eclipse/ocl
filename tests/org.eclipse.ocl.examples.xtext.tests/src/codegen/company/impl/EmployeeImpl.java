@@ -267,7 +267,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		@SuppressWarnings("null")
 		final /*@Thrown*/ codegen.company.@NonNull Company company = this.getCompany();
 		@SuppressWarnings("null")
-		final /*@Thrown*/ List<Employee> employees = company.getEmployees();
+		final /*@Thrown*/ @NonNull List<Employee> employees = company.getEmployees();
 		final /*@Thrown*/ org.eclipse.ocl.pivot.values.@NonNull OrderedSetValue BOXED_employees = idResolver.createOrderedSetOfAll(CodegencompanyTables.ORD_CLSSid_Employee, employees);
 		final /*@Thrown*/ org.eclipse.ocl.pivot.values.@NonNull OrderedSetValue safe_null_sources = ClassUtil.nonNullState((OrderedSetValue)CollectionExcludingOperation.INSTANCE.evaluate(BOXED_employees, null));
 		/*@Thrown*/ OrderedSetValue.@org.eclipse.jdt.annotation.NonNull Accumulator accumulator = ValueUtil.createOrderedSetAccumulatorValue(CodegencompanyTables.ORD_CLSSid_Employee);
@@ -290,7 +290,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		        accumulator.add(_1);
 		    }
 		}
-		final /*@Thrown*/ List<Employee> ECORE_select = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Employee.class, select);
+		final /*@Thrown*/ @NonNull List<Employee> ECORE_select = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Employee.class, select);
 		return (EList<Employee>)ECORE_select;
 	}
 
@@ -326,7 +326,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		        accumulator.add(_1);
 		    }
 		}
-		final /*@Thrown*/ List<Employee> ECORE_select = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Employee.class, select);
+		final /*@Thrown*/ @NonNull List<Employee> ECORE_select = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Employee.class, select);
 		return (EList<Employee>)ECORE_select;
 	}
 
@@ -375,14 +375,14 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		    else {
 		        assert manager_2 != null;
 		        @SuppressWarnings("null")
-		        final /*@Thrown*/ List<Employee> reportingChain = manager_2.getReportingChain();
+		        final /*@Thrown*/ @NonNull List<Employee> reportingChain = manager_2.getReportingChain();
 		        final /*@Thrown*/ org.eclipse.ocl.pivot.values.@NonNull OrderedSetValue BOXED_reportingChain = idResolver.createOrderedSetOfAll(CodegencompanyTables.ORD_CLSSid_Employee, reportingChain);
 		        safe_reportingChain_source = BOXED_reportingChain;
 		    }
 		    final /*@Thrown*/ org.eclipse.ocl.pivot.values.@NonNull OrderedSetValue prepend = ClassUtil.nonNullState((OrderedSetValue)OrderedCollectionPrependOperation.INSTANCE.evaluate(safe_reportingChain_source, manager_2));
 		    symbol_8 = prepend;
 		}
-		final /*@Thrown*/ List<Employee> ECORE_symbol_8 = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Employee.class, symbol_8);
+		final /*@Thrown*/ @NonNull List<Employee> ECORE_symbol_8 = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Employee.class, symbol_8);
 		return (EList<Employee>)ECORE_symbol_8;
 	}
 
@@ -412,7 +412,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		final /*@NonInvalid*/ org.eclipse.ocl.pivot.evaluation.@NonNull Executor executor = PivotUtilInternal.getExecutor(this);
 		final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@NonNull IdResolver idResolver = executor.getIdResolver();
 		@SuppressWarnings("null")
-		final /*@Thrown*/ List<Employee> reportingChain = this.getReportingChain();
+		final /*@Thrown*/ @NonNull List<Employee> reportingChain = this.getReportingChain();
 		final /*@Thrown*/ org.eclipse.ocl.pivot.values.@NonNull OrderedSetValue BOXED_reportingChain = idResolver.createOrderedSetOfAll(CodegencompanyTables.ORD_CLSSid_Employee, reportingChain);
 		final /*@Thrown*/ boolean includes = ClassUtil.nonNullState(CollectionIncludesOperation.INSTANCE.evaluate(BOXED_reportingChain, manager).booleanValue());
 		return includes;
@@ -477,7 +477,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		        /*@Caught*/ @NonNull Object CAUGHT_gt;
 		        try {
 		            @SuppressWarnings("null")
-		            final /*@Thrown*/ List<Employee> directReports = this.getDirectReports();
+		            final /*@Thrown*/ @NonNull List<Employee> directReports = this.getDirectReports();
 		            final /*@Thrown*/ org.eclipse.ocl.pivot.values.@NonNull OrderedSetValue BOXED_directReports = idResolver.createOrderedSetOfAll(CodegencompanyTables.ORD_CLSSid_Employee, directReports);
 		            final /*@Thrown*/ org.eclipse.ocl.pivot.values.@NonNull IntegerValue size = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(BOXED_directReports));
 		            final /*@Thrown*/ boolean gt = ClassUtil.nonNullState(OclComparableGreaterThanOperation.INSTANCE.evaluate(executor, size, CodegencompanyTables.INT_0).booleanValue());

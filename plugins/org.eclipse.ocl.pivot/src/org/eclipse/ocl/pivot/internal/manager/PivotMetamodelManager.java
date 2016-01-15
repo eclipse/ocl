@@ -358,7 +358,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 
 	@Override
 	public void addGenModel(@NonNull GenModel genModel) {
-		for (@SuppressWarnings("null")@NonNull GenPackage genPackage : genModel.getAllGenPackagesWithClassifiers()) {
+		for (@SuppressWarnings("null")@NonNull GenPackage genPackage : genModel.getAllGenUsedAndStaticGenPackagesWithClassifiers()) {
 			addGenPackage(genPackage);
 		}
 	}

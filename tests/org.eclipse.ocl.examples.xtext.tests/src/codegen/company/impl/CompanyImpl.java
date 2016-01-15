@@ -213,7 +213,7 @@ public class CompanyImpl extends EObjectImpl implements Company {
 		    @SuppressWarnings("null")
 		    final /*@NonInvalid*/ org.eclipse.ocl.pivot.values.@NonNull SequenceValue range = (SequenceValue)_1.getValue(0/*range*/);
 		    @SuppressWarnings("null")
-		    final /*@Thrown*/ List<Employee> employees = this.getEmployees();
+		    final /*@Thrown*/ @NonNull List<Employee> employees = this.getEmployees();
 		    final /*@Thrown*/ org.eclipse.ocl.pivot.values.@NonNull OrderedSetValue BOXED_employees = idResolver.createOrderedSetOfAll(CodegencompanyTables.ORD_CLSSid_Employee, employees);
 		    final /*@Thrown*/ org.eclipse.ocl.pivot.values.@NonNull IntegerValue size = ClassUtil.nonNullState(CollectionSizeOperation.INSTANCE.evaluate(BOXED_employees));
 		    final /*@NonInvalid*/ boolean includes = ClassUtil.nonNullState(CollectionIncludesOperation.INSTANCE.evaluate(range, size).booleanValue());

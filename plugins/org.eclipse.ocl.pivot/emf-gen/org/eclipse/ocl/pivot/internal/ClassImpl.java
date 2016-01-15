@@ -683,7 +683,7 @@ public class ClassImpl
 		    /*@Caught*/ @NonNull Object CAUGHT_status;
 		    try {
 		        @SuppressWarnings("null")
-		        final /*@Thrown*/ List<Constraint> ownedInvariants = this.getOwnedInvariants();
+		        final /*@Thrown*/ java.util.@NonNull List<Constraint> ownedInvariants = this.getOwnedInvariants();
 		        final /*@Thrown*/ org.eclipse.ocl.pivot.values.@NonNull SetValue BOXED_ownedInvariants = idResolver.createSetOfAll(PivotTables.SET_CLSSid_Constraint, ownedInvariants);
 		        /*@Thrown*/ SetValue.@org.eclipse.jdt.annotation.NonNull Accumulator accumulator = ValueUtil.createSetAccumulatorValue(PivotTables.SET_CLSSid_Constraint);
 		        @Nullable Iterator<?> ITERATOR_p = BOXED_ownedInvariants.iterator();

@@ -348,10 +348,13 @@ public class JavaStream
 		}
 	}
 
+	/**
+	 * deprecated Provide isRequired argument.
+	 */
+	//@Deprecated
 	public void appendClassReference(@Nullable Class<?> javaClass) {
 		appendClassReference(null, javaClass);
 	}
-
 	public void appendClassReference(@Nullable Boolean isRequired, @Nullable Class<?> javaClass) {
 		if (javaClass != null) {
 			appendClassReference(isRequired, javaClass.getName());
@@ -376,6 +379,10 @@ public class JavaStream
 		}
 	}
 
+	/**
+	 * deprecated Provide isRequired argument.
+	 */
+	//@Deprecated
 	public void appendClassReference(@NonNull TypeDescriptor typeDescriptor) {
 		typeDescriptor.append(this, null);
 	}
@@ -419,10 +426,17 @@ public class JavaStream
 			appendClassReference(Object.class);
 		}
 	} */
-		
+	
+	/**
+	 * @deprecated Provide isRequired argument.
+	 */
+	@Deprecated
 	public void appendClassReference(Class<?> javaClass, boolean useExtends, @NonNull TypeDescriptor @NonNull ... typeDescriptors) {
+		appendClassReference(null, javaClass, useExtends, typeDescriptors);
+	}
+	public void appendClassReference(Boolean isRequired, Class<?> javaClass, boolean useExtends, @NonNull TypeDescriptor @NonNull ... typeDescriptors) {
 		if (javaClass != null) {
-			appendClassReference(javaClass.getName());
+			appendClassReference(isRequired, javaClass.getName());
 			if (typeDescriptors.length > 0) {
 				append("<");
 				for (int i = 0; i < typeDescriptors.length; i++) {

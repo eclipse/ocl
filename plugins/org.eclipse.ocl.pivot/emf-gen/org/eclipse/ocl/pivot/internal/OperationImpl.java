@@ -839,7 +839,7 @@ public class OperationImpl
 		    /*@Caught*/ @NonNull Object CAUGHT_status;
 		    try {
 		        @SuppressWarnings("null")
-		        final /*@Thrown*/ List<Constraint> ownedPreconditions = this.getOwnedPreconditions();
+		        final /*@Thrown*/ java.util.@NonNull List<Constraint> ownedPreconditions = this.getOwnedPreconditions();
 		        final /*@Thrown*/ org.eclipse.ocl.pivot.values.@NonNull SetValue BOXED_ownedPreconditions = idResolver.createSetOfAll(PivotTables.SET_CLSSid_Constraint, ownedPreconditions);
 		        /*@Thrown*/ SetValue.@org.eclipse.jdt.annotation.NonNull Accumulator accumulator = ValueUtil.createSetAccumulatorValue(PivotTables.SET_CLSSid_Constraint);
 		        @Nullable Iterator<?> ITERATOR_p = BOXED_ownedPreconditions.iterator();
@@ -917,7 +917,7 @@ public class OperationImpl
 		    /*@Caught*/ @NonNull Object CAUGHT_status;
 		    try {
 		        @SuppressWarnings("null")
-		        final /*@Thrown*/ List<Constraint> ownedPostconditions = this.getOwnedPostconditions();
+		        final /*@Thrown*/ java.util.@NonNull List<Constraint> ownedPostconditions = this.getOwnedPostconditions();
 		        final /*@Thrown*/ org.eclipse.ocl.pivot.values.@NonNull SetValue BOXED_ownedPostconditions = idResolver.createSetOfAll(PivotTables.SET_CLSSid_Constraint, ownedPostconditions);
 		        /*@Thrown*/ SetValue.@org.eclipse.jdt.annotation.NonNull Accumulator accumulator = ValueUtil.createSetAccumulatorValue(PivotTables.SET_CLSSid_Constraint);
 		        @Nullable Iterator<?> ITERATOR_p = BOXED_ownedPostconditions.iterator();

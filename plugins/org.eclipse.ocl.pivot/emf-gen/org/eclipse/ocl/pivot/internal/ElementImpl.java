@@ -221,7 +221,7 @@ public abstract class ElementImpl
 		};
 		final @NonNull  ExecutorSingleIterationManager MGR_closure_0 = new ExecutorSingleIterationManager(executor, PivotTables.SET_CLSSid_Element, BODY_closure_0, oclAsSet, ACC_closure_0);
 		final /*@Thrown*/ org.eclipse.ocl.pivot.values.@NonNull SetValue closure = ClassUtil.nonNullState((SetValue)IMPL_closure_0.evaluateIteration(MGR_closure_0));
-		final /*@Thrown*/ List<Element> ECORE_closure = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Element.class, closure);
+		final /*@Thrown*/ java.util.@NonNull List<Element> ECORE_closure = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Element.class, closure);
 		return ECORE_closure;
 	}
 
