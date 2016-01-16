@@ -33,7 +33,7 @@ public abstract class AbstractCS2ASTransformer extends AbstractTransformer
 		super(executor, modelNames, propertyIndex2propertyId, classIndex2classId, classIndex2allClassIndexes);
 	}
 
-	protected void throwNull(@NonNull EObject csObject, @NonNull String message) {
+	protected @NonNull RuntimeException throwNull(@NonNull EObject csObject, @NonNull String message) {
 		throw new CS2ASException(csObject, message);
 	}
 	
