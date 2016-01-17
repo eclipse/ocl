@@ -337,6 +337,10 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<@Nullable CGNamedElem
 		return cgVariableExp;
 	}
 
+	protected <T extends EObject> @NonNull T createCopy(@NonNull T anEObject) {
+		return EcoreUtil.copy(anEObject);
+	}
+
 	/**
 	 * Wrap asIn in a LetExp in which a clone of asInit is assigned to asVariable.
 	 * @since 1.3
@@ -345,7 +349,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<@Nullable CGNamedElem
 		if ((asVariable == null) || (asInit == null)) {
 			return asIn;
 		}
-		OCLExpression asInitClone = EcoreUtil.copy(asInit);
+		OCLExpression asInitClone = createCopy(asInit);
 		asVariable.setOwnedInit(asInitClone);
 		return PivotUtil.createLetExp(asVariable, asIn);
 	}
@@ -992,7 +996,7 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<@Nullable CGNamedElem
 		if (referencedFinalOperations.contains(callExp.getReferredOperation())) {
 			return null;	// Avoid an infinite inlining recursion.
 		}
-		ExpressionInOCL asClone = EcoreUtil.copy(prototype);
+		ExpressionInOCL asClone = createCopy(prototype);
 		OCLExpression asExpression = ClassUtil.nonNullState(asClone.getOwnedBody());
 		List<OCLExpression> asArguments = callExp.getOwnedArguments();
 		int argumentsSize = asArguments.size();
