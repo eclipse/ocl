@@ -411,11 +411,14 @@ public class BasicEvaluationVisitor extends AbstractEvaluationVisitor
 				iterationManager = new EvaluatorMultipleIterationManager(context, iterateExp, body, sourceValue, accumulatorVariable, initValue, variables);
 			}
 			result = implementation.evaluateIteration(iterationManager);
-//		} catch (InvalidValueException e) {
-//			return evaluationEnvironment.throwInvalidEvaluation(e);
-		} catch (InvalidValueException e) {
+		}
+		catch (InvalidValueException e) {
 			throw e;
-		} catch (Exception e) {
+		}
+		catch (InvocationFailedException e) {
+			throw e;
+		}
+		catch (Exception e) {
 			// This is a backstop. Library iterations should catch their own exceptions
 			//  and produce a better reason as a result.
 			throw new InvalidValueException(e, StringUtil.bind(PivotMessagesInternal.FailedToEvaluate_ERROR_, staticIteration, sourceValue, iterateExp));	// FIXME dymamicIteration throughout
@@ -485,13 +488,14 @@ public class BasicEvaluationVisitor extends AbstractEvaluationVisitor
 				iterationManager = new EvaluatorMultipleIterationManager(context, iteratorExp,  body, sourceValue, null, accumulatorValue, variables);
 			}
 			result = implementation.evaluateIteration(iterationManager);
-//		} catch (InvalidValueException e) {
-//			return evaluationEnvironment.throwInvalidEvaluation(e);
-		} catch (InvalidValueException e) {
+		}
+		catch (InvalidValueException e) {
 			throw e;
-		} catch (InvocationFailedException e) {
+		}
+		catch (InvocationFailedException e) {
 			throw e;
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			// This is a backstop. Library iterations should catch their own exceptions
 			//  and produce a better reason as a result.
 			throw new InvalidValueException(e, PivotMessagesInternal.FailedToEvaluate_ERROR_, staticIteration, sourceValue, iteratorExp);
@@ -630,9 +634,14 @@ public class BasicEvaluationVisitor extends AbstractEvaluationVisitor
 				Object result = implementation.evaluate(context, operationCallExp.getTypeId(), sourceValue, onlyArgument);
 				assert !(result instanceof NullValue);
 				return result;
-			} catch (InvalidValueException e) {
+			}
+			catch (InvalidValueException e) {
 				throw e;
-			} catch (Exception e) {
+			}
+			catch (InvocationFailedException e) {
+				throw e;
+			}
+			catch (Exception e) {
 				// This is a backstop. Library operations should catch their own exceptions
 				//  and produce a better reason as a result.
 				throw new InvalidValueException(e, PivotMessagesInternal.FailedToEvaluate_ERROR_, apparentOperation, sourceValue, operationCallExp);
@@ -655,9 +664,14 @@ public class BasicEvaluationVisitor extends AbstractEvaluationVisitor
 				Object result = implementation.dispatch(context, operationCallExp, sourceValue);
 				assert !(result instanceof NullValue);
 				return result;
-			} catch (InvalidValueException e) {
+			}
+			catch (InvalidValueException e) {
 				throw e;
-			} catch (Exception e) {
+			}
+			catch (InvocationFailedException e) {
+				throw e;
+			}
+			catch (Exception e) {
 				// This is a backstop. Library operations should catch their own exceptions
 				//  and produce a better reason as a result.
 				throw new InvalidValueException(e, PivotMessagesInternal.FailedToEvaluate_ERROR_, apparentOperation, ILabelGenerator.Registry.INSTANCE.labelFor(sourceValue), operationCallExp);
