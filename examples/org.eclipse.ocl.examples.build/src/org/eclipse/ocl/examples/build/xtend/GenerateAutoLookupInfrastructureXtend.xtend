@@ -27,6 +27,8 @@ import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal
 import org.eclipse.ocl.pivot.utilities.ClassUtil
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory
 import org.eclipse.ocl.pivot.CollectionType
+import org.eclipse.ocl.pivot.utilities.OCL
+import org.eclipse.ocl.examples.autogen.lookup.utilities.GenPackageHelper
 
 public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVisitors
 {
@@ -41,9 +43,6 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVis
 	
 	override checkConfiguration(Issues issues) {
 		super.checkConfiguration(issues);
-		if (this.lookupPackageName.length() == 0 ) {
-			issues.addError(this, "lookupPackageName must be specified");
-		}
 	}
 
 	public def setLookupPackageName(String lookupPackageName) {
@@ -52,6 +51,30 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVis
 	
 	public def setSuperLookupPackageName(String superLookupPackageName) {
 		this.superLookupPackageName = superLookupPackageName;
+	}
+	
+	override protected doPreliminarConfigurations(OCL ocl) {
+		super.doPreliminarConfigurations(ocl);
+		val genModelURI = getGenModelURI(projectName, genModelFile);
+		val genModelResource = getGenModelResource(ocl, genModelURI);
+		val genPackage = getGenPackage(genModelResource);
+	
+		
+		// And configure missing information required by the inherited mwe component
+		var helper = new GenPackageHelper(genPackage);
+		if (!lookupPackageName.isDefined || lookupPackageName.length == 0) {
+			lookupPackageName = helper.modelPackageName + ".lookup"	
+		}
+		 
+		if (isDerived()) {
+			val superGenModelURI = getGenModelURI(superProjectName, superGenModelFile);
+			val superGenModelResource = getGenModelResource(ocl, superGenModelURI);
+			val superGenPackage = getGenPackage(superGenModelResource);
+			helper = new GenPackageHelper(superGenPackage)
+			if (!superLookupPackageName.isDefined || superLookupPackageName.length == 0) {
+				superLookupPackageName = helper.modelPackageName + ".lookup"	
+			}	
+		}
 	}
 	
 	protected def void generateAutoLookupResultItf(/*@NonNull*/ EPackage ePackage) {
@@ -341,6 +364,10 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVis
 	«ePackage.generateHeader(lookupArtifactsJavaPackage)»
 
 	import org.eclipse.ocl.pivot.evaluation.Executor;
+	import «visitorPackageName».«projectPrefix»UnqualifiedLookupVisitor;
+	import «visitorPackageName».«projectPrefix»QualifiedLookupVisitor;
+	import «visitorPackageName».«projectPrefix»ExportedLookupVisitor;
+	
 	«IF isDerived»import «superLookupPackageName».util.«superClassName»;«ENDIF»
 	
 	public class «className»«IF isDerived» extends «superClassName»«ENDIF» {
@@ -389,9 +416,9 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVis
 		ePackage.generateAutoLookupResultItf;
 		ePackage.generateAutoLookupFilterItf;
 		ePackage.generateSingleResultLookupEnvironment;
-		ePackage.generateUnqualifiedLookupVisitor;
-		ePackage.generateQualifiedLookupVisitor;
-		ePackage.generateExportedLookupVisitor;
+		//ePackage.generateUnqualifiedLookupVisitor;
+		//ePackage.generateQualifiedLookupVisitor;
+		//ePackage.generateExportedLookupVisitor;
 		
 		genPackage.generateAutoLookupSolver;
 	}

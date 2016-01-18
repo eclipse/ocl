@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.autogen.java.AutoCG2JavaVisitor;
+import org.eclipse.ocl.examples.autogen.java.AutoVisitorsCG2JavaVisitor;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGClass;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
@@ -26,7 +27,7 @@ import org.eclipse.ocl.examples.codegen.java.JavaConstants;
  * LookupCG2JavaVisitor refines the regular generation of Java code from an optimized Auto CG transformation tree
  * to add contributions that are inadequately represented by the CG model.
  */
-public class LookupCG2JavaVisitor extends AutoCG2JavaVisitor<@NonNull LookupCodeGenerator>
+public class LookupCG2JavaVisitor extends AutoVisitorsCG2JavaVisitor<@NonNull LookupCodeGenerator>
 {
 	public LookupCG2JavaVisitor(@NonNull LookupCodeGenerator codeGenerator, @NonNull CGPackage cgPackage,
 			@Nullable List<CGValuedElement> sortedGlobals) {

@@ -28,20 +28,15 @@ var ResourceSet resourceSet
 var projectName
 
 /**
- * The path inside the projectName to the Complete OCL file which contains the name resolution description; 
+ * The path inside the ${projectName} to the Complete OCL file which contains the name resolution description; 
  * (e.g. "model/NameResolution.ocl"). 
  */
 var lookupFilePath
 
 /**
- * The name of the generated model (the package name in the Ecore model); e.g. "essentialoclcs"
+ * The project-relative genmodel file; e.g.: "model/EssentialOCLCS.genmodel".
  */
-var modelName
-
-/**
- * The prefix of generated model classes; e.g. "EssentialOCL"
- */
-var projectPrefix
+var genModelFile
 
 /**
  * The name of the inherited project hosting the generated models; e.g. "org.eclipse.ocl.xtext.essentialocl"; "" for a base project.
@@ -49,89 +44,30 @@ var projectPrefix
 var superProjectName = ""
 
 /**
- * The name of the inherited model (the package name in the Ecore model); e.g. "basecs"; "" for a base project.
+ * (Optional) The project-relative genmodel file of the inherited project; default: "".
  */
-var superModelName = ""
+var superGenModelFile = ""
+
 
 /**
- * The prefix of the inherited project hosting the generated models; e.g. "EssentialOCL", "" for a base visitor.
+ * (Optional) The name of the base project hosting the generated models; e.g. "org.eclipse.ocl.xtext.base"; "" for a base project; default: ""
  */
-var superProjectPrefix = ""
-
-/*
- * The prefix of the inherited project hosting the base generate models; e.g. "Pivot", "" for a base visitor.
- */
-var baseProjectPrefix = ""
-
-/* The name of the visitor package that is base of the project containing  the common visitor Visitor/Visitable interfances. 
- * (e.g. "org.eclipse.pivot.ocl.util"). "" for a base visitor
- */
-var baseVisitorPackage = ""
+var baseProjectName = ""
  
 /**
- * (Optional) The package for generated model interfaces; default: "${projectName}.${modelName}".
+ * (Optional) The project-relative genmodel file of the base project; default: "".
  */
-var modelPackageName = "${projectName}.${modelName}"
+var baseGenModelFile = ""
 
 /**
- * (Optional) The super package for generated model interfaces; default: "${superProjectName}.${superModelName}".
+ * (Optional) The package for generated lookup artefacts; default: "${modelJavaPackageName}.lookup".
  */
-var superModelPackageName = "${superProjectName}.${superModelName}"
+var lookupPackageName = ""
 
 /**
- * (Optional) The package for generated lookup artefacts; default: "${modelPackageName}.lookup.util".
+ * (Optional) The super package for generated lookup artefacts; default: "${superModelJavaPackageName}.lookup".
  */
-var lookupPackageName = "${modelPackageName}.lookup"
-
-/**
- * (Optional) The super package for generated lookup artefacts; default: "${superModelPackageName}.lookup.util".
- */
-var superlookupPackageName = "${superModelPackageName}.lookup"
-
-/**
- * (Optional) The project-relative genmodel file; default: "model/${projectPrefix}.genmodel".
- */
-var genModelFile = "model/${projectPrefix}.genmodel"
-
-/**
- * (Optional) The Java source folder for generated packages; default: "emf-gen".
- */
-var javaFolder = "emf-gen"
-
-/**
- * (Optional) The package of the visitor; default: "${projectName}.util".
- */
-var visitorPackageName = "${modelPackageName}.util"
-
-/**
- * (Optional) The class of the visitor; default: "${projectPrefix}Visitor".
- */
-var visitorClassName = "${projectPrefix}Visitor"
-
-/**
- * (Optional) The package of the inherited visitor; default: "${superProjectName}.util". "" for a base visitor.
- */
-var superVisitorPackageName = "${superModelPackageName}.util"
-
-/**
- * (Optional) The class of the inherited visitor; default: "${superProjectPrefix}Visitor". "" for a base visitor.
- */
-var superVisitorClassName = "${superProjectPrefix}Visitor"
-
-/**
- * (Optional) The package of the visitable interface class; default: "org.eclipse.ocl.pivot.util"
- */
-var visitablePackageName = "${visitorPackageName}"
-
-/**
- * (Optional) The name of the visitable interface class; default: "Visitable"
- */
-var visitableClassName = "Visitable"
-
-/**
- * (Optional) The workspace-relative name of the gen model file; default: "/${projectName}/${genModelFile}"
- */
-//var genModel = "/${projectName}/${genModelFile}"
+var superlookupPackageName = ""
 
 /**
  *	Generate a Concrete Syntax Model and its visitors as used by the Xtext editors.
@@ -139,22 +75,13 @@ var visitableClassName = "Visitable"
 Workflow {
     component = GenerateAutoLookupInfrastructureXtend { resourceSet = resourceSet skipOnErrors = true
     	projectName = projectName
-    	projectPrefix = projectPrefix
     	superProjectName = superProjectName
-    	superProjectPrefix = superProjectPrefix
+    	baseProjectName = baseProjectName
     	lookupFilePath = lookupFilePath
     	genModelFile = genModelFile
-    	javaFolder = javaFolder
-    	modelPackageName = modelPackageName
-    	visitorPackageName = visitorPackageName
-    	visitorClassName = visitorClassName
-    	superVisitorPackageName = superVisitorPackageName
-    	superVisitorClassName = superVisitorClassName
-    	visitablePackageName = visitablePackageName
-    	visitableClassName = visitableClassName
-    	baseProjectPrefix = baseProjectPrefix
-    	baseVisitorPackage = baseVisitorPackage
+    	superGenModelFile = superGenModelFile
+    	baseGenModelFile = baseGenModelFile
     	lookupPackageName = lookupPackageName
-    	superLookupPackageName = superlookupPackageName
+    	superLookupPackageName = superlookupPackageName // TODO
     }
 }

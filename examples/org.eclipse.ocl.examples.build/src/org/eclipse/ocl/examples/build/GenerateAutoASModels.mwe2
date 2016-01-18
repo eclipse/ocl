@@ -33,13 +33,8 @@ Workflow {
 
     component = @SubGenerateAutoASModel { resourceSet = resourceSet
     	projectName = "org.eclipse.ocl.pivot"
-    	modelName = "pivot"
-    	projectPrefix = "Pivot"
     	genModelFile = "model/Pivot.genmodel"
     	lookupFilePath = "model/PivotLookup.ocl"
-    	modelPackageName = "org.eclipse.ocl.pivot"
     	lookupPackageName = "org.eclipse.ocl.pivot.internal.lookup"
-		visitorPackageName = "org.eclipse.ocl.pivot.util"
-		visitorClassName = "Visitor"
     }
 }

@@ -15,53 +15,52 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.codegen.analyzer.CodeGenAnalyzer;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGClass;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
-import org.eclipse.ocl.examples.codegen.java.CG2JavaVisitor;
 
 /**
  * AutoCG2JavaVisitor refines the regular generation of Java code from an optimized Auto CG transformation tree
  * to add contributions that are inadequately represented by the CG model.
  */
-public abstract class AutoCG2JavaVisitor<@NonNull CG extends AutoCodeGenerator> extends CG2JavaVisitor<CG>
+public abstract class AutoVisitorsCG2JavaVisitor<@NonNull CG extends AutoVisitorsCodeGenerator> extends AutoCG2JavaVisitor<CG>
 {
-	protected final @NonNull CodeGenAnalyzer analyzer;
-	protected final @NonNull CGPackage cgPackage;
-	protected final @Nullable List<CGValuedElement> sortedGlobals;
 	
-	public AutoCG2JavaVisitor(@NonNull CG codeGenerator, @NonNull CGPackage cgPackage,
+	public AutoVisitorsCG2JavaVisitor(@NonNull CG codeGenerator, @NonNull CGPackage cgPackage,
 			@Nullable List<CGValuedElement> sortedGlobals) {
-		super(codeGenerator);
-		this.analyzer = codeGenerator.getAnalyzer();
-		this.cgPackage = cgPackage;
-		this.sortedGlobals = sortedGlobals;
+		super(codeGenerator, cgPackage, sortedGlobals);
+
 	}
 
 	@Override
-	final protected void doClassMethods(@NonNull CGClass cgClass) {
-		doConstructor(cgClass);
-		doMoreClassMethods(cgClass);
-		super.doClassMethods(cgClass);
-	}
-	
 	protected void doMoreClassMethods(@NonNull CGClass cgClass) {
-		// doNothing
-	}
-	
-	
-
-	@Override
-	protected void doClassStatics(@NonNull CGClass cgClass) {
-		if (sortedGlobals != null) {
-			for (CGValuedElement cgElement : sortedGlobals) {
-				assert cgElement.isGlobal();
-				cgElement.accept(this);
-			}
-			js.append("\n");
+		if (! isDerivedVisitor(cgClass)) {
+			doVisiting(cgClass);
 		}
 	}
+
+	protected boolean isDerivedVisitor(@NonNull CGClass cgClass) {
+		return cgClass.getSuperTypes().size() > 1;
+	}
 	
-	protected abstract void doConstructor(@NonNull CGClass cgClass);
+	protected void doVisiting(@NonNull CGClass cgClass) {
+		js.append("\n");
+		js.append("@Override\n");
+		js.append("public ");
+		js.appendIsRequired(false);
+		js.append(" ");
+		js.appendClassReference(context.getVisitorResultClass());
+		js.append(" visiting(");
+		js.appendIsRequired(true);
+		js.append(" ");
+		js.appendClassReference(context.getVisitableClass());
+		js.append(" visitable) {\n");
+		js.pushIndentation(null);
+		js.append("throw new UnsupportedOperationException(\"");
+		js.append("Visiting \"+visitable.toString()+\" is not supported by \\\"\" + getClass().getName() + \"\\\"\"");
+		js.append(");\n");
+		js.popIndentation();
+		js.append("}\n");
+	}
+
 }

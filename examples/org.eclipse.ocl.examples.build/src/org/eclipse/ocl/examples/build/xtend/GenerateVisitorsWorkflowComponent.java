@@ -31,6 +31,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.OCL;
 
 import com.google.common.base.Objects;
@@ -111,13 +112,25 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 	}
 
 	public abstract void generateVisitors(/*@NonNull*/ final GenPackage genPackage);
-
+	
 	private String getCopyright(@NonNull Resource genModelResource) {
 		GenModel genModel = (GenModel)genModelResource.getContents().get(0);
 		String copyright = genModel.getCopyright("");
 		return copyright != null ? copyright : EMPTY_STRING;
 	}
 
+	protected @NonNull URI getGenModelURI(String projectName, String genModelFile) {
+		
+		URI projectResourceURI = URI.createPlatformResourceURI("/" + projectName + "/", true);
+		return ClassUtil.nonNullState(URI.createURI(genModelFile).resolve(projectResourceURI));
+	}
+	protected @NonNull Resource getGenModelResource(OCL ocl, URI genModelURI) {
+		Resource genModelResource = ocl.getResourceSet().getResource(genModelURI, true);
+		if (genModelResource == null) {
+			throw new IllegalStateException("No '" + genModelURI + "' Resource");
+		}
+		return genModelResource;
+	}
 	private @NonNull GenModel getGenModel(@NonNull Resource genModelResource) {
 		EList<EObject> contents = genModelResource.getContents();
 		if (contents.isEmpty()) {
@@ -130,10 +143,14 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 		return (GenModel) rootElement;
 	}
 
-	private GenPackage getGenPackage(@NonNull Resource genModelResource) {
+	protected @NonNull GenPackage getGenPackage(@NonNull Resource genModelResource) {
 		GenModel genModel = getGenModel(genModelResource);
 		List<GenPackage> genPackages = genModel.getAllGenPackagesWithConcreteClasses();
-		return genPackages.isEmpty() ? null : genPackages.get(0); // We assume we want the first one;
+		GenPackage genPackage = genPackages.isEmpty() ? null : genPackages.get(0); // We assume we want the first one;
+		if (genPackage == null) {
+			throw new IllegalStateException("No '" + genModelResource.getURI() + "' GenPackage");
+		}
+		return genPackage; 
 	}
 
 	@Override
@@ -141,6 +158,8 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 		ResourceSet resourceSet2 = resourceSet;
 		assert resourceSet2 != null;
 		OCL ocl = OCL.newInstance(resourceSet2);
+		doPreliminarConfigurations(ocl);
+		
 		if (!isDefined(visitablePackageName)) {
 			visitablePackageName = visitorPackageName;
 		}
@@ -154,8 +173,7 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 		}
 		doSetup();
 		URI projectFileURI = EcorePlugin.getPlatformResourceMap().get(projectName);
-		URI projectResourceURI = URI.createPlatformResourceURI("/" + projectName + "/", true);
-		URI genModelURI = URI.createURI(genModelFile).resolve(projectResourceURI);
+		URI genModelURI = getGenModelURI(projectName, genModelFile);
 		URI modelURI = URI.createURI(javaFolder);
 		URI resolvedModelURI = modelURI.resolve(projectFileURI);
 		modelFolder = (resolvedModelURI.isFile() ? resolvedModelURI.toFileString() : resolvedModelURI.toString()) + "/";
@@ -165,16 +183,11 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 
 		log.info("Loading GenModel '" + genModelURI);
 //		try {
-			Resource genModelResource = ocl.getResourceSet().getResource(genModelURI, true);
-			if (genModelResource == null) {
-				throw new IllegalStateException("No '" + genModelURI + "' Resource");
-			}
+			Resource genModelResource = getGenModelResource(ocl, genModelURI);
 			GenModel genModel2 = genModel = getGenModel(genModelResource);
 			genModel2.reconcile();
 			GenPackage genPackage = getGenPackage(genModelResource);
-			if (genPackage == null) {
-				throw new IllegalStateException("No '" + genModelURI + "' GenPackage");
-			}
+			
 			registerGenModel(ocl, genModel2);
 			copyright = getCopyright(genModelResource);
 			sourceFile = genModelFile;
@@ -184,6 +197,16 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 //		}
 		ocl.dispose();
 	}
+	
+	/**
+	 * Derived classes may overrided
+	 * @param ocl
+	 */
+	protected void doPreliminarConfigurations(OCL ocl) {
+		// do nothing
+	}
+	
+	
 
 	protected boolean isDerived() {
 		int _length = this.superProjectName.length();

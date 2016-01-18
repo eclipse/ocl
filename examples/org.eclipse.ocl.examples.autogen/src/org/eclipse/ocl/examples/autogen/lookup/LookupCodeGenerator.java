@@ -29,6 +29,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.autogen.java.AutoCG2JavaPreVisitor;
 import org.eclipse.ocl.examples.autogen.java.AutoCodeGenerator;
+import org.eclipse.ocl.examples.autogen.java.AutoVisitorsCodeGenerator;
 import org.eclipse.ocl.examples.codegen.analyzer.AS2CGVisitor;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGClass;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModel;
@@ -82,49 +83,43 @@ import org.eclipse.ocl.pivot.utilities.PivotUtil;
 /**
  * LookupCodeGenerator supports generation of the content of a JavaClassFile for the Lookup visitor.
  */
-public class LookupCodeGenerator extends AutoCodeGenerator
+public class LookupCodeGenerator extends AutoVisitorsCodeGenerator
 {	
 	public static void generate(@NonNull GenPackage genPackage,
-			@NonNull String projectPrefix,	// FIXME Since visitors/visitable package/name are really configured in the MWE file
-			@NonNull String projectName,	// there is no point of providing a different to compute it here. To improve the framework, make use of the
-			@NonNull String lookupFilePath,
-			@NonNull String visitorPackage,	// genModel base logic in the whole framework simplyfying the number of parameters to deal with. Then, these parameters may be removed
-			@NonNull String visitorClass,
-			@NonNull String visitableClass,
-			@Nullable String superProjectPrefix,
-			@Nullable String superProjectName,
-			@Nullable String superVisitorClass,
-			@Nullable String baseProjectPrefix,
-			@Nullable String baseVisitorPackage) {
+			@Nullable GenPackage superGenPackage,
+			@Nullable GenPackage baseGenPackage,
+			@NonNull String projectName,
+			@NonNull String lookupFilePath) {
 		EPackage ePackage = genPackage.getEcorePackage();
 		assert ePackage != null;
 
 		Resource eResource = ClassUtil.nonNullState(ePackage.eResource());
 		EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.getEnvironmentFactory(eResource);
 		
-		List<org.eclipse.ocl.pivot.@NonNull Package> targetPackages = LookupCGUtil.getTargetPackages(genPackage,environmentFactory, lookupFilePath, projectName, projectPrefix);
+		List<org.eclipse.ocl.pivot.@NonNull Package> targetPackages = LookupCGUtil.getTargetPackages(genPackage,environmentFactory, lookupFilePath, projectName, genPackage.getPrefix());
 		for (org.eclipse.ocl.pivot.Package oclDocPackage : targetPackages){
 			org.eclipse.ocl.pivot.Package asSuperPackage = null;
-			if (superProjectPrefix != null) {
+			if (superGenPackage != null) {
+				String superProjectPrefix = superGenPackage.getPrefix();
 				asSuperPackage = LookupCGUtil.getPackage(genPackage, superProjectPrefix, environmentFactory);
 				if (asSuperPackage == null) {
 					throw new IllegalStateException("No super-GenPackage found in UsedGenPackages for " + superProjectPrefix);
 				}
 			}
 			org.eclipse.ocl.pivot.Package basePackage = oclDocPackage;
-			if (baseProjectPrefix != null) {
+			if (baseGenPackage != null) {
+				String baseProjectPrefix = baseGenPackage.getPrefix();
 				basePackage = LookupCGUtil.getPackage(genPackage, baseProjectPrefix, environmentFactory);
 				if (basePackage == null) {
-					throw new IllegalStateException("No super-GenPackage found in UsedGenPackages for " + superProjectPrefix);
+					throw new IllegalStateException("No super-GenPackage found in UsedGenPackages for " + baseProjectPrefix);
 				}
 			}
-			AutoCodeGenerator autoCodeGenerator = new LookupCodeGenerator(environmentFactory, oclDocPackage, asSuperPackage, basePackage, genPackage, // superGenPackage,
-					projectPrefix, projectName, visitorPackage, visitorClass, visitableClass, superProjectPrefix, superProjectName, superVisitorClass,
-					baseProjectPrefix, baseVisitorPackage);
+			AutoCodeGenerator autoCodeGenerator = new LookupCodeGenerator(environmentFactory, oclDocPackage, asSuperPackage, basePackage, genPackage, 
+					superGenPackage, baseGenPackage);
 			autoCodeGenerator.saveSourceFile();
 		}
 	}
-	
+
 	protected final @NonNull String packageName;
 	protected final @NonNull String commonVisitorClassName;
 	protected final @NonNull String unqualifiedVisitorClassName;
@@ -170,18 +165,15 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 
 	protected LookupCodeGenerator(@NonNull EnvironmentFactoryInternal environmentFactory, org.eclipse.ocl.pivot.@NonNull Package asPackage,
 			org.eclipse.ocl.pivot.@Nullable Package asSuperPackage, org.eclipse.ocl.pivot.@NonNull Package asBasePackage, @NonNull GenPackage genPackage,
-			@NonNull String projectPrefix, @NonNull String projectName, @NonNull String visitorPackage, @NonNull String visitorClass, @NonNull String visitableClass,
-			@Nullable String superProjectPrefix, @Nullable String superManualVisitorPackage, @Nullable String superVisitorClass,
-			@Nullable String baseVisitorPrefix, @Nullable String baseVisitorPackage) {
-		super(environmentFactory, asPackage, asSuperPackage, genPackage, projectPrefix, projectName,
-			visitorPackage, visitorClass, visitableClass, superProjectPrefix, superManualVisitorPackage, superVisitorClass,
-			baseVisitorPrefix, baseVisitorPackage);
-		this.packageName = getVisitorPackageName(projectName);
+			@Nullable GenPackage superGenPackage, @Nullable GenPackage baseGenPackage) {
+		super(environmentFactory, asPackage, asSuperPackage, genPackage, superGenPackage, baseGenPackage);
+
+		this.packageName = getSourcePackageName();
 		
-		this.commonVisitorClassName = getAutoCommonVisitorClassName(projectPrefix);
-		this.unqualifiedVisitorClassName = getAutoUnqualifiedVisitorClassName(projectPrefix);
-		this.qualifiedVisitorClassName = getAutoQualifiedVisitorClassName(projectPrefix);
-		this.exportedVisitorClassName = getAutoExportedVisitorClassName(projectPrefix);
+		this.commonVisitorClassName = getAutoCommonVisitorClassName(getProjectPrefix());
+		this.unqualifiedVisitorClassName = getAutoUnqualifiedVisitorClassName(getProjectPrefix());
+		this.qualifiedVisitorClassName = getAutoQualifiedVisitorClassName(getProjectPrefix());
+		this.exportedVisitorClassName = getAutoExportedVisitorClassName(getProjectPrefix());
 		this.classContext = new LookupClassContext(this, asPackage);
 		this.as2cgVisitor = createAS2CGVisitor();
 		//
@@ -297,13 +289,13 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	 */
 	protected void convertSuperTypes(@NonNull CGClass cgClass) {
 		// GenPackage superGenPackage2 = superGenPackage;
-		String superProjectPrefix2 = superProjectPrefix;
+		String superProjectPrefix2 = getSuperProjectPrefix();
 		CGClass cgEnvironmentClass = getExternalClass(asEnvironmentType);
 		if (LookupCGUtil.isCommonVisitorClass(cgClass)) {
 			// String superClassName = "Abstract" + /*trimmed*/prefix + "CSVisitor";
 			//	String superClassName = "AbstractExtending" + visitorClass; // The default Abstract Visitor generated for the language
 			String superClassName = "AbstractExtendingVisitor"; // The default Abstract Visitor generated for the language
-			CGClass superClass = getExternalClass(visitorPackage, superClassName, false);
+			CGClass superClass = getExternalClass(getVisitorPackageName(), superClassName, false);
 			if (superClass.getTemplateParameters().isEmpty()) {
 				superClass.getTemplateParameters().add(cgEnvironmentClass);
 				superClass.getTemplateParameters().add(cgEnvironmentClass);	
@@ -315,9 +307,9 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 				cgClass.getSuperTypes().add(cgCommonClass);
 			} else { //derived ones
 				// String superPackageName = super
-				String superPackageName = getManualVisitorPackageName(ClassUtil.nonNullState(superManualVisitorPackage));
+				String superPackageName = getSuperSourcePackageName();
 				// String superClassName = superGenPackage2.getPrefix() + "AutoContainmentVisitor";
-				String superClassName = getManualVisitorClassName(superProjectPrefix2);
+				String superClassName = getSuperLookupVisitorClassName();
 				// String superInterfaceName = /*trimmed*/prefix + "Visitor";
 				CGClass superClass = getExternalClass(superPackageName, superClassName, false);
 				cgClass.getSuperTypes().add(superClass);
@@ -325,7 +317,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 			}	
 			// This visitor interface will help later on to the CG2Java to obtain required information about 
 			// the visitor context (the LookupEvironment) see LookupCG2JavaVisitor
-			CGClass superInterface = getExternalClass(visitorPackage, visitorClass, true);
+			CGClass superInterface = getExternalClass(getVisitorPackageName(), getVisitorClassName(), true);
 			if (superInterface.getTemplateParameters().isEmpty()) {
 				superInterface.getTemplateParameters().add(cgEnvironmentClass);	
 			}
@@ -337,7 +329,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	 * @return if the generation is for a base language, otherwise is for a derived one
 	 */
 	protected boolean isBaseVisitorsGeneration() {
-		return superProjectPrefix == null;
+		return getSuperProjectPrefix() == null;
 	}
 	
 	protected org.eclipse.ocl.pivot.@NonNull Package createASPackage(String packaName) {
@@ -372,6 +364,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	protected @NonNull List<CGPackage> createCGPackages() throws ParserException {
 		CGModel cgModel = CGModelFactory.eINSTANCE.createCGModel();
 		
+		String visitorPackage = getVisitorPackageName();
 		if (isBaseVisitorsGeneration()) {
 			CGPackage cgPackage = CGModelFactory.eINSTANCE.createCGPackage();
 			cgPackage.setName(visitorPackage);
@@ -404,7 +397,7 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 			@NonNull Map<Operation, @NonNull Operation> envOperation2asOperation, @NonNull Map<Element,Element> reDefinitions) throws ParserException {
 		
 		CGPackage cgPackage = CGModelFactory.eINSTANCE.createCGPackage();
-		cgPackage.setName(visitorPackage);
+		cgPackage.setName(getVisitorPackageName());
 		cgModel.getPackages().add(cgPackage);
 		CGClass cgClass = CGModelFactory.eINSTANCE.createCGClass();
 		cgClass.setName(classNAme);
@@ -614,26 +607,20 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 		reDefinitions.put(envOperation, asOperation);
 		return asOperation;
 	}
-
-
-	
-	
-	
-	
 	
 	protected @NonNull String getAutoCommonVisitorClassName(@NonNull String prefix) {
 		return "Abstract" + prefix + "CommonLookupVisitor";
 	}
 	
 	protected @NonNull String getAutoUnqualifiedVisitorClassName(@NonNull String prefix) {
-		return "Abstract" + prefix + "UnqualifiedLookupVisitor";
+		return prefix + "UnqualifiedLookupVisitor";
 	}
 	
 	protected @NonNull String getAutoQualifiedVisitorClassName(@NonNull String prefix) {
-		return "Abstract" + prefix + "QualifiedLookupVisitor";
+		return prefix + "QualifiedLookupVisitor";
 	}
 	protected @NonNull String getAutoExportedVisitorClassName(@NonNull String prefix) {
-		return "Abstract" + prefix + "ExportedLookupVisitor";
+		return prefix + "ExportedLookupVisitor";
 	}
 	
 	public @NonNull CGValuedElement getChildVariable() {
@@ -669,16 +656,10 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 			cgIdResolverVariable = as2cgVisitor.visitProperty(prop);
 		}
 		return ClassUtil.nonNullState(cgIdResolverVariable);
-	}
+	}	
 	
-	@Override
-	protected @NonNull String getManualVisitorClassName(@NonNull String prefix) {
-		return prefix + "LookupVisitor";  
-	}
-
-	@Override
-	public @NonNull String getSourceFileName(String javaClassName) {
-		return genModel.getModelDirectory() + "/" + visitorPackage.replace('.', '/') + "/" + javaClassName;
+	protected @NonNull String getSuperLookupVisitorClassName() {
+		return ClassUtil.nonNullState(getSuperProjectPrefix()) + "LookupVisitor";  
 	}
 
 	@Override
@@ -691,14 +672,13 @@ public class LookupCodeGenerator extends AutoCodeGenerator
 	}
 	
 	@Override
-	protected @NonNull String getVisitorPackageName(@NonNull String visitorsPackageName) {
-		return visitorsPackageName + ".lookup";
+	protected @NonNull String getSourcePackageName() {
+		return getVisitorPackageName();
 	}
 	
-	protected @NonNull String getManualVisitorPackageName(@NonNull String visitorsPackageName) {
-		return getVisitorPackageName(visitorsPackageName);
+	protected @NonNull String getSuperSourcePackageName() {
+		return getSuperVisitorPackageName();
 	}
-	
 
 	/**
 	 * Replace selected OperationCallExps by alternative implementations.

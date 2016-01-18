@@ -1,0 +1,128 @@
+package org.eclipse.ocl.examples.autogen.lookup.utilities;
+
+import org.eclipse.emf.codegen.ecore.genmodel.GenAnnotation;
+import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
+import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
+import org.eclipse.emf.common.util.EMap;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
+
+/**
+ * @author asanchez
+ *
+ */
+public class GenPackageHelper {
+
+	private static class VisitorGenModelAnnnotationManager {
+		
+		// FIXME find ann source
+		private static final String VISITORS_SOURCE = "http://www.eclipse.org/OCL/GenModel/Visitor";
+		
+		public static final VisitorGenModelAnnnotationManager INSTANCE = new VisitorGenModelAnnnotationManager();
+		
+		public @NonNull String getVisitorPackageName(GenPackage genPackage) {
+			
+			String visitorClass = getVisitorClass(genPackage);
+			return ClassUtil.nonNullState(visitorClass.substring(0,visitorClass.lastIndexOf('.')));
+		}
+		
+		public @NonNull String getVisitorClassName(GenPackage genPackage) {
+			
+			String visitorClass = getVisitorClass(genPackage);
+			return ClassUtil.nonNullState(visitorClass.substring(visitorClass.lastIndexOf('.')+1,visitorClass.length()));
+		}
+		
+		public @NonNull String getVisitablePackageName(GenPackage genPackage) {
+			String visitableClass = getVisitableClass(genPackage);
+			return ClassUtil.nonNullState(visitableClass.substring(0,visitableClass.lastIndexOf('.')));
+		}
+		
+		public @NonNull String getVisitableClassName(GenPackage genPackage) {
+			String visitableClass = getVisitableClass(genPackage);
+			return ClassUtil.nonNullState(visitableClass.substring(visitableClass.lastIndexOf('.')+1,visitableClass.length()));
+		}
+		
+		protected @NonNull String getVisitorClass(GenPackage genPackage) {
+			GenModel genModel = genPackage.getGenModel();
+			
+			GenAnnotation ann = genModel.getGenAnnotation(VISITORS_SOURCE);
+			EMap<String, String> details = ann.getDetails();
+			String visitorClass = details.get("Derived Visitor Class"); // FIXME
+			if (visitorClass == null) {
+				visitorClass = details.get("Root Visitor Class"); // FIXME
+				if (visitorClass == null) {
+					throw new IllegalStateException("Visitor Class not found as genAnnotation of " + genPackage.getPrefix() +  " genModel."); 
+				}
+			} 
+			return visitorClass;
+		}
+		
+		protected @NonNull String getVisitableClass(GenPackage genPackage) {
+			GenModel genModel = genPackage.getGenModel();
+			
+			GenAnnotation ann = genModel.getGenAnnotation(VISITORS_SOURCE);
+			EMap<String, String> details = ann.getDetails();
+			String visitableClass = details.get("Visitable Class"); // FIXME
+			if (visitableClass == null) {
+				visitableClass = details.get("Visitable Classes"); // FIXME
+				if (visitableClass == null) {
+					throw new IllegalStateException("Visitable Class not found as genAnnotation of " + genPackage.getPrefix() +  " genModel."); 
+				}
+			}
+			return visitableClass;
+		}
+	}
+	
+	private GenPackage genPackage;
+	
+	public GenPackageHelper(GenPackage genPackage) {
+		this.genPackage = genPackage;
+	}
+	
+	/**
+	 * @return the fully qualified name of the visitor interface.
+	 * @throws IllegalStateException if the containing genModel doesn't have the appropriate genAnnontations 
+	 */
+	public @NonNull String getVisitor() {
+		return VisitorGenModelAnnnotationManager.INSTANCE.getVisitorClass(genPackage);
+	}
+	
+	/**
+	 * @return the fully qualified name of the visitable interface.
+	 * @throws IllegalStateException if the containing genModel doesn't have the appropriate genAnnontations 
+	 */
+	public @NonNull String getVisitable() {
+		return VisitorGenModelAnnnotationManager.INSTANCE.getVisitableClass(genPackage);
+	}
+	
+	public @NonNull String getVisitorPackageName() {
+		return VisitorGenModelAnnnotationManager.INSTANCE.getVisitorPackageName(genPackage);
+	}
+
+	public @NonNull String getVisitorClassName() {
+		return VisitorGenModelAnnnotationManager.INSTANCE.getVisitorClassName(genPackage);
+	}
+	
+	public @NonNull String getVisitablePackageName() {
+		return VisitorGenModelAnnnotationManager.INSTANCE.getVisitablePackageName(genPackage);
+	}
+	
+	public @NonNull String getVisitableClassName() {
+		return VisitorGenModelAnnnotationManager.INSTANCE.getVisitableClassName(genPackage);
+	}
+	
+	public @NonNull String getProjectPrefix() {
+		String pPrefix = genPackage.getPrefix();
+		return pPrefix == null ? "" : pPrefix;
+	}
+	
+	public @NonNull String getModelPackageName() {
+		String packageName = genPackage.getReflectionPackageName();
+		return packageName == null ? "" : packageName;
+	}
+	
+	public @NonNull String getSrcJavaFolder() {
+		// We assume we have one, or we will generate in the first one
+		return ClassUtil.nonNullState(genPackage.getGenModel().getModelSourceFolders().get(0));
+	}
+}
