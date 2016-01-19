@@ -28,7 +28,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
-import org.eclipse.ocl.pivot.util.AbstractPivotUnqualifiedLookupVisitor;
+import org.eclipse.ocl.pivot.util.PivotUnqualifiedLookupVisitor;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 
 
@@ -44,7 +44,7 @@ public class PivotNameResolver  extends AbstractPivotNameResolver {
 
 	@Override
 	protected @NonNull
-	AbstractPivotUnqualifiedLookupVisitor createLookupVisitor(@NonNull LookupEnvironment env) {
+	PivotUnqualifiedLookupVisitor createLookupVisitor(@NonNull LookupEnvironment env) {
 		return new PivotLookupVisitor(envFactory, env);
 	};
 	

@@ -385,6 +385,13 @@
             </message_arguments>
         </filter>
     </resource>
+    <resource path="emf-gen/org/eclipse/ocl/pivot/internal/lookup/util/AbstractPivotLookupFilter.java" type="org.eclipse.ocl.pivot.internal.lookup.util.AbstractPivotLookupFilter">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.util.AbstractPivotLookupFilter"/>
+            </message_arguments>
+        </filter>
+    </resource>
     <resource path="emf-gen/org/eclipse/ocl/pivot/internal/lookup/util/LookupAdapterFactory.java" type="org.eclipse.ocl.pivot.internal.lookup.util.LookupAdapterFactory">
         <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="338792546">
             <message_arguments>
@@ -398,13 +405,6 @@
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.pivot.internal.lookup.util.LookupSwitch"/>
                 <message_argument value="caseEnvironment(LookupEnvironment)"/>
-            </message_arguments>
-        </filter>
-    </resource>
-    <resource path="emf-gen/org/eclipse/ocl/pivot/internal/lookup/util/PivotExportedLookupVisitor.java" type="org.eclipse.ocl.pivot.internal.lookup.util.PivotExportedLookupVisitor">
-        <filter id="1110441988">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.util.PivotExportedLookupVisitor"/>
             </message_arguments>
         </filter>
     </resource>
@@ -436,24 +436,10 @@
             </message_arguments>
         </filter>
     </resource>
-    <resource path="emf-gen/org/eclipse/ocl/pivot/internal/lookup/util/PivotQualifiedLookupVisitor.java" type="org.eclipse.ocl.pivot.internal.lookup.util.PivotQualifiedLookupVisitor">
-        <filter id="1110441988">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.util.PivotQualifiedLookupVisitor"/>
-            </message_arguments>
-        </filter>
-    </resource>
     <resource path="emf-gen/org/eclipse/ocl/pivot/internal/lookup/util/PivotSingleResultLookupEnvironment.java" type="org.eclipse.ocl.pivot.internal.lookup.util.PivotSingleResultLookupEnvironment">
         <filter id="1110441988">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.pivot.internal.lookup.util.PivotSingleResultLookupEnvironment"/>
-            </message_arguments>
-        </filter>
-    </resource>
-    <resource path="emf-gen/org/eclipse/ocl/pivot/internal/lookup/util/PivotUnqualifiedLookupVisitor.java" type="org.eclipse.ocl.pivot.internal.lookup.util.PivotUnqualifiedLookupVisitor">
-        <filter id="1110441988">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.util.PivotUnqualifiedLookupVisitor"/>
             </message_arguments>
         </filter>
     </resource>
@@ -531,24 +517,24 @@
             </message_arguments>
         </filter>
     </resource>
-    <resource path="emf-gen/org/eclipse/ocl/pivot/util/AbstractPivotExportedLookupVisitor.java" type="org.eclipse.ocl.pivot.util.AbstractPivotExportedLookupVisitor">
+    <resource path="emf-gen/org/eclipse/ocl/pivot/util/PivotExportedLookupVisitor.java" type="org.eclipse.ocl.pivot.util.PivotExportedLookupVisitor">
         <filter id="1110441988">
             <message_arguments>
-                <message_argument value="org.eclipse.ocl.pivot.util.AbstractPivotExportedLookupVisitor"/>
+                <message_argument value="org.eclipse.ocl.pivot.util.PivotExportedLookupVisitor"/>
             </message_arguments>
         </filter>
     </resource>
-    <resource path="emf-gen/org/eclipse/ocl/pivot/util/AbstractPivotQualifiedLookupVisitor.java" type="org.eclipse.ocl.pivot.util.AbstractPivotQualifiedLookupVisitor">
+    <resource path="emf-gen/org/eclipse/ocl/pivot/util/PivotQualifiedLookupVisitor.java" type="org.eclipse.ocl.pivot.util.PivotQualifiedLookupVisitor">
         <filter id="1110441988">
             <message_arguments>
-                <message_argument value="org.eclipse.ocl.pivot.util.AbstractPivotQualifiedLookupVisitor"/>
+                <message_argument value="org.eclipse.ocl.pivot.util.PivotQualifiedLookupVisitor"/>
             </message_arguments>
         </filter>
     </resource>
-    <resource path="emf-gen/org/eclipse/ocl/pivot/util/AbstractPivotUnqualifiedLookupVisitor.java" type="org.eclipse.ocl.pivot.util.AbstractPivotUnqualifiedLookupVisitor">
+    <resource path="emf-gen/org/eclipse/ocl/pivot/util/PivotUnqualifiedLookupVisitor.java" type="org.eclipse.ocl.pivot.util.PivotUnqualifiedLookupVisitor">
         <filter id="1110441988">
             <message_arguments>
-                <message_argument value="org.eclipse.ocl.pivot.util.AbstractPivotUnqualifiedLookupVisitor"/>
+                <message_argument value="org.eclipse.ocl.pivot.util.PivotUnqualifiedLookupVisitor"/>
             </message_arguments>
         </filter>
     </resource>

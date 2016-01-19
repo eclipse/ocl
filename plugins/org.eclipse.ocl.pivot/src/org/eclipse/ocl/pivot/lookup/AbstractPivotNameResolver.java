@@ -26,7 +26,7 @@ import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment;
 import org.eclipse.ocl.pivot.internal.manager.PivotExecutorManager;
-import org.eclipse.ocl.pivot.util.AbstractPivotUnqualifiedLookupVisitor;
+import org.eclipse.ocl.pivot.util.PivotUnqualifiedLookupVisitor;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 
@@ -61,7 +61,7 @@ public abstract class AbstractPivotNameResolver {
 //		return computeUnnamedResult(lookupElement, env, context);
 //	}
 	
-	abstract protected @NonNull AbstractPivotUnqualifiedLookupVisitor createLookupVisitor(@NonNull LookupEnvironment env);
+	abstract protected @NonNull PivotUnqualifiedLookupVisitor createLookupVisitor(@NonNull LookupEnvironment env);
 	
 	@NonNull
 	protected  SingleResultLookupEnvironment createLookupEnvironment(@NonNull EnvironmentFactory mmManager, 

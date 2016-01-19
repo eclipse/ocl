@@ -12,13 +12,13 @@ package org.eclipse.ocl.pivot.lookup;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment;
-import org.eclipse.ocl.pivot.util.AbstractPivotUnqualifiedLookupVisitor;
+import org.eclipse.ocl.pivot.util.PivotUnqualifiedLookupVisitor;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 
 /**
  * @since 1.1
  */
-public class PivotLookupVisitor extends AbstractPivotUnqualifiedLookupVisitor {
+public class PivotLookupVisitor extends PivotUnqualifiedLookupVisitor {
 		
 	protected final  EnvironmentFactory envFactory;
 	

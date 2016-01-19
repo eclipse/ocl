@@ -10,7 +10,7 @@
 package org.eclipse.ocl.pivot.util;
 
 import java.util.Iterator;
-import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -42,9 +42,6 @@ import org.eclipse.ocl.pivot.library.numeric.NumericMinusOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableGreaterThanOperation;
 import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibTables;
-import org.eclipse.ocl.pivot.util.AbstractPivotCommonLookupVisitor;
-import org.eclipse.ocl.pivot.util.Visitable;
-import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.BagValue;
@@ -53,17 +50,16 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.pivot.values.SetValue;
 
-public class AbstractPivotUnqualifiedLookupVisitor
+public class PivotUnqualifiedLookupVisitor
 	extends AbstractPivotCommonLookupVisitor
 	implements Visitor<LookupEnvironment>
 {
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull RootPackageId PACKid_$metamodel$ = IdManager.getRootPackageId("$metamodel$");
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Lookup = IdManager.getNsURIPackageId("http://www.eclipse.org/ocl/2015/Lookup", null, LookupPackage.eINSTANCE);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot = IdManager.getNsURIPackageId("http://www.eclipse.org/ocl/2015/Pivot", null, PivotPackage.eINSTANCE);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull RootPackageId PACKid_java_c_s_s_org_eclipse_ocl_pivot_lookup = IdManager.getRootPackageId("java://org.eclipse.ocl.pivot.lookup");
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull RootPackageId PACKid_java_c_s_s_org_eclipse_ocl_pivot_util = IdManager.getRootPackageId("java://org.eclipse.ocl.pivot.util");
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull RootPackageId PACKid_org_eclipse_ocl_pivot_evaluation = IdManager.getRootPackageId("org.eclipse.ocl.pivot.evaluation");
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull RootPackageId PACKid_org_eclipse_ocl_pivot_ids = IdManager.getRootPackageId("org.eclipse.ocl.pivot.ids");
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_AbstractPivotUnqualifiedLookupVisitor = PACKid_java_c_s_s_org_eclipse_ocl_pivot_lookup.getClassId("AbstractPivotUnqualifiedLookupVisitor", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Behavior = PACKid_$metamodel$.getClassId("Behavior", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Class = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("Class", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Class_0 = PACKid_$metamodel$.getClassId("Class", 0);
@@ -97,6 +93,7 @@ public class AbstractPivotUnqualifiedLookupVisitor
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Package = PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Pivot.getClassId("Package", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Package_0 = PACKid_$metamodel$.getClassId("Package", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Parameter = PACKid_$metamodel$.getClassId("Parameter", 0);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_PivotUnqualifiedLookupVisitor = PACKid_java_c_s_s_org_eclipse_ocl_pivot_util.getClassId("PivotUnqualifiedLookupVisitor", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Precedence = PACKid_$metamodel$.getClassId("Precedence", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Property = PACKid_$metamodel$.getClassId("Property", 0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull ClassId CLSSid_Variable = PACKid_$metamodel$.getClassId("Variable", 0);
@@ -118,7 +115,7 @@ public class AbstractPivotUnqualifiedLookupVisitor
     
     protected /*@Thrown*/ java.lang.@org.eclipse.jdt.annotation.Nullable Object child;
     
-    public AbstractPivotUnqualifiedLookupVisitor(@NonNull LookupEnvironment context) {
+    public PivotUnqualifiedLookupVisitor(@NonNull LookupEnvironment context) {
         super(context);
     }
     
@@ -169,7 +166,7 @@ public class AbstractPivotUnqualifiedLookupVisitor
                     throw new InvalidValueException("Null source for \'Class::superClasses\'");
                 }
                 @SuppressWarnings("null")
-                final /*@Thrown*/ @NonNull List<Class> superClasses_0 = symbol_0.getSuperClasses();
+                final /*@Thrown*/ java.util.@org.eclipse.jdt.annotation.NonNull List<Class> superClasses_0 = symbol_0.getSuperClasses();
                 final /*@Thrown*/ org.eclipse.ocl.pivot.values.@org.eclipse.jdt.annotation.NonNull SetValue BOXED_superClasses_0 = idResolver.createSetOfAll(SET_CLSSid_Class, superClasses_0);
                 return BOXED_superClasses_0;
             }
@@ -192,7 +189,7 @@ public class AbstractPivotUnqualifiedLookupVisitor
                 throw new InvalidValueException("Null source for \'Class::ownedProperties\'");
             }
             @SuppressWarnings("null")
-            final /*@Thrown*/ @NonNull List<Property> ownedProperties = _1_0.getOwnedProperties();
+            final /*@Thrown*/ java.util.@org.eclipse.jdt.annotation.NonNull List<Property> ownedProperties = _1_0.getOwnedProperties();
             final /*@Thrown*/ org.eclipse.ocl.pivot.values.@org.eclipse.jdt.annotation.NonNull OrderedSetValue BOXED_ownedProperties = idResolver.createOrderedSetOfAll(ORD_CLSSid_Property, ownedProperties);
             //
             for (Object value : BOXED_ownedProperties.flatten().getElements()) {
@@ -224,7 +221,7 @@ public class AbstractPivotUnqualifiedLookupVisitor
                 accumulator_0.add(_1_1);
             }
         }
-        final /*@Thrown*/ @NonNull List<Property> ECORE_select = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Property.class, select);
+        final /*@Thrown*/ java.util.@org.eclipse.jdt.annotation.NonNull List<Property> ECORE_select = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Property.class, select);
         @SuppressWarnings("null")
         final /*@Thrown*/ org.eclipse.ocl.pivot.internal.lookup.@org.eclipse.jdt.annotation.NonNull LookupEnvironment addElements = context.addElements(ECORE_select);
         /*@Thrown*/ BagValue.@org.eclipse.jdt.annotation.NonNull Accumulator accumulator_1 = ValueUtil.createBagAccumulatorValue(BAG_CLSSid_Operation);
@@ -243,7 +240,7 @@ public class AbstractPivotUnqualifiedLookupVisitor
                 throw new InvalidValueException("Null source for \'Class::ownedOperations\'");
             }
             @SuppressWarnings("null")
-            final /*@Thrown*/ @NonNull List<Operation> ownedOperations = _1_2.getOwnedOperations();
+            final /*@Thrown*/ java.util.@org.eclipse.jdt.annotation.NonNull List<Operation> ownedOperations = _1_2.getOwnedOperations();
             final /*@Thrown*/ org.eclipse.ocl.pivot.values.@org.eclipse.jdt.annotation.NonNull OrderedSetValue BOXED_ownedOperations = idResolver.createOrderedSetOfAll(ORD_CLSSid_Operation, ownedOperations);
             //
             for (Object value : BOXED_ownedOperations.flatten().getElements()) {
@@ -275,7 +272,7 @@ public class AbstractPivotUnqualifiedLookupVisitor
                 accumulator_2.add(_1_3);
             }
         }
-        final /*@Thrown*/ @NonNull List<Operation> ECORE_select_0 = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Operation.class, select_0);
+        final /*@Thrown*/ java.util.@org.eclipse.jdt.annotation.NonNull List<Operation> ECORE_select_0 = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Operation.class, select_0);
         @SuppressWarnings("null")
         final /*@Thrown*/ org.eclipse.ocl.pivot.internal.lookup.@org.eclipse.jdt.annotation.NonNull LookupEnvironment addElements_0 = addElements.addElements(ECORE_select_0);
         /*@Thrown*/ BagValue.@org.eclipse.jdt.annotation.NonNull Accumulator accumulator_3 = ValueUtil.createBagAccumulatorValue(BAG_CLSSid_Behavior);
@@ -294,14 +291,14 @@ public class AbstractPivotUnqualifiedLookupVisitor
                 throw new InvalidValueException("Null source for \'Class::ownedBehaviors\'");
             }
             @SuppressWarnings("null")
-            final /*@Thrown*/ @NonNull List<Behavior> ownedBehaviors = _1_4.getOwnedBehaviors();
+            final /*@Thrown*/ java.util.@org.eclipse.jdt.annotation.NonNull List<Behavior> ownedBehaviors = _1_4.getOwnedBehaviors();
             final /*@Thrown*/ org.eclipse.ocl.pivot.values.@org.eclipse.jdt.annotation.NonNull SetValue BOXED_ownedBehaviors = idResolver.createSetOfAll(SET_CLSSid_Behavior, ownedBehaviors);
             //
             for (Object value : BOXED_ownedBehaviors.flatten().getElements()) {
                 accumulator_3.add(value);
             }
         }
-        final /*@Thrown*/ @NonNull List<Behavior> ECORE_collect_1 = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Behavior.class, collect_1);
+        final /*@Thrown*/ java.util.@org.eclipse.jdt.annotation.NonNull List<Behavior> ECORE_collect_1 = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Behavior.class, collect_1);
         @SuppressWarnings("null")
         final /*@Thrown*/ org.eclipse.ocl.pivot.internal.lookup.@org.eclipse.jdt.annotation.NonNull LookupEnvironment inner = addElements_0.addElements(ECORE_collect_1);
         final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
@@ -344,7 +341,7 @@ public class AbstractPivotUnqualifiedLookupVisitor
                     throw new InvalidValueException("Null source for \'Class::superClasses\'");
                 }
                 @SuppressWarnings("null")
-                final /*@Thrown*/ @NonNull List<Class> superClasses_0 = symbol_0.getSuperClasses();
+                final /*@Thrown*/ java.util.@org.eclipse.jdt.annotation.NonNull List<Class> superClasses_0 = symbol_0.getSuperClasses();
                 final /*@Thrown*/ org.eclipse.ocl.pivot.values.@org.eclipse.jdt.annotation.NonNull SetValue BOXED_superClasses_0 = idResolver.createSetOfAll(SET_CLSSid_Class, superClasses_0);
                 return BOXED_superClasses_0;
             }
@@ -367,7 +364,7 @@ public class AbstractPivotUnqualifiedLookupVisitor
                 throw new InvalidValueException("Null source for \'Class::ownedProperties\'");
             }
             @SuppressWarnings("null")
-            final /*@Thrown*/ @NonNull List<Property> ownedProperties = _1.getOwnedProperties();
+            final /*@Thrown*/ java.util.@org.eclipse.jdt.annotation.NonNull List<Property> ownedProperties = _1.getOwnedProperties();
             final /*@Thrown*/ org.eclipse.ocl.pivot.values.@org.eclipse.jdt.annotation.NonNull OrderedSetValue BOXED_ownedProperties = idResolver.createOrderedSetOfAll(ORD_CLSSid_Property, ownedProperties);
             //
             for (Object value : BOXED_ownedProperties.flatten().getElements()) {
@@ -399,7 +396,7 @@ public class AbstractPivotUnqualifiedLookupVisitor
                 accumulator_0.add(_1_0);
             }
         }
-        final /*@Thrown*/ @NonNull List<Property> ECORE_select = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Property.class, select);
+        final /*@Thrown*/ java.util.@org.eclipse.jdt.annotation.NonNull List<Property> ECORE_select = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Property.class, select);
         @SuppressWarnings("null")
         final /*@Thrown*/ org.eclipse.ocl.pivot.internal.lookup.@org.eclipse.jdt.annotation.NonNull LookupEnvironment addElements = context.addElements(ECORE_select);
         /*@Thrown*/ BagValue.@org.eclipse.jdt.annotation.NonNull Accumulator accumulator_1 = ValueUtil.createBagAccumulatorValue(BAG_CLSSid_Operation);
@@ -418,7 +415,7 @@ public class AbstractPivotUnqualifiedLookupVisitor
                 throw new InvalidValueException("Null source for \'Class::ownedOperations\'");
             }
             @SuppressWarnings("null")
-            final /*@Thrown*/ @NonNull List<Operation> ownedOperations = _1_1.getOwnedOperations();
+            final /*@Thrown*/ java.util.@org.eclipse.jdt.annotation.NonNull List<Operation> ownedOperations = _1_1.getOwnedOperations();
             final /*@Thrown*/ org.eclipse.ocl.pivot.values.@org.eclipse.jdt.annotation.NonNull OrderedSetValue BOXED_ownedOperations = idResolver.createOrderedSetOfAll(ORD_CLSSid_Operation, ownedOperations);
             //
             for (Object value : BOXED_ownedOperations.flatten().getElements()) {
@@ -450,7 +447,7 @@ public class AbstractPivotUnqualifiedLookupVisitor
                 accumulator_2.add(_1_2);
             }
         }
-        final /*@Thrown*/ @NonNull List<Operation> ECORE_select_0 = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Operation.class, select_0);
+        final /*@Thrown*/ java.util.@org.eclipse.jdt.annotation.NonNull List<Operation> ECORE_select_0 = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Operation.class, select_0);
         @SuppressWarnings("null")
         final /*@Thrown*/ org.eclipse.ocl.pivot.internal.lookup.@org.eclipse.jdt.annotation.NonNull LookupEnvironment inner = addElements.addElements(ECORE_select_0);
         final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
@@ -484,11 +481,11 @@ public class AbstractPivotUnqualifiedLookupVisitor
     @Override
     public /*@NonInvalid*/ LookupEnvironment visitEnumeration(final /*@NonInvalid*/ org.eclipse.ocl.pivot.@org.eclipse.jdt.annotation.NonNull Enumeration element_2) {
         @SuppressWarnings("null")
-        final /*@Thrown*/ @NonNull List<EnumerationLiteral> ownedLiterals = element_2.getOwnedLiterals();
+        final /*@Thrown*/ java.util.@org.eclipse.jdt.annotation.NonNull List<EnumerationLiteral> ownedLiterals = element_2.getOwnedLiterals();
         @SuppressWarnings("null")
         final /*@Thrown*/ org.eclipse.ocl.pivot.internal.lookup.@org.eclipse.jdt.annotation.NonNull LookupEnvironment addElements = context.addElements(ownedLiterals);
         @SuppressWarnings("null")
-        final /*@Thrown*/ @NonNull List<Property> ownedProperties = element_2.getOwnedProperties();
+        final /*@Thrown*/ java.util.@org.eclipse.jdt.annotation.NonNull List<Property> ownedProperties = element_2.getOwnedProperties();
         final /*@Thrown*/ org.eclipse.ocl.pivot.values.@org.eclipse.jdt.annotation.NonNull OrderedSetValue BOXED_ownedProperties = idResolver.createOrderedSetOfAll(ORD_CLSSid_Property, ownedProperties);
         /*@Thrown*/ OrderedSetValue.@org.eclipse.jdt.annotation.NonNull Accumulator accumulator = ValueUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Property);
         @Nullable Iterator<?> ITERATOR__1 = BOXED_ownedProperties.iterator();
@@ -515,11 +512,11 @@ public class AbstractPivotUnqualifiedLookupVisitor
                 accumulator.add(_1);
             }
         }
-        final /*@Thrown*/ @NonNull List<Property> ECORE_select = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Property.class, select);
+        final /*@Thrown*/ java.util.@org.eclipse.jdt.annotation.NonNull List<Property> ECORE_select = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Property.class, select);
         @SuppressWarnings("null")
         final /*@Thrown*/ org.eclipse.ocl.pivot.internal.lookup.@org.eclipse.jdt.annotation.NonNull LookupEnvironment addElements_0 = addElements.addElements(ECORE_select);
         @SuppressWarnings("null")
-        final /*@Thrown*/ @NonNull List<Operation> ownedOperations = element_2.getOwnedOperations();
+        final /*@Thrown*/ java.util.@org.eclipse.jdt.annotation.NonNull List<Operation> ownedOperations = element_2.getOwnedOperations();
         final /*@Thrown*/ org.eclipse.ocl.pivot.values.@org.eclipse.jdt.annotation.NonNull OrderedSetValue BOXED_ownedOperations = idResolver.createOrderedSetOfAll(ORD_CLSSid_Operation, ownedOperations);
         /*@Thrown*/ OrderedSetValue.@org.eclipse.jdt.annotation.NonNull Accumulator accumulator_0 = ValueUtil.createOrderedSetAccumulatorValue(ORD_CLSSid_Operation);
         @Nullable Iterator<?> ITERATOR__1_0 = BOXED_ownedOperations.iterator();
@@ -546,11 +543,11 @@ public class AbstractPivotUnqualifiedLookupVisitor
                 accumulator_0.add(_1_0);
             }
         }
-        final /*@Thrown*/ @NonNull List<Operation> ECORE_select_0 = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Operation.class, select_0);
+        final /*@Thrown*/ java.util.@org.eclipse.jdt.annotation.NonNull List<Operation> ECORE_select_0 = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Operation.class, select_0);
         @SuppressWarnings("null")
         final /*@Thrown*/ org.eclipse.ocl.pivot.internal.lookup.@org.eclipse.jdt.annotation.NonNull LookupEnvironment addElements_1 = addElements_0.addElements(ECORE_select_0);
         @SuppressWarnings("null")
-        final /*@Thrown*/ @NonNull List<Behavior> ownedBehaviors = element_2.getOwnedBehaviors();
+        final /*@Thrown*/ java.util.@org.eclipse.jdt.annotation.NonNull List<Behavior> ownedBehaviors = element_2.getOwnedBehaviors();
         @SuppressWarnings("null")
         final /*@Thrown*/ org.eclipse.ocl.pivot.internal.lookup.@org.eclipse.jdt.annotation.NonNull LookupEnvironment inner = addElements_1.addElements(ownedBehaviors);
         final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
@@ -576,7 +573,7 @@ public class AbstractPivotUnqualifiedLookupVisitor
         @SuppressWarnings("null")
         final /*@Thrown*/ org.eclipse.ocl.pivot.internal.lookup.@org.eclipse.jdt.annotation.NonNull LookupEnvironment addElement = context.addElement(ownedContext);
         @SuppressWarnings("null")
-        final /*@Thrown*/ @NonNull List<Variable> ownedParameters = element_3.getOwnedParameters();
+        final /*@Thrown*/ java.util.@org.eclipse.jdt.annotation.NonNull List<Variable> ownedParameters = element_3.getOwnedParameters();
         @SuppressWarnings("null")
         final /*@Thrown*/ org.eclipse.ocl.pivot.internal.lookup.@org.eclipse.jdt.annotation.NonNull LookupEnvironment addElements = addElement.addElements(ownedParameters);
         final /*@Thrown*/ org.eclipse.ocl.pivot.@org.eclipse.jdt.annotation.Nullable Variable ownedResult = element_3.getOwnedResult();
@@ -602,7 +599,7 @@ public class AbstractPivotUnqualifiedLookupVisitor
     @Override
     public /*@NonInvalid*/ LookupEnvironment visitIterateExp(final /*@NonInvalid*/ org.eclipse.ocl.pivot.@org.eclipse.jdt.annotation.NonNull IterateExp element_4) {
         @SuppressWarnings("null")
-        final /*@Thrown*/ @NonNull List<Variable> ownedIterators = element_4.getOwnedIterators();
+        final /*@Thrown*/ java.util.@org.eclipse.jdt.annotation.NonNull List<Variable> ownedIterators = element_4.getOwnedIterators();
         final /*@Thrown*/ org.eclipse.ocl.pivot.@org.eclipse.jdt.annotation.Nullable Variable ownedResult = element_4.getOwnedResult();
         final /*@Thrown*/ boolean eq = (child != null) ? child.equals(ownedResult) : (ownedResult == null);
         /*@Thrown*/ org.eclipse.ocl.pivot.internal.lookup.@org.eclipse.jdt.annotation.Nullable LookupEnvironment symbol_4;
@@ -628,7 +625,7 @@ public class AbstractPivotUnqualifiedLookupVisitor
             if (gt) {
                 final /*@Thrown*/ org.eclipse.ocl.pivot.values.@org.eclipse.jdt.annotation.NonNull IntegerValue diff = ClassUtil.nonNullState((IntegerValue)NumericMinusOperation.INSTANCE.evaluate(index, INT_1));
                 final /*@Thrown*/ org.eclipse.ocl.pivot.values.@org.eclipse.jdt.annotation.NonNull OrderedSetValue subOrderedSet = ClassUtil.nonNullState(OrderedSetSubOrderedSetOperation.INSTANCE.evaluate(BOXED_ownedIterators_0, INT_1, diff));
-                final /*@Thrown*/ @NonNull List<Variable> ECORE_subOrderedSet = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Variable.class, subOrderedSet);
+                final /*@Thrown*/ java.util.@org.eclipse.jdt.annotation.NonNull List<Variable> ECORE_subOrderedSet = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Variable.class, subOrderedSet);
                 @SuppressWarnings("null")
                 final /*@Thrown*/ org.eclipse.ocl.pivot.internal.lookup.@org.eclipse.jdt.annotation.NonNull LookupEnvironment inner_0 = context.addElements(ECORE_subOrderedSet);
                 final /*@Thrown*/ boolean hasFinalResult_0 = inner_0.hasFinalResult();
@@ -671,7 +668,7 @@ public class AbstractPivotUnqualifiedLookupVisitor
     @Override
     public /*@NonInvalid*/ LookupEnvironment visitIteratorExp(final /*@NonInvalid*/ org.eclipse.ocl.pivot.@org.eclipse.jdt.annotation.NonNull IteratorExp element_5) {
         @SuppressWarnings("null")
-        final /*@Thrown*/ @NonNull List<Variable> ownedIterators = element_5.getOwnedIterators();
+        final /*@Thrown*/ java.util.@org.eclipse.jdt.annotation.NonNull List<Variable> ownedIterators = element_5.getOwnedIterators();
         final /*@Thrown*/ org.eclipse.ocl.pivot.values.@org.eclipse.jdt.annotation.NonNull OrderedSetValue BOXED_ownedIterators = idResolver.createOrderedSetOfAll(ORD_CLSSid_Variable, ownedIterators);
         final /*@Thrown*/ org.eclipse.ocl.pivot.values.@org.eclipse.jdt.annotation.NonNull IntegerValue index = ClassUtil.nonNullState(OrderedCollectionIndexOfOperation.INSTANCE.evaluate(BOXED_ownedIterators, child));
         final /*@Thrown*/ boolean gt = ClassUtil.nonNullState(OclComparableGreaterThanOperation.INSTANCE.evaluate(executor, index, INT_1).booleanValue());
@@ -679,7 +676,7 @@ public class AbstractPivotUnqualifiedLookupVisitor
         if (gt) {
             final /*@Thrown*/ org.eclipse.ocl.pivot.values.@org.eclipse.jdt.annotation.NonNull IntegerValue diff = ClassUtil.nonNullState((IntegerValue)NumericMinusOperation.INSTANCE.evaluate(index, INT_1));
             final /*@Thrown*/ org.eclipse.ocl.pivot.values.@org.eclipse.jdt.annotation.NonNull OrderedSetValue subOrderedSet = ClassUtil.nonNullState(OrderedSetSubOrderedSetOperation.INSTANCE.evaluate(BOXED_ownedIterators, INT_1, diff));
-            final /*@Thrown*/ @NonNull List<Variable> ECORE_subOrderedSet = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Variable.class, subOrderedSet);
+            final /*@Thrown*/ java.util.@org.eclipse.jdt.annotation.NonNull List<Variable> ECORE_subOrderedSet = ((IdResolver.IdResolverExtension)idResolver).ecoreValueOfAll(Variable.class, subOrderedSet);
             @SuppressWarnings("null")
             final /*@Thrown*/ org.eclipse.ocl.pivot.internal.lookup.@org.eclipse.jdt.annotation.NonNull LookupEnvironment inner = context.addElements(ECORE_subOrderedSet);
             final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
@@ -752,15 +749,15 @@ public class AbstractPivotUnqualifiedLookupVisitor
     @Override
     public /*@NonInvalid*/ LookupEnvironment visitLibrary(final /*@NonInvalid*/ org.eclipse.ocl.pivot.@org.eclipse.jdt.annotation.NonNull Library element_7) {
         @SuppressWarnings("null")
-        final /*@Thrown*/ @NonNull List<Package> ownedPackages = element_7.getOwnedPackages();
+        final /*@Thrown*/ java.util.@org.eclipse.jdt.annotation.NonNull List<Package> ownedPackages = element_7.getOwnedPackages();
         @SuppressWarnings("null")
         final /*@Thrown*/ org.eclipse.ocl.pivot.internal.lookup.@org.eclipse.jdt.annotation.NonNull LookupEnvironment addElements = context.addElements(ownedPackages);
         @SuppressWarnings("null")
-        final /*@Thrown*/ @NonNull List<Class> ownedClasses = element_7.getOwnedClasses();
+        final /*@Thrown*/ java.util.@org.eclipse.jdt.annotation.NonNull List<Class> ownedClasses = element_7.getOwnedClasses();
         @SuppressWarnings("null")
         final /*@Thrown*/ org.eclipse.ocl.pivot.internal.lookup.@org.eclipse.jdt.annotation.NonNull LookupEnvironment addElements_0 = addElements.addElements(ownedClasses);
         @SuppressWarnings("null")
-        final /*@Thrown*/ @NonNull List<Precedence> ownedPrecedences = element_7.getOwnedPrecedences();
+        final /*@Thrown*/ java.util.@org.eclipse.jdt.annotation.NonNull List<Precedence> ownedPrecedences = element_7.getOwnedPrecedences();
         @SuppressWarnings("null")
         final /*@Thrown*/ org.eclipse.ocl.pivot.internal.lookup.@org.eclipse.jdt.annotation.NonNull LookupEnvironment inner = addElements_0.addElements(ownedPrecedences);
         final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();
@@ -787,11 +784,11 @@ public class AbstractPivotUnqualifiedLookupVisitor
             throw new InvalidValueException("Null source for \'lookup::LookupEnvironment::addElements(NE)(Collection(addElements.NE)) : lookup::LookupEnvironment[1]\'");
         }
         @SuppressWarnings("null")
-        final /*@Thrown*/ @NonNull List<Import> ownedImports = element_8.getOwnedImports();
+        final /*@Thrown*/ java.util.@org.eclipse.jdt.annotation.NonNull List<Import> ownedImports = element_8.getOwnedImports();
         @SuppressWarnings("null")
         final /*@Thrown*/ org.eclipse.ocl.pivot.internal.lookup.@org.eclipse.jdt.annotation.NonNull LookupEnvironment addElements = parentEnv.addElements(ownedImports);
         @SuppressWarnings("null")
-        final /*@Thrown*/ @NonNull List<Package> ownedPackages = element_8.getOwnedPackages();
+        final /*@Thrown*/ java.util.@org.eclipse.jdt.annotation.NonNull List<Package> ownedPackages = element_8.getOwnedPackages();
         @SuppressWarnings("null")
         final /*@Thrown*/ org.eclipse.ocl.pivot.internal.lookup.@org.eclipse.jdt.annotation.NonNull LookupEnvironment addElements_0 = addElements.addElements(ownedPackages);
         return addElements_0;
@@ -805,7 +802,7 @@ public class AbstractPivotUnqualifiedLookupVisitor
     @Override
     public /*@NonInvalid*/ LookupEnvironment visitOperation(final /*@NonInvalid*/ org.eclipse.ocl.pivot.@org.eclipse.jdt.annotation.NonNull Operation element_9) {
         @SuppressWarnings("null")
-        final /*@Thrown*/ @NonNull List<Parameter> ownedParameters = element_9.getOwnedParameters();
+        final /*@Thrown*/ java.util.@org.eclipse.jdt.annotation.NonNull List<Parameter> ownedParameters = element_9.getOwnedParameters();
         final /*@Thrown*/ org.eclipse.ocl.pivot.values.@org.eclipse.jdt.annotation.NonNull OrderedSetValue BOXED_ownedParameters = idResolver.createOrderedSetOfAll(ORD_CLSSid_Parameter, ownedParameters);
         final /*@Thrown*/ boolean includes = ClassUtil.nonNullState(CollectionIncludesOperation.INSTANCE.evaluate(BOXED_ownedParameters, child).booleanValue());
         /*@Thrown*/ org.eclipse.ocl.pivot.internal.lookup.@org.eclipse.jdt.annotation.Nullable LookupEnvironment symbol_1;
@@ -838,11 +835,11 @@ public class AbstractPivotUnqualifiedLookupVisitor
     @Override
     public /*@NonInvalid*/ LookupEnvironment visitPackage(final /*@NonInvalid*/ org.eclipse.ocl.pivot.@org.eclipse.jdt.annotation.NonNull Package element_10) {
         @SuppressWarnings("null")
-        final /*@Thrown*/ @NonNull List<Package> ownedPackages = element_10.getOwnedPackages();
+        final /*@Thrown*/ java.util.@org.eclipse.jdt.annotation.NonNull List<Package> ownedPackages = element_10.getOwnedPackages();
         @SuppressWarnings("null")
         final /*@Thrown*/ org.eclipse.ocl.pivot.internal.lookup.@org.eclipse.jdt.annotation.NonNull LookupEnvironment addElements = context.addElements(ownedPackages);
         @SuppressWarnings("null")
-        final /*@Thrown*/ @NonNull List<Class> ownedClasses = element_10.getOwnedClasses();
+        final /*@Thrown*/ java.util.@org.eclipse.jdt.annotation.NonNull List<Class> ownedClasses = element_10.getOwnedClasses();
         @SuppressWarnings("null")
         final /*@Thrown*/ org.eclipse.ocl.pivot.internal.lookup.@org.eclipse.jdt.annotation.NonNull LookupEnvironment inner = addElements.addElements(ownedClasses);
         final /*@Thrown*/ boolean hasFinalResult = inner.hasFinalResult();

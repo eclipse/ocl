@@ -15,14 +15,24 @@
  *******************************************************************************/
 package	org.eclipse.ocl.pivot.internal.lookup.util;
 
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment;
-import org.eclipse.ocl.pivot.util.AbstractPivotUnqualifiedLookupVisitor;
+import org.eclipse.ocl.pivot.NamedElement;
 
-public class PivotUnqualifiedLookupVisitor extends AbstractPivotUnqualifiedLookupVisitor {
-
-	public PivotUnqualifiedLookupVisitor(@NonNull LookupEnvironment context) {
-		super(context);
+/**
+ * 
+ */
+public abstract class AbstractPivotLookupFilter<C extends NamedElement> implements PivotLookupFilter {
+	
+	private Class<C> _class;
+	
+	public AbstractPivotLookupFilter(Class<C> _class) {
+		this._class = _class;
 	}
-
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public boolean matches(NamedElement namedElement) {
+		return _class.isInstance(namedElement) && _matches((C)namedElement);
+	}
+	
+	abstract protected boolean _matches(C element);
 }
