@@ -64,7 +64,11 @@ public class GenPackageHelper {
 			EMap<String, String> details = ann.getDetails();
 			String visitableClass = details.get("Visitable Class"); // FIXME
 			if (visitableClass == null) {
-				throw new IllegalStateException("Visitable Class not found as genAnnotation of " + genPackage.getPrefix() +  " genModel.");
+				visitableClass = details.get("Visitable Classes"); // FIXME
+				if (visitableClass == null) {
+					throw new IllegalStateException("Visitable Class not found as genAnnotation of " + genPackage.getPrefix() +  " genModel.");
+				}
+				visitableClass = ClassUtil.nonNullState(visitableClass.split(",")[0]);
 			}
 			return visitableClass;
 		}

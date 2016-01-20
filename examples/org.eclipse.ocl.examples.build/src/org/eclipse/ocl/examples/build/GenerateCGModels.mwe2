@@ -39,15 +39,7 @@ Workflow {
 	
     component = GenerateCGVisitors { resourceSet = resourceSet
     	projectName = "org.eclipse.ocl.examples.codegen"
-    	projectPrefix = "CGModel"
-    	superProjectName = ""
     	genModelFile = "model/cgmodel.genmodel"
-    	javaFolder = "emf-gen"
-    	modelPackageName = "org.eclipse.ocl.examples.codegen.cgmodel"
-    	visitorPackageName = "org.eclipse.ocl.examples.codegen.cgmodel.util"
-    	visitorClassName = "CGModelVisitor"
-    	visitablePackageName = "org.eclipse.ocl.examples.codegen.cgmodel"
-    	visitableClassName = "CGElement"
     }
 	component = ConvertToUnixLineEndings {
 		directory = "org.eclipse.ocl.examples.codegen/emf-gen"
