@@ -53,6 +53,8 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 	// Optional properties
 	protected String superProjectName;
 	protected String superGenModelFile;
+	protected String baseProjectName;
+	protected String baseGenModelFile;
 	
 	// Derived properties
 	protected String projectPrefix;
@@ -72,6 +74,7 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 	
 	protected GenPackage genPackage = null;
 	protected GenPackage superGenPackage = null;
+	protected GenPackage baseGenPackage = null;
 	
 
 	public void checkConfiguration(final Issues issues) {
@@ -84,6 +87,13 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 		if (isDerived()) {
 			if (!isDefined(superGenModelFile)) {
 				issues.addError(this, "superProjectPrefix not specified.");
+			}
+			if (!isDefined(baseProjectName)) {
+				issues.addError(this, "baseProjectName must be specified for derived languages");
+			}
+			
+			if (!isDefined(baseGenModelFile)) {
+				issues.addError(this, "baseGenModelFile must be specified for derived languages");
 			}
 		}
 	}
@@ -109,19 +119,29 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 		if (projectPrefix == null) { projectPrefix = helper.getProjectPrefix(); }
 		if (visitorPackageName == null) { visitorPackageName = helper.getVisitorPackageName(); }
 		if (visitorClassName == null) { visitorClassName = helper.getVisitorClassName(); }
-		if (visitablePackageName == null) { visitablePackageName = helper.getVisitablePackageName(); }
-		if (visitableClassName == null) { visitableClassName = helper.getVisitableClassName(); }
 		if (modelPackageName == null) { modelPackageName = helper.getModelPackageName(); }
 		javaFolder = helper.getSrcJavaFolder();
 		if (isDerived()) {
 			URI superGenModelURI = getGenModelURI(superProjectName, superGenModelFile);
 			Resource superGenModelResource = getGenModelResource(ocl, superGenModelURI);
-			superGenPackage = getGenPackage(superGenModelResource);
-
+			superGenPackage = getGenPackage(superGenModelResource);			
+			
 			helper = new GenPackageHelper(superGenPackage);
 			if (!isDefined(superProjectPrefix)) { superProjectPrefix =  helper.getProjectPrefix(); }
 			if (!isDefined(superVisitorPackageName)) { superVisitorPackageName = helper.getVisitorPackageName(); }
 			if (!isDefined(superVisitorClassName)) { superVisitorClassName = helper.getVisitorClassName(); }
+			
+			// Visitable info will be get from base package
+			URI baseGenModelURI = getGenModelURI(baseProjectName, baseGenModelFile);
+			Resource baseGenModelResource = getGenModelResource(ocl, baseGenModelURI);
+			baseGenPackage = getGenPackage(baseGenModelResource);
+			
+			helper = new GenPackageHelper(baseGenPackage);
+			visitablePackageName = helper.getVisitablePackageName(); 
+			visitableClassName = helper.getVisitableClassName();
+		}  else { // if not derived
+			if (visitablePackageName == null) { visitablePackageName = helper.getVisitablePackageName(); }
+			if (visitableClassName == null) { visitableClassName = helper.getVisitableClassName(); }
 		}
 	}
 	

@@ -11,12 +11,9 @@
 package org.eclipse.ocl.examples.build.xtend;
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.ocl.examples.autogen.lookup.LookupCodeGenerator;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
-import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 import org.eclipse.ocl.xtext.essentialocl.cs2as.EssentialOCLCSLeft2RightVisitor;
 
@@ -24,9 +21,7 @@ public class GenerateAutoLookupVisitors extends GenerateVisitorsXtend
 {
 	protected String lookupFilePath;
 	
-	protected String baseProjectName;
 	
-	protected String baseGenModelFile;
 	
 	protected GenPackage baseGenPackage;
 	
@@ -35,25 +30,6 @@ public class GenerateAutoLookupVisitors extends GenerateVisitorsXtend
 		super.checkConfiguration(issues);
 		if (!isDefined(lookupFilePath)) {
 			issues.addError(this, "lookupFilePath must be specified");
-		}		
-		if (isDerived()) {
-			if (this.baseProjectName == null || this.baseProjectName.length() == 0 ) {
-				issues.addError(this, "baseProjectName must be specified for derived languages");
-			}
-			
-			if (this.baseGenModelFile == null || this.baseGenModelFile.length() == 0 ) {
-				issues.addError(this, "baseGenModelFile must be specified for derived languages");
-			}
-		}
-	}
-	
-	@Override
-	protected void doPreliminarConfigurations(OCL ocl) {
-		super.doPreliminarConfigurations(ocl);
-		if (isDerived()) {
-			URI baseGenModelURI = getGenModelURI(baseProjectName, baseGenModelFile);
-			Resource baseGenModelResource = getGenModelResource(ocl, baseGenModelURI);
-			baseGenPackage = getGenPackage(baseGenModelResource);
 		}
 	}
 	
