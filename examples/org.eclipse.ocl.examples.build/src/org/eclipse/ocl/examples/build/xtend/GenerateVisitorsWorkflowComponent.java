@@ -28,6 +28,7 @@ import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.autogen.utilities.GenPackageHelper;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.pivot.internal.utilities.OCLInternal;
@@ -45,17 +46,22 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 		return (!Objects.equal(string, null));
 	}
 
+	// Mandatory properties
 	protected ResourceSet resourceSet = null;
 	protected String projectName;
+	protected String genModelFile;
+	// Optional properties
+	protected String superProjectName;
+	protected String superGenModelFile;
+	
+	// Derived properties
 	protected String projectPrefix;
 	protected String modelPackageName;
 	protected String visitorPackageName;
 	protected String visitorClassName;
 	protected String visitablePackageName;
 	protected String visitableClassName;
-	protected String javaFolder = "emf-gen";
-	protected String genModelFile;
-	protected String superProjectName;
+	protected String javaFolder;
 	protected String superProjectPrefix;
 	protected String superVisitorClassName;
 	protected String superVisitorPackageName;
@@ -63,45 +69,62 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 	protected String copyright;
 	protected String modelFolder;
 	protected String outputFolder;
-	private GenModel genModel = null;
+	
+	protected GenPackage genPackage = null;
+	protected GenPackage superGenPackage = null;
+	
 
 	public void checkConfiguration(final Issues issues) {
 		if (!isDefined(projectName)) {
 			issues.addError(this, "projectName not specified.");
 		}
-		if (!isDefined(projectPrefix)) {
-			issues.addError(this, "projectPrefix not specified.");
-		}
-		if (!isDefined(modelPackageName)) {
-			issues.addError(this, "modelPackageName not specified.");
-		}
-		if (!isDefined(visitorPackageName)) {
-			issues.addError(this, "visitorPackageName not specified.");
-		}
-		if (!isDefined(visitorClassName)) {
-			issues.addError(this, "visitorClassName not specified.");
-		}
-		if (!isDefined(visitableClassName)) {
-			issues.addError(this, "visitableClassName not specified.");
-		}
 		if (!isDefined(genModelFile)) {
 			issues.addError(this, "genModelFile not specified.");
 		}
-		if (!isDefined(superProjectName)) {
-			issues.addError(this, "superProjectName not specified (use \"\" for a base visitor).");
-		} else if (isDerived()) {
-			if (!isDefined(superProjectPrefix)) {
+		if (isDerived()) {
+			if (!isDefined(superGenModelFile)) {
 				issues.addError(this, "superProjectPrefix not specified.");
-			}
-			if (!isDefined(superVisitorPackageName)) {
-				issues.addError(this, "superVisitorPackageName not specified.");
-			}
-			if (!isDefined(superVisitorClassName)) {
-				issues.addError(this, "superVisitorClassName not specified.");
 			}
 		}
 	}
 
+	/**
+	 * It gives a chance to derived components to do initialise additional properties
+	 * of the der
+	 * 
+	 * Derived components may override, but the must call super.doPreliminaryConfigurations(ocl)
+	 * so the properties of this base components are initialised
+	 * @param ocl
+	 */
+	protected void doPreliminarConfigurations(OCL ocl) {
+		// load the genPackage
+		URI genModelURI = getGenModelURI(projectName, genModelFile);
+		Resource genModelResource = getGenModelResource(ocl, genModelURI);
+		GenModel genModel = getGenModel(genModelResource);
+		genModel.reconcile();
+		genPackage = getGenPackage(genModelResource);
+		
+		// And configure missing information
+		GenPackageHelper helper = new GenPackageHelper(genPackage);
+		if (projectPrefix == null) { projectPrefix = helper.getProjectPrefix(); }
+		if (visitorPackageName == null) { visitorPackageName = helper.getVisitorPackageName(); }
+		if (visitorClassName == null) { visitorClassName = helper.getVisitorClassName(); }
+		if (visitablePackageName == null) { visitablePackageName = helper.getVisitablePackageName(); }
+		if (visitableClassName == null) { visitableClassName = helper.getVisitableClassName(); }
+		if (modelPackageName == null) { modelPackageName = helper.getModelPackageName(); }
+		javaFolder = helper.getSrcJavaFolder();
+		if (isDerived()) {
+			URI superGenModelURI = getGenModelURI(superProjectName, superGenModelFile);
+			Resource superGenModelResource = getGenModelResource(ocl, superGenModelURI);
+			superGenPackage = getGenPackage(superGenModelResource);
+
+			helper = new GenPackageHelper(superGenPackage);
+			if (!isDefined(superProjectPrefix)) { superProjectPrefix =  helper.getProjectPrefix(); }
+			if (!isDefined(superVisitorPackageName)) { superVisitorPackageName = helper.getVisitorPackageName(); }
+			if (!isDefined(superVisitorClassName)) { superVisitorClassName = helper.getVisitorClassName(); }
+		}
+	}
+	
 	/**
 	 * It gives a chance to derived components to do some setup subprocess,
 	 * prior to start with the component generation process
@@ -113,17 +136,16 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 
 	public abstract void generateVisitors(/*@NonNull*/ final GenPackage genPackage);
 	
-	private String getCopyright(@NonNull Resource genModelResource) {
-		GenModel genModel = (GenModel)genModelResource.getContents().get(0);
+	private String getCopyright(GenModel genModel) {
 		String copyright = genModel.getCopyright("");
 		return copyright != null ? copyright : EMPTY_STRING;
 	}
 
 	protected @NonNull URI getGenModelURI(String projectName, String genModelFile) {
-		
 		URI projectResourceURI = URI.createPlatformResourceURI("/" + projectName + "/", true);
 		return ClassUtil.nonNullState(URI.createURI(genModelFile).resolve(projectResourceURI));
 	}
+	
 	protected @NonNull Resource getGenModelResource(OCL ocl, URI genModelURI) {
 		Resource genModelResource = ocl.getResourceSet().getResource(genModelURI, true);
 		if (genModelResource == null) {
@@ -183,13 +205,8 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 
 		log.info("Loading GenModel '" + genModelURI);
 //		try {
-			Resource genModelResource = getGenModelResource(ocl, genModelURI);
-			GenModel genModel2 = genModel = getGenModel(genModelResource);
-			genModel2.reconcile();
-			GenPackage genPackage = getGenPackage(genModelResource);
-			
-			registerGenModel(ocl, genModel2);
-			copyright = getCopyright(genModelResource);
+			registerGenModel(ocl, ClassUtil.nonNullState(genPackage.getGenModel()));
+			copyright = getCopyright(genPackage.getGenModel());
 			sourceFile = genModelFile;
 			generateVisitors(genPackage);
 //		} catch (IOException e) {
@@ -197,24 +214,14 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 //		}
 		ocl.dispose();
 	}
-	
-	/**
-	 * Derived classes may overrided
-	 * @param ocl
-	 */
-	protected void doPreliminarConfigurations(OCL ocl) {
-		// do nothing
-	}
-	
-	
 
-	protected boolean isDerived() {
-		int _length = this.superProjectName.length();
-		return (_length > 0);
+	protected boolean isDerived() {		
+		return (isDefined(superProjectName) && superProjectName.length() > 0);
 	}
 
 	protected boolean needsOverride() {
-		if (genModel != null) {
+		if (genPackage != null) {
+			GenModel genModel = genPackage.getGenModel();
 			GenJDKLevel complianceLevel = genModel.getComplianceLevel();
 			return complianceLevel.compareTo(GenJDKLevel.JDK60_LITERAL) >= 0;
 		}
@@ -245,14 +252,19 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 	/**
 	 * (Optional) The folder within the project that forms the root of EMF
 	 * generated sources. (default is "emf-gen")
+	 * @deprecated ensure you have set {@link #setGenModelFile(String)}
 	 */
+	@Deprecated
 	public void setJavaFolder(final String javaFolder) {
 		this.javaFolder = javaFolder;
 	}
 
 	/**
 	 * The package name of the EMF generated interfaces. (e.g. "org.my.project")
+	 * 
+	 * @deprecated ensure you have set {@link #setGenModelFile(String)}
 	 */
+	@Deprecated
 	public void setModelPackageName(final String modelPackageName) {
 		this.modelPackageName = modelPackageName;
 	}
@@ -268,7 +280,10 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 	/**
 	 * The name prefix of the EMF generated infrasdtructure classes. (e.g.
 	 * "Project")
+	 * 
+	 * @deprecated ensure you have set {@link #setGenModelFile(String)}
 	 */
+	@Deprecated
 	public void setProjectPrefix(final String projectPrefix) {
 		this.projectPrefix = projectPrefix;
 	}
@@ -291,10 +306,21 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 	}
 
 	/**
+	 * The gen model file path of the super project(e.g. "model/superModel.genmodel"). 
+	 * It may be null or ""
+	 */
+	public void setSuperGenModelFile(final String superGenModelFile) {
+		this.superGenModelFile = superGenModelFile;
+	}
+	
+	/**
 	 * The name prefix of the project that is extended by the project containing
 	 * the genmodel and generated EMF sources. (e.g. "SuperProject"). The value
 	 * is ignored if the superProjectName is "".
+	 * 
+	 * @deprecated ensure you have set {@link #setSuperGenModelFile(String)}
 	 */
+	@Deprecated
 	public void setSuperProjectPrefix(final String superProjectPrefix) {
 		this.superProjectPrefix = superProjectPrefix;
 	}
@@ -302,7 +328,10 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 	/**
 	 * The class name for the extended Visitor interface. (e.g. "SuperVisitor").
 	 * The value is ignored if the superProjectName is "".
+	 * 
+	 * @deprecated ensure you have set {@link #setSuperGenModelFile(String)}
 	 */
+	@Deprecated
 	public void setSuperVisitorClassName(final String superVisitorClassName) {
 		this.superVisitorClassName = superVisitorClassName;
 	}
@@ -311,14 +340,20 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 	 * The package name for the extended Visitor interface. (e.g.
 	 * "org.my.superproject.util"). The value is ignored if the superProjectName
 	 * is "".
+	 * 
+	 * @deprecated ensure you have set {@link #setSuperGenModelFile(String)}
 	 */
+	@Deprecated
 	public void setSuperVisitorPackageName(final String superVisitorPackageName) {
 		this.superVisitorPackageName = superVisitorPackageName;
 	}
 
 	/**
 	 * The class name for the referenced Visitable interface. (e.g. "Visitable")
+	 * 
+	 * @deprecated ensure you have set {@link #setGenModelFile(String)}
 	 */
+	@Deprecated
 	public void setVisitableClassName(final String visitableClassName) {
 		this.visitableClassName = visitableClassName;
 	}
@@ -326,7 +361,10 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 	/**
 	 * The package name for the referenced Visitable interface. (e.g.
 	 * "org.my.project.util") If unspecified the visitorPackageName is used.
+	 * 
+	 * @deprecated ensure you have set {@link #setGenModelFile(String)}
 	 */
+	@Deprecated
 	public void setVisitablePackageName(final String visitablePackageName) {
 		this.visitablePackageName = visitablePackageName;
 	}
@@ -334,7 +372,10 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 	/**
 	 * The required class name for the generated Visitor interface. (e.g.
 	 * "Visitor")
+	 * 
+	 * @deprecated ensure you have set {@link #setGenModelFile(String)}
 	 */
+	@Deprecated
 	public void setVisitorClassName(final String visitorClassName) {
 		this.visitorClassName = visitorClassName;
 	}
@@ -342,7 +383,10 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 	/**
 	 * The required package name for the generated Visitor interface. (e.g.
 	 * "org.my.project.util")
+	 * 
+	 * @deprecated ensure you have set {@link #setGenModelFile(String)}
 	 */
+	@Deprecated
 	public void setVisitorPackageName(final String visitorPackageName) {
 		this.visitorPackageName = visitorPackageName;
 	}

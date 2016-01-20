@@ -15,7 +15,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.ocl.examples.autogen.lookup.LookupCodeGenerator;
-import org.eclipse.ocl.examples.autogen.lookup.utilities.GenPackageHelper;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
@@ -24,40 +23,20 @@ import org.eclipse.ocl.xtext.essentialocl.cs2as.EssentialOCLCSLeft2RightVisitor;
 public class GenerateAutoLookupVisitors extends GenerateVisitorsXtend
 {
 	protected String lookupFilePath;
-
-	protected String superGenModelFile;
 	
 	protected String baseProjectName;
 	
 	protected String baseGenModelFile;
 	
-	protected GenPackage superGenPackage;
-	
 	protected GenPackage baseGenPackage;
 	
 	@Override
 	public void checkConfiguration(final Issues issues) {
-		//super.checkConfiguration(issues);
-		// Till adopted by super classes, put the minimum checks here
-		if (!isDefined(projectName)) {
-			issues.addError(this, "projectName not specified.");
-		}
-		if (!isDefined(genModelFile)) {
-			issues.addError(this, "genModelFile not specified.");
-		}
-		if (!isDefined(superProjectName)) {
-			issues.addError(this, "superProjectName not specified (use \"\" for a base visitor).");
-		}
-		// end
+		super.checkConfiguration(issues);
 		if (!isDefined(lookupFilePath)) {
 			issues.addError(this, "lookupFilePath must be specified");
-		}
-		
+		}		
 		if (isDerived()) {
-			if (this.superGenModelFile == null || this.superGenModelFile.length() == 0 ) {
-				issues.addError(this, "superGenModelFile must be specified for derived languages");
-			}
-			
 			if (this.baseProjectName == null || this.baseProjectName.length() == 0 ) {
 				issues.addError(this, "baseProjectName must be specified for derived languages");
 			}
@@ -70,41 +49,13 @@ public class GenerateAutoLookupVisitors extends GenerateVisitorsXtend
 	
 	@Override
 	protected void doPreliminarConfigurations(OCL ocl) {
-		// load the genPackages
-		URI genModelURI = getGenModelURI(projectName, genModelFile);
-		Resource genModelResource = getGenModelResource(ocl, genModelURI);
-		GenPackage genPackage = getGenPackage(genModelResource);
-	
-		
-		// And configure missing information required by the inherited mwe component (needed since the component
-		// has not adopted the improved design based on genModels
-		GenPackageHelper helper = new GenPackageHelper(genPackage);
-		if (projectPrefix == null) { projectPrefix = helper.getProjectPrefix(); }
-		if (visitorPackageName == null) { visitorPackageName = helper.getVisitorPackageName(); }
-		if (visitorClassName == null) { visitorClassName = helper.getVisitorClassName(); }
-		if (visitablePackageName == null) { visitablePackageName = helper.getVisitablePackageName(); }
-		if (visitableClassName == null) { visitableClassName = helper.getVisitableClassName(); }
-		if (modelPackageName == null) { modelPackageName = helper.getModelPackageName(); }
-		javaFolder = helper.getSrcJavaFolder();
+		super.doPreliminarConfigurations(ocl);
 		if (isDerived()) {
-			URI superGenModelURI = getGenModelURI(superProjectName, superGenModelFile);
-			Resource superGenModelResource = getGenModelResource(ocl, superGenModelURI);
-			superGenPackage = getGenPackage(superGenModelResource);
-				
 			URI baseGenModelURI = getGenModelURI(baseProjectName, baseGenModelFile);
 			Resource baseGenModelResource = getGenModelResource(ocl, baseGenModelURI);
 			baseGenPackage = getGenPackage(baseGenModelResource);
-
-			helper = new GenPackageHelper(superGenPackage);
-			
-			if (!isDefined(superProjectPrefix)) { superProjectPrefix =  helper.getProjectPrefix(); }
-			if (!isDefined(superVisitorPackageName)) { superVisitorPackageName = helper.getVisitorPackageName(); }
-			if (!isDefined(superVisitorClassName)) { superVisitorClassName = helper.getVisitorClassName(); }
-			
 		}
 	}
-	
-	
 	
 	@Override
 	protected void doSetup() {
@@ -133,13 +84,6 @@ public class GenerateAutoLookupVisitors extends GenerateVisitorsXtend
 		this.lookupFilePath = lookupFilePath;
 	}
 	
-	/**
-	 * The gen model file path of the super project(e.g. "model/superModel.genmodel"). 
-	 * It may be null or ""
-	 */
-	public void setSuperGenModelFile(final String superGenModelFile) {
-		this.superGenModelFile = superGenModelFile;
-	}
 	
 	/**
 	 * The gen model file path of the base project(e.g. "model/baseModel.genmodel"). 
