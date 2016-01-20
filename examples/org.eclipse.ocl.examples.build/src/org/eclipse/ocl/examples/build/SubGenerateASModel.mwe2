@@ -25,69 +25,30 @@ var ResourceSet resourceSet
 var projectName
 
 /**
- * The name of the generated model (the package name in the Ecore model); e.g. "essentialoclcs"
+ *  The project-relative genmodel file; e.g. "model/MyModel.genmodel".
  */
-var modelName
+var genModelFile
+
 
 /**
- * The prefix of generated model classes; e.g. "EssentialOCL"
+ * (Optional) The name of the inherited project hosting the generated models; e.g. "org.eclipse.ocl.xtext.basecs", "" for a base visitor.
  */
-var projectPrefix
+var superProjectName = ""
 
 /**
- * The name of the inherited project hosting the generated models; e.g. "org.eclipse.ocl.xtext.essentialocl", "" for a base visitor.
+ *  (Optional) The project-relative genmodel file of the inherited project; e.g. "model/MyModel.genmodel"; default: "".
  */
-var superProjectName
+var superGenModelFile = ""
 
 /**
- * The prefix of the inherited project hosting the generated models; e.g. "EssentialOCL", "" for a base visitor.
+ * (Optional) The name of the base project hosting the generated models; e.g. "org.eclipse.ocl.xtext.basecs", "" for a base visitor.
  */
-var superProjectPrefix
+var baseProjectName = ""
 
 /**
- * (Optional) The package for generated model interfaces; default: "${projectName}.${modelName}".
+ *  (Optional) The project-relative genmodel file of the base project; e.g. "model/MyModel.genmodel"; default: "".
  */
-var modelPackageName = "${projectName}.${modelName}"
-
-/**
- * (Optional) The project-relative genmodel file; default: "model/${projectPrefix}.genmodel".
- */
-var genModelFile = "model/${projectPrefix}.genmodel"
-
-/**
- * (Optional) The Java source folder for generated packages; default: "emf-gen".
- */
-var javaFolder = "emf-gen"
-
-/**
- * (Optional) The package of the visitor; default: "${projectName}.util".
- */
-var visitorPackageName = "${projectName}.util"
-
-/**
- * (Optional) The class of the visitor; default: "${projectPrefix}Visitor".
- */
-var visitorClassName = "${projectPrefix}Visitor"
-
-/**
- * (Optional) The package of the inherited visitor; default: "${superProjectName}.util". "" for a base visitor.
- */
-var superVisitorPackageName = "${superProjectName}.util"
-
-/**
- * (Optional) The class of the inherited visitor; default: "${superProjectPrefix}Visitor". "" for a base visitor.
- */
-var superVisitorClassName = "${superProjectPrefix}Visitor"
-
-/**
- * (Optional) The package of the visitable interface class; default: "org.eclipse.ocl.pivot.util"
- */
-var visitablePackageName = "org.eclipse.ocl.pivot.util"
-
-/**
- * (Optional) The name of the visitable interface class; default: "Visitable"
- */
-var visitableClassName = "Visitable"
+var baseGenModelFile = ""
 
 /**
  * (Optional) The workspace-relative name of the gen model file; default: "/${projectName}/${genModelFile}"
@@ -103,17 +64,10 @@ Workflow {
     }
     component = GenerateASVisitors { resourceSet = resourceSet skipOnErrors = true
     	projectName = projectName
-    	projectPrefix = projectPrefix
-    	superProjectName = superProjectName
-    	superProjectPrefix = superProjectPrefix
     	genModelFile = genModelFile
-    	javaFolder = javaFolder
-    	modelPackageName = modelPackageName
-    	visitorPackageName = visitorPackageName
-    	visitorClassName = visitorClassName
-    	superVisitorPackageName = superVisitorPackageName
-    	superVisitorClassName = superVisitorClassName
-    	visitablePackageName = visitablePackageName
-    	visitableClassName = visitableClassName
+    	superProjectName = superProjectName
+    	superGenModelFile = superGenModelFile
+    	baseProjectName = baseProjectName
+    	baseGenModelFile = baseGenModelFile
     }
 }

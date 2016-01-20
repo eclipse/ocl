@@ -306,16 +306,9 @@ Workflow {
 
     component = GenerateASVisitors { resourceSet = resourceSet2
     	projectName = "${internalProjectName}"
-    	projectPrefix = "Pivot"
-    	superProjectName = ""
     	genModelFile = "model/Pivot.genmodel"
-    	javaFolder = "emf-gen"
-    	modelPackageName = "${pivotProjectName}"
-    	visitorPackageName = "${pivotProjectName}.util"
-    	visitorClassName = "Visitor"
-//    	visitablePackageName = "${pivotProjectName}.util"
-    	visitableClassName = "Visitable"
     }
+    
     component = GenerateOCLmetamodelXtend { //resourceSet = resourceSet
     	projectName = "${internalProjectName}"
     	modelFile = "model/Pivot.ecore"
