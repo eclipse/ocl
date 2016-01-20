@@ -53,8 +53,8 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVis
 		this.superLookupPackageName = superLookupPackageName;
 	}
 	
-	override protected doPreliminarConfigurations(OCL ocl) {
-		super.doPreliminarConfigurations(ocl);
+	override protected doPropertiesConfiguration(OCL ocl) {
+		super.doPropertiesConfiguration(ocl);
 		val genModelURI = getGenModelURI(projectName, genModelFile);
 		val genModelResource = getGenModelResource(ocl, genModelURI);
 		val genPackage = getGenPackage(genModelResource);

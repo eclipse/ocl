@@ -59,21 +59,4 @@ public class GenerateAutoLookupVisitors extends GenerateVisitorsXtend
 	public void setLookupFilePath(final String lookupFilePath) {
 		this.lookupFilePath = lookupFilePath;
 	}
-	
-	
-	/**
-	 * The gen model file path of the base project(e.g. "model/baseModel.genmodel"). 
-	 * It may be null or ""
-	 */
-	public void setBaseGenModelFile(final String baseGenModelFile) {
-		this.baseGenModelFile = baseGenModelFile;
-	}
-	
-	/**
-	 * The name of the base project (e.g. "org.my.baseproject"). Must be null or
-	 * "" if there is no base project.
-	 */
-	public void setBaseProjectName(final String baseProjectName) {
-		this.baseProjectName = baseProjectName;
-	}
 }
