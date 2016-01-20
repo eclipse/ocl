@@ -16,7 +16,7 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.autogen.lookup.utilities.GenPackageHelper;
+import org.eclipse.ocl.examples.autogen.utilities.GenPackageHelper;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 
 /**
@@ -39,7 +39,7 @@ public abstract class AutoVisitorsCodeGenerator extends AutoCodeGenerator
 	@SuppressWarnings("null")
 	public @NonNull Class<?> getVisitableClass() {
 		try {
-			return genModel.getClass().getClassLoader().loadClass(getBaseVisitorPackageName() + '.' + getVisitableClassName());
+			return genModel.getClass().getClassLoader().loadClass(getVisitablePackageName() + '.' + getVisitableClassName());
 		} catch (ClassNotFoundException e) {
 			return Object.class;
 		}
@@ -119,6 +119,11 @@ public abstract class AutoVisitorsCodeGenerator extends AutoCodeGenerator
 		return getBaseGenPackageHelper().getVisitorClassName();
 	}
 	
+	
+	protected @NonNull String getVisitablePackageName() {
+		// Visitable will always be taken from the base genPackage
+		return getBaseGenPackageHelper().getVisitablePackageName();
+	}
 	protected @NonNull String getVisitableClassName() {
 		// Visitable will always be taken from the base genPackage
 		return getBaseGenPackageHelper().getVisitableClassName();

@@ -28,7 +28,7 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory
 import org.eclipse.ocl.pivot.CollectionType
 import org.eclipse.ocl.pivot.utilities.OCL
-import org.eclipse.ocl.examples.autogen.lookup.utilities.GenPackageHelper
+import org.eclipse.ocl.examples.autogen.utilities.GenPackageHelper
 
 public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVisitors
 {
@@ -407,10 +407,15 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateAutoLookupVis
 	
 	public class «className»«IF isDerived» extends «superClassName»«ENDIF» {
 		
-		private Executor executor;
-			
+		«IF !isDerived»protected Executor executor;
+		
+		«ENDIF»
 		public «className» (Executor executor) {
+			«IF isDerived»
+			super(executor);
+			«ELSE»
 			this.executor = executor;
+			«ENDIF»
 		}
 		
 		«FOR op : lookupOps»

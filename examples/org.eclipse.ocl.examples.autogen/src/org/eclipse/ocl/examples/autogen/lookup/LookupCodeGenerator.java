@@ -106,7 +106,7 @@ public class LookupCodeGenerator extends AutoVisitorsCodeGenerator
 					throw new IllegalStateException("No super-GenPackage found in UsedGenPackages for " + superProjectPrefix);
 				}
 			}
-			org.eclipse.ocl.pivot.Package basePackage = oclDocPackage;
+			org.eclipse.ocl.pivot.Package basePackage = asSuperPackage == null ? oclDocPackage : asSuperPackage;
 			if (baseGenPackage != null) {
 				String baseProjectPrefix = baseGenPackage.getPrefix();
 				basePackage = LookupCGUtil.getPackage(genPackage, baseProjectPrefix, environmentFactory);
@@ -309,7 +309,7 @@ public class LookupCodeGenerator extends AutoVisitorsCodeGenerator
 				// String superPackageName = super
 				String superPackageName = getSuperSourcePackageName();
 				// String superClassName = superGenPackage2.getPrefix() + "AutoContainmentVisitor";
-				String superClassName = getSuperLookupVisitorClassName();
+				String superClassName = getSuperLookupVisitorClassName(cgClass);
 				// String superInterfaceName = /*trimmed*/prefix + "Visitor";
 				CGClass superClass = getExternalClass(superPackageName, superClassName, false);
 				cgClass.getSuperTypes().add(superClass);
@@ -658,8 +658,17 @@ public class LookupCodeGenerator extends AutoVisitorsCodeGenerator
 		return ClassUtil.nonNullState(cgIdResolverVariable);
 	}	
 	
-	protected @NonNull String getSuperLookupVisitorClassName() {
-		return ClassUtil.nonNullState(getSuperProjectPrefix()) + "LookupVisitor";  
+	protected @NonNull String getSuperLookupVisitorClassName(CGClass cgClass) {
+		String superPrefix = ClassUtil.nonNullState(getSuperProjectPrefix());
+		String name = cgClass.getName();
+		if (name.contains("Qualified"))
+			return getAutoQualifiedVisitorClassName(superPrefix);
+		else if (name.contains("Exported"))
+			return getAutoExportedVisitorClassName(superPrefix);
+		else if (name.contains(("Unqualified")))
+			return getAutoUnqualifiedVisitorClassName(superPrefix);
+		else
+			throw new IllegalStateException("Unexpexted LookupVisitor name");
 	}
 
 	@Override

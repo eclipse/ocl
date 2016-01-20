@@ -1,4 +1,4 @@
-package org.eclipse.ocl.examples.autogen.lookup.utilities;
+package org.eclipse.ocl.examples.autogen.utilities;
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenAnnotation;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
@@ -64,10 +64,7 @@ public class GenPackageHelper {
 			EMap<String, String> details = ann.getDetails();
 			String visitableClass = details.get("Visitable Class"); // FIXME
 			if (visitableClass == null) {
-				visitableClass = details.get("Visitable Classes"); // FIXME
-				if (visitableClass == null) {
-					throw new IllegalStateException("Visitable Class not found as genAnnotation of " + genPackage.getPrefix() +  " genModel."); 
-				}
+				throw new IllegalStateException("Visitable Class not found as genAnnotation of " + genPackage.getPrefix() +  " genModel.");
 			}
 			return visitableClass;
 		}
