@@ -18,6 +18,7 @@
     <details key="Root Visitor Class" value="org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor"/>
     <details key="Derived Visitor Class" value="org.eclipse.ocl.xtext.basecs.util.BaseCSVisitor"/>
     <details key="Visitable Classes" value="org.eclipse.ocl.xtext.basecs.ElementCS"/>
+    <details key="Visitable Class" value="org.eclipse.ocl.xtext.basecs.util.VisitableCS"/>
   </genAnnotations>
   <foreignModel>BaseCS.ecore</foreignModel>
   <genPackages prefix="BaseCS" basePackage="org.eclipse.ocl.xtext" disposableProviderFactory="true"
