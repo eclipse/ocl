@@ -462,9 +462,6 @@
 <dt>
 <span class="section"><a href="#GenAnnotations">GenModel GenAnnotations</a></span>
 </dt>
-<dt>
-<span class="section"><a href="#ASM3">ASM 3</a></span>
-</dt>
 </dl>
 </dd>
 <dt>
@@ -21515,12 +21512,10 @@ org.eclipse.xtext<br>
 </div>
 <div class="literallayout">
 <p>&lt;genAnnotations&nbsp;source="http://www.eclipse.org/OCL/GenModel/Visitor"&gt;<br>
-&nbsp;&nbsp;&lt;details&nbsp;key="Root&nbsp;Visitor&nbsp;Class"<br>
-&nbsp;&nbsp;&nbsp;value="org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor"/&gt;<br>
-&nbsp;&nbsp;&lt;details&nbsp;key="Derived&nbsp;Visitor&nbsp;Class"<br>
-&nbsp;&nbsp;&nbsp;value="org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor"/&gt;<br>
-&nbsp;&nbsp;&lt;details&nbsp;key="Visitable&nbsp;Classes"<br>
-&nbsp;&nbsp;&nbsp;value="org.eclipse.ocl.examples.codegen.cgmodel.CGElement"/&gt;<br>
+&nbsp;&nbsp;&lt;details&nbsp;key="Root&nbsp;Visitor&nbsp;Class"&nbsp;value="org.eclipse.ocl.pivot.util.Visitor"/&gt;<br>
+&nbsp;&nbsp;&lt;details&nbsp;key="Derived&nbsp;Visitor&nbsp;Class"&nbsp;value="org.eclipse.ocl.pivot.util.Visitor"/&gt;<br>
+&nbsp;&nbsp;&lt;details&nbsp;key="Visitable&nbsp;Interface"&nbsp;value="org.eclipse.ocl.pivot.util.Visitable"/&gt;<br>
+&nbsp;&nbsp;&lt;details&nbsp;key="Visitable&nbsp;Classes"&nbsp;value="org.eclipse.ocl.pivot.Element"/&gt;<br>
 &lt;/genAnnotations&gt;<br>
 
 </p>
@@ -21574,6 +21569,19 @@ org.eclipse.xtext<br>
 </div>
 <p>The fully qualified name of the derived visitor class must be specified as the value of the 
 						<span class="emphasis"><em>Derived Visitor Class</em></span> detail. This detail may be omitted for the root package.
+					</p>
+</div>
+<div class="section" title="Visitable Interface">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="VisitableInterface"></a>Visitable Interface</h4>
+</div>
+</div>
+</div>
+<p>The fully qualified name of the visitable interface must be specified as the value of the 
+						<span class="emphasis"><em>Visitable Interface</em></span> detail. It&rsquo;s mandatory for the root package.
 					</p>
 </div>
 <div class="section" title="Visitable Classes">
@@ -21683,38 +21691,7 @@ org.eclipse.xtext<br>
 						<code class="code">GenModelSetup</code> workflow component,
 					</p>
 </div>
-<div class="section" title="org.eclipse.ocl.examples.build.acceleo">
-<div class="titlepage">
-<div>
-<div>
-<h4 class="title">
-<a name="org.eclipse.ocl.examples.build.acceleo"></a>
-						<code class="code">org.eclipse.ocl.examples.build.acceleo</code>
-					
-</h4>
 </div>
-</div>
-</div>
-<p>The Acceleo builder and quiescent performance has not proved very satisfactory, consequently the main templates have been migrated to Xtend. The remaining templates are in the 
-						<code class="code">org.eclipse.ocl.examples.build.acceleo</code> plugin which can be kept closed most of the time allowing operation without installing Acceleo at all.
-					</p>
-</div>
-</div>
-</div>
-<div class="section" title="ASM 3">
-<div class="titlepage">
-<div>
-<div>
-<h2 class="title" style="clear: both">
-<a name="ASM3"></a>ASM 3</h2>
-</div>
-</div>
-</div>
-<p>OCl project endeavors to maintain compatibility beyond the latest release, so when Luna moved to ASM 5, there was a problem supporting installation on Juno and Kepler where only ASM 3 were available. Either the codegen.asm3 or codegen.asm5 plugin is used on the relevant platforms.</p>
-<p>If you create a Luna installation, ASM 5 is installed and ASM 3 is missing, so you get compiler errors. Unfortuntately Luna does not allow you to directly install ASM 3 from Orbit http://download.eclipse.org/tools/orbit/downloads/ to remedy the deficiency.</p>
-<p>The Mars release eliminates this problem by hiding a copy of ASM3 within the 
-				<code class="code">org.eclipse.ocl.examples.codegen.asm3</code> support library.
-			</p>
 </div>
 </div>
 <div class="appendix" title="Appendix&nbsp;A.&nbsp;Glossary">

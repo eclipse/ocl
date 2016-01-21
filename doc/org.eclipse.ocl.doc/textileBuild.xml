@@ -35,6 +35,7 @@
 			<isset property="target.location"/>
 			</not>		
 		</condition>
+	<echo>Target Location: "${target.location}" </echo>
 	<path id="xslt.classpath">
 		<pathelement path="${java.class.path}"/>
 		<pathelement path="${target.location}/plugins/org.apache.xalan_2.7.1.v201005080400.jar"/>
@@ -163,7 +164,7 @@
 	
 	<target name="docbook2html">
 		<echo>Converting article to HTML...</echo>
-		<echo>XML Catalog "docbook.xsl" => "${docbook.dir}${file.separator}html${file.separator}docbook.xsl"</echo>		
+		<echo>XML Catalog "docbook.xsl" => "${docbook.dir}${file.separator}html${file.separator}docbook.xsl"</echo>
 		<delete dir="${basedir}/html"
 		        failonerror="false"
 		        excludes="CVS" 

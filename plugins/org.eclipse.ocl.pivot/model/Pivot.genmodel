@@ -22,7 +22,7 @@
     <details key="Root Visitor Class" value="org.eclipse.ocl.pivot.util.Visitor"/>
     <details key="Derived Visitor Class" value="org.eclipse.ocl.pivot.util.Visitor"/>
     <details key="Visitable Classes" value="org.eclipse.ocl.pivot.Element"/>
-    <details key="Visitable Class" value="org.eclipse.ocl.pivot.util.Visitable"/>
+    <details key="Visitable Interface" value="org.eclipse.ocl.pivot.util.Visitable"/>
   </genAnnotations>
   <foreignModel>Pivot.ecore</foreignModel>
   <genPackages prefix="Pivot" basePackage="org.eclipse.ocl" disposableProviderFactory="true"

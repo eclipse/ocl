@@ -580,6 +580,7 @@
 <topic href="help/BuildingtheOCLProject.html#httpwww.eclipse.orgOCLGenModelVisitor" label="http://www.eclipse.org/OCL/GenModel/Visitor">
 <topic href="help/BuildingtheOCLProject.html#RootVisitorClass" label="Root Visitor Class"></topic>
 <topic href="help/BuildingtheOCLProject.html#DerivedVisitorClass" label="Derived Visitor Class"></topic>
+<topic href="help/BuildingtheOCLProject.html#VisitableInterface" label="Visitable Interface"></topic>
 <topic href="help/BuildingtheOCLProject.html#VisitableClasses" label="Visitable Classes"></topic>
 <topic href="help/BuildingtheOCLProject.html#ImplementationDetails" label="Implementation Details"></topic>
 </topic>
@@ -588,10 +589,8 @@
 </topic>
 <topic href="help/BuildingtheOCLProject.html#ImplementationDetails3" label="Implementation Details">
 <topic href="help/BuildingtheOCLProject.html#org.eclipse.ocl.examples.build" label="org.eclipse.ocl.examples.build"></topic>
-<topic href="help/BuildingtheOCLProject.html#org.eclipse.ocl.examples.build.acceleo" label="org.eclipse.ocl.examples.build.acceleo"></topic>
 </topic>
 </topic>
-<topic href="help/ASM3.html" label="ASM 3"></topic>
 </topic>
 <topic href="help/glossary.html" label="A. Glossary"></topic>
 </toc>

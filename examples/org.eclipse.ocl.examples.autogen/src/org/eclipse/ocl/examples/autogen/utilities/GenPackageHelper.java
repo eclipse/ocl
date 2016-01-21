@@ -5,6 +5,7 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreGenModelGeneratorAdapter;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
@@ -15,8 +16,12 @@ public class GenPackageHelper {
 
 	private static class VisitorGenModelAnnnotationManager {
 		
-		// FIXME find ann source
-		private static final String VISITORS_SOURCE = "http://www.eclipse.org/OCL/GenModel/Visitor";
+		private static final String VISITORS_SOURCE = OCLinEcoreGenModelGeneratorAdapter.OCL_GENMODEL_URI + "/Visitor";
+		// FIXME this shouldn't depend on ocl build
+		private static final @NonNull String ROOT_VISITOR_CLASS = "Root Visitor Class";
+		private static final @NonNull String DERIVED_VISITOR_CLASS = "Derived Visitor Class";
+		// private static final @NonNull String VISITABLE_CLASSES = "Visitable Classes";
+		private static final @NonNull String VISITABLE_INTERFACE = "Visitable Interface";
 		
 		public static final VisitorGenModelAnnnotationManager INSTANCE = new VisitorGenModelAnnnotationManager();
 		
@@ -47,9 +52,9 @@ public class GenPackageHelper {
 			
 			GenAnnotation ann = genModel.getGenAnnotation(VISITORS_SOURCE);
 			EMap<String, String> details = ann.getDetails();
-			String visitorClass = details.get("Derived Visitor Class"); // FIXME
+			String visitorClass = details.get(DERIVED_VISITOR_CLASS); 
 			if (visitorClass == null) {
-				visitorClass = details.get("Root Visitor Class"); // FIXME
+				visitorClass = details.get(ROOT_VISITOR_CLASS);
 				if (visitorClass == null) {
 					throw new IllegalStateException("Visitor Class not found as genAnnotation of " + genPackage.getPrefix() +  " genModel."); 
 				}
@@ -62,15 +67,11 @@ public class GenPackageHelper {
 			
 			GenAnnotation ann = genModel.getGenAnnotation(VISITORS_SOURCE);
 			EMap<String, String> details = ann.getDetails();
-			String visitableClass = details.get("Visitable Class"); // FIXME
-			if (visitableClass == null) {
-				visitableClass = details.get("Visitable Classes"); // FIXME
-				if (visitableClass == null) {
-					throw new IllegalStateException("Visitable Class not found as genAnnotation of " + genPackage.getPrefix() +  " genModel.");
-				}
-				visitableClass = ClassUtil.nonNullState(visitableClass.split(",")[0]);
+			String visitableItf = details.get(VISITABLE_INTERFACE);
+			if (visitableItf == null) {
+				throw new IllegalStateException("Visitable Interface not found as genAnnotation of " + genPackage.getPrefix() +  " genModel.");
 			}
-			return visitableClass;
+			return visitableItf;
 		}
 	}
 	

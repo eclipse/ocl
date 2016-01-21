@@ -37,12 +37,10 @@ h3. http://www.eclipse.org/OCL/GenModel/Visitor
 
 pre. 
 <genAnnotations source="http://www.eclipse.org/OCL/GenModel/Visitor">
-  <details key="Root Visitor Class"
-   value="org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor"/>
-  <details key="Derived Visitor Class"
-   value="org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor"/>
-  <details key="Visitable Classes"
-   value="org.eclipse.ocl.examples.codegen.cgmodel.CGElement"/>
+  <details key="Root Visitor Class" value="org.eclipse.ocl.pivot.util.Visitor"/>
+  <details key="Derived Visitor Class" value="org.eclipse.ocl.pivot.util.Visitor"/>
+  <details key="Visitable Interface" value="org.eclipse.ocl.pivot.util.Visitable"/>
+  <details key="Visitable Classes" value="org.eclipse.ocl.pivot.Element"/>
 </genAnnotations>
 
 The accept method for an hierarchical visitor pattern may be woven into the code using the @http://www.eclipse.org/OCL/GenModel/Visitor@ genAnnotation.
@@ -73,6 +71,10 @@ h4. Derived Visitor Class
 
 The fully qualified name of the derived visitor class must be specified as the value of the _Derived Visitor Class_ detail. This detail may be omitted for the root package.
 
+h4. Visitable Interface
+
+The fully qualified name of the visitable interface must be specified as the value of the _Visitable Interface_ detail. It's mandatory for the root package.
+ 
 h4. Visitable Classes
 
 An @Override annotation is generated for all implementations. This leads to an error where the implementation is not an override. The space-separated fully qualified names of all classes for which the accpe is not an override must be specified as the value of the _Visitable Classes_ detail.

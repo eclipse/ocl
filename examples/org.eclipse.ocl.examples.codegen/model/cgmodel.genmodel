@@ -17,6 +17,7 @@
     <details key="Root Visitor Class" value="org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor"/>
     <details key="Derived Visitor Class" value="org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor"/>
     <details key="Visitable Classes" value="org.eclipse.ocl.examples.codegen.cgmodel.CGElement"/>
+    <details key="Visitable Interface" value="org.eclipse.ocl.examples.codegen.cgmodel.CGElement"/>
   </genAnnotations>
   <foreignModel>cgmodel.ecore</foreignModel>
   <genPackages prefix="CGModel" basePackage="org.eclipse.ocl.examples.codegen" disposableProviderFactory="true"

@@ -39,7 +39,7 @@ public class OCLBuildGenModelUtil
 	public static final @NonNull String ROOT_VISITOR_CLASS = "Root Visitor Class";
 	public static final @NonNull String DERIVED_VISITOR_CLASS = "Derived Visitor Class";
 	public static final @NonNull String VISITABLE_CLASSES = "Visitable Classes";
-	public static final @NonNull String VISITABLE_CLASS = "Visitable Class";
+	public static final @NonNull String VISITABLE_INTERFACE = "Visitable Interface";
 
 	public static @NonNull String atNonNull(@NonNull GenModel genModel) {
 		GenAnnotation genAnnotation = genModel.getGenAnnotation(OCLinEcoreGenModelGeneratorAdapter.OCL_GENMODEL_URI);
@@ -105,7 +105,7 @@ public class OCLBuildGenModelUtil
 	}
 
 	public static /*@Nullable*/ String getVisitableClass(@NonNull GenModel genModel) {		// @Nullable breaks Xtend
-		return GenModelUtil.getAnnotation(genModel, OCL_GENMODEL_VISITOR_URI, VISITABLE_CLASS);
+		return GenModelUtil.getAnnotation(genModel, OCL_GENMODEL_VISITOR_URI, VISITABLE_INTERFACE);
 	}
 
 	public static boolean isRootVisitableClass(@NonNull GenClass genClass) {

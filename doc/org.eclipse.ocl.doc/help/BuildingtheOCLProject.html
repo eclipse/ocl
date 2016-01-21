@@ -7,7 +7,7 @@
 <link rel="home" href="index.html" title="OCL Documentation">
 <link rel="up" href="index.html" title="OCL Documentation">
 <link rel="prev" href="Extensionpoints.html" title="Extension points">
-<link rel="next" href="ASM3.html" title="ASM 3">
+<link rel="next" href="glossary.html" title="Appendix&nbsp;A.&nbsp;Glossary">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Building the OCL Project</h1>
@@ -24,9 +24,6 @@
 <dl>
 <dt>
 <span class="section"><a href="BuildingtheOCLProject.html#GenAnnotations">GenModel GenAnnotations</a></span>
-</dt>
-<dt>
-<span class="section"><a href="ASM3.html">ASM 3</a></span>
 </dt>
 </dl>
 </div>
@@ -125,12 +122,10 @@
 </div>
 <div class="literallayout">
 <p>&lt;genAnnotations&nbsp;source="http://www.eclipse.org/OCL/GenModel/Visitor"&gt;<br>
-&nbsp;&nbsp;&lt;details&nbsp;key="Root&nbsp;Visitor&nbsp;Class"<br>
-&nbsp;&nbsp;&nbsp;value="org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor"/&gt;<br>
-&nbsp;&nbsp;&lt;details&nbsp;key="Derived&nbsp;Visitor&nbsp;Class"<br>
-&nbsp;&nbsp;&nbsp;value="org.eclipse.ocl.examples.codegen.cgmodel.util.CGModelVisitor"/&gt;<br>
-&nbsp;&nbsp;&lt;details&nbsp;key="Visitable&nbsp;Classes"<br>
-&nbsp;&nbsp;&nbsp;value="org.eclipse.ocl.examples.codegen.cgmodel.CGElement"/&gt;<br>
+&nbsp;&nbsp;&lt;details&nbsp;key="Root&nbsp;Visitor&nbsp;Class"&nbsp;value="org.eclipse.ocl.pivot.util.Visitor"/&gt;<br>
+&nbsp;&nbsp;&lt;details&nbsp;key="Derived&nbsp;Visitor&nbsp;Class"&nbsp;value="org.eclipse.ocl.pivot.util.Visitor"/&gt;<br>
+&nbsp;&nbsp;&lt;details&nbsp;key="Visitable&nbsp;Interface"&nbsp;value="org.eclipse.ocl.pivot.util.Visitable"/&gt;<br>
+&nbsp;&nbsp;&lt;details&nbsp;key="Visitable&nbsp;Classes"&nbsp;value="org.eclipse.ocl.pivot.Element"/&gt;<br>
 &lt;/genAnnotations&gt;<br>
 
 </p>
@@ -184,6 +179,19 @@
 </div>
 <p>The fully qualified name of the derived visitor class must be specified as the value of the 
 						<span class="emphasis"><em>Derived Visitor Class</em></span> detail. This detail may be omitted for the root package.
+					</p>
+</div>
+<div class="section" title="Visitable Interface">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="VisitableInterface"></a>Visitable Interface</h4>
+</div>
+</div>
+</div>
+<p>The fully qualified name of the visitable interface must be specified as the value of the 
+						<span class="emphasis"><em>Visitable Interface</em></span> detail. It&rsquo;s mandatory for the root package.
 					</p>
 </div>
 <div class="section" title="Visitable Classes">
@@ -291,22 +299,6 @@
 					</p>
 <p>The custom build functionality is installed by the 
 						<code class="code">GenModelSetup</code> workflow component,
-					</p>
-</div>
-<div class="section" title="org.eclipse.ocl.examples.build.acceleo">
-<div class="titlepage">
-<div>
-<div>
-<h4 class="title">
-<a name="org.eclipse.ocl.examples.build.acceleo"></a>
-						<code class="code">org.eclipse.ocl.examples.build.acceleo</code>
-					
-</h4>
-</div>
-</div>
-</div>
-<p>The Acceleo builder and quiescent performance has not proved very satisfactory, consequently the main templates have been migrated to Xtend. The remaining templates are in the 
-						<code class="code">org.eclipse.ocl.examples.build.acceleo</code> plugin which can be kept closed most of the time allowing operation without installing Acceleo at all.
 					</p>
 </div>
 </div>
