@@ -222,5 +222,15 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 			throw new IllegalStateException("Failed to process '" + asPackage.getName() + "'", e);
 		}
 	}
+	
+	
+	/**
+	 * Any code generator should an IdResolverVariables.
+	 * 
+	 * Derived classes must provide it
+	 * 
+	 * @return the CG IdResolver variable
+	 */
+	abstract public @NonNull CGValuedElement getIdResolverVariable();
 }
 

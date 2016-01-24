@@ -11,41 +11,29 @@
 package org.eclipse.ocl.examples.autogen.lookup;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
-import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
-import org.eclipse.ocl.examples.codegen.java.JavaGlobalContext;
+import org.eclipse.ocl.examples.autogen.java.AutoGlobalContext;
 
 /**
  * A LookupClassContext maintains the Java-specific global context for generation of a LookupVisitor.
  */
-public class LookupClassContext extends JavaGlobalContext<LookupCodeGenerator>
-{
-	public static final @NonNull String ADD_ELEMENTS_OF_NAME = "addElementsOf";
+public class LookupVisitorsClassContext extends AutoGlobalContext<LookupVisitorsCodeGenerator>
+{	
 	public static final @NonNull String CHILD_NAME = "child";
 	public static final @NonNull String CONTEXT_NAME = "context";
 	public static final @NonNull String ELEMENT_NAME = "element";
-	public static final @NonNull String EMPTY_ENV_NAME = "emptyEnv";
 	public static final @NonNull String ENV_NAME = "_env";	
 	public static final @NonNull String EXPORTED_ENV_NAME = "_exported_env";
 	public static final @NonNull String HAS_FINAL_RESULT_NAME = "hasFinalResult";
 	public static final @NonNull String INMPORTER_NAME = "importer";
-	public static final @NonNull String INNER_ENV_NAME = "innerEnv";
+	//public static final @NonNull String INNER_ENV_NAME = "innerEnv";
 	public static final @NonNull String NESTED_ENV_NAME = "nestedEnv";
-	public static final @NonNull String OUTER_ENV_NAME = "outerEnv";
+	//public static final @NonNull String OUTER_ENV_NAME = "outerEnv";
 	public static final @NonNull String PARENT_NAME = "parent";
 	public static final @NonNull String PARENT_ENV_NAME = "parentEnv";
 	public static final @NonNull String QUALIFIED_ENV_NAME = "_qualified_env";
 	
-	public LookupClassContext(@NonNull LookupCodeGenerator codeGenerator, org.eclipse.ocl.pivot.@NonNull Package asPackage) {
-		super(codeGenerator);
-	}
-	
-	@Override
-	protected @NonNull LookupLocalContext createNestedContext(@NonNull CGElement cgScope) {
-		return new LookupLocalContext(this, cgScope);
+	public LookupVisitorsClassContext(@NonNull LookupVisitorsCodeGenerator codeGenerator, org.eclipse.ocl.pivot.@NonNull Package asPackage) {
+		super(codeGenerator, asPackage);
 	}
 
-	public @NonNull CGValuedElement getIdResolverVariable(@NonNull CGValuedElement cgValuedElement) {
-		return codeGenerator.getIdResolverVariable();
-	}
 }

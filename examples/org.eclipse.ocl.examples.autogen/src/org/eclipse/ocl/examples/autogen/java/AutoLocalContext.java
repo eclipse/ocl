@@ -8,7 +8,7 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.autogen.lookup;
+package org.eclipse.ocl.examples.autogen.java;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
@@ -18,15 +18,16 @@ import org.eclipse.ocl.examples.codegen.java.JavaLocalContext;
 /**
  * A AutoLocalContext maintains the Java-specific local context for generation of Auto code.
  */
-public class LookupLocalContext extends JavaLocalContext<LookupCodeGenerator>
+public class AutoLocalContext<CG extends AutoCodeGenerator> extends JavaLocalContext<CG>
 {
-	public LookupLocalContext(@NonNull LookupClassContext globalContext, @NonNull CGElement cgScope) {
+	public AutoLocalContext(@NonNull AutoGlobalContext<CG> globalContext, @NonNull CGElement cgScope) {
 		super(globalContext, cgScope);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public @NonNull LookupClassContext getGlobalContext() {
-		return (LookupClassContext) globalContext;
+	public @NonNull AutoGlobalContext<CG> getGlobalContext() {
+		return (AutoGlobalContext<CG>) globalContext;
 	}
 
 	@Override

@@ -75,12 +75,12 @@ var superlookupPackageName = ""
 Workflow {
     component = GenerateAutoLookupInfrastructureXtend { resourceSet = resourceSet skipOnErrors = true
     	projectName = projectName
-    	superProjectName = superProjectName
-    	baseProjectName = baseProjectName
-    	lookupFilePath = lookupFilePath
     	genModelFile = genModelFile
+    	superProjectName = superProjectName
     	superGenModelFile = superGenModelFile
+    	baseProjectName = baseProjectName
     	baseGenModelFile = baseGenModelFile
+    	lookupFilePath = lookupFilePath
     	lookupPackageName = lookupPackageName
     	superLookupPackageName = superlookupPackageName // TODO
     }

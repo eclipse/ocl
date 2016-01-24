@@ -16,7 +16,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.autogen.java.AutoCG2JavaVisitor;
 import org.eclipse.ocl.examples.autogen.java.AutoVisitorsCG2JavaVisitor;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGClass;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
@@ -27,9 +26,9 @@ import org.eclipse.ocl.examples.codegen.java.JavaConstants;
  * LookupCG2JavaVisitor refines the regular generation of Java code from an optimized Auto CG transformation tree
  * to add contributions that are inadequately represented by the CG model.
  */
-public class LookupCG2JavaVisitor extends AutoVisitorsCG2JavaVisitor<@NonNull LookupCodeGenerator>
+public class LookupVisitorsCG2JavaVisitor extends AutoVisitorsCG2JavaVisitor<@NonNull LookupVisitorsCodeGenerator>
 {
-	public LookupCG2JavaVisitor(@NonNull LookupCodeGenerator codeGenerator, @NonNull CGPackage cgPackage,
+	public LookupVisitorsCG2JavaVisitor(@NonNull LookupVisitorsCodeGenerator codeGenerator, @NonNull CGPackage cgPackage,
 			@Nullable List<CGValuedElement> sortedGlobals) {
 		super(codeGenerator, cgPackage, sortedGlobals);
 	}
@@ -40,22 +39,22 @@ public class LookupCG2JavaVisitor extends AutoVisitorsCG2JavaVisitor<@NonNull Lo
 		js.appendIsRequired(true);
 		js.append(" ");
 		js.appendClassReference(getVisitorContext(cgClass)); 
-		js.append(" " + LookupClassContext.CONTEXT_NAME);
+		js.append(" " + LookupVisitorsClassContext.CONTEXT_NAME);
 		if (LookupCGUtil.isExportedVisitorClass(cgClass)) {
 			js.append(", ");
 			js.appendIsRequired(true);
 			js.append(" ");
 			js.appendClassReference(Object.class);
-			js.append(" " + LookupClassContext.INMPORTER_NAME);
+			js.append(" " + LookupVisitorsClassContext.INMPORTER_NAME);
 		}
 		js.append(") {\n");
 		js.pushIndentation(null);
-			js.append("super(" + LookupClassContext.CONTEXT_NAME + ");\n");
+			js.append("super(" + LookupVisitorsClassContext.CONTEXT_NAME + ");\n");
 		if (LookupCGUtil.isCommonVisitorClass(cgClass)) {
-			js.append("this." + JavaConstants.EXECUTOR_NAME + " = " + LookupClassContext.CONTEXT_NAME + ".getExecutor();\n");
+			js.append("this." + JavaConstants.EXECUTOR_NAME + " = " + LookupVisitorsClassContext.CONTEXT_NAME + ".getExecutor();\n");
 			js.append("this." + JavaConstants.ID_RESOLVER_NAME + " = " + JavaConstants.EXECUTOR_NAME + ".getIdResolver();\n");
 		} else if (LookupCGUtil.isExportedVisitorClass(cgClass)) {
-			js.append("this." + LookupClassContext.INMPORTER_NAME + " = " +  LookupClassContext.INMPORTER_NAME + ";\n");
+			js.append("this." + LookupVisitorsClassContext.INMPORTER_NAME + " = " +  LookupVisitorsClassContext.INMPORTER_NAME + ";\n");
 		}
 		js.popIndentation();
 		js.append("}\n");
@@ -107,35 +106,35 @@ public class LookupCG2JavaVisitor extends AutoVisitorsCG2JavaVisitor<@NonNull Lo
 	protected void doParentEnv(@NonNull CGClass cgClass) {
 		js.append("\n");
 		js.append("/**\n");
-		js.append(" * Continue the search for matches in the parent of " + LookupClassContext.ELEMENT_NAME + ".\n");
+		js.append(" * Continue the search for matches in the parent of " + LookupVisitorsClassContext.ELEMENT_NAME + ".\n");
 		js.append(" */\n");
 		js.append("protected ");
 		js.appendIsRequired(false);
 		js.append(" ");
 		js.appendClassReference(context.getEnvironmentClass());
-		js.append(" " + LookupClassContext.PARENT_ENV_NAME + "(");
+		js.append(" " + LookupVisitorsClassContext.PARENT_ENV_NAME + "(");
 		js.appendIsRequired(true);
 		js.append(" ");
 		js.appendClassReference(EObject.class);
-		js.append(" " + LookupClassContext.ELEMENT_NAME + ") {\n");
+		js.append(" " + LookupVisitorsClassContext.ELEMENT_NAME + ") {\n");
 		js.pushIndentation(null);
 			js.appendClassReference(EObject.class);
-			js.append(" " + LookupClassContext.PARENT_NAME + " = " + LookupClassContext.ELEMENT_NAME + ".eContainer();\n");
-			js.append("if (" + LookupClassContext.PARENT_NAME + " instanceof ");
+			js.append(" " + LookupVisitorsClassContext.PARENT_NAME + " = " + LookupVisitorsClassContext.ELEMENT_NAME + ".eContainer();\n");
+			js.append("if (" + LookupVisitorsClassContext.PARENT_NAME + " instanceof ");
 			js.appendClassReference(context.getVisitableClass());
 			js.append(") {\n");
 			js.pushIndentation(null);
 				js.append("this.");
 				js.appendReferenceTo(context.getChildVariable());
-				js.append(" = " + LookupClassContext.ELEMENT_NAME + ";\n");
+				js.append(" = " + LookupVisitorsClassContext.ELEMENT_NAME + ";\n");
 				js.append("return ((");
 				js.appendClassReference(context.getVisitableClass());
-				js.append(")" + LookupClassContext.PARENT_NAME + ").accept(this);\n");
+				js.append(")" + LookupVisitorsClassContext.PARENT_NAME + ").accept(this);\n");
 			js.popIndentation();
 			js.append("}\n");
 			js.append("else {\n");
 			js.pushIndentation(null);
-				js.append("return "+LookupClassContext.CONTEXT_NAME +";\n");
+				js.append("return "+LookupVisitorsClassContext.CONTEXT_NAME +";\n");
 			js.popIndentation();
 		js.append("}\n");
 		js.popIndentation();

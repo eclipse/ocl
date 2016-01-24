@@ -25,7 +25,6 @@ import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
  */
 public abstract class AutoVisitorsCodeGenerator extends AutoCodeGenerator
 {
-
 	public AutoVisitorsCodeGenerator(@NonNull EnvironmentFactoryInternal environmentFactory,
 			org.eclipse.ocl.pivot.@NonNull Package asPackage,
 			org.eclipse.ocl.pivot.@Nullable Package asSuperPackage,
@@ -33,7 +32,6 @@ public abstract class AutoVisitorsCodeGenerator extends AutoCodeGenerator
 			@Nullable GenPackage superGenPackage, 
 			@Nullable GenPackage baseGenPackage) {
 		super(environmentFactory, asPackage, asSuperPackage, genPackage, superGenPackage, baseGenPackage);
-
 	}
 
 	@SuppressWarnings("null")
