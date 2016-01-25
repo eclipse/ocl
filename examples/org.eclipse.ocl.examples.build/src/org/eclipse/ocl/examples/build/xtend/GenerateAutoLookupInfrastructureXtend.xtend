@@ -187,6 +187,7 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateVisitorsXtend
 			writer.append('''
 	«ePackage.generateHeader(lookupArtifactsJavaPackage)»
 	
+	import org.eclipse.jdt.annotation.NonNull;
 	import «modelPackageName».NamedElement;
 
 	/**
@@ -194,7 +195,7 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateVisitorsXtend
 	 */
 	public interface «itfName» {
 		
-		boolean matches(NamedElement namedElement);
+		boolean matches(@NonNull NamedElement namedElement);
 		
 	}
 			''');
@@ -211,6 +212,7 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateVisitorsXtend
 			writer.append('''
 	«ePackage.generateHeader(lookupArtifactsJavaPackage)»
 	
+	import org.eclipse.jdt.annotation.NonNull;
 	import «modelPackageName».NamedElement;
 
 	/**
@@ -218,19 +220,19 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateVisitorsXtend
 	 */
 	public abstract class «className»<C extends NamedElement> implements «itfName» {
 		
-		private Class<C> _class;
+		@NonNull private Class<C> _class;
 		
-		public «className»(Class<C> _class) {
+		public «className»(@NonNull Class<C> _class) {
 			this._class = _class;
 		}
 		
 		@SuppressWarnings("unchecked")
 		@Override
-		public boolean matches(NamedElement namedElement) {
+		public boolean matches(@NonNull NamedElement namedElement) {
 			return _class.isInstance(namedElement) && _matches((C)namedElement);
 		}
 		
-		abstract protected Boolean _matches(C element);
+		abstract protected Boolean _matches(@NonNull C element);
 	}
 			''');
 			writer.close();

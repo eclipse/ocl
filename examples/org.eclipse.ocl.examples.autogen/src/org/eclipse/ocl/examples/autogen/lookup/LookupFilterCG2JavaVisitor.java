@@ -43,8 +43,6 @@ public class LookupFilterCG2JavaVisitor extends AutoCG2JavaVisitor<@NonNull Look
 		js.append(" ");
 		js.appendClassReference(Executor.class);
 		js.append(" "+JavaConstants.EXECUTOR_NAME);
-		js.append(", ");
-		js.appendIsRequired(true);
 		// We add the original operation parameters
 		addFilterParameters(cgClass); // The first and unique OP will have the filtering operation
 		js.append(") {\n");
@@ -65,6 +63,7 @@ public class LookupFilterCG2JavaVisitor extends AutoCG2JavaVisitor<@NonNull Look
 	
 	private void addFilterParameters(CGClass cgClass) {
 		for (CGProperty filteringVar : context.getFilteringVars(cgClass)) {
+			js.append(",");
 			js.appendDeclaration(filteringVar);
 		}
 	}

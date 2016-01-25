@@ -118,8 +118,8 @@ public class LookupFilterGenerator extends AutoCodeGenerator
 			result.add(asPackage);
 			org.eclipse.ocl.pivot.Class asClass = createASClass(asPackage, filteredClassName + "Filter");
 			// We create the properties
-			Property asEvaluatorProperty = createNativeProperty(JavaConstants.EXECUTOR_NAME, Executor.class, true);
-			Property asIdResolverProperty = createNativeProperty(JavaConstants.ID_RESOLVER_NAME, IdResolver.class, true);
+			Property asEvaluatorProperty = createNativeProperty(JavaConstants.EXECUTOR_NAME, Executor.class, true, true);
+			Property asIdResolverProperty = createNativeProperty(JavaConstants.ID_RESOLVER_NAME, IdResolver.class, true, true);
 			List<Property> asProperties = asClass.getOwnedProperties();
 			asProperties.add(asEvaluatorProperty);
 			asProperties.add(asIdResolverProperty);
@@ -152,7 +152,8 @@ public class LookupFilterGenerator extends AutoCodeGenerator
 		asOperation.setBodyExpression(newExpressionInOCL);
 		// Filtering op params are translated as asClass properties
 		for (Variable paramVar : oldExpressionInOCL.getOwnedParameters()) {
-			Property asProperty = createNativeProperty(paramVar.getName(), paramVar.getType(), false); // FIXME readOnly ?
+			Property asProperty = createNativeProperty(paramVar.getName(), paramVar.getType(), true,
+					true);
 			asClass.getOwnedProperties().add(asProperty);
 			
 			// Redefinition requires a Variable access rather than a Property
@@ -300,15 +301,17 @@ public class LookupFilterGenerator extends AutoCodeGenerator
 		return new ArrayList<CGPackage>(cgModel.getPackages());
 	}
 
-	protected @NonNull Property createNativeProperty(@NonNull String name, @NonNull Type asElementType, boolean isReadOnly) {
-		Property asChildProperty = PivotUtil.createProperty(name, asElementType);
-		asChildProperty.setImplementation(NativeProperty.INSTANCE);
-		asChildProperty.setIsReadOnly(isReadOnly);
-		asChildProperty.setIsRequired(isReadOnly);
-		return asChildProperty;
+	protected @NonNull Property createNativeProperty(@NonNull String name, @NonNull Type asElementType, 
+			boolean isReadOnly, boolean isRequired) {
+		Property asProperty = PivotUtil.createProperty(name, asElementType);
+		asProperty.setImplementation(NativeProperty.INSTANCE);
+		asProperty.setIsReadOnly(isReadOnly);
+		asProperty.setIsRequired(isReadOnly);
+		return asProperty;
 	}
 
-	protected @NonNull Property createNativeProperty(@NonNull String name, @NonNull Class<?> javaClass, boolean isReadOnly) {
+	protected @NonNull Property createNativeProperty(@NonNull String name, @NonNull Class<?> javaClass, 
+			boolean isReadOnly, boolean isRequired) {
 		Package javaPackage = javaClass.getPackage();
 		@SuppressWarnings("null")@NonNull String packageName = javaPackage.getName();
 		@SuppressWarnings("null")@NonNull String className = javaClass.getSimpleName();
@@ -324,11 +327,7 @@ public class LookupFilterGenerator extends AutoCodeGenerator
 			asType = PivotUtil.createClass(className);
 			asPackage.getOwnedClasses().add(asType);
 		}
-		Property asChildProperty = PivotUtil.createProperty(name, asType);
-		asChildProperty.setImplementation(NativeProperty.INSTANCE);
-		asChildProperty.setIsRequired(isReadOnly);
-		asChildProperty.setIsReadOnly(isReadOnly);
-		return asChildProperty;
+		return createNativeProperty(name, asType, isReadOnly, isRequired);
 	}
 
 	protected @NonNull VariableExp createThisVariableExp(@NonNull Variable thisVariable) {
@@ -378,7 +377,7 @@ public class LookupFilterGenerator extends AutoCodeGenerator
 		// not generated. Therefore we have to add this hack to provide CG for executor property
 		// accesses
 		if (cgEvaluatorVariable == null) {
-			Property prop = createNativeProperty(JavaConstants.EXECUTOR_NAME, Executor.class, true);
+			Property prop = createNativeProperty(JavaConstants.EXECUTOR_NAME, Executor.class, true, true);
 			cgEvaluatorVariable = as2cgVisitor.visitProperty(prop);
 		}
 		return ClassUtil.nonNullState(cgEvaluatorVariable);
@@ -396,7 +395,7 @@ public class LookupFilterGenerator extends AutoCodeGenerator
 		// not generated. Therefore we have to add this hack to provide CG for idResolver property
 		// accesses
 		if (cgIdResolverVariable == null) {
-			Property prop = createNativeProperty(JavaConstants.ID_RESOLVER_NAME, IdResolver.class, true);
+			Property prop = createNativeProperty(JavaConstants.ID_RESOLVER_NAME, IdResolver.class, true, true);
 			cgIdResolverVariable = as2cgVisitor.visitProperty(prop);
 		}
 		return ClassUtil.nonNullState(cgIdResolverVariable);
