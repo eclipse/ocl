@@ -41,7 +41,7 @@ public interface MultiplicityStringCS extends MultiplicityCS
 	 * @return the value of the '<em>String Bounds</em>' attribute.
 	 * @see #setStringBounds(String)
 	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getMultiplicityStringCS_StringBounds()
-	 * @model default="1" dataType="org.eclipse.ocl.pivot.String"
+	 * @model default="1"
 	 * @generated
 	 */
 	String getStringBounds();

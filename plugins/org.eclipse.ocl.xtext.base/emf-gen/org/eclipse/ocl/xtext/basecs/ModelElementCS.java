@@ -58,7 +58,7 @@ public interface ModelElementCS extends PivotableElementCS {
 	 * @return the value of the '<em>Original Xmi Id</em>' attribute.
 	 * @see #setOriginalXmiId(String)
 	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getModelElementCS_OriginalXmiId()
-	 * @model dataType="org.eclipse.ocl.pivot.String" transient="true"
+	 * @model transient="true"
 	 * @generated
 	 */
 	String getOriginalXmiId();

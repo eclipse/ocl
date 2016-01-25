@@ -69,7 +69,7 @@ public interface TypedElementCS extends NamedElementCS {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Qualifiers</em>' attribute list.
 	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getTypedElementCS_Qualifiers()
-	 * @model dataType="org.eclipse.ocl.pivot.String"
+	 * @model
 	 * @generated
 	 */
 	EList<String> getQualifiers();
@@ -85,7 +85,7 @@ public interface TypedElementCS extends NamedElementCS {
 	 * @return the value of the '<em>Is Optional</em>' attribute.
 	 * @see #setIsOptional(boolean)
 	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getTypedElementCS_IsOptional()
-	 * @model dataType="org.eclipse.ocl.pivot.Boolean"
+	 * @model
 	 * @generated
 	 */
 	boolean isIsOptional();

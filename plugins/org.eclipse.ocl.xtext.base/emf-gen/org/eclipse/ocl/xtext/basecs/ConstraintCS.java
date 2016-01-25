@@ -41,7 +41,7 @@ public interface ConstraintCS extends NamedElementCS
 	 * @return the value of the '<em>Stereotype</em>' attribute.
 	 * @see #setStereotype(String)
 	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getConstraintCS_Stereotype()
-	 * @model dataType="org.eclipse.ocl.pivot.String"
+	 * @model
 	 * @generated
 	 */
 	String getStereotype();

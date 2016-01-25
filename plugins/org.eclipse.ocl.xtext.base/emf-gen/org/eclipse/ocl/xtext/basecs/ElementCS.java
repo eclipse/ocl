@@ -54,7 +54,7 @@ public interface ElementCS extends EObject, VisitableCS {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model kind="operation" dataType="org.eclipse.ocl.pivot.String"
+	 * @model kind="operation"
 	 * @generated
 	 */
 	String getDescription();

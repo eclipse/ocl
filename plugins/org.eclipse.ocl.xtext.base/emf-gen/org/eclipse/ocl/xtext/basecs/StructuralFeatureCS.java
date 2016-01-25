@@ -73,7 +73,7 @@ public interface StructuralFeatureCS extends FeatureCS {
 	 * @return the value of the '<em>Default</em>' attribute.
 	 * @see #setDefault(String)
 	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getStructuralFeatureCS_Default()
-	 * @model dataType="org.eclipse.ocl.pivot.String"
+	 * @model
 	 * @generated
 	 */
 	String getDefault();

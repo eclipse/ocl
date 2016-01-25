@@ -71,7 +71,7 @@ public interface ClassCS extends NamedElementCS, TypeCS, TemplateableElementCS {
 	 * @return the value of the '<em>Instance Class Name</em>' attribute.
 	 * @see #setInstanceClassName(String)
 	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getClassCS_InstanceClassName()
-	 * @model dataType="org.eclipse.ocl.pivot.String"
+	 * @model
 	 * @generated
 	 */
 	String getInstanceClassName();

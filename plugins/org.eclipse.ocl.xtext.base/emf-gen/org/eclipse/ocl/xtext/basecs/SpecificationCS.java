@@ -40,7 +40,7 @@ public interface SpecificationCS extends ModelElementCS
 	 * @return the value of the '<em>Expr String</em>' attribute.
 	 * @see #setExprString(String)
 	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getSpecificationCS_ExprString()
-	 * @model dataType="org.eclipse.ocl.pivot.String"
+	 * @model
 	 * @generated
 	 */
 	String getExprString();

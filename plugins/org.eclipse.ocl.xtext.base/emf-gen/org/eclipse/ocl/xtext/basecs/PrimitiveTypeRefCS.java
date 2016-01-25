@@ -42,7 +42,7 @@ public interface PrimitiveTypeRefCS extends TypedRefCS, Nameable {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.ocl.xtext.basecs.BaseCSPackage#getPrimitiveTypeRefCS_Name()
-	 * @model dataType="org.eclipse.ocl.pivot.String"
+	 * @model
 	 * @generated
 	 */
 	@Override
