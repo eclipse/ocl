@@ -110,7 +110,14 @@ public class LaunchingUtils
 				try {
 					URI context = text != null ? URI.createURI(text) : null;
 //					return context != null && context.isPlatformResource() ? URI.createURI(".").resolve(context).path().substring(9) : null;
-					return context != null && context.isPlatformResource() ? context.path().substring(9) : null;
+					if ((context == null) || !context.isPlatformResource()) {
+						return null;
+					}
+					String path = context.path();
+					if ((path == null) || (path.length() < 9)) {
+						return null;
+					}
+					return path.substring(9);
 				}
 				catch (Exception e) {
 					return null;
@@ -119,11 +126,15 @@ public class LaunchingUtils
 
 			private Object[] getContextSelection() {
 				String path = getContextPath();
-				if (path != null) {
+				while (path != null) {
 					IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 					IResource resource = root.findMember(path);
 					if (resource != null && resource.isAccessible()) {
 						return new Object[] { resource };
+					}
+					int index = path.lastIndexOf("/");
+					if (index >= 0) {
+						path = path.substring(0, index);
 					}
 				}
 				return null;
