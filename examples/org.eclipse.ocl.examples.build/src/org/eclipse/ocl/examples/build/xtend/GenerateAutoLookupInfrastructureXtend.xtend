@@ -427,6 +427,7 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateVisitorsXtend
 		writer.append('''
 	«ePackage.generateHeader(lookupArtifactsJavaPackage)»
 
+	import org.eclipse.jdt.annotation.NonNull;
 	import org.eclipse.ocl.pivot.evaluation.Executor;
 	import «visitorPackageName».«projectPrefix»UnqualifiedLookupVisitor;
 	import «visitorPackageName».«projectPrefix»QualifiedLookupVisitor;
@@ -436,10 +437,10 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateVisitorsXtend
 	
 	public class «className»«IF isDerived» extends «superClassName»«ENDIF» {
 		
-		«IF !isDerived»protected Executor executor;
+		«IF !isDerived»protected @NonNull Executor executor;
 		
 		«ENDIF»
-		public «className» (Executor executor) {
+		public «className» (@NonNull Executor executor) {
 			«IF isDerived»
 			super(executor);
 			«ELSE»
