@@ -183,7 +183,7 @@ public class CGNativePropertyCallExpImpl extends CGPropertyCallExpImpl implement
 	 */
 	@Override
 	public boolean isBoxed() {
-		return true;
+		return false;
 	}
 
 	/**
@@ -201,7 +201,7 @@ public class CGNativePropertyCallExpImpl extends CGPropertyCallExpImpl implement
 	 */
 	@Override
 	public boolean isUnboxed() {
-		return false;
+		return true;
 	}
 
 } //CGFieldPropertyCallExpImpl
