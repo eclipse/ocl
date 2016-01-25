@@ -41,6 +41,7 @@ import org.eclipse.ocl.examples.codegen.utilities.RereferencingCopier;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
+import org.eclipse.ocl.pivot.LetExp;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.NullLiteralExp;
 import org.eclipse.ocl.pivot.OCLExpression;
@@ -151,6 +152,8 @@ public class LookupFilterGenerator extends AutoCodeGenerator
 		Operation asOperation = PivotUtil.createOperation("_" + LookupFilterClassContext.MATCHES_OP_NAME, filteringOp.getType(), null, null);
 		asOperation.setBodyExpression(newExpressionInOCL);
 		// Filtering op params are translated as asClass properties
+		LetExp letRoot = null;
+		LetExp letLeaf = null;
 		for (Variable paramVar : oldExpressionInOCL.getOwnedParameters()) {
 			Property asProperty = createNativeProperty(paramVar.getName(), paramVar.getType(), true,
 					true);
@@ -162,6 +165,15 @@ public class LookupFilterGenerator extends AutoCodeGenerator
 			Variable asContextVar = PivotUtil.createVariable(paramVar.getName(), asPropertyAccess);
 			redefinitions.put(paramVar, asContextVar);
 			filteringProps.add(asProperty);
+			LetExp letExp = PivotFactory.eINSTANCE.createLetExp();
+			letExp.setOwnedVariable(asContextVar);
+			if (letRoot == null) {
+				letRoot = letExp;
+			}
+			if (letLeaf != null) {
+				letLeaf.setOwnedIn(letExp);
+			}
+			letLeaf = letExp;
 		}
 		
 		// Filtering op context is translated as asOperation parameter
@@ -172,9 +184,21 @@ public class LookupFilterGenerator extends AutoCodeGenerator
 		redefinitions.put(oldExpressionInOCL.getOwnedContext(), asParamVar);
 		
 		OCLExpression asExpression = RereferencingCopier.copy(ClassUtil.nonNullState(oldExpressionInOCL.getOwnedBody()), redefinitions);
-		newExpressionInOCL.setOwnedBody(asExpression);
-		newExpressionInOCL.setType(asExpression.getType());
-		newExpressionInOCL.setIsRequired(asExpression.isIsRequired());
+		if ((letRoot != null) && (letLeaf != null)) {
+			for (LetExp letExp = letRoot; letExp != null; letExp = (LetExp) letExp.getOwnedIn()) {
+				letExp.setType(asExpression.getType());
+				letExp.setIsRequired(asExpression.isIsRequired());
+			}
+			letLeaf.setOwnedIn(asExpression);
+			newExpressionInOCL.setOwnedBody(letRoot);
+			newExpressionInOCL.setType(asExpression.getType());
+			newExpressionInOCL.setIsRequired(asExpression.isIsRequired());
+		}
+		else {
+			newExpressionInOCL.setOwnedBody(asExpression);
+			newExpressionInOCL.setType(asExpression.getType());
+			newExpressionInOCL.setIsRequired(asExpression.isIsRequired());
+		}
 		PivotUtil.initOperation(asOperation, newExpressionInOCL);
 		return asOperation;
 	}
