@@ -6,20 +6,23 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Adolfo Sanchez-Barbudo Herrera
+ *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
 package org.eclipse.ocl.pivot.utilities;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.internal.utilities.AS2XMIid;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.internal.manager.TemplateParameterSubstitutionVisitor;
+import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 
 /**
  * @since 1.1
  * @noextend This class is not intended to be subclassed by clients. It is part of the hierarchy for auto-generated visitors.
  */
-public class PivotAS2XMIidVisitor extends AS2XMIidVisitor {
+public class PivotTemplateParameterSubstitutionVisitor extends TemplateParameterSubstitutionVisitor {
 
-	public PivotAS2XMIidVisitor(@NonNull AS2XMIid context) {
-		super(context);
+	public PivotTemplateParameterSubstitutionVisitor(@NonNull EnvironmentFactoryInternal environmentFactory, @Nullable Type selfType, @Nullable Type selfTypeValue) {
+		super(environmentFactory, selfType, selfTypeValue);
 	}
 }
