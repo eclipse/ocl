@@ -28,6 +28,7 @@ import org.eclipse.ocl.examples.codegen.analyzer.DependencyVisitor;
 import org.eclipse.ocl.examples.codegen.analyzer.FieldingAnalyzer;
 import org.eclipse.ocl.examples.codegen.analyzer.NameManager;
 import org.eclipse.ocl.examples.codegen.analyzer.ReferencesVisitor;
+import org.eclipse.ocl.examples.codegen.asm5.ASM5JavaAnnotationReader;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTypeId;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
@@ -184,6 +185,7 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 	private /*@LazyNonNull*/ Id2BoxedDescriptorVisitor id2BoxedDescriptorVisitor = null;
 	private /*@LazyNonNull*/ GlobalPlace globalPlace = null;
 	private @NonNull Map<ElementId, BoxedDescriptor> boxedDescriptors = new HashMap<ElementId, BoxedDescriptor>();
+	private /*@LazyNonNull*/ ASM5JavaAnnotationReader annotationReader = null;
 	
 	public JavaCodeGenerator(@NonNull EnvironmentFactoryInternal environmentFactory) {
 		super(environmentFactory);
@@ -296,16 +298,10 @@ public abstract class JavaCodeGenerator extends AbstractCodeGenerator
 	 * Return true for an @NonNull annotation, false for an @Nullable annotation, null otherwise.
 	 */
 	public @Nullable Boolean getIsNonNull(@NonNull Method method) {
-		Class<?> returnType = method.getReturnType();
-		NonNull nonNullAnnotation = returnType.getAnnotation(NonNull.class);
-		if (nonNullAnnotation != null) {
-			return true;
+		if (annotationReader == null) {
+			annotationReader = new ASM5JavaAnnotationReader();
 		}
-		Nullable nullableAnnotation = returnType.getAnnotation(Nullable.class);
-		if (nullableAnnotation != null) {
-			return false;
-		}
-		return null;
+		return annotationReader.getIsNonNull(method);
 	}
 
 	@Override
