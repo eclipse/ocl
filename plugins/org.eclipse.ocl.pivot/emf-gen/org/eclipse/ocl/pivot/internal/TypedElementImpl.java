@@ -32,7 +32,6 @@ import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.library.classifier.OclTypeConformsToOperation;
 import org.eclipse.ocl.pivot.util.Visitor;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
@@ -196,7 +195,7 @@ public abstract class TypedElementImpl
 		}
 		else {
 		    final /*@Thrown*/ org.eclipse.ocl.pivot.@Nullable Type type_0 = this.getType();
-		    final /*@Thrown*/ boolean conformsTo = ClassUtil.nonNullState(OclTypeConformsToOperation.INSTANCE.evaluate(executor, type, type_0).booleanValue());
+		    final /*@Thrown*/ boolean conformsTo = OclTypeConformsToOperation.INSTANCE.evaluate(executor, type, type_0).booleanValue();
 		    safe_conformsTo_source = conformsTo;
 		}
 		if (safe_conformsTo_source == null) {
