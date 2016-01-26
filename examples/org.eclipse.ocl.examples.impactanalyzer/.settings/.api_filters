@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.ocl.examples.impactanalyzer" version="2">
+    <resource path="src/org/eclipse/ocl/examples/impactanalyzer/ValueNotFoundException.java" type="org.eclipse.ocl.examples.impactanalyzer.ValueNotFoundException">
+        <filter comment="[486542] HIde benign longstanding  warning" id="576725006">
+            <message_arguments>
+                <message_argument value="VariableValueNotFoundInfo"/>
+                <message_argument value="ValueNotFoundException"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>
