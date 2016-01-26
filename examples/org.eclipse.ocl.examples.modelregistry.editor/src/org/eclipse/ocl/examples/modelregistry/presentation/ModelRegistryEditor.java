@@ -75,7 +75,6 @@ import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IStatusLineManager;
-import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -119,6 +118,7 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.ide.IGotoMarker;
 import org.eclipse.ui.part.FileEditorInput;
+import org.eclipse.ui.part.IPageSite;
 import org.eclipse.ui.part.MultiPageEditorPart;
 import org.eclipse.ui.views.contentoutline.ContentOutline;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
@@ -1283,16 +1283,24 @@ public class ModelRegistryEditor
 				}
 
 				@Override
-				public void makeContributions(IMenuManager menuManager, IToolBarManager toolBarManager, IStatusLineManager statusLineManager) {
-					super.makeContributions(menuManager, toolBarManager, statusLineManager);
-					contentOutlineStatusLineManager = statusLineManager;
-				}
-
-				@Override
-				public void setActionBars(IActionBars actionBars) {
-					super.setActionBars(actionBars);
+				public void init(IPageSite pageSite) {
+					super.init(pageSite);
+					IActionBars actionBars = getActionBars();
+					contentOutlineStatusLineManager = actionBars.getStatusLineManager();
 					getActionBarContributor().shareGlobalActions(this, actionBars);
 				}
+
+//				@Override
+//				public void makeContributions(IMenuManager menuManager, IToolBarManager toolBarManager, IStatusLineManager statusLineManager) {
+//					super.makeContributions(menuManager, toolBarManager, statusLineManager);
+//					contentOutlineStatusLineManager = statusLineManager;
+//				}
+
+//				@Override
+//				public void setActionBars(IActionBars actionBars) {
+//					super.setActionBars(actionBars);
+//					getActionBarContributor().shareGlobalActions(this, actionBars);
+//				}
 			}
 
 			contentOutlinePage = new MyContentOutlinePage();
