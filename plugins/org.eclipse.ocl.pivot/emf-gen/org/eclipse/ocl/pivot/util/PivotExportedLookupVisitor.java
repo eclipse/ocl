@@ -10,12 +10,13 @@
 package org.eclipse.ocl.pivot.util;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment;
 import org.eclipse.ocl.pivot.internal.lookup.LookupPackage;
+import org.eclipse.ocl.pivot.util.AbstractPivotCommonLookupVisitor;
+import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 public class PivotExportedLookupVisitor
@@ -86,11 +87,5 @@ public class PivotExportedLookupVisitor
     public PivotExportedLookupVisitor(@NonNull LookupEnvironment context, @NonNull Object importer) {
         super(context);
         this.importer = importer;
-    }
-    
-    // added ?
-    @Override
-    public @Nullable LookupEnvironment visiting(@NonNull Visitable visitable) {    	
-    	return context;
     }
 }

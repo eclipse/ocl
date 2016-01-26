@@ -17,10 +17,11 @@ package	org.eclipse.ocl.pivot.internal.lookup.util;
 
 import org.eclipse.ocl.pivot.evaluation.Executor;
 
+
 public class PivotLookupSolver {
 	
-	private Executor executor;
-		
+	protected Executor executor;
+	
 	public PivotLookupSolver (Executor executor) {
 		this.executor = executor;
 	}

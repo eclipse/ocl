@@ -15,6 +15,7 @@
  *******************************************************************************/
 package	org.eclipse.ocl.pivot.internal.lookup.util;
 
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.NamedElement;
 
 /**
@@ -22,17 +23,17 @@ import org.eclipse.ocl.pivot.NamedElement;
  */
 public abstract class AbstractPivotLookupFilter<C extends NamedElement> implements PivotLookupFilter {
 	
-	private Class<C> _class;
+	@NonNull private Class<C> _class;
 	
-	public AbstractPivotLookupFilter(Class<C> _class) {
+	public AbstractPivotLookupFilter(@NonNull Class<C> _class) {
 		this._class = _class;
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public boolean matches(NamedElement namedElement) {
+	public boolean matches(@NonNull NamedElement namedElement) {
 		return _class.isInstance(namedElement) && _matches((C)namedElement);
 	}
 	
-	abstract protected boolean _matches(C element);
+	abstract protected Boolean _matches(@NonNull C element);
 }
