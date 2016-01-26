@@ -144,8 +144,7 @@ public class FileNewWizardTest extends TestCase
 			s.append(cbuf, 0, len);
 		}
 		reader.close();
-		@SuppressWarnings("null")@NonNull String string = s.toString();
-		return string;
+		return s.toString();
 	}
 
 	/**

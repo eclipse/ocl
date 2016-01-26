@@ -49,8 +49,7 @@ public class OCLstdlibFileNewWizard extends AbstractFileNewWizard
 		s.append("    	operation extraOperation(elem : Boolean) : Boolean => 'my.strings.ExtraOperation';\n");
 		s.append("    }\n");
 		s.append("}\n");
-		@SuppressWarnings("null")@NonNull String string = s.toString();
-		return string;
+		return s.toString();
 	}
 
 	@Override

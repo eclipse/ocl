@@ -266,8 +266,7 @@ public class UsageTests
 				s.append(projectPath);
 			}
 		}
-		@SuppressWarnings("null")@NonNull String string = s.toString();
-		return string;
+		return s.toString();
 	}
 	
 	public @NonNull String createGenModelContent(@NonNull String testProjectPath, @NonNull String fileName, @Nullable String usedGenPackages) {
@@ -303,8 +302,7 @@ public class UsageTests
 		s.append("  </genPackages>\n");
 		s.append("</genmodel:GenModel>\n");
 		s.append("\n");;
-		@SuppressWarnings("null")@NonNull String string = s.toString();
-		return string;
+		return s.toString();
 	}
 
 	public @NonNull URI createGenModelFile(String fileName, String fileContent) throws IOException {

@@ -129,8 +129,7 @@ public class VariableFinder
 		else {
 			s.append(eType.getName());
 		}
-		@SuppressWarnings("null")@NonNull String string = s.toString();
-		return string;
+		return s.toString();
 	}
 
 	public static String getRootVarName(URI variableURI) {
@@ -238,7 +237,7 @@ public class VariableFinder
 			}
 
 			strVal.append('[').append(collection.size()).append(']');
-			@SuppressWarnings("null")@NonNull String string = strVal.toString();
+			String string = strVal.toString();
 			vmValue = new VMValueData(VMValueData.COLLECTION_REF, string, !collection.isEmpty());
 			// TODO - use mapping by runtime class to OCL type
 			@SuppressWarnings("null")@NonNull String className = javaType.getSimpleName();
@@ -256,7 +255,7 @@ public class VariableFinder
 			}
 
 			strVal.append('[').append(collection.size()).append(']');
-			@SuppressWarnings("null")@NonNull String string = strVal.toString();
+			String string = strVal.toString();
 			vmValue = new VMValueData(VMValueData.COLLECTION_REF, string, !collection.isEmpty());
 			// TODO - use mapping by runtime class to OCL type
 			@SuppressWarnings("null")@NonNull String className = javaType.getSimpleName();
@@ -905,7 +904,7 @@ public class VariableFinder
 			}
 
 			strVal.append('[').append(collection.size()).append(']');
-			@SuppressWarnings("null")@NonNull String string = strVal.toString();
+			String string = strVal.toString();
 			vmValue = new VMValueData(VMValueData.COLLECTION_REF, string, !collection.isEmpty());
 			// TODO - use mapping by runtime class to OCL type
 			@SuppressWarnings("null")@NonNull String className = javaType.getSimpleName();
@@ -923,7 +922,7 @@ public class VariableFinder
 			}
 
 			strVal.append('[').append(collection.size()).append(']');
-			@SuppressWarnings("null")@NonNull String string = strVal.toString();
+			String string = strVal.toString();
 			vmValue = new VMValueData(VMValueData.COLLECTION_REF, string, !collection.isEmpty());
 			// TODO - use mapping by runtime class to OCL type
 			@SuppressWarnings("null")@NonNull String className = javaType.getSimpleName();

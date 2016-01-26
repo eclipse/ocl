@@ -49,8 +49,7 @@ public abstract class AbstractOCLinEcoreFileNewWizard extends AbstractFileNewWiz
 		s.append("			name = name?.toLowerCase();\n");
 		s.append("	}\n");
 		s.append("}\n");
-		@SuppressWarnings("null")@NonNull String string = s.toString();
-		return string;
+		return s.toString();
 	}
 
 	@SuppressWarnings("null")

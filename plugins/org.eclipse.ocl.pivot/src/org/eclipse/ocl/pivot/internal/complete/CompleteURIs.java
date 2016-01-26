@@ -105,12 +105,10 @@ public class CompleteURIs
 		completeURI2completePackage.clear();
 	}
 
-	@SuppressWarnings("null")
 	public @NonNull Iterable<CompletePackageInternal> getAllCompletePackages() {
 		return completeURI2completePackage.values();
 	}
 
-	@SuppressWarnings("null")
 	public @NonNull Iterable<? extends CompletePackageInternal> getAllCompletePackagesWithUris() {
 		return completeURI2completePackage.values();
 	}

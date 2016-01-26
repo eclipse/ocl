@@ -123,8 +123,7 @@ public abstract class OCLAbstractTracingEvaluationVisitor extends OCLVMEvaluatio
 		for (int i = 0; i < indentLevel; i++){
 		   outputBuffer.append(DEFAULT_INDENT);
 		}
-		@SuppressWarnings("null")@NonNull String string = outputBuffer.toString();
-		return string;
+		return outputBuffer.toString();
 	}
 	
 //	public @NonNull Pattern getRegexPattern(@NonNull String regex) {

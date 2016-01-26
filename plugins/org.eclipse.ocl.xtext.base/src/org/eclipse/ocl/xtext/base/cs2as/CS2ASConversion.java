@@ -587,8 +587,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 			name = PivotConstantsInternal.NULL_ROOT;
 		}
 		s.append(name);
-		@SuppressWarnings("null") @NonNull String string = s.toString();
-		return string;
+		return s.toString();
 	}
 	
 	protected @NonNull String getQualifiedName(@NonNull StringBuilder s, @NonNull PackageCS csPackage) {
@@ -611,8 +610,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 			}
 		}
 		s.append(name);
-		@SuppressWarnings("null") @NonNull String string = s.toString();
-		return string;
+		return s.toString();
 	}
 
 	protected @NonNull List<TemplateBindingCS> getTemplateBindings(@NonNull ElementCS csElement) {

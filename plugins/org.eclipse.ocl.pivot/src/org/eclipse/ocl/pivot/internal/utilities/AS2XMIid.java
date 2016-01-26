@@ -138,7 +138,7 @@ public class AS2XMIid
 				String idAuto = idVisitor.getID(element, internalUUIDs);
 				String idNew = idOld != null ? idOld : idAuto;
 				if (idNew != null) {
-					@SuppressWarnings("unused") EObject oldElement = allIds.get(idNew);
+					EObject oldElement = allIds.get(idNew);
 					boolean badId = (idNew.length() <= 0) || (oldElement != null);
 					boolean changedId = (idAuto != null) && !idNew.equals(idAuto);
 					if (badId) {

@@ -12,7 +12,6 @@ package org.eclipse.ocl.pivot.internal.complete;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -521,8 +520,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 		if (name2partialOperations2 == null) {
 			name2partialOperations2 = initMemberOperations();
 		}
-		@SuppressWarnings("null")@NonNull Set<String> keySet = name2partialOperations2.keySet();
-		return keySet;
+		return name2partialOperations2.keySet();
 	}
 
 	public @Nullable Iterable<Operation> getOperationOverloads(@NonNull Operation pivotOperation) {
@@ -709,9 +707,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 		if (name2states2 == null) {
 			name2states2 = initStates();
 		}
-		@SuppressWarnings("null")
-		@NonNull Collection<State> values = name2states2.values();
-		return values;
+		return name2states2.values();
 	}
 
 	public @NonNull Iterable<State> getStates(@Nullable String name) {

@@ -63,6 +63,7 @@ public class ConsoleTests extends AbstractConsoleTests
 			//
 			Map<String, Object> attributes = launch.getLaunchConfiguration().getAttributes();
 			ExpressionInOCL asExpressionInOCL = (ExpressionInOCL) attributes.get(OCLLaunchConstants.EXPRESSION_OBJECT);
+			assert asExpressionInOCL != null;
 			OperationCallExp asOperationCallExp = (OperationCallExp) asExpressionInOCL.getOwnedBody();
 			PropertyCallExp asPropertyCallExpCallExp = (PropertyCallExp) asOperationCallExp.getOwnedSource();
 			VariableExp asVariableExp = (VariableExp) asPropertyCallExpCallExp.getOwnedSource();

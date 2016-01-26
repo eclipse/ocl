@@ -503,7 +503,6 @@ public class CSI2ASMapping implements ICSI2ASMapping
 	/**
 	 * Return all mapped CS Resources.
 	 */
-	@SuppressWarnings("null")
 	public @NonNull Set<BaseCSResource> getCSResources() {
 		return cs2asResourceMap.keySet();
 	}

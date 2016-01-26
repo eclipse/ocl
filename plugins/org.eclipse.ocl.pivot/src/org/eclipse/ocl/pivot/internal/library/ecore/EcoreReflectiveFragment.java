@@ -13,7 +13,6 @@ package org.eclipse.ocl.pivot.internal.library.ecore;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -50,8 +49,7 @@ public class EcoreReflectiveFragment extends ReflectiveFragment
 				}
 			}
 		}
-		@SuppressWarnings("null")@NonNull Set<Property> keySet = propertyMap2.keySet();
-		return keySet;
+		return propertyMap2.keySet();
 	}
 
 	@Override

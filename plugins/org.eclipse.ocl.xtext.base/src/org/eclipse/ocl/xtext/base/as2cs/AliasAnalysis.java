@@ -279,7 +279,6 @@ public class AliasAnalysis extends AdapterImpl
 	/**
 	 * Return the alias for eObject.
 	 */
-	@SuppressWarnings("null")
 	public @NonNull Iterable<CompletePackage> getAliases() {
 		return allAliases.keySet();
 	}
@@ -306,8 +305,7 @@ public class AliasAnalysis extends AdapterImpl
 				break;
 			}
 		}
-		@SuppressWarnings("null") @NonNull String string = s.toString();
-		return string;
+		return s.toString();
 	}
 
 	public @NonNull List<PathElement> getPath(@NonNull Element eObject) {

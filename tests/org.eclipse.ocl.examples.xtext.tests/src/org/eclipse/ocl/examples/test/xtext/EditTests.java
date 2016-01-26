@@ -101,7 +101,9 @@ public class EditTests extends XtextTestCase
 			}
 		}
 		for (String comment : comments) {
-			assertEquals("Expected comment '" + comment + "' extra occurences", 0, expected.get(comment).intValue());
+			Integer occurences = expected.get(comment);
+			assert occurences != null;
+			assertEquals("Expected comment '" + comment + "' extra occurences", 0, occurences.intValue());
 		}
 	}
 

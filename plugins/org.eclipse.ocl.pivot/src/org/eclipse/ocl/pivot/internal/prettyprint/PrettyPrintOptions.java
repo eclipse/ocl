@@ -93,8 +93,7 @@ public abstract class PrettyPrintOptions
 		}
 
 		public @NonNull Set<Namespace> getAliasedNamespaces() {
-			@SuppressWarnings("null") @NonNull Set<Namespace> result = namespace2alias.keySet();
-			return result;
+			return namespace2alias.keySet();
 		}
 		
 		@Override

@@ -216,7 +216,6 @@ public class BasicEvaluationEnvironment extends AbstractCustomizable implements 
 	}
     
 	@Override
-	@SuppressWarnings("null")
 	public @NonNull Set<TypedElement> getVariables() {
 		return variableValues.keySet();
 	}

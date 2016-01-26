@@ -69,8 +69,7 @@ public abstract class GenerateVisitors extends GenerateVisitorsWorkflowComponent
 			}
 			s.append(">");
 		}
-		@SuppressWarnings("null")@NonNull String string = s.toString();
-		return string;
+		return s.toString();
 	}
 
 	protected @NonNull String emitNonNull(@NonNull String qualifiedTypeName) {

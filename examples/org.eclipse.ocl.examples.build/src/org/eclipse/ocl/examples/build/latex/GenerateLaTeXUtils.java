@@ -420,7 +420,7 @@ public abstract class GenerateLaTeXUtils extends GenerateLaTeX
 			}
 		}
 		s.append("\n\n");	
-		@SuppressWarnings("null")@NonNull String body = s.toString();
+		@NonNull String body = s.toString();
 		return decode(body, null);
 	}
 	

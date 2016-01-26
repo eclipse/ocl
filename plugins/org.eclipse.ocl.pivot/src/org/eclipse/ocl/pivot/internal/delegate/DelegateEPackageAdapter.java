@@ -87,8 +87,7 @@ public class DelegateEPackageAdapter extends AdapterImpl
 		if (delegateDomainMap == null) {
 			getDelegateDomains();
 		}
-		@SuppressWarnings("null")@NonNull Collection<DelegateDomain> values = delegateDomainMap.values();
-		return values;
+		return delegateDomainMap.values();
 	}
 
 	/**

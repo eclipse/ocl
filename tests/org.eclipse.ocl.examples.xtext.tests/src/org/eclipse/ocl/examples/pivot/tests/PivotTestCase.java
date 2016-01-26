@@ -228,6 +228,7 @@ public class PivotTestCase extends TestCase
 		StringBuilder s2 = null;
 		for (String key : expected.keySet()) {
 			Integer count = expected.get(key);
+			assert count != null;
 			while (count-- > 0) {
 				if (s2 == null) {
 					s2 = new StringBuilder();
@@ -356,6 +357,7 @@ public class PivotTestCase extends TestCase
 		StringBuilder s2 = null;
 		for (String key : expected.keySet()) {
 			Integer count = expected.get(key);
+			assert count != null;
 			while (count-- > 0) {
 				if (s2 == null) {
 					s2 = new StringBuilder();

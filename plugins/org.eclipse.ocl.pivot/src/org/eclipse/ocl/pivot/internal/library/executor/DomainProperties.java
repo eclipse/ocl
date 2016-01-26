@@ -39,7 +39,7 @@ public class DomainProperties
 	}
 
 	public @NonNull Iterable<? extends Property> getAllProperties(final @Nullable FeatureFilter featureFilter) {
-		@SuppressWarnings("null")@NonNull Collection<Property> values = name2property.values();
+		@NonNull Collection<Property> values = name2property.values();
 		if (featureFilter == null) {
 			return values;
 		}

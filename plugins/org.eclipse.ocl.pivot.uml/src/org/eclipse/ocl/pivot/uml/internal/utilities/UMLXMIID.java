@@ -164,7 +164,7 @@ public class UMLXMIID extends UMLSwitch<String>
 			name = s.toString();
 		}
 		StringBuilder s = new StringBuilder();
-		appendNameHierarchy(s, (name != null) && name.startsWith("A_") ? "" : "A", object, name);
+		appendNameHierarchy(s, name.startsWith("A_") ? "" : "A", object, name);
 		return s.toString();
 	}
 

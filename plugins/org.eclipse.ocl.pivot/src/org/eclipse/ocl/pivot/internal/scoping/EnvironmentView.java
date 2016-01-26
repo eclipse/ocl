@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
@@ -778,8 +777,7 @@ public class EnvironmentView
 	}
 
 	public @NonNull Set<Map.Entry<String, Object>> getEntries() {
-		@SuppressWarnings("null") @NonNull Set<Entry<String, Object>> result = contentsByName.entrySet();
-		return result;
+		return contentsByName.entrySet();
 	}
 
 	public @NonNull EnvironmentFactoryInternal getEnvironmentFactory() {

@@ -134,7 +134,6 @@ public class OCLBuildGenModelUtil
 			iStart = iSuffix + ImportUtils.IMPORTS_SUFFIX.length();
 		}
 		s.append(source, iStart, iMax);
-		@SuppressWarnings("null")@NonNull String string = s.toString();
-		return string;
+		return s.toString();
 	}
 }

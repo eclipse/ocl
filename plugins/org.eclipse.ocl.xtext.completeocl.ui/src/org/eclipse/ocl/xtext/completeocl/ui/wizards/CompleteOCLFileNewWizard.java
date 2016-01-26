@@ -155,8 +155,7 @@ public class CompleteOCLFileNewWizard extends AbstractFileNewWizard
 		s.append("\t" + firstPropertyName + " <> null\n");
 		s.append("\n");
 		s.append("endpackage\n");
-		@SuppressWarnings("null")@NonNull String string = s.toString();
-		return string;
+		return s.toString();
 	}
 
 	@Override

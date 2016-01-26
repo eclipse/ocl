@@ -18,7 +18,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 import java.util.WeakHashMap;
 
@@ -1226,9 +1225,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 	}
 
 	public @NonNull Set<Map.Entry<String, Namespace>> getGlobalNamespaces() {
-		@SuppressWarnings("null")
-		@NonNull Set<Entry<String, Namespace>> entrySet = globalNamespaces.entrySet();
-		return entrySet;
+		return globalNamespaces.entrySet();
 	}
 
 	public @NonNull Iterable<Type> getGlobalTypes() {

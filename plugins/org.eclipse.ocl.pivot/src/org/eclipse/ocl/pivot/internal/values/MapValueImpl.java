@@ -121,7 +121,6 @@ public class MapValueImpl extends ValueImpl implements MapValue //, Iterable<Obj
 		return object;
 	}
 
-	@SuppressWarnings("null")
 	@Override
 	public @NonNull Set<Map.Entry<Object, Object>> entrySet() {
 		return boxedValues.entrySet();
@@ -294,7 +293,6 @@ public class MapValueImpl extends ValueImpl implements MapValue //, Iterable<Obj
 		return new MapValueImpl(typeId, newBoxedValues);
 	}
 
-	@SuppressWarnings("null")
 	@Override
 	public @NonNull Set<Entry<Object, Object>> getElements() {
 		return boxedValues.entrySet();
@@ -485,7 +483,6 @@ public class MapValueImpl extends ValueImpl implements MapValue //, Iterable<Obj
 		return intSize() == 0;
 	}
 
-	@SuppressWarnings("null")
 	@Override
 	public @NonNull Set<Object> keySet() {
 		return boxedValues.keySet();

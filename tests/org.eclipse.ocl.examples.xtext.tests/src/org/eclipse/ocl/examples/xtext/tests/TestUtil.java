@@ -121,8 +121,7 @@ public class TestUtil
 		}
 		s.append("	<classpathentry kind=\"output\" path=\"bin\"/>\n"); 
 		s.append("</classpath>\n");
-		@SuppressWarnings("null")@NonNull String string = s.toString();
-		TestUtil.createIFile(project, ".classpath", string);
+		TestUtil.createIFile(project, ".classpath", s.toString());
 	}
 
 	public static void createFile(@NonNull File file, @NonNull String fileContent) throws IOException {

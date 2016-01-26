@@ -150,7 +150,7 @@ public class JavaGenModelCodeGenHelper implements CodeGenHelper
 			writer.close();
 		}
 		OCLstdlibTables.LIBRARY.getClass();		// Ensure coherent initialization
-		OCL2JavaFileObject.saveClass(qualifiedClassName, javaCodeSource);
+		OCL2JavaFileObject.saveClass("bin", qualifiedClassName, javaCodeSource);
 		Class<?> testClass = OCL2JavaFileObject.loadExplicitClass(new File(targetFolder.getParentFile(), "bin"), qualifiedClassName);
 		return (LibraryOperation) testClass.newInstance();
 	}

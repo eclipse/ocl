@@ -49,7 +49,7 @@ public class EcoreListDescriptor extends AbstractCollectionDescriptor implements
 		if (requiredClassName.startsWith(EList.class.getName())) {
 			BoxedDescriptor boxedElementDescriptor = js.getCodeGenerator().getBoxedDescriptor(type.getTypeId());
 			js.append("(");
-			js.appendClassReference(EList.class, false, boxedElementDescriptor);
+			js.appendClassReference(null, EList.class, false, boxedElementDescriptor);
 			js.append(")");
 		}
 		js.appendValueName(cgValue);

@@ -221,7 +221,7 @@ public class TupleTypeManager
 		//
 		//	Find the outgoing template parameter references
 		// FIXME this should be more readily and reliably computed in the caller
-		@SuppressWarnings("null")@NonNull Collection<? extends Type> partValues = parts.values();
+		@NonNull Collection<? extends Type> partValues = parts.values();
 		final TemplateParameterReferencesVisitor referencesVisitor = new TemplateParameterReferencesVisitor(metamodelManager.getEnvironmentFactory(), partValues);	// FIXME this isn't realistically extensible
 		//
 		//	Create the tuple part ids

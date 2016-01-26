@@ -13,7 +13,6 @@ package org.eclipse.ocl.xtext.base.as2cs;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -78,13 +77,11 @@ public class AS2CS extends AbstractConversion
 	}
 
 	public @NonNull Collection<? extends Resource> getASResources() {
-		@SuppressWarnings("null") @NonNull Collection<? extends Resource> values = cs2asResourceMap.values();
-		return values;
+		return cs2asResourceMap.values();
 	}
 
 	public @NonNull Collection<? extends BaseCSResource> getCSResources() {
-		@SuppressWarnings("null") @NonNull Set<? extends BaseCSResource> keySet = cs2asResourceMap.keySet();
-		return keySet;
+		return cs2asResourceMap.keySet();
 	}
 
 	public @Nullable Factory getFactory(@NonNull EClass eClass) {

@@ -90,8 +90,7 @@ public class NodeLabelProvider extends ColumnLabelProvider
 			if (defaults > 0) {
 				s.append(separator + defaults + " other" + (defaults != 1 ? "s" : ""));
 			}
-			@SuppressWarnings("null")@NonNull String string = s.toString();
-			return string;
+			return s.toString();
 		}
 	}
 	
@@ -215,8 +214,7 @@ public class NodeLabelProvider extends ColumnLabelProvider
 			sw.append(s.toString());
 			exception.printStackTrace(new PrintWriter(sw));	
 		}
-		@SuppressWarnings("null")@NonNull String string = s.toString();
-		return string;
+		return s.toString();
 	}
 
 	protected @NonNull String getSummaryToolTip(@NonNull AbstractNode node) {

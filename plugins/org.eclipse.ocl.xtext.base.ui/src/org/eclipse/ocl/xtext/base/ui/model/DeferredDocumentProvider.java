@@ -200,7 +200,7 @@ public class DeferredDocumentProvider extends XtextDocumentProvider
 			while ((len = reader.read(cbuf)) > 0) {
 				s.append(cbuf, 0, len);
 			}
-			@SuppressWarnings("null")@NonNull String string = s.toString();
+			@NonNull String string = s.toString();
 			IDocument document2 = document2document.get(document);
 			if (document2 != null) {
 				document = document2;
