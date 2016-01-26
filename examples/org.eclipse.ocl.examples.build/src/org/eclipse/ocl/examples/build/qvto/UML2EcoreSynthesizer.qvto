@@ -18,7 +18,7 @@ property debugCreateProperty : Boolean = false;
 property debugDerived : Boolean = false;
 property debugResolveProxies : Boolean = false;
 property debugType : Boolean = false;
-property debug_EClass_abstract : Boolean = true;
+property debug_EClass_abstract : Boolean = false;
 property debug_EReference_eOpposite : Boolean = false;
 property showPropertyOverrides : Boolean = false;
 
@@ -185,7 +185,6 @@ mapping UML2Ecore::CreatePackage::createPackage() : Ecore::EPackage
 	result.eClassifiers += createTypes->select(let t = oldTypes->any(true) in t.oclIsKindOf(UML::DataType) and not t.oclIsKindOf(UML::Enumeration))->sortedBy(newName)->createType(self);
 	result.eClassifiers += createTypes->select(oldTypes->any(true).oclIsKindOf(UML::Enumeration))->sortedBy(newName)->createType(self);
 --	result.eClassifiers += createTypes->select(oldTypes->any(true).oclIsKindOf(UML::Interface))->sortedBy(newName)->createType(self);
--- FIXME must proritize non-abstract
 	result.eClassifiers += createTypes->select(oldTypes->any(true).oclIsKindOf(UML::Class) or oldTypes->any(true).oclIsKindOf(UML::Interface))->sortedBy(newName)->createType(self);
 --	result.eAnnotations += object Ecore::EAnnotation {
 --		source := 'http://www.eclipse.org/ocl/2012/UML2EcoreMapping';
@@ -222,7 +221,7 @@ abstract mapping UML::Type::createAbstractType(createType : UML2Ecore::CreateTyp
 mapping UML::Classifier::createClass(createType : UML2Ecore::CreateType) : Ecore::EClass
 inherits UML::Type::createAbstractType
 {
-	if (debug_EClass_abstract) log('  createClass', self.name);
+	if (debug_EClass_abstract) log('  createClass', result.name);
 	createType.oldTypes->forEach(t) { umlType2eClass->put(t, result); };
 	if (createType.newInstanceTypeName <> null) {
 		result.instanceTypeName := createType.newInstanceTypeName;
@@ -232,7 +231,7 @@ inherits UML::Type::createAbstractType
 	};
 	var oldClasses : Set(UML::Class) := createType.oldTypes->selectByKind(UML::Class)->asSet();
 --	log('    oldClasses', oldClasses->display());
-	var oldSameNamedClasses : Set(UML::Class) := oldClasses->select(c | c.name = self.name);
+	var oldSameNamedClasses : Set(UML::Class) := oldClasses->select(c | c.name = createType.newName);
 --	log('    oldSameNamedClasses', oldSameNamedClasses->display());
 	var oldAbstractClasses : Set(UML::Class) := oldSameNamedClasses->select(isAbstract);
 	var oldNonAbstractClasses : Set(UML::Class) := oldSameNamedClasses->reject(isAbstract);
