@@ -98,7 +98,7 @@ nameresolution {
 	
 	Model {
 		same-scope ownedPackages, ownedImports.importedNamespace
-			-- NOT SUPPORTED YET , imported ownedImports.importedNamespace;
+			, imported ownedImports.importedNamespace;
 		
 		exports Package using ownedPackages;
 	}
