@@ -1425,7 +1425,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 				addDiagnostic(csElement, message);
 			}
 			else {
-				@SuppressWarnings("null")@NonNull String message = String.valueOf(e);
+				@NonNull String message = String.valueOf(e);
 				addDiagnostic(csElement, message);
 			}
 		}
@@ -1443,7 +1443,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 				continuation.addTo(continuations);
 			}
 		} catch (Throwable e) {
-			@SuppressWarnings("null")@NonNull String message = String.valueOf(e);
+			@NonNull String message = String.valueOf(e);
 			addDiagnostic(csElement, message);
 		}
 	}
@@ -1455,7 +1455,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 				continuation.addTo(continuations);
 			}
 		} catch (Throwable e) {
-			@SuppressWarnings("null")@NonNull String message = String.valueOf(e);
+			@NonNull String message = String.valueOf(e);
 			addDiagnostic(csElement, message);
 		}
 		for (EObject eContent : csElement.eContents()) {
@@ -1470,7 +1470,7 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 		try {
 			element = csElement.accept(left2RightVisitor);
 		} catch (Throwable e) {
-			@SuppressWarnings("null")@NonNull String message = String.valueOf(e);
+			@NonNull String message = String.valueOf(e);
 			addDiagnostic(csElement, message);
 		}
 		if (element == null) {

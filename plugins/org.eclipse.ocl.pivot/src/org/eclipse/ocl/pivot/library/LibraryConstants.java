@@ -16,7 +16,6 @@ import org.eclipse.ocl.pivot.util.PivotPlugin;
 
 public interface LibraryConstants
 {
-	@SuppressWarnings("null")
 	static final @NonNull URI GEN_MODEL_URI = URI.createPlatformPluginURI("/" + PivotPlugin.PLUGIN_ID + "/model/oclstdlib.genmodel", true); //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**

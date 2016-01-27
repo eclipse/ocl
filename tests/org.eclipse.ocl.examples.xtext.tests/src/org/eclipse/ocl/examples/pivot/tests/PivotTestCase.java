@@ -584,7 +584,7 @@ public class PivotTestCase extends TestCase
 	 * The return is formatted one message per line with a leading new-line followed by
 	 * an expected/actual count in parentheses followed by the messages 
 	 */
-	public static String formatMessageDifferences(Bag<String> expectedMessages, Bag<String> actualMessages) {
+	public static String formatMessageDifferences(Bag<String> expectedMessages, @NonNull Bag<String> actualMessages) {
 		Set<String> allMessages = new HashSet<String>(expectedMessages);
 		allMessages.addAll(actualMessages);
 		StringBuilder s = null;

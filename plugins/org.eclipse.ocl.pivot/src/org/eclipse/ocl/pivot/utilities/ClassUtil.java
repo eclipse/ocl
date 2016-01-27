@@ -171,6 +171,21 @@ public class ClassUtil
 	}
 
 	/**
+	 * Check for an in appropriate program state. This should not happen, but is not impossible. For instance
+	 * a Resource should be contained in a ResourceSet, but that doesn't mean it always is.
+	 *<p>
+	 * If the inappropriate state really cannot happen, an assertion should be used instead to avoid non-debug
+	 * run-time cost.
+	 * <p>
+	 * Return aT, throwing an IllegalStateException if null.
+	 * @since 1.1
+	 */
+	public static @NonNull <T> T nonNull(@Nullable T aT) {
+		assert aT != null;
+		return aT;
+	}
+
+	/**
 	 * Return aT, checking the assertion that this call would not be necessary if EMF had comprehensive @NonNull annotations.
 	 */
 	public static @NonNull <T> T nonNullEMF(@Nullable T aT) {// FIXME remove once EMF guarantees non-null
@@ -288,8 +303,9 @@ public class ClassUtil
 
 	/**
 	 * @since 1.1
+	 * @deprecated String.valueOf()now annotated to be @NonNull
 	 */
-	@SuppressWarnings("null")
+	@Deprecated
 	public static @NonNull String toString(Object anObject) {
 		return String.valueOf(anObject);
 	}

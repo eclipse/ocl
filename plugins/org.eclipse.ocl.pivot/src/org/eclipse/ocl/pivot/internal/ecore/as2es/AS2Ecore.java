@@ -429,7 +429,7 @@ public class AS2Ecore extends AbstractConversion
 		String nsUri = asPackage.getURI();
 		if (nsUri != null) {
 			ProjectManager projectManager = environmentFactory.getProjectManager();
-			@SuppressWarnings("null")@NonNull URI nsURI = URI.createURI(nsUri);
+			@NonNull URI nsURI = URI.createURI(nsUri);
 			StandaloneProjectMap.IPackageDescriptor packageDescriptor = projectManager.getPackageDescriptor(nsURI);
 			if (packageDescriptor != null) {
 				StandaloneProjectMap.IResourceDescriptor resourceDescriptor = packageDescriptor.getResourceDescriptor();

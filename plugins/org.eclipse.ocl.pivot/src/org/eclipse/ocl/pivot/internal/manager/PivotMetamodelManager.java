@@ -209,25 +209,12 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 
 //	public static final @NonNull TracingOption CREATE_MUTABLE_CLONE = new TracingOption(PivotPlugin.PLUGIN_ID, "mm/createMutableClone");
 	
-	@SuppressWarnings("null")
 	public static final @NonNull List<Constraint> EMPTY_CONSTRAINT_LIST = Collections.<Constraint>emptyList();
-
-	@SuppressWarnings("null")
 	public static final @NonNull List<Element> EMPTY_ELEMENT_LIST = Collections.<Element>emptyList();
-
-	@SuppressWarnings("null")
 	public static final @NonNull List<Operation> EMPTY_OPERATION_LIST = Collections.<Operation>emptyList();
-
-	@SuppressWarnings("null")
 	public static final @NonNull List<Property> EMPTY_PROPERTY_LIST = Collections.<Property>emptyList();
-
-	@SuppressWarnings("null")
 	public static final @NonNull List<State> EMPTY_STATE_LIST = Collections.<State>emptyList();
-
-	@SuppressWarnings("null")
 	public static final @NonNull List<TemplateParameter> EMPTY_TEMPLATE_PARAMETER_LIST = Collections.<TemplateParameter>emptyList();
-
-	@SuppressWarnings("null")
 	public static final @NonNull List<Type> EMPTY_TYPE_LIST = Collections.<Type>emptyList();
 
 	/**
@@ -918,8 +905,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 		if (memberProperties != null) {
 			return memberProperties;
 		}
-		@SuppressWarnings("null") @NonNull List<Property> singletonList = Collections.singletonList(pivotProperty);
-		return singletonList;
+		return Collections.singletonList(pivotProperty);
 	}
 	
 	public @NonNull Iterable<CompleteClass> getAllSuperCompleteClasses(@NonNull Type type) {
@@ -1476,8 +1462,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 		if (operationOverloads != null) {
 			return operationOverloads;
 		}
-		@SuppressWarnings("null") @NonNull List<Operation> singletonList = Collections.singletonList(pivotOperation);
-		return singletonList;
+		return Collections.singletonList(pivotOperation);
 	}
 
 	public @NonNull Iterable<? extends org.eclipse.ocl.pivot.Package> getPartialPackages(org.eclipse.ocl.pivot.@NonNull Package pkg, boolean loadASmetamodelFirst) {

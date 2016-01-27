@@ -106,7 +106,6 @@ public abstract class ValueUtil
 	private static final @Nullable IntegerValue @NonNull [] INTEGER_VALUES = new @Nullable IntegerValue[NEGATIVE_INTEGERS + POSITIVE_INTEGERS];
 
 	public static @NonNull Bag<?> EMPTY_BAG = new BagImpl<Object>();	
-	@SuppressWarnings("null")
 	public static final @NonNull Set<Object> EMPTY_SET = Collections.emptySet();
 
 	@SuppressWarnings("null")
@@ -120,13 +119,11 @@ public abstract class ValueUtil
 	private static final String maxLongValue = Long.toString(Long.MAX_VALUE);
 	private static final int maxLongSize = maxLongValue.length();	
 
-	@SuppressWarnings("null")
 	public static final @NonNull Boolean FALSE_VALUE = Boolean.FALSE;
 	public static final @NonNull InvalidValueException INVALID_VALUE = new InvalidValueException("invalid"); 
 	public static final @NonNull NullValue NULL_VALUE = new NullValueImpl(); 
 	public static final @NonNull IntegerValue ONE_VALUE = integerValueOf(1);
 	public static final @NonNull UnlimitedNaturalValue UNLIMITED_ONE_VALUE = (UnlimitedNaturalValue)ONE_VALUE;
-	@SuppressWarnings("null")
 	public static final @NonNull Boolean TRUE_VALUE = Boolean.TRUE;
 	public static final @NonNull UnlimitedValue UNLIMITED_VALUE = new UnlimitedValueImpl(); 
 	public static final @NonNull IntegerValue ZERO_VALUE = integerValueOf(0);

@@ -108,7 +108,6 @@ public abstract class ExecutorManager implements Executor
 			return null;
 		}
 
-		@SuppressWarnings("null")
 		@Override
 		public @NonNull Set<TypedElement> getVariables() {
 			return Collections.emptySet();

@@ -352,7 +352,7 @@ public class LoadCompleteOCLResourceHandler extends AbstractHandler
 				return super.open();
 			}
 			catch (Throwable e) {
-				@SuppressWarnings("null")@NonNull String primaryMessage = String.valueOf(e.getMessage());
+				@NonNull String primaryMessage = String.valueOf(e.getMessage());
 				error(primaryMessage, null);
 				return CANCEL;
 			}

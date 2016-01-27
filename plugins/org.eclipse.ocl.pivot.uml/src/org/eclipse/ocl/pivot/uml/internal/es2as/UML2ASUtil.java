@@ -58,7 +58,9 @@ public class UML2ASUtil
 					perEClassUMLStereotypedElements = new HashSet<org.eclipse.uml2.uml.Element>();
 					umlStereotypeEClass2umlStereotypedElements.put(umlStereotypeApplication.eClass(), perEClassUMLStereotypedElements);
 				}
-				perEClassUMLStereotypedElements.addAll(umlStereotypedElements);
+				if (umlStereotypedElements != null) {
+					perEClassUMLStereotypedElements.addAll(umlStereotypedElements);
+				}
 			}
 			StringBuffer s = new StringBuffer();
 			for (@SuppressWarnings("null")@NonNull EClass umlStereotypeEClass : umlStereotypeEClass2umlStereotypedElements.keySet()) {

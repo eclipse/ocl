@@ -653,7 +653,6 @@ public class EnvironmentView
     	}
 		String name = getName();
 		if (name != null) {
-			@SuppressWarnings("null")
 			@NonNull URI uri = URI.createURI(name).resolve(baseURI);
 			try {
 				Element importedElement = environmentFactory.getMetamodelManager().loadResource(uri, null, null);				

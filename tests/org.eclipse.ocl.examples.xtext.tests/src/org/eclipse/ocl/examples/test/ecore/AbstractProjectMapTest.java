@@ -54,9 +54,9 @@ public abstract class AbstractProjectMapTest extends PivotTestCase
 
 /*	protected void doTestProjectMapLocal(@NonNull EPackage ePackage, @NonNull String project, @NonNull String modelPath) {
 		ProjectMap.getResourceFactoryRegistry(null).getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
-		@SuppressWarnings("null")@NonNull URI nsURI = URI.createURI(ePackage.getNsURI());
-		@SuppressWarnings("null")@NonNull URI platformPluginURI = URI.createPlatformPluginURI(modelPath, true);
-		@SuppressWarnings("null")@NonNull URI platformResourceURI = URI.createPlatformResourceURI(modelPath, true);
+		@NonNull URI nsURI = URI.createURI(ePackage.getNsURI());
+		@NonNull URI platformPluginURI = URI.createPlatformPluginURI(modelPath, true);
+		@NonNull URI platformResourceURI = URI.createPlatformResourceURI(modelPath, true);
 		ProjectMap getProjectMap() = new ProjectMap();
 		IProjectDescriptor projectDescriptor = getProjectMap().getProjectDescriptor(project);
 		assert projectDescriptor != null;
@@ -95,11 +95,11 @@ public abstract class AbstractProjectMapTest extends PivotTestCase
 
 	protected void doTestProjectMap_LoadBoth(/*@NonNull*/ EPackage ePackage, @NonNull String project, @NonNull String modelPath, @NonNull String fragment) {
 		ProjectMap.getResourceFactoryRegistry(null).getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
-		@SuppressWarnings("null")@NonNull URI platformPluginURI = URI.createPlatformPluginURI(modelPath, true);
-		@SuppressWarnings("null")@NonNull URI platformResourceURI = URI.createPlatformResourceURI(modelPath, true);
-		@SuppressWarnings("null")@NonNull URI nsURI = URI.createURI(ePackage.getNsURI());
-		@SuppressWarnings("null")@NonNull URI platformPluginEObjectURI = platformPluginURI.appendFragment(fragment);
-		@SuppressWarnings("null")@NonNull URI platformResourceEObjectURI = platformResourceURI.appendFragment(fragment);
+		@NonNull URI platformPluginURI = URI.createPlatformPluginURI(modelPath, true);
+		@NonNull URI platformResourceURI = URI.createPlatformResourceURI(modelPath, true);
+		@NonNull URI nsURI = URI.createURI(ePackage.getNsURI());
+		@NonNull URI platformPluginEObjectURI = platformPluginURI.appendFragment(fragment);
+		@NonNull URI platformResourceEObjectURI = platformResourceURI.appendFragment(fragment);
 		ProjectManager.IProjectDescriptor projectDescriptor = getProjectMap().getProjectDescriptor(project);
 		assert projectDescriptor != null;
 		ProjectManager.IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(nsURI);
@@ -152,11 +152,11 @@ public abstract class AbstractProjectMapTest extends PivotTestCase
 		Iterable<Appender> savedAppenders = TestCaseLogger.INSTANCE.install();
 		try {
 			ProjectMap.getResourceFactoryRegistry(null).getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
-			@SuppressWarnings("null")@NonNull URI platformPluginURI = URI.createPlatformPluginURI(modelPath, true);
-			@SuppressWarnings("null")@NonNull URI platformResourceURI = URI.createPlatformResourceURI(modelPath, true);
-			@SuppressWarnings("null")@NonNull URI nsURI = URI.createURI(ePackage.getNsURI());
-			@SuppressWarnings("null")@NonNull URI platformPluginEObjectURI = platformPluginURI.appendFragment(fragment);
-			@SuppressWarnings("null")@NonNull URI platformResourceEObjectURI = platformResourceURI.appendFragment(fragment);
+			@NonNull URI platformPluginURI = URI.createPlatformPluginURI(modelPath, true);
+			@NonNull URI platformResourceURI = URI.createPlatformResourceURI(modelPath, true);
+			@NonNull URI nsURI = URI.createURI(ePackage.getNsURI());
+			@NonNull URI platformPluginEObjectURI = platformPluginURI.appendFragment(fragment);
+			@NonNull URI platformResourceEObjectURI = platformResourceURI.appendFragment(fragment);
 			{
 				ResourceSet resourceSet = new ResourceSetImpl();
 				getProjectMap().initializeResourceSet(resourceSet);
@@ -206,11 +206,11 @@ public abstract class AbstractProjectMapTest extends PivotTestCase
 
 	protected void doTestProjectMap_LoadEPackage(/*@NonNull*/ EPackage ePackage, @NonNull String project, @NonNull String modelPath, @NonNull String fragment) {
 		ProjectMap.getResourceFactoryRegistry(null).getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
-		@SuppressWarnings("null")@NonNull URI platformPluginURI = URI.createPlatformPluginURI(modelPath, true);
-		@SuppressWarnings("null")@NonNull URI platformResourceURI = URI.createPlatformResourceURI(modelPath, true);
-		@SuppressWarnings("null")@NonNull URI nsURI = URI.createURI(ePackage.getNsURI());
-		@SuppressWarnings("null")@NonNull URI platformPluginEObjectURI = platformPluginURI.appendFragment(fragment);
-		@SuppressWarnings("null")@NonNull URI platformResourceEObjectURI = platformResourceURI.appendFragment(fragment);
+		@NonNull URI platformPluginURI = URI.createPlatformPluginURI(modelPath, true);
+		@NonNull URI platformResourceURI = URI.createPlatformResourceURI(modelPath, true);
+		@NonNull URI nsURI = URI.createURI(ePackage.getNsURI());
+		@NonNull URI platformPluginEObjectURI = platformPluginURI.appendFragment(fragment);
+		@NonNull URI platformResourceEObjectURI = platformResourceURI.appendFragment(fragment);
 		ProjectManager.IProjectDescriptor projectDescriptor = getProjectMap().getProjectDescriptor(project);
 		assert projectDescriptor != null;
 		ProjectManager.IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(nsURI);
@@ -255,11 +255,11 @@ public abstract class AbstractProjectMapTest extends PivotTestCase
 
 	protected void doTestProjectMap_LoadFirst(/*@NonNull*/ EPackage ePackage, @NonNull String project, @NonNull String modelPath, @NonNull String fragment, boolean selfReferential) {
 		ProjectMap.getResourceFactoryRegistry(null).getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
-		@SuppressWarnings("null")@NonNull URI platformPluginURI = URI.createPlatformPluginURI(modelPath, true);
-		@SuppressWarnings("null")@NonNull URI platformResourceURI = URI.createPlatformResourceURI(modelPath, true);
-		@SuppressWarnings("null")@NonNull URI nsURI = URI.createURI(ePackage.getNsURI());
-		@SuppressWarnings("null")@NonNull URI platformPluginEObjectURI = platformPluginURI.appendFragment(fragment);
-		@SuppressWarnings("null")@NonNull URI platformResourceEObjectURI = platformResourceURI.appendFragment(fragment);
+		@NonNull URI platformPluginURI = URI.createPlatformPluginURI(modelPath, true);
+		@NonNull URI platformResourceURI = URI.createPlatformResourceURI(modelPath, true);
+		@NonNull URI nsURI = URI.createURI(ePackage.getNsURI());
+		@NonNull URI platformPluginEObjectURI = platformPluginURI.appendFragment(fragment);
+		@NonNull URI platformResourceEObjectURI = platformResourceURI.appendFragment(fragment);
 		ProjectManager.IProjectDescriptor projectDescriptor = getProjectMap().getProjectDescriptor(project);
 		assert projectDescriptor != null;
 		ProjectManager.IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(nsURI);
@@ -309,11 +309,11 @@ public abstract class AbstractProjectMapTest extends PivotTestCase
 		Iterable<Appender> savedAppenders = TestCaseLogger.INSTANCE.install();
 		try {
 			ProjectMap.getResourceFactoryRegistry(null).getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
-			@SuppressWarnings("null")@NonNull URI platformPluginURI = URI.createPlatformPluginURI(modelPath, true);
-			@SuppressWarnings("null")@NonNull URI platformResourceURI = URI.createPlatformResourceURI(modelPath, true);
-			@SuppressWarnings("null")@NonNull URI nsURI = URI.createURI(ePackage.getNsURI());
-			@SuppressWarnings("null")@NonNull URI platformPluginEObjectURI = platformPluginURI.appendFragment(fragment);
-			@SuppressWarnings("null")@NonNull URI platformResourceEObjectURI = platformResourceURI.appendFragment(fragment);
+			@NonNull URI platformPluginURI = URI.createPlatformPluginURI(modelPath, true);
+			@NonNull URI platformResourceURI = URI.createPlatformResourceURI(modelPath, true);
+			@NonNull URI nsURI = URI.createURI(ePackage.getNsURI());
+			@NonNull URI platformPluginEObjectURI = platformPluginURI.appendFragment(fragment);
+			@NonNull URI platformResourceEObjectURI = platformResourceURI.appendFragment(fragment);
 			ProjectManager.IProjectDescriptor projectDescriptor = getProjectMap().getProjectDescriptor(project);
 			assert projectDescriptor != null;
 			ProjectManager.IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(nsURI);

@@ -237,7 +237,7 @@ public class DebugDialog extends Dialog
 		EPackage ePackage = eClass != null ? eClass.getEPackage() : null;
 		String nsURI = ePackage != null ? ePackage.getNsURI() : null;
 		elementNsURI.setText(String.valueOf(nsURI));
-		@SuppressWarnings("null")@NonNull List<String> elementNsURIs = Collections.singletonList(nsURI);
+		@NonNull List<String> elementNsURIs = Collections.singletonList(nsURI);
 		Set<URI> resourceURIs = completeOCLRegistry.getResourceURIs(elementNsURIs);
 		List<String> constraintNsURIs = new ArrayList<String>();
 		constraintsText2resourceURI.clear();

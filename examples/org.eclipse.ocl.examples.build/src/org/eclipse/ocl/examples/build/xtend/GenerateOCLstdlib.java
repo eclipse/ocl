@@ -145,7 +145,7 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 			options.put(ASResource.OPTION_NORMALIZE_CONTENTS, Boolean.TRUE);
 			asResource.save(options);
 			if (ecoreFile != null) {
-				@SuppressWarnings("null")@NonNull URI ecoreURI = URI.createPlatformResourceURI(ecoreFile, true);
+				@NonNull URI ecoreURI = URI.createPlatformResourceURI(ecoreFile, true);
 				AS2Ecore converter = new AS2Ecore(getEnvironmentFactory(), ecoreURI, null);
 				XMLResource eResource = converter.convertResource(asResource, ecoreURI);
 				EPackage ePackage = (EPackage) ClassUtil.nonNullState(eResource.getContents().get(0));

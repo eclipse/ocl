@@ -276,7 +276,7 @@ public class GlobalPlace extends AbstractPlace
 		if (CommonSubexpressionEliminator.CSE_REWRITE.isActive()) {
 			CommonSubexpressionEliminator.CSE_REWRITE.println("Places after rewrite");
 			printHierarchy(CommonSubexpressionEliminator.CSE_REWRITE, "");
-			@SuppressWarnings("null")@NonNull String string = String.valueOf(cgRoot);
+			@NonNull String string = String.valueOf(cgRoot);
 			TracingOption.println(CommonSubexpressionEliminator.CSE_REWRITE, string);
 		}
 	}

@@ -114,8 +114,7 @@ public abstract class AbstractConstraintEvaluator<T>
 			TupleTypeId tupleTypeId = tupleValue.getTypeId();
 			TuplePartId messagePartId = tupleTypeId.getPartId(PivotConstants.MESSAGE_PART_NAME);
 			if (messagePartId != null) {
-				@SuppressWarnings("null")@NonNull String string = String.valueOf(tupleValue.getValue(messagePartId));
-				return string;
+				return String.valueOf(tupleValue.getValue(messagePartId));
 			}
 		}
 		else if (result == null) {

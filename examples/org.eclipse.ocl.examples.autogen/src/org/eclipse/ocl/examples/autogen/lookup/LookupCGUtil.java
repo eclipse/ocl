@@ -29,7 +29,7 @@ public class LookupCGUtil {
 		
 		List<@NonNull Package> result = new ArrayList<@NonNull Package>();
 		URI projectResourceURI = URI.createPlatformResourceURI("/" + oclDocProjectName + "/", true);
-		@SuppressWarnings("null")@NonNull URI nameResoURI = URI.createURI(oclDocFilePath).resolve(projectResourceURI);
+		@NonNull URI nameResoURI = URI.createURI(oclDocFilePath).resolve(projectResourceURI);
 		OCL ocl = envFact.createOCL();
 		try {
 			Resource resource = ClassUtil.nonNullState(ocl.parse(nameResoURI));

@@ -65,7 +65,7 @@ public class CompleteOCLCSConstraintLocator extends PivotConstraintLocator
 							if (asConstraint != null) {
 								EObject esObject = getConstrainedESObject(environmentFactory, asConstraint);
 								if (esObject != null) {
-									@SuppressWarnings("null")@NonNull String label = String.valueOf(asConstraint.getName());
+									@NonNull String label = String.valueOf(asConstraint.getName());
 									map = createLeafConstrainingNode(map, validityModel, esObject, csConstraint, label);
 								}
 							}

@@ -66,7 +66,7 @@ public class VMValue extends VMDebugElement implements IValue {
 	}		
 	
     public String computeDetail() throws DebugException {
-    	@SuppressWarnings("null")@NonNull URI varURI = URI.createURI(getVariableURIForVMRequest());
+    	@NonNull URI varURI = URI.createURI(getVariableURIForVMRequest());
     	VMDetailRequest request = new VMDetailRequest(varURI);
     	
     	VMResponse response = getOCLDebugTarget().sendRequest(request);
@@ -85,7 +85,7 @@ public class VMValue extends VMDebugElement implements IValue {
 		return variableURI;
     }
     
-	List<VMVariableData> requestVariables() throws DebugException {
+	List<@NonNull VMVariableData> requestVariables() throws DebugException {
 		String variableURI = getVariableURIForVMRequest();
 		
 		VMVariableRequest request = new VMVariableRequest(frameID, variableURI, true);

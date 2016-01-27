@@ -40,7 +40,6 @@ import org.eclipse.ocl.xtext.base.as2cs.BaseLocationInFileProvider;
  */
 public abstract class VMDebugCore
 {
-	@SuppressWarnings("null")
 	public static @NonNull URI getResourceURI(IResource resource) {
 		return URI.createPlatformResourceURI(resource.getFullPath().toString(), true);
 	}

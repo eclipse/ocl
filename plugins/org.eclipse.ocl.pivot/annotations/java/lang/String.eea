@@ -1,0 +1,7 @@
+class java/lang/String
+valueOf
+ (I)Ljava/lang/String;
+ (I)L1java/lang/String;
+valueOf
+ (Ljava/lang/Object;)Ljava/lang/String;
+ (Ljava/lang/Object;)L1java/lang/String;

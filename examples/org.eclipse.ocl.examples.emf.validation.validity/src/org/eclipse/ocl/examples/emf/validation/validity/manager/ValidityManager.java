@@ -346,7 +346,7 @@ public class ValidityManager
 					Resource eResource = constrainingEPackage.eResource();
 					if (eResource != null) {
 						String fragment = eResource.getURIFragment(constrainingObject);
-						@SuppressWarnings("null")@NonNull URI uri = URI.createURI(nsURI).appendFragment(fragment);
+						@NonNull URI uri = URI.createURI(nsURI).appendFragment(fragment);
 						return new TypeURI(uri);
 					}
 				}

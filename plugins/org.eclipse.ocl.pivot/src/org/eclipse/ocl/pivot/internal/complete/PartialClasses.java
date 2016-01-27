@@ -720,8 +720,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 			return PivotMetamodelManager.EMPTY_STATE_LIST;
 		}
 		else {
-			@SuppressWarnings("null")@NonNull List<State> singletonList = Collections.singletonList(state);
-			return singletonList;
+			return Collections.singletonList(state);
 		}
 	}
 	

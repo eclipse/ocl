@@ -34,7 +34,6 @@ public interface ModelManager
 	@NonNull ModelManager NULL = new ModelManager()
 	{
 		@Override
-		@SuppressWarnings("null")
 		public @NonNull Set<EObject> get(org.eclipse.ocl.pivot.@NonNull Class type) {
 			return Collections.emptySet();
 		}

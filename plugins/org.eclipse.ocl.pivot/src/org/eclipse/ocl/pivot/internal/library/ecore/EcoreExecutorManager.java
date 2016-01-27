@@ -68,7 +68,7 @@ public class EcoreExecutorManager extends ExecutorManager
 
 	protected @NonNull IdResolver createIdResolver() {
 		if (!(contextObject instanceof EObject)) {
-			@SuppressWarnings("null")@NonNull List<EObject> emptyList = Collections.<EObject>emptyList();
+			@NonNull List<EObject> emptyList = Collections.<EObject>emptyList();
 			return new EcoreIdResolver(emptyList, getStandardLibrary());
 		}
 		EObject rootContainer = EcoreUtil.getRootContainer((EObject)contextObject);

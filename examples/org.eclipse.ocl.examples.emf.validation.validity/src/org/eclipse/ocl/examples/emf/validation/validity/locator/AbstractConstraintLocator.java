@@ -115,7 +115,7 @@ public abstract class AbstractConstraintLocator implements ConstraintLocator, Co
 		if (resource.getURI() == null) {
 			return null;
 		}
-		@SuppressWarnings("null")@NonNull URI uri = resource.getURI().appendFragment(resource.getURIFragment(eObject));
+		@NonNull URI uri = resource.getURI().appendFragment(resource.getURIFragment(eObject));
 		return new ConstrainingURI(uri);
 	}
 
@@ -176,7 +176,7 @@ public abstract class AbstractConstraintLocator implements ConstraintLocator, Co
 		if (resource.getURI() == null) {
 			return null;
 		}
-		@SuppressWarnings("null")@NonNull URI uri = resource.getURI().appendFragment(resource.getURIFragment(eObject));
+		@NonNull URI uri = resource.getURI().appendFragment(resource.getURIFragment(eObject));
 		return new TypeURI(uri);
 	}
 

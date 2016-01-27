@@ -25,7 +25,6 @@ public class VMDetailRequest extends VMRequest
 		fVariableURI = variableURI.toString();
 	}
 
-	@SuppressWarnings("null")
 	public @NonNull URI getVariableURI() {
 		return URI.createURI(fVariableURI);
 	}

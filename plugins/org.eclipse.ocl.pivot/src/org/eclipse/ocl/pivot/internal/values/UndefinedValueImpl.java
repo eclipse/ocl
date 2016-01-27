@@ -492,7 +492,6 @@ public abstract class UndefinedValueImpl extends EvaluationException implements 
 	}
 
 	@Override
-	@SuppressWarnings("null")
 	public @NonNull Iterable<? extends Object> iterable() {
 		return Collections.<Object>emptyList();
 	}

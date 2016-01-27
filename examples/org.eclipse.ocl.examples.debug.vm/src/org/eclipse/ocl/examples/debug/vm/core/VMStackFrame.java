@@ -113,7 +113,6 @@ public class VMStackFrame extends VMDebugElement implements IStackFrame
 		return fThread;
 	}
 		
-	@SuppressWarnings("null")
 	public @NonNull URI getUnitURI() {
 		return URI.createURI(getLocation().getURI());
 	}

@@ -129,7 +129,7 @@ public class UMLConstraintLocator extends AbstractPivotConstraintLocator
 		if (!uriFragment.startsWith("//")) {
 			uriFragment = "//" + uriFragment;		// FIXME regularize this ?? UML2Ecore
 		}
-		@SuppressWarnings("null")@NonNull URI constrainingURI = URI.createURI(nsURI).appendFragment(uriFragment);
+		@NonNull URI constrainingURI = URI.createURI(nsURI).appendFragment(uriFragment);
 		return new ConstrainingURI(constrainingURI);
 	}
 
@@ -147,7 +147,7 @@ public class UMLConstraintLocator extends AbstractPivotConstraintLocator
 						Constraint umlConstraint = (Constraint)eObject;
 						Element contextElement = umlConstraint.getContext();
 						if (contextElement instanceof Type) {
-							@SuppressWarnings("null")@NonNull String label = String.valueOf(umlConstraint.getName());
+							@NonNull String label = String.valueOf(umlConstraint.getName());
 	/*					LeafConstrainingNode constraint = validityModel.createLeafConstrainingNode();
 						constraint.setConstraintLocator(this);
 						constraint.setConstrainingObject(umlConstraint);
@@ -280,7 +280,7 @@ public class UMLConstraintLocator extends AbstractPivotConstraintLocator
 		if (!uriFragment.startsWith("//")) {
 			uriFragment = "//" + uriFragment;		// FIXME regularize this ?? UML2Ecore
 		}
-		@SuppressWarnings("null")@NonNull URI typeURI = URI.createURI(nsURI).appendFragment(uriFragment);
+		@NonNull URI typeURI = URI.createURI(nsURI).appendFragment(uriFragment);
 		return new TypeURI(typeURI);
 	}
 

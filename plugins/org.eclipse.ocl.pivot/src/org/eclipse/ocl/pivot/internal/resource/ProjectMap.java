@@ -211,8 +211,8 @@ public class ProjectMap extends StandaloneProjectMap
 				IProjectDescriptor projectDescriptor = getProjectDescriptorInternal(genModelURI);
 				Map<URI, String> nsURI2className = genModel2nsURI2className.get(genModelURI);
 				assert nsURI2className != null;
-				@SuppressWarnings("null")@NonNull URI deresolvedGenModelURI = genModelURI.deresolve(projectDescriptor.getLocationURI(), true, true, true);
-				@SuppressWarnings("null")@NonNull String genModelString = deresolvedGenModelURI.toString();
+				@NonNull URI deresolvedGenModelURI = genModelURI.deresolve(projectDescriptor.getLocationURI(), true, true, true);
+				@NonNull String genModelString = String.valueOf(deresolvedGenModelURI);
 				IResourceDescriptor resourceDescriptor = projectDescriptor.createResourceDescriptor(genModelString, nsURI2className);
 				GenModelReader genModelReader = new GenModelReader(resourceDescriptor);
 		        InputStream inputStream = null;
@@ -238,7 +238,7 @@ public class ProjectMap extends StandaloneProjectMap
 			if (project.isOpen()) {
 				@SuppressWarnings("null")@NonNull String projectName = project.getName();
 				String projectKey = "/" + projectName + "/";
-				@SuppressWarnings("null")@NonNull URI platformResourceURI = URI.createPlatformResourceURI(projectKey, true);
+				@NonNull URI platformResourceURI = URI.createPlatformResourceURI(projectKey, true);
 				projectDescriptors.put(projectName, createProjectDescriptor(projectName, platformResourceURI));
 			}
 		}

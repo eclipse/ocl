@@ -170,7 +170,7 @@ public class ValidityModel
 			int allResourcesCount = allResources.size();
 			for (int i = 0; i < allResourcesCount; i++) {
 				Resource resource = allResources.get(i);
-				@SuppressWarnings("null")@NonNull String uri = String.valueOf(resource.getURI());
+				@NonNull String uri = String.valueOf(resource.getURI());
 				monitor.subTask("'" + uri + "'");
 				ValidityManager.ANALYZE_RESOURCE.println(uri);
 				Set<EClass> eClasses;

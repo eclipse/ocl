@@ -49,15 +49,15 @@ public class VMLocalValue extends VMValue {
 	}
 	
 	@Override
-	protected List<VMVariableData> requestVariables() throws DebugException {
-		List<VMVariableData> vars = new ArrayList<VMVariableData>();
+	protected List<@NonNull VMVariableData> requestVariables() throws DebugException {
+		List<@NonNull VMVariableData> vars = new ArrayList<@NonNull VMVariableData>();
 		VariableFinder.newInstance(evaluationEnvironment, true).collectChildVars(vmVar.valueObject,
 				VariableFinder.getVariablePath(VariableFinder.parseURI(vmVar.variableURI)), null, vars);
 		return vars;
 	}
 	
 	private static VMVariableData createVmVar(@NonNull String @NonNull [] varPath, LocalValue evalResult, @NonNull VMEvaluationEnvironment evalEnv) {
-		@SuppressWarnings("null")@NonNull String varName = String.valueOf(varPath.length > 0 ? varPath[varPath.length-1] : null);
+		@NonNull String varName = String.valueOf(varPath.length > 0 ? varPath[varPath.length-1] : null);
 		VMVariableData var = new VMVariableData(varName, VariableFinder.createURI(varPath).toString());
 		var.kind = VMVariableData.LOCAL;
 		var.valueObject = evalResult.valueObject;

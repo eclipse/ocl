@@ -399,7 +399,6 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 	}
 
 	@Override
-	@SuppressWarnings("null")
 	public @NonNull URI getASURI(@NonNull URI csURI) {
 		return csURI.appendFileExtension(PivotConstants.OCL_AS_FILE_EXTENSION);
 	}

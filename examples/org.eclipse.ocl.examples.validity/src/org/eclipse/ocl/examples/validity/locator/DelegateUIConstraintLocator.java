@@ -112,7 +112,6 @@ public class DelegateUIConstraintLocator extends DelegateConstraintLocator imple
 				else if (containingRoot != PivotUtil.getContainingModel(environmentFactory.getStandardLibrary().getOclAnyType())) {
 					externalURI = containingRoot.getExternalURI();
 					if (PivotUtilInternal.isASURI(externalURI)) {
-						@SuppressWarnings("null")
 						@NonNull URI uri = URI.createURI(externalURI);
 						externalURI = PivotUtilInternal.getNonASURI(uri).toString();
 					}
@@ -131,7 +130,7 @@ public class DelegateUIConstraintLocator extends DelegateConstraintLocator imple
 			s.append("\n");
 			s.close();
 			java.net.URI documentURI1 = documentStore.toURI();
-			@SuppressWarnings("null")@NonNull URI documentURI2 = URI.createURI(documentURI1.toString());
+			@NonNull URI documentURI2 = URI.createURI(documentURI1.toString());
 			return documentURI2;
 		}
 		

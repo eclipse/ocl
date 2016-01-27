@@ -90,7 +90,7 @@ public class LookupFilterGenerator extends AutoCodeGenerator
 	
 	
 	private @NonNull Set<Property> filteringProps = new HashSet<Property>();
-	private @NonNull Map<CGClass,  List<CGProperty>> cgClass2cgFilteringProps = new HashMap<CGClass, List<CGProperty>>(); 
+	private @NonNull Map<CGClass, @NonNull List<@NonNull CGProperty>> cgClass2cgFilteringProps = new HashMap<CGClass, @NonNull List<@NonNull CGProperty>>(); 
 
 	protected LookupFilterGenerator(@NonNull EnvironmentFactoryInternal environmentFactory, org.eclipse.ocl.pivot.@NonNull Package asPackage,
 			org.eclipse.ocl.pivot.@Nullable Package asSuperPackage, org.eclipse.ocl.pivot.@NonNull Package asBasePackage, @NonNull GenPackage genPackage,
@@ -143,26 +143,30 @@ public class LookupFilterGenerator extends AutoCodeGenerator
 	 *     - filterArg accessed as this.filterArg (NB there might be many filterArgs).
 	 * @throws ParserException 
 	 */
-	private Operation createASMatchesOperation(Operation filteringOp, org.eclipse.ocl.pivot.Class asClass, Variable thisVariable){
+	private Operation createASMatchesOperation(@NonNull Operation filteringOp, org.eclipse.ocl.pivot.@NonNull Class asClass, @NonNull Variable thisVariable){
 		
 		Map<Element,Element> redefinitions = new HashMap<Element,Element>();		
 		ExpressionInOCL oldExpressionInOCL = getExpressionInOCL(filteringOp);
 		ExpressionInOCL newExpressionInOCL = PivotFactory.eINSTANCE.createExpressionInOCL();
 		
-		Operation asOperation = PivotUtil.createOperation("_" + LookupFilterClassContext.MATCHES_OP_NAME, filteringOp.getType(), null, null);
+		Type filteringOpType = filteringOp.getType();
+		assert filteringOpType != null;
+		Operation asOperation = PivotUtil.createOperation("_" + LookupFilterClassContext.MATCHES_OP_NAME, filteringOpType, null, null);
 		asOperation.setBodyExpression(newExpressionInOCL);
 		// Filtering op params are translated as asClass properties
 		LetExp letRoot = null;
 		LetExp letLeaf = null;
 		for (Variable paramVar : oldExpressionInOCL.getOwnedParameters()) {
-			Property asProperty = createNativeProperty(paramVar.getName(), paramVar.getType(), true,
-					true);
+			String paramName = paramVar.getName();
+			Type paramType = paramVar.getType();
+			assert (paramName != null) && (paramType != null);
+			Property asProperty = createNativeProperty(paramName, paramType, true, true);
 			asClass.getOwnedProperties().add(asProperty);
 			
 			// Redefinition requires a Variable access rather than a Property
 			VariableExp asThisVarExp = createThisVariableExp(thisVariable);
 			PropertyCallExp asPropertyAccess = PivotUtil.createPropertyCallExp(asThisVarExp, asProperty);
-			Variable asContextVar = PivotUtil.createVariable(paramVar.getName(), asPropertyAccess);
+			Variable asContextVar = PivotUtil.createVariable(paramName, asPropertyAccess);
 			redefinitions.put(paramVar, asContextVar);
 			filteringProps.add(asProperty);
 			LetExp letExp = PivotFactory.eINSTANCE.createLetExp();
@@ -425,8 +429,8 @@ public class LookupFilterGenerator extends AutoCodeGenerator
 		return ClassUtil.nonNullState(cgIdResolverVariable);
 	}
 
-	public @NonNull List<CGProperty> getFilteringVars(CGClass cgClass) {
-		List<CGProperty> cgProps = cgClass2cgFilteringProps.get(cgClass);
+	public @NonNull List<@NonNull CGProperty> getFilteringVars(CGClass cgClass) {
+		List<@NonNull CGProperty> cgProps = cgClass2cgFilteringProps.get(cgClass);
 		assert(cgProps != null);
 		return cgProps;
 	}

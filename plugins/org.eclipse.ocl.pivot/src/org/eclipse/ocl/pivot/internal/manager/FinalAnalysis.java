@@ -100,8 +100,7 @@ public class FinalAnalysis
 	public @NonNull Iterable<Operation> getOverrides(@NonNull Operation operation, @NonNull CompleteClass completeClass) {
 		Set<Operation> overrides = operation2overrides.get(operation);
 		if (overrides == null) {
-			@SuppressWarnings("null")@NonNull List<Operation> singletonList = Collections.singletonList(operation);
-			return singletonList;
+			return Collections.singletonList(operation);
 		}
 		List<Operation> results = new ArrayList<Operation>();
 		StandardLibraryInternal standardLibrary = completeModel.getStandardLibrary();

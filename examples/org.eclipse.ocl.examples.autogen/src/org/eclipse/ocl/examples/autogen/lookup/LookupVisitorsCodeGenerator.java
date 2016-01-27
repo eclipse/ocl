@@ -608,6 +608,7 @@ public class LookupVisitorsCodeGenerator extends AutoVisitorsCodeGenerator
 		return classContext;
 	}
 
+	@Override
 	public @NonNull CGValuedElement getIdResolverVariable() {
 		// When generating lookup visitors for derived languages, the common lookup visitor is no
 		// not generated. Therefore we have to add this hack to provide CG for idResolver property

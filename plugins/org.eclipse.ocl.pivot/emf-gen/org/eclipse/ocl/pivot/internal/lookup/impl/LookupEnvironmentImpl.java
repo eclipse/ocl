@@ -146,7 +146,7 @@ public class LookupEnvironmentImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public <NE extends NamedElement> LookupEnvironment addElements(final Collection<NE> elements) {
+	public <NE extends NamedElement> LookupEnvironment addElements(final @NonNull Collection<NE> elements) {
 		/**
 		 * LookupEnvironment{namedElements = namedElements->includingAll(elements)}
 		 */
@@ -288,7 +288,7 @@ public class LookupEnvironmentImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({"unchecked", "rawtypes", "null"})
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 			case LookupPackage.LOOKUP_ENVIRONMENT___ADD_ELEMENTS__COLLECTION:

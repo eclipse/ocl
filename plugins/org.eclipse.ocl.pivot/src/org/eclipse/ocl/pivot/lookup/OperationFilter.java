@@ -2,6 +2,7 @@ package org.eclipse.ocl.pivot.lookup;
 
 import java.util.List;
 
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.NamedElement;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Type;
@@ -13,15 +14,15 @@ import org.eclipse.ocl.pivot.internal.lookup.util.PivotLookupFilter;
 public class OperationFilter implements PivotLookupFilter {
 
 
-	private List<Type> args;
+//	private List<Type> args;
 	
 	public OperationFilter(List<Type> args) {
-		this.args = args;
+//		this.args = args;
 	}
 	
 	@Override
-	public boolean matches(NamedElement namedElement) {
-		return namedElement instanceof Operation ? matches((Operation) namedElement) : false;
+	public boolean matches(@NonNull NamedElement namedElement) {
+		return namedElement instanceof Operation ? matches(namedElement) : false;
 	}
 	
 /*	private boolean matches(Operation op) {

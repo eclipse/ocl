@@ -194,7 +194,9 @@ public class UMLOCLEValidator implements EValidator
 
 	protected static void gatherClassifiers(@NonNull Set<Classifier> allClassifiers, @NonNull Set<Constraint> allConstraints, @NonNull Classifier newClassifier) {
 		if (allClassifiers.add(newClassifier)) {
-			allConstraints.addAll(newClassifier.getOwnedRules());
+			List<Constraint> ownedRules = newClassifier.getOwnedRules();
+			assert ownedRules != null;
+			allConstraints.addAll(ownedRules);
 			if (newClassifier instanceof org.eclipse.uml2.uml.Class) {
 				for (Classifier classifier : ((org.eclipse.uml2.uml.Class)newClassifier).getSuperClasses()) {
 					if (classifier != null) {

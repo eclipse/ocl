@@ -1,0 +1,4 @@
+class java/util/Set
+addAll
+ (Ljava/util/Collection<+TE;>;)Z
+ (L1java/util/Collection<+TE;>;)Z

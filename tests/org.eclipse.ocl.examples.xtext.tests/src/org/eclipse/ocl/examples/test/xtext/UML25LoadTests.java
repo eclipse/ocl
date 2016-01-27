@@ -33,7 +33,6 @@ import org.eclipse.uml2.uml.resource.XMI2UMLResource;
 /**
  * Tests that load a model and verify that there are no unresolved proxies as a result.
  */
-@SuppressWarnings("null")
 public class UML25LoadTests extends LoadTests
 {
 	@Override

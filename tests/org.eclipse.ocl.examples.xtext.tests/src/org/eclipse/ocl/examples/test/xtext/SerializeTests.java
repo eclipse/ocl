@@ -59,7 +59,7 @@ public class SerializeTests extends XtextTestCase
 			public void initializeResourceSet(@NonNull ResourceSet resourceSet) {
 				StandaloneProjectMap.IProjectDescriptor projectDescriptor = getProjectMap().getProjectDescriptor("org.eclipse.emf.ecore");
 				if (projectDescriptor != null) {
-					@SuppressWarnings("null")@NonNull URI ecoreURI = URI.createURI(EcorePackage.eNS_URI);
+					@NonNull URI ecoreURI = URI.createURI(EcorePackage.eNS_URI);
 					StandaloneProjectMap.IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(ecoreURI);
 					if (packageDescriptor != null) {
 						packageDescriptor.configure(resourceSet, StandaloneProjectMap.LoadGeneratedPackageStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);
@@ -80,7 +80,7 @@ public class SerializeTests extends XtextTestCase
 		URI referenceURI = getProjectFileURI(referenceName);
 		return doSerialize(ocl, inputURI, stem, referenceURI, options, doCompare, validateSaved);
 	}
-	@SuppressWarnings("null")
+
 	public XtextResource doSerialize(@NonNull OCL ocl, @NonNull URI inputURI, @NonNull String stem, @NonNull URI referenceURI, @Nullable Map<Object, Object> options, boolean doCompare, boolean validateSaved) throws Exception {
 		ResourceSetInitializer resourceSetInitializer = options != null ? (ResourceSetInitializer)options.get(ResourceSetInitializer.class) : null;
 		ResourceSet resourceSet = new ResourceSetImpl();
@@ -119,6 +119,7 @@ public class SerializeTests extends XtextTestCase
 				resourceSetInitializer.initializeResourceSet(ocl2.getResourceSet());
 			}
 			BaseCSResource xtextResource2 = (BaseCSResource) resourceSet.createResource(outputURI);
+			assert xtextResource2 != null;
 			ocl2.getEnvironmentFactory().adapt(xtextResource2);
 			xtextResource2.load(null);
 			Object cs2asErrors = options != null ? options.get("cs2asErrors") : null;
@@ -546,7 +547,7 @@ public class SerializeTests extends XtextTestCase
 	public void testSerialize_RoyalAndLoyal_ecore() throws Exception {
 		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {		// org.eclipse.ocl.examples.project.royalandloyal is not a plugin.
 			OCL ocl = OCL.newInstance(getProjectMap());
-			@SuppressWarnings("null")@NonNull URI inputURI = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.project.royalandloyal/oclsrc/RoyalAndLoyal/RoyalAndLoyal.ecore", true);
+			@NonNull URI inputURI = URI.createPlatformResourceURI("/org.eclipse.ocl.examples.project.royalandloyal/oclsrc/RoyalAndLoyal/RoyalAndLoyal.ecore", true);
 			doSerialize(ocl, inputURI, "RoyalAndLoyal", inputURI, null, true, true);
 			ocl.dispose();
 		}

@@ -75,7 +75,7 @@ public class RegistryTests extends TestCase
 	}
 	
 	public void testCompleteOCLRegistry_Rebuild() {
-		@SuppressWarnings("null")@NonNull URI uriA = URI.createURI("A");
+		@NonNull URI uriA = URI.createURI("A");
 		@SuppressWarnings("null")@NonNull Set<URI> setOf = Sets.newHashSet();
 		@SuppressWarnings("null")@NonNull Set<URI> setOf_A = Sets.newHashSet(uriA);
 		@SuppressWarnings("null")@NonNull ArrayList<String> listOf_a1 = Lists.newArrayList("a1");
@@ -119,7 +119,7 @@ public class RegistryTests extends TestCase
 	 * Confirm that registrations are counted so after adding twice, it remains till removed twice.
 	 */
 	public void testCompleteOCLRegistry_Rebuild_Counted() {
-		@SuppressWarnings("null")@NonNull URI uriA = URI.createURI("A");
+		@NonNull URI uriA = URI.createURI("A");
 		@SuppressWarnings("null")@NonNull Set<URI> setOf = Sets.newHashSet();
 		@SuppressWarnings("null")@NonNull Set<URI> setOf_A = Sets.newHashSet(uriA);
 		@SuppressWarnings("null")@NonNull ArrayList<String> listOf_a1 = Lists.newArrayList("a1");

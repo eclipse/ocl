@@ -69,7 +69,7 @@ public class CompleteOCLRegistryReader extends RegistryReader
 			URI declaredURI = URI.createURI(filePath);
 			String bundleName = "/" + element.getDeclaringExtension().getContributor().getName() + "/";
 			URI bundleURI = URI.createPlatformPluginURI(bundleName, true);
-			@SuppressWarnings("null")@NonNull URI resourceURI = declaredURI.resolve(bundleURI);
+			@NonNull URI resourceURI = declaredURI.resolve(bundleURI);
 			CompleteOCLRegistry.Registration registration = new CompleteOCLRegistry.Registration(resourceURI, nsURIs);
 			if (add) {
 				registry.addRegistration(registration);

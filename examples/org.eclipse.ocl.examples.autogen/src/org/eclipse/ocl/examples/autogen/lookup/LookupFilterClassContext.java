@@ -18,10 +18,10 @@ import org.eclipse.ocl.examples.autogen.java.AutoGlobalContext;
  */
 public class LookupFilterClassContext extends AutoGlobalContext<LookupFilterGenerator>
 {	
-	public static final String APPLIES_FILTER_OP_PREFIX = "_appliesFilter_";
+	public static final @NonNull String APPLIES_FILTER_OP_PREFIX = "_appliesFilter_";
 	
-	public static final String MATCHES_OP_NAME = "matches";
-	public static final String ELEMENT_NAME = "element";
+	public static final @NonNull String MATCHES_OP_NAME = "matches";
+	public static final @NonNull String ELEMENT_NAME = "element";
 	
 	public LookupFilterClassContext(@NonNull LookupFilterGenerator codeGenerator, org.eclipse.ocl.pivot.@NonNull Package asPackage) {
 		super(codeGenerator, asPackage);

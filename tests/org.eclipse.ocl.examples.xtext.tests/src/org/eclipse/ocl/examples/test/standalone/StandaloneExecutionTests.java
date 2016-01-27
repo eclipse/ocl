@@ -33,7 +33,6 @@ import org.eclipse.ocl.examples.standalone.StandaloneApplication;
 import org.eclipse.ocl.examples.standalone.StandaloneResponse;
 import org.eclipse.ocl.examples.validity.locator.AbstractPivotConstraintLocator;
 import org.eclipse.ocl.examples.xtext.tests.TestUtil;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.junit.Test;
 
 public class StandaloneExecutionTests extends StandaloneTestCase
@@ -193,7 +192,7 @@ public class StandaloneExecutionTests extends StandaloneTestCase
 	public void test_nonExistentModelFile() throws CoreException {
 		String textLogFileName = getTextLogFileName();
 		@NonNull String @NonNull [] arguments = new @NonNull String @NonNull []{"validate",
-			"-model", ClassUtil.toString(getProjectFileURI("models/nonExistentModel.ecore")),
+			"-model", String.valueOf(getProjectFileURI("models/nonExistentModel.ecore")),
 			"-rules", inputOCLFileName,
 			"-output", textLogFileName,
 			"-exporter", TextExporter.EXPORTER_TYPE};
@@ -206,7 +205,7 @@ public class StandaloneExecutionTests extends StandaloneTestCase
 		String textLogFileName = getTextLogFileName();
 		@NonNull String @NonNull [] arguments = new @NonNull String @NonNull []{"validate",
 			"-model", inputModelName,
-			"-rules", ClassUtil.toString(getProjectFileURI("models/nonExistentFile.ocl")),
+			"-rules", String.valueOf(getProjectFileURI("models/nonExistentFile.ocl")),
 			"-output", textLogFileName,
 			"-exporter", TextExporter.EXPORTER_TYPE};
 		doOKTest(arguments);				// Missing file is ignored

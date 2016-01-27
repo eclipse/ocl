@@ -211,9 +211,7 @@ public abstract class PathNameDeclCSImpl
 		if ((pElement == null) || pElement.eIsProxy()) {
 			return PivotMetamodelManager.EMPTY_ELEMENT_LIST;
 		}
-		@SuppressWarnings("null")
-		@NonNull
-		List<Element> singletonList = Collections
+		@NonNull List<Element> singletonList = Collections
 			.<Element> singletonList(pElement);
 		return singletonList;
 	}

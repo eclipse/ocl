@@ -115,7 +115,7 @@ public class PivotConstraintLocator extends AbstractConstraintLocator
 							Constraint asConstraint = (Constraint)eObject;
 							EObject esObject = getConstrainedESObject(environmentFactory, asConstraint);
 							if (esObject != null) {
-								@SuppressWarnings("null")@NonNull String label = String.valueOf(asConstraint.getName());
+								@NonNull String label = String.valueOf(asConstraint.getName());
 								map = createLeafConstrainingNode(map, validityModel, esObject, asConstraint, label);
 							}
 						}

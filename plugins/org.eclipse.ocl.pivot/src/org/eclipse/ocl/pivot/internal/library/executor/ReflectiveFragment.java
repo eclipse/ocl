@@ -113,13 +113,11 @@ public abstract class ReflectiveFragment extends AbstractFragment
 	}
 
 	@Override
-	@SuppressWarnings("null")
 	public @NonNull Iterable<? extends Operation> getLocalOperations() {
 		return operationMap != null ? operationMap.keySet() : Collections.<Operation>emptyList();
 	}
 	
 	@Override
-	@SuppressWarnings("null")
 	public @NonNull Iterable<? extends Property> getLocalProperties() {
 		return propertyMap != null ? propertyMap.keySet() : Collections.<Property>emptyList();
 	}

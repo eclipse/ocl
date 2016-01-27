@@ -96,7 +96,9 @@ public class PruneSuperClasses extends WorkflowComponentWithModelSlot
 						List<EClass> superTypes = new ArrayList<EClass>(eSuperTypes);
 						Set<EClass> superSuperTypes = new HashSet<EClass>();
 						for (EClass superType : superTypes) {
-							superSuperTypes.addAll(superType.getEAllSuperTypes());
+							List<EClass> eAllSuperTypes = superType.getEAllSuperTypes();
+							assert eAllSuperTypes != null;
+							superSuperTypes.addAll(eAllSuperTypes);
 						}
 						superTypes.removeAll(superSuperTypes);
 						Orderer orderer = new Orderer(orderedNames, superTypes);

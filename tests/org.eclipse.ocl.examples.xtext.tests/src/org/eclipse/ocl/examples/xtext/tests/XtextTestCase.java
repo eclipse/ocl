@@ -523,7 +523,7 @@ public class XtextTestCase extends PivotTestCase
 	}
 
 	@SuppressWarnings("deprecation")
-	protected Resource loadEcore(@NonNull URI inputURI) {
+	protected @NonNull Resource loadEcore(@NonNull URI inputURI) {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		ProjectMap.initializeURIResourceMap(resourceSet);
 		Map<URI, URI> uriMap = resourceSet.getURIConverter().getURIMap();

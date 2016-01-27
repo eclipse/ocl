@@ -153,7 +153,7 @@ public class VariableFinder
 	public static @NonNull String @NonNull [] getVariablePath(@NonNull URI variableURI) {
 		@NonNull String @NonNull [] ids = new @NonNull String[variableURI.segmentCount()];
 		for (int i = 0; i < ids.length; i++) {
-			ids[i] = ClassUtil.toString(URI.decode(variableURI.segment(i)));
+			ids[i] = String.valueOf(URI.decode(variableURI.segment(i)));
 		}
 		return ids;
 	}
@@ -162,7 +162,6 @@ public class VariableFinder
 		return vmEvaluationEnvironment.createVariableFinder(isStoreValues);
 	}
 
-	@SuppressWarnings("null")
 	public static @NonNull URI parseURI(String variableURI) throws IllegalArgumentException {
 		return URI.createURI(variableURI);
 	}
@@ -212,7 +211,7 @@ public class VariableFinder
 		} else if (value instanceof Resource) {
 			Resource resource = (Resource) value;
 //			EClass eClass = eObject.eClass();
-			@SuppressWarnings("null")@NonNull String strVal = String.valueOf(resource.getURI());
+			@NonNull String strVal = String.valueOf(resource.getURI());
 			vmValue = new VMValueData(VMValueData.RESOURCE, strVal, true);
 			@SuppressWarnings("null")@NonNull String className = resource.getClass().getSimpleName();
 			vmType = new VMTypeData(VMTypeData.EOBJECT, className, declaredTypeName);
@@ -263,7 +262,7 @@ public class VariableFinder
 			
 		} else {
 			// everything else we see as a data type
-			@SuppressWarnings("null")@NonNull String valueOf = String.valueOf(value);
+			@NonNull String valueOf = String.valueOf(value);
 			if (value.getClass().equals(String.class)) {
 				valueOf = "'" + valueOf + "'";
 			}
@@ -285,7 +284,7 @@ public class VariableFinder
 		fIsStoreValues = isStoreValues;
 	}
 	
-	public void collectChildVars(Object root, @NonNull String @NonNull [] parentPath, @Nullable String containerType, @NonNull List<VMVariableData> result) {
+	public void collectChildVars(Object root, @NonNull String @NonNull [] parentPath, @Nullable String containerType, @NonNull List<@NonNull VMVariableData> result) {
 		@NonNull String childPath @NonNull [] = new @NonNull String[parentPath.length + 1];
 		System.arraycopy(parentPath, 0, childPath, 0, parentPath.length);
 		
@@ -319,7 +318,7 @@ public class VariableFinder
 				uriBuf.append(index < 0 ? 0 : index);
 				uriBuf.append('.').append(feature.getName());
 				
-				childPath[childPath.length - 1] = ClassUtil.toString(uriBuf);
+				childPath[childPath.length - 1] = String.valueOf(uriBuf);
 				VMVariableData elementVar = createFeatureVar(feature, getValue(feature, eObject), createURI(childPath).toString());
 				result.add(elementVar);
 				
@@ -346,7 +345,7 @@ public class VariableFinder
 			
 			int i = 0;
 			for (Object element : elements) {
-				childPath[childPath.length - 1] = ClassUtil.toString(i);
+				childPath[childPath.length - 1] = String.valueOf(i);
 				VMVariableData elementVar;
 //				if(asDictionary == null) {
 					elementVar = createCollectionElementVar(i, element, elementType, createURI(childPath).toString());
@@ -372,7 +371,7 @@ public class VariableFinder
 			
 			int i = 0;
 			for (Object element : elements) {
-				childPath[childPath.length - 1] = ClassUtil.toString(i);
+				childPath[childPath.length - 1] = String.valueOf(i);
 				VMVariableData elementVar;
 //				if(asDictionary == null) {
 					elementVar = createCollectionElementVar(i, element, elementType, createURI(childPath).toString());
@@ -440,7 +439,7 @@ public class VariableFinder
 		return result;
 	}
 
-	public void find(@NonNull String @NonNull [] objectPath, boolean fetchChildVariables, @NonNull List<VMVariableData> result) {
+	public void find(@NonNull String @NonNull [] objectPath, boolean fetchChildVariables, @NonNull List<@NonNull VMVariableData> result) {
 		if (result.contains(null)) {
 			throw new IllegalArgumentException("null result variables"); //$NON-NLS-1$
 		}
@@ -846,7 +845,7 @@ public class VariableFinder
 
 		@NonNull String @NonNull [] variablePath = getVariablePath(variableURI);
 		
-		List<VMVariableData> variables = new ArrayList<VMVariableData>();
+		List<@NonNull VMVariableData> variables = new ArrayList<@NonNull VMVariableData>();
 		find(variablePath, request.includeChildVars, variables);
 
 		if (variables.isEmpty()) {
@@ -879,7 +878,7 @@ public class VariableFinder
 		} else if (value instanceof Resource) {
 			Resource resource = (Resource) value;
 //			EClass eClass = eObject.eClass();
-			@SuppressWarnings("null")@NonNull String strVal = String.valueOf(resource.getURI());
+			@NonNull String strVal = String.valueOf(resource.getURI());
 			vmValue = new VMValueData(VMValueData.RESOURCE, strVal, true);
 			@SuppressWarnings("null")@NonNull String className = resource.getClass().getSimpleName();
 			vmType = new VMTypeData(VMTypeData.EOBJECT, className, declaredTypeName);
@@ -930,7 +929,7 @@ public class VariableFinder
 			
 		} else {
 			// everything else we see as a data type
-			@SuppressWarnings("null")@NonNull String valueOf = String.valueOf(value);
+			@NonNull String valueOf = String.valueOf(value);
 			if (value.getClass().equals(String.class)) {
 				valueOf = "'" + valueOf + "'";
 			}

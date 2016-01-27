@@ -108,10 +108,10 @@ public class DelegateInstaller
 	public static @Nullable String getDelegateURI(@NonNull EPackage ePackage) {
 		Set<String> allURIs = new HashSet<String>();
 //		allURIs.addAll(EcoreUtil.getConversionDelegates(ePackage));
-		allURIs.addAll(EcoreUtil.getInvocationDelegates(ePackage));
+		allURIs.addAll(ClassUtil.nonNull(EcoreUtil.getInvocationDelegates(ePackage)));
 //		allURIs.addAll(EcoreUtil.getQueryDelegates(ePackage));
-		allURIs.addAll(EcoreUtil.getSettingDelegates(ePackage));
-		allURIs.addAll(EcoreUtil.getValidationDelegates(ePackage));
+		allURIs.addAll(ClassUtil.nonNull(EcoreUtil.getSettingDelegates(ePackage)));
+		allURIs.addAll(ClassUtil.nonNull(EcoreUtil.getValidationDelegates(ePackage)));
 		String theURI = null;
 		for (String uri : allURIs) {
 			if (uri.startsWith(OCLConstants.OCL_DELEGATE_URI)) {

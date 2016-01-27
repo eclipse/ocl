@@ -137,7 +137,7 @@ public final class DebugAction extends Action
 //			}
 			s.close();
 			java.net.URI documentURI1 = documentStore.toURI();
-			@SuppressWarnings("null")@NonNull URI documentURI2 = URI.createURI(documentURI1.toString());
+			@NonNull URI documentURI2 = URI.createURI(documentURI1.toString());
 			return documentURI2;
 		}
 		

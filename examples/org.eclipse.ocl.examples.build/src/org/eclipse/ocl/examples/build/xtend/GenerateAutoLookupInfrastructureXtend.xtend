@@ -150,22 +150,19 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateVisitorsXtend
 	
 	public class «projectPrefix»LookupResultImpl<NE> implements «projectPrefix»LookupResult<NE> {
 		
-		private List<NE> results = new ArrayList<NE>();
+		private @NonNull List<NE> results = new ArrayList<NE>();
 		
 		public «projectPrefix»LookupResultImpl(List<NE> results){
 			this.results.addAll(results);
 		}
 		
-		@SuppressWarnings("null")
 		@Override
-		@NonNull
-		public List<NE> getAllResults() {
+		public @NonNull List<NE> getAllResults() {
 			return Collections.unmodifiableList(results);
 		}
 		
 		@Override
-		@Nullable
-		public NE getSingleResult() {
+		public @Nullable NE getSingleResult() {
 			return results.size() == 0 ? null : results.get(0);
 		}
 		
@@ -300,7 +297,8 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateVisitorsXtend
 			if (namedElement != null) {
 				if (name.equals(namedElement.getName())) {
 					if (typeFilter.isInstance(namedElement)) {
-						if (expFilter == null || (expFilter != null /*null analysis bug? */ && expFilter.matches(namedElement))) {
+					    «projectPrefix»LookupFilter expFilter2 = expFilter;
+						if (expFilter2 == null || expFilter2.matches(namedElement)) {
 							List<NamedElement> elements = getNamedElements();
 							if (!elements.contains(namedElement)) { 	// FIXME use a set ?
 								elements.add(namedElement);
@@ -427,6 +425,7 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateVisitorsXtend
 		writer.append('''
 	«ePackage.generateHeader(lookupArtifactsJavaPackage)»
 
+	import org.eclipse.jdt.annotation.NonNull;
 	import org.eclipse.ocl.pivot.evaluation.Executor;
 	import «visitorPackageName».«projectPrefix»UnqualifiedLookupVisitor;
 	import «visitorPackageName».«projectPrefix»QualifiedLookupVisitor;
@@ -436,10 +435,10 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateVisitorsXtend
 	
 	public class «className»«IF isDerived» extends «superClassName»«ENDIF» {
 		
-		«IF !isDerived»protected Executor executor;
+		«IF !isDerived»protected final @NonNull Executor executor;
 		
 		«ENDIF»
-		public «className» (Executor executor) {
+		public «className» (@NonNull Executor executor) {
 			«IF isDerived»
 			super(executor);
 			«ELSE»
@@ -458,7 +457,7 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateVisitorsXtend
 		
 		public «projectPrefix»LookupResult<«typeFQName»> «opName»(«getTypeFQName(op.owningClass)» context«FOR param:op.ownedParameters», «getTypeFQName(param.type)» «param.name»«ENDFOR») {
 			«IF hasAdditionalFilter»
-			«op.type.name»Filter filter = new «op.type.name»Filter(executor,«op.getFilterArgs»);
+			«op.type.name»Filter filter = new «op.type.name»Filter(executor, «op.getFilterArgs»);
 			«ENDIF»
 			«projectPrefix»SingleResultLookupEnvironment _lookupEnv = new «projectPrefix»SingleResultLookupEnvironment(executor, «fqPackageItf».Literals.«typeLiteral»«lookupVars»);
 			«lookupVisitorName» _lookupVisitor = new «lookupVisitorName»(_lookupEnv«IF isExportedLookup», importer«ENDIF»);

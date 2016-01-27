@@ -59,8 +59,8 @@ import org.eclipse.ocl.pivot.utilities.ValueUtil;
  */
 public abstract class AbstractTransformerInternal implements Transformer
 {	
-	private static final @SuppressWarnings("null")@NonNull List<Integer> EMPTY_INDEX_LIST = Collections.emptyList();
-	private static final @SuppressWarnings("null")@NonNull List<EObject> EMPTY_EOBJECT_LIST = Collections.emptyList();
+	private static final @NonNull List<Integer> EMPTY_INDEX_LIST = Collections.emptyList();
+	private static final @NonNull List<EObject> EMPTY_EOBJECT_LIST = Collections.emptyList();
 
 	/**
 	 * Simple SlotState describing a DataType element or 1:1 Object navigation.

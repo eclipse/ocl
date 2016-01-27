@@ -24,7 +24,6 @@ import org.eclipse.ocl.examples.standalone.StandaloneCommand;
 import org.eclipse.ocl.examples.standalone.StandaloneCommand.CommandToken;
 import org.eclipse.ocl.examples.standalone.StandaloneCommandAnalyzer;
 import org.eclipse.ocl.examples.standalone.validity.ValidateCommand;
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.junit.Test;
 
 import com.google.common.collect.Lists;
@@ -193,7 +192,7 @@ public class StandaloneParserTests extends StandaloneTestCase
 	@Test
 	public void test_nonExistentModel() throws CoreException {
 		@NonNull String @NonNull [] arguments = new @NonNull String @NonNull []{"validate",
-			"-model", ClassUtil.toString(getProjectFileURI("models/nonExistent.ecore")),
+			"-model", String.valueOf(getProjectFileURI("models/nonExistent.ecore")),
 			"-rules", inputOCLFileName,
 			"-output", getTextLogFileName(),
 			"-exporter", TextExporter.EXPORTER_TYPE};
@@ -206,7 +205,7 @@ public class StandaloneParserTests extends StandaloneTestCase
 	public void test_nonExistentOclFile() throws CoreException {
 		@NonNull String @NonNull [] arguments = new @NonNull String @NonNull []{"validate",
 			"-model", inputModelName,
-			"-rules", ClassUtil.toString(getProjectFileURI("models/nonExistent.ocl")),
+			"-rules", String.valueOf(getProjectFileURI("models/nonExistent.ocl")),
 			"-output", getTextLogFileName(),
 			"-exporter", TextExporter.EXPORTER_TYPE};
 		ValidateCommand command = parseCommand(ValidateCommand.class, arguments);

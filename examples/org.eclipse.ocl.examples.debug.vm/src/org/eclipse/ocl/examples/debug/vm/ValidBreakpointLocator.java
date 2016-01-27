@@ -27,9 +27,9 @@ import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 
 public class ValidBreakpointLocator
 {
-	public static final @SuppressWarnings("null")@NonNull Boolean IS_START = Boolean.TRUE;
-	public static final @SuppressWarnings("null")@NonNull Boolean IS_END = Boolean.FALSE;
-	private static final @SuppressWarnings("null")@NonNull List<Element> NO_ELEMENTS = Collections.emptyList();
+	public static final @NonNull Boolean IS_START = Boolean.TRUE;
+	public static final @NonNull Boolean IS_END = Boolean.FALSE;
+	private static final @NonNull List<Element> NO_ELEMENTS = Collections.emptyList();
 	
 	private final @NonNull AbstractExtendingVisitor<Boolean, Object> visitor;
 

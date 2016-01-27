@@ -128,7 +128,7 @@ public class EditTests extends XtextTestCase
 	}
 
 	protected @NonNull Resource getEcoreFromCS(@NonNull OCL ocl, @NonNull String testDocument, @NonNull URI ecoreURI) throws IOException {
-		@SuppressWarnings("null")@NonNull URI xtextURI = URI.createURI("test.oclinecore");
+		@NonNull URI xtextURI = URI.createURI("test.oclinecore");
 		CSResource xtextResource = ocl.getCSResource(xtextURI, testDocument);
 		assertNoResourceErrors("Loading Xtext", xtextResource);
 		Resource asResource = cs2as(ocl, xtextResource, null);
@@ -1045,7 +1045,7 @@ public class EditTests extends XtextTestCase
 //			URI outputURI = getProjectFileURI("test.ocl");
 			ProjectManager projectMap = ocl.getProjectManager();
 			projectMap.initializeResourceSet(ocl.getResourceSet());
-			@SuppressWarnings("null")@NonNull URI libURI = URI.createPlatformResourceURI("org.eclipse.ocl.pivot/model/OCL-2.5.oclstdlib", true);
+			@NonNull URI libURI = URI.createPlatformResourceURI("org.eclipse.ocl.pivot/model/OCL-2.5.oclstdlib", true);
 			xtextResource = ocl.getCSResource(libURI);
 			asResource = cs2as(ocl, xtextResource, null);
 			assertNoResourceErrors("Loading", xtextResource);

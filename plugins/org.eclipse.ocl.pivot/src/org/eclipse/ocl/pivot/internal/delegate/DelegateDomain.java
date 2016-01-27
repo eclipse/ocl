@@ -88,7 +88,6 @@ public interface DelegateDomain {
 		}
 	}
 
-	@SuppressWarnings("null")
 	static final @NonNull List<DelegateDomain> EMPTY_LIST = Collections.emptyList();
 
 	/**

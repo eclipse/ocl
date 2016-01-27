@@ -57,14 +57,12 @@ public class VMBreakpointManager
 		return fUnitManager;
 	}
 	
-	@SuppressWarnings("null")
 	public synchronized @NonNull List<VMBreakpoint> getBreakpoints(Element e) {
 		VMBreakpoint breakpoint = fElement2Breakpoint.get(e);
 		return (breakpoint != null) ? Collections.singletonList(breakpoint) : Collections.<VMBreakpoint>emptyList();
 	}
 	
 	
-	@SuppressWarnings("null")
 	public synchronized @Nullable VMBreakpoint createBreakpoint(VMNewBreakpointData data) {
     	// FIXME - raise CoreEXxc... for invalid uris
     	URI uri = URI.createURI(data.getTargetURI());

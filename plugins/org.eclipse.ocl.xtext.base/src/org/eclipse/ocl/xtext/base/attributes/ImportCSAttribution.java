@@ -97,7 +97,7 @@ public class ImportCSAttribution extends AbstractAttribution implements Unresolv
 			BaseCSResource csResource = (BaseCSResource) target.eResource();
 			@NonNull URI uri2;
 			try {
-				@SuppressWarnings("null") @NonNull URI newURI = URI.createURI(name);
+				 @NonNull URI newURI = URI.createURI(name);
 				newURI = csResource.resolve(newURI);
 				if (newURI.equals(uri)) {
 					return;

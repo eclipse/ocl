@@ -56,13 +56,13 @@ public class PDEUtils
 		IResource underlyingResource = activeModel.getUnderlyingResource();
 		if (underlyingResource != null) {
 			String projectPath = underlyingResource.getProject().getFullPath().toString() + "/";
-			@SuppressWarnings("null")@NonNull URI projectURI = URI.createPlatformResourceURI(projectPath, true);
+			@NonNull URI projectURI = URI.createPlatformResourceURI(projectPath, true);
 			return projectURI;
 		}
 		else {
 			BundleDescription bundleDescription = activeModel.getBundleDescription();
 			String bundlePath = bundleDescription.getSymbolicName() + "/";
-			@SuppressWarnings("null")@NonNull URI bundleURI = URI.createPlatformPluginURI(bundlePath, true);
+			@NonNull URI bundleURI = URI.createPlatformPluginURI(bundlePath, true);
 			return bundleURI;
 		}
 	}
@@ -101,7 +101,7 @@ public class PDEUtils
 			}
 		}
 		URI resourceURI = URI.createURI(resourceAttribute.getValue());
-		@SuppressWarnings("null")@NonNull URI resolvedResourceURI = resourceURI.resolve(location);
+		@NonNull URI resolvedResourceURI = resourceURI.resolve(location);
 		return new CompleteOCLRegistry.Registration(resolvedResourceURI, nsURIs);
 	}
 }

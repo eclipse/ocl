@@ -130,7 +130,7 @@ public abstract class LoadableConstraintProvider extends XmlConstraintProvider
 
 	protected void installDescriptor(@NonNull XmlConstraintDescriptor descriptor, String namespaceIdentifier, @NonNull Set<Category> categories) {
 		String path = descriptor.getParameterValue("path");
-		@SuppressWarnings("null")@NonNull URI uri = URI.createPlatformPluginURI("/" + namespaceIdentifier + "/" + path, true);
+		@NonNull URI uri = URI.createPlatformPluginURI("/" + namespaceIdentifier + "/" + path, true);
 		load(getOCL().getEnvironmentFactory(), uri, categories);
 	}
 
@@ -170,12 +170,18 @@ public abstract class LoadableConstraintProvider extends XmlConstraintProvider
 		for (IModelConstraint constraint : oldConstraints) {
 			IConstraintDescriptor descriptor = constraint.getDescriptor();
 			if (descriptor != null) {
-				categories.addAll(descriptor.getCategories());
+				Set<Category> descriptorCategories = descriptor.getCategories();
+				if (descriptorCategories != null) {
+					categories.addAll(descriptorCategories);
+				}
 			}
 		}
 		Set<IConstraintDescriptor> allDescriptors = new HashSet<IConstraintDescriptor>();
 		for (Category category : categories) {
-			allDescriptors.addAll(category.getConstraints());
+			Set<IConstraintDescriptor> constraints = category.getConstraints();
+			if (constraints != null) {
+				allDescriptors.addAll(constraints);
+			}
 		}
 		for (IConstraintDescriptor descriptor : allDescriptors) {
 			if (!(descriptor instanceof LoadableConstraintDescriptor)) {

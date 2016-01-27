@@ -39,7 +39,6 @@ import org.eclipse.ocl.pivot.utilities.TypeUtil;
 
 public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 {
-	@SuppressWarnings("null")
 	public static final @NonNull List<CompleteInheritance> EMPTY_INHERITANCES = Collections.emptyList();
 	protected final @NonNull EcoreReflectivePackage evaluationPackage;
 	protected final @NonNull EClassifier eClassifier;

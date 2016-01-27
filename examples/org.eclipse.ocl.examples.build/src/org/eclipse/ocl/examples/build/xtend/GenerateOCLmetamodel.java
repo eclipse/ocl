@@ -150,7 +150,7 @@ public abstract class GenerateOCLmetamodel extends GenerateOCLCommonXtend
 
 	@Override
 	protected @NonNull Set<PrimitiveType> getAllPrimitiveTypes(@NonNull Model root) {
-		@SuppressWarnings("null")@NonNull Set<PrimitiveType> emptySet = Collections.emptySet();
+		@NonNull Set<PrimitiveType> emptySet = Collections.emptySet();
 		return emptySet;
 	}
 	
@@ -179,7 +179,7 @@ public abstract class GenerateOCLmetamodel extends GenerateOCLCommonXtend
 			issues.addError(this, "Unknown project '" + projectName + "'", null, null, null);
 			return;
 		}
-		@SuppressWarnings("null")@NonNull URI nsURI = URI.createURI(PivotPackage.eNS_URI);
+		@NonNull URI nsURI = URI.createURI(PivotPackage.eNS_URI);
 		StandaloneProjectMap.IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(nsURI);
 //	    if (packageDescriptor != null) {
 //	    	packageDescriptor.configure(asResourceSet, LoadDynamicResourceStrategy.INSTANCE, null);

@@ -850,8 +850,8 @@ public class UsageTests
 			String testProjectPath = /*EMFPlugin.IS_ECLIPSE_RUNNING ? testProjectName :*/ ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS;
 			if (EMFPlugin.IS_ECLIPSE_RUNNING) {
 				doDelete(ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS);
-				@SuppressWarnings("null")@NonNull URI ecoreURI = URI.createPlatformPluginURI("/" + ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS + "/model/SysML_ValueTypes_QUDV.ecore", true);
-				@SuppressWarnings("null")@NonNull URI genModelURI = URI.createPlatformPluginURI("/" + ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS + "/model/SysML_ValueTypes_QUDV.genmodel", true);
+				@NonNull URI ecoreURI = URI.createPlatformPluginURI("/" + ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS + "/model/SysML_ValueTypes_QUDV.ecore", true);
+				@NonNull URI genModelURI = URI.createPlatformPluginURI("/" + ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS + "/model/SysML_ValueTypes_QUDV.genmodel", true);
 				IProject project = TestUtil.createJavaProject(ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS);
 				TestUtil.createClassPath(project, new @NonNull String @NonNull []{"src-gen"});
 				TestUtil.createManifest(project, testProjectPath,
@@ -864,7 +864,7 @@ public class UsageTests
 			else {
 				doDelete(testProjectName);
 			}
-			@SuppressWarnings("null")@NonNull URI genModelURI = URI.createPlatformResourceURI("/" + ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS + "/model/SysML_ValueTypes_QUDV.genmodel", true);
+			@NonNull URI genModelURI = URI.createPlatformResourceURI("/" + ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS + "/model/SysML_ValueTypes_QUDV.genmodel", true);
 			if (!ocl.getResourceSet().getURIConverter().exists(genModelURI, null)) {
 				return;
 			}			
@@ -909,8 +909,8 @@ public class UsageTests
 			String testProjectPath = /*EMFPlugin.IS_ECLIPSE_RUNNING ? testProjectName :*/ ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS;
 			if (EMFPlugin.IS_ECLIPSE_RUNNING) {
 				doDelete(ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS);
-				@SuppressWarnings("null")@NonNull URI ecoreURI = URI.createPlatformPluginURI("/" + ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS + "/model/Company.ecore", true);
-				@SuppressWarnings("null")@NonNull URI genModelURI = URI.createPlatformPluginURI("/" + ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS + "/model/CodeGenCompany.genmodel", true);
+				@NonNull URI ecoreURI = URI.createPlatformPluginURI("/" + ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS + "/model/Company.ecore", true);
+				@NonNull URI genModelURI = URI.createPlatformPluginURI("/" + ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS + "/model/CodeGenCompany.genmodel", true);
 				IProject project = TestUtil.createJavaProject(ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS);
 				TestUtil.createClassPath(project, new @NonNull String @NonNull []{"src-gen"});
 				TestUtil.createManifest(project, testProjectPath,
@@ -923,7 +923,7 @@ public class UsageTests
 			else {
 				doDelete(testProjectName);
 			}
-			@SuppressWarnings("null")@NonNull URI genModelURI = URI.createPlatformResourceURI("/" + ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS + "/model/CodeGenCompany.genmodel", true);
+			@NonNull URI genModelURI = URI.createPlatformResourceURI("/" + ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_TESTRESULTS + "/model/CodeGenCompany.genmodel", true);
 			if (!ocl.getResourceSet().getURIConverter().exists(genModelURI, null)) {
 				return;
 			}			

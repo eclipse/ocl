@@ -63,7 +63,7 @@ public abstract class VMToggleBreakpointAdapter implements IToggleBreakpointsTar
 			}
 		}
 
-		@SuppressWarnings("null")@NonNull URI sourceURI = URI.createPlatformResourceURI(unitFile.getFullPath().toString(), true);
+		@NonNull URI sourceURI = URI.createPlatformResourceURI(unitFile.getFullPath().toString(), true);
 		final VMLineBreakpoint lineBreakpoint = new OCLLineBreakpoint(sourceURI, lineNumber);
 		lineBreakpoint.register(true);
         
