@@ -716,17 +716,29 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 	}
 
 	protected def String generateHeader(/*@NonNull*/ EPackage ePackage, String javaPackage) {
+		generateHeader(ePackage,javaPackage, null);
+	}
+	
+	protected def String generateHeaderWithTemplate(/*@NonNull*/ EPackage ePackage, String javaPackage) {
+		generateHeader(ePackage,javaPackage, class.canonicalName);
+	}
+	
+	protected def String generateHeader(EPackage ePackage, String javaPackage, String template) {
 		'''
 		/*******************************************************************************
 		 * «MergeWriter.getCopyright(copyright).replace("\n", "\n* ")»
 		 *
 		 * This code is auto-generated
 		 * from: «projectName»/«sourceFile»
+		 «IF template != null»
+		 * template: «template»
+		 «ENDIF»
 		 *
 		 * Only the copyright statement is editable.
 		 *******************************************************************************/
 		package	«javaPackage»;
-		'''
+		'''	
+		
 	}
 
 	protected def void generateVisitableInterface(/*@NonNull*/ GenPackage genPackage) {
