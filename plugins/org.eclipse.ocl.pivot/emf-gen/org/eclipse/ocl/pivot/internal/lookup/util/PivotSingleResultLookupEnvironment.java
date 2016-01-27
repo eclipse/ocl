@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -70,7 +69,7 @@ public class PivotSingleResultLookupEnvironment extends LookupEnvironmentImpl   
 			if (name.equals(namedElement.getName())) {
 				if (typeFilter.isInstance(namedElement)) {
 					if (expFilter == null || (expFilter != null /*null analysis bug? */ && expFilter.matches(namedElement))) {
-						EList<NamedElement> elements = getNamedElements();
+						List<NamedElement> elements = getNamedElements();
 						if (!elements.contains(namedElement)) { 	// FIXME use a set ?
 							elements.add(namedElement);
 						}
