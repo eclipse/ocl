@@ -552,7 +552,7 @@ public class JavaStream
 		append(" «codeGenHelper.getCopyright(' * ')»\n");
 		append("\n");
 		append(" This code is 100% auto-generated\n");
-		append(" using: " + getClass().getName() + "\n");
+		append(" using: " + getCodeGenerator().getClass().getName() + "\n");
 		append("\n");
 		append(" Do not edit it.\n");
 		append("*******************************************************************************/\n");

@@ -109,7 +109,7 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateVisitorsXtend
 		if (!isDerived) {
 			var MergeWriter writer = new MergeWriter(lookupArtifactsOutputFolder + projectPrefix + "LookupResult.java");
 			writer.append('''
-	«ePackage.generateHeader(lookupArtifactsJavaPackage)»
+	«ePackage.generateHeaderWithTemplate(lookupArtifactsJavaPackage)»
 	
 	import java.util.List;
 	
@@ -139,7 +139,7 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateVisitorsXtend
 		if (!isDerived) {
 			var MergeWriter writer = new MergeWriter(lookupArtifactsOutputFolder + projectPrefix + "LookupResultImpl.java");
 			writer.append('''
-	«ePackage.generateHeader(lookupArtifactsJavaPackage)»
+	«ePackage.generateHeaderWithTemplate(lookupArtifactsJavaPackage)»
 	
 	import java.util.ArrayList;
 	import java.util.Collections;
@@ -182,7 +182,7 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateVisitorsXtend
 			val itfName =  '''«projectPrefix»LookupFilter'''
 			val MergeWriter writer = new MergeWriter(lookupArtifactsOutputFolder + itfName + ".java");
 			writer.append('''
-	«ePackage.generateHeader(lookupArtifactsJavaPackage)»
+	«ePackage.generateHeaderWithTemplate(lookupArtifactsJavaPackage)»
 	
 	import org.eclipse.jdt.annotation.NonNull;
 	import «modelPackageName».NamedElement;
@@ -207,7 +207,7 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateVisitorsXtend
 			val itfName =  '''«projectPrefix»LookupFilter'''
 			val MergeWriter writer = new MergeWriter(lookupArtifactsOutputFolder + className + ".java");
 			writer.append('''
-	«ePackage.generateHeader(lookupArtifactsJavaPackage)»
+	«ePackage.generateHeaderWithTemplate(lookupArtifactsJavaPackage)»
 	
 	import org.eclipse.jdt.annotation.NonNull;
 	import «modelPackageName».NamedElement;
@@ -242,7 +242,7 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateVisitorsXtend
 		if (!isDerived) {
 			var MergeWriter writer = new MergeWriter(lookupArtifactsOutputFolder + className+ ".java");
 			writer.append('''
-	«ePackage.generateHeader(lookupArtifactsJavaPackage)»
+	«ePackage.generateHeaderWithTemplate(lookupArtifactsJavaPackage)»
 	
 	import java.util.ArrayList;
 	import java.util.Collection;
@@ -339,80 +339,7 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateVisitorsXtend
 		}
 	}
 	
-	protected def void generateUnqualifiedLookupVisitor(/*@NonNull*/ EPackage ePackage) { 
-		
-		var boolean isDerived = isDerived();
-		var className = projectPrefix + "UnqualifiedLookupVisitor";
-		if (!isDerived) {
-			var MergeWriter writer = new MergeWriter(lookupArtifactsOutputFolder + className+ ".java");
-			writer.append('''
-	«ePackage.generateHeader(lookupArtifactsJavaPackage)»
 	
-	import org.eclipse.jdt.annotation.NonNull;
-	import «lookupPackageName».LookupEnvironment;
-	import «visitorPackageName».Abstract«className»;
-	
-	public class «className» extends Abstract«className» {
-	
-		public «className»(@NonNull LookupEnvironment context) {
-			super(context);
-		}
-	
-	}
-			''');
-			writer.close();
-		}
-	}
-	
-	protected def void generateQualifiedLookupVisitor(/*@NonNull*/ EPackage ePackage) { 
-		
-		var boolean isDerived = isDerived();
-		var className = projectPrefix + "QualifiedLookupVisitor";
-		if (!isDerived) {
-			var MergeWriter writer = new MergeWriter(lookupArtifactsOutputFolder + className+ ".java");
-			writer.append('''
-	«ePackage.generateHeader(lookupArtifactsJavaPackage)»
-	
-	import org.eclipse.jdt.annotation.NonNull;
-	import «lookupPackageName».LookupEnvironment;
-	import «visitorPackageName».Abstract«className»;
-	
-	public class «className» extends Abstract«className» {
-	
-		public «className»(@NonNull LookupEnvironment context) {
-			super(context);
-		}
-	
-	}
-			''');
-			writer.close();
-		}
-	}
-	
-	protected def void generateExportedLookupVisitor(/*@NonNull*/ EPackage ePackage) { 
-		
-		var boolean isDerived = isDerived();
-		var className = projectPrefix + "ExportedLookupVisitor";
-		if (!isDerived) {
-			var MergeWriter writer = new MergeWriter(lookupArtifactsOutputFolder + className+ ".java");
-			writer.append('''
-	«ePackage.generateHeader(lookupArtifactsJavaPackage)»
-	
-	import org.eclipse.jdt.annotation.NonNull;
-	import «lookupPackageName».LookupEnvironment;
-	import «visitorPackageName».Abstract«className»;
-	
-	public class «className» extends Abstract«className» {
-	
-		public «className»(@NonNull LookupEnvironment context, @NonNull Object importer) {
-			super(context, importer);
-		}
-	
-	}
-			''');
-			writer.close();
-		}
-	}
 	
 	protected def void generateAutoLookupSolver(/*@NonNull*/ GenPackage genPackage) {
 		var EPackage ePackage = genPackage.getEcorePackage;
@@ -423,7 +350,7 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateVisitorsXtend
 		var String superClassName = superProjectPrefix + "LookupSolver";
 		var MergeWriter writer = new MergeWriter(lookupArtifactsOutputFolder + className + ".java");
 		writer.append('''
-	«ePackage.generateHeader(lookupArtifactsJavaPackage)»
+	«ePackage.generateHeaderWithTemplate(lookupArtifactsJavaPackage)»
 
 	import org.eclipse.jdt.annotation.NonNull;
 	import org.eclipse.ocl.pivot.evaluation.Executor;
@@ -485,10 +412,6 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateVisitorsXtend
 		ePackage.generateAutoLookupFilterItf;
 		ePackage.generateAutoLookupFilterClass;
 		ePackage.generateSingleResultLookupEnvironment;
-		//ePackage.generateUnqualifiedLookupVisitor;
-		//ePackage.generateQualifiedLookupVisitor;
-		//ePackage.generateExportedLookupVisitor;
-		
 		genPackage.generateAutoLookupSolver;
 	}
 	
