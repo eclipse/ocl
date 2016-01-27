@@ -75,7 +75,7 @@ public class OCL2JavaFileObject extends SimpleJavaFileObject
 		saveClass("bin", qualifiedName, javaCodeSource);
 	}
 
-	public static void saveClass(@NonNull String explicitClassPath, @NonNull String qualifiedName, @NonNull String javaCodeSource) throws Exception {
+	public static void saveClass(@NonNull String explicitClassPath, @NonNull String qualifiedName, @NonNull String javaCodeSource) throws IOException {
 		JavaCompiler compiler2 = compiler;
 		if (compiler2 == null) {
 			throw new IllegalStateException("No JavaCompiler provided by the Java platform - you need to use a JDK rather than a JRE");
