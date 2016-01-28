@@ -2,7 +2,7 @@
  * «codeGenHelper.getCopyright(' * ')»
  *
  * This code is 100% auto-generated
- * using: org.eclipse.ocl.examples.autogen.lookup.LookupVisitorsCodeGenerator
+ * using: org.eclipse.ocl.examples.autogen.lookup.LookupUnqualifiedCodeGenerator
  *
  * Do not edit it.
  ********************************************************************************/
@@ -10,6 +10,7 @@
 package org.eclipse.ocl.pivot.util;
 
 import java.util.Iterator;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -41,9 +42,6 @@ import org.eclipse.ocl.pivot.library.numeric.NumericMinusOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableGreaterThanOperation;
 import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibTables;
-import org.eclipse.ocl.pivot.util.AbstractPivotCommonLookupVisitor;
-import org.eclipse.ocl.pivot.util.Visitable;
-import org.eclipse.ocl.pivot.util.Visitor;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.BagValue;
@@ -54,7 +52,6 @@ import org.eclipse.ocl.pivot.values.SetValue;
 
 public class PivotUnqualifiedLookupVisitor
 	extends AbstractPivotCommonLookupVisitor
-	implements Visitor<LookupEnvironment>
 {
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull RootPackageId PACKid_$metamodel$ = IdManager.getRootPackageId("$metamodel$");
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Lookup = IdManager.getNsURIPackageId("http://www.eclipse.org/ocl/2015/Lookup", null, LookupPackage.eINSTANCE);
@@ -115,10 +112,19 @@ public class PivotUnqualifiedLookupVisitor
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_DataType = TypeId.SET.getSpecializedId(CLSSid_DataType_0);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull CollectionTypeId SET_CLSSid_Package = TypeId.SET.getSpecializedId(CLSSid_Package_0);
     
+    protected final /*@Thrown*/ org.eclipse.ocl.pivot.evaluation.@org.eclipse.jdt.annotation.NonNull Executor executor;
+    protected final /*@Thrown*/ org.eclipse.ocl.pivot.ids.@org.eclipse.jdt.annotation.NonNull IdResolver idResolver;
     protected /*@Thrown*/ java.lang.@org.eclipse.jdt.annotation.Nullable Object child;
     
     public PivotUnqualifiedLookupVisitor(@NonNull LookupEnvironment context) {
         super(context);
+        this.executor = context.getExecutor();
+        this.idResolver = executor.getIdResolver();
+    }
+    
+    @Override
+    protected @Nullable LookupEnvironment doVisiting(@NonNull Visitable visitable) {
+        return parentEnv((EObject)visitable);
     }
     
     /**
@@ -133,11 +139,6 @@ public class PivotUnqualifiedLookupVisitor
         else {
             return context;
         }
-    }
-    
-    @Override
-    public @Nullable LookupEnvironment visiting(@NonNull Visitable visitable) {
-        return parentEnv((EObject)visitable);
     }
     
     /**

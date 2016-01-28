@@ -8,18 +8,15 @@
  * Contributors:
  *   Adolfo Sanchez-Barbudo Herrera (University of York)
  *******************************************************************************/
-package org.eclipse.ocl.pivot.utilities;
-
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.internal.resource.ASSaver;
+package org.eclipse.ocl.pivot.util;
 
 /**
  * @since 1.1
  * @noextend This class is not intended to be subclassed by clients. It is part of the hierarchy for auto-generated visitors.
  */
-public class PivotASSaverResolveVisitor extends ASSaverResolveVisitor {
+public abstract class AbstractExtendingPivotVisitor<R, C>  extends AbstractExtendingVisitor<R, C>{
 
-	public PivotASSaverResolveVisitor(@NonNull ASSaver context) {
+	protected AbstractExtendingPivotVisitor(C context) {
 		super(context);
 	}
 }
