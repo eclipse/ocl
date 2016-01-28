@@ -20,7 +20,7 @@ import org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment;
 import org.eclipse.ocl.pivot.util.Visitable;
 
 public abstract class AbstractPivotCommonLookupVisitor
-	extends AbstractExtendingPivotVisitor<LookupEnvironment, LookupEnvironment> {
+	extends AbstractExtendingVisitor<LookupEnvironment, LookupEnvironment> {
 
 	protected AbstractPivotCommonLookupVisitor(LookupEnvironment context) {
 		super(context);
@@ -31,5 +31,7 @@ public abstract class AbstractPivotCommonLookupVisitor
 		return doVisiting(visitable);
 	}
 	
+	
 	abstract protected LookupEnvironment doVisiting(@NonNull Visitable visitable);
+	
 }

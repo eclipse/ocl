@@ -62,7 +62,7 @@ public class LookupExportedVisitorCodeGenerator extends LookupVisitorsCodeGenera
 	}
 	
 	@Override
-	protected @NonNull String getVisitorClassName(@NonNull String prefix) {
+	protected @NonNull String getLookupVisitorClassName(@NonNull String prefix) {
 		return prefix + "ExportedLookupVisitor";
 	}
 	
@@ -75,7 +75,7 @@ public class LookupExportedVisitorCodeGenerator extends LookupVisitorsCodeGenera
 
 	
 	@Override
-	protected boolean isRedifinibleOperation(Operation operation) {
+	protected boolean isRewrittenOperation(Operation operation) {
 		return LookupVisitorsClassContext.EXPORTED_ENV_NAME.equals(operation.getName())
 				&& operation != asElementExportedEnvOperation
 				&& operation.getOwnedParameters().size() == 1;
@@ -125,7 +125,7 @@ public class LookupExportedVisitorCodeGenerator extends LookupVisitorsCodeGenera
 		}
 	}
 	
-	public @NonNull CGValuedElement getImporterVariable() {
+	public @NonNull CGProperty getImporterProperty() {
 		return ClassUtil.nonNullState(cgImporterProperty);
 	}
 }

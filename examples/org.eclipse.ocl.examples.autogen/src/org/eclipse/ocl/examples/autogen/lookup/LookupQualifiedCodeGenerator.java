@@ -44,12 +44,12 @@ public class LookupQualifiedCodeGenerator extends LookupVisitorsCodeGenerator {
 	}
 	
 	@Override
-	protected @NonNull String getVisitorClassName(@NonNull String prefix) {
+	protected @NonNull String getLookupVisitorClassName(@NonNull String prefix) {
 		return prefix + "QualifiedLookupVisitor";
 	}
 	
 	@Override
-	protected boolean isRedifinibleOperation(Operation operation) {
+	protected boolean isRewrittenOperation(Operation operation) {
 		return LookupVisitorsClassContext.QUALIFIED_ENV_NAME.equals(operation.getName())
 				&& operation.getOwnedParameters().size() == 0;
 	}

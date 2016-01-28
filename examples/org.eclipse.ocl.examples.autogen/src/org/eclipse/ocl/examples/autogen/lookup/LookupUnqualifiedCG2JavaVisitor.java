@@ -81,7 +81,7 @@ public class LookupUnqualifiedCG2JavaVisitor extends LookupVisitorsCG2JavaVisito
 			js.append(") {\n");
 			js.pushIndentation(null);
 				js.append("this.");
-				js.appendReferenceTo(context.getChildVariable());
+				js.appendReferenceTo(context.getChildProperty());
 				js.append(" = " + LookupVisitorsClassContext.ELEMENT_NAME + ";\n");
 				js.append("return ((");
 				js.appendClassReference(context.getVisitableClass());

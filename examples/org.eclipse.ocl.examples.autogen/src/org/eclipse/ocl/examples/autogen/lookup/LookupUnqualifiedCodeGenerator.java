@@ -94,7 +94,7 @@ public class LookupUnqualifiedCodeGenerator extends LookupVisitorsCodeGenerator 
 	
 	@Override
 	@NonNull
-	protected String getVisitorClassName(@NonNull String prefix) {
+	protected String getLookupVisitorClassName(@NonNull String prefix) {
 		return prefix + "UnqualifiedLookupVisitor";
 	}
 	
@@ -180,6 +180,18 @@ public class LookupUnqualifiedCodeGenerator extends LookupVisitorsCodeGenerator 
 		asOperationCallExp.setReferredOperation(asVisitorParentEnvOperation);
 	}
 	
+	protected boolean sameOrRedefiningOperation(@NonNull Operation redefiningOperation, @NonNull Operation baseOperation) {
+		
+		// calledOperation.getRedefinedOperations().contains(baseOperation);
+		// Note: the own operation seems to be an "overload"
+		for (Operation redefinedOp :  metamodelManager.getOperationOverloads(redefiningOperation)) { 
+			if (baseOperation == redefinedOp) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	@Override
 	protected void rewriteOperationCalls(@NonNull Collection<? extends EObject> allContents) {
 		for (Map.Entry<EObject, Collection<EStructuralFeature.Setting>> entry : EcoreUtil.CrossReferencer.find(allContents).entrySet()) {
@@ -217,7 +229,7 @@ public class LookupUnqualifiedCodeGenerator extends LookupVisitorsCodeGenerator 
 	}
 
 	@Override
-	protected boolean isRedifinibleOperation(Operation operation) {
+	protected boolean isRewrittenOperation(Operation operation) {
 		return LookupVisitorsClassContext.ENV_NAME.equals(operation.getName())
 			&& operation != asElementEnvOperation
 			&& operation.getOwnedParameters().size() ==1;
@@ -259,7 +271,7 @@ public class LookupUnqualifiedCodeGenerator extends LookupVisitorsCodeGenerator 
 		}
 	}
 	
-	public @NonNull CGValuedElement getChildVariable() {
+	public @NonNull CGProperty getChildProperty() {
 		return ClassUtil.nonNullState(cgChildProperty);
 	}
 }

@@ -43,7 +43,6 @@ import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.Model;
-import org.eclipse.ocl.pivot.NullLiteralExp;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.PivotFactory;
@@ -55,7 +54,6 @@ import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.OperationId;
-import org.eclipse.ocl.pivot.ids.ParametersId;
 import org.eclipse.ocl.pivot.ids.RootPackageId;
 import org.eclipse.ocl.pivot.internal.manager.Orphanage;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
@@ -70,7 +68,7 @@ import org.eclipse.ocl.pivot.utilities.PivotUtil;
 public abstract class LookupVisitorsCodeGenerator extends AutoVisitorsCodeGenerator
 {	
 	protected final @NonNull String packageName;
-	protected final @NonNull String unqualifiedVisitorClassName;
+	protected final @NonNull String visitorClassName;
 
 	protected final @NonNull LookupVisitorsClassContext classContext;
 	protected final @NonNull AS2CGVisitor as2cgVisitor;
@@ -102,7 +100,7 @@ public abstract class LookupVisitorsCodeGenerator extends AutoVisitorsCodeGenera
 		super(environmentFactory, asPackage, asSuperPackage, genPackage, superGenPackage, baseGenPackage);
 
 		this.packageName = getSourcePackageName();
-		this.unqualifiedVisitorClassName = getVisitorClassName(getProjectPrefix());
+		this.visitorClassName = getLookupVisitorClassName(getProjectPrefix());
 	
 		this.classContext = new LookupVisitorsClassContext(this, asPackage);
 		this.as2cgVisitor = createAS2CGVisitor();
@@ -120,7 +118,7 @@ public abstract class LookupVisitorsCodeGenerator extends AutoVisitorsCodeGenera
 		//	Create new AS elements
 		//
 		org.eclipse.ocl.pivot.Package asVisitorPackage = createASPackage(packageName);
-		this.asVisitorClass = createASVisitorClass(asVisitorPackage, unqualifiedVisitorClassName);
+		this.asVisitorClass = createASVisitorClass(asVisitorPackage, visitorClassName);
 		this.asThisVariable = PivotUtil.createVariable("this", asVisitorClass, true, null);
 		this.asContextVariable = PivotUtil.createVariable(LookupVisitorsClassContext.CONTEXT_NAME, asEnvironmentType, true, null);
 		CGVariable cgVariable = as2cgVisitor.getVariable(asContextVariable);
@@ -172,42 +170,10 @@ public abstract class LookupVisitorsCodeGenerator extends AutoVisitorsCodeGenera
 	 * Convert the construction context to supertypes/interfaces of cgClass.
 	 */
 	protected void convertSuperTypes(@NonNull CGClass cgClass) {
-		// GenPackage superGenPackage2 = superGenPackage;
-		String superProjectPrefix2 = getSuperProjectPrefix();
-		CGClass cgEnvironmentClass = getExternalClass(asEnvironmentType);
-		//if (LookupCGUtil.isCommonVisitorClass(cgClass)) {
-			// String superClassName = "Abstract" + /*trimmed*/prefix + "CSVisitor";
-			//	String superClassName = "AbstractExtending" + visitorClass; // The default Abstract Visitor generated for the language
-			String superClassName = "Abstract" + getProjectPrefix() + "CommonLookupVisitor"; // The default Abstract Visitor generated for the language
-			CGClass superClass = getExternalClass(getVisitorPackageName(), superClassName, false);
-			/*if (superClass.getTemplateParameters().isEmpty()) {
-				superClass.getTemplateParameters().add(cgEnvironmentClass);
-				superClass.getTemplateParameters().add(cgEnvironmentClass);	
-			}*/
-			cgClass.getSuperTypes().add(superClass);
-		/*} else {	// Unqualified/Qualified/Extended lookup visitors
-			if (superProjectPrefix2 == null) {	// base ones
-				CGClass cgCommonClass = LookupCGUtil.getCommonVisitorClass(cgClass, commonVisitorClassName);
-				cgClass.getSuperTypes().add(cgCommonClass);
-			} else { //derived ones
-				// String superPackageName = super
-				String superPackageName = getSuperSourcePackageName();
-				// String superClassName = superGenPackage2.getPrefix() + "AutoContainmentVisitor";
-				String superClassName = getSuperLookupVisitorClassName(cgClass);
-				// String superInterfaceName = // trimmed
-								prefix + "Visitor";
-				CGClass superClass = getExternalClass(superPackageName, superClassName, false);
-				cgClass.getSuperTypes().add(superClass);
-				
-			}	
-			// This visitor interface will help later on to the CG2Java to obtain required information about 
-			// the visitor context (the LookupEvironment) see LookupCG2JavaVisitor
-			CGClass superInterface = getExternalClass(getVisitorPackageName(), getVisitorClassName(), true);
-			if (superInterface.getTemplateParameters().isEmpty()) {
-				superInterface.getTemplateParameters().add(cgEnvironmentClass);	
-			}
-			cgClass.getSuperTypes().add(superInterface);
-		}*/
+		
+		String superClassName = "Abstract" + getProjectPrefix() + "CommonLookupVisitor"; // The default Abstract Visitor generated for the language
+		CGClass superClass = getExternalClass(getVisitorPackageName(), superClassName, false);
+		cgClass.getSuperTypes().add(superClass);
 	}
 
 	@Override
@@ -224,25 +190,31 @@ public abstract class LookupVisitorsCodeGenerator extends AutoVisitorsCodeGenera
 		CGModel cgModel = CGModelFactory.eINSTANCE.createCGModel();
 		
 		String visitorPackage = getSourcePackageName();
-//		if (isBaseVisitorsGeneration()) {
-//			CGPackage cgPackage = CGModelFactory.eINSTANCE.createCGPackage();
-//			cgPackage.setName(visitorPackage);
-//			cgModel.getPackages().add(cgPackage);
-//			CGClass cgCommonClass = CGModelFactory.eINSTANCE.createCGClass();
-//			cgCommonClass.setName(commonVisitorClassName);
-//			cgPackage.getClasses().add(cgCommonClass);
-//			convertSuperTypes(cgCommonClass);
-//			convertProperties(cgCommonClass, asCommonVisitorClass.getOwnedProperties());
-//			
-//		}
-		
-		
 		Map<Element,Element> reDefinitions = new HashMap<Element,Element>();
-		createCGPackageForVisitor(cgModel, visitorPackage, unqualifiedVisitorClassName, asVisitorClass,
+		createCGPackageForVisitor(cgModel, visitorPackage, visitorClassName, asVisitorClass,
 			createVisitOperationDeclarations(reDefinitions), reDefinitions);
 		List<CGPackage> result = new ArrayList<CGPackage>();
 		result.addAll(cgModel.getPackages());
 		return result;
+	}
+	
+	protected void createCGPackageForVisitor(@NonNull CGModel cgModel, @NonNull String packageName, @NonNull String classNAme, org.eclipse.ocl.pivot.@NonNull Class asClass, 
+			@NonNull Map<Operation, @NonNull Operation> envOperation2asOperation, @NonNull Map<Element,Element> reDefinitions) throws ParserException {
+		
+		CGPackage cgPackage = CGModelFactory.eINSTANCE.createCGPackage();
+		cgPackage.setName(getVisitorPackageName());
+		cgModel.getPackages().add(cgPackage);
+		CGClass cgClass = CGModelFactory.eINSTANCE.createCGClass();
+		cgClass.setName(classNAme);
+		cgPackage.getClasses().add(cgClass);
+		convertSuperTypes(cgClass);
+		convertProperties(cgClass, asClass.getOwnedProperties());
+		rewriteVisitOperationBodies(reDefinitions, envOperation2asOperation);
+		Collection<Operation> asOperations = envOperation2asOperation.values();
+		rewriteOperationCalls(asOperations);
+		convertOperations(cgClass, asOperations);
+		/*Resource dummyResource = EssentialOCLASResourceFactory.getInstance().createResource(URI.createURI("dummy.essentialocl"));
+		dummyResource.getContents().addAll(asOperations);		// PrettyPrinter needs containment*/
 	}
 	
 	/**
@@ -290,19 +262,19 @@ public abstract class LookupVisitorsCodeGenerator extends AutoVisitorsCodeGenera
 			Map<Element, Element> reDefinitions) {
 		
 		
-		Map<Operation, @NonNull Operation> envOperation2asOperation = new HashMap<Operation, @NonNull Operation>();
+		Map<Operation, @NonNull Operation> oldOperation2rewrittenOperation = new HashMap<Operation, @NonNull Operation>();
 		for (@SuppressWarnings("null")org.eclipse.ocl.pivot.@NonNull Class asType : asPackage.getOwnedClasses()) {
-			for (Operation envOperation : asType.getOwnedOperations()) {
-				if (isRedifinibleOperation(envOperation)) {
-					Operation asOperation = createVisitOperationDeclaration(reDefinitions, envOperation);
-					envOperation2asOperation.put(envOperation, asOperation);
-					reDefinitions.put(envOperation, asOperation);
+			for (Operation oldOperation : asType.getOwnedOperations()) {
+				if (isRewrittenOperation(oldOperation)) {
+					Operation asOperation = createVisitOperationDeclaration(reDefinitions, oldOperation);
+					oldOperation2rewrittenOperation.put(oldOperation, asOperation);
+					reDefinitions.put(oldOperation, asOperation);
 				}
 			}
 		}
-		return envOperation2asOperation;
+		return oldOperation2rewrittenOperation;
 	}	
-	abstract protected boolean isRedifinibleOperation(Operation operation);
+	abstract protected boolean isRewrittenOperation(Operation operation);
 
 	abstract protected @NonNull Operation createVisitOperationDeclaration(Map<Element, Element> reDefinitions, Operation operation);
 	
@@ -321,24 +293,7 @@ public abstract class LookupVisitorsCodeGenerator extends AutoVisitorsCodeGenera
 		return asOperation;
 	}
 	
-	protected void createCGPackageForVisitor(@NonNull CGModel cgModel, @NonNull String packageName, @NonNull String classNAme, org.eclipse.ocl.pivot.@NonNull Class asClass, 
-			@NonNull Map<Operation, @NonNull Operation> envOperation2asOperation, @NonNull Map<Element,Element> reDefinitions) throws ParserException {
-		
-		CGPackage cgPackage = CGModelFactory.eINSTANCE.createCGPackage();
-		cgPackage.setName(getVisitorPackageName());
-		cgModel.getPackages().add(cgPackage);
-		CGClass cgClass = CGModelFactory.eINSTANCE.createCGClass();
-		cgClass.setName(classNAme);
-		cgPackage.getClasses().add(cgClass);
-		convertSuperTypes(cgClass);
-		convertProperties(cgClass, asClass.getOwnedProperties());
-		rewriteVisitOperationBodies(reDefinitions, envOperation2asOperation);
-		Collection<Operation> asOperations = envOperation2asOperation.values();
-		rewriteOperationCalls(asOperations);
-		convertOperations(cgClass, asOperations);
-		/*Resource dummyResource = EssentialOCLASResourceFactory.getInstance().createResource(URI.createURI("dummy.essentialocl"));
-		dummyResource.getContents().addAll(asOperations);		// PrettyPrinter needs containment*/
-	}
+
 
 	protected @NonNull Property createNativeProperty(@NonNull String name, @NonNull Type asElementType, boolean isReadOnly) {
 		Property asChildProperty = PivotUtil.createProperty(name, asElementType);
@@ -370,39 +325,17 @@ public abstract class LookupVisitorsCodeGenerator extends AutoVisitorsCodeGenera
 		asChildProperty.setIsReadOnly(isReadOnly);
 		return asChildProperty;
 	}
-
+	
 	protected @NonNull VariableExp createThisVariableExp(@NonNull Variable thisVariable) {
 		return PivotUtil.createVariableExp(thisVariable);
 	}
 	
+	abstract protected @NonNull String getLookupVisitorClassName(@NonNull String prefix);
 	
-	protected @NonNull NullLiteralExp createNullLiteralExp() {
-		return metamodelManager.createNullLiteralExp();
-	}
-	
-
-	
-	protected @NonNull String getAutoCommonVisitorClassName(@NonNull String prefix) {
-		return "Abstract" + prefix + "CommonLookupVisitor";
-	}
-	
-	abstract protected @NonNull String getVisitorClassName(@NonNull String prefix);
-	
-	
-
 	public @NonNull CGValuedElement getEvaluatorVariable() {
-		// When generating lookup visitors for derived languages, the common lookup visitor is no
-		// not generated. Therefore we have to add this hack to provide CG for executor property
-		// accesses
-		if (cgEvaluatorVariable == null) {
-			Property prop = createNativeProperty(JavaConstants.EXECUTOR_NAME, Executor.class, true);
-			cgEvaluatorVariable = as2cgVisitor.visitProperty(prop);
-		}
 		return ClassUtil.nonNullState(cgEvaluatorVariable);
 	}
 	
-
-
 	@Override
 	public @NonNull LookupVisitorsClassContext getGlobalContext() {
 		return classContext;
@@ -410,28 +343,14 @@ public abstract class LookupVisitorsCodeGenerator extends AutoVisitorsCodeGenera
 
 	@Override
 	public @NonNull CGValuedElement getIdResolverVariable() {
-		// When generating lookup visitors for derived languages, the common lookup visitor is no
-		// not generated. Therefore we have to add this hack to provide CG for idResolver property
-		// accesses
-		if (cgIdResolverVariable == null) {
-			Property prop = createNativeProperty(JavaConstants.ID_RESOLVER_NAME, IdResolver.class, true);
-			cgIdResolverVariable = as2cgVisitor.visitProperty(prop);
-		}
 		return ClassUtil.nonNullState(cgIdResolverVariable);
 	}	
-	/*
-	protected @NonNull String getSuperLookupVisitorClassName(CGClass cgClass) {
-		String superPrefix = ClassUtil.nonNullState(getSuperProjectPrefix());
-		String name = cgClass.getName();
-		if (name.contains("Qualified"))
-			return getAutoQualifiedVisitorClassName(superPrefix);
-		else if (name.contains("Exported"))
-			return getAutoExportedVisitorClassName(superPrefix);
-		else if (name.contains(("Unqualified")))
-			return getVisitorClassName(superPrefix);
-		else
-			throw new IllegalStateException("Unexpexted LookupVisitor name");
-	}*/
+
+	protected @NonNull String getSuperLookupVisitorClassName() {
+		String superProjectPrefix = ClassUtil.nonNullState(getSuperProjectPrefix());
+		String superLangVisitorName = getLookupVisitorClassName(superProjectPrefix);
+		return getSuperVisitorPackageName() + "." + superLangVisitorName;
+	}
 
 	@Override
 	public @NonNull Class<?> getVisitorResultClass() {
@@ -450,21 +369,6 @@ public abstract class LookupVisitorsCodeGenerator extends AutoVisitorsCodeGenera
 	protected @NonNull String getSuperSourcePackageName() {
 		return getSuperVisitorPackageName();
 	}
-
-	
-	
-	protected boolean sameOrRedefiningOperation(@NonNull Operation redefiningOperation, @NonNull Operation baseOperation) {
-		
-		// calledOperation.getRedefinedOperations().contains(baseOperation);
-		// Note: the own operation seems to be an "overload"
-		for (Operation redefinedOp :  metamodelManager.getOperationOverloads(redefiningOperation)) { 
-			if (baseOperation == redefinedOp) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
 
 	/**
 	 * Copy all the visitXXX operation bodies from the _env bodies replacing references to redefined parameters.

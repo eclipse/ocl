@@ -91,21 +91,25 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateVisitorsXtend
 			lookupPackageName = helper.modelPackageName + ".lookup"	
 		}
 		 
-		val baseGenModelURI = getGenModelURI(baseProjectName, baseGenModelFile);
-		val baseGenModelResource = getGenModelResource(ocl, baseGenModelURI);
-		val baseGenPackage = getGenPackage(baseGenModelResource);
-		helper = new GenPackageHelper(baseGenPackage);
-		if (!baseLookupPackageName.isDefined || baseLookupPackageName.length == 0) {
-			baseLookupPackageName = helper.modelPackageName + ".lookup"
-		}
-		
 		if (isDerived()) {
 			val superGenModelURI = getGenModelURI(superProjectName, superGenModelFile);
 			val superGenModelResource = getGenModelResource(ocl, superGenModelURI);
 			val superGenPackage = getGenPackage(superGenModelResource);
 			helper = new GenPackageHelper(superGenPackage)
 			if (!superLookupPackageName.isDefined || superLookupPackageName.length == 0) {
-				superLookupPackageName = helper.modelPackageName + ".lookup"	
+				superLookupPackageName = helper.modelPackageName + ".lookup"
+			}
+			
+			val baseGenModelURI = getGenModelURI(baseProjectName, baseGenModelFile);
+			val baseGenModelResource = getGenModelResource(ocl, baseGenModelURI);
+			val baseGenPackage = getGenPackage(baseGenModelResource);
+			helper = new GenPackageHelper(baseGenPackage);
+			if (!baseLookupPackageName.isDefined || baseLookupPackageName.length == 0) {
+				baseLookupPackageName = helper.modelPackageName + ".lookup"
+			}
+		} else {
+			if (!baseLookupPackageName.isDefined || baseLookupPackageName.length == 0) {
+				baseLookupPackageName = lookupPackageName;
 			}
 		}
 	}
@@ -432,10 +436,35 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateVisitorsXtend
 	public abstract class «visitorName»
 		extends «superClassName»<LookupEnvironment, LookupEnvironment> {
 	
-	override generateVisitors(GenPackage genPackage) {
-		doGenerateVisitors(genPackage);
+		«IF isDerived»private «superVisitorName» delegate;«ENDIF»
+		protected «visitorName»(LookupEnvironment context) {
+			super(context);
+			«IF isDerived»this.delegate = createSuperLangVisitor();«ENDIF»
+		}
+		
+		@Override
+		public final LookupEnvironment visiting(@NonNull Visitable visitable) {
+			«IF isDerived»
+			return «fqPackageItf».eINSTANCE == visitable.eClass().getEPackage()
+				? doVisiting(visitable)
+				: visitable.accept(getSuperLangVisitor());
+			«ELSE»
+			return doVisiting(visitable);
+			«ENDIF»
+		}
+		
+		«IF isDerived»
+		protected «superVisitorName» getSuperLangVisitor(){
+			if (delegate == null) {
+				delegate = createSuperLangVisitor();
+			}
+			return delegate;
+		}
+		«ENDIF»
 		
 		abstract protected LookupEnvironment doVisiting(@NonNull Visitable visitable);
+		
+		«IF isDerived»abstract protected «superVisitorName»  createSuperLangVisitor();«ENDIF»
 	}
 		''')
 		writer.close();

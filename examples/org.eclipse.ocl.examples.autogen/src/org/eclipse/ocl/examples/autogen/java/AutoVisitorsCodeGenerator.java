@@ -123,12 +123,12 @@ public abstract class AutoVisitorsCodeGenerator extends AutoCodeGenerator
 	protected @NonNull String getBaseVisitorClassName() {
 		return getBaseGenPackageHelper().getVisitorClassName();
 	}
-	
-	
+
 	protected @NonNull String getVisitablePackageName() {
 		// Visitable will always be taken from the base genPackage
 		return getBaseGenPackageHelper().getVisitablePackageName();
 	}
+	
 	protected @NonNull String getVisitableClassName() {
 		// Visitable will always be taken from the base genPackage
 		return getBaseGenPackageHelper().getVisitableClassName();

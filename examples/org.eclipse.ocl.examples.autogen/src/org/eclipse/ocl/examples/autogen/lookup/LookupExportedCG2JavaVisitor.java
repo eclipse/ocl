@@ -51,7 +51,15 @@ public class LookupExportedCG2JavaVisitor extends LookupVisitorsCG2JavaVisitor<@
 	protected void doAdditionalFieldsInitialization(
 			@NonNull CGClass cgClass) {
 		js.append("this.");
-		js.appendReferenceTo(context.getImporterVariable());
+		js.appendReferenceTo(context.getImporterProperty());
 		js.append(" = " +  LookupVisitorsClassContext.INMPORTER_NAME + ";\n");
 	}
+	
+	@Override
+	protected void doAdditionalSuperLookupVisitorArgs(
+			@NonNull CGClass cgClass) {
+		js.append(",");
+		js.appendReferenceTo(context.getImporterProperty());
+	}
+	
 }
