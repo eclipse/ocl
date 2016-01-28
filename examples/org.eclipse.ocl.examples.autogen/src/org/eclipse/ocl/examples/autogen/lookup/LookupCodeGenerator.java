@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.examples.autogen.java.AutoCodeGenerator;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -42,7 +41,7 @@ public class LookupCodeGenerator
 		Resource eResource = ClassUtil.nonNullState(ePackage.eResource());
 		EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.getEnvironmentFactory(eResource);
 		
-		List<org.eclipse.ocl.pivot.@NonNull Package> targetPackages = LookupCGUtil.getTargetPackages(genPackage,environmentFactory, lookupFilePath, projectName, genPackage.getPrefix());
+		List<org.eclipse.ocl.pivot.@NonNull Package> targetPackages = LookupCGUtil.getTargetPackages(genPackage,environmentFactory, lookupFilePath, projectName);
 		for (org.eclipse.ocl.pivot.Package oclDocPackage : targetPackages){
 			org.eclipse.ocl.pivot.Package asSuperPackage = null;
 			if (superGenPackage != null) {
@@ -61,14 +60,15 @@ public class LookupCodeGenerator
 				}
 			}
 			
-			AutoCodeGenerator visitorsCodeGen = new LookupVisitorsCodeGenerator(environmentFactory, oclDocPackage, asSuperPackage, basePackage, 
-				genPackage,superGenPackage, baseGenPackage);
-			AutoCodeGenerator filtersCodeGenerator = new LookupFilterGenerator(environmentFactory, oclDocPackage, asSuperPackage, basePackage,
+			new LookupUnqualifiedCodeGenerator(environmentFactory, oclDocPackage, asSuperPackage, basePackage, 
+				genPackage,superGenPackage, baseGenPackage).saveSourceFile();
+			new LookupQualifiedCodeGenerator(environmentFactory, oclDocPackage, asSuperPackage, basePackage, 
+				genPackage,superGenPackage, baseGenPackage).saveSourceFile();
+			new LookupExportedVisitorCodeGenerator(environmentFactory, oclDocPackage, asSuperPackage, basePackage, 
+				genPackage,superGenPackage, baseGenPackage).saveSourceFile();
+			new LookupFilterGenerator(environmentFactory, oclDocPackage, asSuperPackage, basePackage,
 				genPackage,	superGenPackage, baseGenPackage,
-				lookupPackageName, superLookupPackageName, baseLookupPackage);
-			
-			visitorsCodeGen.saveSourceFile();
-			filtersCodeGenerator.saveSourceFile();
+				lookupPackageName, superLookupPackageName, baseLookupPackage).saveSourceFile();
 		}
 	}
 }

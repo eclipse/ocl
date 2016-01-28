@@ -67,7 +67,13 @@ var lookupPackageName = ""
 /**
  * (Optional) The super package for generated lookup artefacts; default: "${superModelJavaPackageName}.lookup".
  */
-var superlookupPackageName = ""
+var superlookupPackageName = "" // By passing a blank the Xtend component will compute the default
+
+
+/**
+ * (Optional) The base package for generated lookup artefacts; default: "${baseModelJavaPackageName}.lookup".
+ */
+var baselookupPackageName = "" // By passing a blank the Xtend component will compute the default
 
 /**
  *	Generate a Concrete Syntax Model and its visitors as used by the Xtext editors.
@@ -82,6 +88,7 @@ Workflow {
     	baseGenModelFile = baseGenModelFile
     	lookupFilePath = lookupFilePath
     	lookupPackageName = lookupPackageName
-    	superLookupPackageName = superlookupPackageName // TODO
+    	superLookupPackageName = superlookupPackageName
+    	baseLookupPackageName = baselookupPackageName
     }
 }

@@ -34,15 +34,15 @@ public abstract class AutoVisitorsCG2JavaVisitor<@NonNull CG extends AutoVisitor
 
 	@Override
 	protected void doMoreClassMethods(@NonNull CGClass cgClass) {
-		if (! isDerivedVisitor(cgClass)) {
+		if (context.isBaseVisitorsGeneration()) {
 			doVisiting(cgClass);
 		}
 	}
-
-	protected boolean isDerivedVisitor(@NonNull CGClass cgClass) {
-		return cgClass.getSuperTypes().size() > 1;
-	}
 	
+	/**
+	 * Derived classes might override
+	 * @param cgClass
+	 */
 	protected void doVisiting(@NonNull CGClass cgClass) {
 		js.append("\n");
 		js.append("@Override\n");

@@ -40,7 +40,6 @@ import org.eclipse.ocl.examples.codegen.library.NativeProperty;
 import org.eclipse.ocl.examples.codegen.utilities.RereferencingCopier;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
-import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.LetExp;
 import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.NullLiteralExp;
@@ -68,8 +67,6 @@ import org.eclipse.ocl.pivot.utilities.PivotUtil;
  */
 public class LookupFilterGenerator extends AutoCodeGenerator
 {	
-	
-
 	protected final @NonNull LookupFilterClassContext classContext;
 	protected final @NonNull AS2CGVisitor as2cgVisitor;
 	protected final @NonNull String lookupPackageName; 
@@ -90,7 +87,7 @@ public class LookupFilterGenerator extends AutoCodeGenerator
 	
 	
 	private @NonNull Set<Property> filteringProps = new HashSet<Property>();
-	private @NonNull Map<CGClass, @NonNull List<@NonNull CGProperty>> cgClass2cgFilteringProps = new HashMap<CGClass, @NonNull List<@NonNull CGProperty>>(); 
+	private @NonNull Map<CGClass, List<@NonNull CGProperty>> cgClass2cgFilteringProps = new HashMap<CGClass, @NonNull List<@NonNull CGProperty>>(); 
 
 	protected LookupFilterGenerator(@NonNull EnvironmentFactoryInternal environmentFactory, org.eclipse.ocl.pivot.@NonNull Package asPackage,
 			org.eclipse.ocl.pivot.@Nullable Package asSuperPackage, org.eclipse.ocl.pivot.@NonNull Package asBasePackage, @NonNull GenPackage genPackage,
@@ -446,31 +443,4 @@ public class LookupFilterGenerator extends AutoCodeGenerator
 	protected @NonNull String getBaseSourcePackageName() {
 		return baseLookupPackage + ".util";
 	}
-
-	private @NonNull ExpressionInOCL getExpressionInOCL(Operation op) {
-		try {
-			LanguageExpression envSpecification = ClassUtil.nonNullState(op.getBodyExpression());
-			return metamodelManager.parseSpecification(envSpecification);
-		} catch (ParserException e) {
-			throw new IllegalStateException(e);
-		}
-	}
-
-	/**
-	 * Copy all the visitXXX operation bodies from the _env bodies replacing references to redefined parameters.
-	 */
-	/*protected void rewriteVisitOperationBodies(@NonNull Map<Element, Element> reDefinitions, @NonNull Map<Operation, @NonNull Operation> envOperation2asOperation) {
-		for (@SuppressWarnings("null")@NonNull Operation oldOperation : envOperation2asOperation.keySet()) {
-			Operation newOperation = envOperation2asOperation.get(oldOperation);
-			assert newOperation != null;			
-			ExpressionInOCL envExpressionInOCL = getExpressionInOCL(oldOperation);
-			ExpressionInOCL newExpressionInOCL = getExpressionInOCL(newOperation);
-			OCLExpression asExpression = RereferencingCopier.copy(ClassUtil.nonNullState(envExpressionInOCL.getOwnedBody()), reDefinitions);
-			newExpressionInOCL.setOwnedBody(asExpression);
-			newExpressionInOCL.setType(asExpression.getType());
-			newExpressionInOCL.setIsRequired(asExpression.isIsRequired());
-			newOperation.setType(asExpression.getType());
-			newOperation.setIsRequired(asExpression.isIsRequired());
-		}
-	}*/
 }

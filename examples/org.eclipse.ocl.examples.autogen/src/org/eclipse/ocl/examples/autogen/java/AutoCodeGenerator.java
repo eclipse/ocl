@@ -37,6 +37,9 @@ import org.eclipse.ocl.examples.codegen.java.CG2JavaPreVisitor;
 import org.eclipse.ocl.examples.codegen.java.ImportUtils;
 import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
 import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreGenModelGeneratorAdapter;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.LanguageExpression;
+import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
@@ -223,6 +226,20 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 		}
 	}
 	
+	/**
+	 * Helper method that might be used by derived generators
+	 * 
+	 * @param op
+	 * @return
+	 */
+	protected @NonNull ExpressionInOCL getExpressionInOCL(Operation op) {
+		try {
+			LanguageExpression envSpecification = ClassUtil.nonNullState(op.getBodyExpression());
+			return metamodelManager.parseSpecification(envSpecification);
+		} catch (ParserException e) {
+			throw new IllegalStateException(e);
+		}
+	}
 	
 	/**
 	 * Any code generator should an IdResolverVariables.

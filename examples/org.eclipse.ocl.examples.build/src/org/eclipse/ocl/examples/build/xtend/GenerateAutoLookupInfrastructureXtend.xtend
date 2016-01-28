@@ -42,6 +42,7 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateVisitorsXtend
 	protected String lookupArtifactsOutputFolder;
 	protected String lookupPackageName;
 	protected String superLookupPackageName
+	protected String baseLookupPackageName
 	protected GenModelHelper genModelHelper;
 	
 	override checkConfiguration(Issues issues) {
@@ -64,29 +65,40 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateVisitorsXtend
 		this.lookupPackageName = lookupPackageName;
 	}
 	
+	public def setSuperLookupPackageName(String superLookupPackageName) {
+		this.superLookupPackageName = superLookupPackageName;
+	}
+	
+	public def setBaseLookupPackageName(String baseLookupPackageName) {
+		this.baseLookupPackageName = baseLookupPackageName;
+	}
+	
 	@Override
 	protected override doSetup() {
 		CompleteOCLStandaloneSetup.doSetup();
 		OCLstdlib.install();
 	}
 	
-	public def setSuperLookupPackageName(String superLookupPackageName) {
-		this.superLookupPackageName = superLookupPackageName;
-	}
-	
+
 	override protected doPropertiesConfiguration(OCL ocl) {
 		super.doPropertiesConfiguration(ocl);
 		val genModelURI = getGenModelURI(projectName, genModelFile);
 		val genModelResource = getGenModelResource(ocl, genModelURI);
 		val genPackage = getGenPackage(genModelResource);
-	
 		
-		// And configure missing information required by the inherited mwe component
 		var helper = new GenPackageHelper(genPackage);
 		if (!lookupPackageName.isDefined || lookupPackageName.length == 0) {
 			lookupPackageName = helper.modelPackageName + ".lookup"	
 		}
 		 
+		val baseGenModelURI = getGenModelURI(baseProjectName, baseGenModelFile);
+		val baseGenModelResource = getGenModelResource(ocl, baseGenModelURI);
+		val baseGenPackage = getGenPackage(baseGenModelResource);
+		helper = new GenPackageHelper(baseGenPackage);
+		if (!baseLookupPackageName.isDefined || baseLookupPackageName.length == 0) {
+			baseLookupPackageName = helper.modelPackageName + ".lookup"
+		}
+		
 		if (isDerived()) {
 			val superGenModelURI = getGenModelURI(superProjectName, superGenModelFile);
 			val superGenModelResource = getGenModelResource(ocl, superGenModelURI);
@@ -94,7 +106,7 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateVisitorsXtend
 			helper = new GenPackageHelper(superGenPackage)
 			if (!superLookupPackageName.isDefined || superLookupPackageName.length == 0) {
 				superLookupPackageName = helper.modelPackageName + ".lookup"	
-			}	
+			}
 		}
 	}
 	
@@ -339,12 +351,10 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateVisitorsXtend
 		}
 	}
 	
-	
-	
-	protected def void generateAutoLookupSolver(/*@NonNull*/ GenPackage genPackage) {
+	protected def void generateAutoLookupSolver(GenPackage genPackage, GenPackage basePackage) {
 		var EPackage ePackage = genPackage.getEcorePackage;
 		var String fqPackageItf = genModelHelper.getQualifiedPackageInterfaceName(ePackage)
-		var List<Operation> lookupOps = genPackage.lookupMethods;
+		var List<Operation> lookupOps = basePackage.lookupMethods;
 		var boolean isDerived = isDerived();
 		var String className = projectPrefix + "LookupSolver";
 		var String superClassName = superProjectPrefix + "LookupSolver";
@@ -357,8 +367,12 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateVisitorsXtend
 	import «visitorPackageName».«projectPrefix»UnqualifiedLookupVisitor;
 	import «visitorPackageName».«projectPrefix»QualifiedLookupVisitor;
 	import «visitorPackageName».«projectPrefix»ExportedLookupVisitor;
-	
-	«IF isDerived»import «superLookupPackageName».util.«superClassName»;«ENDIF»
+	«IF isDerived»
+	import «superLookupPackageName».util.«superClassName»;
+	import «baseLookupPackageName».util.«basePackage.prefix»LookupResult;
+	import «baseLookupPackageName».util.«basePackage.prefix»LookupResultImpl;
+	import «baseLookupPackageName».util.«basePackage.prefix»SingleResultLookupEnvironment;
+	«ENDIF»
 	
 	public class «className»«IF isDerived» extends «superClassName»«ENDIF» {
 		
@@ -382,14 +396,14 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateVisitorsXtend
 		«val typeFQName = getTypeFQName(op.type)»
 		«val typeLiteral = getTypeLiteral(op.type)»
 		
-		public «projectPrefix»LookupResult<«typeFQName»> «opName»(«getTypeFQName(op.owningClass)» context«FOR param:op.ownedParameters», «getTypeFQName(param.type)» «param.name»«ENDFOR») {
+		public «basePackage.prefix»LookupResult<«typeFQName»> «opName»(«getTypeFQName(op.owningClass)» context«FOR param:op.ownedParameters», «getTypeFQName(param.type)» «param.name»«ENDFOR») {
 			«IF hasAdditionalFilter»
 			«op.type.name»Filter filter = new «op.type.name»Filter(executor, «op.getFilterArgs»);
 			«ENDIF»
-			«projectPrefix»SingleResultLookupEnvironment _lookupEnv = new «projectPrefix»SingleResultLookupEnvironment(executor, «fqPackageItf».Literals.«typeLiteral»«lookupVars»);
+			«basePackage.prefix»SingleResultLookupEnvironment _lookupEnv = new «basePackage.prefix»SingleResultLookupEnvironment(executor, «fqPackageItf».Literals.«typeLiteral»«lookupVars»);
 			«lookupVisitorName» _lookupVisitor = new «lookupVisitorName»(_lookupEnv«IF isExportedLookup», importer«ENDIF»);
 			context.accept(_lookupVisitor);
-			return new «projectPrefix»LookupResultImpl<«typeFQName»>
+			return new «basePackage.prefix»LookupResultImpl<«typeFQName»>
 					(_lookupEnv.getNamedElementsByKind(«typeFQName».class));
 		}
 		«ENDFOR»
@@ -397,29 +411,61 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateVisitorsXtend
 		''');
 		writer.close();
 	}
+		
+	protected def void generateAutoCommonLookupVisitor(EPackage ePackage) {
+		var String fqPackageItf = genModelHelper.getQualifiedPackageInterfaceName(ePackage)
+
+		var boolean isDerived = isDerived();
+		var String visitorName = '''Abstract«projectPrefix»CommonLookupVisitor''';
+		var String superVisitorName = '''Abstract«superProjectPrefix»CommonLookupVisitor''';
+		var String superClassName = '''AbstractExtending«IF isDerived»«projectPrefix»«ENDIF»Visitor'''
+		var MergeWriter writer = new MergeWriter(outputFolder + visitorName + ".java");
+		writer.append('''
+	«ePackage.generateHeaderWithTemplate(visitorPackageName)»
+	import org.eclipse.jdt.annotation.NonNull;
+	import «baseLookupPackageName».LookupEnvironment;
+	import «visitablePackageName».«visitableClassName»;
+	«IF isDerived»	
+	import «superVisitorPackageName».«superVisitorName»;
+	«ENDIF»	
+	
+	public abstract class «visitorName»
+		extends «superClassName»<LookupEnvironment, LookupEnvironment> {
 	
 	override generateVisitors(GenPackage genPackage) {
 		doGenerateVisitors(genPackage);
 		
+		abstract protected LookupEnvironment doVisiting(@NonNull Visitable visitable);
+	}
+		''')
+		writer.close();
+	}
+	
+	override generateVisitors(GenPackage genPackage) {		
 		genModelHelper = createGenModelHelper(genPackage);
 		lookupArtifactsJavaPackage = lookupPackageName + ".util";
 		lookupArtifactsOutputFolder = modelFolder + lookupArtifactsJavaPackage.replace('.', '/') + "/";
 		
 		var EPackage ePackage = genPackage.getEcorePackage();
 		
+		// Some lookup artefacts
 		ePackage.generateAutoLookupResultClass;
 		ePackage.generateAutoLookupResultItf;
 		ePackage.generateAutoLookupFilterItf;
 		ePackage.generateAutoLookupFilterClass;
 		ePackage.generateSingleResultLookupEnvironment;
-		genPackage.generateAutoLookupSolver;
+		genPackage.generateAutoLookupSolver(baseGenPackage);
+		
+		// Visitors related generation
+		ePackage.generateAutoCommonLookupVisitor;
+		doGenerateVisitors(genPackage);
 	}
 	
-	protected def List<Operation> getLookupMethods(GenPackage genPackage) {
+	private def List<Operation> getLookupMethods(GenPackage genPackage) {
 		
 		var List<Operation> result = new ArrayList<Operation>;
-		var EnvironmentFactory envFact = PivotUtilInternal.getEnvironmentFactory(genPackage.getEcorePackage.eResource);		
-		for (oclPackage : LookupCGUtil.getTargetPackages(genPackage, envFact, lookupFilePath, projectName, projectPrefix)) {
+		var EnvironmentFactory envFact = PivotUtilInternal.getEnvironmentFactory(genPackage.getEcorePackage.eResource)
+		for (oclPackage : LookupCGUtil.getTargetPackages(genPackage, envFact, lookupFilePath, projectName)) {
 			for (oclClass : oclPackage.ownedClasses) {
 				for (oclOp : oclClass.ownedOperations) {
 					if (oclOp.isLookupOperation) {

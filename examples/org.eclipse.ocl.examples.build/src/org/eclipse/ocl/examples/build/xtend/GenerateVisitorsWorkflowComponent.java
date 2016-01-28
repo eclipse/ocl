@@ -126,25 +126,25 @@ public abstract class GenerateVisitorsWorkflowComponent extends AbstractWorkflow
 		if (isDerived()) {
 			URI superGenModelURI = getGenModelURI(superProjectName, superGenModelFile);
 			Resource superGenModelResource = getGenModelResource(ocl, superGenModelURI);
-			superGenPackage = getGenPackage(superGenModelResource);			
+			superGenPackage = getGenPackage(superGenModelResource);
 			
 			helper = new GenPackageHelper(superGenPackage);
 			superProjectPrefix =  helper.getProjectPrefix();
 			superVisitorPackageName = helper.getVisitorPackageName();
 			superVisitorClassName = helper.getVisitorClassName();
-			
-			// Visitable info will be get from base package
-			URI baseGenModelURI = getGenModelURI(baseProjectName, baseGenModelFile);
-			Resource baseGenModelResource = getGenModelResource(ocl, baseGenModelURI);
-			baseGenPackage = getGenPackage(baseGenModelResource);
-			
-			helper = new GenPackageHelper(baseGenPackage);
-			visitablePackageName = helper.getVisitablePackageName(); 
-			visitableClassName = helper.getVisitableClassName();
-		}  else { // if not derived
-			visitablePackageName = helper.getVisitablePackageName();
-			visitableClassName = helper.getVisitableClassName();
+		}  else { // if not derived, the info related to the base project will be the own project
+			baseProjectName = projectName;
+			baseGenModelFile = genModelFile;
 		}
+		
+		// Visitable info will be get from base package
+		URI baseGenModelURI = getGenModelURI(baseProjectName, baseGenModelFile);
+		Resource baseGenModelResource = getGenModelResource(ocl, baseGenModelURI);
+		baseGenPackage = getGenPackage(baseGenModelResource);
+		
+		helper = new GenPackageHelper(baseGenPackage);
+		visitablePackageName = helper.getVisitablePackageName(); 
+		visitableClassName = helper.getVisitableClassName();
 	}
 	
 	/**

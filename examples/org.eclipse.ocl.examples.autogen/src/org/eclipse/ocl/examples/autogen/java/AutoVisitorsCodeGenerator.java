@@ -93,6 +93,13 @@ public abstract class AutoVisitorsCodeGenerator extends AutoCodeGenerator
 		return Object.class;
 	}
 
+	/**
+	 * @return <code>true</code> if the generation is for a base language, otherwise is for a derived one
+	 */
+	public boolean isBaseVisitorsGeneration() {
+		return getSuperProjectPrefix() == null;
+	}
+	
 	protected @NonNull String getVisitorPackageName() {
 		return getGenPackageHelper().getVisitorPackageName();
 	}

@@ -49,8 +49,6 @@ public abstract class AutoCG2JavaVisitor<@NonNull CG extends AutoCodeGenerator> 
 	protected void doMoreClassMethods(@NonNull CGClass cgClass) {
 		// doNothing
 	}
-	
-	
 
 	@Override
 	protected void doClassStatics(@NonNull CGClass cgClass) {
