@@ -13,6 +13,8 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment;
+import org.eclipse.ocl.pivot.util.AbstractPivotCommonLookupVisitor;
+import org.eclipse.ocl.pivot.util.Visitable;
 
 public class PivotExportedLookupVisitor
 	extends AbstractPivotCommonLookupVisitor
