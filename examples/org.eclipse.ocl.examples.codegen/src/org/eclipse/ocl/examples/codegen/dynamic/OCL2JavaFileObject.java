@@ -35,7 +35,7 @@ public class OCL2JavaFileObject extends SimpleJavaFileObject
 //	public static long base = System.currentTimeMillis();
 	
 	private static @Nullable JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
-	private static @Nullable StandardJavaFileManager stdFileManager = compiler != null ? compiler.getStandardFileManager(null, Locale.getDefault(), null) : null;
+//	private static @Nullable StandardJavaFileManager stdFileManager = compiler != null ? compiler.getStandardFileManager(null, Locale.getDefault(), null) : null;
 //	private static List<String> compilationOptions = Arrays.asList("-d", "bin", "-source", "1.5", "-target", "1.5", "-g");
 //	private static List<String> compilationOptions = Arrays.asList("-d", "bin", "-source", "1.6", "-target", "1.6", "-g");
 //	private static List<String> compilationOptions = Arrays.asList("-d", "bin", "-g");
@@ -80,7 +80,7 @@ public class OCL2JavaFileObject extends SimpleJavaFileObject
 		if (compiler2 == null) {
 			throw new IllegalStateException("No JavaCompiler provided by the Java platform - you need to use a JDK rather than a JRE");
 		}
-		StandardJavaFileManager stdFileManager2 = stdFileManager;
+		StandardJavaFileManager stdFileManager2 = compiler2.getStandardFileManager(null, Locale.getDefault(), null);
 		if (stdFileManager2 == null) {
 			throw new IllegalStateException("No StandardJavaFileManager provided by the Java platform");
 		}
