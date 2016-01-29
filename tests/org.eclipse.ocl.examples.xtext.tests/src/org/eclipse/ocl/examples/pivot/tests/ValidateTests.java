@@ -288,7 +288,7 @@ public class ValidateTests extends AbstractValidateTests
 			eSet(testInstance2, "l3", "ok");
 			objectLabel = LabelUtil.getLabel(testInstance1);
 			checkValidationDiagnostics(testInstance1, Diagnostic.WARNING,
-				StringUtil.bind(template,  "Level2a::L2a", objectLabel),
+//				StringUtil.bind(template,  "Level2a::L2a", objectLabel),
 				StringUtil.bind(template,  "Level2a::V2a", objectLabel));
 			objectLabel = LabelUtil.getLabel(testInstance2);
 			checkValidationDiagnostics(testInstance2, Diagnostic.ERROR,

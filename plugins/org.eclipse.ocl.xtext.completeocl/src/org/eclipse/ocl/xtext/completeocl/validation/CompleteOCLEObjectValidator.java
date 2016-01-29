@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.completeocl.validation;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -52,7 +53,12 @@ public class CompleteOCLEObjectValidator extends PivotEObjectValidator
 
 	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
 	protected final @NonNull EPackage ePackage;
+	/**
+	 * @deprecated oclURIs is used.
+	 */
+	@Deprecated
 	protected final @NonNull URI oclURI;
+	protected final @NonNull URI @NonNull [] oclURIs;
 	private Ecore2AS ecore2as = null;
 	
 	/**
@@ -60,10 +66,30 @@ public class CompleteOCLEObjectValidator extends PivotEObjectValidator
 	 * for the meta-models managed by metamodelManager.
 	 */
 	public CompleteOCLEObjectValidator(@NonNull EPackage ePackage, @NonNull URI oclURI, @NonNull EnvironmentFactory environmentFactory) {
-		super(null);
+		super(new ArrayList<Model>());
 		this.environmentFactory = (EnvironmentFactoryInternal) environmentFactory;
 		this.ePackage = ePackage;
 		this.oclURI = oclURI;
+		this.oclURIs = new @NonNull URI[] {oclURI};
+		ResourceSet resourceSet = ePackage.eResource().getResourceSet();
+		if (resourceSet != null) {
+			install(resourceSet, this.environmentFactory);
+		}
+		else {
+			this.environmentFactory.loadEPackage(ePackage);
+		}
+	}
+	
+	/**
+	 * Construct a validator to apply the CompleteOCL invariants from each of the oclURIs to ePackage
+	 * for the meta-models managed by metamodelManager.
+	 */
+	public CompleteOCLEObjectValidator(@NonNull EnvironmentFactory environmentFactory, @NonNull EPackage ePackage, @NonNull URI @NonNull ... oclURIs) {
+		super(new ArrayList<Model>());
+		this.environmentFactory = (EnvironmentFactoryInternal) environmentFactory;
+		this.ePackage = ePackage;
+		this.oclURI = oclURIs[0];
+		this.oclURIs = oclURIs;
 		ResourceSet resourceSet = ePackage.eResource().getResourceSet();
 		if (resourceSet != null) {
 			install(resourceSet, this.environmentFactory);
@@ -108,6 +134,17 @@ public class CompleteOCLEObjectValidator extends PivotEObjectValidator
 			logger.error("Failed to load Pivot from '" + ecoreResource.getURI() + message);
 			return false;
 		}
+		for (URI oclURI : oclURIs) {
+			if (!loadDocument(resourceSet, oclURI)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	protected boolean loadDocument(@NonNull ResourceSet resourceSet, @NonNull URI oclURI) {
+		List<Diagnostic> errors;
+		String message;
 		CSResource xtextResource = null;
 		try {
 			xtextResource = (CSResource) resourceSet.getResource(oclURI, true);
@@ -144,6 +181,10 @@ public class CompleteOCLEObjectValidator extends PivotEObjectValidator
 		if (message != null) {
 			logger.error("Failed to load Pivot from '" + oclURI + message);
 			return false;
+		}
+		List<Model> complementingModels2 = complementingModels;
+		if (complementingModels2 != null) {
+			complementingModels2.add((Model) asResource.getContents().get(0));
 		}
 		return true;
 	}
