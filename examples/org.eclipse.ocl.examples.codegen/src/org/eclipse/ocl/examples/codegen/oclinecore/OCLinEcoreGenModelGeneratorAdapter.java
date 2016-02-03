@@ -330,6 +330,7 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 			EnvironmentFactoryInternal environmentFactory = resourceSet != null ? PivotUtilInternal.findEnvironmentFactory(resourceSet) : null;
 			if (environmentFactory == null) {
 				ProjectManager projectMap = BasicProjectManager.createDefaultProjectManager();
+				projectMap.initializeResourceSet(resourceSet);
 				this.ocl = OCLInternal.newInstance(projectMap, resourceSet);
 			}
 			else {
