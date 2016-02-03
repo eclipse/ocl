@@ -12,7 +12,9 @@ package org.eclipse.ocl.pivot.internal.complete;
 
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -415,6 +417,30 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 			name2completeClass2 = doRefreshPartialClasses();
 		}
 		return name2completeClass2.get(name);
+	}
+
+	@Override
+	public Iterator<CompleteClass> iterator() {
+		if (name2completeClass == null) {
+			doRefreshPartialClasses();
+		}
+		return super.iterator();
+	}
+
+	@Override
+	public ListIterator<CompleteClass> listIterator() {
+		if (name2completeClass == null) {
+			doRefreshPartialClasses();
+		}
+		return super.listIterator();
+	}
+
+	@Override
+	public ListIterator<CompleteClass> listIterator(int index) {
+		if (name2completeClass == null) {
+			doRefreshPartialClasses();
+		}
+		return super.listIterator(index);
 	}
 
 	@Override
