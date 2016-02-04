@@ -59,6 +59,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.internal.compatibility.EMF_2_9;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
+import org.eclipse.ocl.pivot.resource.ProjectManager.IProjectDescriptor.IProjectDescriptorExtension;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
@@ -1501,12 +1502,12 @@ public class StandaloneProjectMap implements ProjectManager
 			if (size > 0) {
 				@SuppressWarnings("null")@NonNull String firstGenModelRelativeEcorePackageUri = genModelRelativeEcorePackageUris.get(0);
 				URI firstGenModelRelativeEcorePackageURI = URI.createURI(firstGenModelRelativeEcorePackageUri);
-				@SuppressWarnings("null")@NonNull URI genModelRelativeEcoreModelURI = firstGenModelRelativeEcorePackageURI.trimFragment();
+				@NonNull URI genModelRelativeEcoreModelURI = firstGenModelRelativeEcorePackageURI.trimFragment();
 				URI projectLocationURI = projectDescriptor.getLocationURI();
 				URI absoluteGenModelURI = genModelURI.resolve(projectLocationURI);
 				URI absolutePackageURI = genModelRelativeEcoreModelURI.resolve(absoluteGenModelURI);
 				URI relativePackageURI = absolutePackageURI.deresolve(projectLocationURI, true, true, true);
-				@SuppressWarnings("null")@NonNull URI relativeEcoreModelURI = relativePackageURI.trimFragment();
+				@NonNull URI relativeEcoreModelURI = relativePackageURI.trimFragment();
 				URI resourceURI = projectDescriptor.getPlatformResourceURI();
 				URI pluginURI = projectDescriptor.getPlatformPluginURI();
 				platformResourceURI = relativeEcoreModelURI.resolve(resourceURI);
@@ -1935,7 +1936,7 @@ public class StandaloneProjectMap implements ProjectManager
 		}
 	}
 
-	public static class ProjectDescriptor implements IProjectDescriptor
+	public static class ProjectDescriptor implements IProjectDescriptorExtension
 	{
 		/**
 		 * The overall ProjectMap
@@ -1955,8 +1956,8 @@ public class StandaloneProjectMap implements ProjectManager
 		/**
 		 * Map from local Model URI to lazy EPackageDescriptor. e.g. from "model/Ecore.ecore".
 		 */
-		private @Nullable Map<URI, IPackageDescriptor> nsURI2packageDescriptor = null;
-		private @Nullable Map<URI, IResourceDescriptor> genModelURI2packageDescriptor = null;
+		private @Nullable Map<@NonNull URI, @NonNull IPackageDescriptor> nsURI2packageDescriptor = null;
+		private @Nullable Map<@NonNull URI, @NonNull IResourceDescriptor> genModelURI2packageDescriptor = null;
 
 		public ProjectDescriptor(@NonNull StandaloneProjectMap projectMap, @NonNull String name, @NonNull URI locationURI) {
 			this.projectMap =  projectMap;
@@ -1966,18 +1967,18 @@ public class StandaloneProjectMap implements ProjectManager
 
 		@Override
 		public void addPackageDescriptor(@NonNull IPackageDescriptor packageDescriptor) {
-			Map<URI, IPackageDescriptor> nsURI2packageDescriptor2 = nsURI2packageDescriptor;
+			Map<@NonNull URI, @NonNull IPackageDescriptor> nsURI2packageDescriptor2 = nsURI2packageDescriptor;
 			if (nsURI2packageDescriptor2 == null) {
-				nsURI2packageDescriptor = nsURI2packageDescriptor2 = new HashMap<URI, IPackageDescriptor>();
+				nsURI2packageDescriptor = nsURI2packageDescriptor2 = new HashMap<@NonNull URI, @NonNull IPackageDescriptor>();
 			}
 			nsURI2packageDescriptor2.put(packageDescriptor.getNsURI(), packageDescriptor);
 		}
 
 		@Override
 		public void addResourceDescriptor(@NonNull IResourceDescriptor resourceDescriptor) {
-			Map<URI, IResourceDescriptor> genModelURI2packageDescriptor2 = genModelURI2packageDescriptor;
+			Map<@NonNull URI, @NonNull IResourceDescriptor> genModelURI2packageDescriptor2 = genModelURI2packageDescriptor;
 			if (genModelURI2packageDescriptor2 == null) {
-				genModelURI2packageDescriptor = genModelURI2packageDescriptor2 = new HashMap<URI, IResourceDescriptor>();
+				genModelURI2packageDescriptor = genModelURI2packageDescriptor2 = new HashMap<@NonNull URI, @NonNull IResourceDescriptor>();
 			}
 			genModelURI2packageDescriptor2.put(resourceDescriptor.getGenModelURI(), resourceDescriptor);
 		}
@@ -2056,6 +2057,14 @@ public class StandaloneProjectMap implements ProjectManager
 		@Override
 		public @NonNull URI getPlatformResourceURI(@NonNull String projectRelativeFileName) {
 			return URI.createURI(projectRelativeFileName).resolve(getPlatformResourceURI());
+		}
+
+		/**
+		 * @since 1.1
+		 */
+		@Override
+		public @Nullable Iterable<@NonNull IPackageDescriptor> getPackageDescriptors() {
+			return nsURI2packageDescriptor !=  null ? nsURI2packageDescriptor.values() : null;
 		}
 
 		@Override
@@ -2370,7 +2379,7 @@ public class StandaloneProjectMap implements ProjectManager
 	}
 
 	protected @NonNull IProjectDescriptor getProjectDescriptorInternal(@NonNull URI platformURI) {
-		@SuppressWarnings("null")@NonNull String projectName = platformURI.segment(1);
+		@NonNull String projectName = platformURI.segment(1);
 		getProjectDescriptors();
 		IProjectDescriptor projectDescriptor = project2descriptor.get(projectName);
 		if (projectDescriptor == null) {

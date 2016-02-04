@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.XMIException;
 import org.eclipse.emf.ecore.xmi.XMLResource;
@@ -62,6 +63,10 @@ import org.eclipse.ocl.pivot.library.LibraryConstants;
 import org.eclipse.ocl.pivot.model.OCLstdlib;
 import org.eclipse.ocl.pivot.resource.ASResource;
 import org.eclipse.ocl.pivot.resource.ProjectManager;
+import org.eclipse.ocl.pivot.resource.ProjectManager.IPackageDescriptor;
+import org.eclipse.ocl.pivot.resource.ProjectManager.IProjectDescriptor;
+import org.eclipse.ocl.pivot.resource.ProjectManager.IProjectDescriptor.IProjectDescriptorExtension;
+import org.eclipse.ocl.pivot.resource.ProjectManager.IResourceDescriptor;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.ParserException;
@@ -487,8 +492,9 @@ public class Ecore2AS extends AbstractExternal2AS
 //			}
 //			errors.add(new XMIException("Failed to load '" + pivotURI + "'", e));
 //		}
-		if (errors != null) {
-			asResource.getErrors().addAll(errors);
+		List<Diagnostic> errors2 = errors;
+		if (errors2 != null) {
+			asResource.getErrors().addAll(errors2);
 		}
 		return pivotModel2;
 	}
@@ -606,9 +612,7 @@ public class Ecore2AS extends AbstractExternal2AS
 			EMap<String, String> details = importAnnotation.getDetails();
 			for (String key : details.keySet()) {
 				URI uri = URI.createURI(details.get(key));
-				if (baseURI != null) {
-					uri = uri.resolve(baseURI);
-				}
+				uri = resolveImportURI(uri, ePackage, baseURI);
 				assert uri != null;
 				ResourceSet resourceSet = environmentFactory.getResourceSet();
 				EObject importedEObject = null;
@@ -638,6 +642,49 @@ public class Ecore2AS extends AbstractExternal2AS
 				loadImports(eSubPackage, baseURI);
 			}
 		}
+	}
+
+	private @NonNull URI resolveImportURI(@NonNull URI uri, @NonNull EPackage ePackage, @Nullable URI baseURI) {
+		if (baseURI == null) {
+			return uri;
+		}
+		ProjectManager projectManager = environmentFactory.getProjectManager();
+		if (!(projectManager instanceof StandaloneProjectMap)) {
+			return uri;
+		}
+		StandaloneProjectMap projectMap = (StandaloneProjectMap)projectManager;
+/*		if (baseURI == null) {
+			IPackageDescriptor packageDescriptor = projectManager.getPackageDescriptor(URI.createURI(ePackage.getNsURI()));
+			if (packageDescriptor == null) {
+				return uri;
+			}
+			IResourceDescriptor resourceDescriptor = packageDescriptor.getResourceDescriptor();
+			baseURI = resourceDescriptor.getPlatformPluginURI();
+		} */
+		uri = uri.resolve(baseURI);
+		if (uri.isPlatformPlugin() && ClassUtil.safeEquals(ePackage.getNsURI(), String.valueOf(ePackage.eResource().getURI())) && (uri.segmentCount() >= 1)) {
+			@NonNull String projectName = uri.segment(1);
+			IProjectDescriptor projectDescriptor = projectMap.getProjectDescriptor(projectName);
+			if (projectDescriptor instanceof IProjectDescriptorExtension) {
+				Collection<IResourceDescriptor> resourceDescriptors = projectDescriptor.getResourceDescriptors();
+				if (resourceDescriptors != null) {
+					for (IResourceDescriptor resourceDescriptor : resourceDescriptors) {
+						if (ClassUtil.safeEquals(uri.trimFragment(), resourceDescriptor.getPlatformPluginURI())) {
+							Iterable<@NonNull IPackageDescriptor> packageDescriptors = ((IProjectDescriptorExtension)projectDescriptor).getPackageDescriptors();
+							if (packageDescriptors != null) {
+								for (IPackageDescriptor packageDescriptor : packageDescriptors) {
+									uri = packageDescriptor.getNsURI();
+									break;
+								}
+							}
+								
+							break;
+						}
+					}
+				}
+			}
+		}
+		return uri;
 	}
 
 	@Override
@@ -811,7 +858,7 @@ public class Ecore2AS extends AbstractExternal2AS
 		newCreateMap = new HashMap<EObject, Element>();
 		referencers = new HashSet<EObject>();
 		genericTypes = new ArrayList<EGenericType>();
-		PivotUtilInternal.refreshList(asResource.getContents(), Collections.singletonList(pivotModel));
+		PivotUtilInternal.refreshList(asResource.getContents(), Collections.singletonList(ClassUtil.nonNull(pivotModel)));
 		List<org.eclipse.ocl.pivot.Package> newPackages = new ArrayList<org.eclipse.ocl.pivot.Package>();
 		for (EObject eObject : ecoreContents) {
 			EClass eClass = eObject.eClass();
