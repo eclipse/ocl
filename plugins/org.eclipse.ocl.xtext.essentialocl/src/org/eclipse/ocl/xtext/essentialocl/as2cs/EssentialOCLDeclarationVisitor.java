@@ -588,7 +588,16 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 			return createInfixExpCS(csSource, operationName, csArgument);
 		}
 		else {
-			ExpCS csSource = context.visitDeclaration(ExpCS.class, asSource);
+			ExpCS csSource;
+			if (isLowerPrecedence(asSource, asPrecedence)) {
+				ExpCS csExp = createExpCS(asSource);
+				NestedExpCS csNested = EssentialOCLCSFactory.eINSTANCE.createNestedExpCS();
+				csNested.setOwnedExpression(csExp);
+				csSource = csNested;
+			}
+			else {
+				csSource = context.visitDeclaration(ExpCS.class, asSource);
+			}
 			PrefixExpCS csPrefix = EssentialOCLCSFactory.eINSTANCE.createPrefixExpCS();
 			csPrefix.setName(operationName);
 			ExpCS csResult = csPrefix;
