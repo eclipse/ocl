@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
@@ -73,6 +74,7 @@ public class EcoreTechnology extends AbstractTechnology
 		for (EStructuralFeature eFeature : eClass.getEAllStructuralFeatures()) {
 			EClassifier eType = eFeature.getEType();
 			if (eType != null) {
+				assert !eType.eIsProxy() : "Unresolved proxy: '" + EcoreUtil.getURI(eType) + "'";
 				EPackage ePackage = eType.getEPackage();
 				assert !"http://www.eclipse.org/uml2/5.0.0/UML".equals(ePackage.getNsURI());
 			}
