@@ -106,6 +106,7 @@ import org.eclipse.ocl.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.pivot.CollectionRange;
 import org.eclipse.ocl.pivot.CollectionType;
+import org.eclipse.ocl.pivot.CompleteClass;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.EnumLiteralExp;
@@ -1472,7 +1473,14 @@ public class AS2CGVisitor extends AbstractExtendingVisitor<@Nullable CGNamedElem
 		CGShadowExp cgShadowExp = null;
 		Type type = element.getType();
 		if (type != null) {
-			EObject eTarget = type.getESObject();
+			CompleteClass completeClass = environmentFactory.getCompleteModel().getCompleteClass(type);
+			EObject eTarget = null;
+			for (org.eclipse.ocl.pivot.Class partialClass : completeClass.getPartialClasses()) {
+				eTarget = partialClass.getESObject();
+				if (eTarget != null) {
+					break;
+				}
+			}
 			if (eTarget instanceof EDataType) {
 				CGEcoreDataTypeShadowExp cgEShadowExp = CGModelFactory.eINSTANCE.createCGEcoreDataTypeShadowExp();
 				cgEShadowExp.setEDataType((EDataType)eTarget);
