@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.xtext.essentialoclcs.*;
 
 /**
@@ -151,7 +152,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public PrefixExpCS createPrefixExpCS() {
+	public @NonNull PrefixExpCS createPrefixExpCS() {
 		PrefixExpCSImpl prefixExpCS = new PrefixExpCSImpl();
 		return prefixExpCS;
 	}
@@ -162,7 +163,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public CollectionTypeCS createCollectionTypeCS() {
+	public @NonNull CollectionTypeCS createCollectionTypeCS() {
 		CollectionTypeCSImpl collectionTypeCS = new CollectionTypeCSImpl();
 		return collectionTypeCS;
 	}
@@ -173,7 +174,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public ContextCS createContextCS() {
+	public @NonNull ContextCS createContextCS() {
 		ContextCSImpl contextCS = new ContextCSImpl();
 		return contextCS;
 	}
@@ -184,7 +185,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public CurlyBracketedClauseCS createCurlyBracketedClauseCS()
+	public @NonNull CurlyBracketedClauseCS createCurlyBracketedClauseCS()
 	{
 		CurlyBracketedClauseCSImpl curlyBracketedClauseCS = new CurlyBracketedClauseCSImpl();
 		return curlyBracketedClauseCS;
@@ -196,7 +197,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public ExpCS createExpCS() {
+	public @NonNull ExpCS createExpCS() {
 		ExpCSImpl expCS = new ExpCSImpl();
 		return expCS;
 	}
@@ -207,7 +208,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public ExpSpecificationCS createExpSpecificationCS() {
+	public @NonNull ExpSpecificationCS createExpSpecificationCS() {
 		ExpSpecificationCSImpl expSpecificationCS = new ExpSpecificationCSImpl();
 		return expSpecificationCS;
 	}
@@ -218,7 +219,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public TypeLiteralExpCS createTypeLiteralExpCS() {
+	public @NonNull TypeLiteralExpCS createTypeLiteralExpCS() {
 		TypeLiteralExpCSImpl typeLiteralExpCS = new TypeLiteralExpCSImpl();
 		return typeLiteralExpCS;
 	}
@@ -229,7 +230,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public TypeNameExpCS createTypeNameExpCS() {
+	public @NonNull TypeNameExpCS createTypeNameExpCS() {
 		TypeNameExpCSImpl typeNameExpCS = new TypeNameExpCSImpl();
 		return typeNameExpCS;
 	}
@@ -240,7 +241,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public UnlimitedNaturalLiteralExpCS createUnlimitedNaturalLiteralExpCS() {
+	public @NonNull UnlimitedNaturalLiteralExpCS createUnlimitedNaturalLiteralExpCS() {
 		UnlimitedNaturalLiteralExpCSImpl unlimitedNaturalLiteralExpCS = new UnlimitedNaturalLiteralExpCSImpl();
 		return unlimitedNaturalLiteralExpCS;
 	}
@@ -251,7 +252,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public VariableCS createVariableCS() {
+	public @NonNull VariableCS createVariableCS() {
 		VariableCSImpl variableCS = new VariableCSImpl();
 		return variableCS;
 	}
@@ -284,7 +285,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public LiteralExpCS createLiteralExpCS() {
+	public @NonNull LiteralExpCS createLiteralExpCS() {
 		LiteralExpCSImpl literalExpCS = new LiteralExpCSImpl();
 		return literalExpCS;
 	}
@@ -295,7 +296,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public MapLiteralExpCS createMapLiteralExpCS()
+	public @NonNull MapLiteralExpCS createMapLiteralExpCS()
 	{
 		MapLiteralExpCSImpl mapLiteralExpCS = new MapLiteralExpCSImpl();
 		return mapLiteralExpCS;
@@ -307,7 +308,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public MapLiteralPartCS createMapLiteralPartCS()
+	public @NonNull MapLiteralPartCS createMapLiteralPartCS()
 	{
 		MapLiteralPartCSImpl mapLiteralPartCS = new MapLiteralPartCSImpl();
 		return mapLiteralPartCS;
@@ -319,7 +320,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public MapTypeCS createMapTypeCS()
+	public @NonNull MapTypeCS createMapTypeCS()
 	{
 		MapTypeCSImpl mapTypeCS = new MapTypeCSImpl();
 		return mapTypeCS;
@@ -331,7 +332,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public NameExpCS createNameExpCS() {
+	public @NonNull NameExpCS createNameExpCS() {
 		NameExpCSImpl nameExpCS = new NameExpCSImpl();
 		return nameExpCS;
 	}
@@ -342,7 +343,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public NavigatingArgCS createNavigatingArgCS() {
+	public @NonNull NavigatingArgCS createNavigatingArgCS() {
 		NavigatingArgCSImpl navigatingArgCS = new NavigatingArgCSImpl();
 		return navigatingArgCS;
 	}
@@ -353,7 +354,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public NestedExpCS createNestedExpCS() {
+	public @NonNull NestedExpCS createNestedExpCS() {
 		NestedExpCSImpl nestedExpCS = new NestedExpCSImpl();
 		return nestedExpCS;
 	}
@@ -364,7 +365,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public CollectionLiteralExpCS createCollectionLiteralExpCS() {
+	public @NonNull CollectionLiteralExpCS createCollectionLiteralExpCS() {
 		CollectionLiteralExpCSImpl collectionLiteralExpCS = new CollectionLiteralExpCSImpl();
 		return collectionLiteralExpCS;
 	}
@@ -375,7 +376,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public CollectionLiteralPartCS createCollectionLiteralPartCS() {
+	public @NonNull CollectionLiteralPartCS createCollectionLiteralPartCS() {
 		CollectionLiteralPartCSImpl collectionLiteralPartCS = new CollectionLiteralPartCSImpl();
 		return collectionLiteralPartCS;
 	}
@@ -386,7 +387,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public CollectionPatternCS createCollectionPatternCS()
+	public @NonNull CollectionPatternCS createCollectionPatternCS()
 	{
 		CollectionPatternCSImpl collectionPatternCS = new CollectionPatternCSImpl();
 		return collectionPatternCS;
@@ -398,7 +399,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public PrimitiveLiteralExpCS createPrimitiveLiteralExpCS() {
+	public @NonNull PrimitiveLiteralExpCS createPrimitiveLiteralExpCS() {
 		PrimitiveLiteralExpCSImpl primitiveLiteralExpCS = new PrimitiveLiteralExpCSImpl();
 		return primitiveLiteralExpCS;
 	}
@@ -409,7 +410,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public RoundBracketedClauseCS createRoundBracketedClauseCS()
+	public @NonNull RoundBracketedClauseCS createRoundBracketedClauseCS()
 	{
 		RoundBracketedClauseCSImpl roundBracketedClauseCS = new RoundBracketedClauseCSImpl();
 		return roundBracketedClauseCS;
@@ -421,7 +422,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public SelfExpCS createSelfExpCS() {
+	public @NonNull SelfExpCS createSelfExpCS() {
 		SelfExpCSImpl selfExpCS = new SelfExpCSImpl();
 		return selfExpCS;
 	}
@@ -432,7 +433,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public ShadowPartCS createShadowPartCS()
+	public @NonNull ShadowPartCS createShadowPartCS()
 	{
 		ShadowPartCSImpl shadowPartCS = new ShadowPartCSImpl();
 		return shadowPartCS;
@@ -444,7 +445,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public SquareBracketedClauseCS createSquareBracketedClauseCS()
+	public @NonNull SquareBracketedClauseCS createSquareBracketedClauseCS()
 	{
 		SquareBracketedClauseCSImpl squareBracketedClauseCS = new SquareBracketedClauseCSImpl();
 		return squareBracketedClauseCS;
@@ -456,7 +457,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public TupleLiteralExpCS createTupleLiteralExpCS() {
+	public @NonNull TupleLiteralExpCS createTupleLiteralExpCS() {
 		TupleLiteralExpCSImpl tupleLiteralExpCS = new TupleLiteralExpCSImpl();
 		return tupleLiteralExpCS;
 	}
@@ -467,7 +468,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public TupleLiteralPartCS createTupleLiteralPartCS() {
+	public @NonNull TupleLiteralPartCS createTupleLiteralPartCS() {
 		TupleLiteralPartCSImpl tupleLiteralPartCS = new TupleLiteralPartCSImpl();
 		return tupleLiteralPartCS;
 	}
@@ -478,7 +479,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public StringLiteralExpCS createStringLiteralExpCS() {
+	public @NonNull StringLiteralExpCS createStringLiteralExpCS() {
 		StringLiteralExpCSImpl stringLiteralExpCS = new StringLiteralExpCSImpl();
 		return stringLiteralExpCS;
 	}
@@ -489,7 +490,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public BooleanLiteralExpCS createBooleanLiteralExpCS() {
+	public @NonNull BooleanLiteralExpCS createBooleanLiteralExpCS() {
 		BooleanLiteralExpCSImpl booleanLiteralExpCS = new BooleanLiteralExpCSImpl();
 		return booleanLiteralExpCS;
 	}
@@ -500,7 +501,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public InvalidLiteralExpCS createInvalidLiteralExpCS() {
+	public @NonNull InvalidLiteralExpCS createInvalidLiteralExpCS() {
 		InvalidLiteralExpCSImpl invalidLiteralExpCS = new InvalidLiteralExpCSImpl();
 		return invalidLiteralExpCS;
 	}
@@ -511,7 +512,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public LambdaLiteralExpCS createLambdaLiteralExpCS()
+	public @NonNull LambdaLiteralExpCS createLambdaLiteralExpCS()
 	{
 		LambdaLiteralExpCSImpl lambdaLiteralExpCS = new LambdaLiteralExpCSImpl();
 		return lambdaLiteralExpCS;
@@ -523,7 +524,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public NullLiteralExpCS createNullLiteralExpCS() {
+	public @NonNull NullLiteralExpCS createNullLiteralExpCS() {
 		NullLiteralExpCSImpl nullLiteralExpCS = new NullLiteralExpCSImpl();
 		return nullLiteralExpCS;
 	}
@@ -534,7 +535,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public NumberLiteralExpCS createNumberLiteralExpCS() {
+	public @NonNull NumberLiteralExpCS createNumberLiteralExpCS() {
 		NumberLiteralExpCSImpl numberLiteralExpCS = new NumberLiteralExpCSImpl();
 		return numberLiteralExpCS;
 	}
@@ -545,7 +546,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public PatternExpCS createPatternExpCS()
+	public @NonNull PatternExpCS createPatternExpCS()
 	{
 		PatternExpCSImpl patternExpCS = new PatternExpCSImpl();
 		return patternExpCS;
@@ -567,7 +568,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public IfExpCS createIfExpCS() {
+	public @NonNull IfExpCS createIfExpCS() {
 		IfExpCSImpl ifExpCS = new IfExpCSImpl();
 		return ifExpCS;
 	}
@@ -578,7 +579,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public IfThenExpCS createIfThenExpCS()
+	public @NonNull IfThenExpCS createIfThenExpCS()
 	{
 		IfThenExpCSImpl ifThenExpCS = new IfThenExpCSImpl();
 		return ifThenExpCS;
@@ -590,7 +591,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public InfixExpCS createInfixExpCS() {
+	public @NonNull InfixExpCS createInfixExpCS() {
 		InfixExpCSImpl infixExpCS = new InfixExpCSImpl();
 		return infixExpCS;
 	}
@@ -601,7 +602,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public LetExpCS createLetExpCS() {
+	public @NonNull LetExpCS createLetExpCS() {
 		LetExpCSImpl letExpCS = new LetExpCSImpl();
 		return letExpCS;
 	}
@@ -612,7 +613,7 @@ public class EssentialOCLCSFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public LetVariableCS createLetVariableCS() {
+	public @NonNull LetVariableCS createLetVariableCS() {
 		LetVariableCSImpl letVariableCS = new LetVariableCSImpl();
 		return letVariableCS;
 	}

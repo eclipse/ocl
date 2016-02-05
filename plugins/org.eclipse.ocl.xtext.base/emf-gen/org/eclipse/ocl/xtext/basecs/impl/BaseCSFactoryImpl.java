@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.internal.scoping.ScopeFilter;
 import org.eclipse.ocl.xtext.basecs.AnnotationCS;
 import org.eclipse.ocl.xtext.basecs.AttributeCS;
@@ -182,7 +183,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * @generated
 	 */
 	@Override
-	public AnnotationCS createAnnotationCS()
+	public @NonNull AnnotationCS createAnnotationCS()
 	{
 		AnnotationCSImpl annotationCS = new AnnotationCSImpl();
 		return annotationCS;
@@ -194,7 +195,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * @generated
 	 */
 	@Override
-	public AttributeCS createAttributeCS()
+	public @NonNull AttributeCS createAttributeCS()
 	{
 		AttributeCSImpl attributeCS = new AttributeCSImpl();
 		return attributeCS;
@@ -206,7 +207,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * @generated
 	 */
 	@Override
-	public ConstraintCS createConstraintCS()
+	public @NonNull ConstraintCS createConstraintCS()
 	{
 		ConstraintCSImpl constraintCS = new ConstraintCSImpl();
 		return constraintCS;
@@ -218,7 +219,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * @generated
 	 */
 	@Override
-	public DataTypeCS createDataTypeCS()
+	public @NonNull DataTypeCS createDataTypeCS()
 	{
 		DataTypeCSImpl dataTypeCS = new DataTypeCSImpl();
 		return dataTypeCS;
@@ -230,7 +231,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * @generated
 	 */
 	@Override
-	public DetailCS createDetailCS() {
+	public @NonNull DetailCS createDetailCS() {
 		DetailCSImpl detailCS = new DetailCSImpl();
 		return detailCS;
 	}
@@ -241,7 +242,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * @generated
 	 */
 	@Override
-	public DocumentationCS createDocumentationCS()
+	public @NonNull DocumentationCS createDocumentationCS()
 	{
 		DocumentationCSImpl documentationCS = new DocumentationCSImpl();
 		return documentationCS;
@@ -253,7 +254,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * @generated
 	 */
 	@Override
-	public EnumerationCS createEnumerationCS()
+	public @NonNull EnumerationCS createEnumerationCS()
 	{
 		EnumerationCSImpl enumerationCS = new EnumerationCSImpl();
 		return enumerationCS;
@@ -265,7 +266,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * @generated
 	 */
 	@Override
-	public EnumerationLiteralCS createEnumerationLiteralCS()
+	public @NonNull EnumerationLiteralCS createEnumerationLiteralCS()
 	{
 		EnumerationLiteralCSImpl enumerationLiteralCS = new EnumerationLiteralCSImpl();
 		return enumerationLiteralCS;
@@ -277,7 +278,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * @generated
 	 */
 	@Override
-	public ImportCS createImportCS() {
+	public @NonNull ImportCS createImportCS() {
 		ImportCSImpl importCS = new ImportCSImpl();
 		return importCS;
 	}
@@ -288,7 +289,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * @generated
 	 */
 	@Override
-	public LambdaTypeCS createLambdaTypeCS()
+	public @NonNull LambdaTypeCS createLambdaTypeCS()
 	{
 		LambdaTypeCSImpl lambdaTypeCS = new LambdaTypeCSImpl();
 		return lambdaTypeCS;
@@ -300,7 +301,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * @generated
 	 */
 	@Override
-	public ModelElementRefCS createModelElementRefCS()
+	public @NonNull ModelElementRefCS createModelElementRefCS()
 	{
 		ModelElementRefCSImpl modelElementRefCS = new ModelElementRefCSImpl();
 		return modelElementRefCS;
@@ -312,7 +313,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * @generated
 	 */
 	@Override
-	public MultiplicityBoundsCS createMultiplicityBoundsCS()
+	public @NonNull MultiplicityBoundsCS createMultiplicityBoundsCS()
 	{
 		MultiplicityBoundsCSImpl multiplicityBoundsCS = new MultiplicityBoundsCSImpl();
 		return multiplicityBoundsCS;
@@ -324,7 +325,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * @generated
 	 */
 	@Override
-	public MultiplicityStringCS createMultiplicityStringCS()
+	public @NonNull MultiplicityStringCS createMultiplicityStringCS()
 	{
 		MultiplicityStringCSImpl multiplicityStringCS = new MultiplicityStringCSImpl();
 		return multiplicityStringCS;
@@ -336,7 +337,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * @generated
 	 */
 	@Override
-	public OperationCS createOperationCS()
+	public @NonNull OperationCS createOperationCS()
 	{
 		OperationCSImpl operationCS = new OperationCSImpl();
 		return operationCS;
@@ -348,7 +349,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * @generated
 	 */
 	@Override
-	public PackageCS createPackageCS() {
+	public @NonNull PackageCS createPackageCS() {
 		PackageCSImpl packageCS = new PackageCSImpl();
 		return packageCS;
 	}
@@ -359,7 +360,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * @generated
 	 */
 	@Override
-	public ParameterCS createParameterCS() {
+	public @NonNull ParameterCS createParameterCS() {
 		ParameterCSImpl parameterCS = new ParameterCSImpl();
 		return parameterCS;
 	}
@@ -370,7 +371,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * @generated
 	 */
 	@Override
-	public PathElementCS createPathElementCS()
+	public @NonNull PathElementCS createPathElementCS()
 	{
 		PathElementCSImpl pathElementCS = new PathElementCSImpl();
 		return pathElementCS;
@@ -382,7 +383,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * @generated
 	 */
 	@Override
-	public PathElementWithURICS createPathElementWithURICS()
+	public @NonNull PathElementWithURICS createPathElementWithURICS()
 	{
 		PathElementWithURICSImpl pathElementWithURICS = new PathElementWithURICSImpl();
 		return pathElementWithURICS;
@@ -394,7 +395,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * @generated
 	 */
 	@Override
-	public PathNameCS createPathNameCS()
+	public @NonNull PathNameCS createPathNameCS()
 	{
 		PathNameCSImpl pathNameCS = new PathNameCSImpl();
 		return pathNameCS;
@@ -406,7 +407,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * @generated
 	 */
 	@Override
-	public PrimitiveTypeRefCS createPrimitiveTypeRefCS() {
+	public @NonNull PrimitiveTypeRefCS createPrimitiveTypeRefCS() {
 		PrimitiveTypeRefCSImpl primitiveTypeRefCS = new PrimitiveTypeRefCSImpl();
 		return primitiveTypeRefCS;
 	}
@@ -417,7 +418,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * @generated
 	 */
 	@Override
-	public ReferenceCS createReferenceCS()
+	public @NonNull ReferenceCS createReferenceCS()
 	{
 		ReferenceCSImpl referenceCS = new ReferenceCSImpl();
 		return referenceCS;
@@ -429,7 +430,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * @generated
 	 */
 	@Override
-	public RootPackageCS createRootPackageCS()
+	public @NonNull RootPackageCS createRootPackageCS()
 	{
 		RootPackageCSImpl rootPackageCS = new RootPackageCSImpl();
 		return rootPackageCS;
@@ -441,7 +442,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * @generated
 	 */
 	@Override
-	public SpecificationCS createSpecificationCS()
+	public @NonNull SpecificationCS createSpecificationCS()
 	{
 		SpecificationCSImpl specificationCS = new SpecificationCSImpl();
 		return specificationCS;
@@ -453,7 +454,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * @generated
 	 */
 	@Override
-	public StructuredClassCS createStructuredClassCS()
+	public @NonNull StructuredClassCS createStructuredClassCS()
 	{
 		StructuredClassCSImpl structuredClassCS = new StructuredClassCSImpl();
 		return structuredClassCS;
@@ -465,7 +466,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * @generated
 	 */
 	@Override
-	public TemplateBindingCS createTemplateBindingCS() {
+	public @NonNull TemplateBindingCS createTemplateBindingCS() {
 		TemplateBindingCSImpl templateBindingCS = new TemplateBindingCSImpl();
 		return templateBindingCS;
 	}
@@ -476,7 +477,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * @generated
 	 */
 	@Override
-	public TemplateParameterSubstitutionCS createTemplateParameterSubstitutionCS() {
+	public @NonNull TemplateParameterSubstitutionCS createTemplateParameterSubstitutionCS() {
 		TemplateParameterSubstitutionCSImpl templateParameterSubstitutionCS = new TemplateParameterSubstitutionCSImpl();
 		return templateParameterSubstitutionCS;
 	}
@@ -487,7 +488,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * @generated
 	 */
 	@Override
-	public TemplateSignatureCS createTemplateSignatureCS() {
+	public @NonNull TemplateSignatureCS createTemplateSignatureCS() {
 		TemplateSignatureCSImpl templateSignatureCS = new TemplateSignatureCSImpl();
 		return templateSignatureCS;
 	}
@@ -498,7 +499,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * @generated
 	 */
 	@Override
-	public TuplePartCS createTuplePartCS()
+	public @NonNull TuplePartCS createTuplePartCS()
 	{
 		TuplePartCSImpl tuplePartCS = new TuplePartCSImpl();
 		return tuplePartCS;
@@ -510,7 +511,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * @generated
 	 */
 	@Override
-	public TupleTypeCS createTupleTypeCS()
+	public @NonNull TupleTypeCS createTupleTypeCS()
 	{
 		TupleTypeCSImpl tupleTypeCS = new TupleTypeCSImpl();
 		return tupleTypeCS;
@@ -522,7 +523,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * @generated
 	 */
 	@Override
-	public TypeParameterCS createTypeParameterCS() {
+	public @NonNull TypeParameterCS createTypeParameterCS() {
 		TypeParameterCSImpl typeParameterCS = new TypeParameterCSImpl();
 		return typeParameterCS;
 	}
@@ -533,7 +534,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * @generated
 	 */
 	@Override
-	public TypedTypeRefCS createTypedTypeRefCS() {
+	public @NonNull TypedTypeRefCS createTypedTypeRefCS() {
 		TypedTypeRefCSImpl typedTypeRefCS = new TypedTypeRefCSImpl();
 		return typedTypeRefCS;
 	}
@@ -544,7 +545,7 @@ public class BaseCSFactoryImpl extends EFactoryImpl implements BaseCSFactory {
 	 * @generated
 	 */
 	@Override
-	public WildcardTypeRefCS createWildcardTypeRefCS() {
+	public @NonNull WildcardTypeRefCS createWildcardTypeRefCS() {
 		WildcardTypeRefCSImpl wildcardTypeRefCS = new WildcardTypeRefCSImpl();
 		return wildcardTypeRefCS;
 	}

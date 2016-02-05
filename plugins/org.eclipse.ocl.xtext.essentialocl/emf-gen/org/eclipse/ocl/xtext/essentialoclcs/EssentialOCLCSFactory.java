@@ -11,6 +11,7 @@
 package org.eclipse.ocl.xtext.essentialoclcs;
 
 import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.jdt.annotation.NonNull;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,7 +39,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Prefix Exp CS</em>'.
 	 * @generated
 	 */
-	PrefixExpCS createPrefixExpCS();
+	@NonNull PrefixExpCS createPrefixExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Collection Type CS</em>'.
@@ -47,7 +48,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Collection Type CS</em>'.
 	 * @generated
 	 */
-	CollectionTypeCS createCollectionTypeCS();
+	@NonNull CollectionTypeCS createCollectionTypeCS();
 
 	/**
 	 * Returns a new object of class '<em>Context CS</em>'.
@@ -56,7 +57,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Context CS</em>'.
 	 * @generated
 	 */
-	ContextCS createContextCS();
+	@NonNull ContextCS createContextCS();
 
 	/**
 	 * Returns a new object of class '<em>Curly Bracketed Clause CS</em>'.
@@ -65,7 +66,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Curly Bracketed Clause CS</em>'.
 	 * @generated
 	 */
-	CurlyBracketedClauseCS createCurlyBracketedClauseCS();
+	@NonNull CurlyBracketedClauseCS createCurlyBracketedClauseCS();
 
 	/**
 	 * Returns a new object of class '<em>Exp CS</em>'.
@@ -74,7 +75,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Exp CS</em>'.
 	 * @generated
 	 */
-	ExpCS createExpCS();
+	@NonNull ExpCS createExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Exp Specification CS</em>'.
@@ -83,7 +84,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Exp Specification CS</em>'.
 	 * @generated
 	 */
-	ExpSpecificationCS createExpSpecificationCS();
+	@NonNull ExpSpecificationCS createExpSpecificationCS();
 
 	/**
 	 * Returns a new object of class '<em>Type Literal Exp CS</em>'.
@@ -92,7 +93,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Type Literal Exp CS</em>'.
 	 * @generated
 	 */
-	TypeLiteralExpCS createTypeLiteralExpCS();
+	@NonNull TypeLiteralExpCS createTypeLiteralExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Type Name Exp CS</em>'.
@@ -101,7 +102,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Type Name Exp CS</em>'.
 	 * @generated
 	 */
-	TypeNameExpCS createTypeNameExpCS();
+	@NonNull TypeNameExpCS createTypeNameExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Unlimited Natural Literal Exp CS</em>'.
@@ -110,7 +111,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Unlimited Natural Literal Exp CS</em>'.
 	 * @generated
 	 */
-	UnlimitedNaturalLiteralExpCS createUnlimitedNaturalLiteralExpCS();
+	@NonNull UnlimitedNaturalLiteralExpCS createUnlimitedNaturalLiteralExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Variable CS</em>'.
@@ -119,7 +120,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Variable CS</em>'.
 	 * @generated
 	 */
-	VariableCS createVariableCS();
+	@NonNull VariableCS createVariableCS();
 
 	/**
 	 * Returns the package supported by this factory.
@@ -137,7 +138,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Literal Exp CS</em>'.
 	 * @generated
 	 */
-	LiteralExpCS createLiteralExpCS();
+	@NonNull LiteralExpCS createLiteralExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Map Literal Exp CS</em>'.
@@ -146,7 +147,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Map Literal Exp CS</em>'.
 	 * @generated
 	 */
-	MapLiteralExpCS createMapLiteralExpCS();
+	@NonNull MapLiteralExpCS createMapLiteralExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Map Literal Part CS</em>'.
@@ -155,7 +156,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Map Literal Part CS</em>'.
 	 * @generated
 	 */
-	MapLiteralPartCS createMapLiteralPartCS();
+	@NonNull MapLiteralPartCS createMapLiteralPartCS();
 
 	/**
 	 * Returns a new object of class '<em>Map Type CS</em>'.
@@ -164,7 +165,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Map Type CS</em>'.
 	 * @generated
 	 */
-	MapTypeCS createMapTypeCS();
+	@NonNull MapTypeCS createMapTypeCS();
 
 	/**
 	 * Returns a new object of class '<em>Name Exp CS</em>'.
@@ -173,7 +174,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Name Exp CS</em>'.
 	 * @generated
 	 */
-	NameExpCS createNameExpCS();
+	@NonNull NameExpCS createNameExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Navigating Arg CS</em>'.
@@ -182,7 +183,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Navigating Arg CS</em>'.
 	 * @generated
 	 */
-	NavigatingArgCS createNavigatingArgCS();
+	@NonNull NavigatingArgCS createNavigatingArgCS();
 
 	/**
 	 * Returns a new object of class '<em>Nested Exp CS</em>'.
@@ -191,7 +192,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Nested Exp CS</em>'.
 	 * @generated
 	 */
-	NestedExpCS createNestedExpCS();
+	@NonNull NestedExpCS createNestedExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Collection Literal Exp CS</em>'.
@@ -200,7 +201,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Collection Literal Exp CS</em>'.
 	 * @generated
 	 */
-	CollectionLiteralExpCS createCollectionLiteralExpCS();
+	@NonNull CollectionLiteralExpCS createCollectionLiteralExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Collection Literal Part CS</em>'.
@@ -209,7 +210,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Collection Literal Part CS</em>'.
 	 * @generated
 	 */
-	CollectionLiteralPartCS createCollectionLiteralPartCS();
+	@NonNull CollectionLiteralPartCS createCollectionLiteralPartCS();
 
 	/**
 	 * Returns a new object of class '<em>Collection Pattern CS</em>'.
@@ -218,7 +219,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Collection Pattern CS</em>'.
 	 * @generated
 	 */
-	CollectionPatternCS createCollectionPatternCS();
+	@NonNull CollectionPatternCS createCollectionPatternCS();
 
 	/**
 	 * Returns a new object of class '<em>Primitive Literal Exp CS</em>'.
@@ -227,7 +228,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Primitive Literal Exp CS</em>'.
 	 * @generated
 	 */
-	PrimitiveLiteralExpCS createPrimitiveLiteralExpCS();
+	@NonNull PrimitiveLiteralExpCS createPrimitiveLiteralExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Round Bracketed Clause CS</em>'.
@@ -236,7 +237,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Round Bracketed Clause CS</em>'.
 	 * @generated
 	 */
-	RoundBracketedClauseCS createRoundBracketedClauseCS();
+	@NonNull RoundBracketedClauseCS createRoundBracketedClauseCS();
 
 	/**
 	 * Returns a new object of class '<em>Self Exp CS</em>'.
@@ -245,7 +246,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Self Exp CS</em>'.
 	 * @generated
 	 */
-	SelfExpCS createSelfExpCS();
+	@NonNull SelfExpCS createSelfExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Shadow Part CS</em>'.
@@ -254,7 +255,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Shadow Part CS</em>'.
 	 * @generated
 	 */
-	ShadowPartCS createShadowPartCS();
+	@NonNull ShadowPartCS createShadowPartCS();
 
 	/**
 	 * Returns a new object of class '<em>Square Bracketed Clause CS</em>'.
@@ -263,7 +264,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Square Bracketed Clause CS</em>'.
 	 * @generated
 	 */
-	SquareBracketedClauseCS createSquareBracketedClauseCS();
+	@NonNull SquareBracketedClauseCS createSquareBracketedClauseCS();
 
 	/**
 	 * Returns a new object of class '<em>Tuple Literal Exp CS</em>'.
@@ -272,7 +273,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Tuple Literal Exp CS</em>'.
 	 * @generated
 	 */
-	TupleLiteralExpCS createTupleLiteralExpCS();
+	@NonNull TupleLiteralExpCS createTupleLiteralExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Tuple Literal Part CS</em>'.
@@ -281,7 +282,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Tuple Literal Part CS</em>'.
 	 * @generated
 	 */
-	TupleLiteralPartCS createTupleLiteralPartCS();
+	@NonNull TupleLiteralPartCS createTupleLiteralPartCS();
 
 	/**
 	 * Returns a new object of class '<em>String Literal Exp CS</em>'.
@@ -290,7 +291,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>String Literal Exp CS</em>'.
 	 * @generated
 	 */
-	StringLiteralExpCS createStringLiteralExpCS();
+	@NonNull StringLiteralExpCS createStringLiteralExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Boolean Literal Exp CS</em>'.
@@ -299,7 +300,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Boolean Literal Exp CS</em>'.
 	 * @generated
 	 */
-	BooleanLiteralExpCS createBooleanLiteralExpCS();
+	@NonNull BooleanLiteralExpCS createBooleanLiteralExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Invalid Literal Exp CS</em>'.
@@ -308,7 +309,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Invalid Literal Exp CS</em>'.
 	 * @generated
 	 */
-	InvalidLiteralExpCS createInvalidLiteralExpCS();
+	@NonNull InvalidLiteralExpCS createInvalidLiteralExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Lambda Literal Exp CS</em>'.
@@ -317,7 +318,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Lambda Literal Exp CS</em>'.
 	 * @generated
 	 */
-	LambdaLiteralExpCS createLambdaLiteralExpCS();
+	@NonNull LambdaLiteralExpCS createLambdaLiteralExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Null Literal Exp CS</em>'.
@@ -326,7 +327,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Null Literal Exp CS</em>'.
 	 * @generated
 	 */
-	NullLiteralExpCS createNullLiteralExpCS();
+	@NonNull NullLiteralExpCS createNullLiteralExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Number Literal Exp CS</em>'.
@@ -335,7 +336,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Number Literal Exp CS</em>'.
 	 * @generated
 	 */
-	NumberLiteralExpCS createNumberLiteralExpCS();
+	@NonNull NumberLiteralExpCS createNumberLiteralExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Pattern Exp CS</em>'.
@@ -344,7 +345,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Pattern Exp CS</em>'.
 	 * @generated
 	 */
-	PatternExpCS createPatternExpCS();
+	@NonNull PatternExpCS createPatternExpCS();
 
 	/**
 	 * Returns a new object of class '<em>If Exp CS</em>'.
@@ -353,7 +354,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>If Exp CS</em>'.
 	 * @generated
 	 */
-	IfExpCS createIfExpCS();
+	@NonNull IfExpCS createIfExpCS();
 
 	/**
 	 * Returns a new object of class '<em>If Then Exp CS</em>'.
@@ -362,7 +363,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>If Then Exp CS</em>'.
 	 * @generated
 	 */
-	IfThenExpCS createIfThenExpCS();
+	@NonNull IfThenExpCS createIfThenExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Infix Exp CS</em>'.
@@ -371,7 +372,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Infix Exp CS</em>'.
 	 * @generated
 	 */
-	InfixExpCS createInfixExpCS();
+	@NonNull InfixExpCS createInfixExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Let Exp CS</em>'.
@@ -380,7 +381,7 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Let Exp CS</em>'.
 	 * @generated
 	 */
-	LetExpCS createLetExpCS();
+	@NonNull LetExpCS createLetExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Let Variable CS</em>'.
@@ -389,6 +390,6 @@ public interface EssentialOCLCSFactory
 	 * @return a new object of class '<em>Let Variable CS</em>'.
 	 * @generated
 	 */
-	LetVariableCS createLetVariableCS();
+	@NonNull LetVariableCS createLetVariableCS();
 
 } //EssentialOCLCSFactory

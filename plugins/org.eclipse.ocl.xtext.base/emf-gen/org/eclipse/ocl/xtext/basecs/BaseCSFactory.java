@@ -12,6 +12,7 @@
 package org.eclipse.ocl.xtext.basecs;
 
 import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.jdt.annotation.NonNull;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,7 +38,7 @@ public interface BaseCSFactory extends EFactory {
 	 * @return a new object of class '<em>Annotation CS</em>'.
 	 * @generated
 	 */
-	AnnotationCS createAnnotationCS();
+	@NonNull AnnotationCS createAnnotationCS();
 
 	/**
 	 * Returns a new object of class '<em>Attribute CS</em>'.
@@ -46,7 +47,7 @@ public interface BaseCSFactory extends EFactory {
 	 * @return a new object of class '<em>Attribute CS</em>'.
 	 * @generated
 	 */
-	AttributeCS createAttributeCS();
+	@NonNull AttributeCS createAttributeCS();
 
 	/**
 	 * Returns a new object of class '<em>Constraint CS</em>'.
@@ -55,7 +56,7 @@ public interface BaseCSFactory extends EFactory {
 	 * @return a new object of class '<em>Constraint CS</em>'.
 	 * @generated
 	 */
-	ConstraintCS createConstraintCS();
+	@NonNull ConstraintCS createConstraintCS();
 
 	/**
 	 * Returns a new object of class '<em>Data Type CS</em>'.
@@ -64,7 +65,7 @@ public interface BaseCSFactory extends EFactory {
 	 * @return a new object of class '<em>Data Type CS</em>'.
 	 * @generated
 	 */
-	DataTypeCS createDataTypeCS();
+	@NonNull DataTypeCS createDataTypeCS();
 
 	/**
 	 * Returns a new object of class '<em>Detail CS</em>'.
@@ -73,7 +74,7 @@ public interface BaseCSFactory extends EFactory {
 	 * @return a new object of class '<em>Detail CS</em>'.
 	 * @generated
 	 */
-	DetailCS createDetailCS();
+	@NonNull DetailCS createDetailCS();
 
 	/**
 	 * Returns a new object of class '<em>Documentation CS</em>'.
@@ -82,7 +83,7 @@ public interface BaseCSFactory extends EFactory {
 	 * @return a new object of class '<em>Documentation CS</em>'.
 	 * @generated
 	 */
-	DocumentationCS createDocumentationCS();
+	@NonNull DocumentationCS createDocumentationCS();
 
 	/**
 	 * Returns a new object of class '<em>Enumeration CS</em>'.
@@ -91,7 +92,7 @@ public interface BaseCSFactory extends EFactory {
 	 * @return a new object of class '<em>Enumeration CS</em>'.
 	 * @generated
 	 */
-	EnumerationCS createEnumerationCS();
+	@NonNull EnumerationCS createEnumerationCS();
 
 	/**
 	 * Returns a new object of class '<em>Enumeration Literal CS</em>'.
@@ -100,7 +101,7 @@ public interface BaseCSFactory extends EFactory {
 	 * @return a new object of class '<em>Enumeration Literal CS</em>'.
 	 * @generated
 	 */
-	EnumerationLiteralCS createEnumerationLiteralCS();
+	@NonNull EnumerationLiteralCS createEnumerationLiteralCS();
 
 	/**
 	 * Returns a new object of class '<em>Import CS</em>'.
@@ -109,7 +110,7 @@ public interface BaseCSFactory extends EFactory {
 	 * @return a new object of class '<em>Import CS</em>'.
 	 * @generated
 	 */
-	ImportCS createImportCS();
+	@NonNull ImportCS createImportCS();
 
 	/**
 	 * Returns a new object of class '<em>Lambda Type CS</em>'.
@@ -118,7 +119,7 @@ public interface BaseCSFactory extends EFactory {
 	 * @return a new object of class '<em>Lambda Type CS</em>'.
 	 * @generated
 	 */
-	LambdaTypeCS createLambdaTypeCS();
+	@NonNull LambdaTypeCS createLambdaTypeCS();
 
 	/**
 	 * Returns a new object of class '<em>Model Element Ref CS</em>'.
@@ -127,7 +128,7 @@ public interface BaseCSFactory extends EFactory {
 	 * @return a new object of class '<em>Model Element Ref CS</em>'.
 	 * @generated
 	 */
-	ModelElementRefCS createModelElementRefCS();
+	@NonNull ModelElementRefCS createModelElementRefCS();
 
 	/**
 	 * Returns a new object of class '<em>Multiplicity Bounds CS</em>'.
@@ -136,7 +137,7 @@ public interface BaseCSFactory extends EFactory {
 	 * @return a new object of class '<em>Multiplicity Bounds CS</em>'.
 	 * @generated
 	 */
-	MultiplicityBoundsCS createMultiplicityBoundsCS();
+	@NonNull MultiplicityBoundsCS createMultiplicityBoundsCS();
 
 	/**
 	 * Returns a new object of class '<em>Multiplicity String CS</em>'.
@@ -145,7 +146,7 @@ public interface BaseCSFactory extends EFactory {
 	 * @return a new object of class '<em>Multiplicity String CS</em>'.
 	 * @generated
 	 */
-	MultiplicityStringCS createMultiplicityStringCS();
+	@NonNull MultiplicityStringCS createMultiplicityStringCS();
 
 	/**
 	 * Returns a new object of class '<em>Operation CS</em>'.
@@ -154,7 +155,7 @@ public interface BaseCSFactory extends EFactory {
 	 * @return a new object of class '<em>Operation CS</em>'.
 	 * @generated
 	 */
-	OperationCS createOperationCS();
+	@NonNull OperationCS createOperationCS();
 
 	/**
 	 * Returns a new object of class '<em>Package CS</em>'.
@@ -163,7 +164,7 @@ public interface BaseCSFactory extends EFactory {
 	 * @return a new object of class '<em>Package CS</em>'.
 	 * @generated
 	 */
-	PackageCS createPackageCS();
+	@NonNull PackageCS createPackageCS();
 
 	/**
 	 * Returns a new object of class '<em>Parameter CS</em>'.
@@ -172,7 +173,7 @@ public interface BaseCSFactory extends EFactory {
 	 * @return a new object of class '<em>Parameter CS</em>'.
 	 * @generated
 	 */
-	ParameterCS createParameterCS();
+	@NonNull ParameterCS createParameterCS();
 
 	/**
 	 * Returns a new object of class '<em>Path Element CS</em>'.
@@ -181,7 +182,7 @@ public interface BaseCSFactory extends EFactory {
 	 * @return a new object of class '<em>Path Element CS</em>'.
 	 * @generated
 	 */
-	PathElementCS createPathElementCS();
+	@NonNull PathElementCS createPathElementCS();
 
 	/**
 	 * Returns a new object of class '<em>Path Element With URICS</em>'.
@@ -190,7 +191,7 @@ public interface BaseCSFactory extends EFactory {
 	 * @return a new object of class '<em>Path Element With URICS</em>'.
 	 * @generated
 	 */
-	PathElementWithURICS createPathElementWithURICS();
+	@NonNull PathElementWithURICS createPathElementWithURICS();
 
 	/**
 	 * Returns a new object of class '<em>Path Name CS</em>'.
@@ -199,7 +200,7 @@ public interface BaseCSFactory extends EFactory {
 	 * @return a new object of class '<em>Path Name CS</em>'.
 	 * @generated
 	 */
-	PathNameCS createPathNameCS();
+	@NonNull PathNameCS createPathNameCS();
 
 	/**
 	 * Returns a new object of class '<em>Primitive Type Ref CS</em>'.
@@ -208,7 +209,7 @@ public interface BaseCSFactory extends EFactory {
 	 * @return a new object of class '<em>Primitive Type Ref CS</em>'.
 	 * @generated
 	 */
-	PrimitiveTypeRefCS createPrimitiveTypeRefCS();
+	@NonNull PrimitiveTypeRefCS createPrimitiveTypeRefCS();
 
 	/**
 	 * Returns a new object of class '<em>Reference CS</em>'.
@@ -217,7 +218,7 @@ public interface BaseCSFactory extends EFactory {
 	 * @return a new object of class '<em>Reference CS</em>'.
 	 * @generated
 	 */
-	ReferenceCS createReferenceCS();
+	@NonNull ReferenceCS createReferenceCS();
 
 	/**
 	 * Returns a new object of class '<em>Root Package CS</em>'.
@@ -226,7 +227,7 @@ public interface BaseCSFactory extends EFactory {
 	 * @return a new object of class '<em>Root Package CS</em>'.
 	 * @generated
 	 */
-	RootPackageCS createRootPackageCS();
+	@NonNull RootPackageCS createRootPackageCS();
 
 	/**
 	 * Returns a new object of class '<em>Specification CS</em>'.
@@ -235,7 +236,7 @@ public interface BaseCSFactory extends EFactory {
 	 * @return a new object of class '<em>Specification CS</em>'.
 	 * @generated
 	 */
-	SpecificationCS createSpecificationCS();
+	@NonNull SpecificationCS createSpecificationCS();
 
 	/**
 	 * Returns a new object of class '<em>Structured Class CS</em>'.
@@ -244,7 +245,7 @@ public interface BaseCSFactory extends EFactory {
 	 * @return a new object of class '<em>Structured Class CS</em>'.
 	 * @generated
 	 */
-	StructuredClassCS createStructuredClassCS();
+	@NonNull StructuredClassCS createStructuredClassCS();
 
 	/**
 	 * Returns a new object of class '<em>Template Binding CS</em>'.
@@ -253,7 +254,7 @@ public interface BaseCSFactory extends EFactory {
 	 * @return a new object of class '<em>Template Binding CS</em>'.
 	 * @generated
 	 */
-	TemplateBindingCS createTemplateBindingCS();
+	@NonNull TemplateBindingCS createTemplateBindingCS();
 
 	/**
 	 * Returns a new object of class '<em>Template Parameter Substitution CS</em>'.
@@ -262,7 +263,7 @@ public interface BaseCSFactory extends EFactory {
 	 * @return a new object of class '<em>Template Parameter Substitution CS</em>'.
 	 * @generated
 	 */
-	TemplateParameterSubstitutionCS createTemplateParameterSubstitutionCS();
+	@NonNull TemplateParameterSubstitutionCS createTemplateParameterSubstitutionCS();
 
 	/**
 	 * Returns a new object of class '<em>Template Signature CS</em>'.
@@ -271,7 +272,7 @@ public interface BaseCSFactory extends EFactory {
 	 * @return a new object of class '<em>Template Signature CS</em>'.
 	 * @generated
 	 */
-	TemplateSignatureCS createTemplateSignatureCS();
+	@NonNull TemplateSignatureCS createTemplateSignatureCS();
 
 	/**
 	 * Returns a new object of class '<em>Tuple Part CS</em>'.
@@ -280,7 +281,7 @@ public interface BaseCSFactory extends EFactory {
 	 * @return a new object of class '<em>Tuple Part CS</em>'.
 	 * @generated
 	 */
-	TuplePartCS createTuplePartCS();
+	@NonNull TuplePartCS createTuplePartCS();
 
 	/**
 	 * Returns a new object of class '<em>Tuple Type CS</em>'.
@@ -289,7 +290,7 @@ public interface BaseCSFactory extends EFactory {
 	 * @return a new object of class '<em>Tuple Type CS</em>'.
 	 * @generated
 	 */
-	TupleTypeCS createTupleTypeCS();
+	@NonNull TupleTypeCS createTupleTypeCS();
 
 	/**
 	 * Returns a new object of class '<em>Type Parameter CS</em>'.
@@ -298,7 +299,7 @@ public interface BaseCSFactory extends EFactory {
 	 * @return a new object of class '<em>Type Parameter CS</em>'.
 	 * @generated
 	 */
-	TypeParameterCS createTypeParameterCS();
+	@NonNull TypeParameterCS createTypeParameterCS();
 
 	/**
 	 * Returns a new object of class '<em>Typed Type Ref CS</em>'.
@@ -307,7 +308,7 @@ public interface BaseCSFactory extends EFactory {
 	 * @return a new object of class '<em>Typed Type Ref CS</em>'.
 	 * @generated
 	 */
-	TypedTypeRefCS createTypedTypeRefCS();
+	@NonNull TypedTypeRefCS createTypedTypeRefCS();
 
 	/**
 	 * Returns a new object of class '<em>Wildcard Type Ref CS</em>'.
@@ -316,7 +317,7 @@ public interface BaseCSFactory extends EFactory {
 	 * @return a new object of class '<em>Wildcard Type Ref CS</em>'.
 	 * @generated
 	 */
-	WildcardTypeRefCS createWildcardTypeRefCS();
+	@NonNull WildcardTypeRefCS createWildcardTypeRefCS();
 
 	/**
 	 * Returns the package supported by this factory.

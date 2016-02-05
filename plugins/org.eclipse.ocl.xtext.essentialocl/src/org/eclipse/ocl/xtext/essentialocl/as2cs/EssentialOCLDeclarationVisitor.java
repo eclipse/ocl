@@ -142,10 +142,19 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 		}
 	}
 
-	protected @NonNull NameExpCS createNameExpCS(NamedElement asNamedElement) {
+	protected @NonNull NameExpCS createNameExpCS(/*@NonNull*/NamedElement asNamedElement) {
 		NameExpCS csNameExp = EssentialOCLCSFactory.eINSTANCE.createNameExpCS();
 		PathNameCS csPathName = createPathNameCS(asNamedElement);
 		csNameExp.setOwnedPathName(csPathName);
+		return csNameExp;
+	}
+
+	protected @NonNull NameExpCS createNameExpCS(/*@NonNull*/ NamedElement asNamedElement, @Nullable Namespace scope) {
+		assert asNamedElement != null;
+		NameExpCS csNameExp = EssentialOCLCSFactory.eINSTANCE.createNameExpCS();
+		PathNameCS csPathName = BaseCSFactory.eINSTANCE.createPathNameCS();
+		csNameExp.setOwnedPathName(csPathName);
+		context.refreshPathName(csPathName, asNamedElement, scope);
 		return csNameExp;
 	}
 
@@ -642,7 +651,7 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 
 	@Override
 	public @Nullable ElementCS visitShadowExp(@NonNull ShadowExp asShadowExp) {
-		NameExpCS csNameExp = createNameExpCS(asShadowExp.getType());
+		NameExpCS csNameExp = createNameExpCS(asShadowExp.getType(), null);
 		csNameExp.setPivot(asShadowExp);
 		CurlyBracketedClauseCS csCurlyBracketedClause = EssentialOCLCSFactory.eINSTANCE.createCurlyBracketedClauseCS();
 		csNameExp.setOwnedCurlyBracketedClause(csCurlyBracketedClause);;
@@ -699,8 +708,8 @@ public class EssentialOCLDeclarationVisitor extends BaseDeclarationVisitor
 
 	@Override
 	public @Nullable ElementCS visitTypeExp(@NonNull TypeExp asTypeExp) {
-		@SuppressWarnings("null")@NonNull NameExpCS csNameExp = EssentialOCLCSFactory.eINSTANCE.createNameExpCS();
-		@SuppressWarnings("null")@NonNull PathNameCS csPathName = BaseCSFactory.eINSTANCE.createPathNameCS();
+		NameExpCS csNameExp = EssentialOCLCSFactory.eINSTANCE.createNameExpCS();
+		PathNameCS csPathName = BaseCSFactory.eINSTANCE.createPathNameCS();
 		csNameExp.setOwnedPathName(csPathName);
 		Type asType = getNonNullType(asTypeExp.getReferredType());
 		context.refreshPathName(csPathName, asType, null);
