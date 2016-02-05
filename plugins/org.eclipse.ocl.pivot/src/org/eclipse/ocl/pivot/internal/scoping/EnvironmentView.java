@@ -508,7 +508,7 @@ public class EnvironmentView
 	 * @param element
 	 *            the element
 	 */
-	public void addElement(/*@NonNull*/ String elementName, /*@NonNull*/ Object element) {
+	public void addElement(@Nullable String elementName, @Nullable Object element) {
 		if ((elementName == null) || (element == null)) {
 			return;
 		}
@@ -595,7 +595,7 @@ public class EnvironmentView
 		}
 	}
 	// This copy here to preserve API until failure of clients to update understood.
-	public void addElement(/*@NonNull*/ String elementName, /*@NonNull*/ Element element) {
+	public void addElement(@Nullable String elementName, @Nullable Element element) {
 		addElement(elementName, (Object)element);
 	}
 

@@ -39,6 +39,9 @@ public class ModelAttribution extends AbstractAttribution
 						if (namespace instanceof org.eclipse.ocl.pivot.Package) {
 							environmentView.addAllPackages((org.eclipse.ocl.pivot.Package)namespace);
 						}
+						else if (namespace instanceof Model) {
+							environmentView.addAllPackages((Model)namespace);
+						}
 					}
 					else {
 						environmentView.addElement(importName, namespace);
