@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.jface.text.DocumentEvent;
 import org.eclipse.ocl.pivot.internal.context.EInvocationContext;
 import org.eclipse.ocl.pivot.internal.context.EObjectContext;
 import org.eclipse.ocl.pivot.internal.scoping.Attribution;
@@ -36,6 +37,7 @@ import org.eclipse.ocl.xtext.base.ui.BaseUiModule;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.xtext.basecs.ElementCS;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.resource.XtextSyntaxDiagnostic;
 import org.eclipse.xtext.ui.editor.model.DocumentTokenSource;
@@ -119,6 +121,20 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 					return asResource;
 				}
 			});
+	}
+
+	@Override
+	protected void fireDocumentChanged(DocumentEvent event) {
+		if (Thread.currentThread() == Display.getDefault().getThread()) {
+			super.fireDocumentChanged(event);
+		}
+	}
+
+	@Override
+	protected void fireDocumentAboutToBeChanged(DocumentEvent event) {
+		if (Thread.currentThread() == Display.getDefault().getThread()) {
+			super.fireDocumentAboutToBeChanged(event);
+		}
 	}
 
 	protected RootCSAttribution getDocumentAttribution() {
