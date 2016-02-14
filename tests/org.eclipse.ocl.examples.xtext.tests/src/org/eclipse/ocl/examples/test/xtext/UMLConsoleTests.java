@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.internal.utilities.ContextSource;
 import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.OCL;
 
@@ -24,6 +25,35 @@ import org.eclipse.ocl.pivot.utilities.OCL;
  */
 public class UMLConsoleTests extends AbstractConsoleTests
 {	
+	public void testConsole_Bug400090() throws Exception {
+		assert consolePage.getContextSource() == ContextSource.METAMODEL;
+		ResourceSet resourceSet = new ResourceSetImpl();		// Emulate the separate UML Editor's AdapterFactoryEditingDomainResourceSet
+
+		URI testModelURI = getProjectFileURI("Bug400090.uml");
+        Resource umlResource = resourceSet.getResource(testModelURI, true);
+        org.eclipse.uml2.uml.Model model = (org.eclipse.uml2.uml.Model)umlResource.getContents().get(0);
+        org.eclipse.uml2.uml.Class bookClass = (org.eclipse.uml2.uml.Class)model.getOwnedType("Book");
+        org.eclipse.uml2.uml.InstanceSpecification bookInstance = (org.eclipse.uml2.uml.InstanceSpecification)model.getOwnedMember("TheBook");
+//        org.eclipse.uml2.uml.Property attribute1 = bookInstance.getOwnedAttribute("price", null);
+        //
+		assertConsoleResult(consolePage, bookClass, "self", "Bug400090::Book\n");
+		assertConsoleResult(consolePage, bookInstance, "self.classifier", "Bug400090::Book\n");
+		assertConsoleResult(consolePage, bookInstance, "self.price", "<b><error>Parsing failure\n</error></b><error>\n1: Unresolved Property 'UML::InstanceSpecification::price'\n</error>");
+		//
+		consolePage.setContextSource(ContextSource.MODEL);
+		//
+//		assertConsoleResult(consolePage, bookClass, "self", "Bug400090::Book\n"); -- there should really be some way to diagnose the interactive Error Dialog
+		assertConsoleResult(consolePage, bookInstance, "self.price", "7.5\n");
+		assertConsoleResult(consolePage, bookInstance, "self.classifier", "<b><error>Parsing failure\n</error></b><error>\n1: Unresolved Property 'Bug400090::Book::classifier'\n</error>");
+		//
+		consolePage.setContextSource(ContextSource.METAMODEL);
+		//
+		assertConsoleResult(consolePage, bookInstance, "self.classifier", "Bug400090::Book\n");
+		assertConsoleResult(consolePage, bookInstance, "self.price", "<b><error>Parsing failure\n</error></b><error>\n1: Unresolved Property 'UML::InstanceSpecification::price'\n</error>");
+		//
+		consolePage.cancelValidation();
+	}
+
 	public void testConsole_Bug419556() throws Exception {
 		ResourceSet resourceSet = new ResourceSetImpl();		// Emulate the separate UML Editor's AdapterFactoryEditingDomainResourceSet
 

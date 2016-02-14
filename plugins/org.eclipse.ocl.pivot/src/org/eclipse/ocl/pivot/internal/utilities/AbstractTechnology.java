@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.internal.utilities;
 
+import java.util.Collections;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
@@ -23,6 +25,7 @@ import org.eclipse.ocl.pivot.internal.library.ExplicitNavigationProperty;
 import org.eclipse.ocl.pivot.internal.library.ExtensionProperty;
 import org.eclipse.ocl.pivot.internal.library.StereotypeProperty;
 import org.eclipse.ocl.pivot.library.LibraryProperty;
+import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 
 public abstract class AbstractTechnology implements Technology
@@ -46,6 +49,19 @@ public abstract class AbstractTechnology implements Technology
 	@Override
 	public @NonNull LibraryProperty createStereotypePropertyImplementation(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Property property) {
 		return new StereotypeProperty(property);
+	}
+
+	/**
+	 * @throws ParserException 
+	 * @since 1.1
+	 */
+	@Override
+	public @Nullable Iterable<org.eclipse.ocl.pivot.@NonNull Class> getContextClasses(@NonNull EnvironmentFactory environmentFactory, 
+			@NonNull EObject contextObject, org.eclipse.ocl.pivot.@NonNull Class contextType, @NonNull ContextSource contextSource) throws ParserException {
+		switch (contextSource) {
+			case METAMODEL: return Collections.singletonList(contextType);
+		}
+		return null;
 	}
 
 	@Override

@@ -27,6 +27,8 @@ public class ConsoleMessages
 	public static String CloseAction_Tip;
 	public static String Console_Title;
 	public static String Console_TitleWithContext;
+	public static String ContextSource_Title;
+	public static String ContextSource_ToolTip;
 	public static String Debug_FailCreate;
 	public static String Debug_FailLaunch;
 	public static String Debug_FailLoad;
@@ -65,5 +67,9 @@ public class ConsoleMessages
 	public static String SaveActionError_Title;
 	public static String SaveActionWarning_Title;
 	public static String SaveActionWarning_NoExpression;
+	public static String SelectionError_Message;
+	public static String SelectionError_Metamodel;
+	public static String SelectionError_Model;
+	public static String SelectionError_Title;
 	public static String ValueFactory_Cancelable;
 }

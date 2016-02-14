@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.uml.internal.utilities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EAnnotation;
@@ -21,6 +22,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.Class;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.DynamicElement;
 import org.eclipse.ocl.pivot.Element;
@@ -33,6 +35,7 @@ import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.ids.RootPackageId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.utilities.AbstractTechnology;
+import org.eclipse.ocl.pivot.internal.utilities.ContextSource;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotConstantsInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotObjectImpl;
@@ -43,6 +46,7 @@ import org.eclipse.ocl.pivot.uml.internal.library.UMLExtensionProperty;
 import org.eclipse.ocl.pivot.uml.internal.library.UMLStereotypeProperty;
 import org.eclipse.ocl.pivot.util.DerivedConstants;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.ParserException;
@@ -98,6 +102,24 @@ public class UMLEcoreTechnology extends AbstractTechnology
 	@Override
 	public @NonNull LibraryProperty createStereotypePropertyImplementation(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Property property) {
 		return new UMLStereotypeProperty(property);
+	}
+
+	@Override
+	public @Nullable Iterable<org.eclipse.ocl.pivot.@NonNull Class> getContextClasses(@NonNull EnvironmentFactory environmentFactory,
+			@NonNull EObject contextObject, @NonNull Class contextType, @NonNull ContextSource contextSource) throws ParserException {
+		if (contextSource == ContextSource.MODEL) {
+			if (contextObject instanceof org.eclipse.uml2.uml.InstanceSpecification) {
+				List<org.eclipse.ocl.pivot.@NonNull Class> asClasses = new ArrayList<org.eclipse.ocl.pivot.@NonNull Class>();
+				for (org.eclipse.uml2.uml.Classifier umlClassifier : ((org.eclipse.uml2.uml.InstanceSpecification)contextObject).getClassifiers()) {
+					org.eclipse.ocl.pivot.Class asClass = environmentFactory.getMetamodelManager().getASOf(org.eclipse.ocl.pivot.Class.class, umlClassifier);
+					if (asClass != null) {
+						asClasses.add(asClass);
+					}
+				}
+				return asClasses;
+			}
+		}
+		return super.getContextClasses(environmentFactory, contextObject, contextType, contextSource);
 	}
 
 	@Override

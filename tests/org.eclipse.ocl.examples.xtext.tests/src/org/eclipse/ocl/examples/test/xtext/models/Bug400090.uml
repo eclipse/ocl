@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_9uAWYCiBEeOgPJa2W3yNiA" name="Bug400090">
+  <packageImport xmi:id="_9uAWYSiBEeOgPJa2W3yNiA">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="__pjdECiBEeOgPJa2W3yNiA" name="Book">
+    <ownedRule xmi:id="_N5VVgCiCEeOgPJa2W3yNiA" name="Price must be greater than 0">
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="_Xmae0CiCEeOgPJa2W3yNiA">
+        <language>OCL</language>
+        <body>self.price > 0</body>
+      </specification>
+    </ownedRule>
+    <ownedAttribute xmi:id="_AWk7ICiCEeOgPJa2W3yNiA" name="price">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+      <defaultValue xmi:type="uml:LiteralInteger" xmi:id="_PnC0gCiCEeOgPJa2W3yNiA"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_SakFACiCEeOgPJa2W3yNiA" name="title">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_cf4vMCiCEeOgPJa2W3yNiA" name="TheBook" classifier="__pjdECiBEeOgPJa2W3yNiA">
+    <slot xmi:id="_dRmgACiCEeOgPJa2W3yNiA" definingFeature="_AWk7ICiCEeOgPJa2W3yNiA">
+      <value xmi:type="uml:LiteralReal" xmi:id="_GqA9MCiEEeOgPJa2W3yNiA" name="price" value="7.5"/>
+    </slot>
+    <specification xmi:type="uml:InstanceValue" xmi:id="_DZrZENMEEeWMi-9GtlOgDw"/>
+  </packagedElement>
+</uml:Model>
