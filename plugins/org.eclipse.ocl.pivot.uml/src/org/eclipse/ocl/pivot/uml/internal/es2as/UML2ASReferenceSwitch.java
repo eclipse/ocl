@@ -214,9 +214,15 @@ public class UML2ASReferenceSwitch extends UMLSwitch<Object>
 	@Override
 	public Object caseStereotype(org.eclipse.uml2.uml.Stereotype umlStereotype) {
 		assert umlStereotype != null;
-		caseClass(umlStereotype);
+//		caseClass(umlStereotype);
 		Stereotype asStereotype = converter.getCreated(Stereotype.class, umlStereotype);
 		if (asStereotype != null) {
+			List<org.eclipse.ocl.pivot.@NonNull Class> asSuperClasses = ClassUtil.nullFree(asStereotype.getSuperClasses());
+			doSwitchAll(org.eclipse.ocl.pivot.Class.class, asSuperClasses, umlStereotype.getSuperClasses());
+			org.eclipse.ocl.pivot.Class oclStereotype = standardLibrary.getOclStereotypeType();
+			if (!asSuperClasses.contains(oclStereotype)) {
+				asSuperClasses.add(oclStereotype);
+			}
 			converter.addStereotype(asStereotype);
 		}
 		return asStereotype;

@@ -41,6 +41,7 @@ import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
  *   <li>each enum,</li>
  *   <li>and each data type</li>
  * </ul>
+ * @noreference This class is not intended to be referenced by clients.
  * <!-- end-user-doc -->
  * @see org.eclipse.ocl.pivot.oclstdlib.OCLstdlibFactory
  * @model kind="package"
@@ -202,7 +203,7 @@ public class OCLstdlibPackage extends EPackageImpl {
 	 * @see org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage#getOclSummable()
 	 * @generated
 	 */
-	public static final int OCL_SUMMABLE = 9;
+	public static final int OCL_SUMMABLE = 10;
 
 	/**
 	 * The meta object id for the '{@link java.lang.Object <em>Ocl Tuple</em>}' class.
@@ -212,7 +213,7 @@ public class OCLstdlibPackage extends EPackageImpl {
 	 * @see org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage#getOclTuple()
 	 * @generated
 	 */
-	public static final int OCL_TUPLE = 10;
+	public static final int OCL_TUPLE = 11;
 
 	/**
 	 * The meta object id for the '{@link java.lang.Object <em>Ocl Type</em>}' class.
@@ -222,7 +223,7 @@ public class OCLstdlibPackage extends EPackageImpl {
 	 * @see org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage#getOclType()
 	 * @generated
 	 */
-	public static final int OCL_TYPE = 11;
+	public static final int OCL_TYPE = 12;
 
 	/**
 	 * The meta object id for the '{@link java.lang.Object <em>Ocl Void</em>}' class.
@@ -232,7 +233,7 @@ public class OCLstdlibPackage extends EPackageImpl {
 	 * @see org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage#getOclVoid()
 	 * @generated
 	 */
-	public static final int OCL_VOID = 12;
+	public static final int OCL_VOID = 13;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -261,6 +262,13 @@ public class OCLstdlibPackage extends EPackageImpl {
 	 * @generated
 	 */
 	private EClass oclStateEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass oclStereotypeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -333,7 +341,7 @@ public class OCLstdlibPackage extends EPackageImpl {
 	 * @see org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage#getBoolean()
 	 * @generated
 	 */
-	public static final int BOOLEAN = 18;
+	public static final int BOOLEAN = 19;
 
 	/**
 	 * The meta object id for the '<em>Integer</em>' data type.
@@ -343,7 +351,7 @@ public class OCLstdlibPackage extends EPackageImpl {
 	 * @see org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage#getInteger()
 	 * @generated
 	 */
-	public static final int INTEGER = 19;
+	public static final int INTEGER = 20;
 
 	/**
 	 * The meta object id for the '<em>Real</em>' data type.
@@ -353,7 +361,7 @@ public class OCLstdlibPackage extends EPackageImpl {
 	 * @see org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage#getReal()
 	 * @generated
 	 */
-	public static final int REAL = 20;
+	public static final int REAL = 21;
 
 	/**
 	 * The meta object id for the '<em>String</em>' data type.
@@ -363,7 +371,7 @@ public class OCLstdlibPackage extends EPackageImpl {
 	 * @see org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage#getString()
 	 * @generated
 	 */
-	public static final int STRING = 21;
+	public static final int STRING = 22;
 
 	/**
 	 * The meta object id for the '<em>Unlimited Natural</em>' data type.
@@ -373,7 +381,7 @@ public class OCLstdlibPackage extends EPackageImpl {
 	 * @see org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage#getUnlimitedNatural()
 	 * @generated
 	 */
-	public static final int UNLIMITED_NATURAL = 22;
+	public static final int UNLIMITED_NATURAL = 23;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.pivot.values.Bag <em>Bag</em>}' class.
@@ -513,7 +521,7 @@ public class OCLstdlibPackage extends EPackageImpl {
 	 * @see org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage#getOrderedCollection()
 	 * @generated
 	 */
-	public static final int ORDERED_COLLECTION = 13;
+	public static final int ORDERED_COLLECTION = 14;
 
 	/**
 	 * The number of structural features of the '<em>Ocl Void</em>' class.
@@ -561,24 +569,6 @@ public class OCLstdlibPackage extends EPackageImpl {
 	public static final int OCL_STATE_FEATURE_COUNT = OCL_ANY_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Ocl Summable</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	public static final int OCL_SUMMABLE_FEATURE_COUNT = OCL_ANY_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Ocl Tuple</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	public static final int OCL_TUPLE_FEATURE_COUNT = OCL_ANY_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Ocl Container</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * @since 1.1
@@ -606,6 +596,61 @@ public class OCLstdlibPackage extends EPackageImpl {
 	 * @ordered
 	 */
 	public static final int OCL_TYPE_FEATURE_COUNT = OCL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.pivot.oclstdlib.OclStereotype <em>Ocl Stereotype</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.pivot.oclstdlib.OclStereotype
+	 * @see org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage#getOclStereotype()
+	 * @generated
+	 */
+	public static final int OCL_STEREOTYPE = 9;
+
+	/**
+	 * The feature id for the '<em><b>Ocl Container</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int OCL_STEREOTYPE__OCL_CONTAINER = OCL_TYPE__OCL_CONTAINER;
+
+	/**
+	 * The feature id for the '<em><b>Ocl Contents</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int OCL_STEREOTYPE__OCL_CONTENTS = OCL_TYPE__OCL_CONTENTS;
+
+	/**
+	 * The number of structural features of the '<em>Ocl Stereotype</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int OCL_STEREOTYPE_FEATURE_COUNT = OCL_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Ocl Summable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int OCL_SUMMABLE_FEATURE_COUNT = OCL_ANY_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Ocl Tuple</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int OCL_TUPLE_FEATURE_COUNT = OCL_ANY_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Element Type</b></em>' reference.
@@ -651,7 +696,7 @@ public class OCLstdlibPackage extends EPackageImpl {
 	 * @see org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage#getOrderedSet()
 	 * @generated
 	 */
-	public static final int ORDERED_SET = 14;
+	public static final int ORDERED_SET = 15;
 
 	/**
 	 * The feature id for the '<em><b>Element Type</b></em>' reference.
@@ -697,7 +742,7 @@ public class OCLstdlibPackage extends EPackageImpl {
 	 * @see org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage#getSequence()
 	 * @generated
 	 */
-	public static final int SEQUENCE = 15;
+	public static final int SEQUENCE = 16;
 
 	/**
 	 * The feature id for the '<em><b>Element Type</b></em>' reference.
@@ -743,7 +788,7 @@ public class OCLstdlibPackage extends EPackageImpl {
 	 * @see org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage#getSet()
 	 * @generated
 	 */
-	public static final int SET = 16;
+	public static final int SET = 17;
 
 	/**
 	 * The meta object id for the '{@link java.util.Collection <em>Unique Collection</em>}' class.
@@ -753,7 +798,7 @@ public class OCLstdlibPackage extends EPackageImpl {
 	 * @see org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage#getUniqueCollection()
 	 * @generated
 	 */
-	public static final int UNIQUE_COLLECTION = 17;
+	public static final int UNIQUE_COLLECTION = 18;
 
 	/**
 	 * The feature id for the '<em><b>Element Type</b></em>' reference.
@@ -1050,6 +1095,20 @@ public class OCLstdlibPackage extends EPackageImpl {
 	 */
 	public EClass getOclState() {
 		return oclStateEClass;
+	}
+
+
+	/**
+	 * Returns the meta object for class '{@link java.lang.Object <em>Ocl Stereotype</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Ocl Stereotype</em>'.
+	 * @see java.lang.Object
+	 * @model instanceClass="java.lang.Object" superTypes="org.eclipse.ocl.pivot.oclstdlib.OclType"
+	 * @generated
+	 */
+	public EClass getOclStereotype() {
+		return oclStereotypeEClass;
 	}
 
 
@@ -1361,6 +1420,8 @@ public class OCLstdlibPackage extends EPackageImpl {
 
 		oclStateEClass = createEClass(OCL_STATE);
 
+		oclStereotypeEClass = createEClass(OCL_STEREOTYPE);
+
 		oclSummableEClass = createEClass(OCL_SUMMABLE);
 
 		oclTupleEClass = createEClass(OCL_TUPLE);
@@ -1433,6 +1494,7 @@ public class OCLstdlibPackage extends EPackageImpl {
 		oclLambdaEClass.getESuperTypes().add(this.getOclAny());
 		oclMessageEClass.getESuperTypes().add(this.getOclAny());
 		oclStateEClass.getESuperTypes().add(this.getOclAny());
+		oclStereotypeEClass.getESuperTypes().add(this.getOclType());
 		oclSummableEClass.getESuperTypes().add(this.getOclAny());
 		oclTupleEClass.getESuperTypes().add(this.getOclAny());
 		oclTypeEClass.getESuperTypes().add(this.getOclElement());
@@ -1486,6 +1548,8 @@ public class OCLstdlibPackage extends EPackageImpl {
 		initEClass(oclMessageEClass, Object.class, "OclMessage", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(oclStateEClass, Object.class, "OclState", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(oclStereotypeEClass, Object.class, "OclStereotype", IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(oclSummableEClass, Object.class, "OclSummable", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
@@ -1654,6 +1718,17 @@ public class OCLstdlibPackage extends EPackageImpl {
 		 * @generated
 		 */
 		public static final EClass OCL_STATE = eINSTANCE.getOclState();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.oclstdlib.OclStereotype <em>Ocl Stereotype</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * @since 1.1
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.pivot.oclstdlib.OclStereotype
+		 * @see org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage#getOclStereotype()
+		 * @generated
+		 */
+		public static final EClass OCL_STEREOTYPE = eINSTANCE.getOclStereotype();
 
 		/**
 		 * The meta object literal for the '{@link java.lang.Object <em>Ocl Summable</em>}' class.

@@ -288,6 +288,7 @@ public class OCLstdlib extends ASResourceImpl
 		private final @NonNull Class _OclMessage = createClass("OclMessage");
 		private final @NonNull SelfType _OclSelf = createSelfType("OclSelf");
 		private final @NonNull Class _OclState = createClass("OclState");
+		private final @NonNull Class _OclStereotype = createClass("OclStereotype");
 		private final @NonNull Class _OclSummable = createClass("OclSummable");
 		private final @NonNull Class _OclTuple = createClass("OclTuple");
 		private final @NonNull Class _OclType = createClass("OclType");
@@ -534,6 +535,9 @@ public class OCLstdlib extends ASResourceImpl
 			ownedClasses.add(type = _OclState);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclAny);
+			ownedClasses.add(type = _OclStereotype);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclType);
 			ownedClasses.add(type = _OclSummable);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclAny);
@@ -1374,6 +1378,7 @@ public class OCLstdlib extends ASResourceImpl
 		private final @NonNull Operation op_OclMessage_isOperationCall = createOperation("isOperationCall", _Boolean, "org.eclipse.ocl.pivot.library.oclany.OclAnyUnsupportedOperation", org.eclipse.ocl.pivot.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
 		private final @NonNull Operation op_OclMessage_isSignalSent = createOperation("isSignalSent", _Boolean, "org.eclipse.ocl.pivot.library.oclany.OclAnyUnsupportedOperation", org.eclipse.ocl.pivot.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
 		private final @NonNull Operation op_OclMessage_result = createOperation("result", _OclAny, "org.eclipse.ocl.pivot.library.oclany.OclAnyUnsupportedOperation", org.eclipse.ocl.pivot.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
+		private final @NonNull Operation op_OclStereotype_allInstances = createOperation("allInstances", _Set_OclSelf_NullFree, "org.eclipse.ocl.pivot.library.classifier.ClassifierAllInstancesOperation", org.eclipse.ocl.pivot.library.classifier.ClassifierAllInstancesOperation.INSTANCE);
 		private final @NonNull Operation op_OclSummable_sum = createOperation("sum", _OclSelf, null, null);
 		private final @NonNull Operation op_OclSummable_zero = createOperation("zero", _OclSelf, null, null);
 		private final @NonNull Operation op_OclTuple__lt__gt_ = createOperation("<>", _Boolean, "org.eclipse.ocl.pivot.library.oclany.OclAnyNotEqualOperation", org.eclipse.ocl.pivot.library.oclany.OclAnyNotEqualOperation.INSTANCE);
@@ -1944,6 +1949,10 @@ public class OCLstdlib extends ASResourceImpl
 			ownedOperations.add(operation = op_OclMessage_isSignalSent);
 			ownedOperations.add(operation = op_OclMessage_result);
 			operation.setIsRequired(false);
+		
+			ownedOperations = _OclStereotype.getOwnedOperations();
+			ownedOperations.add(operation = op_OclStereotype_allInstances);
+			operation.setIsStatic(true);
 		
 			ownedOperations = _OclSummable.getOwnedOperations();
 			ownedOperations.add(operation = op_OclSummable_sum);
@@ -3058,6 +3067,8 @@ public class OCLstdlib extends ASResourceImpl
 			installComment(op_OclMessage_isSignalSent, "Returns oclText[true] if the OclMessage represents the sending of a UML Signal.");
 			installComment(op_OclMessage_result, "Returns the result of the called operation, if type of template parameter is an operation call,\nand the called operation has returned a value. Otherwise the oclText[invalid] value is returned.");
 			installComment(_OclSelf, "The pseudo-type OclSelf denotes the statically determinate type of oclText[self] in Operation\nand Iteration signatures. Instances of OclSelf are never created.");
+			installComment(_OclStereotype, "The type OclStereotype is the implicit supertype of any UML stereotype. Operations defined\nfor OclStereotype are therefore applicable to all UML stereotypes.");
+			installComment(op_OclStereotype_allInstances, "Return a set of all instances of the stereotype and derived types of self.");
 			installComment(_OclSummable, "The type OclSummable defines the sum and zero operations used by the Collection::sum iteration. Only types that provide derived\nsum and zero implementations may be summed.");
 			installComment(op_OclSummable_sum, "Return the sum of self and that.\n\nThe sum operation should be associative.");
 			installComment(op_OclSummable_zero, "Return the \'zero\' value of self to initialize a summation.\n\nzero().sum(self) = self.");

@@ -164,6 +164,7 @@ public class OCLstdlibTables
 		public static final @NonNull EcoreExecutorType _OclMessage = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_MESSAGE, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _OclSelf = new EcoreExecutorType(TypeId.OCL_SELF, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _OclState = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_STATE, PACKAGE, 0);
+		public static final @NonNull EcoreExecutorType _OclStereotype = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_STEREOTYPE, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _OclSummable = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_SUMMABLE, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _OclTuple = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_TUPLE, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _OclType = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_TYPE, PACKAGE, 0);
@@ -191,6 +192,7 @@ public class OCLstdlibTables
 			_OclMessage,
 			_OclSelf,
 			_OclState,
+			_OclStereotype,
 			_OclSummable,
 			_OclTuple,
 			_OclType,
@@ -270,6 +272,11 @@ public class OCLstdlibTables
 
 		private static final @NonNull ExecutorFragment _OclState__OclAny = new ExecutorFragment(Types._OclState, OCLstdlibTables.Types._OclAny);
 		private static final @NonNull ExecutorFragment _OclState__OclState = new ExecutorFragment(Types._OclState, OCLstdlibTables.Types._OclState);
+
+		private static final @NonNull ExecutorFragment _OclStereotype__OclAny = new ExecutorFragment(Types._OclStereotype, OCLstdlibTables.Types._OclAny);
+		private static final @NonNull ExecutorFragment _OclStereotype__OclElement = new ExecutorFragment(Types._OclStereotype, OCLstdlibTables.Types._OclElement);
+		private static final @NonNull ExecutorFragment _OclStereotype__OclStereotype = new ExecutorFragment(Types._OclStereotype, OCLstdlibTables.Types._OclStereotype);
+		private static final @NonNull ExecutorFragment _OclStereotype__OclType = new ExecutorFragment(Types._OclStereotype, OCLstdlibTables.Types._OclType);
 
 		private static final @NonNull ExecutorFragment _OclSummable__OclAny = new ExecutorFragment(Types._OclSummable, OCLstdlibTables.Types._OclAny);
 		private static final @NonNull ExecutorFragment _OclSummable__OclSummable = new ExecutorFragment(Types._OclSummable, OCLstdlibTables.Types._OclSummable);
@@ -730,6 +737,9 @@ public class OCLstdlibTables
 		public static final @NonNull ExecutorOperation _OclMessage__result = new ExecutorOperation("result", TypeUtil.EMPTY_PARAMETER_TYPES, Types._OclMessage,
 			3, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
 
+		public static final @NonNull ExecutorOperation _OclStereotype__allInstances = new ExecutorOperation("allInstances", TypeUtil.EMPTY_PARAMETER_TYPES, Types._OclStereotype,
+			0, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.classifier.ClassifierAllInstancesOperation.INSTANCE);
+
 		public static final @NonNull ExecutorOperation _OclSummable__sum = new ExecutorOperation("sum", Parameters._OclSelf, Types._OclSummable,
 			0, TemplateParameters.EMPTY_LIST, null);
 		public static final @NonNull ExecutorOperation _OclSummable__zero = new ExecutorOperation("zero", TypeUtil.EMPTY_PARAMETER_TYPES, Types._OclSummable,
@@ -1152,6 +1162,15 @@ public class OCLstdlibTables
 		};
 		private static final int @NonNull [] __OclState = { 1,1 };
 
+		private static final @NonNull ExecutorFragment @NonNull [] _OclStereotype =
+		{
+			Fragments._OclStereotype__OclAny /* 0 */,
+			Fragments._OclStereotype__OclElement /* 1 */,
+			Fragments._OclStereotype__OclType /* 2 */,
+			Fragments._OclStereotype__OclStereotype /* 3 */
+		};
+		private static final int @NonNull [] __OclStereotype = { 1,1,1,1 };
+
 		private static final @NonNull ExecutorFragment @NonNull [] _OclSummable =
 		{
 			Fragments._OclSummable__OclAny /* 0 */,
@@ -1268,6 +1287,7 @@ public class OCLstdlibTables
 			Types._OclMessage.initFragments(_OclMessage, __OclMessage);
 			Types._OclSelf.initFragments(_OclSelf, __OclSelf);
 			Types._OclState.initFragments(_OclState, __OclState);
+			Types._OclStereotype.initFragments(_OclStereotype, __OclStereotype);
 			Types._OclSummable.initFragments(_OclSummable, __OclSummable);
 			Types._OclTuple.initFragments(_OclTuple, __OclTuple);
 			Types._OclType.initFragments(_OclType, __OclType);
@@ -1746,6 +1766,34 @@ public class OCLstdlibTables
 			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
+		};
+
+		private static final @NonNull ExecutorOperation @NonNull [] _OclStereotype__OclStereotype = {
+			OCLstdlibTables.Operations._OclStereotype__allInstances /* allInstances() */
+		};
+		private static final @NonNull ExecutorOperation @NonNull [] _OclStereotype__OclAny = {
+			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
+			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__toString /* toString() */
+		};
+		private static final @NonNull ExecutorOperation @NonNull [] _OclStereotype__OclElement = {
+			OCLstdlibTables.Operations._OclStereotype__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
+		};
+		private static final @NonNull ExecutorOperation @NonNull [] _OclStereotype__OclType = {
+			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
 
 		private static final @NonNull ExecutorOperation @NonNull [] _OclSummable__OclSummable = {
@@ -2432,6 +2480,11 @@ public class OCLstdlibTables
 			Fragments._OclState__OclAny.initOperations(_OclState__OclAny);
 			Fragments._OclState__OclState.initOperations(_OclState__OclState);
 
+			Fragments._OclStereotype__OclAny.initOperations(_OclStereotype__OclAny);
+			Fragments._OclStereotype__OclElement.initOperations(_OclStereotype__OclElement);
+			Fragments._OclStereotype__OclStereotype.initOperations(_OclStereotype__OclStereotype);
+			Fragments._OclStereotype__OclType.initOperations(_OclStereotype__OclType);
+
 			Fragments._OclSummable__OclAny.initOperations(_OclSummable__OclAny);
 			Fragments._OclSummable__OclSummable.initOperations(_OclSummable__OclSummable);
 
@@ -2540,6 +2593,13 @@ public class OCLstdlibTables
 
 		private static final @NonNull ExecutorProperty @NonNull [] _OclState = {};
 
+		private static final @NonNull ExecutorProperty @NonNull [] _OclStereotype = {
+			OCLstdlibTables.Properties._OclElement__oclContainer,
+			OCLstdlibTables.Properties._OclElement__oclContents,
+			OCLstdlibTables.Properties._OclElement__OclElement__oclContainer,
+			OCLstdlibTables.Properties._OclElement__OclElement__oclContents
+		};
+
 		private static final @NonNull ExecutorProperty @NonNull [] _OclSummable = {};
 
 		private static final @NonNull ExecutorProperty @NonNull [] _OclTuple = {};
@@ -2606,6 +2666,7 @@ public class OCLstdlibTables
 			Fragments._OclMessage__OclMessage.initProperties(_OclMessage);
 			Fragments._OclSelf__OclSelf.initProperties(_OclSelf);
 			Fragments._OclState__OclState.initProperties(_OclState);
+			Fragments._OclStereotype__OclStereotype.initProperties(_OclStereotype);
 			Fragments._OclSummable__OclSummable.initProperties(_OclSummable);
 			Fragments._OclTuple__OclTuple.initProperties(_OclTuple);
 			Fragments._OclType__OclType.initProperties(_OclType);

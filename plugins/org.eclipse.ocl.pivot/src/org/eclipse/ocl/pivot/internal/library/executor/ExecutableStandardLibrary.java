@@ -21,6 +21,7 @@ import java.util.Map.Entry;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.Class;
 import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.CompleteEnvironment;
 import org.eclipse.ocl.pivot.CompleteModel;
@@ -264,6 +265,14 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 	@Override
 	public org.eclipse.ocl.pivot.@NonNull Class getOclSelfType() {
 		return OCLstdlibTables.Types._OclSelf;
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	@Override
+	public @NonNull Class getOclStereotypeType() {
+		return OCLstdlibTables.Types._OclStereotype;
 	}
 
 	@Override

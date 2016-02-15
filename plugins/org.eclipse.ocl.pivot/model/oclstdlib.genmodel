@@ -40,6 +40,7 @@
     <genClasses image="false" ecoreClass="../model-gen/oclstdlib.ecore#//OclLambda"/>
     <genClasses image="false" ecoreClass="../model-gen/oclstdlib.ecore#//OclMessage"/>
     <genClasses image="false" ecoreClass="../model-gen/oclstdlib.ecore#//OclState"/>
+    <genClasses ecoreClass="../model-gen/oclstdlib.ecore#//OclStereotype"/>
     <genClasses image="false" ecoreClass="../model-gen/oclstdlib.ecore#//OclSummable"/>
     <genClasses image="false" ecoreClass="../model-gen/oclstdlib.ecore#//OclTuple"/>
     <genClasses image="false" ecoreClass="../model-gen/oclstdlib.ecore#//OclType"/>

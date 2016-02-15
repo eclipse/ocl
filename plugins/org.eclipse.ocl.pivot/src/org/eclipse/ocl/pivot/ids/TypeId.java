@@ -29,6 +29,8 @@ import org.eclipse.ocl.pivot.internal.ids.OclVoidTypeIdImpl;
  * @see OclVoidTypeId
  * @see PrimitiveTypeId
  * @see TupleTypeId
+ * 
+ * @noimplement This interface is not intended to be implemented by clients.
  */
 public interface TypeId extends ElementId
 {
@@ -51,6 +53,10 @@ public interface TypeId extends ElementId
 	public static final @NonNull String OCL_COMPARABLE_NAME = "OclComparable";
 	public static final @NonNull String OCL_INVALID_NAME = "OclInvalid";
 	public static final @NonNull String OCL_SELF_NAME = "OclSelf";
+	/**
+	 * @since 1.1
+	 */
+	public static final @NonNull String OCL_STEREOTYPE_NAME = "OclStereotype";
 	public static final @NonNull String OCL_SUMMABLE_NAME = "OclSummable";
 	public static final @NonNull String OCL_VOID_NAME = "OclVoid";
 	public static final @NonNull String OPERATION_NAME = "Operation";

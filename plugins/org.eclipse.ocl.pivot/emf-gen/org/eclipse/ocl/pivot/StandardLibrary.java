@@ -20,6 +20,7 @@ import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Standard Library</b></em>'.
+ * @noimplement This interface is not intended to be implemented by clients.
  * <!-- end-user-doc -->
  *
  * <p>
@@ -188,6 +189,15 @@ public interface StandardLibrary extends Element
      * @return the <tt>OclSelf</tt> type (an instance of SelfType)
      */
 	org.eclipse.ocl.pivot.@NonNull Class getOclSelfType();
+
+    /**
+     * Obtains the single instance of the OclStereotype metatype, named
+     * <tt>OclStereotype</tt>.
+     * 
+     * @return the <tt>OclStereotype</tt> type (an instance of Class)
+     * @since 1.1
+     */
+	org.eclipse.ocl.pivot.@NonNull Class getOclStereotypeType();
 	
     /**
      * Obtains the single instance of the OclSummable metatype, named

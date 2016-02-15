@@ -1519,6 +1519,18 @@
         </ownedDetails>
       </ownedAnnotations>
     </ownedClasses>
+    <ownedClasses xmi:id="T.ocl.OclStereotype" name="OclStereotype" superClasses="#T.ocl.OclType">
+      <ownedAnnotations xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
+        <ownedDetails name="ClassGroup">
+          <values>OCL</values>
+        </ownedDetails>
+      </ownedAnnotations>
+      <ownedComments body="The type OclStereotype is the implicit supertype of any UML stereotype. Operations defined&#xA;for OclStereotype are therefore applicable to all UML stereotypes.&#xA;"/>
+      <ownedOperations xmi:id="o.ocl.OclStereotype.allInstances" implementationClass="org.eclipse.ocl.pivot.library.classifier.ClassifierAllInstancesOperation"
+          isStatic="true" name="allInstances" type="#//@ownedPackages.1/@ownedClasses.132">
+        <ownedComments body="Return a set of all instances of the stereotype and derived types of self."/>
+      </ownedOperations>
+    </ownedClasses>
     <ownedClasses xmi:id="T.ocl.OclSummable" name="OclSummable" superClasses="#T.ocl.OclAny">
       <ownedAnnotations xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetails name="ClassGroup">
@@ -1742,12 +1754,12 @@
               <ownedArguments xsi:type="pivot:OperationCallExp" name="+" referredOperation="#o.ocl.Integer.%43%..ocl.OclSelf" type="#Integer">
                 <ownedArguments xsi:type="pivot:IntegerLiteralExp" integerSymbol="1" type="#Integer"/>
                 <ownedSource xsi:type="pivot:OperationCallExp" referredOperation="#o.ocl.Collection.size" type="#Integer">
-                  <ownedSource xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.24/@ownedOperations.16/@ownedPostconditions.0/@ownedSpecification/@ownedContext"
+                  <ownedSource xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.25/@ownedOperations.16/@ownedPostconditions.0/@ownedSpecification/@ownedContext"
                       type="#OrderedSet"/>
                 </ownedSource>
               </ownedArguments>
               <ownedSource xsi:type="pivot:OperationCallExp" referredOperation="#o.ocl.Collection.size" type="#Integer">
-                <ownedSource xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.24/@ownedOperations.16/@ownedPostconditions.0/@ownedSpecification/@ownedResult"
+                <ownedSource xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.25/@ownedOperations.16/@ownedPostconditions.0/@ownedSpecification/@ownedResult"
                     type="#OrderedSet"/>
               </ownedSource>
             </ownedBody>
@@ -1759,12 +1771,12 @@
         <ownedPostconditions xmi:id="c+ocl.OrderedSet.prepend.IsAtStart" name="IsAtStart">
           <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="result->at(1) = object" type="#Boolean">
             <ownedBody xsi:type="pivot:OperationCallExp" name="=" referredOperation="#o.ocl.OclAny.%61%..ocl.OclSelf" type="#Boolean">
-              <ownedArguments xsi:type="pivot:VariableExp" isRequired="false" referredVariable="#//@ownedPackages.0/@ownedClasses.24/@ownedOperations.16/@ownedPostconditions.1/@ownedSpecification/@ownedParameters.0"
+              <ownedArguments xsi:type="pivot:VariableExp" isRequired="false" referredVariable="#//@ownedPackages.0/@ownedClasses.25/@ownedOperations.16/@ownedPostconditions.1/@ownedSpecification/@ownedParameters.0"
                   type="#t.ocl..OrderedSetT"/>
               <ownedSource xsi:type="pivot:OperationCallExp" isRequired="false" referredOperation="#o.ocl.OrderedCollection.at..ocl.Integer"
                   type="#t.ocl..OrderedSetT">
                 <ownedArguments xsi:type="pivot:IntegerLiteralExp" integerSymbol="1" type="#Integer"/>
-                <ownedSource xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.24/@ownedOperations.16/@ownedPostconditions.1/@ownedSpecification/@ownedResult"
+                <ownedSource xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.25/@ownedOperations.16/@ownedPostconditions.1/@ownedSpecification/@ownedResult"
                     type="#OrderedSet"/>
               </ownedSource>
             </ownedBody>
@@ -1782,17 +1794,17 @@
                     type="#t.ocl..OrderedSetT">
                   <ownedArguments xsi:type="pivot:OperationCallExp" name="+" referredOperation="#o.ocl.Integer.%43%..ocl.OclSelf" type="#Integer">
                     <ownedArguments xsi:type="pivot:IntegerLiteralExp" integerSymbol="1" type="#Integer"/>
-                    <ownedSource xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.24/@ownedOperations.16/@ownedPostconditions.2/@ownedSpecification/@ownedBody/@ownedIterators.0"
+                    <ownedSource xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.25/@ownedOperations.16/@ownedPostconditions.2/@ownedSpecification/@ownedBody/@ownedIterators.0"
                         type="#Integer"/>
                   </ownedArguments>
-                  <ownedSource xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.24/@ownedOperations.16/@ownedPostconditions.2/@ownedSpecification/@ownedResult"
+                  <ownedSource xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.25/@ownedOperations.16/@ownedPostconditions.2/@ownedSpecification/@ownedResult"
                       type="#OrderedSet"/>
                 </ownedArguments>
                 <ownedSource xsi:type="pivot:OperationCallExp" isRequired="false" referredOperation="#o.ocl.OrderedCollection.at..ocl.Integer"
                     type="#t.ocl..OrderedSetT">
-                  <ownedArguments xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.24/@ownedOperations.16/@ownedPostconditions.2/@ownedSpecification/@ownedBody/@ownedIterators.0"
+                  <ownedArguments xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.25/@ownedOperations.16/@ownedPostconditions.2/@ownedSpecification/@ownedBody/@ownedIterators.0"
                       type="#Integer"/>
-                  <ownedSource xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.24/@ownedOperations.16/@ownedPostconditions.2/@ownedSpecification/@ownedContext"
+                  <ownedSource xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.25/@ownedOperations.16/@ownedPostconditions.2/@ownedSpecification/@ownedContext"
                       type="#OrderedSet"/>
                 </ownedSource>
               </ownedBody>
@@ -1801,7 +1813,7 @@
                 <ownedParts xsi:type="pivot:CollectionRange" type="#Integer">
                   <ownedFirst xsi:type="pivot:IntegerLiteralExp" integerSymbol="1" type="#Integer"/>
                   <ownedLast xsi:type="pivot:OperationCallExp" referredOperation="#o.ocl.Collection.size" type="#Integer">
-                    <ownedSource xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.24/@ownedOperations.16/@ownedPostconditions.2/@ownedSpecification/@ownedContext"
+                    <ownedSource xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.25/@ownedOperations.16/@ownedPostconditions.2/@ownedSpecification/@ownedContext"
                         type="#OrderedSet"/>
                   </ownedLast>
                 </ownedParts>

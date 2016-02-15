@@ -67,6 +67,8 @@
       abstract="true" interface="true" eSuperTypes="#//OclAny"/>
   <eClassifiers xsi:type="ecore:EClass" name="OclState" instanceClassName="java.lang.Object"
       abstract="true" interface="true" eSuperTypes="#//OclAny"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OclStereotype" instanceClassName="java.lang.Object"
+      abstract="true" eSuperTypes="#//OclType"/>
   <eClassifiers xsi:type="ecore:EClass" name="OclSummable" instanceClassName="java.lang.Object"
       abstract="true" interface="true" eSuperTypes="#//OclAny"/>
   <eClassifiers xsi:type="ecore:EClass" name="OclTuple" instanceClassName="java.lang.Object"

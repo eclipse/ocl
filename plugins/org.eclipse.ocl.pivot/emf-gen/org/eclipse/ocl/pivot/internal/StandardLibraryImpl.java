@@ -374,6 +374,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	private @Nullable InvalidType oclInvalidType = null;
 	private org.eclipse.ocl.pivot.@Nullable Class oclLambdaType = null;
 	private @Nullable SelfType oclSelfType = null;
+	private org.eclipse.ocl.pivot.@Nullable Class oclStereotypeType = null;
 	private org.eclipse.ocl.pivot.@Nullable Class oclSummableType = null;
 	private org.eclipse.ocl.pivot.@Nullable Class oclTupleType = null;
 	private org.eclipse.ocl.pivot.@Nullable Class oclTypeType = null;
@@ -724,6 +725,18 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 			oclSelfType2 = oclSelfType = resolveRequiredSimpleType(SelfType.class, TypeId.OCL_SELF_NAME);		
 		}
 		return oclSelfType2;
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	@Override
+	public org.eclipse.ocl.pivot.@NonNull Class getOclStereotypeType() {
+		org.eclipse.ocl.pivot.Class oclStereotypeType2 = oclStereotypeType;
+		if (oclStereotypeType2 == null) {
+			oclStereotypeType2 = oclStereotypeType = resolveRequiredSimpleType(org.eclipse.ocl.pivot.Class.class, TypeId.OCL_STEREOTYPE_NAME);		
+		}
+		return oclStereotypeType2;
 	}
 
 	@Override

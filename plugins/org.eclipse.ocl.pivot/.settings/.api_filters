@@ -443,22 +443,6 @@
             </message_arguments>
         </filter>
     </resource>
-    <resource path="emf-gen/org/eclipse/ocl/pivot/oclstdlib/OCLstdlibPackage.java" type="org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage">
-        <filter id="388194388">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage"/>
-                <message_argument value="OCL_ELEMENT_FEATURE_COUNT"/>
-                <message_argument value="0"/>
-            </message_arguments>
-        </filter>
-        <filter id="388194388">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage"/>
-                <message_argument value="OCL_TYPE_FEATURE_COUNT"/>
-                <message_argument value="0"/>
-            </message_arguments>
-        </filter>
-    </resource>
     <resource path="emf-gen/org/eclipse/ocl/pivot/oclstdlib/OCLstdlibPackage.java" type="org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage$Literals">
         <filter id="403767336">
             <message_arguments>
@@ -470,6 +454,19 @@
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage.Literals"/>
                 <message_argument value="OCL_ELEMENT__OCL_CONTENTS"/>
+            </message_arguments>
+        </filter>
+        <filter id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage.Literals"/>
+                <message_argument value="OCL_STEREOTYPE"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="emf-gen/org/eclipse/ocl/pivot/oclstdlib/OCLstdlibTables.java" type="org.eclipse.ocl.pivot.oclstdlib.OCLstdlibTables$Operations">
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="_OclStereotype__allInstances"/>
             </message_arguments>
         </filter>
     </resource>
@@ -500,6 +497,27 @@
         <filter comment="New auto-generated @since 1.1 API" id="1143996420">
             <message_arguments>
                 <message_argument value="_OclElement__oclContents"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="emf-gen/org/eclipse/ocl/pivot/oclstdlib/OCLstdlibTables.java" type="org.eclipse.ocl.pivot.oclstdlib.OCLstdlibTables$Types">
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="_OclStereotype"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="emf-gen/org/eclipse/ocl/pivot/oclstdlib/util/OCLstdlibAdapterFactory.java" type="org.eclipse.ocl.pivot.oclstdlib.util.OCLstdlibAdapterFactory">
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="createOclStereotypeAdapter()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="emf-gen/org/eclipse/ocl/pivot/oclstdlib/util/OCLstdlibSwitch.java" type="org.eclipse.ocl.pivot.oclstdlib.util.OCLstdlibSwitch">
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="caseOclStereotype(Object)"/>
             </message_arguments>
         </filter>
     </resource>

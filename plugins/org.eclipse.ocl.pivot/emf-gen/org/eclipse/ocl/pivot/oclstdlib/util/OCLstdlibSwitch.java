@@ -146,6 +146,15 @@ public class OCLstdlibSwitch<@Nullable T1> extends Switch<T1> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case OCLstdlibPackage.OCL_STEREOTYPE: {
+				Object oclStereotype = (Object)theEObject;
+				T1 result = caseOclStereotype(oclStereotype);
+				if (result == null) result = caseOclType(oclStereotype);
+				if (result == null) result = caseOclElement(oclStereotype);
+				if (result == null) result = caseOclAny(oclStereotype);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case OCLstdlibPackage.OCL_SUMMABLE: {
 				Object oclSummable = (Object)theEObject;
 				T1 result = caseOclSummable(oclSummable);
@@ -355,6 +364,21 @@ public class OCLstdlibSwitch<@Nullable T1> extends Switch<T1> {
 	 * @generated
 	 */
 	public T1 caseOclState(Object object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ocl Stereotype</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ocl Stereotype</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseOclStereotype(Object object) {
 		return null;
 	}
 
