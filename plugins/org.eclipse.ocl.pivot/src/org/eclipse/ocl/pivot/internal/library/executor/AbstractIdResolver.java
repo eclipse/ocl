@@ -889,6 +889,14 @@ public abstract class AbstractIdResolver implements IdResolver.IdResolverExtensi
 		}
 	}
 
+	/**
+	 * @since 1.1
+	 */
+	@Override
+	public @Nullable Iterable<@NonNull Type> getModelTypesOf(@NonNull Object value) {
+		return null;
+	}
+
 	@Override
 	public @NonNull Operation getOperation(@NonNull OperationId operationId) {
 		Element element = operationId.accept(this);

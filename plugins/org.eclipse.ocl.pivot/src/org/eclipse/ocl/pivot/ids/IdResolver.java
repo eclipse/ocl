@@ -49,6 +49,7 @@ public interface IdResolver extends IdVisitor<Element>
 	{
 		org.eclipse.ocl.pivot.@Nullable Package basicGetPackage(@NonNull PackageId packageId);
 		@NonNull <T> EList<T> ecoreValueOfAll(@Nullable Class<T> instanceClass, @NonNull Iterable<? extends Object> values);
+		@Nullable Iterable<@NonNull Type> getModelTypesOf(@NonNull Object value);
 		int oclHashCode(@Nullable Object anObject);
 	}
 	

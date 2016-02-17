@@ -10,6 +10,9 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.uml.internal.utilities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -21,6 +24,7 @@ import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.Stereotype;
+import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.manager.PivotIdResolver;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2ASUtil;
@@ -77,6 +81,26 @@ public class UMLIdResolver extends PivotIdResolver
 			return super.getStaticTypeOf(value);
 		}
 		return super.getDynamicTypeOf(value);
+	}
+
+	@Override
+	public @Nullable Iterable<@NonNull Type> getModelTypesOf(@NonNull Object value) {
+		if (value instanceof org.eclipse.uml2.uml.InstanceSpecification) {
+			List<@NonNull Type> asModelTypes = new ArrayList<@NonNull Type>();
+			for (org.eclipse.uml2.uml.Classifier umlClassifier : ((org.eclipse.uml2.uml.InstanceSpecification)value).getClassifiers()) {
+				try {
+					Type asModelType = metamodelManager.getASOf(Type.class, umlClassifier);
+					if ((asModelType != null) && !asModelTypes.contains(asModelType)) {
+						asModelTypes.add(asModelType);
+					}
+				} catch (ParserException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			return asModelTypes;
+		}
+		return null;
 	}
 
 	@Override
