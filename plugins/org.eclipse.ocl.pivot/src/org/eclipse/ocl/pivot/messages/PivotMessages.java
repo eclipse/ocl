@@ -27,6 +27,10 @@ public class PivotMessages
 	public static String EObjectRequired;
 	public static String EmptyCollection;
 	public static String ImplementationClassLoadFailure;
+	/**
+	 * @since 1.1
+	 */
+	public static String IncompatibleModelType;
 	public static String IncompatibleOclAsTypeSourceType;
 	public static String IncompleteInitialization;
 	public static String IndexNotInUse;

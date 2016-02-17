@@ -204,8 +204,9 @@ public abstract class GenerateOCLstdlib extends GenerateOCLCommonXtend
 					 || name.equals("OclType")) {
 						((EClass)eClassifier).setAbstract(true);
 					} */
-					if (name.equals("OclStereotype")) {
+					if (name.equals("OclStereotype")) {						// FIXME some old classes probably rely on historic model-gen/oclstdlib.ecore content
 						((EClass)eClassifier).setAbstract(true);
+						((EClass)eClassifier).setInterface(true);
 						eClassifier.setInstanceClass(Object.class);
 					}
 					else if ((eClassifier.getInstanceClassName() == null)

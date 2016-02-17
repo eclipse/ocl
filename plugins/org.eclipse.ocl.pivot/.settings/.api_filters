@@ -466,6 +466,31 @@
     <resource path="emf-gen/org/eclipse/ocl/pivot/oclstdlib/OCLstdlibTables.java" type="org.eclipse.ocl.pivot.oclstdlib.OCLstdlibTables$Operations">
         <filter id="1143996420">
             <message_arguments>
+                <message_argument value="_OclAny__oclTypes"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="_OclElement__oclAsModelType"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="_OclElement__oclIsModelKindOf"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="_OclElement__oclModelType"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="_OclElement__oclModelTypes"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
                 <message_argument value="_OclStereotype__allInstances"/>
             </message_arguments>
         </filter>
@@ -475,6 +500,11 @@
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.pivot.oclstdlib.OCLstdlibTables.Parameters"/>
                 <message_argument value="_"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="_OclElement_oclAsModelType_TT"/>
             </message_arguments>
         </filter>
     </resource>
@@ -497,6 +527,13 @@
         <filter comment="New auto-generated @since 1.1 API" id="1143996420">
             <message_arguments>
                 <message_argument value="_OclElement__oclContents"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="emf-gen/org/eclipse/ocl/pivot/oclstdlib/OCLstdlibTables.java" type="org.eclipse.ocl.pivot.oclstdlib.OCLstdlibTables$TypeParameters">
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="__OclElement__oclAsModelType_TT"/>
             </message_arguments>
         </filter>
     </resource>

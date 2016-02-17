@@ -598,10 +598,10 @@ public class OCLstdlibPackage extends EPackageImpl {
 	public static final int OCL_TYPE_FEATURE_COUNT = OCL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.pivot.oclstdlib.OclStereotype <em>Ocl Stereotype</em>}' class.
+	 * The meta object id for the '{@link java.lang.Object <em>Ocl Stereotype</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.pivot.oclstdlib.OclStereotype
+	 * @see java.lang.Object
 	 * @see org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage#getOclStereotype()
 	 * @generated
 	 */
@@ -1549,7 +1549,7 @@ public class OCLstdlibPackage extends EPackageImpl {
 
 		initEClass(oclStateEClass, Object.class, "OclState", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(oclStereotypeEClass, Object.class, "OclStereotype", IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(oclStereotypeEClass, Object.class, "OclStereotype", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(oclSummableEClass, Object.class, "OclSummable", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
@@ -1720,11 +1720,11 @@ public class OCLstdlibPackage extends EPackageImpl {
 		public static final EClass OCL_STATE = eINSTANCE.getOclState();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.pivot.oclstdlib.OclStereotype <em>Ocl Stereotype</em>}' class.
+		 * The meta object literal for the '{@link java.lang.Object <em>Ocl Stereotype</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * @since 1.1
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.pivot.oclstdlib.OclStereotype
+		 * @see java.lang.Object
 		 * @see org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage#getOclStereotype()
 		 * @generated
 		 */

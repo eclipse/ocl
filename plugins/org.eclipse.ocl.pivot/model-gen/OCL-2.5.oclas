@@ -1284,7 +1284,7 @@
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.OclAny.oclAsType..TT" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation"
           isInvalidating="true" name="oclAsType" type="#t.ocl.OclAny..oclAsTypeTT">
-        <ownedComments body="Evaluates to oclText[self], where oclText[self] is of the type identified by T.&#xA;The type T may be any classifier defined in the UML model;&#xA;if the actual type of oclText[self] at evaluation time does not conform to T,&#xA;then the oclAsType operation evaluates to oclText[invalid].&#xA;&#xA;In the case of feature redefinition, casting an object to a supertype of its actual type&#xA;does not access the supertype’s definition of the feature;&#xA;according to the semantics of redefinition, the redefined feature simply does not exist for the object.&#xA;However, when casting to a supertype, any features additionally defined by the subtype are suppressed.&#xA;&#xA;"/>
+        <ownedComments body="Evaluates to oclText[self], where oclText[self] is of the type identified by oclText[TT].&#xA;The type oclText[TT] may be any classifier defined by OCL or a user metamodel;&#xA;if the actual type of oclText[self] at evaluation time does not conform to oclText[TT],&#xA;then the oclAsType operation evaluates to oclText[invalid].&#xA;&#xA;If oclText[self] is a multiply classified instance, the current classification used for OCL navigation&#xA;is changed to the classification to which oclText[TT] conforms. The oclAsType call is not well-formed if&#xA;the classification is ambiguous.&#xA;&#xA;In the case of feature redefinition, casting an object to a supertype of its actual type&#xA;does not access the supertype’s definition of the feature;&#xA;according to the semantics of redefinition, the redefined feature simply does not exist for the object.&#xA;However, when casting to a supertype, any features additionally defined by the subtype are suppressed."/>
         <ownedParameters xmi:id="p0o.ocl.OclAny.oclAsType..TT" isRequired="false" isTypeof="true" name="type" type="#t.ocl.OclAny..oclAsTypeTT"/>
         <ownedPostconditions xmi:id="c+ocl.OclAny.oclAsType.IsSelf" name="IsSelf">
           <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="result = self" type="#Boolean">
@@ -1314,7 +1314,7 @@
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.OclAny.oclIsKindOf..ocl.OclType" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsKindOfOperation"
           name="oclIsKindOf" type="#Boolean">
-        <ownedComments body="Evaluates to oclText[true] if the type of oclText[self] conforms to t.&#xA;That is, oclText[self] is of type t or a subtype of t.&#xA;"/>
+        <ownedComments body="Evaluates to oclText[true] if the type of oclText[self] conforms to oclText[type].&#xA;That is, oclText[self] is of type oclText[type] or a subtype of oclText[type].&#xA;"/>
         <ownedParameters xmi:id="p0o.ocl.OclAny.oclIsKindOf..ocl.OclType" isRequired="false" name="type" type="#T.ocl.OclType"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.OclAny.oclIsNew" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclAnyUnsupportedOperation"
@@ -1323,7 +1323,7 @@
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.OclAny.oclIsTypeOf..ocl.OclType" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsTypeOfOperation"
           name="oclIsTypeOf" type="#Boolean">
-        <ownedComments body="Evaluates to oclText[true] if oclText[self] is of the type t but not a subtype of t"/>
+        <ownedComments body="Evaluates to oclText[true] if oclText[self] is of the type oclText[type] but not a subtype of oclText[type]."/>
         <ownedParameters xmi:id="p0o.ocl.OclAny.oclIsTypeOf..ocl.OclType" isRequired="false" name="type" type="#T.ocl.OclType"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.OclAny.oclIsUndefined" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsUndefinedOperation"
@@ -1341,7 +1341,11 @@
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.OclAny.oclType" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclAnyOclTypeOperation"
           isTypeof="true" name="oclType" type="#OclSelf">
-        <ownedComments body="Evaluates to the type of which oclText[self] is an instance.&#xA;"/>
+        <ownedComments body="Evaluates to the most derived type of which oclText[self] is currently an instance. If oclText[self] is an instance of a multiply&#xA;classified type, the return is the most derived type of the current classification which is established when the instance is&#xA;passed to OCL, or re-established by an oclText[oclAsType()] call.&#xA;"/>
+      </ownedOperations>
+      <ownedOperations xmi:id="o.ocl.OclAny.oclTypes" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclAnyOclTypesOperation"
+          name="oclTypes" type="#//@ownedPackages.1/@ownedClasses.133">
+        <ownedComments body="Evaluates to all of the most derived type of which oclText[self] is an instance. The return from oclText[oclTypes()]&#xA;is normally equivalent to that from oclText[oclType()] unless oclText[self] is an instance of multiply classified type.&#xA;"/>
       </ownedOperations>
       <ownedOperations xmi:id="o.ocl.OclAny.toString" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclAnyToStringOperation"
           name="toString" type="#String">
@@ -1392,6 +1396,27 @@
           isStatic="true" name="allInstances" type="#//@ownedPackages.1/@ownedClasses.132">
         <ownedComments body="Return a set of all instances of the type and derived types of self."/>
       </ownedOperations>
+      <ownedOperations xmi:id="o.ocl.OclElement.oclAsModelType..TT" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclElementOclAsModelTypeOperation"
+          isInvalidating="true" name="oclAsModelType" type="#t.ocl.OclElement..oclAsModelTypeTT">
+        <ownedComments body="Evaluates to oclText[self], where oclText[self] is of the model type identified by oclText[TT].&#xA;&#xA;Most model elements have metamodel types for use with oclAsType, but no model type and so the return is oclText[invalid].&#xA;&#xA;Model elements such as UML's InstnaceSpecification that do support distinct model and metamodel types return oclText[self]&#xA;with the cast type oclText[TT] that may be used for further navigation.&#xA;If the actual model type of oclText[self] at evaluation time does not conform to oclText[TT],&#xA;then the oclAsType operation evaluates to oclText[invalid].&#xA;&#xA;If oclText[self] is a multiply classified instance, the current classification used for OCL navigation&#xA;is changed to the classification to which oclText[TT] conforms. The oclAsModelType call is not well-formed if&#xA;the classification is ambiguous."/>
+        <ownedParameters xmi:id="p0o.ocl.OclElement.oclAsModelType..TT" isRequired="false" isTypeof="true" name="type" type="#t.ocl.OclElement..oclAsModelTypeTT"/>
+        <ownedPostconditions xmi:id="c+ocl.OclElement.oclAsModelType.IsSelf" name="IsSelf">
+          <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="result = self" type="#Boolean">
+            <ownedBody xsi:type="pivot:OperationCallExp" name="=" referredOperation="#o.ocl.OclAny.%61%..ocl.OclSelf" type="#Boolean">
+              <ownedArguments xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.13/@ownedOperations.1/@ownedPostconditions.0/@ownedSpecification/@ownedContext"
+                  type="#T.ocl.OclElement"/>
+              <ownedSource xsi:type="pivot:VariableExp" referredVariable="#//@ownedPackages.0/@ownedClasses.13/@ownedOperations.1/@ownedPostconditions.0/@ownedSpecification/@ownedResult"
+                  type="#t.ocl.OclElement..oclAsModelTypeTT"/>
+            </ownedBody>
+            <ownedContext name="self" type="#T.ocl.OclElement"/>
+            <ownedParameters isRequired="false" name="type" representedParameter="#p0o.ocl.OclElement.oclAsModelType..TT" type="#t.ocl.OclElement..oclAsModelTypeTT"/>
+            <ownedResult name="result" type="#t.ocl.OclElement..oclAsModelTypeTT"/>
+          </ownedSpecification>
+        </ownedPostconditions>
+        <ownedSignature xmi:id="s.o.ocl.OclElement.oclAsModelType..TT">
+          <ownedParameters xmi:id="t.ocl.OclElement..oclAsModelTypeTT" name="TT"/>
+        </ownedSignature>
+      </ownedOperations>
       <ownedOperations xmi:id="o.ocl.OclElement.oclContainer" implementationClass="org.eclipse.ocl.pivot.library.classifier.ClassifierOclContainerOperation"
           isRequired="false" name="oclContainer" type="#T.ocl.OclElement">
         <ownedComments body="Returns the object for which self is a composed content or null if there is no such object."/>
@@ -1399,6 +1424,19 @@
       <ownedOperations xmi:id="o.ocl.OclElement.oclContents" implementationClass="org.eclipse.ocl.pivot.library.classifier.ClassifierOclContentsOperation"
           name="oclContents" type="#//@ownedPackages.1/@ownedClasses.131">
         <ownedComments body="Returns the composed contents of self."/>
+      </ownedOperations>
+      <ownedOperations xmi:id="o.ocl.OclElement.oclIsModelKindOf..ocl.OclType" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclElementOclIsModelKindOfOperation"
+          name="oclIsModelKindOf" type="#Boolean">
+        <ownedComments body="Evaluates to oclText[true] if the type of oclText[self] conforms to the model type oclText[type].&#xA;That is, oclText[self] is of type oclText[type] or a subtype of oclText[type].&#xA;&#xA;The return is normally oclText[false] since few model elements have model types. UML's InstanceSpecification::classifier provides&#xA;a multiple classification for a model type.&#xA;"/>
+        <ownedParameters xmi:id="p0o.ocl.OclElement.oclIsModelKindOf..ocl.OclType" isRequired="false" name="type" type="#T.ocl.OclType"/>
+      </ownedOperations>
+      <ownedOperations xmi:id="o.ocl.OclElement.oclModelType" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclElementOclModelTypeOperation"
+          isTypeof="true" name="oclModelType" type="#OclSelf">
+        <ownedComments body="Evaluates to the most derived model type of which oclText[self] is currently an instance. If oclText[self] is an instance of a multiply&#xA;classified model type, the return is the most derived type of the current classification which is established&#xA;by an oclText[oclAsModelType()] call.&#xA;&#xA;The return is normally oclText[invalid] since few model elements have model types. UML's InstanceSpecification::classifier provides&#xA;a multiple classification for a model type."/>
+      </ownedOperations>
+      <ownedOperations xmi:id="o.ocl.OclElement.oclModelTypes" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclElementOclModelTypesOperation"
+          name="oclModelTypes" type="#//@ownedPackages.1/@ownedClasses.133">
+        <ownedComments body="Evaluates to all of the most derived model types of which oclText[self] is an instance. The return from oclText[oclModelTypes()]&#xA;is normally equivalent to that from oclText[oclModelType()] unless oclText[self] is an instance of multiply classified model type.&#xA;&#xA;The return is normally oclText[invalid] since few model elements have model types. UML's InstanceSpecification::classifier provides&#xA;a multiple classification for a model type.&#xA;"/>
       </ownedOperations>
       <ownedProperties xmi:id="p.ocl.OclElement.oclContainer" implementationClass="org.eclipse.ocl.pivot.library.oclany.OclElementOclContainerProperty"
           isRequired="false" name="oclContainer" opposite="#//@ownedPackages.0/@ownedClasses.13/@ownedProperties.2" type="#T.ocl.OclElement">
