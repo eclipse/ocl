@@ -23,6 +23,7 @@ import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
@@ -34,6 +35,7 @@ import org.eclipse.ocl.pivot.utilities.MetamodelManager;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -332,6 +334,16 @@ public class EvaluateOclAnyOperationsTest4 extends PivotTestSuite
 		ocl.assertQueryFalse(null, "null <> null");
 		ocl.dispose();
 	}
+
+    /**
+     * Tests the oclAsModelType() operator.
+     */
+    @Test public void test_oclAsModelType() {
+		MyOCL ocl = createOCL();
+    	ocl.assertSemanticErrorQuery(null, "invalid.oclAsModelType(OclAny)", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "OclInvalid", "oclAsModelType", "OclAny");
+        ocl.assertQueryInvalid(ocl.pkg1, "self.oclAsModelType(OclAny)");
+		ocl.dispose();
+    }
 	
     /**
      * Tests the explicit oclAsSet() operator.
@@ -561,6 +573,23 @@ public class EvaluateOclAnyOperationsTest4 extends PivotTestSuite
 		ocl.dispose();
     }
 
+    /**
+     * Tests the oclIsModelKindOf() operator.
+     */
+    @Test public void test_oclIsModelKindOf() {
+		MyOCL ocl = createOCL();
+    	ocl.assertSemanticErrorQuery(null, "invalid.oclIsModelKindOf(OclAny)", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "OclInvalid", "oclIsModelKindOf", "OclAny");
+//		ocl.assertQueryInvalid(null, "invalid.oclIsModelKindOf(OclAny)");
+//        ocl.assertQueryInvalid(null, "null.oclIsModelKindOf(OclAny)");
+//        ocl.assertQueryInvalid(null, "true.oclIsModelKindOf(OclAny)");
+//        ocl.assertQueryInvalid(null, "3.14.oclIsModelKindOf(OclAny)");
+//        ocl.assertQueryInvalid(null, "1.oclIsModelKindOf(OclAny)");
+//        ocl.assertQueryInvalid(null, "*.oclIsModelKindOf(OclAny)");
+//        ocl.assertQueryInvalid(null, "'invalid'.oclIsModelKindOf(OclAny)");
+        ocl.assertQueryInvalid(ocl.pkg1, "self.oclIsModelKindOf(OclAny)");
+		ocl.dispose();
+    }
+
 	/**
      * Tests the oclIsTypeOf() operator.
      */
@@ -657,6 +686,26 @@ public class EvaluateOclAnyOperationsTest4 extends PivotTestSuite
         ocl.assertQueryFalse(null, "*.oclIsUndefined()");
         ocl.assertQueryFalse(null, "'null'.oclIsUndefined()");
         ocl.assertQueryFalse(ocl.pkg1, "self.oclIsUndefined()");
+		ocl.dispose();
+    }
+
+    /**
+     * Tests the oclModelType() operator.
+     */
+    @Test public void test_oclModelType() {
+		MyOCL ocl = createOCL();
+    	ocl.assertSemanticErrorQuery(null, "invalid.oclModelType()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "OclInvalid", "oclModelType");
+        ocl.assertQueryInvalid(ocl.pkg1, "self.oclModelType()");
+		ocl.dispose();
+    }
+
+    /**
+     * Tests the oclModelTypes() operator.
+     */
+    @Test public void test_oclModelTypes() {
+		MyOCL ocl = createOCL();
+    	ocl.assertSemanticErrorQuery(null, "invalid.oclModelTypes()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "OclInvalid", "oclModelTypes");
+        ocl.assertQueryInvalid(ocl.pkg1, "self.oclModelTypes()");
 		ocl.dispose();
     }
 
@@ -868,6 +917,28 @@ public class EvaluateOclAnyOperationsTest4 extends PivotTestSuite
     	ocl.assertQueryEquals(null, primitiveType, "Boolean.oclType()");
     	ocl.assertQueryEquals(null, primitiveType.getName(), "Boolean.oclType().name");
     	ocl.assertSemanticErrorQuery(null, "3.oclType(OclAny)", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Integer", "oclType", "OclAny");
+		ocl.dispose();
+    }
+
+    /**
+     * Tests the oclTypes() operator.
+     */
+    @Test public void test_oclTypes() {
+		MyOCL ocl = createOCL();
+    	StandardLibrary standardLibrary = ocl.getStandardLibrary();
+    	org.eclipse.ocl.pivot.Class primitiveType = useCodeGen ? standardLibrary.getClassType() : ocl.getMetamodelManager().getASClass("PrimitiveType");
+    	assert primitiveType != null;
+    	CollectionTypeId bagTypeId = TypeId.BAG.getSpecializedId(TypeId.OCL_ANY);
+    	CollectionTypeId setTypeId = TypeId.SET.getSpecializedId(TypeId.OCL_ANY);
+    	if (!useCodeGen) {				// FIXME Bad CG Set equals
+			ocl.assertQueryEquals(null, ValueUtil.createSetOfEach(setTypeId, standardLibrary.getStringType()), "'string'.oclTypes()");
+			ocl.assertQueryEquals(null, ValueUtil.createSetOfEach(setTypeId, standardLibrary.getOclVoidType()), "self.oclTypes()");
+	    	ocl.assertQueryEquals(null, ValueUtil.createBagOfEach(bagTypeId, primitiveType), "3.oclTypes().oclType()");
+	    	ocl.assertQueryEquals(null, ValueUtil.createBagOfEach(bagTypeId, standardLibrary.getClassType()), "3.oclTypes().oclType().oclType()");
+	    	ocl.assertQueryEquals(null, ValueUtil.createSetOfEach(setTypeId, primitiveType), "Boolean.oclTypes()");
+	    	//    	ocl.assertQueryEquals(null, ValueUtil.createSetOfEach(setTypeId, primitiveType.getName()), "Boolean.oclTypes().name");
+    	}
+    	ocl.assertSemanticErrorQuery(null, "3.oclTypes(OclAny)", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "Integer", "oclTypes", "OclAny");
 		ocl.dispose();
     }
 
