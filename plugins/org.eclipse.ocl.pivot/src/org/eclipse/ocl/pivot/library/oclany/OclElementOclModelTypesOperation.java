@@ -14,6 +14,8 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.Executor;
+import org.eclipse.ocl.pivot.ids.CollectionTypeId;
+import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.AbstractUnaryOperation;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
@@ -34,7 +36,18 @@ public class OclElementOclModelTypesOperation extends AbstractUnaryOperation
 	 */
 	@Override
 	public @NonNull SetValue evaluate(@NonNull Executor executor, @NonNull TypeId returnTypeId, @Nullable Object sourceVal) {
-		Type sourceType = executor.getIdResolver().getDynamicTypeOf(sourceVal);
-		throw new InvalidValueException(PivotMessages.IncompatibleModelType, sourceType);
+		if (sourceVal instanceof InvalidValueException) {
+			throw (InvalidValueException)sourceVal;
+		}
+		IdResolver.IdResolverExtension idResolver = (IdResolver.IdResolverExtension)executor.getIdResolver();
+		Type sourceType = idResolver.getDynamicTypeOf(sourceVal);
+		if (sourceVal == null) {
+			throw new InvalidValueException(PivotMessages.NullNavigation, "source value", "oclModelTypes");
+		}
+		Iterable<@NonNull Type> modelTypes = idResolver.getModelTypesOf(sourceVal);
+		if (modelTypes == null) {
+			throw new InvalidValueException(PivotMessages.IncompatibleModelType, sourceType);
+		}
+		return idResolver.createSetOfAll((@NonNull CollectionTypeId) returnTypeId, modelTypes);
 	}
 }

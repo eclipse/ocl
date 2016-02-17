@@ -40,7 +40,7 @@ public class OclElementOclAsModelTypeOperation extends AbstractUntypedBinaryOper
 		Type argType = asType(argVal);
 		Type sourceType = executor.getIdResolver().getDynamicTypeOf(sourceVal);
 		if (sourceVal == null) {
-			throw new InvalidValueException(PivotMessages.IncompatibleOclAsTypeSourceType, sourceType, argType);
+			throw new InvalidValueException(PivotMessages.NullNavigation, "source value", "oclAsModelType");
 		}
 		Iterable<@NonNull Type> modelTypes = ((IdResolver.IdResolverExtension)executor.getIdResolver()).getModelTypesOf(sourceVal);
 		if (modelTypes == null) {
@@ -54,7 +54,7 @@ public class OclElementOclAsModelTypeOperation extends AbstractUntypedBinaryOper
 					bestModelType = modelType;
 				}
 				else {
-					throw new InvalidValueException(PivotMessages.IncompatibleModelType, bestModelType, modelType, sourceType);
+					throw new InvalidValueException(PivotMessages.AmbiguousModelType, bestModelType, modelType, sourceType);
 				}
 			}
 		}

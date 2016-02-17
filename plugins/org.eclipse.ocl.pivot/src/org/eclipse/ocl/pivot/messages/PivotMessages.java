@@ -22,6 +22,10 @@ public class PivotMessages
 		NLS.initializeMessages(PivotMessages.class.getName(), PivotMessages.class);
 	}
 	
+	/**
+	 * @since 1.1
+	 */
+	public static String AmbiguousModelType;
 	public static String AmbiguousOperation;
 	public static String ConvertibleValueRequired;
 	public static String EObjectRequired;

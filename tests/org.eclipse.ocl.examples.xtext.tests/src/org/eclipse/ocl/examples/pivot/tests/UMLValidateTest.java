@@ -555,13 +555,16 @@ public class UMLValidateTest extends AbstractValidateTests
 		Map<Object, Object> validationContext = LabelUtil.createDefaultContext(Diagnostician.INSTANCE);
 		OCLDelegateDomain.initializePivotOnlyDiagnosticianContext(validationContext);
 		Model model = (Model) umlResource.getContents().get(0);
-		org.eclipse.uml2.uml.Type xx = model.getOwnedType("Class1");
+		org.eclipse.uml2.uml.InstanceSpecification xx = (org.eclipse.uml2.uml.InstanceSpecification)model.getOwnedMember("Class1BadInstance");
 //		org.eclipse.uml2.uml.Package pack = model.getOwnedMember("Class1BadInstance");
 		assertValidationDiagnostics("Loading", umlResource, validationContext); //,
 //			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Stereotype1::unique_default_values", "«Stereotype1»" + LabelUtil.getLabel(xx)));
 		assertUMLOCLValidationDiagnostics(ocl, "UML Load", umlResource,
-			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Stereotype1::Constraint1", "«Stereotype1»" + LabelUtil.getLabel(xx)),
-			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Stereotype2::Constraint2", "«Stereotype2»" + LabelUtil.getLabel(xx)));
+			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Class1::Constraint1a", LabelUtil.getLabel(xx)),
+			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Class1::Constraint1b", LabelUtil.getLabel(xx)),
+			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Class1::IsModelKindOf", LabelUtil.getLabel(xx)),
+			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Class1::ModelType", LabelUtil.getLabel(xx)),
+			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Class1::ModelTypes", LabelUtil.getLabel(xx)));
 		ocl.dispose();
 	}
 	

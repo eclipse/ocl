@@ -12,8 +12,10 @@ package org.eclipse.ocl.pivot.library.oclany;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.evaluation.Executor;
+import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.library.AbstractUntypedBinaryOperation;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -32,7 +34,30 @@ public class OclElementOclIsModelKindOfOperation extends AbstractUntypedBinaryOp
 	 */
 	@Override
 	public @NonNull Boolean evaluate(@NonNull Executor executor, @Nullable Object sourceVal, @Nullable Object argVal) {
+		if (sourceVal instanceof InvalidValueException) {
+			throw (InvalidValueException)sourceVal;
+		}
+		Type argType = asType(argVal);
 		Type sourceType = executor.getIdResolver().getDynamicTypeOf(sourceVal);
-		throw new InvalidValueException(PivotMessages.IncompatibleModelType, sourceType);
+		if (sourceVal == null) {
+			throw new InvalidValueException(PivotMessages.NullNavigation, "source value", "oclIsModelKindOf");
+		}
+		Iterable<@NonNull Type> modelTypes = ((IdResolver.IdResolverExtension)executor.getIdResolver()).getModelTypesOf(sourceVal);
+		if (modelTypes == null) {
+			throw new InvalidValueException(PivotMessages.IncompatibleModelType, sourceType);
+		}
+		StandardLibrary standardLibrary = executor.getStandardLibrary();
+		Type bestModelType = null;
+		for (@NonNull Type modelType : modelTypes) {
+			if (modelType.conformsTo(standardLibrary, argType)) {
+				if (bestModelType == null) {
+					bestModelType = modelType;
+				}
+				else {
+					throw new InvalidValueException(PivotMessages.AmbiguousModelType, bestModelType, modelType, sourceType);
+				}
+			}
+		}
+		return bestModelType != null;
 	}
 }

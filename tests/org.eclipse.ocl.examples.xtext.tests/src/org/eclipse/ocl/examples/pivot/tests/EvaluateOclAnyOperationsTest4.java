@@ -342,6 +342,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotTestSuite
 		MyOCL ocl = createOCL();
     	ocl.assertSemanticErrorQuery(null, "invalid.oclAsModelType(OclAny)", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "OclInvalid", "oclAsModelType", "OclAny");
         ocl.assertQueryInvalid(ocl.pkg1, "self.oclAsModelType(OclAny)");
+        // See test_umlValidation_Bug458394 for some real usage
 		ocl.dispose();
     }
 	
@@ -579,14 +580,8 @@ public class EvaluateOclAnyOperationsTest4 extends PivotTestSuite
     @Test public void test_oclIsModelKindOf() {
 		MyOCL ocl = createOCL();
     	ocl.assertSemanticErrorQuery(null, "invalid.oclIsModelKindOf(OclAny)", PivotMessagesInternal.UnresolvedOperationCall_ERROR_, "OclInvalid", "oclIsModelKindOf", "OclAny");
-//		ocl.assertQueryInvalid(null, "invalid.oclIsModelKindOf(OclAny)");
-//        ocl.assertQueryInvalid(null, "null.oclIsModelKindOf(OclAny)");
-//        ocl.assertQueryInvalid(null, "true.oclIsModelKindOf(OclAny)");
-//        ocl.assertQueryInvalid(null, "3.14.oclIsModelKindOf(OclAny)");
-//        ocl.assertQueryInvalid(null, "1.oclIsModelKindOf(OclAny)");
-//        ocl.assertQueryInvalid(null, "*.oclIsModelKindOf(OclAny)");
-//        ocl.assertQueryInvalid(null, "'invalid'.oclIsModelKindOf(OclAny)");
         ocl.assertQueryInvalid(ocl.pkg1, "self.oclIsModelKindOf(OclAny)");
+        // See test_umlValidation_Bug458394 for some real usage
 		ocl.dispose();
     }
 
@@ -696,6 +691,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotTestSuite
 		MyOCL ocl = createOCL();
     	ocl.assertSemanticErrorQuery(null, "invalid.oclModelType()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "OclInvalid", "oclModelType");
         ocl.assertQueryInvalid(ocl.pkg1, "self.oclModelType()");
+        // See test_umlValidation_Bug458394 for some real usage
 		ocl.dispose();
     }
 
@@ -706,6 +702,7 @@ public class EvaluateOclAnyOperationsTest4 extends PivotTestSuite
 		MyOCL ocl = createOCL();
     	ocl.assertSemanticErrorQuery(null, "invalid.oclModelTypes()", PivotMessagesInternal.UnresolvedOperation_ERROR_, "OclInvalid", "oclModelTypes");
         ocl.assertQueryInvalid(ocl.pkg1, "self.oclModelTypes()");
+        // See test_umlValidation_Bug458394 for some real usage
 		ocl.dispose();
     }
 
