@@ -725,17 +725,20 @@ type OclAny : AnyType {
 	*/
 	operation oclAsSet() : Set(OclSelf[1|1]) => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation';
 	/**
-	Evaluates to oclText[self], where oclText[self] is of the type identified by T.
-	The type T may be any classifier defined in the UML model;
-	if the actual type of oclText[self] at evaluation time does not conform to T,
+	Evaluates to oclText[self], where oclText[self] is of the type identified by oclText[TT].
+	The type oclText[TT] may be any classifier defined by OCL or a user metamodel;
+	if the actual type of oclText[self] at evaluation time does not conform to oclText[TT],
 	then the oclAsType operation evaluates to oclText[invalid].
-
+	
+	If oclText[self] is a multiply classified instance, the current classification used for OCL navigation
+	is changed to the classification to which oclText[TT] conforms. The oclAsType call is not well-formed if
+	the classification is ambiguous.
+	
 	In the case of feature redefinition, casting an object to a supertype of its actual type
 	does not access the supertype’s definition of the feature;
 	according to the semantics of redefinition, the redefined feature simply does not exist for the object.
 	However, when casting to a supertype, any features additionally defined by the subtype are suppressed.
-	
-	**/
+	*/
 	operation oclAsType(TT)(type : typeof(TT)) : TT[1] invalidating => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation'
 	{
 		post IsSelf: result = self;
@@ -753,8 +756,8 @@ type OclAny : AnyType {
 --		post: result = self.oclIsTypeOf(OclInvalid);
 	}
 	/**
-	Evaluates to oclText[true] if the type of oclText[self] conforms to t.
-	That is, oclText[self] is of type t or a subtype of t. 
+	Evaluates to oclText[true] if the type of oclText[self] conforms to oclText[type].
+	That is, oclText[self] is of type oclText[type] or a subtype of oclText[type]. 
 	**/
 	operation oclIsKindOf(type : OclType) : Boolean[1] => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsKindOfOperation';
 	/**
@@ -766,7 +769,7 @@ type OclAny : AnyType {
 --		post: self@pre.oclIsUndefined();
 	}
 	/**
-	Evaluates to oclText[true] if oclText[self] is of the type t but not a subtype of t 
+	Evaluates to oclText[true] if oclText[self] is of the type oclText[type] but not a subtype of oclText[type]. 
 	*/
 	operation oclIsTypeOf(type : OclType) : Boolean[1] => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsTypeOfOperation';
 	/**
@@ -785,9 +788,16 @@ type OclAny : AnyType {
 	**/
 	operation oclLog(message : String) : OclSelf => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclLogOperation';
 	/**
-	Evaluates to the type of which oclText[self] is an instance.
+	Evaluates to the most derived type of which oclText[self] is currently an instance. If oclText[self] is an instance of a multiply
+	classified type, the return is the most derived type of the current classification which is established when the instance is
+	passed to OCL, or re-established by an oclText[oclAsType()] call.
 	**/
 	operation oclType() : typeof(OclSelf)[1] => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclTypeOperation';
+	/**
+	Evaluates to all of the most derived type of which oclText[self] is an instance. The return from oclText[oclTypes()]
+	is normally equivalent to that from oclText[oclType()] unless oclText[self] is an instance of multiply classified type.
+	**/
+	operation oclTypes() : Set(typeof(OclSelf)[1]) => 'org.eclipse.ocl.pivot.library.oclany.OclAnyOclTypesOperation';
 --	operation "."(T)(object2 : OclAny) : T precedence=NAVIGATION => 'org.eclipse.ocl.pivot.library.oclany.OclAnyUnsupportedOperation';
 	/**
 	Returns a string representation of oclText[self].
@@ -836,6 +846,25 @@ type OclElement conformsTo OclAny {
 	*/
 	static operation allInstances() : Set(OclSelf[*|1]) => 'org.eclipse.ocl.pivot.library.classifier.ClassifierAllInstancesOperation';
 	/**
+	Evaluates to oclText[self], where oclText[self] is of the model type identified by oclText[TT].
+	
+	Most model elements have metamodel types for use with oclAsType, but no model type and so the return is oclText[invalid].
+	
+	Model elements such as UML's InstnaceSpecification that do support distinct model and metamodel types return oclText[self]
+	with the cast type oclText[TT] that may be used for further navigation.
+	If the actual model type of oclText[self] at evaluation time does not conform to oclText[TT],
+	then the oclAsType operation evaluates to oclText[invalid].
+	
+	If oclText[self] is a multiply classified instance, the current classification used for OCL navigation
+	is changed to the classification to which oclText[TT] conforms. The oclAsModelType call is not well-formed if
+	the classification is ambiguous.
+	*/
+	operation oclAsModelType(TT)(type : typeof(TT)) : TT[1] invalidating => 'org.eclipse.ocl.pivot.library.oclany.OclElementOclAsModelTypeOperation'
+	{
+		post IsSelf: result = self;
+--		post IsType: result.oclIsKindOf(type);
+	}
+	/**
 	Returns the object for which self is a composed content or null if there is no such object.
 	*/
 	operation oclContainer() : OclElement[?] => 'org.eclipse.ocl.pivot.library.classifier.ClassifierOclContainerOperation';
@@ -843,6 +872,31 @@ type OclElement conformsTo OclAny {
 	Returns the composed contents of self.
 	*/
 	operation oclContents() : Set(OclElement[*|1]) => 'org.eclipse.ocl.pivot.library.classifier.ClassifierOclContentsOperation';
+	/**
+	Evaluates to oclText[true] if the type of oclText[self] conforms to the model type oclText[type].
+	That is, oclText[self] is of type oclText[type] or a subtype of oclText[type]. 
+	
+	The return is normally oclText[false] since few model elements have model types. UML's InstanceSpecification::classifier provides
+	a multiple classification for a model type.
+	**/
+	operation oclIsModelKindOf(type : OclType) : Boolean[1] => 'org.eclipse.ocl.pivot.library.oclany.OclElementOclIsModelKindOfOperation';
+	/**
+	Evaluates to the most derived model type of which oclText[self] is currently an instance. If oclText[self] is an instance of a multiply
+	classified model type, the return is the most derived type of the current classification which is established
+	by an oclText[oclAsModelType()] call.
+	
+	The return is normally oclText[invalid] since few model elements have model types. UML's InstanceSpecification::classifier provides
+	a multiple classification for a model type.
+	*/
+	operation oclModelType() : typeof(OclSelf)[1] => 'org.eclipse.ocl.pivot.library.oclany.OclElementOclModelTypeOperation';
+	/**
+	Evaluates to all of the most derived model types of which oclText[self] is an instance. The return from oclText[oclModelTypes()]
+	is normally equivalent to that from oclText[oclModelType()] unless oclText[self] is an instance of multiply classified model type.
+	
+	The return is normally oclText[invalid] since few model elements have model types. UML's InstanceSpecification::classifier provides
+	a multiple classification for a model type.
+	**/
+	operation oclModelTypes() : Set(typeof(OclSelf)[1]) => 'org.eclipse.ocl.pivot.library.oclany.OclElementOclModelTypesOperation';
 	/**
 	The object for which self is a composed content or null if there is no such object.
 	**/
