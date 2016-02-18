@@ -44,10 +44,10 @@ public class OclElementOclModelTypesOperation extends AbstractUnaryOperation
 		if (sourceVal == null) {
 			throw new InvalidValueException(PivotMessages.NullNavigation, "source value", "oclModelTypes");
 		}
-		Iterable<@NonNull Type> modelTypes = idResolver.getModelTypesOf(sourceVal);
-		if (modelTypes == null) {
+		Iterable<org.eclipse.ocl.pivot.@NonNull Class> modelClasses = idResolver.getModelClassesOf(sourceVal);
+		if (modelClasses == null) {
 			throw new InvalidValueException(PivotMessages.IncompatibleModelType, sourceType);
 		}
-		return idResolver.createSetOfAll((@NonNull CollectionTypeId) returnTypeId, modelTypes);
+		return idResolver.createSetOfAll((@NonNull CollectionTypeId) returnTypeId, modelClasses);
 	}
 }

@@ -50,6 +50,9 @@ public class ConsoleMessages
 	public static String LoadActionWarning_Title;
 	public static String LoadActionWarning_NoExpression;
 	public static String LoadResourceAction_Tip;
+	public static String ModelTypesUsage_Message;
+//	public static String ModelTypesUsage_Question;
+	public static String ModelTypesUsage_Title;
 	public static String Output_Exception;
 	public static String Progress_Evaluating;
 	public static String Progress_Extent;

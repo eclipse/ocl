@@ -72,7 +72,8 @@ public abstract class AbstractConsoleTests extends PivotTestCase
 	public static class TestConsolePage extends OCLConsolePage
 	{
 		private StringBuilder s = new StringBuilder();
-		
+		private boolean popUpModelTypesUsageInformation = false;
+
 		public TestConsolePage(TestConsole testConsole) {
 			super(testConsole);
 		}
@@ -112,8 +113,17 @@ public abstract class AbstractConsoleTests extends PivotTestCase
 			return s.toString();
 		}
 
+		public boolean isPopUpModelTypesUsageInformation() {
+			return popUpModelTypesUsageInformation;
+		}
+
 		public ILaunch launchDebugger() {
 			return internalLaunchDebugger();
+		}
+
+		@Override
+		protected void popUpModelTypesUsageInformation() {
+			this.popUpModelTypesUsageInformation  = true;
 		}
 
 		@Override
@@ -125,6 +135,10 @@ public abstract class AbstractConsoleTests extends PivotTestCase
 		public void resetDocument() {
 			super.resetDocument();
 			s = new StringBuilder();
+		}
+
+		public void resetPopUpModelTypesUsageInformation() {
+			this.popUpModelTypesUsageInformation = false;
 		}
 	}
 

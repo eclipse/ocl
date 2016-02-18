@@ -13,7 +13,6 @@
 package org.eclipse.ocl.examples.xtext.console;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ocl.examples.xtext.console.messages.ConsoleMessages;
@@ -95,20 +94,13 @@ public class OCLConsole
 		setName(NLS.bind(ConsoleMessages.Console_TitleWithContext, objectName, typeName));		
 	}
 
-	public void setSelection(@Nullable EObject contextObject, @Nullable Iterable<org.eclipse.ocl.pivot.@NonNull Class> contextClasses) {
+	public void setSelection(@Nullable EObject contextObject, org.eclipse.ocl.pivot.@Nullable Class contextClass) {
 		String typeName = "null"; //$NON-NLS-1$;
 		String objectName = "null"; //$NON-NLS-1$
 		if (contextObject != null) {
 			objectName = LabelUtil.getLabel(contextObject);
-			if (contextClasses != null) {
-				StringBuilder s = new StringBuilder();
-				for (org.eclipse.ocl.pivot.@NonNull Class contextClass : contextClasses) {
-					if (s.length() > 0) {
-						s.append(", ");
-					}
-					s.append(contextClass.getName());
-				}
-				typeName = s.toString();
+			if (contextClass != null) {
+				typeName = contextClass.getName();
 			}
 		}
 		setName(NLS.bind(ConsoleMessages.Console_TitleWithContext, objectName, typeName));		

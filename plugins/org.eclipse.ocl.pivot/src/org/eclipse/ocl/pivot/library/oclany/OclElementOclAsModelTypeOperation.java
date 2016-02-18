@@ -42,32 +42,32 @@ public class OclElementOclAsModelTypeOperation extends AbstractUntypedBinaryOper
 		if (sourceVal == null) {
 			throw new InvalidValueException(PivotMessages.NullNavigation, "source value", "oclAsModelType");
 		}
-		Iterable<@NonNull Type> modelTypes = ((IdResolver.IdResolverExtension)executor.getIdResolver()).getModelTypesOf(sourceVal);
-		if (modelTypes == null) {
+		Iterable<org.eclipse.ocl.pivot.@NonNull Class> modelClasses = ((IdResolver.IdResolverExtension)executor.getIdResolver()).getModelClassesOf(sourceVal);
+		if (modelClasses == null) {
 			throw new InvalidValueException(PivotMessages.IncompatibleModelType, sourceType);
 		}
 		StandardLibrary standardLibrary = executor.getStandardLibrary();
 		Type bestModelType = null;
-		for (@NonNull Type modelType : modelTypes) {
-			if (argType.conformsTo(standardLibrary, modelType)) {
+		for (org.eclipse.ocl.pivot.@NonNull Class modelClass : modelClasses) {
+			if (argType.conformsTo(standardLibrary, modelClass)) {
 				if (bestModelType == null) {
-					bestModelType = modelType;
+					bestModelType = modelClass;
 				}
 				else {
-					throw new InvalidValueException(PivotMessages.AmbiguousModelType, bestModelType, modelType, sourceType);
+					throw new InvalidValueException(PivotMessages.AmbiguousModelType, bestModelType, modelClass, sourceType);
 				}
 			}
 		}
 		if (bestModelType != null) {
 			return sourceVal;
 		}
-		for (@NonNull Type modelType : modelTypes) {
-			if (modelType.conformsTo(standardLibrary, argType)) {
+		for (org.eclipse.ocl.pivot.@NonNull Class modelClass : modelClasses) {
+			if (modelClass.conformsTo(standardLibrary, argType)) {
 				if (bestModelType == null) {
-					bestModelType = modelType;
+					bestModelType = modelClass;
 				}
 				else {
-					throw new InvalidValueException(PivotMessages.IncompatibleModelType, bestModelType, modelType, sourceType);
+					throw new InvalidValueException(PivotMessages.IncompatibleModelType, bestModelType, modelClass, sourceType);
 				}
 			}
 		}

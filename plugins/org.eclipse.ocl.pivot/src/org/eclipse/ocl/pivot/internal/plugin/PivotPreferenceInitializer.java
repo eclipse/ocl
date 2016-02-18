@@ -11,6 +11,7 @@
 package org.eclipse.ocl.pivot.internal.plugin;
 
 import org.eclipse.ocl.common.internal.preferences.AnnotatedPreferenceInitializer;
+import org.eclipse.ocl.pivot.options.PivotConsoleOptions;
 import org.eclipse.ocl.pivot.options.PivotValidationOptions;
 
 /**
@@ -20,6 +21,7 @@ public class PivotPreferenceInitializer extends AnnotatedPreferenceInitializer
 {
 	@Override
 	public void initializeDefaultPreferences() {
+		putPreference(PivotConsoleOptions.ConsoleModeltypesInformation);	
 		putPreference(PivotValidationOptions.MissingSafeNavigation);	
 		putPreference(PivotValidationOptions.RedundantSafeNavigation);	
 	}

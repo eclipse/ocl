@@ -15,6 +15,7 @@ import java.util.List;
 import org.eclipse.ocl.common.preferences.PreferenceableOption;
 import org.eclipse.ocl.common.ui.internal.preferences.AbstractProjectPreferencePage;
 import org.eclipse.ocl.pivot.messages.StatusCodes;
+import org.eclipse.ocl.pivot.options.PivotConsoleOptions;
 import org.eclipse.ocl.pivot.options.PivotValidationOptions;
 import org.eclipse.ocl.pivot.ui.messages.PivotUIMessages;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
@@ -58,5 +59,10 @@ public class PivotProjectPreferencePage extends AbstractProjectPreferencePage
 				PivotUIMessages.Pivot_MissingSafeNavigation, SEVERITY_MODES, fieldEditorParent));
 		fields.add(new MyComboFieldEditor((PreferenceableOption<?>) PivotValidationOptions.RedundantSafeNavigation,
 				PivotUIMessages.Pivot_RedundantSafeNavigation, SEVERITY_MODES, fieldEditorParent));
+		horizontalLine = new Label(fieldEditorParent, SWT.SEPARATOR | SWT.HORIZONTAL);
+		horizontalLine.setLayoutData(new GridData(GridData.FILL, GridData.FILL, false, false, 2, 1));
+		horizontalLine.setFont(fieldEditorParent.getFont());
+		fields.add(new MyComboFieldEditor((PreferenceableOption<?>) PivotConsoleOptions.ConsoleModeltypesInformation,
+				PivotUIMessages.Pivot_ModelTypeSelection, BOOLEANS, fieldEditorParent));
 	}
 }

@@ -22,7 +22,6 @@ import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.PackageId;
 import org.eclipse.ocl.pivot.ids.RootPackageId;
 import org.eclipse.ocl.pivot.library.LibraryProperty;
-import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 
 /**
@@ -44,20 +43,6 @@ public interface Technology
 	@NonNull IdResolver createIdResolver(@NonNull EnvironmentFactoryInternal environmentFactory);
 
 	@NonNull LibraryProperty createStereotypePropertyImplementation(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Property property);
-
-	/**
-	 * Return the contextClassifiers of contextObject appropriate to the contextSource.
-	 * 
-	 * For a default METAMODEL contextSource the result is typically just an Iterable of contextType.
-	 * 
-	 * For a MODEL contextSource, the result is typically null, but may be something more interesting if for instance contextObject has an
-	 * InstanceSpecification::classifier.
-	 * @throws ParserException 
-	 * 
-	 * @since 1.1
-	 */
-	@Nullable Iterable<org.eclipse.ocl.pivot.@NonNull Class> getContextClasses(@NonNull EnvironmentFactory environmentFactory,
-			@NonNull EObject contextObject, org.eclipse.ocl.pivot.@NonNull Class contextType, @NonNull ContextSource contextSource) throws ParserException;
 
 	String getExtensionName(@NonNull Element asStereotypedElement);
 

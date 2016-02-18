@@ -24,7 +24,6 @@ import org.eclipse.ocl.pivot.CompletePackage;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.EnumerationLiteral;
 import org.eclipse.ocl.pivot.Stereotype;
-import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.internal.manager.PivotIdResolver;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.uml.internal.es2as.UML2ASUtil;
@@ -84,12 +83,12 @@ public class UMLIdResolver extends PivotIdResolver
 	}
 
 	@Override
-	public @Nullable Iterable<@NonNull Type> getModelTypesOf(@NonNull Object value) {
+	public @Nullable Iterable<org.eclipse.ocl.pivot.@NonNull Class> getModelClassesOf(@NonNull Object value) {
 		if (value instanceof org.eclipse.uml2.uml.InstanceSpecification) {
-			List<@NonNull Type> asModelTypes = new ArrayList<@NonNull Type>();
+			List<org.eclipse.ocl.pivot.@NonNull Class> asModelTypes = new ArrayList<org.eclipse.ocl.pivot.@NonNull Class>();
 			for (org.eclipse.uml2.uml.Classifier umlClassifier : ((org.eclipse.uml2.uml.InstanceSpecification)value).getClassifiers()) {
 				try {
-					Type asModelType = metamodelManager.getASOf(Type.class, umlClassifier);
+					org.eclipse.ocl.pivot.Class asModelType = metamodelManager.getASOf(org.eclipse.ocl.pivot.Class.class, umlClassifier);
 					if ((asModelType != null) && !asModelTypes.contains(asModelType)) {
 						asModelTypes.add(asModelType);
 					}

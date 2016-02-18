@@ -41,12 +41,12 @@ public class OclElementOclModelTypeOperation extends AbstractUntypedUnaryOperati
 		if (sourceVal == null) {
 			throw new InvalidValueException(PivotMessages.NullNavigation, "source value", "oclModelType");
 		}
-		Iterable<@NonNull Type> modelTypes = ((IdResolver.IdResolverExtension)executor.getIdResolver()).getModelTypesOf(sourceVal);
-		if (modelTypes == null) {
+		Iterable<org.eclipse.ocl.pivot.@NonNull Class> modelClasses = ((IdResolver.IdResolverExtension)executor.getIdResolver()).getModelClassesOf(sourceVal);
+		if (modelClasses == null) {
 			throw new InvalidValueException(PivotMessages.IncompatibleModelType, sourceType);
 		}
-		if (Iterables.size(modelTypes) == 1) {
-			return modelTypes.iterator().next();			// FIXME current type
+		if (Iterables.size(modelClasses) == 1) {
+			return modelClasses.iterator().next();			// FIXME current type
 		}
 		throw new InvalidValueException(PivotMessages.IncompatibleModelType, sourceType);
 	}

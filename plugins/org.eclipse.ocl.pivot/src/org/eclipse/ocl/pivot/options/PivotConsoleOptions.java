@@ -8,15 +8,21 @@
  * Contributors:
  *   E.D.Willink - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.pivot.internal.utilities;
+package org.eclipse.ocl.pivot.options;
+
+import org.eclipse.ocl.common.internal.preferences.BooleanPreference;
+import org.eclipse.ocl.pivot.util.PivotPlugin;
 
 /**
- * Enumeration of context sources that identify where the type of an object selected as self is found.
- * 
- * This is normally the metamodel, using something like EObject::eClass(), but may be an InstanceSpecification::classifier for UML.
+ * Options applicable to use of the OCL Xtext console.
  * @since 1.1
  */
-public enum ContextSource {
-	METAMODEL,			// Default: classifiers of a selected context object are determined from its metamodel
-	MODEL;				// Alternatively the classifiers may be determined within the model; e.g. by UML's InstanceSpecification::classifier
+public class PivotConsoleOptions
+{
+    public static final BooleanPreference ConsoleModeltypesInformation = new BooleanPreference(
+    	PivotPlugin.PLUGIN_ID, "console.modeltypes.information", true); //$NON-NLS-1$
+
+    private PivotConsoleOptions() {
+        super();
+    }
 }

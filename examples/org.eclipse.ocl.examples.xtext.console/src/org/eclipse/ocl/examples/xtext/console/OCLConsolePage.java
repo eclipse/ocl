@@ -30,14 +30,10 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.jface.action.Action;
-import org.eclipse.jface.action.ActionContributionItem;
-import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.action.IMenuCreator;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
-import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.text.BadLocationException;
@@ -48,11 +44,10 @@ import org.eclipse.jface.text.TextViewer;
 import org.eclipse.jface.text.contentassist.ContentAssistant;
 import org.eclipse.jface.text.contentassist.IContentAssistant;
 import org.eclipse.jface.text.source.SourceViewer;
-import org.eclipse.jface.util.IPropertyChangeListener;
-import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.ocl.common.internal.preferences.BooleanPreference;
 import org.eclipse.ocl.examples.debug.vm.core.VMVariable;
 import org.eclipse.ocl.examples.debug.vm.data.VMVariableData;
 import org.eclipse.ocl.examples.xtext.console.actions.CloseAction;
@@ -71,13 +66,9 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.internal.context.ClassContext;
-import org.eclipse.ocl.pivot.internal.ecore.EcoreASResourceFactory;
 import org.eclipse.ocl.pivot.internal.evaluation.ExecutorInternal;
-import org.eclipse.ocl.pivot.internal.resource.ASResourceFactory;
-import org.eclipse.ocl.pivot.internal.resource.ASResourceFactoryRegistry;
 import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
-import org.eclipse.ocl.pivot.internal.utilities.ContextSource;
-import org.eclipse.ocl.pivot.internal.utilities.Technology;
+import org.eclipse.ocl.pivot.options.PivotConsoleOptions;
 import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
@@ -88,7 +79,6 @@ import org.eclipse.ocl.pivot.utilities.ParserContext;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.Pivotable;
-import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
@@ -113,7 +103,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.ISelectionListener;
 import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.IWorkbench;
@@ -134,7 +124,6 @@ import org.eclipse.xtext.ui.editor.outline.impl.EObjectNode;
 import org.eclipse.xtext.ui.editor.outline.impl.OutlinePage;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 
-import com.google.common.collect.Iterables;
 import com.google.inject.Injector;
 
 /**
@@ -330,93 +319,7 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 			input.setSelectedRange(newText.length(), 0);
 		}
 	}
-    
-    private class DropDownAction extends Action implements IMenuCreator
-    {
-        private Menu menu;
-        private List<IAction> actions = new java.util.ArrayList<IAction>();
 
-        private IPropertyChangeListener listener = new IPropertyChangeListener()
-        {
-            @Override
-			public void propertyChange(PropertyChangeEvent event) {
-                if (IAction.CHECKED.equals(event.getProperty())) {
-                    if (Boolean.TRUE.equals(event.getNewValue())) {
-                        actionChecked((IAction) event.getSource());
-                    }
-                }
-            }
-        };
-
-        DropDownAction() {
-            setMenuCreator(this);
-        }
-
-        private void actionChecked(IAction action) {
-            setImageDescriptor(action.getImageDescriptor());
-            setText(action.getText());
-        }
-
-        private void addAction(Menu m, IAction action) {
-            ActionContributionItem contrib = new ActionContributionItem(action);
-            contrib.fill(m, -1);
-        }
-
-        public void addAction(IAction action) {
-            actions.add(action);
-            action.addPropertyChangeListener(listener);
-            if (action.isChecked()) {
-                actionChecked(action);
-            }
-        }
-
-        @Override
-		public void dispose() {
-            if (menu != null) {
-                menu.dispose();
-            }
-        }
-
-        @Override
-		public Menu getMenu(Menu parent) {
-            return null;
-        }
-
-        @Override
-		public Menu getMenu(Control parent) {
-            if (menu == null) {
-                menu = new Menu(parent);
-                for (IAction action : actions) {
-                    addAction(menu, action);
-                }
-            }
-            return menu;
-        }
-    }
-    
-    private class ContextSourceAction extends Action
-    {
-        private final @NonNull ContextSource contextSource;
-        
-        /**
-         * Initializes me.
-         */
-        ContextSourceAction(@NonNull ContextSource contextSource) {
-            super(contextSource.name());
-            this.contextSource = contextSource;
-        }
-        
-        @Override
-        public int getStyle() {
-            return AS_RADIO_BUTTON;
-        }
-        
-        @Override
-        public void run() {
-            setContextSource(contextSource);
-        }
-    }
-    
 	private final OCLConsole console;
 	private Composite page;
 
@@ -431,18 +334,8 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 	private ISelectionService selectionService;
 	private ISelectionListener selectionListener;
 	private @Nullable EObject contextObject = null;
-	private @Nullable Iterable<org.eclipse.ocl.pivot.@NonNull Class> contextClasses = null;
+	private @Nullable Iterable<org.eclipse.ocl.pivot.@NonNull Class> contextModelClasses = null;
 	private ParserContext parserContext;
-	private @NonNull ContextSource contextSource = ContextSource.METAMODEL;
-	
-//	private Map<TargetMetamodel, IAction> metamodelActions =
-//	    new java.util.HashMap<TargetMetamodel, IAction>();
-	
-//	private static final AdapterFactory reflectiveAdapterFactory =
-//		new ReflectiveItemProviderAdapterFactory();
-
-//	private static final AdapterFactory defaultAdapterFactory =
-//		new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
 /*	public IItemLabelProvider tupleTypeLabelProvider = new IItemLabelProvider() {
 	
@@ -485,41 +378,9 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 		super();
 //		this.metamodelManager = new CancelableMetamodelManager();
 		this.console = console;
+//		System.out.println("Create " + getClass() + "@" + Integer.toHexString(System.identityHashCode(this)));
 	}
 
-	/**
-     * Adds actions for the available target metamodels to the action bars.
-     * 
-     * @param metamodelMenu the console's drop-down action bar menu
-     * @param metamodelAction the console's drop-down tool bar button
-     *
-    private void addMetamodelActions(IMenuManager metamodelMenu,
-            DropDownAction metamodelAction) {
-        IAction ecore = new EcoreMetamodelAction();
-		ecore.setChecked(true);
-		ImageDescriptor img = getImage(EcoreFactory.eINSTANCE.getEPackage());
-		if (img != null) {
-		    ecore.setImageDescriptor(img);
-		}
-		
-		metamodelMenu.add(ecore);
-		metamodelAction.addAction(ecore);
-        metamodelActions.put(TargetMetamodel.Ecore, ecore);
-        
-        Bundle umlBundle = Platform.getBundle("org.eclipse.uml2.uml"); //$NON-NLS-1$
-        if ((umlBundle != null) && isAvailable(umlBundle)) {
-    		IAction uml = new UMLMetamodelAction();
-            img = getImage(UMLFactory.eINSTANCE.createModel());
-            if (img != null) {
-                uml.setImageDescriptor(img);
-            }
-            
-    		metamodelMenu.add(uml);
-            metamodelAction.addAction(uml);
-            metamodelActions.put(TargetMetamodel.UML, uml);
-        }
-    } */
-	
 	/**
 	 * Appends the specified text to the output viewer.
 	 * 
@@ -666,34 +527,8 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 		menu.add(clear);
 		menu.add(close);
 		menu.add(debugAction);
-	    
-//		IMenuManager metamodelMenu = new MenuManager(
-//		    OCLInterpreterMessages.console_metamodelMenu,
-//		    "org.eclipse.ocl.examples.xtext.console.metamodel"); //$NON-NLS-1$
-//		menu.add(metamodelMenu);
-//		DropDownAction metamodelAction = new DropDownAction();
-//		metamodelAction.setToolTipText(OCLInterpreterMessages.console_metamodelTip);
-//		addMetamodelActions(metamodelMenu, metamodelAction);
-		
-		IMenuManager levelMenu = new MenuManager(ConsoleMessages.ContextSource_Title);
-		menu.add(levelMenu);
-        DropDownAction levelAction = new DropDownAction();
-        levelAction.setToolTipText(ConsoleMessages.ContextSource_ToolTip);
-		IAction m2 = new ContextSourceAction(ContextSource.METAMODEL);
-		m2.setChecked(true);
-		levelMenu.add(m2);
-		levelAction.addAction(m2);
-		IAction m1 = new ContextSourceAction(ContextSource.MODEL);
-		levelMenu.add(m1);
-		levelAction.addAction(m1);
-
-//		ActionContributionItem metamodelItem = new ActionContributionItem(
-//		    metamodelAction);
-//		metamodelItem.setMode(ActionContributionItem.MODE_FORCE_TEXT);
 		
 		IToolBarManager toolbar = getSite().getActionBars().getToolBarManager();
-//        toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, metamodelItem);
-        toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, levelAction);
 		toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, loadExpression);
 		toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, saveExpression);
 		toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, clear);
@@ -769,6 +604,7 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 	 */
 	@Override
     public void dispose() {
+//		System.out.println("Dispose " + getClass() + "@" + Integer.toHexString(System.identityHashCode(this)));
 		if (editor != null) {
 			editor.dispose();
 			editor = null;
@@ -897,10 +733,6 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 		return contextObject;
 	}
 
-	public @NonNull ContextSource getContextSource() {
-		return contextSource;
-	}
-
 	@Override
     public Control getControl() {
 		return page;
@@ -947,7 +779,27 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 		return debugAction.launch();
 	}
 
+	protected void popUpModelTypesUsageInformation() {
+		Shell shell = getControl().getShell();
+		if (!shell.isDisposed()) {
+			shell.getDisplay().asyncExec(new Runnable()
+			{
+				@Override
+				public void run() {
+					MessageDialog.openInformation(shell, ConsoleMessages.ModelTypesUsage_Title, ConsoleMessages.ModelTypesUsage_Message);
+//						MessageDialogWithToggle openInformation = MessageDialogWithToggle.openInformation(getControl().getShell(), ConsoleMessages.ModelTypesUsage_Title, ConsoleMessages.ModelTypesUsage_Message, ConsoleMessages.ModelTypesUsage_Question, false, null, null);
+//						if (openInformation.getToggleState()) {		// Don't show again
+//							option.setDefaultValue(false);			// Don't know how to persist this so don't offer toggle
+//						}
+				}
+			});
+		}
+	}
+
 	protected void refreshSelection(final Object selected) {
+		if (getControl().isDisposed()) {
+			return;
+		}
 		final BaseDocument editorDocument = getEditorDocument();
 		try {
 			editorDocument.modify(new IUnitOfWork<Object, XtextResource>()
@@ -962,12 +814,7 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 							selectedObject = adapted;
 						}
 		            }
-			    	/*if (selectedObject instanceof org.eclipse.uml2.uml.Element) {
-					    org.eclipse.uml2.uml.Element selectedElement = (org.eclipse.uml2.uml.Element)selectedObject;
-						MetamodelManager metamodelManager = getMetamodelManager(selectedElement);
-						contextObject = metamodelManager.getPivotOf(Element.class, selectedElement);
-		            }
-		            else*/ if (selectedObject instanceof EObject) {
+			    	if (selectedObject instanceof EObject) {
 		            	contextObject = (EObject) selectedObject;
 		            }
 		            else {		// FIXME else Value in particular CollectionValue
@@ -977,31 +824,19 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 			    		((BaseCSResource)resource).dispose();
 			    	}
 	
-			    	@Nullable
-					EObject contextObject2 = contextObject;
-					EnvironmentFactory environmentFactory = getEnvironmentFactory(contextObject2);
-					IdResolver idResolver = environmentFactory.getIdResolver();
+					EnvironmentFactory environmentFactory = getEnvironmentFactory(contextObject);
+					IdResolver.IdResolverExtension idResolver = (IdResolver.IdResolverExtension)environmentFactory.getIdResolver();
 	//				DomainType staticType = idResolver.getStaticTypeOf(selectedObject);
-					org.eclipse.ocl.pivot.Class staticType = idResolver.getStaticTypeOf(contextObject2);
+					org.eclipse.ocl.pivot.Class staticType = idResolver.getStaticTypeOf(contextObject);
 					org.eclipse.ocl.pivot.Class contextType = environmentFactory.getMetamodelManager().getPrimaryClass(staticType);
-					contextClasses = null;
-					if (contextObject2 != null) {
-						Resource eResource = contextObject2.eResource();
-						ASResourceFactory asResourceFactory = eResource != null ? ASResourceFactoryRegistry.INSTANCE.getASResourceFactory(eResource) : EcoreASResourceFactory.getInstance();
-						if (asResourceFactory != null) {
-							Technology technology = asResourceFactory.getTechnology();
-							contextClasses = technology.getContextClasses(environmentFactory, contextObject2, contextType, contextSource);
-							Iterable<org.eclipse.ocl.pivot.@NonNull Class> contextClasses2 = contextClasses;
-							if ((contextClasses2 == null) || Iterables.isEmpty(contextClasses2)) {
-								throw new IllegalStateException(StringUtil.bind(contextSource == ContextSource.MODEL ? ConsoleMessages.SelectionError_Model : ConsoleMessages.SelectionError_Metamodel, contextObject2.eClass().getName()));
-							}
-							contextType = contextClasses2.iterator().next();			// FIXME all classes
-						}
+					Iterable<org.eclipse.ocl.pivot.@NonNull Class> savedContextModelClasses = contextModelClasses;
+					contextModelClasses = contextObject != null ? idResolver.getModelClassesOf(contextObject) : null;
+					BooleanPreference option = PivotConsoleOptions.ConsoleModeltypesInformation;
+					if ((contextModelClasses != null) && !contextModelClasses.equals(savedContextModelClasses) && option.getPreferredValue()) {
+						popUpModelTypesUsageInformation();
 					}
-					
-					
 	//				if (contextType != null) {
-						parserContext = new ClassContext(environmentFactory, null, contextType, contextObject2 instanceof Type ? (Type)contextObject2 : null);
+						parserContext = new ClassContext(environmentFactory, null, contextType, contextObject instanceof Type ? (Type)contextObject : null);
 	//				}
 	//				else {
 	//					parserContext = new ModelContext(metamodelManager, null);
@@ -1009,7 +844,7 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 	//		        parserContext = new EObjectContext(metamodelManager, null, contextObject);
 				    EssentialOCLCSResource csResource = (EssentialOCLCSResource) resource;
 				    if (csResource != null) {
-						if (contextObject2 != null) {
+						if (contextObject != null) {
 							csResource.getCS2AS();
 						}
 						ResourceSet resourceSet = editor.getResourceSet();
@@ -1018,21 +853,27 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
 						}
 				        csResource.setParserContext(parserContext);
 				    }
-			        console.setSelection(contextObject, contextClasses);
+			        console.setSelection(contextObject, contextType);
 			        return null;
 				}
 			});
 		}
 		catch (WrappedException e) {
-			Throwable t = e.getCause();
-			IStatus status = new Status(IStatus.ERROR, XtextConsolePlugin.PLUGIN_ID, t.getLocalizedMessage(), t);
-			ErrorDialog.openError(getControl().getShell(), ConsoleMessages.SelectionError_Title, ConsoleMessages.SelectionError_Message, status);
-	        console.setSelection(null, null);
+			Shell shell = getControl().getShell();
+			if (!shell.isDisposed()) {
+				Throwable t = e.getCause();
+				IStatus status = new Status(IStatus.ERROR, XtextConsolePlugin.PLUGIN_ID, t.getLocalizedMessage(), t);
+				ErrorDialog.openError(shell, ConsoleMessages.SelectionError_Title, ConsoleMessages.SelectionError_Message, status);
+		        console.setSelection(null, null);
+			}
 		}
 		catch (Exception e) {
-			IStatus status = new Status(IStatus.ERROR, XtextConsolePlugin.PLUGIN_ID, e.getLocalizedMessage(), e);
-			ErrorDialog.openError(getControl().getShell(), ConsoleMessages.SelectionError_Title, ConsoleMessages.SelectionError_Message, status);
-	        console.setSelection(null, null);
+			Shell shell = getControl().getShell();
+			if (!shell.isDisposed()) {
+				IStatus status = new Status(IStatus.ERROR, XtextConsolePlugin.PLUGIN_ID, e.getLocalizedMessage(), e);
+				ErrorDialog.openError(shell, ConsoleMessages.SelectionError_Title, ConsoleMessages.SelectionError_Message, status);
+				console.setSelection(null, null);
+			}
 		}
 	}
 
@@ -1069,68 +910,8 @@ public class OCLConsolePage extends Page //implements MetamodelManagerListener
         refreshSelection(selectedObject);
 	}
 
-	public void setContextSource(@NonNull ContextSource contextSource) {
-		this.contextSource = contextSource;
-		refreshSelection(contextObject);
-	}
-
 	@Override
     public void setFocus() {
 		input.getTextWidget().setFocus();
 	}
-	
-	/**
-	 * Programmatically sets my target metamodel.
-	 * 
-	 * @param metamodel the target metamodel
-	 *
-	public void setTargetMetamodel(TargetMetamodel metamodel) {
-	    IAction action = metamodelActions.get(metamodel);
-
-	    if (action != null) {
-	        // deselect the old one
-	        metamodelActions.get(oclFactory.getTargetMetamodel()).setChecked(false);
-	        
-    	    action.run();
-    	    action.setChecked(true);
-	    }
-	} */
-	
-	/**
-	 * Converts a single object to a string, according to the rules described
-	 * for the {@link #print(Object, Color, boolean)} method.
-	 * 
-	 * @param object the object to print (not a collection type)
-	 * @return the string form of the <code>object</code>
-	 * 
-	 * @see #print(Object, Color, boolean)
-	 *
-	String toString(Object object) {
-		if (ocl.isInvalid(object)) {
-			return "OclInvalid"; //$NON-NLS-1$
-		} else if (object instanceof String) {
-			return "'" + object + "'";  //$NON-NLS-1$//$NON-NLS-2$
-		} else if (object instanceof TupleValue) {
-			return tupleTypeLabelProvider.getText(object);
-		} else if (object instanceof EObject) {
-			EObject eObject = (EObject) object;
-			
-			IItemLabelProvider labeler =
-				(IItemLabelProvider) defaultAdapterFactory.adapt(
-					eObject,
-					IItemLabelProvider.class);
-			
-			if (labeler == null) {
-				labeler = (IItemLabelProvider) reflectiveAdapterFactory.adapt(
-					eObject,
-					IItemLabelProvider.class);
-			}
-			
-			if (labeler != null) {
-				return labeler.getText(object);
-			}
-		}
-		
-		return String.valueOf(object);
-	} */
 }
