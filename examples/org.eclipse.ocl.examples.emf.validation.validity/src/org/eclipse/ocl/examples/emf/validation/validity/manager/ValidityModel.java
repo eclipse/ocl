@@ -345,7 +345,7 @@ public class ValidityModel
 			for (Resource resource : resources) {
 				monitor.subTask("'" + resource.getURI() + "'");
 				ConstraintLocator constraintLocator = ValidityManager.getConstraintLocator(resource);	// Get a resource-specific locator, e.g. the UML stereotype application handler
-				for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
+				for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {		// FIXME there is a CME hazard here
 					if (monitor.isCanceled()) {
 						return;
 					}
