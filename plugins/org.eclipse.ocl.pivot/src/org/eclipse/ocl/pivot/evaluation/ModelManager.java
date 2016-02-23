@@ -34,10 +34,10 @@ public interface ModelManager
 	@NonNull ModelManager NULL = new ModelManager()
 	{
 		@Override
-		public @NonNull Set<EObject> get(org.eclipse.ocl.pivot.@NonNull Class type) {
+		public @NonNull Set<@NonNull EObject> get(org.eclipse.ocl.pivot.@NonNull Class type) {
 			return Collections.emptySet();
 		}
 	};
 
-	@NonNull Set<EObject> get(org.eclipse.ocl.pivot.@NonNull Class type);
+	@NonNull Set<@NonNull EObject> get(org.eclipse.ocl.pivot.@NonNull Class type);
 }

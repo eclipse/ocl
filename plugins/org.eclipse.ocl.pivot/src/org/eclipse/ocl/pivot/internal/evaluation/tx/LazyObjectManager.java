@@ -42,7 +42,7 @@ public class LazyObjectManager extends AbstractObjectManager
 	 * This unpleasant Map of Maps is a pathfinder before embarking on slotted objects that merge user and overhead
 	 * in a single object. The first map is then a null lookup and the nested map is an index within the object. 
 	 */
-	private Map<EObject, Map<EStructuralFeature, SlotState>> object2feature2slotState = new HashMap<EObject, Map<EStructuralFeature, SlotState>>();
+	private Map<@NonNull EObject, @NonNull Map<@NonNull EStructuralFeature, @NonNull SlotState>> object2feature2slotState = new HashMap<@NonNull EObject, @NonNull Map<@NonNull EStructuralFeature, @NonNull SlotState>>();
 	
 	public LazyObjectManager(@NonNull InvocationManager invocationManager, boolean isIncremental) {
 		super(invocationManager);
@@ -98,7 +98,7 @@ public class LazyObjectManager extends AbstractObjectManager
 						slotState = AbstractTransformerInternal.OneToManyAggregatorSlotState.create(this, eObject, eReference, eOppositeReference, ecoreValue);
 					}
 					else {
-						Map<EStructuralFeature, SlotState> oppositeObjectState = getObjectState((EObject) ecoreValue);
+						Map<@NonNull EStructuralFeature, @NonNull SlotState> oppositeObjectState = getObjectState((EObject) ecoreValue);
 						slotState = oppositeObjectState.get(eOppositeReference);
 						if (slotState != null) {
 							slotState.assigned(this, (EObject) ecoreValue, eOppositeReference, eObject);		
@@ -119,10 +119,10 @@ public class LazyObjectManager extends AbstractObjectManager
 		}
 	}
 
-	public @NonNull Map<EStructuralFeature, SlotState> getObjectState(@NonNull EObject eObject) {
-		Map<EStructuralFeature, SlotState> feature2state = object2feature2slotState.get(eObject);
+	public @NonNull Map<@NonNull EStructuralFeature, @NonNull SlotState> getObjectState(@NonNull EObject eObject) {
+		Map<@NonNull EStructuralFeature, @NonNull SlotState> feature2state = object2feature2slotState.get(eObject);
 		if (feature2state == null) {
-			feature2state = new HashMap<EStructuralFeature, SlotState>();
+			feature2state = new HashMap<@NonNull EStructuralFeature, @NonNull SlotState>();
 			object2feature2slotState.put(eObject, feature2state);
 		}
 		return feature2state;
@@ -130,7 +130,7 @@ public class LazyObjectManager extends AbstractObjectManager
 
 	public synchronized @NonNull SlotState getSlotState(@NonNull EObject eObject, @NonNull EStructuralFeature eFeature) {
 		assert eFeature != null;
-		Map<EStructuralFeature, SlotState> objectState = getObjectState(eObject);
+		Map<@NonNull EStructuralFeature, @NonNull SlotState> objectState = getObjectState(eObject);
 		SlotState slotState = objectState.get(eFeature);
 		if (slotState == null) {
 			if (eFeature instanceof EAttribute) {

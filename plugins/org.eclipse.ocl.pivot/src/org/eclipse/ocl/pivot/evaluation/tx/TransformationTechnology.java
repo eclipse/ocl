@@ -28,9 +28,9 @@ public interface TransformationTechnology
 {
 	@SuppressWarnings("serial")
 	public class TransformationException extends Exception {
-		protected final @NonNull Map<String, Object> parametersMap;
+		protected final @NonNull Map<@NonNull String, Object> parametersMap;
 		
-		public TransformationException(@NonNull Map<String, Object> parametersMap, @Nullable Throwable cause, @NonNull String message, Object... objects) {
+		public TransformationException(@NonNull Map<@NonNull String, Object> parametersMap, @Nullable Throwable cause, @NonNull String message, Object... objects) {
 			super(NLS.bind(message, objects), cause);
 			this.parametersMap = parametersMap;
 		}
@@ -44,8 +44,8 @@ public interface TransformationTechnology
 	 * Optionally return model names bound via a return Map.
 	 * Throw an Exception if execution is unsuccessful.
 	 */
-	@NonNull Map<String, Object> execute(@NonNull ResourceSet resourceSet, @NonNull Map<String, Object> modelMap,
-			@NonNull Map<String, Object> parametersMap) throws TransformationException;
+	@NonNull Map<@NonNull String, Object> execute(@NonNull ResourceSet resourceSet, @NonNull Map<@NonNull String, Object> modelMap,
+			@NonNull Map<@NonNull String, Object> parametersMap) throws TransformationException;
 	
 	/**
 	 * Return the TransformationTechnology name used as the TransformationTechnologyContribution.REGISTRY key.

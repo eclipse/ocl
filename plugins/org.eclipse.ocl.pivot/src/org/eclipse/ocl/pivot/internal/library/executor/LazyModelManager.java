@@ -19,6 +19,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Type;
@@ -50,8 +51,8 @@ import org.omg.CORBA.Environment;
  */
 public abstract class LazyModelManager implements ModelManager {
 
-	private final Map<Type, Set<EObject>> modelManager = new HashMap<Type, Set<EObject>>();
-	private final Collection<EObject> roots;
+	private final @NonNull Map<@NonNull Type, @NonNull Set<@NonNull EObject>> modelManager = new HashMap<@NonNull Type, @NonNull Set<@NonNull EObject>>();
+	private final @NonNull Collection<@NonNull EObject> roots;
 	
 	/**
 	 * Initializes me with the context element of an OCL
@@ -62,8 +63,9 @@ public abstract class LazyModelManager implements ModelManager {
 	 */
 	public LazyModelManager(EObject context) {		
 		context = EcoreUtil.getRootContainer(context);		
-		if (context.eResource() != null) {		
-			roots = context.eResource().getContents(); // the extent is the resource
+		Resource eResource = context.eResource();
+		if (eResource != null) {		
+			roots = eResource.getContents(); // the extent is the resource
 		} else {			
 			roots = Collections.singleton(context); // can only search this object tree
 		}
@@ -75,14 +77,14 @@ public abstract class LazyModelManager implements ModelManager {
 	 * @param type a class in the model
 	 */
 	@Override
-	public @NonNull Set<EObject> get(org.eclipse.ocl.pivot.@NonNull Class type) {
+	public @NonNull Set<@NonNull EObject> get(org.eclipse.ocl.pivot.@NonNull Class type) {
 		// TODO: Optimize by parsing ahead of time to find all EClasses that we will query
-		Set<EObject> result = modelManager.get(type);		
+		Set<@NonNull EObject> result = modelManager.get(type);		
 		if (result == null) {
 			synchronized (modelManager) {
 				result = modelManager.get(type);		
 				if (result == null) {
-					result = new HashSet<EObject>();
+					result = new HashSet<@NonNull EObject>();
 					modelManager.put(type, result);			
 					for (Iterator<EObject> iter = EcoreUtil.getAllContents(roots); iter.hasNext();) {
 						EObject next = iter.next();				

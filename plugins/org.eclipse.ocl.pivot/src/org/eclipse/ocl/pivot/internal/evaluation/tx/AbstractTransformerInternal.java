@@ -59,8 +59,8 @@ import org.eclipse.ocl.pivot.utilities.ValueUtil;
  */
 public abstract class AbstractTransformerInternal implements Transformer
 {	
-	private static final @NonNull List<Integer> EMPTY_INDEX_LIST = Collections.emptyList();
-	private static final @NonNull List<EObject> EMPTY_EOBJECT_LIST = Collections.emptyList();
+	private static final @NonNull List<@NonNull Integer> EMPTY_INDEX_LIST = Collections.emptyList();
+	private static final @NonNull List<@NonNull EObject> EMPTY_EOBJECT_LIST = Collections.emptyList();
 
 	/**
 	 * Simple SlotState describing a DataType element or 1:1 Object navigation.
@@ -147,8 +147,8 @@ public abstract class AbstractTransformerInternal implements Transformer
 			}
 			else if (blockedInvocations2 != null) {
 				@SuppressWarnings("unchecked")
-				List<Invocation> blockedInvocationList = (List<Invocation>)blockedInvocations2;
-				for (@SuppressWarnings("null")@NonNull Invocation invocation : blockedInvocationList) {
+				List<@NonNull Invocation> blockedInvocationList = (List<@NonNull Invocation>)blockedInvocations2;
+				for (@NonNull Invocation invocation : blockedInvocationList) {
 					objectManager.unblock(invocation);
 				}
 			}
@@ -630,14 +630,14 @@ public abstract class AbstractTransformerInternal implements Transformer
 	protected class Model extends AbstractTypedModelInstance
 	{
 		protected final @NonNull String name;
-		private @Nullable Set<EObject> allEObjects = null;
-		private @Nullable List<EObject> rootEObjects = null;
-		private @Nullable Map<EClass, Set<Integer>> eClass2allClassIndexes = null;
+		private @Nullable Set<@NonNull EObject> allEObjects = null;
+		private @Nullable List<@NonNull EObject> rootEObjects = null;
+		private @Nullable Map<@NonNull EClass, @NonNull Set<@NonNull Integer>> eClass2allClassIndexes = null;
 
 		/**
 		 * All possible allInstances() returns indexed by the ClassIndex of the ClassId for which allInstances() may be invoked.
 		 */
-		private final @NonNull Set<EObject>[] classIndex2objects;
+		private final @NonNull Set<@NonNull EObject>[] classIndex2objects;
 		
 		public Model(@NonNull String name, @NonNull PropertyId @Nullable [] propertyIndex2propertyId, @NonNull ClassId @Nullable [] classIndex2classId, int @Nullable [] @NonNull [] classIndex2allClassIndexes) {
 			this.name = name;
@@ -667,32 +667,32 @@ public abstract class AbstractTransformerInternal implements Transformer
 		 * If eClass2allPropertyIndexes is non-null, eObject is added to the unnavigable opposites caches potentially updating eClass2allPropertyIndexes with
 		 * the state of a new EClass.
 		 */
-	    private void accumulateEObject(@Nullable Map<EClass, Set<Integer>> eClass2allClassIndexes,
-	    		@Nullable Map<EClass, List<Integer>> eClass2allPropertyIndexes, @Nullable Map<EReference, Integer> eReference2propertyIndex,
+	    private void accumulateEObject(@Nullable Map<@NonNull EClass, @NonNull Set<@NonNull Integer>> eClass2allClassIndexes,
+	    		@Nullable Map<@NonNull EClass, @NonNull List<@NonNull Integer>> eClass2allPropertyIndexes, @Nullable Map<@NonNull EReference, @NonNull Integer> eReference2propertyIndex,
 	    		@NonNull EObject eObject) {
 			EClass eClass = ClassUtil.nonNullEMF(eObject.eClass());
 			if (eClass2allClassIndexes != null) {
-				Set<Integer> allClassIndexes = eClass2allClassIndexes.get(eClass);
+				Set<@NonNull Integer> allClassIndexes = eClass2allClassIndexes.get(eClass);
 				if (allClassIndexes == null) {
 					allClassIndexes = getClassIndexes(eClass);
 					eClass2allClassIndexes.put(eClass, allClassIndexes);
 				}
-				Set<EObject>[] classIndex2objects2 = classIndex2objects;
+				Set<@NonNull EObject>[] classIndex2objects2 = classIndex2objects;
 				assert classIndex2objects2 != null;
-				for (Integer classIndex : allClassIndexes) {
+				for (@NonNull Integer classIndex : allClassIndexes) {
 					classIndex2objects2[classIndex].add(eObject);
 				}
 			}
 			if (eClass2allPropertyIndexes != null) {
 				assert eReference2propertyIndex != null;
-				List<Integer> allPropertyIndexes = eClass2allPropertyIndexes.get(eClass);
+				List<@NonNull Integer> allPropertyIndexes = eClass2allPropertyIndexes.get(eClass);
 				if (allPropertyIndexes == null) {
 					allPropertyIndexes = getOppositePropertyIndexes(eReference2propertyIndex, eClass);
 					eClass2allPropertyIndexes.put(eClass, allPropertyIndexes);
 				}
-				Map<EObject, EObject>[] object2oppositeObject2 = object2oppositeObject;
+				Map<@NonNull EObject, @NonNull EObject>[] object2oppositeObject2 = object2oppositeObject;
 				assert object2oppositeObject2 != null;
-				for (Integer propertyIndex : allPropertyIndexes) {
+				for (@NonNull Integer propertyIndex : allPropertyIndexes) {
 					assert propertyIndex2eReference != null;
 					EReference eReference = propertyIndex2eReference[propertyIndex];
 					if (eReference == null) {
@@ -701,20 +701,22 @@ public abstract class AbstractTransformerInternal implements Transformer
 						assert propertyId != null;
 						eReference = (EReference) NameUtil.getENamedElement(eClass.getEAllStructuralFeatures(), propertyId.getName());
 					}
-					object2oppositeObject2[propertyIndex].put((EObject)eObject.eGet(eReference), eObject);
+					EObject object = (EObject)eObject.eGet(eReference);
+					assert object != null;
+					object2oppositeObject2[propertyIndex].put(object, eObject);
 				}
 			}
 		}
 
 		public void add(@NonNull EObject eObject) {
-			Set<EObject> allEObjects2 = allEObjects;
+			Set<@NonNull EObject> allEObjects2 = allEObjects;
 			if (allEObjects2 == null) {
-				allEObjects = allEObjects2 = new HashSet<EObject>();
+				allEObjects = allEObjects2 = new HashSet<@NonNull EObject>();
 			}
 			rootEObjects = null;
 			allEObjects2.add(eObject);
 			if ((eClass2allClassIndexes == null) && (classId2classIndexes != null) && (classIndex2objects != null)) {
-				eClass2allClassIndexes = new HashMap<EClass, Set<Integer>>();
+				eClass2allClassIndexes = new HashMap<@NonNull EClass, @NonNull Set<@NonNull Integer>>();
 			}
 			accumulateEObject(eClass2allClassIndexes, null, null, eObject);
 		}
@@ -722,38 +724,36 @@ public abstract class AbstractTransformerInternal implements Transformer
 		/**
 	     * Add eRootObjects to the modelIndex model.
 	     */
-		public void addRootObjects(@NonNull Iterable<? extends EObject> eRootObjects) {
-			List<EObject> rootEObjects2 = rootEObjects;
+		public void addRootObjects(@NonNull Iterable<@NonNull ? extends EObject> eRootObjects) {
+			List<@NonNull EObject> rootEObjects2 = rootEObjects;
 			if (rootEObjects2 == null) {
-				rootEObjects = rootEObjects2 = new ArrayList<EObject>();
+				rootEObjects = rootEObjects2 = new ArrayList<@NonNull EObject>();
 			}
 			allEObjects = null;
-	    	Map<EClass, Set<Integer>> eClass2allClassIndexes = null;
-			Map<EClass, List<Integer>> eClass2allPropertyIndexes = null;
-			Map<EReference, Integer> eReference2propertyIndex = null;
+	    	Map<@NonNull EClass, @NonNull Set<@NonNull Integer>> eClass2allClassIndexes = null;
+			Map<@NonNull EClass, @NonNull List<@NonNull Integer>> eClass2allPropertyIndexes = null;
+			Map<@NonNull EReference, @NonNull Integer> eReference2propertyIndex = null;
 			if ((classId2classIndexes != null) && (classIndex2objects != null)) {
-				eClass2allClassIndexes = new HashMap<EClass, Set<Integer>>();
+				eClass2allClassIndexes = new HashMap<@NonNull EClass, @NonNull Set<@NonNull Integer>>();
 			}
 			if (propertyIndex2propertyId != null) {
-				eClass2allPropertyIndexes = new HashMap<EClass, List<Integer>>();
-				eReference2propertyIndex = new HashMap<EReference, Integer>();
+				eClass2allPropertyIndexes = new HashMap<@NonNull EClass, @NonNull List<@NonNull Integer>>();
+				eReference2propertyIndex = new HashMap<@NonNull EReference, @NonNull Integer>();
 			}
 			for (EObject eRootObject : eRootObjects) {
-				if (eRootObject != null) {
-					//
-					//	Accumulate the root object in the model extent
-					//
-					rootEObjects2.add(eRootObject);
-					//
-					//	Accumulate the root object and all its child objects in the allInstances() returns
-					//
-					if ((eClass2allClassIndexes != null) || (eClass2allPropertyIndexes != null)) {
-						accumulateEObject(eClass2allClassIndexes, eClass2allPropertyIndexes, eReference2propertyIndex, eRootObject);
-						for (TreeIterator<EObject> tit = eRootObject.eAllContents(); tit.hasNext(); ) {
-							EObject eObject = tit.next();
-							if (eObject != null) {
-								accumulateEObject(eClass2allClassIndexes, eClass2allPropertyIndexes, eReference2propertyIndex, eObject);
-							}
+				//
+				//	Accumulate the root object in the model extent
+				//
+				rootEObjects2.add(eRootObject);
+				//
+				//	Accumulate the root object and all its child objects in the allInstances() returns
+				//
+				if ((eClass2allClassIndexes != null) || (eClass2allPropertyIndexes != null)) {
+					accumulateEObject(eClass2allClassIndexes, eClass2allPropertyIndexes, eReference2propertyIndex, eRootObject);
+					for (TreeIterator<EObject> tit = eRootObject.eAllContents(); tit.hasNext(); ) {
+						EObject eObject = tit.next();
+						if (eObject != null) {
+							accumulateEObject(eClass2allClassIndexes, eClass2allPropertyIndexes, eReference2propertyIndex, eObject);
 						}
 					}
 				}
@@ -761,16 +761,18 @@ public abstract class AbstractTransformerInternal implements Transformer
 		}
 		
 		@Override
-		public @NonNull Collection<EObject> getAllObjects() {
-			Set<EObject> allEObjects2 = allEObjects;
+		public @NonNull Collection<@NonNull EObject> getAllObjects() {
+			Set<@NonNull EObject> allEObjects2 = allEObjects;
 			if (allEObjects2 == null) {
-				allEObjects = allEObjects2 = new HashSet<EObject>();
+				allEObjects = allEObjects2 = new HashSet<@NonNull EObject>();
 				if (rootEObjects != null) {
-			    	for (EObject eRootObject : rootEObjects) {
+			    	for (@NonNull EObject eRootObject : rootEObjects) {
 			    		allEObjects2.add(eRootObject);
 			        	for (TreeIterator<EObject> tit = eRootObject.eAllContents(); tit.hasNext(); ) {
-			        		@SuppressWarnings("null")@NonNull EObject eObject = tit.next();
-			        		allEObjects2.add(eObject);
+			        		EObject eObject = tit.next();
+			        		if (eObject != null) {
+			        			allEObjects2.add(eObject);
+			        		}
 			        	}
 			    	}
 				}
@@ -779,15 +781,15 @@ public abstract class AbstractTransformerInternal implements Transformer
 		}
 
 		@Override
-		public @NonNull Collection<EObject> getObjectsOfKind(org.eclipse.ocl.pivot.@NonNull Class type) {
-			Map<ClassId, Integer> classId2classIndex2 = classId2classIndex;
+		public @NonNull Collection<@NonNull EObject> getObjectsOfKind(org.eclipse.ocl.pivot.@NonNull Class type) {
+			Map<@NonNull ClassId, @NonNull Integer> classId2classIndex2 = classId2classIndex;
 			if (classId2classIndex2 != null) {
 				TypeId classId = type.getTypeId();
 				Integer classIndex = classId2classIndex2.get(classId);
 				if (classIndex != null) {
-					Set<EObject>[] classIndex2objects2 = classIndex2objects;
+					Set<@NonNull EObject>[] classIndex2objects2 = classIndex2objects;
 					if (classIndex2objects2 != null) {
-						Set<EObject> objects = classIndex2objects2[classIndex];
+						Set<@NonNull EObject> objects = classIndex2objects2[classIndex];
 						if (objects !=  null) {
 							return objects;
 						}
@@ -798,7 +800,7 @@ public abstract class AbstractTransformerInternal implements Transformer
 		}
 
 		@Override
-		public @NonNull Collection<EObject> getObjectsOfType(org.eclipse.ocl.pivot.@NonNull Class type) {
+		public @NonNull Collection<@NonNull EObject> getObjectsOfType(org.eclipse.ocl.pivot.@NonNull Class type) {
 			throw new UnsupportedOperationException();
 		}
 
@@ -826,12 +828,12 @@ public abstract class AbstractTransformerInternal implements Transformer
 		} */
 
 		@Override
-		public @NonNull Collection<EObject> getRootObjects() {
-			List<EObject> rootEObjects2 = rootEObjects;
+		public @NonNull Collection<@NonNull EObject> getRootObjects() {
+			List<@NonNull EObject> rootEObjects2 = rootEObjects;
 			if (rootEObjects2 == null) {
-				rootEObjects = rootEObjects2 = new ArrayList<EObject>();
+				rootEObjects = rootEObjects2 = new ArrayList<@NonNull EObject>();
 				if (allEObjects != null) {
-			    	for (EObject eObject : allEObjects) {
+			    	for (@NonNull EObject eObject : allEObjects) {
 			    		if (eObject.eContainer() == null) {
 			    			rootEObjects2.add(eObject);
 			    		}
@@ -883,7 +885,7 @@ public abstract class AbstractTransformerInternal implements Transformer
 	/**
 	 * Unchanging configured map from the ClassId for which allInstances() may be invoked to the ClassIndex for that ClassId.
 	 */
-	private final @Nullable Map<ClassId, Integer> classId2classIndex;
+	private final @Nullable Map<@NonNull ClassId, @NonNull Integer> classId2classIndex;
 
 	/**
 	 * Evolving map from the ClassId of some model object's class to all the ClassIndexes for which the model object
@@ -891,7 +893,7 @@ public abstract class AbstractTransformerInternal implements Transformer
 	 * for which allInstances() may be invoked. It evolves lazily to include the ClassIds for all objects in the user
 	 * models.
 	 */
-	private final @Nullable Map<ClassId, Set<Integer>> classId2classIndexes;
+	private final @Nullable Map<@NonNull ClassId, @NonNull Set<@NonNull Integer>> classId2classIndexes;
 	
 	/**
 	 * Map from invocation identity to one or more invocations with that identity. Single map entries use the
@@ -899,7 +901,7 @@ public abstract class AbstractTransformerInternal implements Transformer
 	 * <br>
 	 * This map is used to inhibit repeated invocations of the invocationId.
 	 */
-	private final @NonNull Map<Integer, Object> invocationId2invocation = new HashMap<Integer, Object>();
+	private final @NonNull Map<@NonNull Integer, @NonNull Object> invocationId2invocation = new HashMap<@NonNull Integer, @NonNull Object>();
 
 	/**
 	 * Manager for the blocked and unblocked invocations.
@@ -959,8 +961,8 @@ public abstract class AbstractTransformerInternal implements Transformer
 		if (classIndex2classId != null) {
 	    	assert classIndex2allClassIndexes != null;
 	    	int classIds = classIndex2classId.length;
-			HashMap<ClassId, Integer> classId2classIndex2 = new HashMap<ClassId, Integer>(classIds);
-	    	HashMap<ClassId, Set<Integer>> classId2classIndexes2 = new HashMap<ClassId, Set<Integer>>(classIds);
+			HashMap<@NonNull ClassId, @NonNull Integer> classId2classIndex2 = new HashMap<@NonNull ClassId, @NonNull Integer>(classIds);
+	    	HashMap<@NonNull ClassId, @NonNull Set<@NonNull Integer>> classId2classIndexes2 = new HashMap<@NonNull ClassId, @NonNull Set<@NonNull Integer>>(classIds);
 			this.classId2classIndex = classId2classIndex2;
 			this.classId2classIndexes = classId2classIndexes2;
 			for (int classIndex = 0; classIndex < classIds; classIndex++) {
@@ -983,7 +985,7 @@ public abstract class AbstractTransformerInternal implements Transformer
      * Add eRootObjects to the modelIndex model.
      */
     @Override
-	public void addRootObjects(@NonNull String modelName, @NonNull Iterable<? extends EObject> eRootObjects) {
+	public void addRootObjects(@NonNull String modelName, @NonNull Iterable<@NonNull ? extends EObject> eRootObjects) {
     	Integer modelIndex = modelIndexes.get(modelName);
     	if (modelIndex == null) {
     		throw new IllegalStateException("Unknown model name '" + modelName + "'");
@@ -1000,12 +1002,12 @@ public abstract class AbstractTransformerInternal implements Transformer
     	Class<? extends Invocation> invocationClass = constructor.getDeclaringClass();
     	assert invocationClass != null;
 		int hashCode = System.identityHashCode(invocationClass);
-    	for (Object boundValue : boundValues) {
+    	for (@NonNull Object boundValue : boundValues) {
     		hashCode = 3 * hashCode + idResolver.oclHashCode(boundValue);
     	}
     	Object zeroOrMoreInvocations = invocationId2invocation.get(hashCode);
     	Invocation oneInvocation = null;
-		List<Invocation> twoOrMoreInvocations2 = null;
+		List<@NonNull Invocation> twoOrMoreInvocations2 = null;
     	if (zeroOrMoreInvocations instanceof Invocation) {
     		oneInvocation = (Invocation)zeroOrMoreInvocations;
     		if ((invocationClass == oneInvocation.getClass()) && oneInvocation.isEqual(idResolver, boundValues)) {
@@ -1013,9 +1015,9 @@ public abstract class AbstractTransformerInternal implements Transformer
 	    	}
     	}
     	else if (zeroOrMoreInvocations instanceof List<?>) {
-    		@SuppressWarnings("unchecked")List<Invocation> zeroOrMoreInvocations2 = (List<Invocation>)zeroOrMoreInvocations;
+    		@SuppressWarnings("unchecked")@NonNull List<@NonNull Invocation> zeroOrMoreInvocations2 = (List<@NonNull Invocation>)zeroOrMoreInvocations;
 			twoOrMoreInvocations2 = zeroOrMoreInvocations2;
-			for (Invocation anInvocation : twoOrMoreInvocations2) {
+			for (@NonNull Invocation anInvocation : twoOrMoreInvocations2) {
 		   		if ((invocationClass == anInvocation.getClass()) && anInvocation.isEqual(idResolver, boundValues)) {
      	    		return anInvocation;
     	    	}
@@ -1027,7 +1029,8 @@ public abstract class AbstractTransformerInternal implements Transformer
 		}
 		else {
 			if (twoOrMoreInvocations2 == null) {
-	    		twoOrMoreInvocations2 = new ArrayList<Invocation>(4);
+	    		twoOrMoreInvocations2 = new ArrayList<@NonNull Invocation>(4);
+	    		assert oneInvocation != null;
     			twoOrMoreInvocations2.add(oneInvocation);
 			}
 			twoOrMoreInvocations2.add(theInvocation);
@@ -1037,25 +1040,25 @@ public abstract class AbstractTransformerInternal implements Transformer
     }
     
 	@Override
-	public @NonNull Set<EObject> get(org.eclipse.ocl.pivot.@NonNull Class type) {
-		return new HashSet<EObject>(models[0].getObjectsOfKind(type));
+	public @NonNull Set<@NonNull EObject> get(org.eclipse.ocl.pivot.@NonNull Class type) {
+		return new HashSet<@NonNull EObject>(models[0].getObjectsOfKind(type));
 	} 
 
 	/**
 	 * Return the Set of all ClassIndexes to which an EClass instance contributes to allInstances() returns.
 	 */
-	private @NonNull Set<Integer> getClassIndexes(@NonNull EClass eClass) {
+	private @NonNull Set<@NonNull Integer> getClassIndexes(@NonNull EClass eClass) {
 	//	ClassId classId = IdManager.getClassId(eClass);
 		EPackage ePackage = ClassUtil.nonNullEMF(eClass.getEPackage());
 		PackageId packageId = IdManager.getPackageId(ePackage);
 		String className = ClassUtil.nonNullEMF(eClass.getName());		// FIXME Original name
 		ClassId classId = packageId.getClassId(className, eClass.getETypeParameters().size());
 		assert classId2classIndexes != null;
-		Set<Integer> classIndexes = classId2classIndexes.get(classId);
+		Set<@NonNull Integer> classIndexes = classId2classIndexes.get(classId);
 		if (classIndexes == null) {
-			classIndexes = new HashSet<Integer>();
-			for (@SuppressWarnings("null")@NonNull EClass eSuperClass : eClass.getESuperTypes()) {
-				Set<Integer> partialResult = getClassIndexes(eSuperClass);
+			classIndexes = new HashSet<@NonNull Integer>();
+			for (@NonNull EClass eSuperClass : ClassUtil.nullFree(eClass.getESuperTypes())) {
+				Set<@NonNull Integer> partialResult = getClassIndexes(eSuperClass);
 				classIndexes.addAll(partialResult);
 			}
 			assert classId2classIndexes != null;
@@ -1076,8 +1079,8 @@ public abstract class AbstractTransformerInternal implements Transformer
 	 * eReference2propertyIndex contains known equivalences and may be updated if more are discovered
 	 * using -1 as a propertyIndex for which no unnavigable opposite is appropriate.
 	 */
-    private @NonNull List<Integer> getOppositePropertyIndexes(@NonNull Map<EReference, Integer> eReference2propertyIndex, @NonNull EClass eClass) {
-    	List<Integer> propertyIndexes = null;
+    private @NonNull List<@NonNull Integer> getOppositePropertyIndexes(@NonNull Map<@NonNull EReference, @NonNull Integer> eReference2propertyIndex, @NonNull EClass eClass) {
+    	List<@NonNull Integer> propertyIndexes = null;
     	for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
     		if (eStructuralFeature instanceof EReference) {
     			EReference eReference = (EReference)eStructuralFeature;
@@ -1102,7 +1105,7 @@ public abstract class AbstractTransformerInternal implements Transformer
 				}
 				if (propertyIndex >= 0) {
 					if (propertyIndexes == null) {
-						propertyIndexes = new ArrayList<Integer>();
+						propertyIndexes = new ArrayList<@NonNull Integer>();
 					}
 					propertyIndexes.add(propertyIndex);
 				}
@@ -1115,7 +1118,7 @@ public abstract class AbstractTransformerInternal implements Transformer
      * Return all the container-less objects in the modelName model.
      */
     @Override
-	public @NonNull Collection<EObject> getRootObjects(@NonNull String modelName) {
+	public @NonNull Collection<@NonNull EObject> getRootObjects(@NonNull String modelName) {
     	Integer modelIndex = modelIndexes.get(modelName);
     	if (modelIndex == null) {
     		throw new IllegalStateException("Unknown model name '" + modelName + "'");
@@ -1130,7 +1133,7 @@ public abstract class AbstractTransformerInternal implements Transformer
      * @throws ReflectiveOperationException 
      */
     public <T extends Invocation> void invoke(@NonNull Constructor<T> constructor, @NonNull Object... boundValues) throws ReflectiveOperationException {
-    	@SuppressWarnings("null")@NonNull Invocation invocation = constructor.newInstance(this, boundValues);
+    	@NonNull Invocation invocation = constructor.newInstance(this, boundValues);
     	AbstractTransformer.INVOCATIONS.println("invoke " + invocation);
     	invocationManager.invoke(invocation, true);
     }

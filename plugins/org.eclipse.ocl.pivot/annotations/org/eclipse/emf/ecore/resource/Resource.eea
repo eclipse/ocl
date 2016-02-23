@@ -1,0 +1,4 @@
+class org/eclipse/emf/ecore/resource/Resource
+getContents
+ ()Lorg/eclipse/emf/common/util/EList<Lorg/eclipse/emf/ecore/EObject;>;
+ ()L1org/eclipse/emf/common/util/EList<L1org/eclipse/emf/ecore/EObject;>;

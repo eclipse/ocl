@@ -41,7 +41,7 @@ public interface Transformer extends ModelManager
 	 */
 	public static int RUN_TIME_EVALUATOR_API_VERSION = RUN_TIME_EVALUATOR_API_VERSION_1_1_0_1;
 	
-	void addRootObjects(@NonNull String modelName, @NonNull Iterable<? extends EObject> rootObjects);
-    @NonNull Collection<EObject> getRootObjects(@NonNull String modelName);
+	void addRootObjects(@NonNull String modelName, @NonNull Iterable<@NonNull ? extends EObject> rootObjects);
+    @NonNull Collection<@NonNull EObject> getRootObjects(@NonNull String modelName);
     boolean run() throws Exception;
 }

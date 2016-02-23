@@ -25,9 +25,9 @@ import org.eclipse.jdt.annotation.Nullable;
  */
 public interface TypedModelInstance
 {
-	@NonNull Collection<EObject> getAllObjects();
+	@NonNull Collection<@NonNull EObject> getAllObjects();
 	@Nullable String getName();
-	@NonNull Collection<EObject> getObjectsOfKind(org.eclipse.ocl.pivot.@NonNull Class type);
-	@NonNull Collection<EObject> getObjectsOfType(org.eclipse.ocl.pivot.@NonNull Class type);
-	@NonNull Collection<EObject> getRootObjects();
+	@NonNull Collection<@NonNull EObject> getObjectsOfKind(org.eclipse.ocl.pivot.@NonNull Class type);
+	@NonNull Collection<@NonNull EObject> getObjectsOfType(org.eclipse.ocl.pivot.@NonNull Class type);
+	@NonNull Collection<@NonNull EObject> getRootObjects();
 }
