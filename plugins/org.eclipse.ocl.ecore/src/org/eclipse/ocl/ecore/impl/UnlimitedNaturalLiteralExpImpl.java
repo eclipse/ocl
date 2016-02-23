@@ -129,35 +129,24 @@ public class UnlimitedNaturalLiteralExpImpl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Integer getIntegerSymbol() {
-		if (extendedIntegerSymbol != 0) {
-			throw new IllegalStateException(
-				"getIntegerSymbol() for non-Integer"); //$NON-NLS-1$
-		}
 		return integerSymbol;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public void setIntegerSymbol(Integer newIntegerSymbol) {
 		Integer oldIntegerSymbol = integerSymbol;
-		Long oldExtendedIntegerSymbol = extendedIntegerSymbol;
 		integerSymbol = newIntegerSymbol;
-		extendedIntegerSymbol = 0L;
 		if (eNotificationRequired())
-			if (oldExtendedIntegerSymbol != 0) {
-				eNotify(new ENotificationImpl(this, Notification.SET,
-					EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL,
-					oldExtendedIntegerSymbol, extendedIntegerSymbol));
-			}
-		eNotify(new ENotificationImpl(this, Notification.SET,
-			EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL,
-			oldIntegerSymbol, integerSymbol));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL,
+				oldIntegerSymbol, integerSymbol));
 	}
 
 	/**
@@ -181,6 +170,7 @@ public class UnlimitedNaturalLiteralExpImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.6
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */

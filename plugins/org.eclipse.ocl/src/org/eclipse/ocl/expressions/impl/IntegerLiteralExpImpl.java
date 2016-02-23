@@ -147,6 +147,7 @@ public class IntegerLiteralExpImpl<C>
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.6
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
