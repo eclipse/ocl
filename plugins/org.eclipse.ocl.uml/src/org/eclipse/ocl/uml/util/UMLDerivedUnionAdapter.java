@@ -64,6 +64,7 @@ import org.eclipse.ocl.uml.VoidType;
 /**
  * <!-- begin-user-doc -->
  * An adapter that propagates notifications for derived unions.
+ * @since 5.2
  * <!-- end-user-doc -->
  * @see org.eclipse.ocl.uml.UMLPackage
  * @generated
