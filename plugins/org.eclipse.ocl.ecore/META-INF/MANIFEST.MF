@@ -1,8 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.ocl.ecore;singleton:="true"
-Bundle-Version: 3.5.100.qualifier
+Bundle-SymbolicName: org.eclipse.ocl.ecore;singleton:=true
+Bundle-Version: 3.6.0.qualifier
+Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.ocl.ecore.internal.OCLEcorePlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
