@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/4" xmlns:Ecore_1="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/4 pathmap://UML_PROFILES/Ecore.profile.uml#_B7dOIMEREduRdatXodjBjA http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/4" xmlns:Ecore_1="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/4 pathmap://UML_PROFILES/Ecore.profile.uml#_B7dOIMEREduRdatXodjBjA http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
   <uml:Model xmi:id="_unvTINppEdu-d8Dv4wLx9Q" name="ocl" URI="http://www.eclipse.org/ocl/1.1.0/OCL">
     <packagedElement xmi:type="uml:Package" xmi:id="_unvTIdppEdu-d8Dv4wLx9Q" name="types" URI="http://www.eclipse.org/ocl/1.1.0/OCL/Types">
       <packagedElement xmi:type="uml:Class" xmi:id="_unvTItppEdu-d8Dv4wLx9Q" name="AnyType">
@@ -38,7 +38,7 @@
           </templateBinding>
         </nestedClassifier>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_unvTNdppEdu-d8Dv4wLx9Q" clientDependency="_unvTP9ppEdu-d8Dv4wLx9Q" name="CollectionType">
+      <packagedElement xmi:type="uml:Class" xmi:id="_unvTNdppEdu-d8Dv4wLx9Q" name="CollectionType">
         <ownedRule xmi:id="_BEbZEPy-EdynbPPIlCogHA" name="collection_type_name">
           <specification xmi:type="uml:OpaqueExpression" xmi:id="_BEbZEfy-EdynbPPIlCogHA">
             <language>OCL</language>
@@ -408,7 +408,7 @@ s.concat (
           </templateBinding>
         </nestedClassifier>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_unvVKdppEdu-d8Dv4wLx9Q" clientDependency="_unvVMNppEdu-d8Dv4wLx9Q" name="CallExp" isAbstract="true">
+      <packagedElement xmi:type="uml:Class" xmi:id="_unvVKdppEdu-d8Dv4wLx9Q" name="CallExp" isAbstract="true">
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_unvVKtppEdu-d8Dv4wLx9Q" parameter="_unvVK9ppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvVK9ppEdu-d8Dv4wLx9Q" parameteredElement="_unvVLNppEdu-d8Dv4wLx9Q">
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvVLNppEdu-d8Dv4wLx9Q" name="C" templateParameter="_unvVK9ppEdu-d8Dv4wLx9Q"/>
@@ -425,7 +425,7 @@ s.concat (
           </templateBinding>
         </nestedClassifier>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_unvVNNppEdu-d8Dv4wLx9Q" clientDependency="_unvVOdppEdu-d8Dv4wLx9Q _unvVOtppEdu-d8Dv4wLx9Q" name="OCLExpression" isAbstract="true">
+      <packagedElement xmi:type="uml:Class" xmi:id="_unvVNNppEdu-d8Dv4wLx9Q" name="OCLExpression" isAbstract="true">
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_unvVNdppEdu-d8Dv4wLx9Q" parameter="_unvVNtppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvVNtppEdu-d8Dv4wLx9Q" parameteredElement="_unvVN9ppEdu-d8Dv4wLx9Q">
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvVN9ppEdu-d8Dv4wLx9Q" name="C" templateParameter="_unvVNtppEdu-d8Dv4wLx9Q"/>
@@ -526,7 +526,7 @@ s.concat (
           </templateBinding>
         </nestedClassifier>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_unvVbNppEdu-d8Dv4wLx9Q" clientDependency="_unvVcdppEdu-d8Dv4wLx9Q" name="CollectionLiteralPart" isAbstract="true">
+      <packagedElement xmi:type="uml:Class" xmi:id="_unvVbNppEdu-d8Dv4wLx9Q" name="CollectionLiteralPart" isAbstract="true">
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_unvVbdppEdu-d8Dv4wLx9Q" parameter="_unvVbtppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_unvVbtppEdu-d8Dv4wLx9Q" parameteredElement="_unvVb9ppEdu-d8Dv4wLx9Q">
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_unvVb9ppEdu-d8Dv4wLx9Q" name="C" templateParameter="_unvVbtppEdu-d8Dv4wLx9Q"/>
@@ -732,9 +732,10 @@ s.concat (
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EIntegerObject"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvVytppEdu-d8Dv4wLx9Q"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="__Xe6AJNZEeGIv5gP20E_FQ" name="extendedIntegerSymbol" visibility="public" isOrdered="true" isReadOnly="true">
+        <ownedAttribute xmi:id="__Xe6AJNZEeGIv5gP20E_FQ" name="extendedIntegerSymbol" visibility="public" isOrdered="true">
           <eAnnotations xmi:id="_QSJh4JT7EeGpNZre7dx65Q" source="http://www.eclipse.org/emf/2002/GenModel">
             <details xmi:id="_TXbQwJT7EeGpNZre7dx65Q" key="suppressedGetVisibility" value="true"/>
+            <details xmi:id="_1ypUkNoHEeWbQuQkcunuFQ" key="suppressedSetVisibility" value="true"/>
           </eAnnotations>
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#ELongObject"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__Xe6AZNZEeGIv5gP20E_FQ"/>
@@ -783,9 +784,10 @@ s.concat (
         <ownedAttribute xmi:id="_unvV3dppEdu-d8Dv4wLx9Q" name="unlimited" visibility="public" isOrdered="true" isReadOnly="true" isDerived="true">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_zGudkJNaEeGIv5gP20E_FQ" name="extendedIntegerSymbol" visibility="public" isOrdered="true" isReadOnly="true">
+        <ownedAttribute xmi:id="_zGudkJNaEeGIv5gP20E_FQ" name="extendedIntegerSymbol" visibility="public" isOrdered="true">
           <eAnnotations xmi:id="_ygedUJUEEeGpNZre7dx65Q" source="http://www.eclipse.org/emf/2002/GenModel">
             <details xmi:id="_ygedUZUEEeGpNZre7dx65Q" key="suppressedGetVisibility" value="true"/>
+            <details xmi:id="_6Qzh8NoHEeWbQuQkcunuFQ" key="suppressedSetVisibility" value="true"/>
           </eAnnotations>
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#ELongObject"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zGudkZNaEeGIv5gP20E_FQ"/>
@@ -913,7 +915,7 @@ s.concat (
       <packagedElement xmi:type="uml:Association" xmi:id="_un1Z0dppEdu-d8Dv4wLx9Q" memberEnd="_un1ZwtppEdu-d8Dv4wLx9Q _un1Z0tppEdu-d8Dv4wLx9Q">
         <ownedEnd xmi:id="_un1Z0tppEdu-d8Dv4wLx9Q" type="_unvV-tppEdu-d8Dv4wLx9Q" association="_un1Z0dppEdu-d8Dv4wLx9Q"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_un1Z09ppEdu-d8Dv4wLx9Q" clientDependency="_un1Z3tppEdu-d8Dv4wLx9Q _un1Z39ppEdu-d8Dv4wLx9Q" name="Variable">
+      <packagedElement xmi:type="uml:Class" xmi:id="_un1Z09ppEdu-d8Dv4wLx9Q" name="Variable">
         <ownedRule xmi:id="_hgjpAPzFEdynbPPIlCogHA" name="init_type">
           <specification xmi:type="uml:OpaqueExpression" xmi:id="_hgjpAfzFEdynbPPIlCogHA">
             <language>OCL</language>
@@ -1048,7 +1050,7 @@ implies body.type.name = 'Boolean'</body>
       <packagedElement xmi:type="uml:Association" xmi:id="_un1aDdppEdu-d8Dv4wLx9Q" memberEnd="_un1aAtppEdu-d8Dv4wLx9Q _un1aDtppEdu-d8Dv4wLx9Q">
         <ownedEnd xmi:id="_un1aDtppEdu-d8Dv4wLx9Q" type="_un1Z-dppEdu-d8Dv4wLx9Q" association="_un1aDdppEdu-d8Dv4wLx9Q"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_un1aD9ppEdu-d8Dv4wLx9Q" clientDependency="_un1aIdppEdu-d8Dv4wLx9Q" name="MessageExp">
+      <packagedElement xmi:type="uml:Class" xmi:id="_un1aD9ppEdu-d8Dv4wLx9Q" name="MessageExp">
         <ownedRule xmi:id="_TTFTIPzEEdynbPPIlCogHA" name="operation_arguments">
           <specification xmi:type="uml:OpaqueExpression" xmi:id="_TTFTIfzEEdynbPPIlCogHA">
             <language>OCL</language>
@@ -1335,7 +1337,7 @@ part->size() = type.oclAsType (TupleType).allProperties()->size()</body>
           </templateBinding>
         </nestedClassifier>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_un1aj9ppEdu-d8Dv4wLx9Q" clientDependency="_un1amtppEdu-d8Dv4wLx9Q _un1am9ppEdu-d8Dv4wLx9Q" name="TupleLiteralPart">
+      <packagedElement xmi:type="uml:Class" xmi:id="_un1aj9ppEdu-d8Dv4wLx9Q" name="TupleLiteralPart">
         <ownedRule xmi:id="_alcRAPzFEdynbPPIlCogHA" name="value_type">
           <specification xmi:type="uml:OpaqueExpression" xmi:id="_alcRAfzFEdynbPPIlCogHA">
             <language>OCL</language>
@@ -1398,7 +1400,7 @@ part->size() = type.oclAsType (TupleType).allProperties()->size()</body>
       <packagedElement xmi:type="uml:Association" xmi:id="_un1astppEdu-d8Dv4wLx9Q" memberEnd="_un1ardppEdu-d8Dv4wLx9Q _un1as9ppEdu-d8Dv4wLx9Q">
         <ownedEnd xmi:id="_un1as9ppEdu-d8Dv4wLx9Q" type="_un1aqNppEdu-d8Dv4wLx9Q" association="_un1astppEdu-d8Dv4wLx9Q"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_un1atNppEdu-d8Dv4wLx9Q" clientDependency="_un1audppEdu-d8Dv4wLx9Q" name="UnspecifiedValueExp">
+      <packagedElement xmi:type="uml:Class" xmi:id="_un1atNppEdu-d8Dv4wLx9Q" name="UnspecifiedValueExp">
         <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_un1atdppEdu-d8Dv4wLx9Q" parameter="_un1attppEdu-d8Dv4wLx9Q">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_un1attppEdu-d8Dv4wLx9Q" parameteredElement="_un1at9ppEdu-d8Dv4wLx9Q">
             <ownedParameteredElement xmi:type="uml:Class" xmi:id="_un1at9ppEdu-d8Dv4wLx9Q" name="C" templateParameter="_un1attppEdu-d8Dv4wLx9Q"/>
