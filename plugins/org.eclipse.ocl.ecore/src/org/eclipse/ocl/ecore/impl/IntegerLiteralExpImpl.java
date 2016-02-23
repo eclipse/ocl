@@ -161,6 +161,20 @@ public class IntegerLiteralExpImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setExtendedIntegerSymbol(Long newExtendedIntegerSymbol) {
+		Long oldExtendedIntegerSymbol = extendedIntegerSymbol;
+		extendedIntegerSymbol = newExtendedIntegerSymbol;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				EcorePackage.INTEGER_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL,
+				oldExtendedIntegerSymbol, extendedIntegerSymbol));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * @since 3.2
 	 * <!-- end-user-doc -->
 	 * @generated NOT
@@ -236,6 +250,9 @@ public class IntegerLiteralExpImpl
 			case EcorePackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL :
 				setIntegerSymbol((Integer) newValue);
 				return;
+			case EcorePackage.INTEGER_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL :
+				setExtendedIntegerSymbol((Long) newValue);
+				return;
 			case EcorePackage.INTEGER_LITERAL_EXP__LONG_SYMBOL :
 				setLongSymbol((Long) newValue);
 				return;
@@ -253,6 +270,9 @@ public class IntegerLiteralExpImpl
 		switch (featureID) {
 			case EcorePackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL :
 				setIntegerSymbol(INTEGER_SYMBOL_EDEFAULT);
+				return;
+			case EcorePackage.INTEGER_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL :
+				setExtendedIntegerSymbol(EXTENDED_INTEGER_SYMBOL_EDEFAULT);
 				return;
 			case EcorePackage.INTEGER_LITERAL_EXP__LONG_SYMBOL :
 				setLongSymbol(LONG_SYMBOL_EDEFAULT);

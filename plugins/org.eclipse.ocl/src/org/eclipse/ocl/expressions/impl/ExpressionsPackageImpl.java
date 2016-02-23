@@ -1988,9 +1988,8 @@ public class ExpressionsPackageImpl
 			!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getIntegerLiteralExp_ExtendedIntegerSymbol(),
 			ecorePackage.getELongObject(), "extendedIntegerSymbol", "0", 0, 1, //$NON-NLS-1$//$NON-NLS-2$
-			IntegerLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE,
-			!IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-			IS_ORDERED);
+			IntegerLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getIntegerLiteralExp_LongSymbol(),
 			ecorePackage.getELongObject(), "longSymbol", null, 0, 1, //$NON-NLS-1$
 			IntegerLiteralExp.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE,
@@ -2027,7 +2026,7 @@ public class ExpressionsPackageImpl
 		initEAttribute(getUnlimitedNaturalLiteralExp_ExtendedIntegerSymbol(),
 			ecorePackage.getELongObject(), "extendedIntegerSymbol", "0", 0, 1, //$NON-NLS-1$//$NON-NLS-2$
 			UnlimitedNaturalLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE,
-			!IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+			IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
 		initEAttribute(getUnlimitedNaturalLiteralExp_LongSymbol(),
 			ecorePackage.getELongObject(), "longSymbol", null, 0, 1, //$NON-NLS-1$

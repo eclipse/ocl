@@ -22,7 +22,8 @@ import org.eclipse.uml2.uml.Parameter;
  *
  *
  * @see org.eclipse.ocl.uml.UMLPackage#getExpressionInOCL()
- * @model extendedMetaData="name='ExpressionInOcl'"
+ * @model annotation="http://www.eclipse.org/uml2/2.0.0/UML originalName='ExpressionInOcl'"
+ *        extendedMetaData="name='ExpressionInOcl'"
  * @generated
  */
 public interface ExpressionInOCL

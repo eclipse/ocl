@@ -22,6 +22,7 @@ import org.eclipse.uml2.uml.TypedElement;
  *
  * @see org.eclipse.ocl.uml.UMLPackage#getOCLExpression()
  * @model abstract="true"
+ *        annotation="http://www.eclipse.org/uml2/2.0.0/UML originalName='OclExpression'"
  *        extendedMetaData="name='OclExpression'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='has_type'"
  * @generated

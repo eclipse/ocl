@@ -1795,6 +1795,8 @@ public class UMLPackageImpl
 		// Create annotations
 		// subsets
 		createSubsetsAnnotations();
+		// http://www.eclipse.org/uml2/2.0.0/UML
+		createUMLAnnotations();
 		// http:///org/eclipse/emf/ecore/util/ExtendedMetaData
 		createExtendedMetaDataAnnotations();
 		// http://www.eclipse.org/emf/2002/Ecore
@@ -1837,6 +1839,23 @@ public class UMLPackageImpl
 			new String[]{},
 			new URI[]{URI.createURI(org.eclipse.uml2.uml.UMLPackage.eNS_URI)
 				.appendFragment("//Classifier/feature") //$NON-NLS-1$
+			});
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/uml2/2.0.0/UML</b>.
+	 * <!-- begin-user-doc -->
+	 * @since 5.2
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createUMLAnnotations() {
+		String source = "http://www.eclipse.org/uml2/2.0.0/UML"; //$NON-NLS-1$	
+		addAnnotation(expressionInOCLEClass, source,
+			new String[]{"originalName", "ExpressionInOcl" //$NON-NLS-1$ //$NON-NLS-2$
+			});
+		addAnnotation(oclExpressionEClass, source,
+			new String[]{"originalName", "OclExpression" //$NON-NLS-1$ //$NON-NLS-2$
 			});
 	}
 

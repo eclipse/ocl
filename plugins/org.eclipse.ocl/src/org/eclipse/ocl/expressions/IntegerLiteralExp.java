@@ -30,7 +30,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  *
  * @see org.eclipse.ocl.expressions.ExpressionsPackage#getIntegerLiteralExp()
  * @model features="extendedIntegerSymbol" 
- *        extendedIntegerSymbolDefault="0" extendedIntegerSymbolDataType="org.eclipse.emf.ecore.ELongObject" extendedIntegerSymbolChangeable="false" extendedIntegerSymbolSuppressedGetVisibility="true"
+ *        extendedIntegerSymbolDefault="0" extendedIntegerSymbolDataType="org.eclipse.emf.ecore.ELongObject" extendedIntegerSymbolSuppressedGetVisibility="true" extendedIntegerSymbolSuppressedSetVisibility="true"
  * @generated
  */
 public interface IntegerLiteralExp<C>
