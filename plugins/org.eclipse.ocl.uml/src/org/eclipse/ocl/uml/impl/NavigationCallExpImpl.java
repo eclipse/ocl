@@ -35,11 +35,11 @@ import org.eclipse.uml2.uml.Property;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.uml.impl.NavigationCallExpImpl#getQualifier <em>Qualifier</em>}</li>
  *   <li>{@link org.eclipse.ocl.uml.impl.NavigationCallExpImpl#getNavigationSource <em>Navigation Source</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -107,7 +107,8 @@ public abstract class NavigationCallExpImpl
 	 * @generated
 	 */
 	public Property getNavigationSource() {
-		if (navigationSource != null && ((EObject) navigationSource).eIsProxy()) {
+		if (navigationSource != null
+			&& ((EObject) navigationSource).eIsProxy()) {
 			InternalEObject oldNavigationSource = (InternalEObject) navigationSource;
 			navigationSource = (Property) eResolveProxy(oldNavigationSource);
 			if (navigationSource != oldNavigationSource) {
@@ -154,8 +155,8 @@ public abstract class NavigationCallExpImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case UMLPackage.NAVIGATION_CALL_EXP__QUALIFIER :
-				return ((InternalEList<?>) getQualifier()).basicRemove(
-					otherEnd, msgs);
+				return ((InternalEList<?>) getQualifier()).basicRemove(otherEnd,
+					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -239,7 +240,8 @@ public abstract class NavigationCallExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.NavigationCallExp.class) {
 			switch (derivedFeatureID) {
 				case UMLPackage.NAVIGATION_CALL_EXP__QUALIFIER :
@@ -259,7 +261,8 @@ public abstract class NavigationCallExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.NavigationCallExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.NAVIGATION_CALL_EXP__QUALIFIER :

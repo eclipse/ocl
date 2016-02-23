@@ -44,6 +44,7 @@ import org.eclipse.ocl.utilities.UtilitiesPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.types.impl.CollectionTypeImpl#getStartPosition <em>Start Position</em>}</li>
  *   <li>{@link org.eclipse.ocl.types.impl.CollectionTypeImpl#getEndPosition <em>End Position</em>}</li>
@@ -52,7 +53,6 @@ import org.eclipse.ocl.utilities.UtilitiesPackage;
  *   <li>{@link org.eclipse.ocl.types.impl.CollectionTypeImpl#getElementType <em>Element Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.types.impl.CollectionTypeImpl#getKind <em>Kind</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -598,7 +598,8 @@ public class CollectionTypeImpl<C, O>
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == ASTNode.class) {
 			switch (derivedFeatureID) {
 				case TypesPackage.COLLECTION_TYPE__START_POSITION :
@@ -628,7 +629,8 @@ public class CollectionTypeImpl<C, O>
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == ASTNode.class) {
 			switch (baseFeatureID) {
 				case UtilitiesPackage.AST_NODE__START_POSITION :

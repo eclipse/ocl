@@ -17,11 +17,11 @@ package org.eclipse.ocl.utilities;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.utilities.TypedASTNode#getTypeStartPosition <em>Type Start Position</em>}</li>
  *   <li>{@link org.eclipse.ocl.utilities.TypedASTNode#getTypeEndPosition <em>Type End Position</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.utilities.UtilitiesPackage#getTypedASTNode()
  * @model interface="true" abstract="true"

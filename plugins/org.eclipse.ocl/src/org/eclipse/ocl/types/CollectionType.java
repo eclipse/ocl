@@ -25,11 +25,11 @@ import org.eclipse.ocl.utilities.TypedASTNode;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.types.CollectionType#getElementType <em>Element Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.types.CollectionType#getKind <em>Kind</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.types.TypesPackage#getCollectionType()
  * @model

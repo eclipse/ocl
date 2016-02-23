@@ -30,10 +30,10 @@ import org.eclipse.uml2.uml.Classifier;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.uml.impl.BooleanLiteralExpImpl#getBooleanSymbol <em>Boolean Symbol</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -181,7 +181,8 @@ public class BooleanLiteralExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.BooleanLiteralExp.class) {
 			switch (derivedFeatureID) {
 				case UMLPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL :
@@ -199,7 +200,8 @@ public class BooleanLiteralExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.BooleanLiteralExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL :

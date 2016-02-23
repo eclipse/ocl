@@ -34,12 +34,12 @@ import org.eclipse.ocl.utilities.ExpressionInOCL;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.ecore.impl.ConstraintImpl#getSpecification <em>Specification</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.ConstraintImpl#getConstrainedElements <em>Constrained Elements</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.ConstraintImpl#getStereotype <em>Stereotype</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -147,13 +147,17 @@ public class ConstraintImpl
 		if (newSpecification != specification) {
 			NotificationChain msgs = null;
 			if (specification != null)
-				msgs = ((InternalEObject) specification).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE
-						- EcorePackage.CONSTRAINT__SPECIFICATION, null, msgs);
+				msgs = ((InternalEObject) specification)
+					.eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+							- EcorePackage.CONSTRAINT__SPECIFICATION,
+						null, msgs);
 			if (newSpecification != null)
-				msgs = ((InternalEObject) newSpecification).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE
-						- EcorePackage.CONSTRAINT__SPECIFICATION, null, msgs);
+				msgs = ((InternalEObject) newSpecification)
+					.eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE
+							- EcorePackage.CONSTRAINT__SPECIFICATION,
+						null, msgs);
 			msgs = basicSetSpecification(newSpecification, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -196,7 +200,8 @@ public class ConstraintImpl
 		stereotype = newStereotype;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				EcorePackage.CONSTRAINT__STEREOTYPE, oldStereotype, stereotype));
+				EcorePackage.CONSTRAINT__STEREOTYPE, oldStereotype,
+				stereotype));
 	}
 
 	/**
@@ -242,12 +247,13 @@ public class ConstraintImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case EcorePackage.CONSTRAINT__SPECIFICATION :
-				setSpecification((ExpressionInOCL<EClassifier, EParameter>) newValue);
+				setSpecification(
+					(ExpressionInOCL<EClassifier, EParameter>) newValue);
 				return;
 			case EcorePackage.CONSTRAINT__CONSTRAINED_ELEMENTS :
 				getConstrainedElements().clear();
-				getConstrainedElements().addAll(
-					(Collection<? extends EModelElement>) newValue);
+				getConstrainedElements()
+					.addAll((Collection<? extends EModelElement>) newValue);
 				return;
 			case EcorePackage.CONSTRAINT__STEREOTYPE :
 				setStereotype((String) newValue);
@@ -265,7 +271,8 @@ public class ConstraintImpl
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case EcorePackage.CONSTRAINT__SPECIFICATION :
-				setSpecification((ExpressionInOCL<EClassifier, EParameter>) null);
+				setSpecification(
+					(ExpressionInOCL<EClassifier, EParameter>) null);
 				return;
 			case EcorePackage.CONSTRAINT__CONSTRAINED_ELEMENTS :
 				getConstrainedElements().clear();
@@ -309,8 +316,9 @@ public class ConstraintImpl
 			return super.toString();
 		}
 
-		return ToStringVisitor.getInstance(
-			getSpecification().getContextVariable()).visitConstraint(this);
+		return ToStringVisitor
+			.getInstance(getSpecification().getContextVariable())
+			.visitConstraint(this);
 	}
 
 } //ConstraintImpl

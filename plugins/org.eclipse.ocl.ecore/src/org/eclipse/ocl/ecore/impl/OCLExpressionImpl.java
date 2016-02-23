@@ -31,11 +31,11 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.ecore.impl.OCLExpressionImpl#getStartPosition <em>Start Position</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.OCLExpressionImpl#getEndPosition <em>End Position</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -250,7 +250,8 @@ public abstract class OCLExpressionImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == TypedElement.class) {
 			switch (derivedFeatureID) {
 				default :
@@ -288,7 +289,8 @@ public abstract class OCLExpressionImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == TypedElement.class) {
 			switch (baseFeatureID) {
 				default :

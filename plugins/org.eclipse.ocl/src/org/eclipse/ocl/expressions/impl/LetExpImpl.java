@@ -31,11 +31,11 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.impl.LetExpImpl#getIn <em>In</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.impl.LetExpImpl#getVariable <em>Variable</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -176,17 +176,20 @@ public class LetExpImpl<C, PM>
 			if (variable != null)
 				msgs = ((InternalEObject) variable).eInverseRemove(this,
 					EOPPOSITE_FEATURE_BASE
-						- ExpressionsPackage.LET_EXP__VARIABLE, null, msgs);
+						- ExpressionsPackage.LET_EXP__VARIABLE,
+					null, msgs);
 			if (newVariable != null)
 				msgs = ((InternalEObject) newVariable).eInverseAdd(this,
 					EOPPOSITE_FEATURE_BASE
-						- ExpressionsPackage.LET_EXP__VARIABLE, null, msgs);
+						- ExpressionsPackage.LET_EXP__VARIABLE,
+					null, msgs);
 			msgs = basicSetVariable(newVariable, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				ExpressionsPackage.LET_EXP__VARIABLE, newVariable, newVariable));
+				ExpressionsPackage.LET_EXP__VARIABLE, newVariable,
+				newVariable));
 	}
 
 	/**

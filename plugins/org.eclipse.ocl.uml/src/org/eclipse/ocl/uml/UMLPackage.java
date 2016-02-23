@@ -197,6 +197,17 @@ public interface UMLPackage
 	int ANY_TYPE__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__VISIBILITY;
 
 	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANY_TYPE__OWNED_RULE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_RULE;
+
+	/**
 	 * The feature id for the '<em><b>Element Import</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -217,17 +228,6 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int ANY_TYPE__PACKAGE_IMPORT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__PACKAGE_IMPORT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANY_TYPE__OWNED_RULE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
@@ -329,17 +329,6 @@ public interface UMLPackage
 	int ANY_TYPE__PACKAGE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANY_TYPE__OWNED_TEMPLATE_SIGNATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
 	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -349,6 +338,17 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int ANY_TYPE__TEMPLATE_BINDING = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANY_TYPE__OWNED_TEMPLATE_SIGNATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_TEMPLATE_SIGNATURE;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -512,7 +512,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ANY_TYPE__OWNED_OPERATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT + 0;
+	int ANY_TYPE__OWNED_OPERATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The number of structural features of the '<em>Any Type</em>' class.
@@ -523,7 +524,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ANY_TYPE_FEATURE_COUNT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT + 1;
+	int ANY_TYPE_FEATURE_COUNT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.uml.impl.VoidTypeImpl <em>Void Type</em>}' class.
@@ -648,6 +650,17 @@ public interface UMLPackage
 	int VOID_TYPE__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__VISIBILITY;
 
 	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VOID_TYPE__OWNED_RULE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_RULE;
+
+	/**
 	 * The feature id for the '<em><b>Element Import</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -668,17 +681,6 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int VOID_TYPE__PACKAGE_IMPORT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__PACKAGE_IMPORT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VOID_TYPE__OWNED_RULE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
@@ -780,17 +782,6 @@ public interface UMLPackage
 	int VOID_TYPE__PACKAGE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VOID_TYPE__OWNED_TEMPLATE_SIGNATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
 	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -800,6 +791,17 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int VOID_TYPE__TEMPLATE_BINDING = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VOID_TYPE__OWNED_TEMPLATE_SIGNATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_TEMPLATE_SIGNATURE;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -963,7 +965,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VOID_TYPE__OWNED_OPERATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT + 0;
+	int VOID_TYPE__OWNED_OPERATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The number of structural features of the '<em>Void Type</em>' class.
@@ -974,7 +977,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VOID_TYPE_FEATURE_COUNT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT + 1;
+	int VOID_TYPE_FEATURE_COUNT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.uml.impl.InvalidTypeImpl <em>Invalid Type</em>}' class.
@@ -1099,6 +1103,17 @@ public interface UMLPackage
 	int INVALID_TYPE__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__VISIBILITY;
 
 	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_TYPE__OWNED_RULE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_RULE;
+
+	/**
 	 * The feature id for the '<em><b>Element Import</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -1119,17 +1134,6 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int INVALID_TYPE__PACKAGE_IMPORT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__PACKAGE_IMPORT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_TYPE__OWNED_RULE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
@@ -1231,17 +1235,6 @@ public interface UMLPackage
 	int INVALID_TYPE__PACKAGE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_TYPE__OWNED_TEMPLATE_SIGNATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
 	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -1251,6 +1244,17 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int INVALID_TYPE__TEMPLATE_BINDING = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_TYPE__OWNED_TEMPLATE_SIGNATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_TEMPLATE_SIGNATURE;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -1414,7 +1418,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INVALID_TYPE__OWNED_OPERATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT + 0;
+	int INVALID_TYPE__OWNED_OPERATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The number of structural features of the '<em>Invalid Type</em>' class.
@@ -1425,7 +1430,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INVALID_TYPE_FEATURE_COUNT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT + 1;
+	int INVALID_TYPE_FEATURE_COUNT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.uml.impl.ElementTypeImpl <em>Element Type</em>}' class.
@@ -1550,6 +1556,17 @@ public interface UMLPackage
 	int ELEMENT_TYPE__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__VISIBILITY;
 
 	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_TYPE__OWNED_RULE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_RULE;
+
+	/**
 	 * The feature id for the '<em><b>Element Import</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -1570,17 +1587,6 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int ELEMENT_TYPE__PACKAGE_IMPORT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__PACKAGE_IMPORT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT_TYPE__OWNED_RULE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
@@ -1682,17 +1688,6 @@ public interface UMLPackage
 	int ELEMENT_TYPE__PACKAGE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT_TYPE__OWNED_TEMPLATE_SIGNATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
 	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -1702,6 +1697,17 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int ELEMENT_TYPE__TEMPLATE_BINDING = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_TYPE__OWNED_TEMPLATE_SIGNATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_TEMPLATE_SIGNATURE;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -1865,7 +1871,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_TYPE_FEATURE_COUNT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT + 0;
+	int ELEMENT_TYPE_FEATURE_COUNT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.uml.impl.TypeTypeImpl <em>Type Type</em>}' class.
@@ -1990,6 +1997,17 @@ public interface UMLPackage
 	int TYPE_TYPE__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__VISIBILITY;
 
 	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_TYPE__OWNED_RULE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_RULE;
+
+	/**
 	 * The feature id for the '<em><b>Element Import</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -2010,17 +2028,6 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int TYPE_TYPE__PACKAGE_IMPORT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__PACKAGE_IMPORT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_TYPE__OWNED_RULE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
@@ -2122,17 +2129,6 @@ public interface UMLPackage
 	int TYPE_TYPE__PACKAGE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_TYPE__OWNED_TEMPLATE_SIGNATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
 	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -2142,6 +2138,17 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int TYPE_TYPE__TEMPLATE_BINDING = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_TYPE__OWNED_TEMPLATE_SIGNATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_TEMPLATE_SIGNATURE;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -2305,7 +2312,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_TYPE__REFERRED_TYPE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT + 0;
+	int TYPE_TYPE__REFERRED_TYPE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
@@ -2316,7 +2324,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_TYPE__OWNED_OPERATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT + 1;
+	int TYPE_TYPE__OWNED_OPERATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The number of structural features of the '<em>Type Type</em>' class.
@@ -2327,7 +2336,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_TYPE_FEATURE_COUNT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT + 2;
+	int TYPE_TYPE_FEATURE_COUNT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT
+		+ 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.uml.impl.MessageTypeImpl <em>Message Type</em>}' class.
@@ -2452,6 +2462,17 @@ public interface UMLPackage
 	int MESSAGE_TYPE__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__VISIBILITY;
 
 	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_TYPE__OWNED_RULE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_RULE;
+
+	/**
 	 * The feature id for the '<em><b>Element Import</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -2472,17 +2493,6 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int MESSAGE_TYPE__PACKAGE_IMPORT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__PACKAGE_IMPORT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_TYPE__OWNED_RULE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
@@ -2584,17 +2594,6 @@ public interface UMLPackage
 	int MESSAGE_TYPE__PACKAGE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_TYPE__OWNED_TEMPLATE_SIGNATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
 	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -2604,6 +2603,17 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int MESSAGE_TYPE__TEMPLATE_BINDING = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_TYPE__OWNED_TEMPLATE_SIGNATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_TEMPLATE_SIGNATURE;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -2767,7 +2777,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__REFERRED_OPERATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT + 0;
+	int MESSAGE_TYPE__REFERRED_OPERATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The feature id for the '<em><b>Referred Signal</b></em>' reference.
@@ -2778,7 +2789,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__REFERRED_SIGNAL = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT + 1;
+	int MESSAGE_TYPE__REFERRED_SIGNAL = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
@@ -2789,7 +2801,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__OWNED_OPERATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT + 2;
+	int MESSAGE_TYPE__OWNED_OPERATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT
+		+ 2;
 
 	/**
 	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
@@ -2800,7 +2813,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__OWNED_ATTRIBUTE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT + 3;
+	int MESSAGE_TYPE__OWNED_ATTRIBUTE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT
+		+ 3;
 
 	/**
 	 * The number of structural features of the '<em>Message Type</em>' class.
@@ -2811,7 +2825,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE_FEATURE_COUNT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT + 4;
+	int MESSAGE_TYPE_FEATURE_COUNT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT
+		+ 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.uml.impl.PrimitiveTypeImpl <em>Primitive Type</em>}' class.
@@ -2936,6 +2951,17 @@ public interface UMLPackage
 	int PRIMITIVE_TYPE__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__VISIBILITY;
 
 	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_TYPE__OWNED_RULE = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__OWNED_RULE;
+
+	/**
 	 * The feature id for the '<em><b>Element Import</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -2956,17 +2982,6 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int PRIMITIVE_TYPE__PACKAGE_IMPORT = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__PACKAGE_IMPORT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_TYPE__OWNED_RULE = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
@@ -3068,17 +3083,6 @@ public interface UMLPackage
 	int PRIMITIVE_TYPE__PACKAGE = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_TYPE__OWNED_TEMPLATE_SIGNATURE = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
 	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -3088,6 +3092,17 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int PRIMITIVE_TYPE__TEMPLATE_BINDING = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_TYPE__OWNED_TEMPLATE_SIGNATURE = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__OWNED_TEMPLATE_SIGNATURE;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -3273,7 +3288,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_TYPE_FEATURE_COUNT = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE_FEATURE_COUNT + 0;
+	int PRIMITIVE_TYPE_FEATURE_COUNT = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.uml.impl.CollectionTypeImpl <em>Collection Type</em>}' class.
@@ -3398,6 +3414,17 @@ public interface UMLPackage
 	int COLLECTION_TYPE__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__VISIBILITY;
 
 	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_TYPE__OWNED_RULE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__OWNED_RULE;
+
+	/**
 	 * The feature id for the '<em><b>Element Import</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -3418,17 +3445,6 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int COLLECTION_TYPE__PACKAGE_IMPORT = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__PACKAGE_IMPORT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_TYPE__OWNED_RULE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
@@ -3530,17 +3546,6 @@ public interface UMLPackage
 	int COLLECTION_TYPE__PACKAGE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_TYPE__OWNED_TEMPLATE_SIGNATURE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
 	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -3550,6 +3555,17 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int COLLECTION_TYPE__TEMPLATE_BINDING = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_TYPE__OWNED_TEMPLATE_SIGNATURE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__OWNED_TEMPLATE_SIGNATURE;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -3735,7 +3751,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE__START_POSITION = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE_FEATURE_COUNT + 0;
+	int COLLECTION_TYPE__START_POSITION = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
@@ -3746,7 +3763,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE__END_POSITION = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE_FEATURE_COUNT + 1;
+	int COLLECTION_TYPE__END_POSITION = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The feature id for the '<em><b>Type Start Position</b></em>' attribute.
@@ -3757,7 +3775,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE__TYPE_START_POSITION = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE_FEATURE_COUNT + 2;
+	int COLLECTION_TYPE__TYPE_START_POSITION = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE_FEATURE_COUNT
+		+ 2;
 
 	/**
 	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
@@ -3768,7 +3787,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE__TYPE_END_POSITION = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE_FEATURE_COUNT + 3;
+	int COLLECTION_TYPE__TYPE_END_POSITION = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE_FEATURE_COUNT
+		+ 3;
 
 	/**
 	 * The feature id for the '<em><b>Element Type</b></em>' reference.
@@ -3779,7 +3799,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE__ELEMENT_TYPE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE_FEATURE_COUNT + 4;
+	int COLLECTION_TYPE__ELEMENT_TYPE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE_FEATURE_COUNT
+		+ 4;
 
 	/**
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
@@ -3790,7 +3811,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE__KIND = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE_FEATURE_COUNT + 5;
+	int COLLECTION_TYPE__KIND = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE_FEATURE_COUNT
+		+ 5;
 
 	/**
 	 * The number of structural features of the '<em>Collection Type</em>' class.
@@ -3801,7 +3823,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE_FEATURE_COUNT = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE_FEATURE_COUNT + 6;
+	int COLLECTION_TYPE_FEATURE_COUNT = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE_FEATURE_COUNT
+		+ 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.uml.impl.TupleTypeImpl <em>Tuple Type</em>}' class.
@@ -3926,6 +3949,17 @@ public interface UMLPackage
 	int TUPLE_TYPE__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__VISIBILITY;
 
 	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_TYPE__OWNED_RULE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__OWNED_RULE;
+
+	/**
 	 * The feature id for the '<em><b>Element Import</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -3946,17 +3980,6 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int TUPLE_TYPE__PACKAGE_IMPORT = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__PACKAGE_IMPORT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_TYPE__OWNED_RULE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
@@ -4058,17 +4081,6 @@ public interface UMLPackage
 	int TUPLE_TYPE__PACKAGE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_TYPE__OWNED_TEMPLATE_SIGNATURE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
 	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -4078,6 +4090,17 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int TUPLE_TYPE__TEMPLATE_BINDING = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_TYPE__OWNED_TEMPLATE_SIGNATURE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__OWNED_TEMPLATE_SIGNATURE;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -4263,7 +4286,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_TYPE_FEATURE_COUNT = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE_FEATURE_COUNT + 0;
+	int TUPLE_TYPE_FEATURE_COUNT = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.uml.impl.BagTypeImpl <em>Bag Type</em>}' class.
@@ -4388,6 +4412,17 @@ public interface UMLPackage
 	int BAG_TYPE__VISIBILITY = COLLECTION_TYPE__VISIBILITY;
 
 	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BAG_TYPE__OWNED_RULE = COLLECTION_TYPE__OWNED_RULE;
+
+	/**
 	 * The feature id for the '<em><b>Element Import</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -4408,17 +4443,6 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int BAG_TYPE__PACKAGE_IMPORT = COLLECTION_TYPE__PACKAGE_IMPORT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BAG_TYPE__OWNED_RULE = COLLECTION_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
@@ -4520,17 +4544,6 @@ public interface UMLPackage
 	int BAG_TYPE__PACKAGE = COLLECTION_TYPE__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BAG_TYPE__OWNED_TEMPLATE_SIGNATURE = COLLECTION_TYPE__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
 	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -4540,6 +4553,17 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int BAG_TYPE__TEMPLATE_BINDING = COLLECTION_TYPE__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BAG_TYPE__OWNED_TEMPLATE_SIGNATURE = COLLECTION_TYPE__OWNED_TEMPLATE_SIGNATURE;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -4916,6 +4940,17 @@ public interface UMLPackage
 	int SET_TYPE__VISIBILITY = COLLECTION_TYPE__VISIBILITY;
 
 	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_TYPE__OWNED_RULE = COLLECTION_TYPE__OWNED_RULE;
+
+	/**
 	 * The feature id for the '<em><b>Element Import</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -4936,17 +4971,6 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int SET_TYPE__PACKAGE_IMPORT = COLLECTION_TYPE__PACKAGE_IMPORT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SET_TYPE__OWNED_RULE = COLLECTION_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
@@ -5048,17 +5072,6 @@ public interface UMLPackage
 	int SET_TYPE__PACKAGE = COLLECTION_TYPE__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SET_TYPE__OWNED_TEMPLATE_SIGNATURE = COLLECTION_TYPE__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
 	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -5068,6 +5081,17 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int SET_TYPE__TEMPLATE_BINDING = COLLECTION_TYPE__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_TYPE__OWNED_TEMPLATE_SIGNATURE = COLLECTION_TYPE__OWNED_TEMPLATE_SIGNATURE;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -5444,6 +5468,17 @@ public interface UMLPackage
 	int ORDERED_SET_TYPE__VISIBILITY = COLLECTION_TYPE__VISIBILITY;
 
 	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_SET_TYPE__OWNED_RULE = COLLECTION_TYPE__OWNED_RULE;
+
+	/**
 	 * The feature id for the '<em><b>Element Import</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -5464,17 +5499,6 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int ORDERED_SET_TYPE__PACKAGE_IMPORT = COLLECTION_TYPE__PACKAGE_IMPORT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERED_SET_TYPE__OWNED_RULE = COLLECTION_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
@@ -5576,17 +5600,6 @@ public interface UMLPackage
 	int ORDERED_SET_TYPE__PACKAGE = COLLECTION_TYPE__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERED_SET_TYPE__OWNED_TEMPLATE_SIGNATURE = COLLECTION_TYPE__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
 	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -5596,6 +5609,17 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int ORDERED_SET_TYPE__TEMPLATE_BINDING = COLLECTION_TYPE__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_SET_TYPE__OWNED_TEMPLATE_SIGNATURE = COLLECTION_TYPE__OWNED_TEMPLATE_SIGNATURE;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -5972,6 +5996,17 @@ public interface UMLPackage
 	int SEQUENCE_TYPE__VISIBILITY = COLLECTION_TYPE__VISIBILITY;
 
 	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_TYPE__OWNED_RULE = COLLECTION_TYPE__OWNED_RULE;
+
+	/**
 	 * The feature id for the '<em><b>Element Import</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -5992,17 +6027,6 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int SEQUENCE_TYPE__PACKAGE_IMPORT = COLLECTION_TYPE__PACKAGE_IMPORT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_TYPE__OWNED_RULE = COLLECTION_TYPE__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
@@ -6104,17 +6128,6 @@ public interface UMLPackage
 	int SEQUENCE_TYPE__PACKAGE = COLLECTION_TYPE__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_TYPE__OWNED_TEMPLATE_SIGNATURE = COLLECTION_TYPE__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
 	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -6124,6 +6137,17 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int SEQUENCE_TYPE__TEMPLATE_BINDING = COLLECTION_TYPE__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_TYPE__OWNED_TEMPLATE_SIGNATURE = COLLECTION_TYPE__OWNED_TEMPLATE_SIGNATURE;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -6585,7 +6609,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION_IN_OCL__BODY_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION_FEATURE_COUNT + 0;
+	int EXPRESSION_IN_OCL__BODY_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The feature id for the '<em><b>Context Variable</b></em>' containment reference.
@@ -6596,7 +6621,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION_IN_OCL__CONTEXT_VARIABLE = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION_FEATURE_COUNT + 1;
+	int EXPRESSION_IN_OCL__CONTEXT_VARIABLE = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The feature id for the '<em><b>Result Variable</b></em>' containment reference.
@@ -6607,7 +6633,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION_IN_OCL__RESULT_VARIABLE = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION_FEATURE_COUNT + 2;
+	int EXPRESSION_IN_OCL__RESULT_VARIABLE = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION_FEATURE_COUNT
+		+ 2;
 
 	/**
 	 * The feature id for the '<em><b>Parameter Variable</b></em>' containment reference list.
@@ -6618,7 +6645,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION_IN_OCL__PARAMETER_VARIABLE = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION_FEATURE_COUNT + 3;
+	int EXPRESSION_IN_OCL__PARAMETER_VARIABLE = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION_FEATURE_COUNT
+		+ 3;
 
 	/**
 	 * The feature id for the '<em><b>Generated Type</b></em>' containment reference list.
@@ -6630,7 +6658,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION_IN_OCL__GENERATED_TYPE = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION_FEATURE_COUNT + 4;
+	int EXPRESSION_IN_OCL__GENERATED_TYPE = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION_FEATURE_COUNT
+		+ 4;
 
 	/**
 	 * The number of structural features of the '<em>Expression In OCL</em>' class.
@@ -6641,7 +6670,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION_IN_OCL_FEATURE_COUNT = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION_FEATURE_COUNT + 5;
+	int EXPRESSION_IN_OCL_FEATURE_COUNT = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION_FEATURE_COUNT
+		+ 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.uml.impl.OCLExpressionImpl <em>OCL Expression</em>}' class.
@@ -6785,7 +6815,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_EXPRESSION__START_POSITION = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT + 0;
+	int OCL_EXPRESSION__START_POSITION = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
@@ -6796,7 +6827,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_EXPRESSION__END_POSITION = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT + 1;
+	int OCL_EXPRESSION__END_POSITION = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The number of structural features of the '<em>OCL Expression</em>' class.
@@ -6807,7 +6839,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_EXPRESSION_FEATURE_COUNT = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT + 2;
+	int OCL_EXPRESSION_FEATURE_COUNT = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.uml.impl.CallExpImpl <em>Call Exp</em>}' class.
@@ -7437,7 +7470,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NAVIGATION_CALL_EXP__NAVIGATION_SOURCE = FEATURE_CALL_EXP_FEATURE_COUNT + 1;
+	int NAVIGATION_CALL_EXP__NAVIGATION_SOURCE = FEATURE_CALL_EXP_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The number of structural features of the '<em>Navigation Call Exp</em>' class.
@@ -7680,7 +7714,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS = NAVIGATION_CALL_EXP_FEATURE_COUNT + 0;
+	int ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS = NAVIGATION_CALL_EXP_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The number of structural features of the '<em>Association Class Call Exp</em>' class.
@@ -7691,7 +7726,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_CLASS_CALL_EXP_FEATURE_COUNT = NAVIGATION_CALL_EXP_FEATURE_COUNT + 1;
+	int ASSOCIATION_CLASS_CALL_EXP_FEATURE_COUNT = NAVIGATION_CALL_EXP_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.uml.impl.LiteralExpImpl <em>Literal Exp</em>}' class.
@@ -8189,7 +8225,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT + 0;
+	int BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The number of structural features of the '<em>Boolean Literal Exp</em>' class.
@@ -8200,7 +8237,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_LITERAL_EXP_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT + 1;
+	int BOOLEAN_LITERAL_EXP_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.uml.impl.CollectionLiteralPartImpl <em>Collection Literal Part</em>}' class.
@@ -8344,7 +8382,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_LITERAL_PART_FEATURE_COUNT = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT + 0;
+	int COLLECTION_LITERAL_PART_FEATURE_COUNT = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.uml.impl.CollectionItemImpl <em>Collection Item</em>}' class.
@@ -8499,7 +8538,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_ITEM_FEATURE_COUNT = COLLECTION_LITERAL_PART_FEATURE_COUNT + 1;
+	int COLLECTION_ITEM_FEATURE_COUNT = COLLECTION_LITERAL_PART_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.uml.impl.CollectionLiteralExpImpl <em>Collection Literal Exp</em>}' class.
@@ -8864,7 +8904,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_RANGE_FEATURE_COUNT = COLLECTION_LITERAL_PART_FEATURE_COUNT + 2;
+	int COLLECTION_RANGE_FEATURE_COUNT = COLLECTION_LITERAL_PART_FEATURE_COUNT
+		+ 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.uml.impl.EnumLiteralExpImpl <em>Enum Literal Exp</em>}' class.
@@ -9406,7 +9447,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUMERIC_LITERAL_EXP_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT + 0;
+	int NUMERIC_LITERAL_EXP_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.uml.impl.IntegerLiteralExpImpl <em>Integer Literal Exp</em>}' class.
@@ -9572,7 +9614,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INTEGER_LITERAL_EXP__INTEGER_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 0;
+	int INTEGER_LITERAL_EXP__INTEGER_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The feature id for the '<em><b>Extended Integer Symbol</b></em>' attribute.
@@ -9582,7 +9625,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INTEGER_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 1;
+	int INTEGER_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The feature id for the '<em><b>Long Symbol</b></em>' attribute.
@@ -9592,7 +9636,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INTEGER_LITERAL_EXP__LONG_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 2;
+	int INTEGER_LITERAL_EXP__LONG_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT
+		+ 2;
 
 	/**
 	 * The number of structural features of the '<em>Integer Literal Exp</em>' class.
@@ -9603,7 +9648,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INTEGER_LITERAL_EXP_FEATURE_COUNT = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 3;
+	int INTEGER_LITERAL_EXP_FEATURE_COUNT = NUMERIC_LITERAL_EXP_FEATURE_COUNT
+		+ 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.uml.impl.UnlimitedNaturalLiteralExpImpl <em>Unlimited Natural Literal Exp</em>}' class.
@@ -9769,7 +9815,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 0;
+	int UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The feature id for the '<em><b>Unlimited</b></em>' attribute.
@@ -9780,7 +9827,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 1;
+	int UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED = NUMERIC_LITERAL_EXP_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The feature id for the '<em><b>Extended Integer Symbol</b></em>' attribute.
@@ -9790,7 +9838,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 2;
+	int UNLIMITED_NATURAL_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT
+		+ 2;
 
 	/**
 	 * The feature id for the '<em><b>Long Symbol</b></em>' attribute.
@@ -9800,7 +9849,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP__LONG_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 3;
+	int UNLIMITED_NATURAL_LITERAL_EXP__LONG_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT
+		+ 3;
 
 	/**
 	 * The number of structural features of the '<em>Unlimited Natural Literal Exp</em>' class.
@@ -9811,7 +9861,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP_FEATURE_COUNT = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 4;
+	int UNLIMITED_NATURAL_LITERAL_EXP_FEATURE_COUNT = NUMERIC_LITERAL_EXP_FEATURE_COUNT
+		+ 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.uml.impl.InvalidLiteralExpImpl <em>Invalid Literal Exp</em>}' class.
@@ -11458,7 +11509,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CALL_EXP__REFERRED_OPERATION = FEATURE_CALL_EXP_FEATURE_COUNT + 1;
+	int OPERATION_CALL_EXP__REFERRED_OPERATION = FEATURE_CALL_EXP_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The feature id for the '<em><b>Operation Code</b></em>' attribute.
@@ -11712,7 +11764,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CALL_EXP__REFERRED_PROPERTY = NAVIGATION_CALL_EXP_FEATURE_COUNT + 0;
+	int PROPERTY_CALL_EXP__REFERRED_PROPERTY = NAVIGATION_CALL_EXP_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The number of structural features of the '<em>Property Call Exp</em>' class.
@@ -12243,7 +12296,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_LITERAL_EXP__STRING_SYMBOL = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT + 0;
+	int STRING_LITERAL_EXP__STRING_SYMBOL = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The number of structural features of the '<em>String Literal Exp</em>' class.
@@ -12254,7 +12308,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_LITERAL_EXP_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT + 1;
+	int STRING_LITERAL_EXP_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.uml.impl.TupleLiteralExpImpl <em>Tuple Literal Exp</em>}' class.
@@ -12575,7 +12630,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__START_POSITION = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT + 0;
+	int TUPLE_LITERAL_PART__START_POSITION = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
@@ -12586,7 +12642,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__END_POSITION = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT + 1;
+	int TUPLE_LITERAL_PART__END_POSITION = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The feature id for the '<em><b>Type Start Position</b></em>' attribute.
@@ -12597,7 +12654,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__TYPE_START_POSITION = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT + 2;
+	int TUPLE_LITERAL_PART__TYPE_START_POSITION = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 2;
 
 	/**
 	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
@@ -12608,7 +12666,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__TYPE_END_POSITION = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT + 3;
+	int TUPLE_LITERAL_PART__TYPE_END_POSITION = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 3;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -12619,7 +12678,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__VALUE = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT + 4;
+	int TUPLE_LITERAL_PART__VALUE = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 4;
 
 	/**
 	 * The feature id for the '<em><b>Attribute</b></em>' reference.
@@ -12630,7 +12690,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__ATTRIBUTE = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT + 5;
+	int TUPLE_LITERAL_PART__ATTRIBUTE = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 5;
 
 	/**
 	 * The number of structural features of the '<em>Tuple Literal Part</em>' class.
@@ -12641,7 +12702,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART_FEATURE_COUNT = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT + 6;
+	int TUPLE_LITERAL_PART_FEATURE_COUNT = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.uml.impl.TypeExpImpl <em>Type Exp</em>}' class.
@@ -12984,7 +13046,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION = OCL_EXPRESSION_FEATURE_COUNT + 0;
+	int UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION = OCL_EXPRESSION_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
@@ -12995,7 +13058,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION = OCL_EXPRESSION_FEATURE_COUNT + 1;
+	int UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION = OCL_EXPRESSION_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The number of structural features of the '<em>Unspecified Value Exp</em>' class.
@@ -13150,7 +13214,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE__START_POSITION = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT + 0;
+	int VARIABLE__START_POSITION = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
@@ -13161,7 +13226,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE__END_POSITION = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT + 1;
+	int VARIABLE__END_POSITION = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The feature id for the '<em><b>Type Start Position</b></em>' attribute.
@@ -13172,7 +13238,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE__TYPE_START_POSITION = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT + 2;
+	int VARIABLE__TYPE_START_POSITION = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 2;
 
 	/**
 	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
@@ -13183,7 +13250,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE__TYPE_END_POSITION = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT + 3;
+	int VARIABLE__TYPE_END_POSITION = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 3;
 
 	/**
 	 * The feature id for the '<em><b>Init Expression</b></em>' containment reference.
@@ -13194,7 +13262,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE__INIT_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT + 4;
+	int VARIABLE__INIT_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 4;
 
 	/**
 	 * The feature id for the '<em><b>Represented Parameter</b></em>' reference.
@@ -13205,7 +13274,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE__REPRESENTED_PARAMETER = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT + 5;
+	int VARIABLE__REPRESENTED_PARAMETER = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 5;
 
 	/**
 	 * The number of structural features of the '<em>Variable</em>' class.
@@ -13216,7 +13286,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_FEATURE_COUNT = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT + 6;
+	int VARIABLE_FEATURE_COUNT = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.uml.impl.VariableExpImpl <em>Variable Exp</em>}' class.
@@ -13529,6 +13600,18 @@ public interface UMLPackage
 	int TEMPLATE_PARAMETER_TYPE__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__VISIBILITY;
 
 	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER_TYPE__OWNED_RULE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_RULE;
+
+	/**
 	 * The feature id for the '<em><b>Element Import</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -13551,18 +13634,6 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int TEMPLATE_PARAMETER_TYPE__PACKAGE_IMPORT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__PACKAGE_IMPORT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * @since 3.0
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_TYPE__OWNED_RULE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
@@ -13673,18 +13744,6 @@ public interface UMLPackage
 	int TEMPLATE_PARAMETER_TYPE__PACKAGE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * @since 3.0
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_TYPE__OWNED_TEMPLATE_SIGNATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
 	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -13695,6 +13754,18 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int TEMPLATE_PARAMETER_TYPE__TEMPLATE_BINDING = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER_TYPE__OWNED_TEMPLATE_SIGNATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_TEMPLATE_SIGNATURE;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -13872,7 +13943,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_TYPE__SPECIFICATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT + 0;
+	int TEMPLATE_PARAMETER_TYPE__SPECIFICATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
@@ -13884,7 +13956,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_TYPE__OWNED_OPERATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT + 1;
+	int TEMPLATE_PARAMETER_TYPE__OWNED_OPERATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The number of structural features of the '<em>Template Parameter Type</em>' class.
@@ -13896,7 +13969,8 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_TYPE_FEATURE_COUNT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT + 2;
+	int TEMPLATE_PARAMETER_TYPE_FEATURE_COUNT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT
+		+ 2;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.uml.AnyType <em>Any Type</em>}'.

@@ -28,10 +28,10 @@ import org.eclipse.uml2.uml.Classifier;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.uml.impl.TypeExpImpl#getReferredType <em>Referred Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -178,7 +178,8 @@ public class TypeExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.TypeExp.class) {
 			switch (derivedFeatureID) {
 				case UMLPackage.TYPE_EXP__REFERRED_TYPE :
@@ -196,7 +197,8 @@ public class TypeExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.TypeExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.TYPE_EXP__REFERRED_TYPE :

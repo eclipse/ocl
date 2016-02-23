@@ -134,8 +134,8 @@ public class OCLUMLPlugin
 	public static boolean shouldTrace(String option) {
 		if (getPlugin() != null) {
 			if (getPlugin().isDebugging()) {
-				return Boolean.TRUE.toString().equalsIgnoreCase(
-					Platform.getDebugOption(option));
+				return Boolean.TRUE.toString()
+					.equalsIgnoreCase(Platform.getDebugOption(option));
 			}
 
 			return false;

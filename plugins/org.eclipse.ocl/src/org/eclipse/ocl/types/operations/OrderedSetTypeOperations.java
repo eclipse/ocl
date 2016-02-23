@@ -30,10 +30,10 @@ import org.eclipse.ocl.util.OCLUtil;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.types.OrderedSetType#checkCollectionTypeName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Collection Type Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -72,8 +72,8 @@ public class OrderedSetTypeOperations
 			C elementType = orderedSetType.getElementType();
 
 			if (elementType != null) {
-				String elementTypeName = env.getUMLReflection().getName(
-					elementType);
+				String elementTypeName = env.getUMLReflection()
+					.getName(elementType);
 
 				result = ("OrderedSet(" + elementTypeName + ")").equals(name); //$NON-NLS-1$ //$NON-NLS-2$
 			}
@@ -82,15 +82,15 @@ public class OrderedSetTypeOperations
 		if (!result) {
 			if (diagnostics != null) {
 				// TODO: Specific message
-				diagnostics
-					.add(new BasicDiagnostic(
-						Diagnostic.ERROR,
-						TypesValidator.DIAGNOSTIC_SOURCE,
-						TypesValidator.ORDERED_SET_TYPE__COLLECTION_TYPE_NAME,
-						org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE
-							.getString(
-								"_UI_GenericInvariant_diagnostic", new Object[]{"checkCollectionTypeName", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(orderedSetType, context)}), //$NON-NLS-1$ //$NON-NLS-2$
-						new Object[]{orderedSetType}));
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+					TypesValidator.DIAGNOSTIC_SOURCE,
+					TypesValidator.ORDERED_SET_TYPE__COLLECTION_TYPE_NAME,
+					org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString(
+						"_UI_GenericInvariant_diagnostic", //$NON-NLS-1$
+						new Object[]{"checkCollectionTypeName", //$NON-NLS-1$
+							org.eclipse.emf.ecore.util.EObjectValidator
+								.getObjectLabel(orderedSetType, context)}),
+					new Object[]{orderedSetType}));
 			}
 		}
 		return result;

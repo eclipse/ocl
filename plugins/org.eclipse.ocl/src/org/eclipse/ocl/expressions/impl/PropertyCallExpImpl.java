@@ -29,10 +29,10 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.impl.PropertyCallExpImpl#getReferredProperty <em>Referred Property</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -72,18 +72,28 @@ public class PropertyCallExpImpl<C, P>
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * This is specialized for the more specific type known in this context.
+	 * @generated
+	 */
+	@Override
+	public void setNavigationSource(P newNavigationSource) {
+		super.setNavigationSource(newNavigationSource);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	public P getReferredProperty() {
-		if (referredProperty != null && ((EObject) referredProperty).eIsProxy()) {
+		if (referredProperty != null
+			&& ((EObject) referredProperty).eIsProxy()) {
 			InternalEObject oldReferredProperty = (InternalEObject) referredProperty;
 			referredProperty = (P) eResolveProxy(oldReferredProperty);
 			if (referredProperty != oldReferredProperty) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(
-						this,
-						Notification.RESOLVE,
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 						ExpressionsPackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY,
 						oldReferredProperty, referredProperty));
 			}

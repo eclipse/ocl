@@ -27,10 +27,10 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.impl.RealLiteralExpImpl#getRealSymbol <em>Real Symbol</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -96,8 +96,8 @@ public class RealLiteralExpImpl<C>
 		realSymbol = newRealSymbol;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				ExpressionsPackage.REAL_LITERAL_EXP__REAL_SYMBOL,
-				oldRealSymbol, realSymbol));
+				ExpressionsPackage.REAL_LITERAL_EXP__REAL_SYMBOL, oldRealSymbol,
+				realSymbol));
 	}
 
 	/**

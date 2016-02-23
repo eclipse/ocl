@@ -39,12 +39,12 @@ import org.eclipse.uml2.uml.Classifier;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.uml.impl.CollectionLiteralExpImpl#getKind <em>Kind</em>}</li>
  *   <li>{@link org.eclipse.ocl.uml.impl.CollectionLiteralExpImpl#getPart <em>Part</em>}</li>
  *   <li>{@link org.eclipse.ocl.uml.impl.CollectionLiteralExpImpl#isSimpleRange <em>Simple Range</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -271,9 +271,8 @@ public class CollectionLiteralExpImpl
 				return;
 			case UMLPackage.COLLECTION_LITERAL_EXP__PART :
 				getPart().clear();
-				getPart()
-					.addAll(
-						(Collection<? extends CollectionLiteralPart<Classifier>>) newValue);
+				getPart().addAll(
+					(Collection<? extends CollectionLiteralPart<Classifier>>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -321,7 +320,8 @@ public class CollectionLiteralExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.CollectionLiteralExp.class) {
 			switch (derivedFeatureID) {
 				case UMLPackage.COLLECTION_LITERAL_EXP__KIND :
@@ -343,7 +343,8 @@ public class CollectionLiteralExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.CollectionLiteralExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND :

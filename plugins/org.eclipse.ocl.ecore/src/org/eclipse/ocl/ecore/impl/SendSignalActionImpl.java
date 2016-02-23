@@ -25,10 +25,10 @@ import org.eclipse.ocl.ecore.SendSignalAction;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.ecore.impl.SendSignalActionImpl#getSignal <em>Signal</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

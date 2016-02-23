@@ -42,6 +42,7 @@ import org.eclipse.uml2.uml.internal.impl.TypedElementImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.uml.impl.TupleLiteralPartImpl#getStartPosition <em>Start Position</em>}</li>
  *   <li>{@link org.eclipse.ocl.uml.impl.TupleLiteralPartImpl#getEndPosition <em>End Position</em>}</li>
@@ -50,7 +51,6 @@ import org.eclipse.uml2.uml.internal.impl.TypedElementImpl;
  *   <li>{@link org.eclipse.ocl.uml.impl.TupleLiteralPartImpl#getValue <em>Value</em>}</li>
  *   <li>{@link org.eclipse.ocl.uml.impl.TupleLiteralPartImpl#getAttribute <em>Attribute</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -197,8 +197,8 @@ public class TupleLiteralPartImpl
 		startPosition = newStartPosition;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				UMLPackage.TUPLE_LITERAL_PART__START_POSITION,
-				oldStartPosition, startPosition));
+				UMLPackage.TUPLE_LITERAL_PART__START_POSITION, oldStartPosition,
+				startPosition));
 	}
 
 	/**
@@ -311,11 +311,13 @@ public class TupleLiteralPartImpl
 			if (value != null)
 				msgs = ((InternalEObject) value).eInverseRemove(this,
 					EOPPOSITE_FEATURE_BASE
-						- UMLPackage.TUPLE_LITERAL_PART__VALUE, null, msgs);
+						- UMLPackage.TUPLE_LITERAL_PART__VALUE,
+					null, msgs);
 			if (newValue != null)
 				msgs = ((InternalEObject) newValue).eInverseAdd(this,
 					EOPPOSITE_FEATURE_BASE
-						- UMLPackage.TUPLE_LITERAL_PART__VALUE, null, msgs);
+						- UMLPackage.TUPLE_LITERAL_PART__VALUE,
+					null, msgs);
 			msgs = basicSetValue(newValue, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -521,7 +523,8 @@ public class TupleLiteralPartImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == TypedElement.class) {
 			switch (derivedFeatureID) {
 				default :
@@ -573,7 +576,8 @@ public class TupleLiteralPartImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == TypedElement.class) {
 			switch (baseFeatureID) {
 				default :

@@ -24,5 +24,6 @@ import org.eclipse.uml2.uml.Classifier;
  * @generated
  */
 public interface FeatureCallExp
-		extends CallExp, org.eclipse.ocl.expressions.FeatureCallExp<Classifier> {
+		extends CallExp,
+		org.eclipse.ocl.expressions.FeatureCallExp<Classifier> {
 } // FeatureCallExp

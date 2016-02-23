@@ -24,11 +24,11 @@ import org.eclipse.ocl.utilities.Visitable;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.Variable#getInitExpression <em>Init Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.Variable#getRepresentedParameter <em>Represented Parameter</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.expressions.ExpressionsPackage#getVariable()
  * @model

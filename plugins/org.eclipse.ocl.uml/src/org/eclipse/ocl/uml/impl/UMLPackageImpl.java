@@ -482,8 +482,8 @@ public class UMLPackageImpl
 		// Obtain or create and register package
 		UMLPackageImpl theUMLPackage = (UMLPackageImpl) (EPackage.Registry.INSTANCE
 			.get(eNS_URI) instanceof UMLPackageImpl
-			? EPackage.Registry.INSTANCE.get(eNS_URI)
-			: new UMLPackageImpl());
+				? EPackage.Registry.INSTANCE.get(eNS_URI)
+				: new UMLPackageImpl());
 
 		isInited = true;
 
@@ -1028,8 +1028,8 @@ public class UMLPackageImpl
 	 * @generated
 	 */
 	public EReference getTemplateParameterType_OwnedOperation() {
-		return (EReference) templateParameterTypeEClass
-			.getEStructuralFeatures().get(0);
+		return (EReference) templateParameterTypeEClass.getEStructuralFeatures()
+			.get(0);
 	}
 
 	/**
@@ -1095,7 +1095,8 @@ public class UMLPackageImpl
 
 		expressionInOCLEClass = createEClass(EXPRESSION_IN_OCL);
 
-		associationClassCallExpEClass = createEClass(ASSOCIATION_CLASS_CALL_EXP);
+		associationClassCallExpEClass = createEClass(
+			ASSOCIATION_CLASS_CALL_EXP);
 
 		navigationCallExpEClass = createEClass(NAVIGATION_CALL_EXP);
 
@@ -1127,7 +1128,8 @@ public class UMLPackageImpl
 
 		numericLiteralExpEClass = createEClass(NUMERIC_LITERAL_EXP);
 
-		unlimitedNaturalLiteralExpEClass = createEClass(UNLIMITED_NATURAL_LITERAL_EXP);
+		unlimitedNaturalLiteralExpEClass = createEClass(
+			UNLIMITED_NATURAL_LITERAL_EXP);
 
 		invalidLiteralExpEClass = createEClass(INVALID_LITERAL_EXP);
 
@@ -1331,8 +1333,8 @@ public class UMLPackageImpl
 		expressionInOCLEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getNavigationCallExp());
 		associationClassCallExpEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theExpressionsPackage
-			.getAssociationClassCallExp());
+		g1 = createEGenericType(
+			theExpressionsPackage.getAssociationClassCallExp());
 		g2 = createEGenericType(theUMLPackage_1.getClassifier());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theUMLPackage_1.getProperty());
@@ -1390,14 +1392,15 @@ public class UMLPackageImpl
 		collectionItemEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theUMLPackage_1.getTypedElement());
 		collectionLiteralPartEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theExpressionsPackage
-			.getCollectionLiteralPart());
+		g1 = createEGenericType(
+			theExpressionsPackage.getCollectionLiteralPart());
 		g2 = createEGenericType(theUMLPackage_1.getClassifier());
 		g1.getETypeArguments().add(g2);
 		collectionLiteralPartEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getLiteralExp());
 		collectionLiteralExpEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theExpressionsPackage.getCollectionLiteralExp());
+		g1 = createEGenericType(
+			theExpressionsPackage.getCollectionLiteralExp());
 		g2 = createEGenericType(theUMLPackage_1.getClassifier());
 		g1.getETypeArguments().add(g2);
 		collectionLiteralExpEClass.getEGenericSuperTypes().add(g1);
@@ -1435,8 +1438,8 @@ public class UMLPackageImpl
 		numericLiteralExpEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getNumericLiteralExp());
 		unlimitedNaturalLiteralExpEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theExpressionsPackage
-			.getUnlimitedNaturalLiteralExp());
+		g1 = createEGenericType(
+			theExpressionsPackage.getUnlimitedNaturalLiteralExp());
 		g2 = createEGenericType(theUMLPackage_1.getClassifier());
 		g1.getETypeArguments().add(g2);
 		unlimitedNaturalLiteralExpEClass.getEGenericSuperTypes().add(g1);
@@ -1582,274 +1585,209 @@ public class UMLPackageImpl
 		templateParameterTypeEClass.getEGenericSuperTypes().add(g1);
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(anyTypeEClass, AnyType.class,
-			"AnyType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(
-			getAnyType_OwnedOperation(),
-			theUMLPackage_1.getOperation(),
-			null,
-			"ownedOperation", null, 0, -1, AnyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEClass(anyTypeEClass, AnyType.class, "AnyType", !IS_ABSTRACT, //$NON-NLS-1$
+			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAnyType_OwnedOperation(),
+			theUMLPackage_1.getOperation(), null, "ownedOperation", null, 0, -1, //$NON-NLS-1$
+			AnyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
 
-		initEClass(
-			voidTypeEClass,
-			VoidType.class,
-			"VoidType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(
-			getVoidType_OwnedOperation(),
-			theUMLPackage_1.getOperation(),
-			null,
-			"ownedOperation", null, 0, -1, VoidType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEClass(voidTypeEClass, VoidType.class, "VoidType", !IS_ABSTRACT, //$NON-NLS-1$
+			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getVoidType_OwnedOperation(),
+			theUMLPackage_1.getOperation(), null, "ownedOperation", null, 0, -1, //$NON-NLS-1$
+			VoidType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
 
-		initEClass(
-			invalidTypeEClass,
-			InvalidType.class,
-			"InvalidType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(
-			getInvalidType_OwnedOperation(),
-			theUMLPackage_1.getOperation(),
-			null,
-			"ownedOperation", null, 0, -1, InvalidType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEClass(invalidTypeEClass, InvalidType.class, "InvalidType", //$NON-NLS-1$
+			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getInvalidType_OwnedOperation(),
+			theUMLPackage_1.getOperation(), null, "ownedOperation", null, 0, -1, //$NON-NLS-1$
+			InvalidType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
 
-		initEClass(
-			elementTypeEClass,
-			ElementType.class,
-			"ElementType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(elementTypeEClass, ElementType.class, "ElementType", //$NON-NLS-1$
+			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			typeTypeEClass,
-			TypeType.class,
-			"TypeType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(
-			getTypeType_OwnedOperation(),
-			theUMLPackage_1.getOperation(),
-			null,
-			"ownedOperation", null, 0, -1, TypeType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEClass(typeTypeEClass, TypeType.class, "TypeType", !IS_ABSTRACT, //$NON-NLS-1$
+			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTypeType_OwnedOperation(),
+			theUMLPackage_1.getOperation(), null, "ownedOperation", null, 0, -1, //$NON-NLS-1$
+			TypeType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
 
-		initEClass(
-			messageTypeEClass,
-			MessageType.class,
-			"MessageType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(
-			getMessageType_OwnedOperation(),
-			theUMLPackage_1.getOperation(),
-			null,
-			"ownedOperation", null, 0, -1, MessageType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(
-			getMessageType_OwnedAttribute(),
-			theUMLPackage_1.getProperty(),
-			null,
-			"ownedAttribute", null, 0, -1, MessageType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEClass(messageTypeEClass, MessageType.class, "MessageType", //$NON-NLS-1$
+			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getMessageType_OwnedOperation(),
+			theUMLPackage_1.getOperation(), null, "ownedOperation", null, 0, -1, //$NON-NLS-1$
+			MessageType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		initEReference(getMessageType_OwnedAttribute(),
+			theUMLPackage_1.getProperty(), null, "ownedAttribute", null, 0, -1, //$NON-NLS-1$
+			MessageType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
 
-		initEClass(
-			primitiveTypeEClass,
-			PrimitiveType.class,
-			"PrimitiveType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(primitiveTypeEClass, PrimitiveType.class, "PrimitiveType", //$NON-NLS-1$
+			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			collectionTypeEClass,
-			CollectionType.class,
-			"CollectionType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(collectionTypeEClass, CollectionType.class, "CollectionType", //$NON-NLS-1$
+			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			tupleTypeEClass,
-			TupleType.class,
-			"TupleType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(tupleTypeEClass, TupleType.class, "TupleType", !IS_ABSTRACT, //$NON-NLS-1$
+			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(bagTypeEClass, BagType.class,
-			"BagType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(bagTypeEClass, BagType.class, "BagType", !IS_ABSTRACT, //$NON-NLS-1$
+			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(setTypeEClass, SetType.class,
-			"SetType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(setTypeEClass, SetType.class, "SetType", !IS_ABSTRACT, //$NON-NLS-1$
+			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			orderedSetTypeEClass,
-			OrderedSetType.class,
-			"OrderedSetType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(orderedSetTypeEClass, OrderedSetType.class, "OrderedSetType", //$NON-NLS-1$
+			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			sequenceTypeEClass,
-			SequenceType.class,
-			"SequenceType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(sequenceTypeEClass, SequenceType.class, "SequenceType", //$NON-NLS-1$
+			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			expressionInOCLEClass,
-			ExpressionInOCL.class,
-			"ExpressionInOCL", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(expressionInOCLEClass, ExpressionInOCL.class,
+			"ExpressionInOCL", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
+			IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			associationClassCallExpEClass,
-			AssociationClassCallExp.class,
-			"AssociationClassCallExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(associationClassCallExpEClass, AssociationClassCallExp.class,
+			"AssociationClassCallExp", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
+			IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			navigationCallExpEClass,
-			NavigationCallExp.class,
-			"NavigationCallExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(navigationCallExpEClass, NavigationCallExp.class,
+			"NavigationCallExp", IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
+			IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			featureCallExpEClass,
-			FeatureCallExp.class,
-			"FeatureCallExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(featureCallExpEClass, FeatureCallExp.class, "FeatureCallExp", //$NON-NLS-1$
+			IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(callExpEClass, CallExp.class,
-			"CallExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(callExpEClass, CallExp.class, "CallExp", IS_ABSTRACT, //$NON-NLS-1$
+			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			oclExpressionEClass,
-			OCLExpression.class,
-			"OCLExpression", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(oclExpressionEClass, OCLExpression.class, "OCLExpression", //$NON-NLS-1$
+			IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			booleanLiteralExpEClass,
-			BooleanLiteralExp.class,
-			"BooleanLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(booleanLiteralExpEClass, BooleanLiteralExp.class,
+			"BooleanLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
+			IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			primitiveLiteralExpEClass,
-			PrimitiveLiteralExp.class,
-			"PrimitiveLiteralExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(primitiveLiteralExpEClass, PrimitiveLiteralExp.class,
+			"PrimitiveLiteralExp", IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
+			IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			literalExpEClass,
-			LiteralExp.class,
-			"LiteralExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(literalExpEClass, LiteralExp.class, "LiteralExp", //$NON-NLS-1$
+			IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			collectionItemEClass,
-			CollectionItem.class,
-			"CollectionItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(collectionItemEClass, CollectionItem.class, "CollectionItem", //$NON-NLS-1$
+			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			collectionLiteralPartEClass,
-			CollectionLiteralPart.class,
-			"CollectionLiteralPart", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(collectionLiteralPartEClass, CollectionLiteralPart.class,
+			"CollectionLiteralPart", IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
+			IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			collectionLiteralExpEClass,
-			CollectionLiteralExp.class,
-			"CollectionLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(collectionLiteralExpEClass, CollectionLiteralExp.class,
+			"CollectionLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
+			IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			collectionRangeEClass,
-			CollectionRange.class,
-			"CollectionRange", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(collectionRangeEClass, CollectionRange.class,
+			"CollectionRange", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
+			IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			enumLiteralExpEClass,
-			EnumLiteralExp.class,
-			"EnumLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(enumLiteralExpEClass, EnumLiteralExp.class, "EnumLiteralExp", //$NON-NLS-1$
+			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(ifExpEClass, IfExp.class,
-			"IfExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(ifExpEClass, IfExp.class, "IfExp", !IS_ABSTRACT, //$NON-NLS-1$
+			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			integerLiteralExpEClass,
-			IntegerLiteralExp.class,
-			"IntegerLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(integerLiteralExpEClass, IntegerLiteralExp.class,
+			"IntegerLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
+			IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			numericLiteralExpEClass,
-			NumericLiteralExp.class,
-			"NumericLiteralExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(numericLiteralExpEClass, NumericLiteralExp.class,
+			"NumericLiteralExp", IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
+			IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			unlimitedNaturalLiteralExpEClass,
-			UnlimitedNaturalLiteralExp.class,
-			"UnlimitedNaturalLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(unlimitedNaturalLiteralExpEClass,
+			UnlimitedNaturalLiteralExp.class, "UnlimitedNaturalLiteralExp", //$NON-NLS-1$
+			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			invalidLiteralExpEClass,
-			InvalidLiteralExp.class,
-			"InvalidLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(invalidLiteralExpEClass, InvalidLiteralExp.class,
+			"InvalidLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
+			IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			iterateExpEClass,
-			IterateExp.class,
-			"IterateExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(iterateExpEClass, IterateExp.class, "IterateExp", //$NON-NLS-1$
+			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(loopExpEClass, LoopExp.class,
-			"LoopExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(loopExpEClass, LoopExp.class, "LoopExp", IS_ABSTRACT, //$NON-NLS-1$
+			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			iteratorExpEClass,
-			IteratorExp.class,
-			"IteratorExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(iteratorExpEClass, IteratorExp.class, "IteratorExp", //$NON-NLS-1$
+			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(letExpEClass, LetExp.class,
-			"LetExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(letExpEClass, LetExp.class, "LetExp", !IS_ABSTRACT, //$NON-NLS-1$
+			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			messageExpEClass,
-			MessageExp.class,
-			"MessageExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(messageExpEClass, MessageExp.class, "MessageExp", //$NON-NLS-1$
+			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			nullLiteralExpEClass,
-			NullLiteralExp.class,
-			"NullLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(nullLiteralExpEClass, NullLiteralExp.class, "NullLiteralExp", //$NON-NLS-1$
+			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			operationCallExpEClass,
-			OperationCallExp.class,
-			"OperationCallExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(operationCallExpEClass, OperationCallExp.class,
+			"OperationCallExp", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
+			IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			propertyCallExpEClass,
-			PropertyCallExp.class,
-			"PropertyCallExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(propertyCallExpEClass, PropertyCallExp.class,
+			"PropertyCallExp", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
+			IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			realLiteralExpEClass,
-			RealLiteralExp.class,
-			"RealLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(realLiteralExpEClass, RealLiteralExp.class, "RealLiteralExp", //$NON-NLS-1$
+			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			stateExpEClass,
-			StateExp.class,
-			"StateExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(stateExpEClass, StateExp.class, "StateExp", !IS_ABSTRACT, //$NON-NLS-1$
+			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			stringLiteralExpEClass,
-			StringLiteralExp.class,
-			"StringLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(stringLiteralExpEClass, StringLiteralExp.class,
+			"StringLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
+			IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			tupleLiteralExpEClass,
-			TupleLiteralExp.class,
-			"TupleLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(tupleLiteralExpEClass, TupleLiteralExp.class,
+			"TupleLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
+			IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			tupleLiteralPartEClass,
-			TupleLiteralPart.class,
-			"TupleLiteralPart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(tupleLiteralPartEClass, TupleLiteralPart.class,
+			"TupleLiteralPart", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
+			IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(typeExpEClass, TypeExp.class,
-			"TypeExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(typeExpEClass, TypeExp.class, "TypeExp", !IS_ABSTRACT, //$NON-NLS-1$
+			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			unspecifiedValueExpEClass,
-			UnspecifiedValueExp.class,
-			"UnspecifiedValueExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(unspecifiedValueExpEClass, UnspecifiedValueExp.class,
+			"UnspecifiedValueExp", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
+			IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			variableEClass,
-			Variable.class,
-			"Variable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(variableEClass, Variable.class, "Variable", !IS_ABSTRACT, //$NON-NLS-1$
+			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			variableExpEClass,
-			VariableExp.class,
-			"VariableExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(variableExpEClass, VariableExp.class, "VariableExp", //$NON-NLS-1$
+			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(
-			templateParameterTypeEClass,
-			TemplateParameterType.class,
-			"TemplateParameterType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(
-			getTemplateParameterType_OwnedOperation(),
-			theUMLPackage_1.getOperation(),
-			null,
-			"ownedOperation", null, 0, -1, TemplateParameterType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEClass(templateParameterTypeEClass, TemplateParameterType.class,
+			"TemplateParameterType", !IS_ABSTRACT, !IS_INTERFACE, //$NON-NLS-1$
+			IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTemplateParameterType_OwnedOperation(),
+			theUMLPackage_1.getOperation(), null, "ownedOperation", null, 0, -1, //$NON-NLS-1$
+			TemplateParameterType.class, !IS_TRANSIENT, !IS_VOLATILE,
+			IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -1870,7 +1808,7 @@ public class UMLPackageImpl
 	 * @generated
 	 */
 	protected void createSubsetsAnnotations() {
-		String source = "subsets"; //$NON-NLS-1$		
+		String source = "subsets"; //$NON-NLS-1$	
 		addAnnotation(getAnyType_OwnedOperation(), source, new String[]{},
 			new URI[]{URI.createURI(org.eclipse.uml2.uml.UMLPackage.eNS_URI)
 				.appendFragment("//Classifier/feature") //$NON-NLS-1$
@@ -1909,13 +1847,13 @@ public class UMLPackageImpl
 	 * @generated
 	 */
 	protected void createExtendedMetaDataAnnotations() {
-		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData"; //$NON-NLS-1$								
-		addAnnotation(expressionInOCLEClass, source, new String[]{
-			"name", "ExpressionInOcl" //$NON-NLS-1$ //$NON-NLS-2$
-		});
-		addAnnotation(oclExpressionEClass, source, new String[]{
-			"name", "OclExpression" //$NON-NLS-1$ //$NON-NLS-2$
-		});
+		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData"; //$NON-NLS-1$	
+		addAnnotation(expressionInOCLEClass, source,
+			new String[]{"name", "ExpressionInOcl" //$NON-NLS-1$ //$NON-NLS-2$
+			});
+		addAnnotation(oclExpressionEClass, source,
+			new String[]{"name", "OclExpression" //$NON-NLS-1$ //$NON-NLS-2$
+			});
 	}
 
 	/**
@@ -1925,10 +1863,10 @@ public class UMLPackageImpl
 	 * @generated
 	 */
 	protected void createEcoreAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$										
-		addAnnotation(oclExpressionEClass, source, new String[]{
-			"constraints", "has_type" //$NON-NLS-1$ //$NON-NLS-2$
-		});
+		String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$	
+		addAnnotation(oclExpressionEClass, source,
+			new String[]{"constraints", "has_type" //$NON-NLS-1$ //$NON-NLS-2$
+			});
 	}
 
 } //UMLPackageImpl

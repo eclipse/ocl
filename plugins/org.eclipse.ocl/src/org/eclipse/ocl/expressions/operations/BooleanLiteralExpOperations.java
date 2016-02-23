@@ -31,10 +31,10 @@ import org.eclipse.ocl.util.OCLUtil;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.BooleanLiteralExp#checkBooleanType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Boolean Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -62,8 +62,8 @@ public class BooleanLiteralExpOperations
 	 * @generated NOT
 	 */
 	public static <C> boolean checkBooleanType(
-			BooleanLiteralExp<C> booleanLiteralExp,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
+			BooleanLiteralExp<C> booleanLiteralExp, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		boolean result = true;
 		Environment<?, C, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
 			.getValidationEnvironment(booleanLiteralExp, context);

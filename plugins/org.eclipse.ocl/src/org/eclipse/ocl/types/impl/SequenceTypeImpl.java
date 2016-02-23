@@ -24,8 +24,6 @@ import org.eclipse.ocl.types.operations.SequenceTypeOperations;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Sequence Type</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
@@ -59,13 +57,24 @@ public class SequenceTypeImpl<C, O>
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * This is specialized for the more specific type known in this context.
+	 * @generated
+	 */
+	@Override
+	public void setElementType(C newElementType) {
+		super.setElementType(newElementType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public boolean checkCollectionTypeName(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return SequenceTypeOperations.checkCollectionTypeName(this,
-			diagnostics, context);
+		return SequenceTypeOperations.checkCollectionTypeName(this, diagnostics,
+			context);
 	}
 
 	/**

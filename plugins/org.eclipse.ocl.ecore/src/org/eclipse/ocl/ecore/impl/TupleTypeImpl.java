@@ -40,10 +40,10 @@ import org.eclipse.ocl.utilities.PredefinedType;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.ecore.impl.TupleTypeImpl#isSerializable <em>Serializable</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -252,7 +252,8 @@ public class TupleTypeImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == EDataType.class) {
 			switch (derivedFeatureID) {
 				case EcorePackage.TUPLE_TYPE__SERIALIZABLE :
@@ -282,7 +283,8 @@ public class TupleTypeImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == EDataType.class) {
 			switch (baseFeatureID) {
 				case org.eclipse.emf.ecore.EcorePackage.EDATA_TYPE__SERIALIZABLE :
@@ -334,8 +336,8 @@ public class TupleTypeImpl
 			StringBuffer myName = new StringBuffer();
 			myName.append(SINGLETON_NAME).append('(');
 
-			for (Iterator<EStructuralFeature> iter = oclProperties().iterator(); iter
-				.hasNext();) {
+			for (Iterator<EStructuralFeature> iter = oclProperties()
+				.iterator(); iter.hasNext();) {
 				EStructuralFeature next = iter.next();
 
 				myName.append(next.getName());

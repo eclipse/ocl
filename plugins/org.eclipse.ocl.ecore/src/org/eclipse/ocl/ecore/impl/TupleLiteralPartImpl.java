@@ -42,6 +42,7 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.ecore.impl.TupleLiteralPartImpl#getStartPosition <em>Start Position</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.TupleLiteralPartImpl#getEndPosition <em>End Position</em>}</li>
@@ -50,7 +51,6 @@ import org.eclipse.ocl.utilities.Visitor;
  *   <li>{@link org.eclipse.ocl.ecore.impl.TupleLiteralPartImpl#getValue <em>Value</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.TupleLiteralPartImpl#getAttribute <em>Attribute</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -308,13 +308,17 @@ public class TupleLiteralPartImpl
 		if (newValue != value) {
 			NotificationChain msgs = null;
 			if (value != null)
-				msgs = ((InternalEObject) value).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE
-						- EcorePackage.TUPLE_LITERAL_PART__VALUE, null, msgs);
+				msgs = ((InternalEObject) value)
+					.eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+							- EcorePackage.TUPLE_LITERAL_PART__VALUE,
+						null, msgs);
 			if (newValue != null)
-				msgs = ((InternalEObject) newValue).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE
-						- EcorePackage.TUPLE_LITERAL_PART__VALUE, null, msgs);
+				msgs = ((InternalEObject) newValue)
+					.eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE
+							- EcorePackage.TUPLE_LITERAL_PART__VALUE,
+						null, msgs);
 			msgs = basicSetValue(newValue, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -526,7 +530,8 @@ public class TupleLiteralPartImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == TypedElement.class) {
 			switch (derivedFeatureID) {
 				default :
@@ -578,7 +583,8 @@ public class TupleLiteralPartImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == TypedElement.class) {
 			switch (baseFeatureID) {
 				default :

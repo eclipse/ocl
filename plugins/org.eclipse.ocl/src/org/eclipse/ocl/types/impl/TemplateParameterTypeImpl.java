@@ -24,10 +24,10 @@ import org.eclipse.ocl.types.TypesPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.types.impl.TemplateParameterTypeImpl#getSpecification <em>Specification</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

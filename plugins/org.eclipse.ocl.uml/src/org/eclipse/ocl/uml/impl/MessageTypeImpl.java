@@ -54,6 +54,7 @@ import org.eclipse.uml2.uml.internal.impl.ClassifierImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.uml.impl.MessageTypeImpl#getReferredOperation <em>Referred Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.uml.impl.MessageTypeImpl#getReferredSignal <em>Referred Signal</em>}</li>
@@ -62,7 +63,6 @@ import org.eclipse.uml2.uml.internal.impl.ClassifierImpl;
  *   <li>{@link org.eclipse.ocl.uml.impl.MessageTypeImpl#getOwnedOperations <em>Owned Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.uml.impl.MessageTypeImpl#getOwnedAttributes <em>Owned Attribute</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -237,14 +237,11 @@ public class MessageTypeImpl
 				this,
 				org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__FEATURE);
 			if (features == null) {
-				cache
-					.put(
-						eResource,
-						this,
-						org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__FEATURE,
-						features = new DerivedUnionEObjectEList<Feature>(
-							Feature.class, this,
-							UMLPackage.MESSAGE_TYPE__FEATURE, FEATURE_ESUBSETS));
+				cache.put(eResource, this,
+					org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__FEATURE,
+					features = new DerivedUnionEObjectEList<Feature>(
+						Feature.class, this, UMLPackage.MESSAGE_TYPE__FEATURE,
+						FEATURE_ESUBSETS));
 			}
 			return features;
 		}
@@ -272,7 +269,8 @@ public class MessageTypeImpl
 	public EList<Operation> getOwnedOperations() {
 		if (ownedOperations == null) {
 			ownedOperations = new EObjectContainmentEList<Operation>(
-				Operation.class, this, UMLPackage.MESSAGE_TYPE__OWNED_OPERATION);
+				Operation.class, this,
+				UMLPackage.MESSAGE_TYPE__OWNED_OPERATION);
 		}
 		return ownedOperations;
 	}
@@ -283,9 +281,10 @@ public class MessageTypeImpl
 	 * @generated
 	 */
 	public Operation getOwnedOperation(String name,
-			EList<String> ownedParameterNames, EList<Type> ownedParameterTypes) {
-		return getOwnedOperation(name, ownedParameterNames,
-			ownedParameterTypes, false);
+			EList<String> ownedParameterNames,
+			EList<Type> ownedParameterTypes) {
+		return getOwnedOperation(name, ownedParameterNames, ownedParameterTypes,
+			false);
 	}
 
 	/**
@@ -306,20 +305,19 @@ public class MessageTypeImpl
 			int ownedParameterListSize = ownedParameterList.size();
 			if (ownedParameterNames != null
 				&& ownedParameterNames.size() != ownedParameterListSize
-				|| (ownedParameterTypes != null && ownedParameterTypes.size() != ownedParameterListSize))
+				|| (ownedParameterTypes != null
+					&& ownedParameterTypes.size() != ownedParameterListSize))
 				continue ownedOperationLoop;
 			for (int j = 0; j < ownedParameterListSize; j++) {
 				Parameter ownedParameter = ownedParameterList.get(j);
-				if (ownedParameterNames != null
-					&& !(ignoreCase
-						? (ownedParameterNames.get(j))
-							.equalsIgnoreCase(ownedParameter.getName())
-						: ownedParameterNames.get(j).equals(
-							ownedParameter.getName())))
+				if (ownedParameterNames != null && !(ignoreCase
+					? (ownedParameterNames.get(j))
+						.equalsIgnoreCase(ownedParameter.getName())
+					: ownedParameterNames.get(j)
+						.equals(ownedParameter.getName())))
 					continue ownedOperationLoop;
-				if (ownedParameterTypes != null
-					&& !ownedParameterTypes.get(j).equals(
-						ownedParameter.getType()))
+				if (ownedParameterTypes != null && !ownedParameterTypes.get(j)
+					.equals(ownedParameter.getType()))
 					continue ownedOperationLoop;
 			}
 			return ownedOperation;
@@ -397,15 +395,12 @@ public class MessageTypeImpl
 				this,
 				org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__ATTRIBUTE);
 			if (attributes == null) {
-				cache
-					.put(
-						eResource,
-						this,
-						org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__ATTRIBUTE,
-						attributes = new DerivedUnionEObjectEList<Property>(
-							Property.class, this,
-							UMLPackage.MESSAGE_TYPE__ATTRIBUTE,
-							ATTRIBUTE_ESUBSETS));
+				cache.put(eResource, this,
+					org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__ATTRIBUTE,
+					attributes = new DerivedUnionEObjectEList<Property>(
+						Property.class, this,
+						UMLPackage.MESSAGE_TYPE__ATTRIBUTE,
+						ATTRIBUTE_ESUBSETS));
 			}
 			return attributes;
 		}
@@ -421,7 +416,8 @@ public class MessageTypeImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] ATTRIBUTE_ESUBSETS = new int[]{UMLPackage.MESSAGE_TYPE__OWNED_ATTRIBUTE};
+	protected static final int[] ATTRIBUTE_ESUBSETS = new int[]{
+		UMLPackage.MESSAGE_TYPE__OWNED_ATTRIBUTE};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -474,10 +470,8 @@ public class MessageTypeImpl
 
 				for (TypedElement next : typedElements) {
 					features
-						.add(reflection.createProperty(
-							next.getName(),
-							TypeUtil.resolveType(env,
-								reflection.getOCLType(next))));
+						.add(reflection.createProperty(next.getName(), TypeUtil
+							.resolveType(env, reflection.getOCLType(next))));
 				}
 			}
 		}
@@ -548,11 +542,11 @@ public class MessageTypeImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case UMLPackage.MESSAGE_TYPE__OWNED_OPERATION :
-				return ((InternalEList<?>) getOwnedOperations()).basicRemove(
-					otherEnd, msgs);
+				return ((InternalEList<?>) getOwnedOperations())
+					.basicRemove(otherEnd, msgs);
 			case UMLPackage.MESSAGE_TYPE__OWNED_ATTRIBUTE :
-				return ((InternalEList<?>) getOwnedAttributes()).basicRemove(
-					otherEnd, msgs);
+				return ((InternalEList<?>) getOwnedAttributes())
+					.basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -598,13 +592,13 @@ public class MessageTypeImpl
 				return;
 			case UMLPackage.MESSAGE_TYPE__OWNED_OPERATION :
 				getOwnedOperations().clear();
-				getOwnedOperations().addAll(
-					(Collection<? extends Operation>) newValue);
+				getOwnedOperations()
+					.addAll((Collection<? extends Operation>) newValue);
 				return;
 			case UMLPackage.MESSAGE_TYPE__OWNED_ATTRIBUTE :
 				getOwnedAttributes().clear();
-				getOwnedAttributes().addAll(
-					(Collection<? extends Property>) newValue);
+				getOwnedAttributes()
+					.addAll((Collection<? extends Property>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -646,6 +640,10 @@ public class MessageTypeImpl
 				return referredOperation != null;
 			case UMLPackage.MESSAGE_TYPE__REFERRED_SIGNAL :
 				return referredSignal != null;
+			case UMLPackage.MESSAGE_TYPE__FEATURE :
+				return isSetFeatures();
+			case UMLPackage.MESSAGE_TYPE__ATTRIBUTE :
+				return isSetAttributes();
 			case UMLPackage.MESSAGE_TYPE__OWNED_OPERATION :
 				return ownedOperations != null && !ownedOperations.isEmpty();
 			case UMLPackage.MESSAGE_TYPE__OWNED_ATTRIBUTE :
@@ -660,7 +658,8 @@ public class MessageTypeImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == PredefinedType.class) {
 			switch (derivedFeatureID) {
 				default :
@@ -686,7 +685,8 @@ public class MessageTypeImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == PredefinedType.class) {
 			switch (baseFeatureID) {
 				default :

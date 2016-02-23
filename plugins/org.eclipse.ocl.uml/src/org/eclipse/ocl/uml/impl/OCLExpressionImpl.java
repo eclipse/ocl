@@ -32,11 +32,11 @@ import org.eclipse.uml2.uml.internal.impl.TypedElementImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.uml.impl.OCLExpressionImpl#getStartPosition <em>Start Position</em>}</li>
  *   <li>{@link org.eclipse.ocl.uml.impl.OCLExpressionImpl#getEndPosition <em>End Position</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -224,7 +224,8 @@ public abstract class OCLExpressionImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == TypedElement.class) {
 			switch (derivedFeatureID) {
 				default :
@@ -262,7 +263,8 @@ public abstract class OCLExpressionImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == TypedElement.class) {
 			switch (baseFeatureID) {
 				default :
@@ -305,9 +307,8 @@ public abstract class OCLExpressionImpl
 			return super.toString();
 		}
 
-		return this
-			.<String, Visitor<String, ?, ?, ?, ?, ?, ?, ?, ?, ?>> accept(ToStringVisitor
-				.getInstance(this));
+		return this.<String, Visitor<String, ?, ?, ?, ?, ?, ?, ?, ?, ?>> accept(
+			ToStringVisitor.getInstance(this));
 	}
 
 	/**

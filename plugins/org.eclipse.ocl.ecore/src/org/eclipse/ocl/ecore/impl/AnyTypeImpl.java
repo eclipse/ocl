@@ -23,8 +23,6 @@ import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Any Type</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

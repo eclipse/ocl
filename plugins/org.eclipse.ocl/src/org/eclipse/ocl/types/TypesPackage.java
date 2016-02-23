@@ -97,7 +97,8 @@ public interface TypesPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ANY_TYPE_FEATURE_COUNT = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 0;
+	int ANY_TYPE_FEATURE_COUNT = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.types.impl.CollectionTypeImpl <em>Collection Type</em>}' class.
@@ -120,7 +121,8 @@ public interface TypesPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE__START_POSITION = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 0;
+	int COLLECTION_TYPE__START_POSITION = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
@@ -131,7 +133,8 @@ public interface TypesPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE__END_POSITION = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 1;
+	int COLLECTION_TYPE__END_POSITION = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The feature id for the '<em><b>Type Start Position</b></em>' attribute.
@@ -142,7 +145,8 @@ public interface TypesPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE__TYPE_START_POSITION = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 2;
+	int COLLECTION_TYPE__TYPE_START_POSITION = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT
+		+ 2;
 
 	/**
 	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
@@ -153,7 +157,8 @@ public interface TypesPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE__TYPE_END_POSITION = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 3;
+	int COLLECTION_TYPE__TYPE_END_POSITION = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT
+		+ 3;
 
 	/**
 	 * The feature id for the '<em><b>Element Type</b></em>' reference.
@@ -164,7 +169,8 @@ public interface TypesPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE__ELEMENT_TYPE = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 4;
+	int COLLECTION_TYPE__ELEMENT_TYPE = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT
+		+ 4;
 
 	/**
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
@@ -175,7 +181,8 @@ public interface TypesPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE__KIND = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 5;
+	int COLLECTION_TYPE__KIND = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT
+		+ 5;
 
 	/**
 	 * The number of structural features of the '<em>Collection Type</em>' class.
@@ -186,7 +193,8 @@ public interface TypesPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE_FEATURE_COUNT = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 6;
+	int COLLECTION_TYPE_FEATURE_COUNT = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT
+		+ 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.types.impl.BagTypeImpl <em>Bag Type</em>}' class.
@@ -321,7 +329,8 @@ public interface TypesPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INVALID_TYPE_FEATURE_COUNT = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 0;
+	int INVALID_TYPE_FEATURE_COUNT = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.types.impl.MessageTypeImpl <em>Message Type</em>}' class.
@@ -344,7 +353,8 @@ public interface TypesPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__REFERRED_OPERATION = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 0;
+	int MESSAGE_TYPE__REFERRED_OPERATION = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The feature id for the '<em><b>Referred Signal</b></em>' reference.
@@ -355,7 +365,8 @@ public interface TypesPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__REFERRED_SIGNAL = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 1;
+	int MESSAGE_TYPE__REFERRED_SIGNAL = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The number of structural features of the '<em>Message Type</em>' class.
@@ -366,7 +377,8 @@ public interface TypesPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE_FEATURE_COUNT = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 2;
+	int MESSAGE_TYPE_FEATURE_COUNT = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT
+		+ 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.types.impl.OrderedSetTypeImpl <em>Ordered Set Type</em>}' class.
@@ -478,7 +490,8 @@ public interface TypesPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_TYPE_FEATURE_COUNT = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 0;
+	int PRIMITIVE_TYPE_FEATURE_COUNT = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.types.impl.SequenceTypeImpl <em>Sequence Type</em>}' class.
@@ -740,7 +753,8 @@ public interface TypesPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_TYPE_FEATURE_COUNT = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 0;
+	int TUPLE_TYPE_FEATURE_COUNT = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The feature id for the '<em><b>Referred Type</b></em>' reference.
@@ -751,7 +765,8 @@ public interface TypesPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_TYPE__REFERRED_TYPE = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 0;
+	int TYPE_TYPE__REFERRED_TYPE = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The number of structural features of the '<em>Type Type</em>' class.
@@ -762,7 +777,8 @@ public interface TypesPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_TYPE_FEATURE_COUNT = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 1;
+	int TYPE_TYPE_FEATURE_COUNT = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The number of structural features of the '<em>Void Type</em>' class.
@@ -773,7 +789,8 @@ public interface TypesPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VOID_TYPE_FEATURE_COUNT = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 0;
+	int VOID_TYPE_FEATURE_COUNT = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.types.AnyType <em>Any Type</em>}'.

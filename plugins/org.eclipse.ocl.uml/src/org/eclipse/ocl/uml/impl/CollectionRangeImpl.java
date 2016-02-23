@@ -33,11 +33,11 @@ import org.eclipse.uml2.uml.Classifier;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.uml.impl.CollectionRangeImpl#getFirst <em>First</em>}</li>
  *   <li>{@link org.eclipse.ocl.uml.impl.CollectionRangeImpl#getLast <em>Last</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -124,13 +124,13 @@ public class CollectionRangeImpl
 		if (newFirst != first) {
 			NotificationChain msgs = null;
 			if (first != null)
-				msgs = ((InternalEObject) first)
-					.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-						- UMLPackage.COLLECTION_RANGE__FIRST, null, msgs);
+				msgs = ((InternalEObject) first).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - UMLPackage.COLLECTION_RANGE__FIRST,
+					null, msgs);
 			if (newFirst != null)
-				msgs = ((InternalEObject) newFirst)
-					.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-						- UMLPackage.COLLECTION_RANGE__FIRST, null, msgs);
+				msgs = ((InternalEObject) newFirst).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - UMLPackage.COLLECTION_RANGE__FIRST,
+					null, msgs);
 			msgs = basicSetFirst(newFirst, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -296,7 +296,8 @@ public class CollectionRangeImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.CollectionRange.class) {
 			switch (derivedFeatureID) {
 				case UMLPackage.COLLECTION_RANGE__FIRST :
@@ -316,7 +317,8 @@ public class CollectionRangeImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.CollectionRange.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.COLLECTION_RANGE__FIRST :

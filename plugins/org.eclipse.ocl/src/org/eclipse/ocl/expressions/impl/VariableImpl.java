@@ -37,6 +37,7 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.impl.VariableImpl#getStartPosition <em>Start Position</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.impl.VariableImpl#getEndPosition <em>End Position</em>}</li>
@@ -45,7 +46,6 @@ import org.eclipse.ocl.utilities.Visitor;
  *   <li>{@link org.eclipse.ocl.expressions.impl.VariableImpl#getInitExpression <em>Init Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.impl.VariableImpl#getRepresentedParameter <em>Represented Parameter</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -345,20 +345,20 @@ public class VariableImpl<C, PM>
 			if (initExpression != null)
 				msgs = ((InternalEObject) initExpression).eInverseRemove(this,
 					EOPPOSITE_FEATURE_BASE
-						- ExpressionsPackage.VARIABLE__INIT_EXPRESSION, null,
-					msgs);
+						- ExpressionsPackage.VARIABLE__INIT_EXPRESSION,
+					null, msgs);
 			if (newInitExpression != null)
 				msgs = ((InternalEObject) newInitExpression).eInverseAdd(this,
 					EOPPOSITE_FEATURE_BASE
-						- ExpressionsPackage.VARIABLE__INIT_EXPRESSION, null,
-					msgs);
+						- ExpressionsPackage.VARIABLE__INIT_EXPRESSION,
+					null, msgs);
 			msgs = basicSetInitExpression(newInitExpression, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				ExpressionsPackage.VARIABLE__INIT_EXPRESSION,
-				newInitExpression, newInitExpression));
+				ExpressionsPackage.VARIABLE__INIT_EXPRESSION, newInitExpression,
+				newInitExpression));
 	}
 
 	/**
@@ -557,7 +557,8 @@ public class VariableImpl<C, PM>
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == Visitable.class) {
 			switch (derivedFeatureID) {
 				default :
@@ -593,7 +594,8 @@ public class VariableImpl<C, PM>
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == Visitable.class) {
 			switch (baseFeatureID) {
 				default :

@@ -26,8 +26,6 @@ import org.eclipse.ocl.util.Bag;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Bag Type</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

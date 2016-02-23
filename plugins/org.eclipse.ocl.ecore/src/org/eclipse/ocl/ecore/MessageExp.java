@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.EClassifier;
  * @generated
  */
 public interface MessageExp
-		extends
-		OCLExpression,
+		extends OCLExpression,
 		org.eclipse.ocl.expressions.MessageExp<EClassifier, CallOperationAction, SendSignalAction> {
 } // MessageExp

@@ -37,11 +37,11 @@ import org.eclipse.ocl.utilities.UMLReflection;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.types.impl.MessageTypeImpl#getReferredOperation <em>Referred Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.types.impl.MessageTypeImpl#getReferredSignal <em>Referred Signal</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -136,8 +136,8 @@ public class MessageTypeImpl<C, O, P>
 	 */
 	public boolean checkOperationParameters(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return MessageTypeOperations.checkOperationParameters(this,
-			diagnostics, context);
+		return MessageTypeOperations.checkOperationParameters(this, diagnostics,
+			context);
 	}
 
 	/**

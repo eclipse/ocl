@@ -43,12 +43,12 @@ import org.eclipse.uml2.uml.internal.impl.ClassifierImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.uml.impl.TypeTypeImpl#getReferredType <em>Referred Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.uml.impl.TypeTypeImpl#getFeatures <em>Feature</em>}</li>
  *   <li>{@link org.eclipse.ocl.uml.impl.TypeTypeImpl#getOwnedOperations <em>Owned Operation</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -189,9 +189,10 @@ public class TypeTypeImpl
 	 * @generated
 	 */
 	public Operation getOwnedOperation(String name,
-			EList<String> ownedParameterNames, EList<Type> ownedParameterTypes) {
-		return getOwnedOperation(name, ownedParameterNames,
-			ownedParameterTypes, false);
+			EList<String> ownedParameterNames,
+			EList<Type> ownedParameterTypes) {
+		return getOwnedOperation(name, ownedParameterNames, ownedParameterTypes,
+			false);
 	}
 
 	/**
@@ -212,20 +213,19 @@ public class TypeTypeImpl
 			int ownedParameterListSize = ownedParameterList.size();
 			if (ownedParameterNames != null
 				&& ownedParameterNames.size() != ownedParameterListSize
-				|| (ownedParameterTypes != null && ownedParameterTypes.size() != ownedParameterListSize))
+				|| (ownedParameterTypes != null
+					&& ownedParameterTypes.size() != ownedParameterListSize))
 				continue ownedOperationLoop;
 			for (int j = 0; j < ownedParameterListSize; j++) {
 				Parameter ownedParameter = ownedParameterList.get(j);
-				if (ownedParameterNames != null
-					&& !(ignoreCase
-						? (ownedParameterNames.get(j))
-							.equalsIgnoreCase(ownedParameter.getName())
-						: ownedParameterNames.get(j).equals(
-							ownedParameter.getName())))
+				if (ownedParameterNames != null && !(ignoreCase
+					? (ownedParameterNames.get(j))
+						.equalsIgnoreCase(ownedParameter.getName())
+					: ownedParameterNames.get(j)
+						.equals(ownedParameter.getName())))
 					continue ownedOperationLoop;
-				if (ownedParameterTypes != null
-					&& !ownedParameterTypes.get(j).equals(
-						ownedParameter.getType()))
+				if (ownedParameterTypes != null && !ownedParameterTypes.get(j)
+					.equals(ownedParameter.getType()))
 					continue ownedOperationLoop;
 			}
 			return ownedOperation;
@@ -267,14 +267,11 @@ public class TypeTypeImpl
 				this,
 				org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__FEATURE);
 			if (features == null) {
-				cache
-					.put(
-						eResource,
-						this,
-						org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__FEATURE,
-						features = new DerivedUnionEObjectEList<Feature>(
-							Feature.class, this, UMLPackage.TYPE_TYPE__FEATURE,
-							FEATURE_ESUBSETS));
+				cache.put(eResource, this,
+					org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__FEATURE,
+					features = new DerivedUnionEObjectEList<Feature>(
+						Feature.class, this, UMLPackage.TYPE_TYPE__FEATURE,
+						FEATURE_ESUBSETS));
 			}
 			return features;
 		}
@@ -303,8 +300,8 @@ public class TypeTypeImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case UMLPackage.TYPE_TYPE__OWNED_OPERATION :
-				return ((InternalEList<?>) getOwnedOperations()).basicRemove(
-					otherEnd, msgs);
+				return ((InternalEList<?>) getOwnedOperations())
+					.basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -341,8 +338,8 @@ public class TypeTypeImpl
 				return;
 			case UMLPackage.TYPE_TYPE__OWNED_OPERATION :
 				getOwnedOperations().clear();
-				getOwnedOperations().addAll(
-					(Collection<? extends Operation>) newValue);
+				getOwnedOperations()
+					.addAll((Collection<? extends Operation>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -376,6 +373,8 @@ public class TypeTypeImpl
 		switch (featureID) {
 			case UMLPackage.TYPE_TYPE__REFERRED_TYPE :
 				return referredType != null;
+			case UMLPackage.TYPE_TYPE__FEATURE :
+				return isSetFeatures();
 			case UMLPackage.TYPE_TYPE__OWNED_OPERATION :
 				return ownedOperations != null && !ownedOperations.isEmpty();
 		}
@@ -388,7 +387,8 @@ public class TypeTypeImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == PredefinedType.class) {
 			switch (derivedFeatureID) {
 				default :
@@ -412,7 +412,8 @@ public class TypeTypeImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == PredefinedType.class) {
 			switch (baseFeatureID) {
 				default :

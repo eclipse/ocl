@@ -29,6 +29,7 @@ import org.eclipse.ocl.util.OCLUtil;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.utilities.PredefinedType#getName() <em>Get Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.utilities.PredefinedType#oclOperations() <em>Ocl Operations</em>}</li>
@@ -36,7 +37,6 @@ import org.eclipse.ocl.util.OCLUtil;
  *   <li>{@link org.eclipse.ocl.types.CollectionType#checkNoInvalidValues(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check No Invalid Values</em>}</li>
  *   <li>{@link org.eclipse.ocl.types.CollectionType#oclIterators() <em>Ocl Iterators</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -95,8 +95,8 @@ public class CollectionTypeOperations {
 			C elementType = collectionType.getElementType();
 
 			if (elementType != null) {
-				String elementTypeName = env.getUMLReflection().getName(
-					elementType);
+				String elementTypeName = env.getUMLReflection()
+					.getName(elementType);
 
 				result = ("Collection(" + elementTypeName + ")").equals(name); //$NON-NLS-1$ //$NON-NLS-2$
 			}
@@ -105,15 +105,15 @@ public class CollectionTypeOperations {
 		if (!result) {
 			if (diagnostics != null) {
 				// TODO: Specific message
-				diagnostics
-					.add(new BasicDiagnostic(
-						Diagnostic.ERROR,
-						TypesValidator.DIAGNOSTIC_SOURCE,
-						TypesValidator.COLLECTION_TYPE__COLLECTION_TYPE_NAME,
-						org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE
-							.getString(
-								"_UI_GenericInvariant_diagnostic", new Object[]{"checkCollectionTypeName", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(collectionType, context)}), //$NON-NLS-1$ //$NON-NLS-2$
-						new Object[]{collectionType}));
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+					TypesValidator.DIAGNOSTIC_SOURCE,
+					TypesValidator.COLLECTION_TYPE__COLLECTION_TYPE_NAME,
+					org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString(
+						"_UI_GenericInvariant_diagnostic", //$NON-NLS-1$
+						new Object[]{"checkCollectionTypeName", //$NON-NLS-1$
+							org.eclipse.emf.ecore.util.EObjectValidator
+								.getObjectLabel(collectionType, context)}),
+					new Object[]{collectionType}));
 			}
 		}
 		return result;

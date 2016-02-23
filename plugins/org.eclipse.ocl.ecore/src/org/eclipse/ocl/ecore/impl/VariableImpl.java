@@ -42,6 +42,7 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.ecore.impl.VariableImpl#getStartPosition <em>Start Position</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.VariableImpl#getEndPosition <em>End Position</em>}</li>
@@ -50,7 +51,6 @@ import org.eclipse.ocl.utilities.Visitor;
  *   <li>{@link org.eclipse.ocl.ecore.impl.VariableImpl#getInitExpression <em>Init Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.VariableImpl#getRepresentedParameter <em>Represented Parameter</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -284,7 +284,8 @@ public class VariableImpl
 	 * @generated
 	 */
 	public NotificationChain basicSetInitExpression(
-			OCLExpression<EClassifier> newInitExpression, NotificationChain msgs) {
+			OCLExpression<EClassifier> newInitExpression,
+			NotificationChain msgs) {
 		OCLExpression<EClassifier> oldInitExpression = initExpression;
 		initExpression = newInitExpression;
 		if (eNotificationRequired()) {
@@ -304,17 +305,22 @@ public class VariableImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setInitExpression(OCLExpression<EClassifier> newInitExpression) {
+	public void setInitExpression(
+			OCLExpression<EClassifier> newInitExpression) {
 		if (newInitExpression != initExpression) {
 			NotificationChain msgs = null;
 			if (initExpression != null)
-				msgs = ((InternalEObject) initExpression).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE
-						- EcorePackage.VARIABLE__INIT_EXPRESSION, null, msgs);
+				msgs = ((InternalEObject) initExpression)
+					.eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+							- EcorePackage.VARIABLE__INIT_EXPRESSION,
+						null, msgs);
 			if (newInitExpression != null)
-				msgs = ((InternalEObject) newInitExpression).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE
-						- EcorePackage.VARIABLE__INIT_EXPRESSION, null, msgs);
+				msgs = ((InternalEObject) newInitExpression)
+					.eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE
+							- EcorePackage.VARIABLE__INIT_EXPRESSION,
+						null, msgs);
 			msgs = basicSetInitExpression(newInitExpression, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -333,7 +339,8 @@ public class VariableImpl
 		if (representedParameter != null
 			&& ((EObject) representedParameter).eIsProxy()) {
 			InternalEObject oldRepresentedParameter = (InternalEObject) representedParameter;
-			representedParameter = (EParameter) eResolveProxy(oldRepresentedParameter);
+			representedParameter = (EParameter) eResolveProxy(
+				oldRepresentedParameter);
 			if (representedParameter != oldRepresentedParameter) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
@@ -527,7 +534,8 @@ public class VariableImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == TypedElement.class) {
 			switch (derivedFeatureID) {
 				default :
@@ -579,7 +587,8 @@ public class VariableImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == TypedElement.class) {
 			switch (baseFeatureID) {
 				default :

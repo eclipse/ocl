@@ -20,8 +20,6 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Null Literal Exp</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

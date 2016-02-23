@@ -30,11 +30,11 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.impl.CollectionRangeImpl#getFirst <em>First</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.impl.CollectionRangeImpl#getLast <em>Last</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -122,19 +122,20 @@ public class CollectionRangeImpl<C>
 			if (first != null)
 				msgs = ((InternalEObject) first).eInverseRemove(this,
 					EOPPOSITE_FEATURE_BASE
-						- ExpressionsPackage.COLLECTION_RANGE__FIRST, null,
-					msgs);
+						- ExpressionsPackage.COLLECTION_RANGE__FIRST,
+					null, msgs);
 			if (newFirst != null)
 				msgs = ((InternalEObject) newFirst).eInverseAdd(this,
 					EOPPOSITE_FEATURE_BASE
-						- ExpressionsPackage.COLLECTION_RANGE__FIRST, null,
-					msgs);
+						- ExpressionsPackage.COLLECTION_RANGE__FIRST,
+					null, msgs);
 			msgs = basicSetFirst(newFirst, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				ExpressionsPackage.COLLECTION_RANGE__FIRST, newFirst, newFirst));
+				ExpressionsPackage.COLLECTION_RANGE__FIRST, newFirst,
+				newFirst));
 	}
 
 	/**
@@ -176,13 +177,15 @@ public class CollectionRangeImpl<C>
 		if (newLast != last) {
 			NotificationChain msgs = null;
 			if (last != null)
-				msgs = ((InternalEObject) last)
-					.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-						- ExpressionsPackage.COLLECTION_RANGE__LAST, null, msgs);
+				msgs = ((InternalEObject) last).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE
+						- ExpressionsPackage.COLLECTION_RANGE__LAST,
+					null, msgs);
 			if (newLast != null)
-				msgs = ((InternalEObject) newLast)
-					.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-						- ExpressionsPackage.COLLECTION_RANGE__LAST, null, msgs);
+				msgs = ((InternalEObject) newLast).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE
+						- ExpressionsPackage.COLLECTION_RANGE__LAST,
+					null, msgs);
 			msgs = basicSetLast(newLast, msgs);
 			if (msgs != null)
 				msgs.dispatch();

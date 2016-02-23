@@ -23,11 +23,11 @@ import org.eclipse.ocl.utilities.PredefinedType;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.types.MessageType#getReferredOperation <em>Referred Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.types.MessageType#getReferredSignal <em>Referred Signal</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.types.TypesPackage#getMessageType()
  * @model

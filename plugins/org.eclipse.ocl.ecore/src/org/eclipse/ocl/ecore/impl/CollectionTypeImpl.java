@@ -46,6 +46,7 @@ import org.eclipse.ocl.utilities.UtilitiesPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.ecore.impl.CollectionTypeImpl#getStartPosition <em>Start Position</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.CollectionTypeImpl#getEndPosition <em>End Position</em>}</li>
@@ -54,7 +55,6 @@ import org.eclipse.ocl.utilities.UtilitiesPackage;
  *   <li>{@link org.eclipse.ocl.ecore.impl.CollectionTypeImpl#getElementType <em>Element Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.CollectionTypeImpl#getKind <em>Kind</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -386,8 +386,8 @@ public class CollectionTypeImpl
 					myName.append(SequenceType.SINGLETON_NAME);
 					break;
 				default :
-					myName
-						.append(org.eclipse.ocl.types.CollectionType.SINGLETON_NAME);
+					myName.append(
+						org.eclipse.ocl.types.CollectionType.SINGLETON_NAME);
 					break;
 			}
 
@@ -612,7 +612,8 @@ public class CollectionTypeImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == PredefinedType.class) {
 			switch (derivedFeatureID) {
 				default :
@@ -658,7 +659,8 @@ public class CollectionTypeImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == PredefinedType.class) {
 			switch (baseFeatureID) {
 				default :

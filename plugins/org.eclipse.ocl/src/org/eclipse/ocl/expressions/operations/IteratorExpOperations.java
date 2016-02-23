@@ -39,13 +39,13 @@ import org.eclipse.ocl.utilities.PredefinedType;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.IteratorExp#checkBooleanType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Boolean Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.IteratorExp#checkCollectType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Collect Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.IteratorExp#checkSelectRejectType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Select Reject Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.IteratorExp#checkBooleanBodyType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Boolean Body Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -150,10 +150,9 @@ public class IteratorExpOperations
 						|| (source.getType() instanceof OrderedSetType<?, ?>)) {
 						if (!(type instanceof SequenceType<?, ?>)) {
 							result = false;
-							message = OCLMessages
-								.bind(
-									OCLMessages.TypeConformanceCollectSequence_ERROR_,
-									iteratorExp.toString());
+							message = OCLMessages.bind(
+								OCLMessages.TypeConformanceCollectSequence_ERROR_,
+								iteratorExp.toString());
 						}
 					} else if (!(type instanceof BagType<?, ?>)) {
 						result = false;
@@ -265,10 +264,9 @@ public class IteratorExpOperations
 						|| !"Boolean".equals(env.getUMLReflection() //$NON-NLS-1$
 							.getName(type))) {
 						result = false;
-						message = OCLMessages
-							.bind(
-								OCLMessages.TypeConformanceIteratorBodyBoolean_ERROR_,
-								iteratorExp.toString());
+						message = OCLMessages.bind(
+							OCLMessages.TypeConformanceIteratorBodyBoolean_ERROR_,
+							iteratorExp.toString());
 					}
 					break;
 			}

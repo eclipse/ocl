@@ -29,10 +29,10 @@ import org.eclipse.uml2.uml.Property;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.uml.impl.AssociationClassCallExpImpl#getReferredAssociationClass <em>Referred Association Class</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -79,12 +79,11 @@ public class AssociationClassCallExpImpl
 		if (referredAssociationClass != null
 			&& ((EObject) referredAssociationClass).eIsProxy()) {
 			InternalEObject oldReferredAssociationClass = (InternalEObject) referredAssociationClass;
-			referredAssociationClass = (Classifier) eResolveProxy(oldReferredAssociationClass);
+			referredAssociationClass = (Classifier) eResolveProxy(
+				oldReferredAssociationClass);
 			if (referredAssociationClass != oldReferredAssociationClass) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(
-						this,
-						Notification.RESOLVE,
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 						UMLPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS,
 						oldReferredAssociationClass, referredAssociationClass));
 			}
@@ -112,9 +111,7 @@ public class AssociationClassCallExpImpl
 		Classifier oldReferredAssociationClass = referredAssociationClass;
 		referredAssociationClass = newReferredAssociationClass;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(
-				this,
-				Notification.SET,
+			eNotify(new ENotificationImpl(this, Notification.SET,
 				UMLPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS,
 				oldReferredAssociationClass, referredAssociationClass));
 	}
@@ -185,7 +182,8 @@ public class AssociationClassCallExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.AssociationClassCallExp.class) {
 			switch (derivedFeatureID) {
 				case UMLPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS :
@@ -203,7 +201,8 @@ public class AssociationClassCallExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.AssociationClassCallExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS :

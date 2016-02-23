@@ -33,11 +33,11 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.ecore.impl.CollectionRangeImpl#getFirst <em>First</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.CollectionRangeImpl#getLast <em>Last</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -125,11 +125,13 @@ public class CollectionRangeImpl
 			if (first != null)
 				msgs = ((InternalEObject) first).eInverseRemove(this,
 					EOPPOSITE_FEATURE_BASE
-						- EcorePackage.COLLECTION_RANGE__FIRST, null, msgs);
+						- EcorePackage.COLLECTION_RANGE__FIRST,
+					null, msgs);
 			if (newFirst != null)
 				msgs = ((InternalEObject) newFirst).eInverseAdd(this,
 					EOPPOSITE_FEATURE_BASE
-						- EcorePackage.COLLECTION_RANGE__FIRST, null, msgs);
+						- EcorePackage.COLLECTION_RANGE__FIRST,
+					null, msgs);
 			msgs = basicSetFirst(newFirst, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -179,11 +181,13 @@ public class CollectionRangeImpl
 			if (last != null)
 				msgs = ((InternalEObject) last).eInverseRemove(this,
 					EOPPOSITE_FEATURE_BASE
-						- EcorePackage.COLLECTION_RANGE__LAST, null, msgs);
+						- EcorePackage.COLLECTION_RANGE__LAST,
+					null, msgs);
 			if (newLast != null)
 				msgs = ((InternalEObject) newLast).eInverseAdd(this,
 					EOPPOSITE_FEATURE_BASE
-						- EcorePackage.COLLECTION_RANGE__LAST, null, msgs);
+						- EcorePackage.COLLECTION_RANGE__LAST,
+					null, msgs);
 			msgs = basicSetLast(newLast, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -295,7 +299,8 @@ public class CollectionRangeImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.CollectionRange.class) {
 			switch (derivedFeatureID) {
 				case EcorePackage.COLLECTION_RANGE__FIRST :
@@ -315,7 +320,8 @@ public class CollectionRangeImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.CollectionRange.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.COLLECTION_RANGE__FIRST :

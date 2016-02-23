@@ -27,8 +27,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * @generated
  */
 public interface MessageType
-		extends
-		EClass,
+		extends EClass,
 		org.eclipse.ocl.types.MessageType<EClassifier, EOperation, EStructuralFeature> {
 	// no additional features
 } // MessageType

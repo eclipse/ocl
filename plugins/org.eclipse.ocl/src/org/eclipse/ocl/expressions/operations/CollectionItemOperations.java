@@ -32,10 +32,10 @@ import org.eclipse.ocl.util.TypeUtil;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.CollectionItem#checkItemType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Item Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -81,15 +81,15 @@ public class CollectionItemOperations
 		if (!result) {
 			// TODO: Specific error message
 			if (diagnostics != null) {
-				diagnostics
-					.add(new BasicDiagnostic(
-						Diagnostic.ERROR,
-						ExpressionsValidator.DIAGNOSTIC_SOURCE,
-						ExpressionsValidator.COLLECTION_ITEM__ITEM_TYPE,
-						org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE
-							.getString(
-								"_UI_GenericInvariant_diagnostic", new Object[]{"checkItemType", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(collectionItem, context)}), //$NON-NLS-1$ //$NON-NLS-2$
-						new Object[]{collectionItem}));
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+					ExpressionsValidator.DIAGNOSTIC_SOURCE,
+					ExpressionsValidator.COLLECTION_ITEM__ITEM_TYPE,
+					org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString(
+						"_UI_GenericInvariant_diagnostic", //$NON-NLS-1$
+						new Object[]{"checkItemType", //$NON-NLS-1$
+							org.eclipse.emf.ecore.util.EObjectValidator
+								.getObjectLabel(collectionItem, context)}),
+					new Object[]{collectionItem}));
 			}
 		}
 		return result;

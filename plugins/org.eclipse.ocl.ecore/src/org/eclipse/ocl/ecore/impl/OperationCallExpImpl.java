@@ -43,12 +43,12 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.ecore.impl.OperationCallExpImpl#getArgument <em>Argument</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.OperationCallExpImpl#getReferredOperation <em>Referred Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.OperationCallExpImpl#getOperationCode <em>Operation Code</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -130,7 +130,8 @@ public class OperationCallExpImpl
 		if (referredOperation != null
 			&& ((EObject) referredOperation).eIsProxy()) {
 			InternalEObject oldReferredOperation = (InternalEObject) referredOperation;
-			referredOperation = (EOperation) eResolveProxy(oldReferredOperation);
+			referredOperation = (EOperation) eResolveProxy(
+				oldReferredOperation);
 			if (referredOperation != oldReferredOperation) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
@@ -277,9 +278,8 @@ public class OperationCallExpImpl
 		switch (featureID) {
 			case EcorePackage.OPERATION_CALL_EXP__ARGUMENT :
 				getArgument().clear();
-				getArgument()
-					.addAll(
-						(Collection<? extends OCLExpression<EClassifier>>) newValue);
+				getArgument().addAll(
+					(Collection<? extends OCLExpression<EClassifier>>) newValue);
 				return;
 			case EcorePackage.OPERATION_CALL_EXP__REFERRED_OPERATION :
 				setReferredOperation((EOperation) newValue);
@@ -336,7 +336,8 @@ public class OperationCallExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.OperationCallExp.class) {
 			switch (derivedFeatureID) {
 				case EcorePackage.OPERATION_CALL_EXP__ARGUMENT :
@@ -358,7 +359,8 @@ public class OperationCallExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.OperationCallExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.OPERATION_CALL_EXP__ARGUMENT :

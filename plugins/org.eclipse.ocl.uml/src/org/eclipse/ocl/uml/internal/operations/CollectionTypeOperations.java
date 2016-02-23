@@ -26,11 +26,11 @@ import org.eclipse.uml2.uml.internal.operations.DataTypeOperations;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.utilities.PredefinedType#getName() <em>Get Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.utilities.PredefinedType#oclOperations() <em>Ocl Operations</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -61,7 +61,8 @@ public class CollectionTypeOperations
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public static EList<Operation> oclOperations(CollectionType collectionType) {
+	public static EList<Operation> oclOperations(
+			CollectionType collectionType) {
 		throw new UnsupportedOperationException();
 	}
 

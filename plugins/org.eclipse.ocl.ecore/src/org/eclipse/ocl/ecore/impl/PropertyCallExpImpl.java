@@ -33,10 +33,10 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.ecore.impl.PropertyCallExpImpl#getReferredProperty <em>Referred Property</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -79,9 +79,11 @@ public class PropertyCallExpImpl
 	 * @generated
 	 */
 	public EStructuralFeature getReferredProperty() {
-		if (referredProperty != null && ((EObject) referredProperty).eIsProxy()) {
+		if (referredProperty != null
+			&& ((EObject) referredProperty).eIsProxy()) {
 			InternalEObject oldReferredProperty = (InternalEObject) referredProperty;
-			referredProperty = (EStructuralFeature) eResolveProxy(oldReferredProperty);
+			referredProperty = (EStructuralFeature) eResolveProxy(
+				oldReferredProperty);
 			if (referredProperty != oldReferredProperty) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
@@ -192,7 +194,8 @@ public class PropertyCallExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.PropertyCallExp.class) {
 			switch (derivedFeatureID) {
 				case EcorePackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY :
@@ -210,7 +213,8 @@ public class PropertyCallExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.PropertyCallExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY :

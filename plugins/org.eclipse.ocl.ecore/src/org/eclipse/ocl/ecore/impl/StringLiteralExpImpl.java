@@ -30,10 +30,10 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.ecore.impl.StringLiteralExpImpl#getStringSymbol <em>String Symbol</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -99,8 +99,8 @@ public class StringLiteralExpImpl
 		stringSymbol = newStringSymbol;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				EcorePackage.STRING_LITERAL_EXP__STRING_SYMBOL,
-				oldStringSymbol, stringSymbol));
+				EcorePackage.STRING_LITERAL_EXP__STRING_SYMBOL, oldStringSymbol,
+				stringSymbol));
 	}
 
 	/**
@@ -180,7 +180,8 @@ public class StringLiteralExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.StringLiteralExp.class) {
 			switch (derivedFeatureID) {
 				case EcorePackage.STRING_LITERAL_EXP__STRING_SYMBOL :
@@ -198,7 +199,8 @@ public class StringLiteralExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.StringLiteralExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.STRING_LITERAL_EXP__STRING_SYMBOL :

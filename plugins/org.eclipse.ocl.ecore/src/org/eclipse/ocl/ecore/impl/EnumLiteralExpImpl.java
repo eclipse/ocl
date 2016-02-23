@@ -33,10 +33,10 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.ecore.impl.EnumLiteralExpImpl#getReferredEnumLiteral <em>Referred Enum Literal</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -82,7 +82,8 @@ public class EnumLiteralExpImpl
 		if (referredEnumLiteral != null
 			&& ((EObject) referredEnumLiteral).eIsProxy()) {
 			InternalEObject oldReferredEnumLiteral = (InternalEObject) referredEnumLiteral;
-			referredEnumLiteral = (EEnumLiteral) eResolveProxy(oldReferredEnumLiteral);
+			referredEnumLiteral = (EEnumLiteral) eResolveProxy(
+				oldReferredEnumLiteral);
 			if (referredEnumLiteral != oldReferredEnumLiteral) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
@@ -193,7 +194,8 @@ public class EnumLiteralExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.EnumLiteralExp.class) {
 			switch (derivedFeatureID) {
 				case EcorePackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL :
@@ -211,7 +213,8 @@ public class EnumLiteralExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.EnumLiteralExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL :

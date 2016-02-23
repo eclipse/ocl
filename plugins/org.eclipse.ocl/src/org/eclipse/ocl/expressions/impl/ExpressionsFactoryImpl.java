@@ -68,7 +68,7 @@ public class ExpressionsFactoryImpl
 	public static ExpressionsFactory init() {
 		try {
 			ExpressionsFactory theExpressionsFactory = (ExpressionsFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://www.eclipse.org/ocl/1.1.0/OCL/Expressions"); //$NON-NLS-1$ 
+				.getEFactory(ExpressionsPackage.eNS_URI);
 			if (theExpressionsFactory != null) {
 				return theExpressionsFactory;
 			}
@@ -149,8 +149,8 @@ public class ExpressionsFactoryImpl
 			case ExpressionsPackage.VARIABLE_EXP :
 				return createVariableExp();
 			default :
-				throw new IllegalArgumentException(
-					"The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+				throw new IllegalArgumentException("The class '" //$NON-NLS-1$
+					+ eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$
 		}
 	}
 
@@ -165,8 +165,8 @@ public class ExpressionsFactoryImpl
 			case ExpressionsPackage.COLLECTION_KIND :
 				return createCollectionKindFromString(eDataType, initialValue);
 			default :
-				throw new IllegalArgumentException(
-					"The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+				throw new IllegalArgumentException("The datatype '" //$NON-NLS-1$
+					+ eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$
 		}
 	}
 
@@ -181,8 +181,8 @@ public class ExpressionsFactoryImpl
 			case ExpressionsPackage.COLLECTION_KIND :
 				return convertCollectionKindToString(eDataType, instanceValue);
 			default :
-				throw new IllegalArgumentException(
-					"The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+				throw new IllegalArgumentException("The datatype '" //$NON-NLS-1$
+					+ eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$
 		}
 	}
 
@@ -455,8 +455,9 @@ public class ExpressionsFactoryImpl
 			String initialValue) {
 		CollectionKind result = CollectionKind.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException(
-				"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			throw new IllegalArgumentException("The value '" + initialValue //$NON-NLS-1$
+				+ "' is not a valid enumerator of '" + eDataType.getName() //$NON-NLS-1$
+				+ "'"); //$NON-NLS-1$
 		return result;
 	}
 

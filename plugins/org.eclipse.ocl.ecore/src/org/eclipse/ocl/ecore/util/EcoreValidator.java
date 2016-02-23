@@ -198,8 +198,8 @@ public class EcoreValidator
 				return validateOrderedSetType((OrderedSetType) value,
 					diagnostics, context);
 			case EcorePackage.PRIMITIVE_TYPE :
-				return validatePrimitiveType((PrimitiveType) value,
-					diagnostics, context);
+				return validatePrimitiveType((PrimitiveType) value, diagnostics,
+					context);
 			case EcorePackage.SEQUENCE_TYPE :
 				return validateSequenceType((SequenceType) value, diagnostics,
 					context);
@@ -290,8 +290,8 @@ public class EcoreValidator
 				return validateNumericLiteralExp((NumericLiteralExp) value,
 					diagnostics, context);
 			case EcorePackage.OCL_EXPRESSION :
-				return validateOCLExpression((OCLExpression) value,
-					diagnostics, context);
+				return validateOCLExpression((OCLExpression) value, diagnostics,
+					context);
 			case EcorePackage.OPERATION_CALL_EXP :
 				return validateOperationCallExp((OperationCallExp) value,
 					diagnostics, context);
@@ -338,8 +338,8 @@ public class EcoreValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateAnyType(AnyType anyType,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateAnyType(AnyType anyType, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(anyType, diagnostics, context))
 			return false;
 		boolean result = validate_EveryMultiplicityConforms(anyType,
@@ -354,7 +354,8 @@ public class EcoreValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(anyType,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryProxyResolves(anyType, diagnostics, context);
+			result &= validate_EveryProxyResolves(anyType, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(anyType, diagnostics, context);
 		if (result || diagnostics != null)
@@ -405,8 +406,8 @@ public class EcoreValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateBagType(BagType bagType,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateBagType(BagType bagType, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(bagType, diagnostics, context))
 			return false;
 		boolean result = validate_EveryMultiplicityConforms(bagType,
@@ -421,7 +422,8 @@ public class EcoreValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(bagType,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryProxyResolves(bagType, diagnostics, context);
+			result &= validate_EveryProxyResolves(bagType, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(bagType, diagnostics, context);
 		if (result || diagnostics != null)
@@ -433,8 +435,8 @@ public class EcoreValidator
 			result &= validateCollectionType_WellFormedName(bagType,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validateCollectionType_WellFormedInstanceTypeName(
-				bagType, diagnostics, context);
+			result &= validateCollectionType_WellFormedInstanceTypeName(bagType,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= ecoreValidator
 				.validateEClassifier_UniqueTypeParameterNames(bagType,
@@ -556,7 +558,8 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(elementType, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryKeyUnique(elementType, diagnostics, context);
+			result &= validate_EveryKeyUnique(elementType, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryMapEntryUnique(elementType, diagnostics,
 				context);
@@ -650,7 +653,8 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(invalidType, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryKeyUnique(invalidType, diagnostics, context);
+			result &= validate_EveryKeyUnique(invalidType, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryMapEntryUnique(invalidType, diagnostics,
 				context);
@@ -719,7 +723,8 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(messageType, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryKeyUnique(messageType, diagnostics, context);
+			result &= validate_EveryKeyUnique(messageType, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryMapEntryUnique(messageType, diagnostics,
 				context);
@@ -858,7 +863,8 @@ public class EcoreValidator
 	 */
 	public boolean validatePrimitiveType(PrimitiveType primitiveType,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(primitiveType, diagnostics, context))
+		if (!validate_NoCircularContainment(primitiveType, diagnostics,
+			context))
 			return false;
 		boolean result = validate_EveryMultiplicityConforms(primitiveType,
 			diagnostics, context);
@@ -934,14 +940,14 @@ public class EcoreValidator
 		boolean result = validate_EveryMultiplicityConforms(sequenceType,
 			diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryDataValueConforms(sequenceType,
-				diagnostics, context);
+			result &= validate_EveryDataValueConforms(sequenceType, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(sequenceType,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(
-				sequenceType, diagnostics, context);
+			result &= validate_EveryBidirectionalReferenceIsPaired(sequenceType,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(sequenceType, diagnostics,
 				context);
@@ -979,8 +985,8 @@ public class EcoreValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSetType(SetType setType,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSetType(SetType setType, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(setType, diagnostics, context))
 			return false;
 		boolean result = validate_EveryMultiplicityConforms(setType,
@@ -995,7 +1001,8 @@ public class EcoreValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(setType,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryProxyResolves(setType, diagnostics, context);
+			result &= validate_EveryProxyResolves(setType, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(setType, diagnostics, context);
 		if (result || diagnostics != null)
@@ -1007,8 +1014,8 @@ public class EcoreValidator
 			result &= validateCollectionType_WellFormedName(setType,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validateCollectionType_WellFormedInstanceTypeName(
-				setType, diagnostics, context);
+			result &= validateCollectionType_WellFormedInstanceTypeName(setType,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= ecoreValidator
 				.validateEClassifier_UniqueTypeParameterNames(setType,
@@ -1115,8 +1122,8 @@ public class EcoreValidator
 			result &= validate_EveryDataValueConforms(tupleType, diagnostics,
 				context);
 		if (result || diagnostics != null)
-			result &= validate_EveryReferenceIsContained(tupleType,
-				diagnostics, context);
+			result &= validate_EveryReferenceIsContained(tupleType, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryBidirectionalReferenceIsPaired(tupleType,
 				diagnostics, context);
@@ -1163,8 +1170,8 @@ public class EcoreValidator
 				tupleType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= ecoreValidator
-				.validateEClass_DisjointFeatureAndOperationSignatures(
-					tupleType, diagnostics, context);
+				.validateEClass_DisjointFeatureAndOperationSignatures(tupleType,
+					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= typesValidator.validateTupleType_checkTupleTypeName(
 				tupleType, diagnostics, context);
@@ -1350,8 +1357,8 @@ public class EcoreValidator
 	public boolean validateCallOperationAction(
 			CallOperationAction callOperationAction,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(callOperationAction,
-			diagnostics, context);
+		return validate_EveryDefaultConstraint(callOperationAction, diagnostics,
+			context);
 	}
 
 	/**
@@ -1385,8 +1392,8 @@ public class EcoreValidator
 			result &= validate_EveryMapEntryUnique(constraint, diagnostics,
 				context);
 		if (result || diagnostics != null)
-			result &= validateConstraint_WellFormedName(constraint,
-				diagnostics, context);
+			result &= validateConstraint_WellFormedName(constraint, diagnostics,
+				context);
 		return result;
 	}
 
@@ -1502,7 +1509,8 @@ public class EcoreValidator
 			result &= validate_EveryProxyResolves(booleanLiteralExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_UniqueID(booleanLiteralExp, diagnostics, context);
+			result &= validate_UniqueID(booleanLiteralExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryKeyUnique(booleanLiteralExp, diagnostics,
 				context);
@@ -1536,8 +1544,8 @@ public class EcoreValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateCallExp(CallExp callExp,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateCallExp(CallExp callExp, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(callExp, diagnostics, context))
 			return false;
 		boolean result = validate_EveryMultiplicityConforms(callExp,
@@ -1552,7 +1560,8 @@ public class EcoreValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(callExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryProxyResolves(callExp, diagnostics, context);
+			result &= validate_EveryProxyResolves(callExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(callExp, diagnostics, context);
 		if (result || diagnostics != null)
@@ -1561,8 +1570,8 @@ public class EcoreValidator
 			result &= validate_EveryMapEntryUnique(callExp, diagnostics,
 				context);
 		if (result || diagnostics != null)
-			result &= validateOCLExpression_WellFormedName(callExp,
-				diagnostics, context);
+			result &= validateOCLExpression_WellFormedName(callExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= ecoreValidator.validateETypedElement_ValidLowerBound(
 				callExp, diagnostics, context);
@@ -1626,9 +1635,8 @@ public class EcoreValidator
 			result &= ecoreValidator.validateETypedElement_ValidType(
 				collectionItem, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= expressionsValidator
-				.validateCollectionItem_checkItemType(collectionItem,
-					diagnostics, context);
+			result &= expressionsValidator.validateCollectionItem_checkItemType(
+				collectionItem, diagnostics, context);
 		return result;
 	}
 
@@ -1661,14 +1669,14 @@ public class EcoreValidator
 			result &= validate_UniqueID(collectionLiteralExp, diagnostics,
 				context);
 		if (result || diagnostics != null)
-			result &= validate_EveryKeyUnique(collectionLiteralExp,
-				diagnostics, context);
+			result &= validate_EveryKeyUnique(collectionLiteralExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryMapEntryUnique(collectionLiteralExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validateOCLExpression_WellFormedName(
-				collectionLiteralExp, diagnostics, context);
+			result &= validateOCLExpression_WellFormedName(collectionLiteralExp,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= ecoreValidator.validateETypedElement_ValidLowerBound(
 				collectionLiteralExp, diagnostics, context);
@@ -1687,16 +1695,16 @@ public class EcoreValidator
 					collectionLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= expressionsValidator
-				.validateCollectionLiteralExp_checkSetKind(
-					collectionLiteralExp, diagnostics, context);
+				.validateCollectionLiteralExp_checkSetKind(collectionLiteralExp,
+					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= expressionsValidator
 				.validateCollectionLiteralExp_checkSequenceKind(
 					collectionLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= expressionsValidator
-				.validateCollectionLiteralExp_checkBagKind(
-					collectionLiteralExp, diagnostics, context);
+				.validateCollectionLiteralExp_checkBagKind(collectionLiteralExp,
+					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= expressionsValidator
 				.validateCollectionLiteralExp_checkElementType(
@@ -1799,8 +1807,8 @@ public class EcoreValidator
 			result &= validate_EveryKeyUnique(collectionRange, diagnostics,
 				context);
 		if (result || diagnostics != null)
-			result &= validate_EveryMapEntryUnique(collectionRange,
-				diagnostics, context);
+			result &= validate_EveryMapEntryUnique(collectionRange, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validateCollectionLiteralPart_WellFormedName(
 				collectionRange, diagnostics, context);
@@ -1871,9 +1879,8 @@ public class EcoreValidator
 			result &= ecoreValidator.validateETypedElement_ValidType(
 				enumLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= expressionsValidator
-				.validateEnumLiteralExp_checkEnumType(enumLiteralExp,
-					diagnostics, context);
+			result &= expressionsValidator.validateEnumLiteralExp_checkEnumType(
+				enumLiteralExp, diagnostics, context);
 		return result;
 	}
 
@@ -2005,7 +2012,8 @@ public class EcoreValidator
 			result &= validate_EveryProxyResolves(integerLiteralExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_UniqueID(integerLiteralExp, diagnostics, context);
+			result &= validate_UniqueID(integerLiteralExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryKeyUnique(integerLiteralExp, diagnostics,
 				context);
@@ -2060,8 +2068,8 @@ public class EcoreValidator
 			result &= validate_EveryProxyResolves(unlimitedNaturalLiteralExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_UniqueID(unlimitedNaturalLiteralExp,
-				diagnostics, context);
+			result &= validate_UniqueID(unlimitedNaturalLiteralExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryKeyUnique(unlimitedNaturalLiteralExp,
 				diagnostics, context);
@@ -2116,7 +2124,8 @@ public class EcoreValidator
 			result &= validate_EveryProxyResolves(invalidLiteralExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_UniqueID(invalidLiteralExp, diagnostics, context);
+			result &= validate_UniqueID(invalidLiteralExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryKeyUnique(invalidLiteralExp, diagnostics,
 				context);
@@ -2184,8 +2193,8 @@ public class EcoreValidator
 			result &= ecoreValidator.validateETypedElement_ConsistentBounds(
 				iterateExp, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= ecoreValidator.validateETypedElement_ValidType(
-				iterateExp, diagnostics, context);
+			result &= ecoreValidator.validateETypedElement_ValidType(iterateExp,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= expressionsValidator
 				.validateLoopExp_checkSourceCollection(iterateExp, diagnostics,
@@ -2236,7 +2245,8 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(iteratorExp, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryKeyUnique(iteratorExp, diagnostics, context);
+			result &= validate_EveryKeyUnique(iteratorExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryMapEntryUnique(iteratorExp, diagnostics,
 				context);
@@ -2257,24 +2267,22 @@ public class EcoreValidator
 				iteratorExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= expressionsValidator
-				.validateLoopExp_checkSourceCollection(iteratorExp,
-					diagnostics, context);
-		if (result || diagnostics != null)
-			result &= expressionsValidator
-				.validateLoopExp_checkLoopVariableInit(iteratorExp,
-					diagnostics, context);
-		if (result || diagnostics != null)
-			result &= expressionsValidator
-				.validateLoopExp_checkLoopVariableType(iteratorExp,
-					diagnostics, context);
-		if (result || diagnostics != null)
-			result &= expressionsValidator
-				.validateIteratorExp_checkBooleanType(iteratorExp, diagnostics,
+				.validateLoopExp_checkSourceCollection(iteratorExp, diagnostics,
 					context);
 		if (result || diagnostics != null)
 			result &= expressionsValidator
-				.validateIteratorExp_checkCollectType(iteratorExp, diagnostics,
+				.validateLoopExp_checkLoopVariableInit(iteratorExp, diagnostics,
 					context);
+		if (result || diagnostics != null)
+			result &= expressionsValidator
+				.validateLoopExp_checkLoopVariableType(iteratorExp, diagnostics,
+					context);
+		if (result || diagnostics != null)
+			result &= expressionsValidator.validateIteratorExp_checkBooleanType(
+				iteratorExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= expressionsValidator.validateIteratorExp_checkCollectType(
+				iteratorExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= expressionsValidator
 				.validateIteratorExp_checkSelectRejectType(iteratorExp,
@@ -2295,8 +2303,8 @@ public class EcoreValidator
 			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(letExp, diagnostics, context))
 			return false;
-		boolean result = validate_EveryMultiplicityConforms(letExp,
-			diagnostics, context);
+		boolean result = validate_EveryMultiplicityConforms(letExp, diagnostics,
+			context);
 		if (result || diagnostics != null)
 			result &= validate_EveryDataValueConforms(letExp, diagnostics,
 				context);
@@ -2313,7 +2321,8 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryKeyUnique(letExp, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryMapEntryUnique(letExp, diagnostics, context);
+			result &= validate_EveryMapEntryUnique(letExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validateOCLExpression_WellFormedName(letExp, diagnostics,
 				context);
@@ -2378,8 +2387,8 @@ public class EcoreValidator
 			result &= ecoreValidator.validateETypedElement_ConsistentBounds(
 				literalExp, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= ecoreValidator.validateETypedElement_ValidType(
-				literalExp, diagnostics, context);
+			result &= ecoreValidator.validateETypedElement_ValidType(literalExp,
+				diagnostics, context);
 		return result;
 	}
 
@@ -2388,8 +2397,8 @@ public class EcoreValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateLoopExp(LoopExp loopExp,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateLoopExp(LoopExp loopExp, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(loopExp, diagnostics, context))
 			return false;
 		boolean result = validate_EveryMultiplicityConforms(loopExp,
@@ -2404,7 +2413,8 @@ public class EcoreValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(loopExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryProxyResolves(loopExp, diagnostics, context);
+			result &= validate_EveryProxyResolves(loopExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(loopExp, diagnostics, context);
 		if (result || diagnostics != null)
@@ -2413,8 +2423,8 @@ public class EcoreValidator
 			result &= validate_EveryMapEntryUnique(loopExp, diagnostics,
 				context);
 		if (result || diagnostics != null)
-			result &= validateOCLExpression_WellFormedName(loopExp,
-				diagnostics, context);
+			result &= validateOCLExpression_WellFormedName(loopExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= ecoreValidator.validateETypedElement_ValidLowerBound(
 				loopExp, diagnostics, context);
@@ -2485,8 +2495,8 @@ public class EcoreValidator
 			result &= ecoreValidator.validateETypedElement_ConsistentBounds(
 				messageExp, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= ecoreValidator.validateETypedElement_ValidType(
-				messageExp, diagnostics, context);
+			result &= ecoreValidator.validateETypedElement_ValidType(messageExp,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= expressionsValidator
 				.validateMessageExp_checkOperationArguments(messageExp,
@@ -2536,7 +2546,8 @@ public class EcoreValidator
 			result &= validate_EveryProxyResolves(navigationCallExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_UniqueID(navigationCallExp, diagnostics, context);
+			result &= validate_UniqueID(navigationCallExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryKeyUnique(navigationCallExp, diagnostics,
 				context);
@@ -2637,7 +2648,8 @@ public class EcoreValidator
 			result &= validate_EveryProxyResolves(numericLiteralExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_UniqueID(numericLiteralExp, diagnostics, context);
+			result &= validate_UniqueID(numericLiteralExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryKeyUnique(numericLiteralExp, diagnostics,
 				context);
@@ -2669,7 +2681,8 @@ public class EcoreValidator
 	 */
 	public boolean validateOCLExpression(OCLExpression oclExpression,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(oclExpression, diagnostics, context))
+		if (!validate_NoCircularContainment(oclExpression, diagnostics,
+			context))
 			return false;
 		boolean result = validate_EveryMultiplicityConforms(oclExpression,
 			diagnostics, context);
@@ -2746,8 +2759,8 @@ public class EcoreValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				operationCallExp, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryProxyResolves(operationCallExp,
-				diagnostics, context);
+			result &= validate_EveryProxyResolves(operationCallExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(operationCallExp, diagnostics, context);
 		if (result || diagnostics != null)
@@ -2793,8 +2806,8 @@ public class EcoreValidator
 		if (!validate_NoCircularContainment(primitiveLiteralExp, diagnostics,
 			context))
 			return false;
-		boolean result = validate_EveryMultiplicityConforms(
-			primitiveLiteralExp, diagnostics, context);
+		boolean result = validate_EveryMultiplicityConforms(primitiveLiteralExp,
+			diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryDataValueConforms(primitiveLiteralExp,
 				diagnostics, context);
@@ -2864,8 +2877,8 @@ public class EcoreValidator
 			result &= validate_EveryKeyUnique(propertyCallExp, diagnostics,
 				context);
 		if (result || diagnostics != null)
-			result &= validate_EveryMapEntryUnique(propertyCallExp,
-				diagnostics, context);
+			result &= validate_EveryMapEntryUnique(propertyCallExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validateOCLExpression_WellFormedName(propertyCallExp,
 				diagnostics, context);
@@ -2936,9 +2949,8 @@ public class EcoreValidator
 			result &= ecoreValidator.validateETypedElement_ValidType(
 				realLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= expressionsValidator
-				.validateRealLiteralExp_checkRealType(realLiteralExp,
-					diagnostics, context);
+			result &= expressionsValidator.validateRealLiteralExp_checkRealType(
+				realLiteralExp, diagnostics, context);
 		return result;
 	}
 
@@ -3012,8 +3024,8 @@ public class EcoreValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				stringLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryProxyResolves(stringLiteralExp,
-				diagnostics, context);
+			result &= validate_EveryProxyResolves(stringLiteralExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(stringLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
@@ -3074,8 +3086,8 @@ public class EcoreValidator
 			result &= validate_EveryKeyUnique(tupleLiteralExp, diagnostics,
 				context);
 		if (result || diagnostics != null)
-			result &= validate_EveryMapEntryUnique(tupleLiteralExp,
-				diagnostics, context);
+			result &= validate_EveryMapEntryUnique(tupleLiteralExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validateOCLExpression_WellFormedName(tupleLiteralExp,
 				diagnostics, context);
@@ -3124,8 +3136,8 @@ public class EcoreValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				tupleLiteralPart, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryProxyResolves(tupleLiteralPart,
-				diagnostics, context);
+			result &= validate_EveryProxyResolves(tupleLiteralPart, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(tupleLiteralPart, diagnostics, context);
 		if (result || diagnostics != null)
@@ -3174,8 +3186,8 @@ public class EcoreValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateTypeExp(TypeExp typeExp,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateTypeExp(TypeExp typeExp, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(typeExp, diagnostics, context))
 			return false;
 		boolean result = validate_EveryMultiplicityConforms(typeExp,
@@ -3190,7 +3202,8 @@ public class EcoreValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(typeExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryProxyResolves(typeExp, diagnostics, context);
+			result &= validate_EveryProxyResolves(typeExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(typeExp, diagnostics, context);
 		if (result || diagnostics != null)
@@ -3199,8 +3212,8 @@ public class EcoreValidator
 			result &= validate_EveryMapEntryUnique(typeExp, diagnostics,
 				context);
 		if (result || diagnostics != null)
-			result &= validateOCLExpression_WellFormedName(typeExp,
-				diagnostics, context);
+			result &= validateOCLExpression_WellFormedName(typeExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= ecoreValidator.validateETypedElement_ValidLowerBound(
 				typeExp, diagnostics, context);
@@ -3227,8 +3240,8 @@ public class EcoreValidator
 		if (!validate_NoCircularContainment(unspecifiedValueExp, diagnostics,
 			context))
 			return false;
-		boolean result = validate_EveryMultiplicityConforms(
-			unspecifiedValueExp, diagnostics, context);
+		boolean result = validate_EveryMultiplicityConforms(unspecifiedValueExp,
+			diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryDataValueConforms(unspecifiedValueExp,
 				diagnostics, context);
@@ -3314,8 +3327,8 @@ public class EcoreValidator
 			result &= ecoreValidator.validateETypedElement_ValidType(variable,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= expressionsValidator.validateVariable_checkInitType(
-				variable, diagnostics, context);
+			result &= expressionsValidator
+				.validateVariable_checkInitType(variable, diagnostics, context);
 		return result;
 	}
 
@@ -3357,7 +3370,8 @@ public class EcoreValidator
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(variableExp, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryKeyUnique(variableExp, diagnostics, context);
+			result &= validate_EveryKeyUnique(variableExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryMapEntryUnique(variableExp, diagnostics,
 				context);

@@ -27,6 +27,7 @@ import org.eclipse.ocl.types.util.TypesValidator;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.utilities.PredefinedType#getName() <em>Get Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.utilities.PredefinedType#oclOperations() <em>Ocl Operations</em>}</li>
@@ -35,7 +36,6 @@ import org.eclipse.ocl.types.util.TypesValidator;
  *   <li>{@link org.eclipse.ocl.types.MessageType#checkSignalAttributes(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Signal Attributes</em>}</li>
  *   <li>{@link org.eclipse.ocl.types.MessageType#oclProperties() <em>Ocl Properties</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -94,15 +94,15 @@ public class MessageTypeOperations {
 		if (!result) {
 			if (diagnostics != null) {
 				// Specific message
-				diagnostics
-					.add(new BasicDiagnostic(
-						Diagnostic.ERROR,
-						TypesValidator.DIAGNOSTIC_SOURCE,
-						TypesValidator.MESSAGE_TYPE__EXCLUSIVE_SIGNATURE,
-						org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE
-							.getString(
-								"_UI_GenericInvariant_diagnostic", new Object[]{"checkExclusiveSignature", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(messageType, context)}), //$NON-NLS-1$ //$NON-NLS-2$
-						new Object[]{messageType}));
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+					TypesValidator.DIAGNOSTIC_SOURCE,
+					TypesValidator.MESSAGE_TYPE__EXCLUSIVE_SIGNATURE,
+					org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString(
+						"_UI_GenericInvariant_diagnostic", //$NON-NLS-1$
+						new Object[]{"checkExclusiveSignature", //$NON-NLS-1$
+							org.eclipse.emf.ecore.util.EObjectValidator
+								.getObjectLabel(messageType, context)}),
+					new Object[]{messageType}));
 			}
 		}
 		return result;

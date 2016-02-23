@@ -30,10 +30,10 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.impl.IterateExpImpl#getResult <em>Result</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -109,13 +109,17 @@ public class IterateExpImpl<C, PM>
 		if (newResult != result) {
 			NotificationChain msgs = null;
 			if (result != null)
-				msgs = ((InternalEObject) result).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE
-						- ExpressionsPackage.ITERATE_EXP__RESULT, null, msgs);
+				msgs = ((InternalEObject) result)
+					.eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+							- ExpressionsPackage.ITERATE_EXP__RESULT,
+						null, msgs);
 			if (newResult != null)
-				msgs = ((InternalEObject) newResult).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE
-						- ExpressionsPackage.ITERATE_EXP__RESULT, null, msgs);
+				msgs = ((InternalEObject) newResult)
+					.eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE
+							- ExpressionsPackage.ITERATE_EXP__RESULT,
+						null, msgs);
 			msgs = basicSetResult(newResult, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -131,8 +135,8 @@ public class IterateExpImpl<C, PM>
 	 */
 	public boolean checkIterateType(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return IterateExpOperations
-			.checkIterateType(this, diagnostics, context);
+		return IterateExpOperations.checkIterateType(this, diagnostics,
+			context);
 	}
 
 	/**

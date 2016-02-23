@@ -25,7 +25,6 @@ import org.eclipse.uml2.uml.EnumerationLiteral;
  * @generated
  */
 public interface EnumLiteralExp
-		extends
-		LiteralExp,
+		extends LiteralExp,
 		org.eclipse.ocl.expressions.EnumLiteralExp<Classifier, EnumerationLiteral> {
 } // EnumLiteralExp

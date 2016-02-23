@@ -27,12 +27,12 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.impl.IntegerLiteralExpImpl#getIntegerSymbol <em>Integer Symbol</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.impl.IntegerLiteralExpImpl#getExtendedIntegerSymbol <em>Extended Integer Symbol</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.impl.IntegerLiteralExpImpl#getLongSymbol <em>Long Symbol</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

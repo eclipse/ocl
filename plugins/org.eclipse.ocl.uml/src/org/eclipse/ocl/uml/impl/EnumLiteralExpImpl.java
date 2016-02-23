@@ -33,10 +33,10 @@ import org.eclipse.uml2.uml.EnumerationLiteral;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.uml.impl.EnumLiteralExpImpl#getReferredEnumLiteral <em>Referred Enum Literal</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -83,7 +83,8 @@ public class EnumLiteralExpImpl
 		if (referredEnumLiteral != null
 			&& ((EObject) referredEnumLiteral).eIsProxy()) {
 			InternalEObject oldReferredEnumLiteral = (InternalEObject) referredEnumLiteral;
-			referredEnumLiteral = (EnumerationLiteral) eResolveProxy(oldReferredEnumLiteral);
+			referredEnumLiteral = (EnumerationLiteral) eResolveProxy(
+				oldReferredEnumLiteral);
 			if (referredEnumLiteral != oldReferredEnumLiteral) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
@@ -109,7 +110,8 @@ public class EnumLiteralExpImpl
 	 * @generated
 	 */
 
-	public void setReferredEnumLiteral(EnumerationLiteral newReferredEnumLiteral) {
+	public void setReferredEnumLiteral(
+			EnumerationLiteral newReferredEnumLiteral) {
 		EnumerationLiteral oldReferredEnumLiteral = referredEnumLiteral;
 		referredEnumLiteral = newReferredEnumLiteral;
 		if (eNotificationRequired())
@@ -195,7 +197,8 @@ public class EnumLiteralExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.EnumLiteralExp.class) {
 			switch (derivedFeatureID) {
 				case UMLPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL :
@@ -213,7 +216,8 @@ public class EnumLiteralExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.EnumLiteralExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL :

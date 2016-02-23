@@ -59,7 +59,7 @@ public class TypesFactoryImpl
 	public static TypesFactory init() {
 		try {
 			TypesFactory theTypesFactory = (TypesFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://www.eclipse.org/ocl/1.1.0/OCL/Types"); //$NON-NLS-1$ 
+				.getEFactory(TypesPackage.eNS_URI);
 			if (theTypesFactory != null) {
 				return theTypesFactory;
 			}
@@ -116,8 +116,8 @@ public class TypesFactoryImpl
 			case TypesPackage.VOID_TYPE :
 				return createVoidType();
 			default :
-				throw new IllegalArgumentException(
-					"The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+				throw new IllegalArgumentException("The class '" //$NON-NLS-1$
+					+ eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$
 		}
 	}
 
@@ -290,8 +290,8 @@ public class TypesFactoryImpl
 		return new CollectionTypeImpl<C, O>(elementType);
 	}
 
-	public <C, O> CollectionType<C, O> createCollectionType(
-			CollectionKind kind, C elementType) {
+	public <C, O> CollectionType<C, O> createCollectionType(CollectionKind kind,
+			C elementType) {
 		switch (kind) {
 			case BAG_LITERAL :
 				return createBagType(elementType);
@@ -306,7 +306,8 @@ public class TypesFactoryImpl
 		}
 	}
 
-	public <C, O, P> MessageType<C, O, P> createOperationMessageType(O operation) {
+	public <C, O, P> MessageType<C, O, P> createOperationMessageType(
+			O operation) {
 		MessageType<C, O, P> result = createMessageType();
 		result.setReferredOperation(operation);
 		return result;
@@ -343,8 +344,8 @@ public class TypesFactoryImpl
 			EList<P> properties = result.oclProperties();
 
 			for (TypedElement<C> part : parts) {
-				properties.add(uml.createProperty(part.getName(),
-					part.getType()));
+				properties
+					.add(uml.createProperty(part.getName(), part.getType()));
 			}
 		}
 

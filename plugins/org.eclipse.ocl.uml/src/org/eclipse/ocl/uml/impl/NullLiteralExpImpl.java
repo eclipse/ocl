@@ -21,8 +21,6 @@ import org.eclipse.uml2.uml.Classifier;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Null Literal Exp</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

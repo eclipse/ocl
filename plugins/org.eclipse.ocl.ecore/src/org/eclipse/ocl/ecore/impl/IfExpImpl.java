@@ -33,12 +33,12 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.ecore.impl.IfExpImpl#getCondition <em>Condition</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.IfExpImpl#getThenExpression <em>Then Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.IfExpImpl#getElseExpression <em>Else Expression</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -164,7 +164,8 @@ public class IfExpImpl
 	 * @generated
 	 */
 	public NotificationChain basicSetThenExpression(
-			OCLExpression<EClassifier> newThenExpression, NotificationChain msgs) {
+			OCLExpression<EClassifier> newThenExpression,
+			NotificationChain msgs) {
 		OCLExpression<EClassifier> oldThenExpression = thenExpression;
 		thenExpression = newThenExpression;
 		if (eNotificationRequired()) {
@@ -184,17 +185,20 @@ public class IfExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setThenExpression(OCLExpression<EClassifier> newThenExpression) {
+	public void setThenExpression(
+			OCLExpression<EClassifier> newThenExpression) {
 		if (newThenExpression != thenExpression) {
 			NotificationChain msgs = null;
 			if (thenExpression != null)
 				msgs = ((InternalEObject) thenExpression).eInverseRemove(this,
 					EOPPOSITE_FEATURE_BASE
-						- EcorePackage.IF_EXP__THEN_EXPRESSION, null, msgs);
+						- EcorePackage.IF_EXP__THEN_EXPRESSION,
+					null, msgs);
 			if (newThenExpression != null)
 				msgs = ((InternalEObject) newThenExpression).eInverseAdd(this,
 					EOPPOSITE_FEATURE_BASE
-						- EcorePackage.IF_EXP__THEN_EXPRESSION, null, msgs);
+						- EcorePackage.IF_EXP__THEN_EXPRESSION,
+					null, msgs);
 			msgs = basicSetThenExpression(newThenExpression, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -219,7 +223,8 @@ public class IfExpImpl
 	 * @generated
 	 */
 	public NotificationChain basicSetElseExpression(
-			OCLExpression<EClassifier> newElseExpression, NotificationChain msgs) {
+			OCLExpression<EClassifier> newElseExpression,
+			NotificationChain msgs) {
 		OCLExpression<EClassifier> oldElseExpression = elseExpression;
 		elseExpression = newElseExpression;
 		if (eNotificationRequired()) {
@@ -239,17 +244,20 @@ public class IfExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setElseExpression(OCLExpression<EClassifier> newElseExpression) {
+	public void setElseExpression(
+			OCLExpression<EClassifier> newElseExpression) {
 		if (newElseExpression != elseExpression) {
 			NotificationChain msgs = null;
 			if (elseExpression != null)
 				msgs = ((InternalEObject) elseExpression).eInverseRemove(this,
 					EOPPOSITE_FEATURE_BASE
-						- EcorePackage.IF_EXP__ELSE_EXPRESSION, null, msgs);
+						- EcorePackage.IF_EXP__ELSE_EXPRESSION,
+					null, msgs);
 			if (newElseExpression != null)
 				msgs = ((InternalEObject) newElseExpression).eInverseAdd(this,
 					EOPPOSITE_FEATURE_BASE
-						- EcorePackage.IF_EXP__ELSE_EXPRESSION, null, msgs);
+						- EcorePackage.IF_EXP__ELSE_EXPRESSION,
+					null, msgs);
 			msgs = basicSetElseExpression(newElseExpression, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -266,8 +274,8 @@ public class IfExpImpl
 	 */
 	public boolean checkBooleanCondition(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return IfExpOperations
-			.checkBooleanCondition(this, diagnostics, context);
+		return IfExpOperations.checkBooleanCondition(this, diagnostics,
+			context);
 	}
 
 	/**
@@ -384,7 +392,8 @@ public class IfExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.IfExp.class) {
 			switch (derivedFeatureID) {
 				case EcorePackage.IF_EXP__CONDITION :
@@ -406,7 +415,8 @@ public class IfExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.IfExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.IF_EXP__CONDITION :

@@ -82,7 +82,7 @@ public class EcoreFactoryImpl
 	public static EcoreFactory init() {
 		try {
 			EcoreFactory theEcoreFactory = (EcoreFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://www.eclipse.org/ocl/1.1.0/Ecore"); //$NON-NLS-1$ 
+				.getEFactory(EcorePackage.eNS_URI);
 			if (theEcoreFactory != null) {
 				return theEcoreFactory;
 			}
@@ -201,8 +201,8 @@ public class EcoreFactoryImpl
 			case EcorePackage.OPPOSITE_PROPERTY_CALL_EXP :
 				return createOppositePropertyCallExp();
 			default :
-				throw new IllegalArgumentException(
-					"The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+				throw new IllegalArgumentException("The class '" //$NON-NLS-1$
+					+ eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$
 		}
 	}
 

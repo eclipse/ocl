@@ -26,10 +26,10 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.impl.AssociationClassCallExpImpl#getReferredAssociationClass <em>Referred Association Class</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -69,6 +69,17 @@ public class AssociationClassCallExpImpl<C, P>
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * This is specialized for the more specific type known in this context.
+	 * @generated
+	 */
+	@Override
+	public void setNavigationSource(P newNavigationSource) {
+		super.setNavigationSource(newNavigationSource);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -76,12 +87,11 @@ public class AssociationClassCallExpImpl<C, P>
 		if (referredAssociationClass != null
 			&& ((EObject) referredAssociationClass).eIsProxy()) {
 			InternalEObject oldReferredAssociationClass = (InternalEObject) referredAssociationClass;
-			referredAssociationClass = (C) eResolveProxy(oldReferredAssociationClass);
+			referredAssociationClass = (C) eResolveProxy(
+				oldReferredAssociationClass);
 			if (referredAssociationClass != oldReferredAssociationClass) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(
-						this,
-						Notification.RESOLVE,
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 						ExpressionsPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS,
 						oldReferredAssociationClass, referredAssociationClass));
 			}
@@ -107,9 +117,7 @@ public class AssociationClassCallExpImpl<C, P>
 		C oldReferredAssociationClass = referredAssociationClass;
 		referredAssociationClass = newReferredAssociationClass;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(
-				this,
-				Notification.SET,
+			eNotify(new ENotificationImpl(this, Notification.SET,
 				ExpressionsPackage.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS,
 				oldReferredAssociationClass, referredAssociationClass));
 	}

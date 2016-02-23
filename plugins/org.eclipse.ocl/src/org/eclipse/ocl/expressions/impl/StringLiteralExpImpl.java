@@ -27,10 +27,10 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.impl.StringLiteralExpImpl#getStringSymbol <em>String Symbol</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

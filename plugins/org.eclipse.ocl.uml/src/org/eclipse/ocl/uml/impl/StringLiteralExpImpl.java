@@ -30,10 +30,10 @@ import org.eclipse.uml2.uml.Classifier;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.uml.impl.StringLiteralExpImpl#getStringSymbol <em>String Symbol</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -181,7 +181,8 @@ public class StringLiteralExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.StringLiteralExp.class) {
 			switch (derivedFeatureID) {
 				case UMLPackage.STRING_LITERAL_EXP__STRING_SYMBOL :
@@ -199,7 +200,8 @@ public class StringLiteralExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.StringLiteralExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.STRING_LITERAL_EXP__STRING_SYMBOL :

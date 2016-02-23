@@ -23,13 +23,13 @@ import org.eclipse.ocl.utilities.CallingASTNode;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.MessageExp#getTarget <em>Target</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.MessageExp#getArgument <em>Argument</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.MessageExp#getCalledOperation <em>Called Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.MessageExp#getSentSignal <em>Sent Signal</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.expressions.ExpressionsPackage#getMessageExp()
  * @model

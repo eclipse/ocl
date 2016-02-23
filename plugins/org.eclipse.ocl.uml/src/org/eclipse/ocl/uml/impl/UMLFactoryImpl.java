@@ -79,7 +79,7 @@ public class UMLFactoryImpl
 	public static UMLFactory init() {
 		try {
 			UMLFactory theUMLFactory = (UMLFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://www.eclipse.org/ocl/1.1.0/UML"); //$NON-NLS-1$ 
+				.getEFactory(UMLPackage.eNS_URI);
 			if (theUMLFactory != null) {
 				return theUMLFactory;
 			}
@@ -190,8 +190,8 @@ public class UMLFactoryImpl
 			case UMLPackage.TEMPLATE_PARAMETER_TYPE :
 				return createTemplateParameterType();
 			default :
-				throw new IllegalArgumentException(
-					"The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+				throw new IllegalArgumentException("The class '" //$NON-NLS-1$
+					+ eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$
 		}
 	}
 

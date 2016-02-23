@@ -33,10 +33,10 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.ecore.impl.VariableExpImpl#getReferredVariable <em>Referred Variable</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -82,7 +82,8 @@ public class VariableExpImpl
 	public Variable<EClassifier, EParameter> getReferredVariable() {
 		if (referredVariable != null && referredVariable.eIsProxy()) {
 			InternalEObject oldReferredVariable = (InternalEObject) referredVariable;
-			referredVariable = (Variable<EClassifier, EParameter>) eResolveProxy(oldReferredVariable);
+			referredVariable = (Variable<EClassifier, EParameter>) eResolveProxy(
+				oldReferredVariable);
 			if (referredVariable != oldReferredVariable) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
@@ -153,7 +154,8 @@ public class VariableExpImpl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case EcorePackage.VARIABLE_EXP__REFERRED_VARIABLE :
-				setReferredVariable((Variable<EClassifier, EParameter>) newValue);
+				setReferredVariable(
+					(Variable<EClassifier, EParameter>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -194,7 +196,8 @@ public class VariableExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.VariableExp.class) {
 			switch (derivedFeatureID) {
 				case EcorePackage.VARIABLE_EXP__REFERRED_VARIABLE :
@@ -212,7 +215,8 @@ public class VariableExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.VariableExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.VARIABLE_EXP__REFERRED_VARIABLE :

@@ -31,10 +31,10 @@ import org.eclipse.ocl.util.OCLUtil;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp#checkNaturalType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Natural Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -71,19 +71,17 @@ public class UnlimitedNaturalLiteralExpOperations
 		if (env != null) {
 			C type = unlimitedNaturalLiteralExp.getType();
 
-			result = (type != null)
-				&& ("UnlimitedNatural".equals(env.getUMLReflection().getName(type))); //$NON-NLS-1$
+			result = (type != null) && ("UnlimitedNatural" //$NON-NLS-1$
+				.equals(env.getUMLReflection().getName(type)));
 		}
 
 		if (!result) {
 			if (diagnostics != null) {
-				diagnostics
-					.add(new BasicDiagnostic(
-						Diagnostic.ERROR,
-						ExpressionsValidator.DIAGNOSTIC_SOURCE,
-						ExpressionsValidator.UNLIMITED_NATURAL_LITERAL_EXP__NATURAL_TYPE,
-						OCLMessages.TypeConformanceUnlimitedNaturalLiteral_ERROR_,
-						new Object[]{unlimitedNaturalLiteralExp}));
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+					ExpressionsValidator.DIAGNOSTIC_SOURCE,
+					ExpressionsValidator.UNLIMITED_NATURAL_LITERAL_EXP__NATURAL_TYPE,
+					OCLMessages.TypeConformanceUnlimitedNaturalLiteral_ERROR_,
+					new Object[]{unlimitedNaturalLiteralExp}));
 			}
 		}
 

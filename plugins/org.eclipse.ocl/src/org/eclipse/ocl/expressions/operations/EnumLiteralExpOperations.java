@@ -33,10 +33,10 @@ import org.eclipse.ocl.utilities.UMLReflection;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.EnumLiteralExp#checkEnumType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Enum Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

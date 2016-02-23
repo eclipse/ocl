@@ -19,8 +19,6 @@ import org.eclipse.ocl.expressions.LiteralExp;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Literal Exp</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

@@ -34,12 +34,12 @@ import org.eclipse.ocl.util.TypeUtil;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.IterateExp#checkIterateType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Iterate Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.IterateExp#checkBodyType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Body Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.IterateExp#checkResultInit(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Result Init</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -66,9 +66,8 @@ public class IterateExpOperations
 	 * <!-- end-model-doc -->
 	 * @generated NOT
 	 */
-	public static <C, PM> boolean checkIterateType(
-			IterateExp<C, PM> iterateExp, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
+	public static <C, PM> boolean checkIterateType(IterateExp<C, PM> iterateExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		boolean result = true;
 		String message = null;
 		Environment<?, C, ?, ?, PM, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
@@ -120,8 +119,8 @@ public class IterateExpOperations
 
 		if ((vd != null) && (body != null) && (vd.getType() != null)
 			&& (body.getType() != null)) {
-			if (!TypeUtil
-				.compatibleTypeMatch(env, body.getType(), vd.getType())) {
+			if (!TypeUtil.compatibleTypeMatch(env, body.getType(),
+				vd.getType())) {
 				result = false;
 				message = OCLMessages.bind(
 					OCLMessages.TypeConformanceIterateExpBody_ERROR_,
@@ -160,9 +159,8 @@ public class IterateExpOperations
 
 		if ((vd != null) && (vd.getInitExpression() == null)) {
 			result = false;
-			message = OCLMessages
-				.bind(OCLMessages.MissingInitIterateExp_ERROR_,
-					iterateExp.toString());
+			message = OCLMessages.bind(OCLMessages.MissingInitIterateExp_ERROR_,
+				iterateExp.toString());
 		}
 
 		if (!result) {

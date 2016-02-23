@@ -18,10 +18,10 @@ package org.eclipse.ocl.expressions;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.TypeExp#getReferredType <em>Referred Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.expressions.ExpressionsPackage#getTypeExp()
  * @model

@@ -26,11 +26,11 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.impl.UnspecifiedValueExpImpl#getTypeStartPosition <em>Type Start Position</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.impl.UnspecifiedValueExpImpl#getTypeEndPosition <em>Type End Position</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -217,7 +217,8 @@ public class UnspecifiedValueExpImpl<C>
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == TypedASTNode.class) {
 			switch (derivedFeatureID) {
 				case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION :
@@ -237,7 +238,8 @@ public class UnspecifiedValueExpImpl<C>
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == TypedASTNode.class) {
 			switch (baseFeatureID) {
 				case UtilitiesPackage.TYPED_AST_NODE__TYPE_START_POSITION :

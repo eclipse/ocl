@@ -21,6 +21,7 @@ import org.eclipse.ocl.expressions.Variable;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.utilities.ExpressionInOCL#getBodyExpression <em>Body Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.utilities.ExpressionInOCL#getContextVariable <em>Context Variable</em>}</li>
@@ -28,7 +29,6 @@ import org.eclipse.ocl.expressions.Variable;
  *   <li>{@link org.eclipse.ocl.utilities.ExpressionInOCL#getParameterVariable <em>Parameter Variable</em>}</li>
  *   <li>{@link org.eclipse.ocl.utilities.ExpressionInOCL#getGeneratedType <em>Generated Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.utilities.UtilitiesPackage#getExpressionInOCL()
  * @model interface="true" abstract="true"
@@ -134,7 +134,6 @@ public interface ExpressionInOCL<C, PM>
 
 	/**
 	 * Returns the value of the '<em><b>Generated Type</b></em>' containment reference list.
-	 * The list contents are of type C.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Generated Type</em>' containment reference list isn't clear,

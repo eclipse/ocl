@@ -20,10 +20,10 @@ import org.eclipse.ocl.utilities.CallingASTNode;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.CallExp#getSource <em>Source</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.expressions.ExpressionsPackage#getCallExp()
  * @model abstract="true"

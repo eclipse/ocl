@@ -29,10 +29,10 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.impl.EnumLiteralExpImpl#getReferredEnumLiteral <em>Referred Enum Literal</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -82,9 +82,7 @@ public class EnumLiteralExpImpl<C, EL>
 			referredEnumLiteral = (EL) eResolveProxy(oldReferredEnumLiteral);
 			if (referredEnumLiteral != oldReferredEnumLiteral) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(
-						this,
-						Notification.RESOLVE,
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 						ExpressionsPackage.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL,
 						oldReferredEnumLiteral, referredEnumLiteral));
 			}

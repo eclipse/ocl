@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * @generated
  */
 public interface TupleLiteralExp
-		extends
-		LiteralExp,
+		extends LiteralExp,
 		org.eclipse.ocl.expressions.TupleLiteralExp<EClassifier, EStructuralFeature> {
 } // TupleLiteralExp

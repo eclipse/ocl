@@ -37,6 +37,7 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.impl.MessageExpImpl#getPropertyStartPosition <em>Property Start Position</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.impl.MessageExpImpl#getPropertyEndPosition <em>Property End Position</em>}</li>
@@ -45,7 +46,6 @@ import org.eclipse.ocl.utilities.Visitor;
  *   <li>{@link org.eclipse.ocl.expressions.impl.MessageExpImpl#getCalledOperation <em>Called Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.impl.MessageExpImpl#getSentSignal <em>Sent Signal</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -237,13 +237,17 @@ public class MessageExpImpl<C, COA, SSA>
 		if (newTarget != target) {
 			NotificationChain msgs = null;
 			if (target != null)
-				msgs = ((InternalEObject) target).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE
-						- ExpressionsPackage.MESSAGE_EXP__TARGET, null, msgs);
+				msgs = ((InternalEObject) target)
+					.eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+							- ExpressionsPackage.MESSAGE_EXP__TARGET,
+						null, msgs);
 			if (newTarget != null)
-				msgs = ((InternalEObject) newTarget).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE
-						- ExpressionsPackage.MESSAGE_EXP__TARGET, null, msgs);
+				msgs = ((InternalEObject) newTarget)
+					.eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE
+							- ExpressionsPackage.MESSAGE_EXP__TARGET,
+						null, msgs);
 			msgs = basicSetTarget(newTarget, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -365,13 +369,13 @@ public class MessageExpImpl<C, COA, SSA>
 			if (sentSignal != null)
 				msgs = ((InternalEObject) sentSignal).eInverseRemove(this,
 					EOPPOSITE_FEATURE_BASE
-						- ExpressionsPackage.MESSAGE_EXP__SENT_SIGNAL, null,
-					msgs);
+						- ExpressionsPackage.MESSAGE_EXP__SENT_SIGNAL,
+					null, msgs);
 			if (newSentSignal != null)
 				msgs = ((InternalEObject) newSentSignal).eInverseAdd(this,
 					EOPPOSITE_FEATURE_BASE
-						- ExpressionsPackage.MESSAGE_EXP__SENT_SIGNAL, null,
-					msgs);
+						- ExpressionsPackage.MESSAGE_EXP__SENT_SIGNAL,
+					null, msgs);
 			msgs = basicSetSentSignal(newSentSignal, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -421,8 +425,8 @@ public class MessageExpImpl<C, COA, SSA>
 	 */
 	public boolean checkHasOperationOrSignal(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return MessageExpOperations.checkHasOperationOrSignal(this,
-			diagnostics, context);
+		return MessageExpOperations.checkHasOperationOrSignal(this, diagnostics,
+			context);
 	}
 
 	/**
@@ -502,8 +506,8 @@ public class MessageExpImpl<C, COA, SSA>
 				return;
 			case ExpressionsPackage.MESSAGE_EXP__ARGUMENT :
 				getArgument().clear();
-				getArgument().addAll(
-					(Collection<? extends OCLExpression<C>>) newValue);
+				getArgument()
+					.addAll((Collection<? extends OCLExpression<C>>) newValue);
 				return;
 			case ExpressionsPackage.MESSAGE_EXP__CALLED_OPERATION :
 				setCalledOperation((COA) newValue);
@@ -575,7 +579,8 @@ public class MessageExpImpl<C, COA, SSA>
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == CallingASTNode.class) {
 			switch (derivedFeatureID) {
 				case ExpressionsPackage.MESSAGE_EXP__PROPERTY_START_POSITION :
@@ -595,7 +600,8 @@ public class MessageExpImpl<C, COA, SSA>
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == CallingASTNode.class) {
 			switch (baseFeatureID) {
 				case UtilitiesPackage.CALLING_AST_NODE__PROPERTY_START_POSITION :

@@ -41,6 +41,7 @@ import org.eclipse.uml2.uml.SendSignalAction;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.uml.impl.MessageExpImpl#getPropertyStartPosition <em>Property Start Position</em>}</li>
  *   <li>{@link org.eclipse.ocl.uml.impl.MessageExpImpl#getPropertyEndPosition <em>Property End Position</em>}</li>
@@ -49,7 +50,6 @@ import org.eclipse.uml2.uml.SendSignalAction;
  *   <li>{@link org.eclipse.ocl.uml.impl.MessageExpImpl#getCalledOperation <em>Called Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.uml.impl.MessageExpImpl#getSentSignal <em>Sent Signal</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -217,8 +217,8 @@ public class MessageExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTarget(
-			OCLExpression<Classifier> newTarget, NotificationChain msgs) {
+	public NotificationChain basicSetTarget(OCLExpression<Classifier> newTarget,
+			NotificationChain msgs) {
 		OCLExpression<Classifier> oldTarget = target;
 		target = newTarget;
 		if (eNotificationRequired()) {
@@ -311,13 +311,17 @@ public class MessageExpImpl
 		if (newCalledOperation != calledOperation) {
 			NotificationChain msgs = null;
 			if (calledOperation != null)
-				msgs = ((InternalEObject) calledOperation).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE
-						- UMLPackage.MESSAGE_EXP__CALLED_OPERATION, null, msgs);
+				msgs = ((InternalEObject) calledOperation)
+					.eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+							- UMLPackage.MESSAGE_EXP__CALLED_OPERATION,
+						null, msgs);
 			if (newCalledOperation != null)
-				msgs = ((InternalEObject) newCalledOperation).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE
-						- UMLPackage.MESSAGE_EXP__CALLED_OPERATION, null, msgs);
+				msgs = ((InternalEObject) newCalledOperation)
+					.eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE
+							- UMLPackage.MESSAGE_EXP__CALLED_OPERATION,
+						null, msgs);
 			msgs = basicSetCalledOperation(newCalledOperation, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -370,11 +374,13 @@ public class MessageExpImpl
 			if (sentSignal != null)
 				msgs = ((InternalEObject) sentSignal).eInverseRemove(this,
 					EOPPOSITE_FEATURE_BASE
-						- UMLPackage.MESSAGE_EXP__SENT_SIGNAL, null, msgs);
+						- UMLPackage.MESSAGE_EXP__SENT_SIGNAL,
+					null, msgs);
 			if (newSentSignal != null)
 				msgs = ((InternalEObject) newSentSignal).eInverseAdd(this,
 					EOPPOSITE_FEATURE_BASE
-						- UMLPackage.MESSAGE_EXP__SENT_SIGNAL, null, msgs);
+						- UMLPackage.MESSAGE_EXP__SENT_SIGNAL,
+					null, msgs);
 			msgs = basicSetSentSignal(newSentSignal, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -424,8 +430,8 @@ public class MessageExpImpl
 	 */
 	public boolean checkHasOperationOrSignal(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return MessageExpOperations.checkHasOperationOrSignal(this,
-			diagnostics, context);
+		return MessageExpOperations.checkHasOperationOrSignal(this, diagnostics,
+			context);
 	}
 
 	/**
@@ -578,7 +584,8 @@ public class MessageExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == CallingASTNode.class) {
 			switch (derivedFeatureID) {
 				case UMLPackage.MESSAGE_EXP__PROPERTY_START_POSITION :
@@ -612,7 +619,8 @@ public class MessageExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == CallingASTNode.class) {
 			switch (baseFeatureID) {
 				case UtilitiesPackage.CALLING_AST_NODE__PROPERTY_START_POSITION :

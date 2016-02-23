@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * @generated
  */
 public interface AssociationClassCallExp
-		extends
-		NavigationCallExp,
+		extends NavigationCallExp,
 		org.eclipse.ocl.expressions.AssociationClassCallExp<EClassifier, EStructuralFeature> {
 } // AssociationClassCallExp

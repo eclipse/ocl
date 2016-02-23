@@ -26,7 +26,6 @@ import org.eclipse.uml2.uml.SendSignalAction;
  * @generated
  */
 public interface MessageExp
-		extends
-		OCLExpression,
+		extends OCLExpression,
 		org.eclipse.ocl.expressions.MessageExp<Classifier, CallOperationAction, SendSignalAction> {
 } // MessageExp

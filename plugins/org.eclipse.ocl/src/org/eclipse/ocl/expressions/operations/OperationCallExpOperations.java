@@ -37,11 +37,11 @@ import org.eclipse.ocl.utilities.UMLReflection;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.OperationCallExp#checkArgumentsConform(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Arguments Conform</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.OperationCallExp#checkArgumentCount(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Argument Count</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -94,7 +94,8 @@ public class OperationCallExpOperations
 				if (parms.size() == args.size()) {
 					// We check the arguments of the operationCallExp against
 					// the parameters of the referred operation
-					if (!TypeUtil.matchArgs(env, source.getType(), parms, args)) {
+					if (!TypeUtil.matchArgs(env, source.getType(), parms,
+						args)) {
 						result = false;
 						message = OCLMessages.bind(
 							OCLMessages.IllegalOperation_ERROR_,
@@ -147,15 +148,15 @@ public class OperationCallExpOperations
 		if (!result) {
 			if (diagnostics != null) {
 				// TODO: Specific message
-				diagnostics
-					.add(new BasicDiagnostic(
-						Diagnostic.ERROR,
-						ExpressionsValidator.DIAGNOSTIC_SOURCE,
-						ExpressionsValidator.OPERATION_CALL_EXP__ARGUMENT_COUNT,
-						org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE
-							.getString(
-								"_UI_GenericInvariant_diagnostic", new Object[]{"checkArgumentCount", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(operationCallExp, context)}), //$NON-NLS-1$ //$NON-NLS-2$
-						new Object[]{operationCallExp}));
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+					ExpressionsValidator.DIAGNOSTIC_SOURCE,
+					ExpressionsValidator.OPERATION_CALL_EXP__ARGUMENT_COUNT,
+					org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString(
+						"_UI_GenericInvariant_diagnostic", new Object[]{ //$NON-NLS-1$
+							"checkArgumentCount", //$NON-NLS-1$
+							org.eclipse.emf.ecore.util.EObjectValidator
+								.getObjectLabel(operationCallExp, context)}),
+					new Object[]{operationCallExp}));
 			}
 		}
 		return result;

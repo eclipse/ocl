@@ -387,11 +387,13 @@ public class ExpressionsSwitch<T>
 			}
 			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP : {
 				UnlimitedNaturalLiteralExp<?> unlimitedNaturalLiteralExp = (UnlimitedNaturalLiteralExp<?>) theEObject;
-				T result = caseUnlimitedNaturalLiteralExp(unlimitedNaturalLiteralExp);
+				T result = caseUnlimitedNaturalLiteralExp(
+					unlimitedNaturalLiteralExp);
 				if (result == null)
 					result = caseNumericLiteralExp(unlimitedNaturalLiteralExp);
 				if (result == null)
-					result = casePrimitiveLiteralExp(unlimitedNaturalLiteralExp);
+					result = casePrimitiveLiteralExp(
+						unlimitedNaturalLiteralExp);
 				if (result == null)
 					result = caseLiteralExp(unlimitedNaturalLiteralExp);
 				if (result == null)

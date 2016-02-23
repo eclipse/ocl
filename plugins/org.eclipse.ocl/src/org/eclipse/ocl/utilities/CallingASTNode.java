@@ -17,11 +17,11 @@ package org.eclipse.ocl.utilities;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.utilities.CallingASTNode#getPropertyStartPosition <em>Property Start Position</em>}</li>
  *   <li>{@link org.eclipse.ocl.utilities.CallingASTNode#getPropertyEndPosition <em>Property End Position</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.utilities.UtilitiesPackage#getCallingASTNode()
  * @model interface="true" abstract="true"

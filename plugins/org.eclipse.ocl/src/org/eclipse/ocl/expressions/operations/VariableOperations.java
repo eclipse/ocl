@@ -34,6 +34,7 @@ import org.eclipse.ocl.util.TypeUtil;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.utilities.TypedElement#getName() <em>Get Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.utilities.TypedElement#getType() <em>Get Type</em>}</li>
@@ -42,7 +43,6 @@ import org.eclipse.ocl.util.TypeUtil;
  *   <li>{@link org.eclipse.ocl.utilities.Visitable#accept(org.eclipse.ocl.utilities.Visitor) <em>Accept</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.Variable#checkInitType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Init Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

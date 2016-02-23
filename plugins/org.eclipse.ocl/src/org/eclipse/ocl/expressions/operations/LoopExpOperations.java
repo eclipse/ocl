@@ -35,12 +35,12 @@ import org.eclipse.ocl.util.TypeUtil;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.LoopExp#checkSourceCollection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Source Collection</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.LoopExp#checkLoopVariableInit(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Loop Variable Init</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.LoopExp#checkLoopVariableType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Loop Variable Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -150,23 +150,21 @@ public class LoopExpOperations
 		Environment<?, C, ?, ?, PM, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
 			.getValidationEnvironment(loopExp, context);
 
-		if ((env != null) && (loopExp.getSource() != null)
-			&& (loopExp.getSource().getType() instanceof CollectionType<?, ?>)) {
+		if ((env != null) && (loopExp.getSource() != null) && (loopExp
+			.getSource().getType() instanceof CollectionType<?, ?>)) {
 			@SuppressWarnings("unchecked")
-			CollectionType<C, ?> ct = (CollectionType<C, ?>) loopExp
-				.getSource().getType();
+			CollectionType<C, ?> ct = (CollectionType<C, ?>) loopExp.getSource()
+				.getType();
 			C elementType = ct.getElementType();
 
 			if (elementType != null) {
 				for (Variable<C, PM> loopiter : loopExp.getIterator()) {
-					if ((loopiter.getType() != null)
-						&& !TypeUtil.exactTypeMatch(env, loopiter.getType(),
-							elementType)) {
+					if ((loopiter.getType() != null) && !TypeUtil
+						.exactTypeMatch(env, loopiter.getType(), elementType)) {
 						result = false;
-						message = OCLMessages
-							.bind(
-								OCLMessages.TypeConformanceIteratorExpLoopVar_ERROR_,
-								loopExp.toString());
+						message = OCLMessages.bind(
+							OCLMessages.TypeConformanceIteratorExpLoopVar_ERROR_,
+							loopExp.toString());
 						break;
 					}
 				}

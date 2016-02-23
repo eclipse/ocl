@@ -46,6 +46,7 @@ import org.eclipse.uml2.uml.internal.impl.DataTypeImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.uml.impl.CollectionTypeImpl#getStartPosition <em>Start Position</em>}</li>
  *   <li>{@link org.eclipse.ocl.uml.impl.CollectionTypeImpl#getEndPosition <em>End Position</em>}</li>
@@ -54,7 +55,6 @@ import org.eclipse.uml2.uml.internal.impl.DataTypeImpl;
  *   <li>{@link org.eclipse.ocl.uml.impl.CollectionTypeImpl#getElementType <em>Element Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.uml.impl.CollectionTypeImpl#getKind <em>Kind</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -361,8 +361,8 @@ public class CollectionTypeImpl
 					myName.append(SequenceType.SINGLETON_NAME);
 					break;
 				default :
-					myName
-						.append(org.eclipse.ocl.types.CollectionType.SINGLETON_NAME);
+					myName.append(
+						org.eclipse.ocl.types.CollectionType.SINGLETON_NAME);
 					break;
 			}
 
@@ -397,9 +397,8 @@ public class CollectionTypeImpl
 			Environment<?, Classifier, Operation, ?, ?, Parameter, ?, ?, ?, ?, ?, ?> env = Environment.Registry.INSTANCE
 				.getEnvironmentFor(this);
 
-			getOwnedOperations().addAll(
-				OCLStandardLibraryImpl.createCollectionTypeOperations(env,
-					getKind()));
+			getOwnedOperations().addAll(OCLStandardLibraryImpl
+				.createCollectionTypeOperations(env, getKind()));
 
 		}
 	}
@@ -564,7 +563,8 @@ public class CollectionTypeImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == PredefinedType.class) {
 			switch (derivedFeatureID) {
 				default :
@@ -610,7 +610,8 @@ public class CollectionTypeImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == PredefinedType.class) {
 			switch (baseFeatureID) {
 				default :

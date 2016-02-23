@@ -145,21 +145,22 @@ public class UtilitiesPackageImpl
 		// Obtain or create and register package
 		UtilitiesPackageImpl theUtilitiesPackage = (UtilitiesPackageImpl) (EPackage.Registry.INSTANCE
 			.get(eNS_URI) instanceof UtilitiesPackageImpl
-			? EPackage.Registry.INSTANCE.get(eNS_URI)
-			: new UtilitiesPackageImpl());
+				? EPackage.Registry.INSTANCE.get(eNS_URI)
+				: new UtilitiesPackageImpl());
 
 		isInited = true;
 
 		// Obtain or create and register interdependencies
 		TypesPackageImpl theTypesPackage = (TypesPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(TypesPackage.eNS_URI) instanceof TypesPackageImpl
-			? EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI)
-			: TypesPackage.eINSTANCE);
+				? EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI)
+				: TypesPackage.eINSTANCE);
 		ExpressionsPackageImpl theExpressionsPackage = (ExpressionsPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(ExpressionsPackage.eNS_URI) instanceof ExpressionsPackageImpl
-			? EPackage.Registry.INSTANCE
-				.getEPackage(ExpressionsPackage.eNS_URI)
-			: ExpressionsPackage.eINSTANCE);
+			.getEPackage(
+				ExpressionsPackage.eNS_URI) instanceof ExpressionsPackageImpl
+					? EPackage.Registry.INSTANCE
+						.getEPackage(ExpressionsPackage.eNS_URI)
+					: ExpressionsPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theUtilitiesPackage.createPackageContents();
@@ -314,8 +315,8 @@ public class UtilitiesPackageImpl
 	 * @generated
 	 */
 	public EReference getExpressionInOCL_BodyExpression() {
-		return (EReference) expressionInOCLEClass.getEStructuralFeatures().get(
-			0);
+		return (EReference) expressionInOCLEClass.getEStructuralFeatures()
+			.get(0);
 	}
 
 	/**
@@ -324,8 +325,8 @@ public class UtilitiesPackageImpl
 	 * @generated
 	 */
 	public EReference getExpressionInOCL_ContextVariable() {
-		return (EReference) expressionInOCLEClass.getEStructuralFeatures().get(
-			1);
+		return (EReference) expressionInOCLEClass.getEStructuralFeatures()
+			.get(1);
 	}
 
 	/**
@@ -334,8 +335,8 @@ public class UtilitiesPackageImpl
 	 * @generated
 	 */
 	public EReference getExpressionInOCL_ResultVariable() {
-		return (EReference) expressionInOCLEClass.getEStructuralFeatures().get(
-			2);
+		return (EReference) expressionInOCLEClass.getEStructuralFeatures()
+			.get(2);
 	}
 
 	/**
@@ -344,8 +345,8 @@ public class UtilitiesPackageImpl
 	 * @generated
 	 */
 	public EReference getExpressionInOCL_ParameterVariable() {
-		return (EReference) expressionInOCLEClass.getEStructuralFeatures().get(
-			3);
+		return (EReference) expressionInOCLEClass.getEStructuralFeatures()
+			.get(3);
 	}
 
 	/**
@@ -355,8 +356,8 @@ public class UtilitiesPackageImpl
 	 * @generated
 	 */
 	public EReference getExpressionInOCL_GeneratedType() {
-		return (EReference) expressionInOCLEClass.getEStructuralFeatures().get(
-			4);
+		return (EReference) expressionInOCLEClass.getEStructuralFeatures()
+			.get(4);
 	}
 
 	/**
@@ -476,14 +477,17 @@ public class UtilitiesPackageImpl
 		ETypeParameter visitorEClass_C = addETypeParameter(visitorEClass, "C"); //$NON-NLS-1$
 		ETypeParameter visitorEClass_O = addETypeParameter(visitorEClass, "O"); //$NON-NLS-1$
 		ETypeParameter visitorEClass_P = addETypeParameter(visitorEClass, "P"); //$NON-NLS-1$
-		ETypeParameter visitorEClass_EL = addETypeParameter(visitorEClass, "EL"); //$NON-NLS-1$
-		ETypeParameter visitorEClass_PM = addETypeParameter(visitorEClass, "PM"); //$NON-NLS-1$
+		ETypeParameter visitorEClass_EL = addETypeParameter(visitorEClass,
+			"EL"); //$NON-NLS-1$
+		ETypeParameter visitorEClass_PM = addETypeParameter(visitorEClass,
+			"PM"); //$NON-NLS-1$
 		ETypeParameter visitorEClass_S = addETypeParameter(visitorEClass, "S"); //$NON-NLS-1$
 		ETypeParameter visitorEClass_COA = addETypeParameter(visitorEClass,
 			"COA"); //$NON-NLS-1$
 		ETypeParameter visitorEClass_SSA = addETypeParameter(visitorEClass,
 			"SSA"); //$NON-NLS-1$
-		ETypeParameter visitorEClass_CT = addETypeParameter(visitorEClass, "CT"); //$NON-NLS-1$
+		ETypeParameter visitorEClass_CT = addETypeParameter(visitorEClass,
+			"CT"); //$NON-NLS-1$
 		ETypeParameter typedElementEClass_C = addETypeParameter(
 			typedElementEClass, "C"); //$NON-NLS-1$
 		ETypeParameter expressionInOCLEClass_C = addETypeParameter(
@@ -501,48 +505,44 @@ public class UtilitiesPackageImpl
 		expressionInOCLEClass.getESuperTypes().add(this.getVisitable());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(astNodeEClass, ASTNode.class,
-			"ASTNode", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(
-			getASTNode_StartPosition(),
-			ecorePackage.getEInt(),
-			"startPosition", "-1", 0, 1, ASTNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEAttribute(
-			getASTNode_EndPosition(),
-			ecorePackage.getEInt(),
-			"endPosition", "-1", 0, 1, ASTNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEClass(astNodeEClass, ASTNode.class, "ASTNode", IS_ABSTRACT, //$NON-NLS-1$
+			IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getASTNode_StartPosition(), ecorePackage.getEInt(),
+			"startPosition", "-1", 0, 1, ASTNode.class, IS_TRANSIENT, //$NON-NLS-1$//$NON-NLS-2$
+			!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getASTNode_EndPosition(), ecorePackage.getEInt(),
+			"endPosition", "-1", 0, 1, ASTNode.class, IS_TRANSIENT, //$NON-NLS-1$//$NON-NLS-2$
+			!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
 
-		initEClass(
-			callingASTNodeEClass,
-			CallingASTNode.class,
-			"CallingASTNode", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(
-			getCallingASTNode_PropertyStartPosition(),
-			ecorePackage.getEInt(),
-			"propertyStartPosition", "-1", 0, 1, CallingASTNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEAttribute(
-			getCallingASTNode_PropertyEndPosition(),
-			ecorePackage.getEInt(),
-			"propertyEndPosition", "-1", 0, 1, CallingASTNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEClass(callingASTNodeEClass, CallingASTNode.class, "CallingASTNode", //$NON-NLS-1$
+			IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getCallingASTNode_PropertyStartPosition(),
+			ecorePackage.getEInt(), "propertyStartPosition", "-1", 0, 1, //$NON-NLS-1$//$NON-NLS-2$
+			CallingASTNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCallingASTNode_PropertyEndPosition(),
+			ecorePackage.getEInt(), "propertyEndPosition", "-1", 0, 1, //$NON-NLS-1$//$NON-NLS-2$
+			CallingASTNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(
-			typedASTNodeEClass,
-			TypedASTNode.class,
-			"TypedASTNode", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(
-			getTypedASTNode_TypeStartPosition(),
-			ecorePackage.getEInt(),
-			"typeStartPosition", "-1", 0, 1, TypedASTNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEAttribute(
-			getTypedASTNode_TypeEndPosition(),
-			ecorePackage.getEInt(),
-			"typeEndPosition", "-1", 0, 1, TypedASTNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEClass(typedASTNodeEClass, TypedASTNode.class, "TypedASTNode", //$NON-NLS-1$
+			IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTypedASTNode_TypeStartPosition(),
+			ecorePackage.getEInt(), "typeStartPosition", "-1", 0, 1, //$NON-NLS-1$//$NON-NLS-2$
+			TypedASTNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTypedASTNode_TypeEndPosition(),
+			ecorePackage.getEInt(), "typeEndPosition", "-1", 0, 1, //$NON-NLS-1$//$NON-NLS-2$
+			TypedASTNode.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(visitableEClass, Visitable.class,
-			"Visitable", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(visitableEClass, Visitable.class, "Visitable", IS_ABSTRACT, //$NON-NLS-1$
+			IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		EOperation op = addEOperation(visitableEClass, null,
-			"accept", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		EOperation op = addEOperation(visitableEClass, null, "accept", 0, 1, //$NON-NLS-1$
+			IS_UNIQUE, IS_ORDERED);
 		ETypeParameter t1 = addETypeParameter(op, "T"); //$NON-NLS-1$
 		ETypeParameter t2 = addETypeParameter(op, "U"); //$NON-NLS-1$
 		EGenericType g1 = createEGenericType(this.getVisitor());
@@ -572,11 +572,11 @@ public class UtilitiesPackageImpl
 		g1 = createEGenericType(t1);
 		initEOperation(op, g1);
 
-		initEClass(visitorEClass, Visitor.class,
-			"Visitor", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(visitorEClass, Visitor.class, "Visitor", IS_ABSTRACT, //$NON-NLS-1$
+			IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		op = addEOperation(visitorEClass, null,
-			"visitVariableExp", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(visitorEClass, null, "visitVariableExp", 0, 1, //$NON-NLS-1$
+			IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(theExpressionsPackage.getVariableExp());
 		g2 = createEGenericType(visitorEClass_C);
 		g1.getETypeArguments().add(g2);
@@ -586,8 +586,8 @@ public class UtilitiesPackageImpl
 		g1 = createEGenericType(visitorEClass_T);
 		initEOperation(op, g1);
 
-		op = addEOperation(visitorEClass, null,
-			"visitLetExp", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(visitorEClass, null, "visitLetExp", 0, 1, IS_UNIQUE, //$NON-NLS-1$
+			IS_ORDERED);
 		g1 = createEGenericType(theExpressionsPackage.getLetExp());
 		g2 = createEGenericType(visitorEClass_C);
 		g1.getETypeArguments().add(g2);
@@ -597,8 +597,8 @@ public class UtilitiesPackageImpl
 		g1 = createEGenericType(visitorEClass_T);
 		initEOperation(op, g1);
 
-		op = addEOperation(visitorEClass, null,
-			"visitIfExp", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(visitorEClass, null, "visitIfExp", 0, 1, IS_UNIQUE, //$NON-NLS-1$
+			IS_ORDERED);
 		g1 = createEGenericType(theExpressionsPackage.getIfExp());
 		g2 = createEGenericType(visitorEClass_C);
 		g1.getETypeArguments().add(g2);
@@ -606,8 +606,8 @@ public class UtilitiesPackageImpl
 		g1 = createEGenericType(visitorEClass_T);
 		initEOperation(op, g1);
 
-		op = addEOperation(visitorEClass, null,
-			"visitTypeExp", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(visitorEClass, null, "visitTypeExp", 0, 1, IS_UNIQUE, //$NON-NLS-1$
+			IS_ORDERED);
 		g1 = createEGenericType(theExpressionsPackage.getTypeExp());
 		g2 = createEGenericType(visitorEClass_C);
 		g1.getETypeArguments().add(g2);
@@ -615,8 +615,8 @@ public class UtilitiesPackageImpl
 		g1 = createEGenericType(visitorEClass_T);
 		initEOperation(op, g1);
 
-		op = addEOperation(visitorEClass, null,
-			"visitPropertyCallExp", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(visitorEClass, null, "visitPropertyCallExp", 0, 1, //$NON-NLS-1$
+			IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(theExpressionsPackage.getPropertyCallExp());
 		g2 = createEGenericType(visitorEClass_C);
 		g1.getETypeArguments().add(g2);
@@ -626,8 +626,8 @@ public class UtilitiesPackageImpl
 		g1 = createEGenericType(visitorEClass_T);
 		initEOperation(op, g1);
 
-		op = addEOperation(visitorEClass, null,
-			"visitOperationCallExp", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(visitorEClass, null, "visitOperationCallExp", 0, 1, //$NON-NLS-1$
+			IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(theExpressionsPackage.getOperationCallExp());
 		g2 = createEGenericType(visitorEClass_C);
 		g1.getETypeArguments().add(g2);
@@ -637,10 +637,10 @@ public class UtilitiesPackageImpl
 		g1 = createEGenericType(visitorEClass_T);
 		initEOperation(op, g1);
 
-		op = addEOperation(visitorEClass, null,
-			"visitAssociationClassCallExp", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		g1 = createEGenericType(theExpressionsPackage
-			.getAssociationClassCallExp());
+		op = addEOperation(visitorEClass, null, "visitAssociationClassCallExp", //$NON-NLS-1$
+			0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(
+			theExpressionsPackage.getAssociationClassCallExp());
 		g2 = createEGenericType(visitorEClass_C);
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(visitorEClass_P);
@@ -649,8 +649,8 @@ public class UtilitiesPackageImpl
 		g1 = createEGenericType(visitorEClass_T);
 		initEOperation(op, g1);
 
-		op = addEOperation(visitorEClass, null,
-			"visitIteratorExp", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(visitorEClass, null, "visitIteratorExp", 0, 1, //$NON-NLS-1$
+			IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(theExpressionsPackage.getIteratorExp());
 		g2 = createEGenericType(visitorEClass_C);
 		g1.getETypeArguments().add(g2);
@@ -660,8 +660,8 @@ public class UtilitiesPackageImpl
 		g1 = createEGenericType(visitorEClass_T);
 		initEOperation(op, g1);
 
-		op = addEOperation(visitorEClass, null,
-			"visitIterateExp", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(visitorEClass, null, "visitIterateExp", 0, 1, //$NON-NLS-1$
+			IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(theExpressionsPackage.getIterateExp());
 		g2 = createEGenericType(visitorEClass_C);
 		g1.getETypeArguments().add(g2);
@@ -671,8 +671,8 @@ public class UtilitiesPackageImpl
 		g1 = createEGenericType(visitorEClass_T);
 		initEOperation(op, g1);
 
-		op = addEOperation(visitorEClass, null,
-			"visitUnspecifiedValueExp", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(visitorEClass, null, "visitUnspecifiedValueExp", 0, //$NON-NLS-1$
+			1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(theExpressionsPackage.getUnspecifiedValueExp());
 		g2 = createEGenericType(visitorEClass_C);
 		g1.getETypeArguments().add(g2);
@@ -680,8 +680,8 @@ public class UtilitiesPackageImpl
 		g1 = createEGenericType(visitorEClass_T);
 		initEOperation(op, g1);
 
-		op = addEOperation(visitorEClass, null,
-			"visitIntegerLiteralExp", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(visitorEClass, null, "visitIntegerLiteralExp", 0, 1, //$NON-NLS-1$
+			IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(theExpressionsPackage.getIntegerLiteralExp());
 		g2 = createEGenericType(visitorEClass_C);
 		g1.getETypeArguments().add(g2);
@@ -691,16 +691,16 @@ public class UtilitiesPackageImpl
 
 		op = addEOperation(visitorEClass, null,
 			"visitUnlimitedNaturalLiteralExp", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		g1 = createEGenericType(theExpressionsPackage
-			.getUnlimitedNaturalLiteralExp());
+		g1 = createEGenericType(
+			theExpressionsPackage.getUnlimitedNaturalLiteralExp());
 		g2 = createEGenericType(visitorEClass_C);
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "literalExp", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(visitorEClass_T);
 		initEOperation(op, g1);
 
-		op = addEOperation(visitorEClass, null,
-			"visitRealLiteralExp", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(visitorEClass, null, "visitRealLiteralExp", 0, 1, //$NON-NLS-1$
+			IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(theExpressionsPackage.getRealLiteralExp());
 		g2 = createEGenericType(visitorEClass_C);
 		g1.getETypeArguments().add(g2);
@@ -708,8 +708,8 @@ public class UtilitiesPackageImpl
 		g1 = createEGenericType(visitorEClass_T);
 		initEOperation(op, g1);
 
-		op = addEOperation(visitorEClass, null,
-			"visitStringLiteralExp", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(visitorEClass, null, "visitStringLiteralExp", 0, 1, //$NON-NLS-1$
+			IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(theExpressionsPackage.getStringLiteralExp());
 		g2 = createEGenericType(visitorEClass_C);
 		g1.getETypeArguments().add(g2);
@@ -717,8 +717,8 @@ public class UtilitiesPackageImpl
 		g1 = createEGenericType(visitorEClass_T);
 		initEOperation(op, g1);
 
-		op = addEOperation(visitorEClass, null,
-			"visitBooleanLiteralExp", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(visitorEClass, null, "visitBooleanLiteralExp", 0, 1, //$NON-NLS-1$
+			IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(theExpressionsPackage.getBooleanLiteralExp());
 		g2 = createEGenericType(visitorEClass_C);
 		g1.getETypeArguments().add(g2);
@@ -726,8 +726,8 @@ public class UtilitiesPackageImpl
 		g1 = createEGenericType(visitorEClass_T);
 		initEOperation(op, g1);
 
-		op = addEOperation(visitorEClass, null,
-			"visitEnumLiteralExp", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(visitorEClass, null, "visitEnumLiteralExp", 0, 1, //$NON-NLS-1$
+			IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(theExpressionsPackage.getEnumLiteralExp());
 		g2 = createEGenericType(visitorEClass_C);
 		g1.getETypeArguments().add(g2);
@@ -737,17 +737,18 @@ public class UtilitiesPackageImpl
 		g1 = createEGenericType(visitorEClass_T);
 		initEOperation(op, g1);
 
-		op = addEOperation(visitorEClass, null,
-			"visitCollectionLiteralExp", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		g1 = createEGenericType(theExpressionsPackage.getCollectionLiteralExp());
+		op = addEOperation(visitorEClass, null, "visitCollectionLiteralExp", 0, //$NON-NLS-1$
+			1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(
+			theExpressionsPackage.getCollectionLiteralExp());
 		g2 = createEGenericType(visitorEClass_C);
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "literalExp", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(visitorEClass_T);
 		initEOperation(op, g1);
 
-		op = addEOperation(visitorEClass, null,
-			"visitCollectionItem", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(visitorEClass, null, "visitCollectionItem", 0, 1, //$NON-NLS-1$
+			IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(theExpressionsPackage.getCollectionItem());
 		g2 = createEGenericType(visitorEClass_C);
 		g1.getETypeArguments().add(g2);
@@ -755,8 +756,8 @@ public class UtilitiesPackageImpl
 		g1 = createEGenericType(visitorEClass_T);
 		initEOperation(op, g1);
 
-		op = addEOperation(visitorEClass, null,
-			"visitCollectionRange", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(visitorEClass, null, "visitCollectionRange", 0, 1, //$NON-NLS-1$
+			IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(theExpressionsPackage.getCollectionRange());
 		g2 = createEGenericType(visitorEClass_C);
 		g1.getETypeArguments().add(g2);
@@ -764,8 +765,8 @@ public class UtilitiesPackageImpl
 		g1 = createEGenericType(visitorEClass_T);
 		initEOperation(op, g1);
 
-		op = addEOperation(visitorEClass, null,
-			"visitTupleLiteralExp", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(visitorEClass, null, "visitTupleLiteralExp", 0, 1, //$NON-NLS-1$
+			IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(theExpressionsPackage.getTupleLiteralExp());
 		g2 = createEGenericType(visitorEClass_C);
 		g1.getETypeArguments().add(g2);
@@ -775,8 +776,8 @@ public class UtilitiesPackageImpl
 		g1 = createEGenericType(visitorEClass_T);
 		initEOperation(op, g1);
 
-		op = addEOperation(visitorEClass, null,
-			"visitTupleLiteralPart", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(visitorEClass, null, "visitTupleLiteralPart", 0, 1, //$NON-NLS-1$
+			IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(theExpressionsPackage.getTupleLiteralPart());
 		g2 = createEGenericType(visitorEClass_C);
 		g1.getETypeArguments().add(g2);
@@ -786,8 +787,8 @@ public class UtilitiesPackageImpl
 		g1 = createEGenericType(visitorEClass_T);
 		initEOperation(op, g1);
 
-		op = addEOperation(visitorEClass, null,
-			"visitInvalidLiteralExp", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(visitorEClass, null, "visitInvalidLiteralExp", 0, 1, //$NON-NLS-1$
+			IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(theExpressionsPackage.getInvalidLiteralExp());
 		g2 = createEGenericType(visitorEClass_C);
 		g1.getETypeArguments().add(g2);
@@ -795,8 +796,8 @@ public class UtilitiesPackageImpl
 		g1 = createEGenericType(visitorEClass_T);
 		initEOperation(op, g1);
 
-		op = addEOperation(visitorEClass, null,
-			"visitNullLiteralExp", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(visitorEClass, null, "visitNullLiteralExp", 0, 1, //$NON-NLS-1$
+			IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(theExpressionsPackage.getNullLiteralExp());
 		g2 = createEGenericType(visitorEClass_C);
 		g1.getETypeArguments().add(g2);
@@ -804,8 +805,8 @@ public class UtilitiesPackageImpl
 		g1 = createEGenericType(visitorEClass_T);
 		initEOperation(op, g1);
 
-		op = addEOperation(visitorEClass, null,
-			"visitStateExp", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(visitorEClass, null, "visitStateExp", 0, 1, //$NON-NLS-1$
+			IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(theExpressionsPackage.getStateExp());
 		g2 = createEGenericType(visitorEClass_C);
 		g1.getETypeArguments().add(g2);
@@ -815,8 +816,8 @@ public class UtilitiesPackageImpl
 		g1 = createEGenericType(visitorEClass_T);
 		initEOperation(op, g1);
 
-		op = addEOperation(visitorEClass, null,
-			"visitMessageExp", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(visitorEClass, null, "visitMessageExp", 0, 1, //$NON-NLS-1$
+			IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(theExpressionsPackage.getMessageExp());
 		g2 = createEGenericType(visitorEClass_C);
 		g1.getETypeArguments().add(g2);
@@ -828,8 +829,8 @@ public class UtilitiesPackageImpl
 		g1 = createEGenericType(visitorEClass_T);
 		initEOperation(op, g1);
 
-		op = addEOperation(visitorEClass, null,
-			"visitVariable", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(visitorEClass, null, "visitVariable", 0, 1, //$NON-NLS-1$
+			IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(theExpressionsPackage.getVariable());
 		g2 = createEGenericType(visitorEClass_C);
 		g1.getETypeArguments().add(g2);
@@ -839,8 +840,8 @@ public class UtilitiesPackageImpl
 		g1 = createEGenericType(visitorEClass_T);
 		initEOperation(op, g1);
 
-		op = addEOperation(visitorEClass, null,
-			"visitExpressionInOCL", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(visitorEClass, null, "visitExpressionInOCL", 0, 1, //$NON-NLS-1$
+			IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(this.getExpressionInOCL());
 		g2 = createEGenericType(visitorEClass_C);
 		g1.getETypeArguments().add(g2);
@@ -850,95 +851,86 @@ public class UtilitiesPackageImpl
 		g1 = createEGenericType(visitorEClass_T);
 		initEOperation(op, g1);
 
-		op = addEOperation(visitorEClass, null,
-			"visitConstraint", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(visitorEClass, null, "visitConstraint", 0, 1, //$NON-NLS-1$
+			IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(visitorEClass_CT);
 		addEParameter(op, g1, "constraint", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(visitorEClass_T);
 		initEOperation(op, g1);
 
-		initEClass(
-			typedElementEClass,
-			TypedElement.class,
-			"TypedElement", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(typedElementEClass, TypedElement.class, "TypedElement", //$NON-NLS-1$
+			IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		addEOperation(typedElementEClass, ecorePackage.getEString(),
-			"getName", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEOperation(typedElementEClass, ecorePackage.getEString(), "getName", //$NON-NLS-1$
+			0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(typedElementEClass, null,
-			"getType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(typedElementEClass, null, "getType", 0, 1, IS_UNIQUE, //$NON-NLS-1$
+			IS_ORDERED);
 		g1 = createEGenericType(typedElementEClass_C);
 		initEOperation(op, g1);
 
-		op = addEOperation(typedElementEClass, null,
-			"setName", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEString(),
-			"name", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(typedElementEClass, null, "setName", 1, 1, IS_UNIQUE, //$NON-NLS-1$
+			!IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, IS_UNIQUE, //$NON-NLS-1$
+			!IS_ORDERED);
 
-		op = addEOperation(typedElementEClass, null,
-			"setType", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(typedElementEClass, null, "setType", 1, 1, IS_UNIQUE, //$NON-NLS-1$
+			!IS_ORDERED);
 		g1 = createEGenericType(typedElementEClass_C);
 		addEParameter(op, g1, "type", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(
-			expressionInOCLEClass,
-			ExpressionInOCL.class,
-			"ExpressionInOCL", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(expressionInOCLEClass, ExpressionInOCL.class,
+			"ExpressionInOCL", IS_ABSTRACT, IS_INTERFACE, //$NON-NLS-1$
+			IS_GENERATED_INSTANCE_CLASS);
 		g1 = createEGenericType(theExpressionsPackage.getOCLExpression());
 		g2 = createEGenericType(expressionInOCLEClass_C);
 		g1.getETypeArguments().add(g2);
-		initEReference(
-			getExpressionInOCL_BodyExpression(),
-			g1,
-			null,
-			"bodyExpression", null, 1, 1, ExpressionInOCL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getExpressionInOCL_BodyExpression(), g1, null,
+			"bodyExpression", null, 1, 1, ExpressionInOCL.class, !IS_TRANSIENT, //$NON-NLS-1$
+			!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		g1 = createEGenericType(theExpressionsPackage.getVariable());
 		g2 = createEGenericType(expressionInOCLEClass_C);
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(expressionInOCLEClass_PM);
 		g1.getETypeArguments().add(g2);
-		initEReference(
-			getExpressionInOCL_ContextVariable(),
-			g1,
-			null,
-			"contextVariable", null, 1, 1, ExpressionInOCL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getExpressionInOCL_ContextVariable(), g1, null,
+			"contextVariable", null, 1, 1, ExpressionInOCL.class, !IS_TRANSIENT, //$NON-NLS-1$
+			!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		g1 = createEGenericType(theExpressionsPackage.getVariable());
 		g2 = createEGenericType(expressionInOCLEClass_C);
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(expressionInOCLEClass_PM);
 		g1.getETypeArguments().add(g2);
-		initEReference(
-			getExpressionInOCL_ResultVariable(),
-			g1,
-			null,
-			"resultVariable", null, 0, 1, ExpressionInOCL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getExpressionInOCL_ResultVariable(), g1, null,
+			"resultVariable", null, 0, 1, ExpressionInOCL.class, !IS_TRANSIENT, //$NON-NLS-1$
+			!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		g1 = createEGenericType(theExpressionsPackage.getVariable());
 		g2 = createEGenericType(expressionInOCLEClass_C);
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(expressionInOCLEClass_PM);
 		g1.getETypeArguments().add(g2);
-		initEReference(
-			getExpressionInOCL_ParameterVariable(),
-			g1,
-			null,
-			"parameterVariable", null, 0, -1, ExpressionInOCL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getExpressionInOCL_ParameterVariable(), g1, null,
+			"parameterVariable", null, 0, -1, ExpressionInOCL.class, //$NON-NLS-1$
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+			!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+			IS_ORDERED);
 		g1 = createEGenericType(expressionInOCLEClass_C);
-		initEReference(
-			getExpressionInOCL_GeneratedType(),
-			g1,
-			null,
-			"generatedType", null, 0, -1, ExpressionInOCL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getExpressionInOCL_GeneratedType(), g1, null,
+			"generatedType", null, 0, -1, ExpressionInOCL.class, !IS_TRANSIENT, //$NON-NLS-1$
+			!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(
-			predefinedTypeEClass,
-			PredefinedType.class,
-			"PredefinedType", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(predefinedTypeEClass, PredefinedType.class, "PredefinedType", //$NON-NLS-1$
+			IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		addEOperation(predefinedTypeEClass, ecorePackage.getEString(),
 			"getName", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		op = addEOperation(predefinedTypeEClass, null,
-			"oclOperations", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = addEOperation(predefinedTypeEClass, null, "oclOperations", 0, -1, //$NON-NLS-1$
+			IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(predefinedTypeEClass_O);
 		initEOperation(op, g1);
 
@@ -957,10 +949,10 @@ public class UtilitiesPackageImpl
 	 * @generated
 	 */
 	protected void createExtendedMetaDataAnnotations() {
-		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData"; //$NON-NLS-1$		
-		addAnnotation(expressionInOCLEClass, source, new String[]{
-			"name", "ExpressionInOcl" //$NON-NLS-1$ //$NON-NLS-2$
-		});
+		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData"; //$NON-NLS-1$	
+		addAnnotation(expressionInOCLEClass, source,
+			new String[]{"name", "ExpressionInOcl" //$NON-NLS-1$ //$NON-NLS-2$
+			});
 	}
 
 } //UtilitiesPackageImpl

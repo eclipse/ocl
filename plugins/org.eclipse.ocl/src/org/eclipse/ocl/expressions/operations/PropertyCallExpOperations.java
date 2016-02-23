@@ -32,10 +32,10 @@ import org.eclipse.ocl.util.TypeUtil;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.PropertyCallExp#checkPropertyType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Property Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -87,15 +87,15 @@ public class PropertyCallExpOperations
 		if (!result) {
 			if (diagnostics != null) {
 				// TODO: Specific message
-				diagnostics
-					.add(new BasicDiagnostic(
-						Diagnostic.ERROR,
-						ExpressionsValidator.DIAGNOSTIC_SOURCE,
-						ExpressionsValidator.PROPERTY_CALL_EXP__PROPERTY_TYPE,
-						org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE
-							.getString(
-								"_UI_GenericInvariant_diagnostic", new Object[]{"checkPropertyType", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(propertyCallExp, context)}), //$NON-NLS-1$ //$NON-NLS-2$
-						new Object[]{propertyCallExp}));
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+					ExpressionsValidator.DIAGNOSTIC_SOURCE,
+					ExpressionsValidator.PROPERTY_CALL_EXP__PROPERTY_TYPE,
+					org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString(
+						"_UI_GenericInvariant_diagnostic", //$NON-NLS-1$
+						new Object[]{"checkPropertyType", //$NON-NLS-1$
+							org.eclipse.emf.ecore.util.EObjectValidator
+								.getObjectLabel(propertyCallExp, context)}),
+					new Object[]{propertyCallExp}));
 			}
 		}
 		return result;

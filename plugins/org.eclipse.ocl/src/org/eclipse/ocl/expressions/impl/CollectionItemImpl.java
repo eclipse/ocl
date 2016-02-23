@@ -30,10 +30,10 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.impl.CollectionItemImpl#getItem <em>Item</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -109,13 +109,17 @@ public class CollectionItemImpl<C>
 		if (newItem != item) {
 			NotificationChain msgs = null;
 			if (item != null)
-				msgs = ((InternalEObject) item).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE
-						- ExpressionsPackage.COLLECTION_ITEM__ITEM, null, msgs);
+				msgs = ((InternalEObject) item)
+					.eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+							- ExpressionsPackage.COLLECTION_ITEM__ITEM,
+						null, msgs);
 			if (newItem != null)
-				msgs = ((InternalEObject) newItem).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE
-						- ExpressionsPackage.COLLECTION_ITEM__ITEM, null, msgs);
+				msgs = ((InternalEObject) newItem)
+					.eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE
+							- ExpressionsPackage.COLLECTION_ITEM__ITEM,
+						null, msgs);
 			msgs = basicSetItem(newItem, msgs);
 			if (msgs != null)
 				msgs.dispatch();

@@ -31,12 +31,12 @@ import org.eclipse.ocl.utilities.UtilitiesPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.ecore.impl.CallExpImpl#getPropertyStartPosition <em>Property Start Position</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.CallExpImpl#getPropertyEndPosition <em>Property End Position</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.CallExpImpl#getSource <em>Source</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -313,7 +313,8 @@ public abstract class CallExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == CallingASTNode.class) {
 			switch (derivedFeatureID) {
 				case EcorePackage.CALL_EXP__PROPERTY_START_POSITION :
@@ -341,7 +342,8 @@ public abstract class CallExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == CallingASTNode.class) {
 			switch (baseFeatureID) {
 				case UtilitiesPackage.CALLING_AST_NODE__PROPERTY_START_POSITION :

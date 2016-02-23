@@ -29,10 +29,10 @@ import org.eclipse.ocl.types.TypesPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.ecore.impl.TemplateParameterTypeImpl#getSpecification <em>Specification</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -192,7 +192,8 @@ public class TemplateParameterTypeImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.types.TemplateParameterType.class) {
 			switch (derivedFeatureID) {
 				case EcorePackage.TEMPLATE_PARAMETER_TYPE__SPECIFICATION :
@@ -210,7 +211,8 @@ public class TemplateParameterTypeImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.types.TemplateParameterType.class) {
 			switch (baseFeatureID) {
 				case TypesPackage.TEMPLATE_PARAMETER_TYPE__SPECIFICATION :

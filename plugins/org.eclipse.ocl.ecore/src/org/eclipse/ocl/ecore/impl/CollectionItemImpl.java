@@ -33,10 +33,10 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.ecore.impl.CollectionItemImpl#getItem <em>Item</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -112,13 +112,13 @@ public class CollectionItemImpl
 		if (newItem != item) {
 			NotificationChain msgs = null;
 			if (item != null)
-				msgs = ((InternalEObject) item)
-					.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-						- EcorePackage.COLLECTION_ITEM__ITEM, null, msgs);
+				msgs = ((InternalEObject) item).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - EcorePackage.COLLECTION_ITEM__ITEM,
+					null, msgs);
 			if (newItem != null)
-				msgs = ((InternalEObject) newItem)
-					.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-						- EcorePackage.COLLECTION_ITEM__ITEM, null, msgs);
+				msgs = ((InternalEObject) newItem).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - EcorePackage.COLLECTION_ITEM__ITEM,
+					null, msgs);
 			msgs = basicSetItem(newItem, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -218,7 +218,8 @@ public class CollectionItemImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.CollectionItem.class) {
 			switch (derivedFeatureID) {
 				case EcorePackage.COLLECTION_ITEM__ITEM :
@@ -236,7 +237,8 @@ public class CollectionItemImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.CollectionItem.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.COLLECTION_ITEM__ITEM :

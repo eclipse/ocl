@@ -34,11 +34,11 @@ import org.eclipse.ocl.utilities.UMLReflection;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.IfExp#checkBooleanCondition(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Boolean Condition</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.IfExp#checkIfType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check If Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

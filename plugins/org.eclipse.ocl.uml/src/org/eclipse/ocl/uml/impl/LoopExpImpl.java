@@ -38,11 +38,11 @@ import org.eclipse.uml2.uml.Parameter;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.uml.impl.LoopExpImpl#getBody <em>Body</em>}</li>
  *   <li>{@link org.eclipse.ocl.uml.impl.LoopExpImpl#getIterator <em>Iterator</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -237,9 +237,8 @@ public abstract class LoopExpImpl
 				return;
 			case UMLPackage.LOOP_EXP__ITERATOR :
 				getIterator().clear();
-				getIterator()
-					.addAll(
-						(Collection<? extends Variable<Classifier, Parameter>>) newValue);
+				getIterator().addAll(
+					(Collection<? extends Variable<Classifier, Parameter>>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -285,7 +284,8 @@ public abstract class LoopExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.LoopExp.class) {
 			switch (derivedFeatureID) {
 				case UMLPackage.LOOP_EXP__BODY :
@@ -305,7 +305,8 @@ public abstract class LoopExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.LoopExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.LOOP_EXP__BODY :

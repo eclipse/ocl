@@ -44,11 +44,11 @@ import org.eclipse.ocl.utilities.UMLReflection;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.ecore.impl.MessageTypeImpl#getReferredOperation <em>Referred Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.MessageTypeImpl#getReferredSignal <em>Referred Signal</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -108,7 +108,8 @@ public class MessageTypeImpl
 		if (referredOperation != null
 			&& ((EObject) referredOperation).eIsProxy()) {
 			InternalEObject oldReferredOperation = (InternalEObject) referredOperation;
-			referredOperation = (EOperation) eResolveProxy(oldReferredOperation);
+			referredOperation = (EOperation) eResolveProxy(
+				oldReferredOperation);
 			if (referredOperation != oldReferredOperation) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
@@ -202,8 +203,8 @@ public class MessageTypeImpl
 	 */
 	public boolean checkOperationParameters(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return MessageTypeOperations.checkOperationParameters(this,
-			diagnostics, context);
+		return MessageTypeOperations.checkOperationParameters(this, diagnostics,
+			context);
 	}
 
 	/**
@@ -375,7 +376,8 @@ public class MessageTypeImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == PredefinedType.class) {
 			switch (derivedFeatureID) {
 				default :
@@ -401,7 +403,8 @@ public class MessageTypeImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == PredefinedType.class) {
 			switch (baseFeatureID) {
 				default :

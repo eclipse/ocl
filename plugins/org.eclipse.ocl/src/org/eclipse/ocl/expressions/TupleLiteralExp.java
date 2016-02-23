@@ -22,10 +22,10 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.TupleLiteralExp#getPart <em>Part</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.expressions.ExpressionsPackage#getTupleLiteralExp()
  * @model

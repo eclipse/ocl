@@ -187,7 +187,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int ANY_TYPE_FEATURE_COUNT = org.eclipse.emf.ecore.EcorePackage.ECLASSIFIER_FEATURE_COUNT + 0;
+	int ANY_TYPE_FEATURE_COUNT = org.eclipse.emf.ecore.EcorePackage.ECLASSIFIER_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.CollectionTypeImpl <em>Collection Type</em>}' class.
@@ -309,7 +310,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE__START_POSITION = org.eclipse.emf.ecore.EcorePackage.EDATA_TYPE_FEATURE_COUNT + 0;
+	int COLLECTION_TYPE__START_POSITION = org.eclipse.emf.ecore.EcorePackage.EDATA_TYPE_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
@@ -320,7 +322,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE__END_POSITION = org.eclipse.emf.ecore.EcorePackage.EDATA_TYPE_FEATURE_COUNT + 1;
+	int COLLECTION_TYPE__END_POSITION = org.eclipse.emf.ecore.EcorePackage.EDATA_TYPE_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The feature id for the '<em><b>Type Start Position</b></em>' attribute.
@@ -331,7 +334,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE__TYPE_START_POSITION = org.eclipse.emf.ecore.EcorePackage.EDATA_TYPE_FEATURE_COUNT + 2;
+	int COLLECTION_TYPE__TYPE_START_POSITION = org.eclipse.emf.ecore.EcorePackage.EDATA_TYPE_FEATURE_COUNT
+		+ 2;
 
 	/**
 	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
@@ -342,7 +346,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE__TYPE_END_POSITION = org.eclipse.emf.ecore.EcorePackage.EDATA_TYPE_FEATURE_COUNT + 3;
+	int COLLECTION_TYPE__TYPE_END_POSITION = org.eclipse.emf.ecore.EcorePackage.EDATA_TYPE_FEATURE_COUNT
+		+ 3;
 
 	/**
 	 * The feature id for the '<em><b>Element Type</b></em>' reference.
@@ -353,7 +358,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE__ELEMENT_TYPE = org.eclipse.emf.ecore.EcorePackage.EDATA_TYPE_FEATURE_COUNT + 4;
+	int COLLECTION_TYPE__ELEMENT_TYPE = org.eclipse.emf.ecore.EcorePackage.EDATA_TYPE_FEATURE_COUNT
+		+ 4;
 
 	/**
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
@@ -364,7 +370,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE__KIND = org.eclipse.emf.ecore.EcorePackage.EDATA_TYPE_FEATURE_COUNT + 5;
+	int COLLECTION_TYPE__KIND = org.eclipse.emf.ecore.EcorePackage.EDATA_TYPE_FEATURE_COUNT
+		+ 5;
 
 	/**
 	 * The number of structural features of the '<em>Collection Type</em>' class.
@@ -375,7 +382,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE_FEATURE_COUNT = org.eclipse.emf.ecore.EcorePackage.EDATA_TYPE_FEATURE_COUNT + 6;
+	int COLLECTION_TYPE_FEATURE_COUNT = org.eclipse.emf.ecore.EcorePackage.EDATA_TYPE_FEATURE_COUNT
+		+ 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.BagTypeImpl <em>Bag Type</em>}' class.
@@ -850,7 +858,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_TYPE_FEATURE_COUNT = org.eclipse.emf.ecore.EcorePackage.ECLASS_FEATURE_COUNT + 0;
+	int ELEMENT_TYPE_FEATURE_COUNT = org.eclipse.emf.ecore.EcorePackage.ECLASS_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.InvalidTypeImpl <em>Invalid Type</em>}' class.
@@ -961,7 +970,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int INVALID_TYPE_FEATURE_COUNT = org.eclipse.emf.ecore.EcorePackage.ECLASSIFIER_FEATURE_COUNT + 0;
+	int INVALID_TYPE_FEATURE_COUNT = org.eclipse.emf.ecore.EcorePackage.ECLASSIFIER_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.MessageTypeImpl <em>Message Type</em>}' class.
@@ -1248,7 +1258,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__REFERRED_OPERATION = org.eclipse.emf.ecore.EcorePackage.ECLASS_FEATURE_COUNT + 0;
+	int MESSAGE_TYPE__REFERRED_OPERATION = org.eclipse.emf.ecore.EcorePackage.ECLASS_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The feature id for the '<em><b>Referred Signal</b></em>' reference.
@@ -1259,7 +1270,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__REFERRED_SIGNAL = org.eclipse.emf.ecore.EcorePackage.ECLASS_FEATURE_COUNT + 1;
+	int MESSAGE_TYPE__REFERRED_SIGNAL = org.eclipse.emf.ecore.EcorePackage.ECLASS_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The number of structural features of the '<em>Message Type</em>' class.
@@ -1270,7 +1282,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE_FEATURE_COUNT = org.eclipse.emf.ecore.EcorePackage.ECLASS_FEATURE_COUNT + 2;
+	int MESSAGE_TYPE_FEATURE_COUNT = org.eclipse.emf.ecore.EcorePackage.ECLASS_FEATURE_COUNT
+		+ 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.OrderedSetTypeImpl <em>Ordered Set Type</em>}' class.
@@ -1580,7 +1593,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_TYPE_FEATURE_COUNT = org.eclipse.emf.ecore.EcorePackage.EDATA_TYPE_FEATURE_COUNT + 0;
+	int PRIMITIVE_TYPE_FEATURE_COUNT = org.eclipse.emf.ecore.EcorePackage.EDATA_TYPE_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.SequenceTypeImpl <em>Sequence Type</em>}' class.
@@ -2077,7 +2091,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_TYPE__SPECIFICATION = org.eclipse.emf.ecore.EcorePackage.ECLASSIFIER_FEATURE_COUNT + 0;
+	int TEMPLATE_PARAMETER_TYPE__SPECIFICATION = org.eclipse.emf.ecore.EcorePackage.ECLASSIFIER_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The number of structural features of the '<em>Template Parameter Type</em>' class.
@@ -2089,7 +2104,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_TYPE_FEATURE_COUNT = org.eclipse.emf.ecore.EcorePackage.ECLASSIFIER_FEATURE_COUNT + 1;
+	int TEMPLATE_PARAMETER_TYPE_FEATURE_COUNT = org.eclipse.emf.ecore.EcorePackage.ECLASSIFIER_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.TupleTypeImpl <em>Tuple Type</em>}' class.
@@ -2376,7 +2392,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_TYPE__SERIALIZABLE = org.eclipse.emf.ecore.EcorePackage.ECLASS_FEATURE_COUNT + 0;
+	int TUPLE_TYPE__SERIALIZABLE = org.eclipse.emf.ecore.EcorePackage.ECLASS_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The number of structural features of the '<em>Tuple Type</em>' class.
@@ -2387,7 +2404,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_TYPE_FEATURE_COUNT = org.eclipse.emf.ecore.EcorePackage.ECLASS_FEATURE_COUNT + 1;
+	int TUPLE_TYPE_FEATURE_COUNT = org.eclipse.emf.ecore.EcorePackage.ECLASS_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.TypeTypeImpl <em>Type Type</em>}' class.
@@ -2498,7 +2516,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_TYPE__REFERRED_TYPE = org.eclipse.emf.ecore.EcorePackage.ECLASSIFIER_FEATURE_COUNT + 0;
+	int TYPE_TYPE__REFERRED_TYPE = org.eclipse.emf.ecore.EcorePackage.ECLASSIFIER_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The number of structural features of the '<em>Type Type</em>' class.
@@ -2509,7 +2528,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_TYPE_FEATURE_COUNT = org.eclipse.emf.ecore.EcorePackage.ECLASSIFIER_FEATURE_COUNT + 1;
+	int TYPE_TYPE_FEATURE_COUNT = org.eclipse.emf.ecore.EcorePackage.ECLASSIFIER_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.VoidTypeImpl <em>Void Type</em>}' class.
@@ -2620,7 +2640,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int VOID_TYPE_FEATURE_COUNT = org.eclipse.emf.ecore.EcorePackage.ECLASSIFIER_FEATURE_COUNT + 0;
+	int VOID_TYPE_FEATURE_COUNT = org.eclipse.emf.ecore.EcorePackage.ECLASSIFIER_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.CallOperationActionImpl <em>Call Operation Action</em>}' class.
@@ -2699,7 +2720,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT__SPECIFICATION = org.eclipse.emf.ecore.EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT + 0;
+	int CONSTRAINT__SPECIFICATION = org.eclipse.emf.ecore.EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The feature id for the '<em><b>Constrained Elements</b></em>' reference list.
@@ -2710,7 +2732,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT__CONSTRAINED_ELEMENTS = org.eclipse.emf.ecore.EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT + 1;
+	int CONSTRAINT__CONSTRAINED_ELEMENTS = org.eclipse.emf.ecore.EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The feature id for the '<em><b>Stereotype</b></em>' attribute.
@@ -2721,7 +2744,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT__STEREOTYPE = org.eclipse.emf.ecore.EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT + 2;
+	int CONSTRAINT__STEREOTYPE = org.eclipse.emf.ecore.EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT
+		+ 2;
 
 	/**
 	 * The number of structural features of the '<em>Constraint</em>' class.
@@ -2732,7 +2756,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_FEATURE_COUNT = org.eclipse.emf.ecore.EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT + 3;
+	int CONSTRAINT_FEATURE_COUNT = org.eclipse.emf.ecore.EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT
+		+ 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.SendSignalActionImpl <em>Send Signal Action</em>}' class.
@@ -2845,7 +2870,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION_IN_OCL_FEATURE_COUNT = UtilitiesPackage.EXPRESSION_IN_OCL_FEATURE_COUNT + 0;
+	int EXPRESSION_IN_OCL_FEATURE_COUNT = UtilitiesPackage.EXPRESSION_IN_OCL_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.OCLExpressionImpl <em>OCL Expression</em>}' class.
@@ -2978,7 +3004,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_EXPRESSION__START_POSITION = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT + 0;
+	int OCL_EXPRESSION__START_POSITION = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
@@ -2989,7 +3016,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_EXPRESSION__END_POSITION = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT + 1;
+	int OCL_EXPRESSION__END_POSITION = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The number of structural features of the '<em>OCL Expression</em>' class.
@@ -3000,7 +3028,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_EXPRESSION_FEATURE_COUNT = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT + 2;
+	int OCL_EXPRESSION_FEATURE_COUNT = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT
+		+ 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.CallExpImpl <em>Call Exp</em>}' class.
@@ -3597,7 +3626,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int NAVIGATION_CALL_EXP__NAVIGATION_SOURCE = FEATURE_CALL_EXP_FEATURE_COUNT + 1;
+	int NAVIGATION_CALL_EXP__NAVIGATION_SOURCE = FEATURE_CALL_EXP_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The number of structural features of the '<em>Navigation Call Exp</em>' class.
@@ -3829,7 +3859,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS = NAVIGATION_CALL_EXP_FEATURE_COUNT + 0;
+	int ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS = NAVIGATION_CALL_EXP_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The number of structural features of the '<em>Association Class Call Exp</em>' class.
@@ -3840,7 +3871,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_CLASS_CALL_EXP_FEATURE_COUNT = NAVIGATION_CALL_EXP_FEATURE_COUNT + 1;
+	int ASSOCIATION_CLASS_CALL_EXP_FEATURE_COUNT = NAVIGATION_CALL_EXP_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.LiteralExpImpl <em>Literal Exp</em>}' class.
@@ -4305,7 +4337,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT + 0;
+	int BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The number of structural features of the '<em>Boolean Literal Exp</em>' class.
@@ -4316,7 +4349,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_LITERAL_EXP_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT + 1;
+	int BOOLEAN_LITERAL_EXP_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.CollectionLiteralPartImpl <em>Collection Literal Part</em>}' class.
@@ -4449,7 +4483,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_LITERAL_PART_FEATURE_COUNT = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT + 0;
+	int COLLECTION_LITERAL_PART_FEATURE_COUNT = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.CollectionItemImpl <em>Collection Item</em>}' class.
@@ -4593,7 +4628,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_ITEM_FEATURE_COUNT = COLLECTION_LITERAL_PART_FEATURE_COUNT + 1;
+	int COLLECTION_ITEM_FEATURE_COUNT = COLLECTION_LITERAL_PART_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.CollectionLiteralExpImpl <em>Collection Literal Exp</em>}' class.
@@ -4936,7 +4972,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_RANGE_FEATURE_COUNT = COLLECTION_LITERAL_PART_FEATURE_COUNT + 2;
+	int COLLECTION_RANGE_FEATURE_COUNT = COLLECTION_LITERAL_PART_FEATURE_COUNT
+		+ 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.EnumLiteralExpImpl <em>Enum Literal Exp</em>}' class.
@@ -5445,7 +5482,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUMERIC_LITERAL_EXP_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT + 0;
+	int NUMERIC_LITERAL_EXP_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.IntegerLiteralExpImpl <em>Integer Literal Exp</em>}' class.
@@ -5600,7 +5638,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int INTEGER_LITERAL_EXP__INTEGER_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 0;
+	int INTEGER_LITERAL_EXP__INTEGER_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The feature id for the '<em><b>Extended Integer Symbol</b></em>' attribute.
@@ -5610,7 +5649,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int INTEGER_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 1;
+	int INTEGER_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The feature id for the '<em><b>Long Symbol</b></em>' attribute.
@@ -5620,7 +5660,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int INTEGER_LITERAL_EXP__LONG_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 2;
+	int INTEGER_LITERAL_EXP__LONG_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT
+		+ 2;
 
 	/**
 	 * The number of structural features of the '<em>Integer Literal Exp</em>' class.
@@ -5632,7 +5673,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int INTEGER_LITERAL_EXP_FEATURE_COUNT = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 3;
+	int INTEGER_LITERAL_EXP_FEATURE_COUNT = NUMERIC_LITERAL_EXP_FEATURE_COUNT
+		+ 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.UnlimitedNaturalLiteralExpImpl <em>Unlimited Natural Literal Exp</em>}' class.
@@ -5787,7 +5829,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 0;
+	int UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The feature id for the '<em><b>Unlimited</b></em>' attribute.
@@ -5798,7 +5841,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 1;
+	int UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED = NUMERIC_LITERAL_EXP_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The feature id for the '<em><b>Extended Integer Symbol</b></em>' attribute.
@@ -5808,7 +5852,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 2;
+	int UNLIMITED_NATURAL_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT
+		+ 2;
 
 	/**
 	 * The feature id for the '<em><b>Long Symbol</b></em>' attribute.
@@ -5818,7 +5863,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP__LONG_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 3;
+	int UNLIMITED_NATURAL_LITERAL_EXP__LONG_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT
+		+ 3;
 
 	/**
 	 * The number of structural features of the '<em>Unlimited Natural Literal Exp</em>' class.
@@ -5830,7 +5876,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP_FEATURE_COUNT = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 4;
+	int UNLIMITED_NATURAL_LITERAL_EXP_FEATURE_COUNT = NUMERIC_LITERAL_EXP_FEATURE_COUNT
+		+ 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.InvalidLiteralExpImpl <em>Invalid Literal Exp</em>}' class.
@@ -7389,7 +7436,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CALL_EXP__REFERRED_OPERATION = FEATURE_CALL_EXP_FEATURE_COUNT + 1;
+	int OPERATION_CALL_EXP__REFERRED_OPERATION = FEATURE_CALL_EXP_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The feature id for the '<em><b>Operation Code</b></em>' attribute.
@@ -7632,7 +7680,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CALL_EXP__REFERRED_PROPERTY = NAVIGATION_CALL_EXP_FEATURE_COUNT + 0;
+	int PROPERTY_CALL_EXP__REFERRED_PROPERTY = NAVIGATION_CALL_EXP_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The number of structural features of the '<em>Property Call Exp</em>' class.
@@ -8130,7 +8179,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_LITERAL_EXP__STRING_SYMBOL = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT + 0;
+	int STRING_LITERAL_EXP__STRING_SYMBOL = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The number of structural features of the '<em>String Literal Exp</em>' class.
@@ -8141,7 +8191,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_LITERAL_EXP_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT + 1;
+	int STRING_LITERAL_EXP_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.TupleLiteralExpImpl <em>Tuple Literal Exp</em>}' class.
@@ -8440,7 +8491,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__START_POSITION = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT + 0;
+	int TUPLE_LITERAL_PART__START_POSITION = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
@@ -8451,7 +8503,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__END_POSITION = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT + 1;
+	int TUPLE_LITERAL_PART__END_POSITION = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The feature id for the '<em><b>Type Start Position</b></em>' attribute.
@@ -8462,7 +8515,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__TYPE_START_POSITION = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT + 2;
+	int TUPLE_LITERAL_PART__TYPE_START_POSITION = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT
+		+ 2;
 
 	/**
 	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
@@ -8473,7 +8527,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__TYPE_END_POSITION = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT + 3;
+	int TUPLE_LITERAL_PART__TYPE_END_POSITION = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT
+		+ 3;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -8484,7 +8539,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__VALUE = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT + 4;
+	int TUPLE_LITERAL_PART__VALUE = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT
+		+ 4;
 
 	/**
 	 * The feature id for the '<em><b>Attribute</b></em>' reference.
@@ -8495,7 +8551,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__ATTRIBUTE = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT + 5;
+	int TUPLE_LITERAL_PART__ATTRIBUTE = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT
+		+ 5;
 
 	/**
 	 * The number of structural features of the '<em>Tuple Literal Part</em>' class.
@@ -8506,7 +8563,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART_FEATURE_COUNT = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT + 6;
+	int TUPLE_LITERAL_PART_FEATURE_COUNT = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT
+		+ 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.TypeExpImpl <em>Type Exp</em>}' class.
@@ -8827,7 +8885,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION = OCL_EXPRESSION_FEATURE_COUNT + 0;
+	int UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION = OCL_EXPRESSION_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
@@ -8838,7 +8897,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION = OCL_EXPRESSION_FEATURE_COUNT + 1;
+	int UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION = OCL_EXPRESSION_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The number of structural features of the '<em>Unspecified Value Exp</em>' class.
@@ -8982,7 +9042,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE__START_POSITION = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT + 0;
+	int VARIABLE__START_POSITION = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
@@ -8993,7 +9054,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE__END_POSITION = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT + 1;
+	int VARIABLE__END_POSITION = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The feature id for the '<em><b>Type Start Position</b></em>' attribute.
@@ -9004,7 +9066,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE__TYPE_START_POSITION = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT + 2;
+	int VARIABLE__TYPE_START_POSITION = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT
+		+ 2;
 
 	/**
 	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
@@ -9015,7 +9078,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE__TYPE_END_POSITION = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT + 3;
+	int VARIABLE__TYPE_END_POSITION = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT
+		+ 3;
 
 	/**
 	 * The feature id for the '<em><b>Init Expression</b></em>' containment reference.
@@ -9026,7 +9090,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE__INIT_EXPRESSION = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT + 4;
+	int VARIABLE__INIT_EXPRESSION = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT
+		+ 4;
 
 	/**
 	 * The feature id for the '<em><b>Represented Parameter</b></em>' reference.
@@ -9037,7 +9102,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE__REPRESENTED_PARAMETER = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT + 5;
+	int VARIABLE__REPRESENTED_PARAMETER = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT
+		+ 5;
 
 	/**
 	 * The number of structural features of the '<em>Variable</em>' class.
@@ -9048,7 +9114,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_FEATURE_COUNT = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT + 6;
+	int VARIABLE_FEATURE_COUNT = org.eclipse.emf.ecore.EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT
+		+ 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.VariableExpImpl <em>Variable Exp</em>}' class.
@@ -9415,7 +9482,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY = NAVIGATION_CALL_EXP_FEATURE_COUNT + 0;
+	int OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY = NAVIGATION_CALL_EXP_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The number of structural features of the '<em>Opposite Property Call Exp</em>' class.
@@ -9425,7 +9493,8 @@ public interface EcorePackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPPOSITE_PROPERTY_CALL_EXP_FEATURE_COUNT = NAVIGATION_CALL_EXP_FEATURE_COUNT + 1;
+	int OPPOSITE_PROPERTY_CALL_EXP_FEATURE_COUNT = NAVIGATION_CALL_EXP_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.ecore.AnyType <em>Any Type</em>}'.

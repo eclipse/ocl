@@ -35,11 +35,11 @@ import org.eclipse.ocl.expressions.operations.LoopExpOperations;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.impl.LoopExpImpl#getBody <em>Body</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.impl.LoopExpImpl#getIterator <em>Iterator</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -234,8 +234,8 @@ public abstract class LoopExpImpl<C, PM>
 				return;
 			case ExpressionsPackage.LOOP_EXP__ITERATOR :
 				getIterator().clear();
-				getIterator().addAll(
-					(Collection<? extends Variable<C, PM>>) newValue);
+				getIterator()
+					.addAll((Collection<? extends Variable<C, PM>>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

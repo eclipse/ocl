@@ -30,13 +30,13 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.impl.UnlimitedNaturalLiteralExpImpl#getIntegerSymbol <em>Integer Symbol</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.impl.UnlimitedNaturalLiteralExpImpl#isUnlimited <em>Unlimited</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.impl.UnlimitedNaturalLiteralExpImpl#getExtendedIntegerSymbol <em>Extended Integer Symbol</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.impl.UnlimitedNaturalLiteralExpImpl#getLongSymbol <em>Long Symbol</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -144,9 +144,7 @@ public class UnlimitedNaturalLiteralExpImpl<C>
 		Integer oldIntegerSymbol = integerSymbol;
 		integerSymbol = newIntegerSymbol;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(
-				this,
-				Notification.SET,
+			eNotify(new ENotificationImpl(this, Notification.SET,
 				ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL,
 				oldIntegerSymbol, integerSymbol));
 	}

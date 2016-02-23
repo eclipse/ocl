@@ -24,6 +24,7 @@ import org.eclipse.ocl.types.TupleType;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.utilities.PredefinedType#getName() <em>Get Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.utilities.PredefinedType#oclOperations() <em>Ocl Operations</em>}</li>
@@ -32,7 +33,6 @@ import org.eclipse.ocl.types.TupleType;
  *   <li>{@link org.eclipse.ocl.types.TupleType#checkFeaturesOnlyProperties(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Features Only Properties</em>}</li>
  *   <li>{@link org.eclipse.ocl.types.TupleType#oclProperties() <em>Ocl Properties</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -109,9 +109,8 @@ public class TupleTypeOperations {
 	 * <!-- end-model-doc -->
 	 * @generated NOT
 	 */
-	public static <O, P> boolean checkPartNamesUnique(
-			TupleType<O, P> tupleType, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
+	public static <O, P> boolean checkPartNamesUnique(TupleType<O, P> tupleType,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO: implement this method
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message

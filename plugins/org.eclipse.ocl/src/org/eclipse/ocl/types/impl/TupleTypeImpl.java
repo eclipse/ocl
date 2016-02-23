@@ -31,8 +31,6 @@ import org.eclipse.ocl.utilities.UMLReflection;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Tuple Type</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
@@ -82,7 +80,8 @@ public class TupleTypeImpl<O, P>
 
 			myName.append(SINGLETON_NAME).append('(');
 
-			for (Iterator<P> iter = oclProperties().iterator(); iter.hasNext();) {
+			for (Iterator<P> iter = oclProperties().iterator(); iter
+				.hasNext();) {
 				P next = iter.next();
 
 				myName.append(uml.getName(next));

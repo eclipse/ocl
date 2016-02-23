@@ -26,8 +26,6 @@ import org.eclipse.uml2.uml.Parameter;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Iterator Exp</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

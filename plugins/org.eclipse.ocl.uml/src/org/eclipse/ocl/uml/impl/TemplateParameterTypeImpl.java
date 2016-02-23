@@ -39,12 +39,12 @@ import org.eclipse.uml2.uml.internal.impl.ClassifierImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.uml.impl.TemplateParameterTypeImpl#getSpecification <em>Specification</em>}</li>
  *   <li>{@link org.eclipse.ocl.uml.impl.TemplateParameterTypeImpl#getFeatures <em>Feature</em>}</li>
  *   <li>{@link org.eclipse.ocl.uml.impl.TemplateParameterTypeImpl#getOwnedOperations <em>Owned Operation</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -140,15 +140,12 @@ public class TemplateParameterTypeImpl
 				this,
 				org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__FEATURE);
 			if (features == null) {
-				cache
-					.put(
-						eResource,
-						this,
-						org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__FEATURE,
-						features = new DerivedUnionEObjectEList<Feature>(
-							Feature.class, this,
-							UMLPackage.TEMPLATE_PARAMETER_TYPE__FEATURE,
-							FEATURE_ESUBSETS));
+				cache.put(eResource, this,
+					org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__FEATURE,
+					features = new DerivedUnionEObjectEList<Feature>(
+						Feature.class, this,
+						UMLPackage.TEMPLATE_PARAMETER_TYPE__FEATURE,
+						FEATURE_ESUBSETS));
 			}
 			return features;
 		}
@@ -188,9 +185,10 @@ public class TemplateParameterTypeImpl
 	 * @generated
 	 */
 	public Operation getOwnedOperation(String name,
-			EList<String> ownedParameterNames, EList<Type> ownedParameterTypes) {
-		return getOwnedOperation(name, ownedParameterNames,
-			ownedParameterTypes, false);
+			EList<String> ownedParameterNames,
+			EList<Type> ownedParameterTypes) {
+		return getOwnedOperation(name, ownedParameterNames, ownedParameterTypes,
+			false);
 	}
 
 	/**
@@ -211,20 +209,19 @@ public class TemplateParameterTypeImpl
 			int ownedParameterListSize = ownedParameterList.size();
 			if (ownedParameterNames != null
 				&& ownedParameterNames.size() != ownedParameterListSize
-				|| (ownedParameterTypes != null && ownedParameterTypes.size() != ownedParameterListSize))
+				|| (ownedParameterTypes != null
+					&& ownedParameterTypes.size() != ownedParameterListSize))
 				continue ownedOperationLoop;
 			for (int j = 0; j < ownedParameterListSize; j++) {
 				Parameter ownedParameter = ownedParameterList.get(j);
-				if (ownedParameterNames != null
-					&& !(ignoreCase
-						? (ownedParameterNames.get(j))
-							.equalsIgnoreCase(ownedParameter.getName())
-						: ownedParameterNames.get(j).equals(
-							ownedParameter.getName())))
+				if (ownedParameterNames != null && !(ignoreCase
+					? (ownedParameterNames.get(j))
+						.equalsIgnoreCase(ownedParameter.getName())
+					: ownedParameterNames.get(j)
+						.equals(ownedParameter.getName())))
 					continue ownedOperationLoop;
-				if (ownedParameterTypes != null
-					&& !ownedParameterTypes.get(j).equals(
-						ownedParameter.getType()))
+				if (ownedParameterTypes != null && !ownedParameterTypes.get(j)
+					.equals(ownedParameter.getType()))
 					continue ownedOperationLoop;
 			}
 			return ownedOperation;
@@ -242,8 +239,8 @@ public class TemplateParameterTypeImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case UMLPackage.TEMPLATE_PARAMETER_TYPE__OWNED_OPERATION :
-				return ((InternalEList<?>) getOwnedOperations()).basicRemove(
-					otherEnd, msgs);
+				return ((InternalEList<?>) getOwnedOperations())
+					.basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -278,8 +275,8 @@ public class TemplateParameterTypeImpl
 				return;
 			case UMLPackage.TEMPLATE_PARAMETER_TYPE__OWNED_OPERATION :
 				getOwnedOperations().clear();
-				getOwnedOperations().addAll(
-					(Collection<? extends Operation>) newValue);
+				getOwnedOperations()
+					.addAll((Collection<? extends Operation>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -315,6 +312,8 @@ public class TemplateParameterTypeImpl
 				return SPECIFICATION_EDEFAULT == null
 					? specification != null
 					: !SPECIFICATION_EDEFAULT.equals(specification);
+			case UMLPackage.TEMPLATE_PARAMETER_TYPE__FEATURE :
+				return isSetFeatures();
 			case UMLPackage.TEMPLATE_PARAMETER_TYPE__OWNED_OPERATION :
 				return ownedOperations != null && !ownedOperations.isEmpty();
 		}
@@ -327,7 +326,8 @@ public class TemplateParameterTypeImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.types.TemplateParameterType.class) {
 			switch (derivedFeatureID) {
 				case UMLPackage.TEMPLATE_PARAMETER_TYPE__SPECIFICATION :
@@ -345,7 +345,8 @@ public class TemplateParameterTypeImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.types.TemplateParameterType.class) {
 			switch (baseFeatureID) {
 				case TypesPackage.TEMPLATE_PARAMETER_TYPE__SPECIFICATION :

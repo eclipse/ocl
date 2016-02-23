@@ -34,10 +34,10 @@ import org.eclipse.uml2.uml.Parameter;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.uml.impl.IterateExpImpl#getResult <em>Result</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -136,8 +136,8 @@ public class IterateExpImpl
 	 */
 	public boolean checkIterateType(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return IterateExpOperations
-			.checkIterateType(this, diagnostics, context);
+		return IterateExpOperations.checkIterateType(this, diagnostics,
+			context);
 	}
 
 	/**
@@ -240,7 +240,8 @@ public class IterateExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.IterateExp.class) {
 			switch (derivedFeatureID) {
 				case UMLPackage.ITERATE_EXP__RESULT :
@@ -258,7 +259,8 @@ public class IterateExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.IterateExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.ITERATE_EXP__RESULT :

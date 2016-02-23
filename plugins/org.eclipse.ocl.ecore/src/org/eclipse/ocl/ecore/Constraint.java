@@ -25,12 +25,12 @@ import org.eclipse.ocl.utilities.ExpressionInOCL;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.ecore.Constraint#getSpecification <em>Specification</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.Constraint#getConstrainedElements <em>Constrained Elements</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.Constraint#getStereotype <em>Stereotype</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.ecore.EcorePackage#getConstraint()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='WellFormedName'"

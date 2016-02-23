@@ -30,13 +30,13 @@ import org.eclipse.uml2.uml.Classifier;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.uml.impl.UnlimitedNaturalLiteralExpImpl#getIntegerSymbol <em>Integer Symbol</em>}</li>
  *   <li>{@link org.eclipse.ocl.uml.impl.UnlimitedNaturalLiteralExpImpl#isUnlimited <em>Unlimited</em>}</li>
  *   <li>{@link org.eclipse.ocl.uml.impl.UnlimitedNaturalLiteralExpImpl#getExtendedIntegerSymbol <em>Extended Integer Symbol</em>}</li>
  *   <li>{@link org.eclipse.ocl.uml.impl.UnlimitedNaturalLiteralExpImpl#getLongSymbol <em>Long Symbol</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -157,8 +157,8 @@ public class UnlimitedNaturalLiteralExpImpl
 					oldExtendedIntegerSymbol, extendedIntegerSymbol));
 			}
 		eNotify(new ENotificationImpl(this, Notification.SET,
-			UMLPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL, oldIntegerSymbol,
-			integerSymbol));
+			UMLPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL,
+			oldIntegerSymbol, integerSymbol));
 	}
 
 	/**
@@ -187,7 +187,10 @@ public class UnlimitedNaturalLiteralExpImpl
 	 * @generated NOT
 	 */
 	public Long getLongSymbol() {
-		return extendedIntegerSymbol * (1L << Integer.SIZE) + (integerSymbol != null ? integerSymbol : 0);
+		return extendedIntegerSymbol * (1L << Integer.SIZE)
+			+ (integerSymbol != null
+				? integerSymbol
+				: 0);
 	}
 
 	/**
@@ -200,14 +203,17 @@ public class UnlimitedNaturalLiteralExpImpl
 		Integer oldIntegerSymbol = integerSymbol;
 		Long oldExtendedIntegerSymbol = extendedIntegerSymbol;
 		integerSymbol = (int) (newLongSymbol & ((1L << Integer.SIZE) - 1));
-		extendedIntegerSymbol = (newLongSymbol >> Integer.SIZE) + ((integerSymbol < 0) ? 1 : 0);
+		extendedIntegerSymbol = (newLongSymbol >> Integer.SIZE)
+			+ ((integerSymbol < 0)
+				? 1
+				: 0);
 		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET,
 				UMLPackage.UNLIMITED_NATURAL_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL,
 				oldExtendedIntegerSymbol, extendedIntegerSymbol));
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				UMLPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL, oldIntegerSymbol,
-				integerSymbol));
+				UMLPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL,
+				oldIntegerSymbol, integerSymbol));
 		}
 	}
 
@@ -311,7 +317,8 @@ public class UnlimitedNaturalLiteralExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp.class) {
 			switch (derivedFeatureID) {
 				case UMLPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL :
@@ -335,7 +342,8 @@ public class UnlimitedNaturalLiteralExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL :

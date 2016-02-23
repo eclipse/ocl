@@ -18,7 +18,6 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -37,6 +36,7 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.ecore.impl.ExpressionInOCLImpl#getBodyExpression <em>Body Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.ExpressionInOCLImpl#getContextVariable <em>Context Variable</em>}</li>
@@ -44,7 +44,6 @@ import org.eclipse.ocl.utilities.Visitor;
  *   <li>{@link org.eclipse.ocl.ecore.impl.ExpressionInOCLImpl#getParameterVariable <em>Parameter Variable</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.ExpressionInOCLImpl#getGeneratedType <em>Generated Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -137,7 +136,8 @@ public class ExpressionInOCLImpl
 	 * @generated
 	 */
 	public NotificationChain basicSetBodyExpression(
-			OCLExpression<EClassifier> newBodyExpression, NotificationChain msgs) {
+			OCLExpression<EClassifier> newBodyExpression,
+			NotificationChain msgs) {
 		OCLExpression<EClassifier> oldBodyExpression = bodyExpression;
 		bodyExpression = newBodyExpression;
 		if (eNotificationRequired()) {
@@ -158,7 +158,8 @@ public class ExpressionInOCLImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBodyExpression(OCLExpression<EClassifier> newBodyExpression) {
+	public void setBodyExpression(
+			OCLExpression<EClassifier> newBodyExpression) {
 		if (newBodyExpression != bodyExpression) {
 			NotificationChain msgs = null;
 			if (bodyExpression != null)
@@ -323,7 +324,7 @@ public class ExpressionInOCLImpl
 	public EList<EClassifier> getGeneratedType() {
 		if (generatedType == null) {
 			generatedType = new EObjectContainmentEList<EClassifier>(
-				EObject.class, this,
+				EClassifier.class, this,
 				EcorePackage.EXPRESSION_IN_OCL__GENERATED_TYPE);
 		}
 		return generatedType;
@@ -356,11 +357,11 @@ public class ExpressionInOCLImpl
 			case EcorePackage.EXPRESSION_IN_OCL__RESULT_VARIABLE :
 				return basicSetResultVariable(null, msgs);
 			case EcorePackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE :
-				return ((InternalEList<?>) getParameterVariable()).basicRemove(
-					otherEnd, msgs);
+				return ((InternalEList<?>) getParameterVariable())
+					.basicRemove(otherEnd, msgs);
 			case EcorePackage.EXPRESSION_IN_OCL__GENERATED_TYPE :
-				return ((InternalEList<?>) getGeneratedType()).basicRemove(
-					otherEnd, msgs);
+				return ((InternalEList<?>) getGeneratedType())
+					.basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -400,21 +401,21 @@ public class ExpressionInOCLImpl
 				setBodyExpression((OCLExpression<EClassifier>) newValue);
 				return;
 			case EcorePackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE :
-				setContextVariable((Variable<EClassifier, EParameter>) newValue);
+				setContextVariable(
+					(Variable<EClassifier, EParameter>) newValue);
 				return;
 			case EcorePackage.EXPRESSION_IN_OCL__RESULT_VARIABLE :
 				setResultVariable((Variable<EClassifier, EParameter>) newValue);
 				return;
 			case EcorePackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE :
 				getParameterVariable().clear();
-				getParameterVariable()
-					.addAll(
-						(Collection<? extends Variable<EClassifier, EParameter>>) newValue);
+				getParameterVariable().addAll(
+					(Collection<? extends Variable<EClassifier, EParameter>>) newValue);
 				return;
 			case EcorePackage.EXPRESSION_IN_OCL__GENERATED_TYPE :
 				getGeneratedType().clear();
-				getGeneratedType().addAll(
-					(Collection<? extends EClassifier>) newValue);
+				getGeneratedType()
+					.addAll((Collection<? extends EClassifier>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

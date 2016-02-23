@@ -43,12 +43,12 @@ import org.eclipse.uml2.uml.Operation;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.uml.impl.OperationCallExpImpl#getArgument <em>Argument</em>}</li>
  *   <li>{@link org.eclipse.ocl.uml.impl.OperationCallExpImpl#getReferredOperation <em>Referred Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.uml.impl.OperationCallExpImpl#getOperationCode <em>Operation Code</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -337,7 +337,8 @@ public class OperationCallExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.OperationCallExp.class) {
 			switch (derivedFeatureID) {
 				case UMLPackage.OPERATION_CALL_EXP__ARGUMENT :
@@ -359,7 +360,8 @@ public class OperationCallExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.OperationCallExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.OPERATION_CALL_EXP__ARGUMENT :

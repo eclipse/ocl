@@ -38,6 +38,7 @@ import org.eclipse.ocl.util.TypeUtil;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.CollectionLiteralExp#checkNoCollectionInstances(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check No Collection Instances</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.CollectionLiteralExp#checkSetKind(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Set Kind</em>}</li>
@@ -45,7 +46,6 @@ import org.eclipse.ocl.util.TypeUtil;
  *   <li>{@link org.eclipse.ocl.expressions.CollectionLiteralExp#checkBagKind(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Bag Kind</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.CollectionLiteralExp#checkElementType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Element Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -75,20 +75,22 @@ public class CollectionLiteralExpOperations
 	public static <C> boolean checkNoCollectionInstances(
 			CollectionLiteralExp<C> collectionLiteralExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		boolean result = collectionLiteralExp.getKind() != CollectionKind.COLLECTION_LITERAL;
+		boolean result = collectionLiteralExp
+			.getKind() != CollectionKind.COLLECTION_LITERAL;
 
 		if (!result) {
 			if (diagnostics != null) {
 				// TODO: Specific message
-				diagnostics
-					.add(new BasicDiagnostic(
-						Diagnostic.ERROR,
-						ExpressionsValidator.DIAGNOSTIC_SOURCE,
-						ExpressionsValidator.COLLECTION_LITERAL_EXP__NO_COLLECTION_INSTANCES,
-						org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE
-							.getString(
-								"_UI_GenericInvariant_diagnostic", new Object[]{"checkNoCollectionInstances", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(collectionLiteralExp, context)}), //$NON-NLS-1$ //$NON-NLS-2$
-						new Object[]{collectionLiteralExp}));
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+					ExpressionsValidator.DIAGNOSTIC_SOURCE,
+					ExpressionsValidator.COLLECTION_LITERAL_EXP__NO_COLLECTION_INSTANCES,
+					org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString(
+						"_UI_GenericInvariant_diagnostic", //$NON-NLS-1$
+						new Object[]{"checkNoCollectionInstances", //$NON-NLS-1$
+							org.eclipse.emf.ecore.util.EObjectValidator
+								.getObjectLabel(collectionLiteralExp,
+									context)}),
+					new Object[]{collectionLiteralExp}));
 			}
 		}
 		return result;
@@ -110,21 +112,22 @@ public class CollectionLiteralExpOperations
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		CollectionKind kind = collectionLiteralExp.getKind();
 		boolean result = (kind != CollectionKind.SET_LITERAL)
-			|| TypesPackage.Literals.SET_TYPE.isInstance(collectionLiteralExp
-				.getType());
+			|| TypesPackage.Literals.SET_TYPE
+				.isInstance(collectionLiteralExp.getType());
 
 		if (!result) {
 			if (diagnostics != null) {
 				// TODO: Specific message
-				diagnostics
-					.add(new BasicDiagnostic(
-						Diagnostic.ERROR,
-						ExpressionsValidator.DIAGNOSTIC_SOURCE,
-						ExpressionsValidator.COLLECTION_LITERAL_EXP__SET_KIND,
-						org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE
-							.getString(
-								"_UI_GenericInvariant_diagnostic", new Object[]{"checkSetKind", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(collectionLiteralExp, context)}), //$NON-NLS-1$ //$NON-NLS-2$
-						new Object[]{collectionLiteralExp}));
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+					ExpressionsValidator.DIAGNOSTIC_SOURCE,
+					ExpressionsValidator.COLLECTION_LITERAL_EXP__SET_KIND,
+					org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString(
+						"_UI_GenericInvariant_diagnostic", //$NON-NLS-1$
+						new Object[]{"checkSetKind", //$NON-NLS-1$
+							org.eclipse.emf.ecore.util.EObjectValidator
+								.getObjectLabel(collectionLiteralExp,
+									context)}),
+					new Object[]{collectionLiteralExp}));
 			}
 		}
 		return result;
@@ -152,15 +155,16 @@ public class CollectionLiteralExpOperations
 		if (!result) {
 			if (diagnostics != null) {
 				// TODO: Specific message
-				diagnostics
-					.add(new BasicDiagnostic(
-						Diagnostic.ERROR,
-						ExpressionsValidator.DIAGNOSTIC_SOURCE,
-						ExpressionsValidator.COLLECTION_LITERAL_EXP__SEQUENCE_KIND,
-						org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE
-							.getString(
-								"_UI_GenericInvariant_diagnostic", new Object[]{"checkSequenceKind", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(collectionLiteralExp, context)}), //$NON-NLS-1$ //$NON-NLS-2$
-						new Object[]{collectionLiteralExp}));
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+					ExpressionsValidator.DIAGNOSTIC_SOURCE,
+					ExpressionsValidator.COLLECTION_LITERAL_EXP__SEQUENCE_KIND,
+					org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString(
+						"_UI_GenericInvariant_diagnostic", //$NON-NLS-1$
+						new Object[]{"checkSequenceKind", //$NON-NLS-1$
+							org.eclipse.emf.ecore.util.EObjectValidator
+								.getObjectLabel(collectionLiteralExp,
+									context)}),
+					new Object[]{collectionLiteralExp}));
 			}
 		}
 		return result;
@@ -182,21 +186,22 @@ public class CollectionLiteralExpOperations
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		CollectionKind kind = collectionLiteralExp.getKind();
 		boolean result = (kind != CollectionKind.BAG_LITERAL)
-			|| TypesPackage.Literals.BAG_TYPE.isInstance(collectionLiteralExp
-				.getType());
+			|| TypesPackage.Literals.BAG_TYPE
+				.isInstance(collectionLiteralExp.getType());
 
 		if (!result) {
 			if (diagnostics != null) {
 				// TODO: Specific message
-				diagnostics
-					.add(new BasicDiagnostic(
-						Diagnostic.ERROR,
-						ExpressionsValidator.DIAGNOSTIC_SOURCE,
-						ExpressionsValidator.COLLECTION_LITERAL_EXP__BAG_KIND,
-						org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE
-							.getString(
-								"_UI_GenericInvariant_diagnostic", new Object[]{"checkBagKind", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(collectionLiteralExp, context)}), //$NON-NLS-1$ //$NON-NLS-2$
-						new Object[]{collectionLiteralExp}));
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+					ExpressionsValidator.DIAGNOSTIC_SOURCE,
+					ExpressionsValidator.COLLECTION_LITERAL_EXP__BAG_KIND,
+					org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString(
+						"_UI_GenericInvariant_diagnostic", //$NON-NLS-1$
+						new Object[]{"checkBagKind", //$NON-NLS-1$
+							org.eclipse.emf.ecore.util.EObjectValidator
+								.getObjectLabel(collectionLiteralExp,
+									context)}),
+					new Object[]{collectionLiteralExp}));
 			}
 		}
 		return result;
@@ -245,14 +250,12 @@ public class CollectionLiteralExpOperations
 							partsType, part.getType());
 					}
 
-					if ((partsType == null)
-						|| !TypeUtil.exactTypeMatch(env, partsType,
-							ctype.getElementType())) {
+					if ((partsType == null) || !TypeUtil.exactTypeMatch(env,
+						partsType, ctype.getElementType())) {
 						result = false;
-						message = OCLMessages
-							.bind(
-								OCLMessages.TypeConformanceCollectionElementType_ERROR_,
-								collectionLiteralExp.toString());
+						message = OCLMessages.bind(
+							OCLMessages.TypeConformanceCollectionElementType_ERROR_,
+							collectionLiteralExp.toString());
 					}
 				}
 			}

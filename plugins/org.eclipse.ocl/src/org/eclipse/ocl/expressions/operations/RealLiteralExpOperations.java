@@ -31,10 +31,10 @@ import org.eclipse.ocl.util.OCLUtil;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.RealLiteralExp#checkRealType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Real Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

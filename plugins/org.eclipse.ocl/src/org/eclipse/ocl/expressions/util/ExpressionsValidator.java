@@ -445,7 +445,8 @@ public class ExpressionsValidator
 		switch (classifierID) {
 			case ExpressionsPackage.ASSOCIATION_CLASS_CALL_EXP :
 				return validateAssociationClassCallExp(
-					(AssociationClassCallExp<?, ?>) value, diagnostics, context);
+					(AssociationClassCallExp<?, ?>) value, diagnostics,
+					context);
 			case ExpressionsPackage.NAVIGATION_CALL_EXP :
 				return validateNavigationCallExp(
 					(NavigationCallExp<?, ?>) value, diagnostics, context);
@@ -453,7 +454,8 @@ public class ExpressionsValidator
 				return validateFeatureCallExp((FeatureCallExp<?>) value,
 					diagnostics, context);
 			case ExpressionsPackage.CALL_EXP :
-				return validateCallExp((CallExp<?>) value, diagnostics, context);
+				return validateCallExp((CallExp<?>) value, diagnostics,
+					context);
 			case ExpressionsPackage.OCL_EXPRESSION :
 				return validateOCLExpression((OCLExpression<?>) value,
 					diagnostics, context);
@@ -491,13 +493,14 @@ public class ExpressionsValidator
 					diagnostics, context);
 			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP :
 				return validateUnlimitedNaturalLiteralExp(
-					(UnlimitedNaturalLiteralExp<?>) value, diagnostics, context);
+					(UnlimitedNaturalLiteralExp<?>) value, diagnostics,
+					context);
 			case ExpressionsPackage.INVALID_LITERAL_EXP :
 				return validateInvalidLiteralExp((InvalidLiteralExp<?>) value,
 					diagnostics, context);
 			case ExpressionsPackage.ITERATE_EXP :
-				return validateIterateExp((IterateExp<?, ?>) value,
-					diagnostics, context);
+				return validateIterateExp((IterateExp<?, ?>) value, diagnostics,
+					context);
 			case ExpressionsPackage.LOOP_EXP :
 				return validateLoopExp((LoopExp<?, ?>) value, diagnostics,
 					context);
@@ -538,7 +541,8 @@ public class ExpressionsValidator
 				return validateTupleLiteralPart((TupleLiteralPart<?, ?>) value,
 					diagnostics, context);
 			case ExpressionsPackage.TYPE_EXP :
-				return validateTypeExp((TypeExp<?>) value, diagnostics, context);
+				return validateTypeExp((TypeExp<?>) value, diagnostics,
+					context);
 			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP :
 				return validateUnspecifiedValueExp(
 					(UnspecifiedValueExp<?>) value, diagnostics, context);
@@ -615,8 +619,8 @@ public class ExpressionsValidator
 	 * @generated
 	 */
 	public boolean validateBooleanLiteralExp(
-			BooleanLiteralExp<?> booleanLiteralExp,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
+			BooleanLiteralExp<?> booleanLiteralExp, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(booleanLiteralExp, diagnostics,
 			context))
 			return false;
@@ -635,7 +639,8 @@ public class ExpressionsValidator
 			result &= validate_EveryProxyResolves(booleanLiteralExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_UniqueID(booleanLiteralExp, diagnostics, context);
+			result &= validate_UniqueID(booleanLiteralExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryKeyUnique(booleanLiteralExp, diagnostics,
 				context);
@@ -655,8 +660,8 @@ public class ExpressionsValidator
 	 * @generated
 	 */
 	public boolean validateBooleanLiteralExp_checkBooleanType(
-			BooleanLiteralExp<?> booleanLiteralExp,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
+			BooleanLiteralExp<?> booleanLiteralExp, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return booleanLiteralExp.checkBooleanType(diagnostics, context);
 	}
 
@@ -668,8 +673,8 @@ public class ExpressionsValidator
 	public boolean validatePrimitiveLiteralExp(
 			PrimitiveLiteralExp<?> primitiveLiteralExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(primitiveLiteralExp,
-			diagnostics, context);
+		return validate_EveryDefaultConstraint(primitiveLiteralExp, diagnostics,
+			context);
 	}
 
 	/**
@@ -679,7 +684,8 @@ public class ExpressionsValidator
 	 */
 	public boolean validateLiteralExp(LiteralExp<?> literalExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(literalExp, diagnostics, context);
+		return validate_EveryDefaultConstraint(literalExp, diagnostics,
+			context);
 	}
 
 	/**
@@ -773,8 +779,8 @@ public class ExpressionsValidator
 			result &= validate_UniqueID(collectionLiteralExp, diagnostics,
 				context);
 		if (result || diagnostics != null)
-			result &= validate_EveryKeyUnique(collectionLiteralExp,
-				diagnostics, context);
+			result &= validate_EveryKeyUnique(collectionLiteralExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryMapEntryUnique(collectionLiteralExp,
 				diagnostics, context);
@@ -887,8 +893,8 @@ public class ExpressionsValidator
 			result &= validate_EveryKeyUnique(collectionRange, diagnostics,
 				context);
 		if (result || diagnostics != null)
-			result &= validate_EveryMapEntryUnique(collectionRange,
-				diagnostics, context);
+			result &= validate_EveryMapEntryUnique(collectionRange, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validateCollectionRange_checkRangeType(collectionRange,
 				diagnostics, context);
@@ -1021,8 +1027,8 @@ public class ExpressionsValidator
 	 * @generated
 	 */
 	public boolean validateIntegerLiteralExp(
-			IntegerLiteralExp<?> integerLiteralExp,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
+			IntegerLiteralExp<?> integerLiteralExp, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(integerLiteralExp, diagnostics,
 			context))
 			return false;
@@ -1041,7 +1047,8 @@ public class ExpressionsValidator
 			result &= validate_EveryProxyResolves(integerLiteralExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_UniqueID(integerLiteralExp, diagnostics, context);
+			result &= validate_UniqueID(integerLiteralExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryKeyUnique(integerLiteralExp, diagnostics,
 				context);
@@ -1061,8 +1068,8 @@ public class ExpressionsValidator
 	 * @generated
 	 */
 	public boolean validateIntegerLiteralExp_checkIntegerType(
-			IntegerLiteralExp<?> integerLiteralExp,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
+			IntegerLiteralExp<?> integerLiteralExp, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return integerLiteralExp.checkIntegerType(diagnostics, context);
 	}
 
@@ -1072,8 +1079,8 @@ public class ExpressionsValidator
 	 * @generated
 	 */
 	public boolean validateNumericLiteralExp(
-			NumericLiteralExp<?> numericLiteralExp,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
+			NumericLiteralExp<?> numericLiteralExp, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(numericLiteralExp, diagnostics,
 			context);
 	}
@@ -1104,8 +1111,8 @@ public class ExpressionsValidator
 			result &= validate_EveryProxyResolves(unlimitedNaturalLiteralExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_UniqueID(unlimitedNaturalLiteralExp,
-				diagnostics, context);
+			result &= validate_UniqueID(unlimitedNaturalLiteralExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryKeyUnique(unlimitedNaturalLiteralExp,
 				diagnostics, context);
@@ -1127,8 +1134,8 @@ public class ExpressionsValidator
 	public boolean validateUnlimitedNaturalLiteralExp_checkNaturalType(
 			UnlimitedNaturalLiteralExp<?> unlimitedNaturalLiteralExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return unlimitedNaturalLiteralExp
-			.checkNaturalType(diagnostics, context);
+		return unlimitedNaturalLiteralExp.checkNaturalType(diagnostics,
+			context);
 	}
 
 	/**
@@ -1137,8 +1144,8 @@ public class ExpressionsValidator
 	 * @generated
 	 */
 	public boolean validateInvalidLiteralExp(
-			InvalidLiteralExp<?> invalidLiteralExp,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
+			InvalidLiteralExp<?> invalidLiteralExp, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(invalidLiteralExp, diagnostics,
 			context);
 	}
@@ -1212,9 +1219,8 @@ public class ExpressionsValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateIterateExp_checkBodyType(
-			IterateExp<?, ?> iterateExp, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
+	public boolean validateIterateExp_checkBodyType(IterateExp<?, ?> iterateExp,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return iterateExp.checkBodyType(diagnostics, context);
 	}
 
@@ -1251,7 +1257,8 @@ public class ExpressionsValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(loopExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryProxyResolves(loopExp, diagnostics, context);
+			result &= validate_EveryProxyResolves(loopExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(loopExp, diagnostics, context);
 		if (result || diagnostics != null)
@@ -1377,7 +1384,8 @@ public class ExpressionsValidator
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(iteratorExp, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryKeyUnique(iteratorExp, diagnostics, context);
+			result &= validate_EveryKeyUnique(iteratorExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryMapEntryUnique(iteratorExp, diagnostics,
 				context);
@@ -1462,8 +1470,8 @@ public class ExpressionsValidator
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(letExp, diagnostics, context))
 			return false;
-		boolean result = validate_EveryMultiplicityConforms(letExp,
-			diagnostics, context);
+		boolean result = validate_EveryMultiplicityConforms(letExp, diagnostics,
+			context);
 		if (result || diagnostics != null)
 			result &= validate_EveryDataValueConforms(letExp, diagnostics,
 				context);
@@ -1480,7 +1488,8 @@ public class ExpressionsValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryKeyUnique(letExp, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryMapEntryUnique(letExp, diagnostics, context);
+			result &= validate_EveryMapEntryUnique(letExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validateLetExp_checkLetType(letExp, diagnostics, context);
 		return result;
@@ -1534,8 +1543,8 @@ public class ExpressionsValidator
 			result &= validateMessageExp_checkSignalArguments(messageExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validateMessageExp_checkTargetDefinesOperation(
-				messageExp, diagnostics, context);
+			result &= validateMessageExp_checkTargetDefinesOperation(messageExp,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateMessageExp_checkHasOperationOrSignal(messageExp,
 				diagnostics, context);
@@ -1639,8 +1648,8 @@ public class ExpressionsValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				operationCallExp, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryProxyResolves(operationCallExp,
-				diagnostics, context);
+			result &= validate_EveryProxyResolves(operationCallExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(operationCallExp, diagnostics, context);
 		if (result || diagnostics != null)
@@ -1713,11 +1722,11 @@ public class ExpressionsValidator
 			result &= validate_EveryKeyUnique(propertyCallExp, diagnostics,
 				context);
 		if (result || diagnostics != null)
-			result &= validate_EveryMapEntryUnique(propertyCallExp,
-				diagnostics, context);
+			result &= validate_EveryMapEntryUnique(propertyCallExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
-			result &= validatePropertyCallExp_checkPropertyType(
-				propertyCallExp, diagnostics, context);
+			result &= validatePropertyCallExp_checkPropertyType(propertyCallExp,
+				diagnostics, context);
 		return result;
 	}
 
@@ -1816,8 +1825,8 @@ public class ExpressionsValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				stringLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryProxyResolves(stringLiteralExp,
-				diagnostics, context);
+			result &= validate_EveryProxyResolves(stringLiteralExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(stringLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
@@ -1827,8 +1836,8 @@ public class ExpressionsValidator
 			result &= validate_EveryMapEntryUnique(stringLiteralExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validateStringLiteralExp_checkStringType(
-				stringLiteralExp, diagnostics, context);
+			result &= validateStringLiteralExp_checkStringType(stringLiteralExp,
+				diagnostics, context);
 		return result;
 	}
 
@@ -1875,8 +1884,8 @@ public class ExpressionsValidator
 			result &= validate_EveryKeyUnique(tupleLiteralExp, diagnostics,
 				context);
 		if (result || diagnostics != null)
-			result &= validate_EveryMapEntryUnique(tupleLiteralExp,
-				diagnostics, context);
+			result &= validate_EveryMapEntryUnique(tupleLiteralExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validateTupleLiteralExp_checkTupleType(tupleLiteralExp,
 				diagnostics, context);
@@ -1933,8 +1942,8 @@ public class ExpressionsValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				tupleLiteralPart, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryProxyResolves(tupleLiteralPart,
-				diagnostics, context);
+			result &= validate_EveryProxyResolves(tupleLiteralPart, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(tupleLiteralPart, diagnostics, context);
 		if (result || diagnostics != null)
@@ -1979,8 +1988,8 @@ public class ExpressionsValidator
 	public boolean validateUnspecifiedValueExp(
 			UnspecifiedValueExp<?> unspecifiedValueExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(unspecifiedValueExp,
-			diagnostics, context);
+		return validate_EveryDefaultConstraint(unspecifiedValueExp, diagnostics,
+			context);
 	}
 
 	/**
@@ -2009,13 +2018,14 @@ public class ExpressionsValidator
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(variableExp, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryKeyUnique(variableExp, diagnostics, context);
+			result &= validate_EveryKeyUnique(variableExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryMapEntryUnique(variableExp, diagnostics,
 				context);
 		if (result || diagnostics != null)
-			result &= validateVariableExp_checkVarType(variableExp,
-				diagnostics, context);
+			result &= validateVariableExp_checkVarType(variableExp, diagnostics,
+				context);
 		return result;
 	}
 

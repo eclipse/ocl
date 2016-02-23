@@ -42,6 +42,7 @@ import org.eclipse.uml2.uml.internal.impl.TypedElementImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.uml.impl.VariableImpl#getStartPosition <em>Start Position</em>}</li>
  *   <li>{@link org.eclipse.ocl.uml.impl.VariableImpl#getEndPosition <em>End Position</em>}</li>
@@ -50,7 +51,6 @@ import org.eclipse.uml2.uml.internal.impl.TypedElementImpl;
  *   <li>{@link org.eclipse.ocl.uml.impl.VariableImpl#getInitExpression <em>Init Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.uml.impl.VariableImpl#getRepresentedParameter <em>Represented Parameter</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -220,7 +220,8 @@ public class VariableImpl
 		endPosition = newEndPosition;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				UMLPackage.VARIABLE__END_POSITION, oldEndPosition, endPosition));
+				UMLPackage.VARIABLE__END_POSITION, oldEndPosition,
+				endPosition));
 	}
 
 	/**
@@ -284,7 +285,8 @@ public class VariableImpl
 	 * @generated
 	 */
 	public NotificationChain basicSetInitExpression(
-			OCLExpression<Classifier> newInitExpression, NotificationChain msgs) {
+			OCLExpression<Classifier> newInitExpression,
+			NotificationChain msgs) {
 		OCLExpression<Classifier> oldInitExpression = initExpression;
 		initExpression = newInitExpression;
 		if (eNotificationRequired()) {
@@ -310,11 +312,13 @@ public class VariableImpl
 			if (initExpression != null)
 				msgs = ((InternalEObject) initExpression).eInverseRemove(this,
 					EOPPOSITE_FEATURE_BASE
-						- UMLPackage.VARIABLE__INIT_EXPRESSION, null, msgs);
+						- UMLPackage.VARIABLE__INIT_EXPRESSION,
+					null, msgs);
 			if (newInitExpression != null)
 				msgs = ((InternalEObject) newInitExpression).eInverseAdd(this,
 					EOPPOSITE_FEATURE_BASE
-						- UMLPackage.VARIABLE__INIT_EXPRESSION, null, msgs);
+						- UMLPackage.VARIABLE__INIT_EXPRESSION,
+					null, msgs);
 			msgs = basicSetInitExpression(newInitExpression, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -333,7 +337,8 @@ public class VariableImpl
 		if (representedParameter != null
 			&& ((EObject) representedParameter).eIsProxy()) {
 			InternalEObject oldRepresentedParameter = (InternalEObject) representedParameter;
-			representedParameter = (Parameter) eResolveProxy(oldRepresentedParameter);
+			representedParameter = (Parameter) eResolveProxy(
+				oldRepresentedParameter);
 			if (representedParameter != oldRepresentedParameter) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
@@ -522,7 +527,8 @@ public class VariableImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == TypedElement.class) {
 			switch (derivedFeatureID) {
 				default :
@@ -574,7 +580,8 @@ public class VariableImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == TypedElement.class) {
 			switch (baseFeatureID) {
 				default :

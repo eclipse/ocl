@@ -36,10 +36,10 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.ecore.impl.TupleLiteralExpImpl#getPart <em>Part</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -153,9 +153,8 @@ public class TupleLiteralExpImpl
 		switch (featureID) {
 			case EcorePackage.TUPLE_LITERAL_EXP__PART :
 				getPart().clear();
-				getPart()
-					.addAll(
-						(Collection<? extends TupleLiteralPart<EClassifier, EStructuralFeature>>) newValue);
+				getPart().addAll(
+					(Collection<? extends TupleLiteralPart<EClassifier, EStructuralFeature>>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -196,7 +195,8 @@ public class TupleLiteralExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.TupleLiteralExp.class) {
 			switch (derivedFeatureID) {
 				case EcorePackage.TUPLE_LITERAL_EXP__PART :
@@ -214,7 +214,8 @@ public class TupleLiteralExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.TupleLiteralExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.TUPLE_LITERAL_EXP__PART :

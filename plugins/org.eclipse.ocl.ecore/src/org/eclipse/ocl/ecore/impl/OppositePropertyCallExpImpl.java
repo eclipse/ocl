@@ -38,10 +38,10 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.ecore.impl.OppositePropertyCallExpImpl#getReferredOppositeProperty <em>Referred Opposite Property</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -89,12 +89,11 @@ public class OppositePropertyCallExpImpl
 		if (referredOppositeProperty != null
 			&& referredOppositeProperty.eIsProxy()) {
 			InternalEObject oldReferredOppositeProperty = (InternalEObject) referredOppositeProperty;
-			referredOppositeProperty = (EReference) eResolveProxy(oldReferredOppositeProperty);
+			referredOppositeProperty = (EReference) eResolveProxy(
+				oldReferredOppositeProperty);
 			if (referredOppositeProperty != oldReferredOppositeProperty) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(
-						this,
-						Notification.RESOLVE,
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 						EcorePackage.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY,
 						oldReferredOppositeProperty, referredOppositeProperty));
 			}
@@ -121,9 +120,7 @@ public class OppositePropertyCallExpImpl
 		EReference oldReferredOppositeProperty = referredOppositeProperty;
 		referredOppositeProperty = newReferredOppositeProperty;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(
-				this,
-				Notification.SET,
+			eNotify(new ENotificationImpl(this, Notification.SET,
 				EcorePackage.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY,
 				oldReferredOppositeProperty, referredOppositeProperty));
 	}
@@ -218,15 +215,15 @@ public class OppositePropertyCallExpImpl
 		if (!result) {
 			if (diagnostics != null) {
 				// TODO: Specific message
-				diagnostics
-					.add(new BasicDiagnostic(
-						Diagnostic.ERROR,
-						EcoreValidator.DIAGNOSTIC_SOURCE,
-						OPPOSITE_PROPERTY_CALL_EXP__OPPOSITE_PROPERTY_TYPE,
-						org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE
-							.getString(
-								"_UI_GenericInvariant_diagnostic", new Object[]{"checkOppositePropertyType", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(this, context)}), //$NON-NLS-1$ //$NON-NLS-2$
-						new Object[]{this}));
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+					EcoreValidator.DIAGNOSTIC_SOURCE,
+					OPPOSITE_PROPERTY_CALL_EXP__OPPOSITE_PROPERTY_TYPE,
+					org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString(
+						"_UI_GenericInvariant_diagnostic", //$NON-NLS-1$
+						new Object[]{"checkOppositePropertyType", //$NON-NLS-1$
+							org.eclipse.emf.ecore.util.EObjectValidator
+								.getObjectLabel(this, context)}),
+					new Object[]{this}));
 			}
 		}
 		return result;

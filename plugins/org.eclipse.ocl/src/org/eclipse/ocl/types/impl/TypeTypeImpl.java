@@ -30,10 +30,10 @@ import org.eclipse.ocl.util.OCLStandardLibraryUtil;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.types.impl.TypeTypeImpl#getReferredType <em>Referred Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

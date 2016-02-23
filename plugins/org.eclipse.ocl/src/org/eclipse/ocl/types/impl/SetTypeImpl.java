@@ -24,8 +24,6 @@ import org.eclipse.ocl.types.operations.SetTypeOperations;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Set Type</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
@@ -54,6 +52,17 @@ public class SetTypeImpl<C, O>
 	@Override
 	protected EClass eStaticClass() {
 		return TypesPackage.Literals.SET_TYPE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * This is specialized for the more specific type known in this context.
+	 * @generated
+	 */
+	@Override
+	public void setElementType(C newElementType) {
+		super.setElementType(newElementType);
 	}
 
 	/**

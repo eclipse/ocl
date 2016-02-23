@@ -33,12 +33,12 @@ import org.eclipse.uml2.uml.Classifier;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.uml.impl.IfExpImpl#getCondition <em>Condition</em>}</li>
  *   <li>{@link org.eclipse.ocl.uml.impl.IfExpImpl#getThenExpression <em>Then Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.uml.impl.IfExpImpl#getElseExpression <em>Else Expression</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -136,12 +136,12 @@ public class IfExpImpl
 			NotificationChain msgs = null;
 			if (condition != null)
 				msgs = ((InternalEObject) condition).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - UMLPackage.IF_EXP__CONDITION,
-					null, msgs);
+					EOPPOSITE_FEATURE_BASE - UMLPackage.IF_EXP__CONDITION, null,
+					msgs);
 			if (newCondition != null)
 				msgs = ((InternalEObject) newCondition).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - UMLPackage.IF_EXP__CONDITION,
-					null, msgs);
+					EOPPOSITE_FEATURE_BASE - UMLPackage.IF_EXP__CONDITION, null,
+					msgs);
 			msgs = basicSetCondition(newCondition, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -165,7 +165,8 @@ public class IfExpImpl
 	 * @generated
 	 */
 	public NotificationChain basicSetThenExpression(
-			OCLExpression<Classifier> newThenExpression, NotificationChain msgs) {
+			OCLExpression<Classifier> newThenExpression,
+			NotificationChain msgs) {
 		OCLExpression<Classifier> oldThenExpression = thenExpression;
 		thenExpression = newThenExpression;
 		if (eNotificationRequired()) {
@@ -189,13 +190,13 @@ public class IfExpImpl
 		if (newThenExpression != thenExpression) {
 			NotificationChain msgs = null;
 			if (thenExpression != null)
-				msgs = ((InternalEObject) thenExpression)
-					.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-						- UMLPackage.IF_EXP__THEN_EXPRESSION, null, msgs);
+				msgs = ((InternalEObject) thenExpression).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - UMLPackage.IF_EXP__THEN_EXPRESSION,
+					null, msgs);
 			if (newThenExpression != null)
-				msgs = ((InternalEObject) newThenExpression)
-					.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-						- UMLPackage.IF_EXP__THEN_EXPRESSION, null, msgs);
+				msgs = ((InternalEObject) newThenExpression).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - UMLPackage.IF_EXP__THEN_EXPRESSION,
+					null, msgs);
 			msgs = basicSetThenExpression(newThenExpression, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -220,7 +221,8 @@ public class IfExpImpl
 	 * @generated
 	 */
 	public NotificationChain basicSetElseExpression(
-			OCLExpression<Classifier> newElseExpression, NotificationChain msgs) {
+			OCLExpression<Classifier> newElseExpression,
+			NotificationChain msgs) {
 		OCLExpression<Classifier> oldElseExpression = elseExpression;
 		elseExpression = newElseExpression;
 		if (eNotificationRequired()) {
@@ -244,13 +246,13 @@ public class IfExpImpl
 		if (newElseExpression != elseExpression) {
 			NotificationChain msgs = null;
 			if (elseExpression != null)
-				msgs = ((InternalEObject) elseExpression)
-					.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-						- UMLPackage.IF_EXP__ELSE_EXPRESSION, null, msgs);
+				msgs = ((InternalEObject) elseExpression).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - UMLPackage.IF_EXP__ELSE_EXPRESSION,
+					null, msgs);
 			if (newElseExpression != null)
-				msgs = ((InternalEObject) newElseExpression)
-					.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-						- UMLPackage.IF_EXP__ELSE_EXPRESSION, null, msgs);
+				msgs = ((InternalEObject) newElseExpression).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - UMLPackage.IF_EXP__ELSE_EXPRESSION,
+					null, msgs);
 			msgs = basicSetElseExpression(newElseExpression, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -267,8 +269,8 @@ public class IfExpImpl
 	 */
 	public boolean checkBooleanCondition(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return IfExpOperations
-			.checkBooleanCondition(this, diagnostics, context);
+		return IfExpOperations.checkBooleanCondition(this, diagnostics,
+			context);
 	}
 
 	/**
@@ -385,7 +387,8 @@ public class IfExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.IfExp.class) {
 			switch (derivedFeatureID) {
 				case UMLPackage.IF_EXP__CONDITION :
@@ -407,7 +410,8 @@ public class IfExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.IfExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.IF_EXP__CONDITION :

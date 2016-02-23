@@ -22,6 +22,7 @@ import org.eclipse.ocl.utilities.Visitor;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.utilities.TypedElement#getName() <em>Get Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.utilities.TypedElement#getType() <em>Get Type</em>}</li>
@@ -29,7 +30,6 @@ import org.eclipse.ocl.utilities.Visitor;
  *   <li>{@link org.eclipse.ocl.utilities.TypedElement#setType(java.lang.Object) <em>Set Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.utilities.Visitable#accept(org.eclipse.ocl.utilities.Visitor) <em>Accept</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -59,7 +59,8 @@ public class CollectionLiteralPartOperations {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public static <C> C getType(CollectionLiteralPart<C> collectionLiteralPart) {
+	public static <C> C getType(
+			CollectionLiteralPart<C> collectionLiteralPart) {
 		throw new UnsupportedOperationException();
 	}
 

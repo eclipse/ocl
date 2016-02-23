@@ -29,10 +29,10 @@ import org.eclipse.ocl.util.OCLUtil;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.StringLiteralExp#checkStringType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check String Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

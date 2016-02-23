@@ -37,6 +37,7 @@ import org.eclipse.ocl.utilities.UMLReflection;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.MessageExp#checkOperationArguments(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Operation Arguments</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.MessageExp#checkSignalArguments(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Signal Arguments</em>}</li>
@@ -44,7 +45,6 @@ import org.eclipse.ocl.utilities.UMLReflection;
  *   <li>{@link org.eclipse.ocl.expressions.MessageExp#checkHasOperationOrSignal(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Has Operation Or Signal</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.MessageExp#checkTargetNotCollection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Target Not Collection</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -205,8 +205,8 @@ public class MessageExpOperations
 			if (diagnostics != null) {
 				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
 					ExpressionsValidator.DIAGNOSTIC_SOURCE,
-					ExpressionsValidator.MESSAGE_EXP__SIGNAL_ARGUMENTS,
-					message, new Object[]{messageExp}));
+					ExpressionsValidator.MESSAGE_EXP__SIGNAL_ARGUMENTS, message,
+					new Object[]{messageExp}));
 			}
 		}
 		return result;
@@ -255,8 +255,8 @@ public class MessageExpOperations
 			String name = uml.getName(operation);
 			List<OCLExpression<C>> arguments = messageExp.getArgument();
 
-			Object operation1 = env.lookupOperation(messageExp.getTarget()
-				.getType(), name, arguments);
+			Object operation1 = env.lookupOperation(
+				messageExp.getTarget().getType(), name, arguments);
 
 			if (operation1 != operation) {
 				result = false;
@@ -266,15 +266,15 @@ public class MessageExpOperations
 		if (!result) {
 			if (diagnostics != null) {
 				// TODO: Specific message
-				diagnostics
-					.add(new BasicDiagnostic(
-						Diagnostic.ERROR,
-						ExpressionsValidator.DIAGNOSTIC_SOURCE,
-						ExpressionsValidator.MESSAGE_EXP__TARGET_DEFINES_OPERATION,
-						org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE
-							.getString(
-								"_UI_GenericInvariant_diagnostic", new Object[]{"checkTargetDefinesOperation", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(messageExp, context)}), //$NON-NLS-1$ //$NON-NLS-2$
-						new Object[]{messageExp}));
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+					ExpressionsValidator.DIAGNOSTIC_SOURCE,
+					ExpressionsValidator.MESSAGE_EXP__TARGET_DEFINES_OPERATION,
+					org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString(
+						"_UI_GenericInvariant_diagnostic", //$NON-NLS-1$
+						new Object[]{"checkTargetDefinesOperation", //$NON-NLS-1$
+							org.eclipse.emf.ecore.util.EObjectValidator
+								.getObjectLabel(messageExp, context)}),
+					new Object[]{messageExp}));
 			}
 		}
 		return result;
@@ -344,15 +344,15 @@ public class MessageExpOperations
 		if (!result) {
 			if (diagnostics != null) {
 				// TODO: Specific message
-				diagnostics
-					.add(new BasicDiagnostic(
-						Diagnostic.ERROR,
-						ExpressionsValidator.DIAGNOSTIC_SOURCE,
-						ExpressionsValidator.MESSAGE_EXP__TARGET_NOT_COLLECTION,
-						org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE
-							.getString(
-								"_UI_GenericInvariant_diagnostic", new Object[]{"checkTargetNotCollection", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(messageExp, context)}), //$NON-NLS-1$ //$NON-NLS-2$
-						new Object[]{messageExp}));
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+					ExpressionsValidator.DIAGNOSTIC_SOURCE,
+					ExpressionsValidator.MESSAGE_EXP__TARGET_NOT_COLLECTION,
+					org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString(
+						"_UI_GenericInvariant_diagnostic", //$NON-NLS-1$
+						new Object[]{"checkTargetNotCollection", //$NON-NLS-1$
+							org.eclipse.emf.ecore.util.EObjectValidator
+								.getObjectLabel(messageExp, context)}),
+					new Object[]{messageExp}));
 			}
 		}
 		return result;

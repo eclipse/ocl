@@ -24,10 +24,10 @@ import org.eclipse.uml2.uml.internal.operations.OpaqueExpressionOperations;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.utilities.Visitable#accept(org.eclipse.ocl.utilities.Visitor) <em>Accept</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -26,10 +26,10 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.uml.impl.FeatureCallExpImpl#isMarkedPre <em>Marked Pre</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -156,7 +156,8 @@ public abstract class FeatureCallExpImpl
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case UMLPackage.FEATURE_CALL_EXP__MARKED_PRE :
-				return ((eFlags & MARKED_PRE_EFLAG) != 0) != MARKED_PRE_EDEFAULT;
+				return ((eFlags
+					& MARKED_PRE_EFLAG) != 0) != MARKED_PRE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -167,7 +168,8 @@ public abstract class FeatureCallExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.FeatureCallExp.class) {
 			switch (derivedFeatureID) {
 				case UMLPackage.FEATURE_CALL_EXP__MARKED_PRE :
@@ -185,7 +187,8 @@ public abstract class FeatureCallExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.FeatureCallExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.FEATURE_CALL_EXP__MARKED_PRE :
@@ -208,9 +211,8 @@ public abstract class FeatureCallExpImpl
 			return super.toString();
 		}
 
-		return this
-			.<String, Visitor<String, ?, ?, ?, ?, ?, ?, ?, ?, ?>> accept(ToStringVisitor
-				.getInstance(this));
+		return this.<String, Visitor<String, ?, ?, ?, ?, ?, ?, ?, ?, ?>> accept(
+			ToStringVisitor.getInstance(this));
 	}
 
 } //FeatureCallExpImpl

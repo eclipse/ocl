@@ -40,12 +40,12 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.impl.OperationCallExpImpl#getArgument <em>Argument</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.impl.OperationCallExpImpl#getReferredOperation <em>Referred Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.impl.OperationCallExpImpl#getOperationCode <em>Operation Code</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -131,9 +131,7 @@ public class OperationCallExpImpl<C, O>
 			referredOperation = (O) eResolveProxy(oldReferredOperation);
 			if (referredOperation != oldReferredOperation) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(
-						this,
-						Notification.RESOLVE,
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 						ExpressionsPackage.OPERATION_CALL_EXP__REFERRED_OPERATION,
 						oldReferredOperation, referredOperation));
 			}
@@ -177,8 +175,8 @@ public class OperationCallExpImpl<C, O>
 				C type = getSource().getType();
 
 				if (env != null) {
-					String operName = env.getUMLReflection().getName(
-						getReferredOperation());
+					String operName = env.getUMLReflection()
+						.getName(getReferredOperation());
 
 					if (type instanceof PredefinedType<?>) {
 						operationCode = OCLStandardLibraryUtil
@@ -278,8 +276,8 @@ public class OperationCallExpImpl<C, O>
 		switch (featureID) {
 			case ExpressionsPackage.OPERATION_CALL_EXP__ARGUMENT :
 				getArgument().clear();
-				getArgument().addAll(
-					(Collection<? extends OCLExpression<C>>) newValue);
+				getArgument()
+					.addAll((Collection<? extends OCLExpression<C>>) newValue);
 				return;
 			case ExpressionsPackage.OPERATION_CALL_EXP__REFERRED_OPERATION :
 				setReferredOperation((O) newValue);

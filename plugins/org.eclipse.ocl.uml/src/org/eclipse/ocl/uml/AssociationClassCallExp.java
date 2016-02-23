@@ -25,7 +25,6 @@ import org.eclipse.uml2.uml.Property;
  * @generated
  */
 public interface AssociationClassCallExp
-		extends
-		NavigationCallExp,
+		extends NavigationCallExp,
 		org.eclipse.ocl.expressions.AssociationClassCallExp<Classifier, Property> {
 } // AssociationClassCallExp

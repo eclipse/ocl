@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * @generated
  */
 public interface NavigationCallExp
-		extends
-		FeatureCallExp,
+		extends FeatureCallExp,
 		org.eclipse.ocl.expressions.NavigationCallExp<EClassifier, EStructuralFeature> {
 } // NavigationCallExp

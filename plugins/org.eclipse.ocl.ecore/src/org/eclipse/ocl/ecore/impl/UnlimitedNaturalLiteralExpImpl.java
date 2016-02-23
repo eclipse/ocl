@@ -30,13 +30,13 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.ecore.impl.UnlimitedNaturalLiteralExpImpl#getIntegerSymbol <em>Integer Symbol</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.UnlimitedNaturalLiteralExpImpl#isUnlimited <em>Unlimited</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.UnlimitedNaturalLiteralExpImpl#getExtendedIntegerSymbol <em>Extended Integer Symbol</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.UnlimitedNaturalLiteralExpImpl#getLongSymbol <em>Long Symbol</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -151,9 +151,7 @@ public class UnlimitedNaturalLiteralExpImpl
 		extendedIntegerSymbol = 0L;
 		if (eNotificationRequired())
 			if (oldExtendedIntegerSymbol != 0) {
-				eNotify(new ENotificationImpl(
-					this,
-					Notification.SET,
+				eNotify(new ENotificationImpl(this, Notification.SET,
 					EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL,
 					oldExtendedIntegerSymbol, extendedIntegerSymbol));
 			}
@@ -209,9 +207,7 @@ public class UnlimitedNaturalLiteralExpImpl
 				? 1
 				: 0);
 		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(
-				this,
-				Notification.SET,
+			eNotify(new ENotificationImpl(this, Notification.SET,
 				EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL,
 				oldExtendedIntegerSymbol, extendedIntegerSymbol));
 			eNotify(new ENotificationImpl(this, Notification.SET,
@@ -320,7 +316,8 @@ public class UnlimitedNaturalLiteralExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp.class) {
 			switch (derivedFeatureID) {
 				case EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL :
@@ -344,7 +341,8 @@ public class UnlimitedNaturalLiteralExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL :

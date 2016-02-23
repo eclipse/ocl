@@ -17,7 +17,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -39,6 +38,7 @@ import org.eclipse.uml2.uml.internal.impl.OpaqueExpressionImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.uml.impl.ExpressionInOCLImpl#getBodyExpression <em>Body Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.uml.impl.ExpressionInOCLImpl#getContextVariable <em>Context Variable</em>}</li>
@@ -46,7 +46,6 @@ import org.eclipse.uml2.uml.internal.impl.OpaqueExpressionImpl;
  *   <li>{@link org.eclipse.ocl.uml.impl.ExpressionInOCLImpl#getParameterVariable <em>Parameter Variable</em>}</li>
  *   <li>{@link org.eclipse.ocl.uml.impl.ExpressionInOCLImpl#getGeneratedType <em>Generated Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -140,13 +139,13 @@ public class ExpressionInOCLImpl
 	 * @generated
 	 */
 	public NotificationChain basicSetBodyExpression(
-			OCLExpression<Classifier> newBodyExpression, NotificationChain msgs) {
+			OCLExpression<Classifier> newBodyExpression,
+			NotificationChain msgs) {
 		OCLExpression<Classifier> oldBodyExpression = bodyExpression;
 		bodyExpression = newBodyExpression;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this,
-				Notification.SET,
-				UMLPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION,
+				Notification.SET, UMLPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION,
 				oldBodyExpression, newBodyExpression);
 			if (msgs == null)
 				msgs = notification;
@@ -167,13 +166,13 @@ public class ExpressionInOCLImpl
 			if (bodyExpression != null)
 				msgs = ((InternalEObject) bodyExpression).eInverseRemove(this,
 					EOPPOSITE_FEATURE_BASE
-						- UMLPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION, null,
-					msgs);
+						- UMLPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION,
+					null, msgs);
 			if (newBodyExpression != null)
 				msgs = ((InternalEObject) newBodyExpression).eInverseAdd(this,
 					EOPPOSITE_FEATURE_BASE
-						- UMLPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION, null,
-					msgs);
+						- UMLPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION,
+					null, msgs);
 			msgs = basicSetBodyExpression(newBodyExpression, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -227,13 +226,13 @@ public class ExpressionInOCLImpl
 			if (contextVariable != null)
 				msgs = ((InternalEObject) contextVariable).eInverseRemove(this,
 					EOPPOSITE_FEATURE_BASE
-						- UMLPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE, null,
-					msgs);
+						- UMLPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE,
+					null, msgs);
 			if (newContextVariable != null)
 				msgs = ((InternalEObject) newContextVariable).eInverseAdd(this,
 					EOPPOSITE_FEATURE_BASE
-						- UMLPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE, null,
-					msgs);
+						- UMLPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE,
+					null, msgs);
 			msgs = basicSetContextVariable(newContextVariable, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -264,8 +263,7 @@ public class ExpressionInOCLImpl
 		resultVariable = newResultVariable;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this,
-				Notification.SET,
-				UMLPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE,
+				Notification.SET, UMLPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE,
 				oldResultVariable, newResultVariable);
 			if (msgs == null)
 				msgs = notification;
@@ -287,13 +285,13 @@ public class ExpressionInOCLImpl
 			if (resultVariable != null)
 				msgs = ((InternalEObject) resultVariable).eInverseRemove(this,
 					EOPPOSITE_FEATURE_BASE
-						- UMLPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE, null,
-					msgs);
+						- UMLPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE,
+					null, msgs);
 			if (newResultVariable != null)
 				msgs = ((InternalEObject) newResultVariable).eInverseAdd(this,
 					EOPPOSITE_FEATURE_BASE
-						- UMLPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE, null,
-					msgs);
+						- UMLPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE,
+					null, msgs);
 			msgs = basicSetResultVariable(newResultVariable, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -326,7 +324,7 @@ public class ExpressionInOCLImpl
 	public EList<Classifier> getGeneratedType() {
 		if (generatedType == null) {
 			generatedType = new EObjectContainmentEList<Classifier>(
-				EObject.class, this,
+				Classifier.class, this,
 				UMLPackage.EXPRESSION_IN_OCL__GENERATED_TYPE);
 		}
 		return generatedType;
@@ -359,11 +357,11 @@ public class ExpressionInOCLImpl
 			case UMLPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE :
 				return basicSetResultVariable(null, msgs);
 			case UMLPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE :
-				return ((InternalEList<?>) getParameterVariable()).basicRemove(
-					otherEnd, msgs);
+				return ((InternalEList<?>) getParameterVariable())
+					.basicRemove(otherEnd, msgs);
 			case UMLPackage.EXPRESSION_IN_OCL__GENERATED_TYPE :
-				return ((InternalEList<?>) getGeneratedType()).basicRemove(
-					otherEnd, msgs);
+				return ((InternalEList<?>) getGeneratedType())
+					.basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -410,14 +408,13 @@ public class ExpressionInOCLImpl
 				return;
 			case UMLPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE :
 				getParameterVariable().clear();
-				getParameterVariable()
-					.addAll(
-						(Collection<? extends Variable<Classifier, Parameter>>) newValue);
+				getParameterVariable().addAll(
+					(Collection<? extends Variable<Classifier, Parameter>>) newValue);
 				return;
 			case UMLPackage.EXPRESSION_IN_OCL__GENERATED_TYPE :
 				getGeneratedType().clear();
-				getGeneratedType().addAll(
-					(Collection<? extends Classifier>) newValue);
+				getGeneratedType()
+					.addAll((Collection<? extends Classifier>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -479,7 +476,8 @@ public class ExpressionInOCLImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == Visitable.class) {
 			switch (derivedFeatureID) {
 				default :
@@ -511,7 +509,8 @@ public class ExpressionInOCLImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == Visitable.class) {
 			switch (baseFeatureID) {
 				default :

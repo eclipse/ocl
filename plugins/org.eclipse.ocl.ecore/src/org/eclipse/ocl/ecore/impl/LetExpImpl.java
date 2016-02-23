@@ -35,11 +35,11 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.ecore.impl.LetExpImpl#getIn <em>In</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.LetExpImpl#getVariable <em>Variable</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -296,7 +296,8 @@ public class LetExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.LetExp.class) {
 			switch (derivedFeatureID) {
 				case EcorePackage.LET_EXP__IN :
@@ -316,7 +317,8 @@ public class LetExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.LetExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.LET_EXP__IN :

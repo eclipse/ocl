@@ -31,11 +31,11 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.impl.OCLExpressionImpl#getStartPosition <em>Start Position</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.impl.OCLExpressionImpl#getEndPosition <em>End Position</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -184,8 +184,8 @@ public abstract class OCLExpressionImpl<C>
 		endPosition = newEndPosition;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				ExpressionsPackage.OCL_EXPRESSION__END_POSITION,
-				oldEndPosition, endPosition));
+				ExpressionsPackage.OCL_EXPRESSION__END_POSITION, oldEndPosition,
+				endPosition));
 	}
 
 	/**
@@ -271,7 +271,8 @@ public abstract class OCLExpressionImpl<C>
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == Visitable.class) {
 			switch (derivedFeatureID) {
 				default :
@@ -297,7 +298,8 @@ public abstract class OCLExpressionImpl<C>
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == Visitable.class) {
 			switch (baseFeatureID) {
 				default :
@@ -328,9 +330,8 @@ public abstract class OCLExpressionImpl<C>
 			return super.toString();
 		}
 
-		return this
-			.<String, Visitor<String, ?, ?, ?, ?, ?, ?, ?, ?, ?>> accept(ToStringVisitor
-				.getInstance(this));
+		return this.<String, Visitor<String, ?, ?, ?, ?, ?, ?, ?, ?, ?>> accept(
+			ToStringVisitor.getInstance(this));
 	}
 
 } //OCLExpressionImpl

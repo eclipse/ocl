@@ -30,10 +30,10 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.ecore.impl.RealLiteralExpImpl#getRealSymbol <em>Real Symbol</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -190,7 +190,8 @@ public class RealLiteralExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.RealLiteralExp.class) {
 			switch (derivedFeatureID) {
 				case EcorePackage.REAL_LITERAL_EXP__REAL_SYMBOL :
@@ -208,7 +209,8 @@ public class RealLiteralExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.RealLiteralExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.REAL_LITERAL_EXP__REAL_SYMBOL :

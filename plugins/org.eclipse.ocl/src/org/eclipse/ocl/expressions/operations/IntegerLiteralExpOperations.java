@@ -31,10 +31,10 @@ import org.eclipse.ocl.util.OCLUtil;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.IntegerLiteralExp#checkIntegerType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Integer Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -62,8 +62,8 @@ public class IntegerLiteralExpOperations
 	 * @generated NOT
 	 */
 	public static <C> boolean checkIntegerType(
-			IntegerLiteralExp<C> integerLiteralExp,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
+			IntegerLiteralExp<C> integerLiteralExp, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		boolean result = true;
 		Environment<?, C, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
 			.getValidationEnvironment(integerLiteralExp, context);

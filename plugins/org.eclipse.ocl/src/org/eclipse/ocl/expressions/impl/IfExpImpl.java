@@ -30,12 +30,12 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.impl.IfExpImpl#getCondition <em>Condition</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.impl.IfExpImpl#getThenExpression <em>Then Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.impl.IfExpImpl#getElseExpression <em>Else Expression</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -133,11 +133,13 @@ public class IfExpImpl<C>
 			if (condition != null)
 				msgs = ((InternalEObject) condition).eInverseRemove(this,
 					EOPPOSITE_FEATURE_BASE
-						- ExpressionsPackage.IF_EXP__CONDITION, null, msgs);
+						- ExpressionsPackage.IF_EXP__CONDITION,
+					null, msgs);
 			if (newCondition != null)
 				msgs = ((InternalEObject) newCondition).eInverseAdd(this,
 					EOPPOSITE_FEATURE_BASE
-						- ExpressionsPackage.IF_EXP__CONDITION, null, msgs);
+						- ExpressionsPackage.IF_EXP__CONDITION,
+					null, msgs);
 			msgs = basicSetCondition(newCondition, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -188,13 +190,13 @@ public class IfExpImpl<C>
 			if (thenExpression != null)
 				msgs = ((InternalEObject) thenExpression).eInverseRemove(this,
 					EOPPOSITE_FEATURE_BASE
-						- ExpressionsPackage.IF_EXP__THEN_EXPRESSION, null,
-					msgs);
+						- ExpressionsPackage.IF_EXP__THEN_EXPRESSION,
+					null, msgs);
 			if (newThenExpression != null)
 				msgs = ((InternalEObject) newThenExpression).eInverseAdd(this,
 					EOPPOSITE_FEATURE_BASE
-						- ExpressionsPackage.IF_EXP__THEN_EXPRESSION, null,
-					msgs);
+						- ExpressionsPackage.IF_EXP__THEN_EXPRESSION,
+					null, msgs);
 			msgs = basicSetThenExpression(newThenExpression, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -245,13 +247,13 @@ public class IfExpImpl<C>
 			if (elseExpression != null)
 				msgs = ((InternalEObject) elseExpression).eInverseRemove(this,
 					EOPPOSITE_FEATURE_BASE
-						- ExpressionsPackage.IF_EXP__ELSE_EXPRESSION, null,
-					msgs);
+						- ExpressionsPackage.IF_EXP__ELSE_EXPRESSION,
+					null, msgs);
 			if (newElseExpression != null)
 				msgs = ((InternalEObject) newElseExpression).eInverseAdd(this,
 					EOPPOSITE_FEATURE_BASE
-						- ExpressionsPackage.IF_EXP__ELSE_EXPRESSION, null,
-					msgs);
+						- ExpressionsPackage.IF_EXP__ELSE_EXPRESSION,
+					null, msgs);
 			msgs = basicSetElseExpression(newElseExpression, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -268,8 +270,8 @@ public class IfExpImpl<C>
 	 */
 	public boolean checkBooleanCondition(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return IfExpOperations
-			.checkBooleanCondition(this, diagnostics, context);
+		return IfExpOperations.checkBooleanCondition(this, diagnostics,
+			context);
 	}
 
 	/**

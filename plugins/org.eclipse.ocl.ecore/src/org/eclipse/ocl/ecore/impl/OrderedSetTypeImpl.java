@@ -26,8 +26,6 @@ import org.eclipse.ocl.types.operations.OrderedSetTypeOperations;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Ordered Set Type</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

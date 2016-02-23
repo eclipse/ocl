@@ -22,11 +22,11 @@ import org.eclipse.ocl.types.PrimitiveType;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.utilities.PredefinedType#getName() <em>Get Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.utilities.PredefinedType#oclOperations() <em>Ocl Operations</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

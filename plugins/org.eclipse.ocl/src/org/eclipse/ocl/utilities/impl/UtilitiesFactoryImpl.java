@@ -39,7 +39,7 @@ public class UtilitiesFactoryImpl
 	public static UtilitiesFactory init() {
 		try {
 			UtilitiesFactory theUtilitiesFactory = (UtilitiesFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://www.eclipse.org/ocl/1.1.0/OCL/Utilities"); //$NON-NLS-1$ 
+				.getEFactory(UtilitiesPackage.eNS_URI);
 			if (theUtilitiesFactory != null) {
 				return theUtilitiesFactory;
 			}
@@ -68,8 +68,8 @@ public class UtilitiesFactoryImpl
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			default :
-				throw new IllegalArgumentException(
-					"The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+				throw new IllegalArgumentException("The class '" //$NON-NLS-1$
+					+ eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$
 		}
 	}
 

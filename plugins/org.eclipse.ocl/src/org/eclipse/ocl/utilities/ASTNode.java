@@ -19,11 +19,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.utilities.ASTNode#getStartPosition <em>Start Position</em>}</li>
  *   <li>{@link org.eclipse.ocl.utilities.ASTNode#getEndPosition <em>End Position</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.utilities.UtilitiesPackage#getASTNode()
  * @model interface="true" abstract="true"

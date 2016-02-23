@@ -33,10 +33,10 @@ import org.eclipse.uml2.uml.Property;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.uml.impl.PropertyCallExpImpl#getReferredProperty <em>Referred Property</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -80,7 +80,8 @@ public class PropertyCallExpImpl
 	 * @generated
 	 */
 	public Property getReferredProperty() {
-		if (referredProperty != null && ((EObject) referredProperty).eIsProxy()) {
+		if (referredProperty != null
+			&& ((EObject) referredProperty).eIsProxy()) {
 			InternalEObject oldReferredProperty = (InternalEObject) referredProperty;
 			referredProperty = (Property) eResolveProxy(oldReferredProperty);
 			if (referredProperty != oldReferredProperty) {
@@ -194,7 +195,8 @@ public class PropertyCallExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.PropertyCallExp.class) {
 			switch (derivedFeatureID) {
 				case UMLPackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY :
@@ -212,7 +214,8 @@ public class PropertyCallExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.PropertyCallExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.PROPERTY_CALL_EXP__REFERRED_PROPERTY :

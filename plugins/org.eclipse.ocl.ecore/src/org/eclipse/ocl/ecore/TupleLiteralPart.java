@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.ETypedElement;
  * @generated
  */
 public interface TupleLiteralPart
-		extends
-		ETypedElement,
+		extends ETypedElement,
 		org.eclipse.ocl.expressions.TupleLiteralPart<EClassifier, EStructuralFeature> {
 } // TupleLiteralPart

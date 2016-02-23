@@ -35,11 +35,11 @@ import org.eclipse.uml2.uml.Parameter;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.uml.impl.LetExpImpl#getIn <em>In</em>}</li>
  *   <li>{@link org.eclipse.ocl.uml.impl.LetExpImpl#getVariable <em>Variable</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -125,13 +125,13 @@ public class LetExpImpl
 		if (newIn != in) {
 			NotificationChain msgs = null;
 			if (in != null)
-				msgs = ((InternalEObject) in)
-					.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-						- UMLPackage.LET_EXP__IN, null, msgs);
+				msgs = ((InternalEObject) in).eInverseRemove(this,
+					EOPPOSITE_FEATURE_BASE - UMLPackage.LET_EXP__IN, null,
+					msgs);
 			if (newIn != null)
-				msgs = ((InternalEObject) newIn)
-					.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-						- UMLPackage.LET_EXP__IN, null, msgs);
+				msgs = ((InternalEObject) newIn).eInverseAdd(this,
+					EOPPOSITE_FEATURE_BASE - UMLPackage.LET_EXP__IN, null,
+					msgs);
 			msgs = basicSetIn(newIn, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -155,7 +155,8 @@ public class LetExpImpl
 	 * @generated
 	 */
 	public NotificationChain basicSetVariable(
-			Variable<Classifier, Parameter> newVariable, NotificationChain msgs) {
+			Variable<Classifier, Parameter> newVariable,
+			NotificationChain msgs) {
 		Variable<Classifier, Parameter> oldVariable = variable;
 		variable = newVariable;
 		if (eNotificationRequired()) {
@@ -180,12 +181,12 @@ public class LetExpImpl
 			NotificationChain msgs = null;
 			if (variable != null)
 				msgs = ((InternalEObject) variable).eInverseRemove(this,
-					EOPPOSITE_FEATURE_BASE - UMLPackage.LET_EXP__VARIABLE,
-					null, msgs);
+					EOPPOSITE_FEATURE_BASE - UMLPackage.LET_EXP__VARIABLE, null,
+					msgs);
 			if (newVariable != null)
 				msgs = ((InternalEObject) newVariable).eInverseAdd(this,
-					EOPPOSITE_FEATURE_BASE - UMLPackage.LET_EXP__VARIABLE,
-					null, msgs);
+					EOPPOSITE_FEATURE_BASE - UMLPackage.LET_EXP__VARIABLE, null,
+					msgs);
 			msgs = basicSetVariable(newVariable, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -296,7 +297,8 @@ public class LetExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.LetExp.class) {
 			switch (derivedFeatureID) {
 				case UMLPackage.LET_EXP__IN :
@@ -316,7 +318,8 @@ public class LetExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.LetExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.LET_EXP__IN :

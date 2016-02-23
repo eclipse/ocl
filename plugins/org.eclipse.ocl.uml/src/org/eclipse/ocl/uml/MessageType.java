@@ -26,11 +26,11 @@ import org.eclipse.uml2.uml.Type;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.uml.MessageType#getOwnedOperations <em>Owned Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.uml.MessageType#getOwnedAttributes <em>Owned Attribute</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.uml.UMLPackage#getMessageType()
  * @model
@@ -45,10 +45,10 @@ public interface MessageType
 	 * The list contents are of type {@link org.eclipse.uml2.uml.Operation}.
 	 * <p>
 	 * This feature subsets the following features:
+	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.eclipse.uml2.uml.Classifier#getFeatures() <em>Feature</em>}'</li>
 	 * </ul>
-	 * </p>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Operations</em>' containment reference list isn't clear,
@@ -96,10 +96,10 @@ public interface MessageType
 	 * The list contents are of type {@link org.eclipse.uml2.uml.Property}.
 	 * <p>
 	 * This feature subsets the following features:
+	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.eclipse.uml2.uml.Classifier#getAttributes() <em>Attribute</em>}'</li>
 	 * </ul>
-	 * </p>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Attributes</em>' containment reference list isn't clear,

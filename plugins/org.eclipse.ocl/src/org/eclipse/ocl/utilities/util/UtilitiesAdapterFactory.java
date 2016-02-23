@@ -114,7 +114,8 @@ public class UtilitiesAdapterFactory
 		}
 
 		@Override
-		public <C, PM> Adapter caseExpressionInOCL(ExpressionInOCL<C, PM> object) {
+		public <C, PM> Adapter caseExpressionInOCL(
+				ExpressionInOCL<C, PM> object) {
 			return createExpressionInOCLAdapter();
 		}
 

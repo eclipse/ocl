@@ -33,10 +33,10 @@ import org.eclipse.ocl.util.TypeUtil;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.LetExp#checkLetType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Let Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -29,10 +29,10 @@ import org.eclipse.uml2.uml.State;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.uml.impl.StateExpImpl#getReferredState <em>Referred State</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -179,7 +179,8 @@ public class StateExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.StateExp.class) {
 			switch (derivedFeatureID) {
 				case UMLPackage.STATE_EXP__REFERRED_STATE :
@@ -197,7 +198,8 @@ public class StateExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.StateExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.STATE_EXP__REFERRED_STATE :

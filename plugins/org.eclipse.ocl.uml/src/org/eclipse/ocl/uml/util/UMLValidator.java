@@ -191,8 +191,8 @@ public class UMLValidator
 				return validateMessageType((MessageType) value, diagnostics,
 					context);
 			case UMLPackage.PRIMITIVE_TYPE :
-				return validatePrimitiveType((PrimitiveType) value,
-					diagnostics, context);
+				return validatePrimitiveType((PrimitiveType) value, diagnostics,
+					context);
 			case UMLPackage.COLLECTION_TYPE :
 				return validateCollectionType((CollectionType) value,
 					diagnostics, context);
@@ -224,8 +224,8 @@ public class UMLValidator
 			case UMLPackage.CALL_EXP :
 				return validateCallExp((CallExp) value, diagnostics, context);
 			case UMLPackage.OCL_EXPRESSION :
-				return validateOCLExpression((OCLExpression) value,
-					diagnostics, context);
+				return validateOCLExpression((OCLExpression) value, diagnostics,
+					context);
 			case UMLPackage.BOOLEAN_LITERAL_EXP :
 				return validateBooleanLiteralExp((BooleanLiteralExp) value,
 					diagnostics, context);
@@ -323,8 +323,8 @@ public class UMLValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateAnyType(AnyType anyType,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateAnyType(AnyType anyType, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(anyType, diagnostics, context))
 			return false;
 		boolean result = validate_EveryMultiplicityConforms(anyType,
@@ -339,7 +339,8 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(anyType,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryProxyResolves(anyType, diagnostics, context);
+			result &= validate_EveryProxyResolves(anyType, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(anyType, diagnostics, context);
 		if (result || diagnostics != null)
@@ -355,6 +356,10 @@ public class UMLValidator
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(anyType,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(anyType,
 					diagnostics, context);
 		if (result || diagnostics != null)
@@ -363,11 +368,14 @@ public class UMLValidator
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(anyType,
+				.validateNamespace_validateMembersDistinguishable(anyType,
 					diagnostics, context);
 		if (result || diagnostics != null)
+			result &= umlValidator.validateNamespace_validateCannotImportSelf(
+				anyType, diagnostics, context);
+		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamespace_validateMembersDistinguishable(anyType,
+				.validateNamespace_validateCannotImportOwnedMembers(anyType,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
@@ -375,25 +383,29 @@ public class UMLValidator
 					anyType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateRedefinableElement_validateNonLeafRedefinition(
-					anyType, diagnostics, context);
+				.validateRedefinableElement_validateNonLeafRedefinition(anyType,
+					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateRedefinableElement_validateRedefinitionContextValid(
 					anyType, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= umlValidator.validateClassifier_validateNonFinalParents(
-				anyType, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateClassifier_validateNoCyclesInGeneralization(anyType,
-					diagnostics, context);
+				.validatePackageableElement_validateNamespaceNeedsVisibility(
+					anyType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator.validateClassifier_validateSpecializeType(
 				anyType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateClassifier_validateMapsToGeneralizationSet(anyType,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator.validateClassifier_validateNonFinalParents(
+				anyType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateClassifier_validateNoCyclesInGeneralization(anyType,
 					diagnostics, context);
 		return result;
 	}
@@ -436,6 +448,10 @@ public class UMLValidator
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(voidType,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(voidType,
 					diagnostics, context);
 		if (result || diagnostics != null)
@@ -444,11 +460,14 @@ public class UMLValidator
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
-					voidType, diagnostics, context);
+				.validateNamespace_validateMembersDistinguishable(voidType,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator.validateNamespace_validateCannotImportSelf(
+				voidType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamespace_validateMembersDistinguishable(voidType,
+				.validateNamespace_validateCannotImportOwnedMembers(voidType,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
@@ -463,18 +482,22 @@ public class UMLValidator
 				.validateRedefinableElement_validateRedefinitionContextValid(
 					voidType, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= umlValidator.validateClassifier_validateNonFinalParents(
-				voidType, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateClassifier_validateNoCyclesInGeneralization(voidType,
-					diagnostics, context);
+				.validatePackageableElement_validateNamespaceNeedsVisibility(
+					voidType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator.validateClassifier_validateSpecializeType(
 				voidType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateClassifier_validateMapsToGeneralizationSet(voidType,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator.validateClassifier_validateNonFinalParents(
+				voidType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateClassifier_validateNoCyclesInGeneralization(voidType,
 					diagnostics, context);
 		return result;
 	}
@@ -505,16 +528,21 @@ public class UMLValidator
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(invalidType, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryKeyUnique(invalidType, diagnostics, context);
+			result &= validate_EveryKeyUnique(invalidType, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryMapEntryUnique(invalidType, diagnostics,
 				context);
 		if (result || diagnostics != null)
-			result &= umlValidator.validateElement_validateHasOwner(
-				invalidType, diagnostics, context);
+			result &= umlValidator.validateElement_validateHasOwner(invalidType,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator.validateElement_validateNotOwnSelf(
 				invalidType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					invalidType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(invalidType,
@@ -525,11 +553,14 @@ public class UMLValidator
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
-					invalidType, diagnostics, context);
+				.validateNamespace_validateMembersDistinguishable(invalidType,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator.validateNamespace_validateCannotImportSelf(
+				invalidType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamespace_validateMembersDistinguishable(invalidType,
+				.validateNamespace_validateCannotImportOwnedMembers(invalidType,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
@@ -544,18 +575,22 @@ public class UMLValidator
 				.validateRedefinableElement_validateRedefinitionContextValid(
 					invalidType, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= umlValidator.validateClassifier_validateNonFinalParents(
-				invalidType, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateClassifier_validateNoCyclesInGeneralization(
+				.validatePackageableElement_validateNamespaceNeedsVisibility(
 					invalidType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator.validateClassifier_validateSpecializeType(
 				invalidType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateClassifier_validateMapsToGeneralizationSet(
+				.validateClassifier_validateMapsToGeneralizationSet(invalidType,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator.validateClassifier_validateNonFinalParents(
+				invalidType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateClassifier_validateNoCyclesInGeneralization(
 					invalidType, diagnostics, context);
 		return result;
 	}
@@ -586,16 +621,21 @@ public class UMLValidator
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(elementType, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryKeyUnique(elementType, diagnostics, context);
+			result &= validate_EveryKeyUnique(elementType, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryMapEntryUnique(elementType, diagnostics,
 				context);
 		if (result || diagnostics != null)
-			result &= umlValidator.validateElement_validateHasOwner(
-				elementType, diagnostics, context);
+			result &= umlValidator.validateElement_validateHasOwner(elementType,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator.validateElement_validateNotOwnSelf(
 				elementType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					elementType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(elementType,
@@ -606,11 +646,14 @@ public class UMLValidator
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
-					elementType, diagnostics, context);
+				.validateNamespace_validateMembersDistinguishable(elementType,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator.validateNamespace_validateCannotImportSelf(
+				elementType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamespace_validateMembersDistinguishable(elementType,
+				.validateNamespace_validateCannotImportOwnedMembers(elementType,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
@@ -625,18 +668,22 @@ public class UMLValidator
 				.validateRedefinableElement_validateRedefinitionContextValid(
 					elementType, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= umlValidator.validateClassifier_validateNonFinalParents(
-				elementType, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateClassifier_validateNoCyclesInGeneralization(
+				.validatePackageableElement_validateNamespaceNeedsVisibility(
 					elementType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator.validateClassifier_validateSpecializeType(
 				elementType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateClassifier_validateMapsToGeneralizationSet(
+				.validateClassifier_validateMapsToGeneralizationSet(elementType,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator.validateClassifier_validateNonFinalParents(
+				elementType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateClassifier_validateNoCyclesInGeneralization(
 					elementType, diagnostics, context);
 		return result;
 	}
@@ -679,6 +726,10 @@ public class UMLValidator
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(typeType,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(typeType,
 					diagnostics, context);
 		if (result || diagnostics != null)
@@ -687,11 +738,14 @@ public class UMLValidator
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
-					typeType, diagnostics, context);
+				.validateNamespace_validateMembersDistinguishable(typeType,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator.validateNamespace_validateCannotImportSelf(
+				typeType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamespace_validateMembersDistinguishable(typeType,
+				.validateNamespace_validateCannotImportOwnedMembers(typeType,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
@@ -706,18 +760,22 @@ public class UMLValidator
 				.validateRedefinableElement_validateRedefinitionContextValid(
 					typeType, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= umlValidator.validateClassifier_validateNonFinalParents(
-				typeType, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateClassifier_validateNoCyclesInGeneralization(typeType,
-					diagnostics, context);
+				.validatePackageableElement_validateNamespaceNeedsVisibility(
+					typeType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator.validateClassifier_validateSpecializeType(
 				typeType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateClassifier_validateMapsToGeneralizationSet(typeType,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator.validateClassifier_validateNonFinalParents(
+				typeType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateClassifier_validateNoCyclesInGeneralization(typeType,
 					diagnostics, context);
 		return result;
 	}
@@ -748,16 +806,21 @@ public class UMLValidator
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(messageType, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryKeyUnique(messageType, diagnostics, context);
+			result &= validate_EveryKeyUnique(messageType, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryMapEntryUnique(messageType, diagnostics,
 				context);
 		if (result || diagnostics != null)
-			result &= umlValidator.validateElement_validateHasOwner(
-				messageType, diagnostics, context);
+			result &= umlValidator.validateElement_validateHasOwner(messageType,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator.validateElement_validateNotOwnSelf(
 				messageType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					messageType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(messageType,
@@ -768,11 +831,14 @@ public class UMLValidator
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
-					messageType, diagnostics, context);
+				.validateNamespace_validateMembersDistinguishable(messageType,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator.validateNamespace_validateCannotImportSelf(
+				messageType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamespace_validateMembersDistinguishable(messageType,
+				.validateNamespace_validateCannotImportOwnedMembers(messageType,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
@@ -787,18 +853,22 @@ public class UMLValidator
 				.validateRedefinableElement_validateRedefinitionContextValid(
 					messageType, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= umlValidator.validateClassifier_validateNonFinalParents(
-				messageType, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateClassifier_validateNoCyclesInGeneralization(
+				.validatePackageableElement_validateNamespaceNeedsVisibility(
 					messageType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator.validateClassifier_validateSpecializeType(
 				messageType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateClassifier_validateMapsToGeneralizationSet(
+				.validateClassifier_validateMapsToGeneralizationSet(messageType,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator.validateClassifier_validateNonFinalParents(
+				messageType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateClassifier_validateNoCyclesInGeneralization(
 					messageType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= typesValidator
@@ -821,7 +891,8 @@ public class UMLValidator
 	 */
 	public boolean validatePrimitiveType(PrimitiveType primitiveType,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(primitiveType, diagnostics, context))
+		if (!validate_NoCircularContainment(primitiveType, diagnostics,
+			context))
 			return false;
 		boolean result = validate_EveryMultiplicityConforms(primitiveType,
 			diagnostics, context);
@@ -853,6 +924,10 @@ public class UMLValidator
 				primitiveType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					primitiveType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(primitiveType,
 					diagnostics, context);
 		if (result || diagnostics != null)
@@ -861,11 +936,14 @@ public class UMLValidator
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
-					primitiveType, diagnostics, context);
+				.validateNamespace_validateMembersDistinguishable(primitiveType,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator.validateNamespace_validateCannotImportSelf(
+				primitiveType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamespace_validateMembersDistinguishable(
+				.validateNamespace_validateCannotImportOwnedMembers(
 					primitiveType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
@@ -880,11 +958,8 @@ public class UMLValidator
 				.validateRedefinableElement_validateRedefinitionContextValid(
 					primitiveType, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= umlValidator.validateClassifier_validateNonFinalParents(
-				primitiveType, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateClassifier_validateNoCyclesInGeneralization(
+				.validatePackageableElement_validateNamespaceNeedsVisibility(
 					primitiveType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator.validateClassifier_validateSpecializeType(
@@ -892,6 +967,13 @@ public class UMLValidator
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateClassifier_validateMapsToGeneralizationSet(
+					primitiveType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator.validateClassifier_validateNonFinalParents(
+				primitiveType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateClassifier_validateNoCyclesInGeneralization(
 					primitiveType, diagnostics, context);
 		return result;
 	}
@@ -936,19 +1018,26 @@ public class UMLValidator
 				collectionType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamedElement_validateHasQualifiedName(collectionType,
-					diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateHasNoQualifiedName(
-					collectionType, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
 				.validateNamedElement_validateVisibilityNeedsOwnership(
 					collectionType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateHasQualifiedName(collectionType,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateNamedElement_validateHasNoQualifiedName(collectionType,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamespace_validateMembersDistinguishable(
+					collectionType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator.validateNamespace_validateCannotImportSelf(
+				collectionType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateNamespace_validateCannotImportOwnedMembers(
 					collectionType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
@@ -963,11 +1052,8 @@ public class UMLValidator
 				.validateRedefinableElement_validateRedefinitionContextValid(
 					collectionType, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= umlValidator.validateClassifier_validateNonFinalParents(
-				collectionType, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateClassifier_validateNoCyclesInGeneralization(
+				.validatePackageableElement_validateNamespaceNeedsVisibility(
 					collectionType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator.validateClassifier_validateSpecializeType(
@@ -975,6 +1061,13 @@ public class UMLValidator
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateClassifier_validateMapsToGeneralizationSet(
+					collectionType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator.validateClassifier_validateNonFinalParents(
+				collectionType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateClassifier_validateNoCyclesInGeneralization(
 					collectionType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= typesValidator
@@ -1002,8 +1095,8 @@ public class UMLValidator
 			result &= validate_EveryDataValueConforms(tupleType, diagnostics,
 				context);
 		if (result || diagnostics != null)
-			result &= validate_EveryReferenceIsContained(tupleType,
-				diagnostics, context);
+			result &= validate_EveryReferenceIsContained(tupleType, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryBidirectionalReferenceIsPaired(tupleType,
 				diagnostics, context);
@@ -1021,8 +1114,12 @@ public class UMLValidator
 			result &= umlValidator.validateElement_validateHasOwner(tupleType,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= umlValidator.validateElement_validateNotOwnSelf(
-				tupleType, diagnostics, context);
+			result &= umlValidator.validateElement_validateNotOwnSelf(tupleType,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					tupleType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(tupleType,
@@ -1033,11 +1130,14 @@ public class UMLValidator
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
-					tupleType, diagnostics, context);
+				.validateNamespace_validateMembersDistinguishable(tupleType,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator.validateNamespace_validateCannotImportSelf(
+				tupleType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamespace_validateMembersDistinguishable(tupleType,
+				.validateNamespace_validateCannotImportOwnedMembers(tupleType,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
@@ -1052,18 +1152,22 @@ public class UMLValidator
 				.validateRedefinableElement_validateRedefinitionContextValid(
 					tupleType, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= umlValidator.validateClassifier_validateNonFinalParents(
-				tupleType, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateClassifier_validateNoCyclesInGeneralization(tupleType,
-					diagnostics, context);
+				.validatePackageableElement_validateNamespaceNeedsVisibility(
+					tupleType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator.validateClassifier_validateSpecializeType(
 				tupleType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateClassifier_validateMapsToGeneralizationSet(tupleType,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator.validateClassifier_validateNonFinalParents(
+				tupleType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateClassifier_validateNoCyclesInGeneralization(tupleType,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= typesValidator.validateTupleType_checkTupleTypeName(
@@ -1083,8 +1187,8 @@ public class UMLValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateBagType(BagType bagType,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateBagType(BagType bagType, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(bagType, diagnostics, context))
 			return false;
 		boolean result = validate_EveryMultiplicityConforms(bagType,
@@ -1099,7 +1203,8 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(bagType,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryProxyResolves(bagType, diagnostics, context);
+			result &= validate_EveryProxyResolves(bagType, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(bagType, diagnostics, context);
 		if (result || diagnostics != null)
@@ -1115,6 +1220,10 @@ public class UMLValidator
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(bagType,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(bagType,
 					diagnostics, context);
 		if (result || diagnostics != null)
@@ -1123,11 +1232,14 @@ public class UMLValidator
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(bagType,
+				.validateNamespace_validateMembersDistinguishable(bagType,
 					diagnostics, context);
 		if (result || diagnostics != null)
+			result &= umlValidator.validateNamespace_validateCannotImportSelf(
+				bagType, diagnostics, context);
+		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamespace_validateMembersDistinguishable(bagType,
+				.validateNamespace_validateCannotImportOwnedMembers(bagType,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
@@ -1135,25 +1247,29 @@ public class UMLValidator
 					bagType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateRedefinableElement_validateNonLeafRedefinition(
-					bagType, diagnostics, context);
+				.validateRedefinableElement_validateNonLeafRedefinition(bagType,
+					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateRedefinableElement_validateRedefinitionContextValid(
 					bagType, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= umlValidator.validateClassifier_validateNonFinalParents(
-				bagType, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateClassifier_validateNoCyclesInGeneralization(bagType,
-					diagnostics, context);
+				.validatePackageableElement_validateNamespaceNeedsVisibility(
+					bagType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator.validateClassifier_validateSpecializeType(
 				bagType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateClassifier_validateMapsToGeneralizationSet(bagType,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator.validateClassifier_validateNonFinalParents(
+				bagType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateClassifier_validateNoCyclesInGeneralization(bagType,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= typesValidator
@@ -1171,8 +1287,8 @@ public class UMLValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSetType(SetType setType,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSetType(SetType setType, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(setType, diagnostics, context))
 			return false;
 		boolean result = validate_EveryMultiplicityConforms(setType,
@@ -1187,7 +1303,8 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(setType,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryProxyResolves(setType, diagnostics, context);
+			result &= validate_EveryProxyResolves(setType, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(setType, diagnostics, context);
 		if (result || diagnostics != null)
@@ -1203,6 +1320,10 @@ public class UMLValidator
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(setType,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(setType,
 					diagnostics, context);
 		if (result || diagnostics != null)
@@ -1211,11 +1332,14 @@ public class UMLValidator
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(setType,
+				.validateNamespace_validateMembersDistinguishable(setType,
 					diagnostics, context);
 		if (result || diagnostics != null)
+			result &= umlValidator.validateNamespace_validateCannotImportSelf(
+				setType, diagnostics, context);
+		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamespace_validateMembersDistinguishable(setType,
+				.validateNamespace_validateCannotImportOwnedMembers(setType,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
@@ -1223,25 +1347,29 @@ public class UMLValidator
 					setType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateRedefinableElement_validateNonLeafRedefinition(
-					setType, diagnostics, context);
+				.validateRedefinableElement_validateNonLeafRedefinition(setType,
+					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateRedefinableElement_validateRedefinitionContextValid(
 					setType, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= umlValidator.validateClassifier_validateNonFinalParents(
-				setType, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateClassifier_validateNoCyclesInGeneralization(setType,
-					diagnostics, context);
+				.validatePackageableElement_validateNamespaceNeedsVisibility(
+					setType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator.validateClassifier_validateSpecializeType(
 				setType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateClassifier_validateMapsToGeneralizationSet(setType,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator.validateClassifier_validateNonFinalParents(
+				setType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateClassifier_validateNoCyclesInGeneralization(setType,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= typesValidator
@@ -1294,19 +1422,26 @@ public class UMLValidator
 				orderedSetType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamedElement_validateHasQualifiedName(orderedSetType,
-					diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateHasNoQualifiedName(
-					orderedSetType, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
 				.validateNamedElement_validateVisibilityNeedsOwnership(
 					orderedSetType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateHasQualifiedName(orderedSetType,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateNamedElement_validateHasNoQualifiedName(orderedSetType,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamespace_validateMembersDistinguishable(
+					orderedSetType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator.validateNamespace_validateCannotImportSelf(
+				orderedSetType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateNamespace_validateCannotImportOwnedMembers(
 					orderedSetType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
@@ -1321,11 +1456,8 @@ public class UMLValidator
 				.validateRedefinableElement_validateRedefinitionContextValid(
 					orderedSetType, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= umlValidator.validateClassifier_validateNonFinalParents(
-				orderedSetType, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateClassifier_validateNoCyclesInGeneralization(
+				.validatePackageableElement_validateNamespaceNeedsVisibility(
 					orderedSetType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator.validateClassifier_validateSpecializeType(
@@ -1333,6 +1465,13 @@ public class UMLValidator
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateClassifier_validateMapsToGeneralizationSet(
+					orderedSetType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator.validateClassifier_validateNonFinalParents(
+				orderedSetType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateClassifier_validateNoCyclesInGeneralization(
 					orderedSetType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= typesValidator
@@ -1357,14 +1496,14 @@ public class UMLValidator
 		boolean result = validate_EveryMultiplicityConforms(sequenceType,
 			diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryDataValueConforms(sequenceType,
-				diagnostics, context);
+			result &= validate_EveryDataValueConforms(sequenceType, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(sequenceType,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(
-				sequenceType, diagnostics, context);
+			result &= validate_EveryBidirectionalReferenceIsPaired(sequenceType,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(sequenceType, diagnostics,
 				context);
@@ -1384,6 +1523,10 @@ public class UMLValidator
 				sequenceType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					sequenceType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(sequenceType,
 					diagnostics, context);
 		if (result || diagnostics != null)
@@ -1392,12 +1535,15 @@ public class UMLValidator
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
-					sequenceType, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
 				.validateNamespace_validateMembersDistinguishable(sequenceType,
 					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator.validateNamespace_validateCannotImportSelf(
+				sequenceType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateNamespace_validateCannotImportOwnedMembers(
+					sequenceType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateRedefinableElement_validateRedefinitionConsistent(
@@ -1411,11 +1557,8 @@ public class UMLValidator
 				.validateRedefinableElement_validateRedefinitionContextValid(
 					sequenceType, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= umlValidator.validateClassifier_validateNonFinalParents(
-				sequenceType, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateClassifier_validateNoCyclesInGeneralization(
+				.validatePackageableElement_validateNamespaceNeedsVisibility(
 					sequenceType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator.validateClassifier_validateSpecializeType(
@@ -1423,6 +1566,13 @@ public class UMLValidator
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateClassifier_validateMapsToGeneralizationSet(
+					sequenceType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator.validateClassifier_validateNonFinalParents(
+				sequenceType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateClassifier_validateNoCyclesInGeneralization(
 					sequenceType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= typesValidator
@@ -1465,14 +1615,18 @@ public class UMLValidator
 			result &= validate_EveryKeyUnique(expressionInOCL, diagnostics,
 				context);
 		if (result || diagnostics != null)
-			result &= validate_EveryMapEntryUnique(expressionInOCL,
-				diagnostics, context);
+			result &= validate_EveryMapEntryUnique(expressionInOCL, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= umlValidator.validateElement_validateHasOwner(
 				expressionInOCL, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator.validateElement_validateNotOwnSelf(
 				expressionInOCL, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					expressionInOCL, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(expressionInOCL,
@@ -1483,11 +1637,11 @@ public class UMLValidator
 					expressionInOCL, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
+				.validatePackageableElement_validateNamespaceNeedsVisibility(
 					expressionInOCL, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateOpaqueExpression_validateOnlyReturnResultParameters(
+				.validateOpaqueExpression_validateLanguageBodySize(
 					expressionInOCL, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
@@ -1495,7 +1649,7 @@ public class UMLValidator
 					expressionInOCL, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateOpaqueExpression_validateLanguageBodySize(
+				.validateOpaqueExpression_validateOnlyReturnResultParameters(
 					expressionInOCL, diagnostics, context);
 		return result;
 	}
@@ -1542,15 +1696,15 @@ public class UMLValidator
 				associationClassCallExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					associationClassCallExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(
 					associationClassCallExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateNamedElement_validateHasNoQualifiedName(
-					associationClassCallExp, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
 					associationClassCallExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateOCLExpression_has_type(associationClassCallExp,
@@ -1584,7 +1738,8 @@ public class UMLValidator
 			result &= validate_EveryProxyResolves(navigationCallExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_UniqueID(navigationCallExp, diagnostics, context);
+			result &= validate_UniqueID(navigationCallExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryKeyUnique(navigationCallExp, diagnostics,
 				context);
@@ -1599,15 +1754,15 @@ public class UMLValidator
 				navigationCallExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					navigationCallExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(
 					navigationCallExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateNamedElement_validateHasNoQualifiedName(
-					navigationCallExp, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
 					navigationCallExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateOCLExpression_has_type(navigationCallExp,
@@ -1655,16 +1810,16 @@ public class UMLValidator
 				featureCallExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					featureCallExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(featureCallExp,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamedElement_validateHasNoQualifiedName(
-					featureCallExp, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
-					featureCallExp, diagnostics, context);
+				.validateNamedElement_validateHasNoQualifiedName(featureCallExp,
+					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateOCLExpression_has_type(featureCallExp,
 				diagnostics, context);
@@ -1676,8 +1831,8 @@ public class UMLValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateCallExp(CallExp callExp,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateCallExp(CallExp callExp, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(callExp, diagnostics, context))
 			return false;
 		boolean result = validate_EveryMultiplicityConforms(callExp,
@@ -1692,7 +1847,8 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(callExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryProxyResolves(callExp, diagnostics, context);
+			result &= validate_EveryProxyResolves(callExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(callExp, diagnostics, context);
 		if (result || diagnostics != null)
@@ -1708,15 +1864,15 @@ public class UMLValidator
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(callExp,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(callExp,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateNamedElement_validateHasNoQualifiedName(callExp,
-					diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(callExp,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateOCLExpression_has_type(callExp, diagnostics,
@@ -1731,7 +1887,8 @@ public class UMLValidator
 	 */
 	public boolean validateOCLExpression(OCLExpression oclExpression,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(oclExpression, diagnostics, context))
+		if (!validate_NoCircularContainment(oclExpression, diagnostics,
+			context))
 			return false;
 		boolean result = validate_EveryMultiplicityConforms(oclExpression,
 			diagnostics, context);
@@ -1763,6 +1920,10 @@ public class UMLValidator
 				oclExpression, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					oclExpression, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(oclExpression,
 					diagnostics, context);
 		if (result || diagnostics != null)
@@ -1770,12 +1931,8 @@ public class UMLValidator
 				.validateNamedElement_validateHasNoQualifiedName(oclExpression,
 					diagnostics, context);
 		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
-					oclExpression, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateOCLExpression_has_type(oclExpression,
-				diagnostics, context);
+			result &= validateOCLExpression_has_type(oclExpression, diagnostics,
+				context);
 		return result;
 	}
 
@@ -1789,13 +1946,10 @@ public class UMLValidator
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (oclExpression.getType() == null) {
 			if (diagnostics != null) {
-				diagnostics.add(createDiagnostic(
-					Diagnostic.ERROR,
-					DIAGNOSTIC_SOURCE,
-					0,
-					"_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
-					new Object[]{
-						"has_type", getObjectLabel(oclExpression, context)}, //$NON-NLS-1$
+				diagnostics.add(createDiagnostic(Diagnostic.ERROR,
+					DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
+					new Object[]{"has_type", //$NON-NLS-1$
+						getObjectLabel(oclExpression, context)},
 					new Object[]{oclExpression}, context));
 			}
 			return false;
@@ -1829,7 +1983,8 @@ public class UMLValidator
 			result &= validate_EveryProxyResolves(booleanLiteralExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_UniqueID(booleanLiteralExp, diagnostics, context);
+			result &= validate_UniqueID(booleanLiteralExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryKeyUnique(booleanLiteralExp, diagnostics,
 				context);
@@ -1844,15 +1999,15 @@ public class UMLValidator
 				booleanLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					booleanLiteralExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(
 					booleanLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateNamedElement_validateHasNoQualifiedName(
-					booleanLiteralExp, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
 					booleanLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateOCLExpression_has_type(booleanLiteralExp,
@@ -1875,8 +2030,8 @@ public class UMLValidator
 		if (!validate_NoCircularContainment(primitiveLiteralExp, diagnostics,
 			context))
 			return false;
-		boolean result = validate_EveryMultiplicityConforms(
-			primitiveLiteralExp, diagnostics, context);
+		boolean result = validate_EveryMultiplicityConforms(primitiveLiteralExp,
+			diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryDataValueConforms(primitiveLiteralExp,
 				diagnostics, context);
@@ -1906,15 +2061,15 @@ public class UMLValidator
 				primitiveLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					primitiveLiteralExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(
 					primitiveLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateNamedElement_validateHasNoQualifiedName(
-					primitiveLiteralExp, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
 					primitiveLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateOCLExpression_has_type(primitiveLiteralExp,
@@ -1960,16 +2115,16 @@ public class UMLValidator
 				literalExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					literalExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(literalExp,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateNamedElement_validateHasNoQualifiedName(literalExp,
 					diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
-					literalExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateOCLExpression_has_type(literalExp, diagnostics,
 				context);
@@ -2016,20 +2171,19 @@ public class UMLValidator
 				collectionItem, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					collectionItem, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(collectionItem,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamedElement_validateHasNoQualifiedName(
-					collectionItem, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
-					collectionItem, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= expressionsValidator
-				.validateCollectionItem_checkItemType(collectionItem,
+				.validateNamedElement_validateHasNoQualifiedName(collectionItem,
 					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= expressionsValidator.validateCollectionItem_checkItemType(
+				collectionItem, diagnostics, context);
 		return result;
 	}
 
@@ -2075,15 +2229,15 @@ public class UMLValidator
 				collectionLiteralPart, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					collectionLiteralPart, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(
 					collectionLiteralPart, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateNamedElement_validateHasNoQualifiedName(
-					collectionLiteralPart, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
 					collectionLiteralPart, diagnostics, context);
 		return result;
 	}
@@ -2117,8 +2271,8 @@ public class UMLValidator
 			result &= validate_UniqueID(collectionLiteralExp, diagnostics,
 				context);
 		if (result || diagnostics != null)
-			result &= validate_EveryKeyUnique(collectionLiteralExp,
-				diagnostics, context);
+			result &= validate_EveryKeyUnique(collectionLiteralExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryMapEntryUnique(collectionLiteralExp,
 				diagnostics, context);
@@ -2130,15 +2284,15 @@ public class UMLValidator
 				collectionLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					collectionLiteralExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(
 					collectionLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateNamedElement_validateHasNoQualifiedName(
-					collectionLiteralExp, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
 					collectionLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateOCLExpression_has_type(collectionLiteralExp,
@@ -2149,16 +2303,16 @@ public class UMLValidator
 					collectionLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= expressionsValidator
-				.validateCollectionLiteralExp_checkSetKind(
-					collectionLiteralExp, diagnostics, context);
+				.validateCollectionLiteralExp_checkSetKind(collectionLiteralExp,
+					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= expressionsValidator
 				.validateCollectionLiteralExp_checkSequenceKind(
 					collectionLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= expressionsValidator
-				.validateCollectionLiteralExp_checkBagKind(
-					collectionLiteralExp, diagnostics, context);
+				.validateCollectionLiteralExp_checkBagKind(collectionLiteralExp,
+					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= expressionsValidator
 				.validateCollectionLiteralExp_checkElementType(
@@ -2196,8 +2350,8 @@ public class UMLValidator
 			result &= validate_EveryKeyUnique(collectionRange, diagnostics,
 				context);
 		if (result || diagnostics != null)
-			result &= validate_EveryMapEntryUnique(collectionRange,
-				diagnostics, context);
+			result &= validate_EveryMapEntryUnique(collectionRange, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= umlValidator.validateElement_validateHasOwner(
 				collectionRange, diagnostics, context);
@@ -2206,15 +2360,15 @@ public class UMLValidator
 				collectionRange, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					collectionRange, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(collectionRange,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateNamedElement_validateHasNoQualifiedName(
-					collectionRange, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
 					collectionRange, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= expressionsValidator
@@ -2263,23 +2417,22 @@ public class UMLValidator
 				enumLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					enumLiteralExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(enumLiteralExp,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamedElement_validateHasNoQualifiedName(
-					enumLiteralExp, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
-					enumLiteralExp, diagnostics, context);
+				.validateNamedElement_validateHasNoQualifiedName(enumLiteralExp,
+					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateOCLExpression_has_type(enumLiteralExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= expressionsValidator
-				.validateEnumLiteralExp_checkEnumType(enumLiteralExp,
-					diagnostics, context);
+			result &= expressionsValidator.validateEnumLiteralExp_checkEnumType(
+				enumLiteralExp, diagnostics, context);
 		return result;
 	}
 
@@ -2319,15 +2472,15 @@ public class UMLValidator
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(ifExp,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(ifExp,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateNamedElement_validateHasNoQualifiedName(ifExp,
-					diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(ifExp,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateOCLExpression_has_type(ifExp, diagnostics,
@@ -2367,7 +2520,8 @@ public class UMLValidator
 			result &= validate_EveryProxyResolves(integerLiteralExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_UniqueID(integerLiteralExp, diagnostics, context);
+			result &= validate_UniqueID(integerLiteralExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryKeyUnique(integerLiteralExp, diagnostics,
 				context);
@@ -2382,15 +2536,15 @@ public class UMLValidator
 				integerLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					integerLiteralExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(
 					integerLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateNamedElement_validateHasNoQualifiedName(
-					integerLiteralExp, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
 					integerLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateOCLExpression_has_type(integerLiteralExp,
@@ -2428,7 +2582,8 @@ public class UMLValidator
 			result &= validate_EveryProxyResolves(numericLiteralExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_UniqueID(numericLiteralExp, diagnostics, context);
+			result &= validate_UniqueID(numericLiteralExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryKeyUnique(numericLiteralExp, diagnostics,
 				context);
@@ -2443,15 +2598,15 @@ public class UMLValidator
 				numericLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					numericLiteralExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(
 					numericLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateNamedElement_validateHasNoQualifiedName(
-					numericLiteralExp, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
 					numericLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateOCLExpression_has_type(numericLiteralExp,
@@ -2485,8 +2640,8 @@ public class UMLValidator
 			result &= validate_EveryProxyResolves(unlimitedNaturalLiteralExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_UniqueID(unlimitedNaturalLiteralExp,
-				diagnostics, context);
+			result &= validate_UniqueID(unlimitedNaturalLiteralExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryKeyUnique(unlimitedNaturalLiteralExp,
 				diagnostics, context);
@@ -2501,6 +2656,10 @@ public class UMLValidator
 				unlimitedNaturalLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					unlimitedNaturalLiteralExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(
 					unlimitedNaturalLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
@@ -2508,12 +2667,8 @@ public class UMLValidator
 				.validateNamedElement_validateHasNoQualifiedName(
 					unlimitedNaturalLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
-					unlimitedNaturalLiteralExp, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateOCLExpression_has_type(
-				unlimitedNaturalLiteralExp, diagnostics, context);
+			result &= validateOCLExpression_has_type(unlimitedNaturalLiteralExp,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= expressionsValidator
 				.validateUnlimitedNaturalLiteralExp_checkNaturalType(
@@ -2547,7 +2702,8 @@ public class UMLValidator
 			result &= validate_EveryProxyResolves(invalidLiteralExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_UniqueID(invalidLiteralExp, diagnostics, context);
+			result &= validate_UniqueID(invalidLiteralExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryKeyUnique(invalidLiteralExp, diagnostics,
 				context);
@@ -2562,15 +2718,15 @@ public class UMLValidator
 				invalidLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					invalidLiteralExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(
 					invalidLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateNamedElement_validateHasNoQualifiedName(
-					invalidLiteralExp, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
 					invalidLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateOCLExpression_has_type(invalidLiteralExp,
@@ -2616,16 +2772,16 @@ public class UMLValidator
 				iterateExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					iterateExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(iterateExp,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateNamedElement_validateHasNoQualifiedName(iterateExp,
 					diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
-					iterateExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateOCLExpression_has_type(iterateExp, diagnostics,
 				context);
@@ -2658,8 +2814,8 @@ public class UMLValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateLoopExp(LoopExp loopExp,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateLoopExp(LoopExp loopExp, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(loopExp, diagnostics, context))
 			return false;
 		boolean result = validate_EveryMultiplicityConforms(loopExp,
@@ -2674,7 +2830,8 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(loopExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryProxyResolves(loopExp, diagnostics, context);
+			result &= validate_EveryProxyResolves(loopExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(loopExp, diagnostics, context);
 		if (result || diagnostics != null)
@@ -2690,15 +2847,15 @@ public class UMLValidator
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(loopExp,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(loopExp,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateNamedElement_validateHasNoQualifiedName(loopExp,
-					diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(loopExp,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateOCLExpression_has_type(loopExp, diagnostics,
@@ -2744,16 +2901,21 @@ public class UMLValidator
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(iteratorExp, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryKeyUnique(iteratorExp, diagnostics, context);
+			result &= validate_EveryKeyUnique(iteratorExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryMapEntryUnique(iteratorExp, diagnostics,
 				context);
 		if (result || diagnostics != null)
-			result &= umlValidator.validateElement_validateHasOwner(
-				iteratorExp, diagnostics, context);
+			result &= umlValidator.validateElement_validateHasOwner(iteratorExp,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator.validateElement_validateNotOwnSelf(
 				iteratorExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					iteratorExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(iteratorExp,
@@ -2763,32 +2925,26 @@ public class UMLValidator
 				.validateNamedElement_validateHasNoQualifiedName(iteratorExp,
 					diagnostics, context);
 		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
-					iteratorExp, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= validateOCLExpression_has_type(iteratorExp, diagnostics,
 				context);
 		if (result || diagnostics != null)
 			result &= expressionsValidator
-				.validateLoopExp_checkSourceCollection(iteratorExp,
-					diagnostics, context);
-		if (result || diagnostics != null)
-			result &= expressionsValidator
-				.validateLoopExp_checkLoopVariableInit(iteratorExp,
-					diagnostics, context);
-		if (result || diagnostics != null)
-			result &= expressionsValidator
-				.validateLoopExp_checkLoopVariableType(iteratorExp,
-					diagnostics, context);
-		if (result || diagnostics != null)
-			result &= expressionsValidator
-				.validateIteratorExp_checkBooleanType(iteratorExp, diagnostics,
+				.validateLoopExp_checkSourceCollection(iteratorExp, diagnostics,
 					context);
 		if (result || diagnostics != null)
 			result &= expressionsValidator
-				.validateIteratorExp_checkCollectType(iteratorExp, diagnostics,
+				.validateLoopExp_checkLoopVariableInit(iteratorExp, diagnostics,
 					context);
+		if (result || diagnostics != null)
+			result &= expressionsValidator
+				.validateLoopExp_checkLoopVariableType(iteratorExp, diagnostics,
+					context);
+		if (result || diagnostics != null)
+			result &= expressionsValidator.validateIteratorExp_checkBooleanType(
+				iteratorExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= expressionsValidator.validateIteratorExp_checkCollectType(
+				iteratorExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= expressionsValidator
 				.validateIteratorExp_checkSelectRejectType(iteratorExp,
@@ -2809,8 +2965,8 @@ public class UMLValidator
 			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(letExp, diagnostics, context))
 			return false;
-		boolean result = validate_EveryMultiplicityConforms(letExp,
-			diagnostics, context);
+		boolean result = validate_EveryMultiplicityConforms(letExp, diagnostics,
+			context);
 		if (result || diagnostics != null)
 			result &= validate_EveryDataValueConforms(letExp, diagnostics,
 				context);
@@ -2827,7 +2983,8 @@ public class UMLValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryKeyUnique(letExp, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryMapEntryUnique(letExp, diagnostics, context);
+			result &= validate_EveryMapEntryUnique(letExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= umlValidator.validateElement_validateHasOwner(letExp,
 				diagnostics, context);
@@ -2836,15 +2993,15 @@ public class UMLValidator
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(letExp,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(letExp,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateNamedElement_validateHasNoQualifiedName(letExp,
-					diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(letExp,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateOCLExpression_has_type(letExp, diagnostics,
@@ -2893,16 +3050,16 @@ public class UMLValidator
 				messageExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					messageExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(messageExp,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateNamedElement_validateHasNoQualifiedName(messageExp,
 					diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
-					messageExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateOCLExpression_has_type(messageExp, diagnostics,
 				context);
@@ -2969,16 +3126,16 @@ public class UMLValidator
 				nullLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					nullLiteralExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(nullLiteralExp,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamedElement_validateHasNoQualifiedName(
-					nullLiteralExp, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
-					nullLiteralExp, diagnostics, context);
+				.validateNamedElement_validateHasNoQualifiedName(nullLiteralExp,
+					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateOCLExpression_has_type(nullLiteralExp,
 				diagnostics, context);
@@ -3007,8 +3164,8 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				operationCallExp, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryProxyResolves(operationCallExp,
-				diagnostics, context);
+			result &= validate_EveryProxyResolves(operationCallExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(operationCallExp, diagnostics, context);
 		if (result || diagnostics != null)
@@ -3025,15 +3182,15 @@ public class UMLValidator
 				operationCallExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamedElement_validateHasQualifiedName(
+				.validateNamedElement_validateVisibilityNeedsOwnership(
 					operationCallExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateNamedElement_validateHasQualifiedName(operationCallExp,
+					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateNamedElement_validateHasNoQualifiedName(
-					operationCallExp, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
 					operationCallExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateOCLExpression_has_type(operationCallExp,
@@ -3079,8 +3236,8 @@ public class UMLValidator
 			result &= validate_EveryKeyUnique(propertyCallExp, diagnostics,
 				context);
 		if (result || diagnostics != null)
-			result &= validate_EveryMapEntryUnique(propertyCallExp,
-				diagnostics, context);
+			result &= validate_EveryMapEntryUnique(propertyCallExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= umlValidator.validateElement_validateHasOwner(
 				propertyCallExp, diagnostics, context);
@@ -3089,15 +3246,15 @@ public class UMLValidator
 				propertyCallExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					propertyCallExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(propertyCallExp,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateNamedElement_validateHasNoQualifiedName(
-					propertyCallExp, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
 					propertyCallExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateOCLExpression_has_type(propertyCallExp,
@@ -3149,23 +3306,22 @@ public class UMLValidator
 				realLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					realLiteralExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(realLiteralExp,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamedElement_validateHasNoQualifiedName(
-					realLiteralExp, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
-					realLiteralExp, diagnostics, context);
+				.validateNamedElement_validateHasNoQualifiedName(realLiteralExp,
+					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateOCLExpression_has_type(realLiteralExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= expressionsValidator
-				.validateRealLiteralExp_checkRealType(realLiteralExp,
-					diagnostics, context);
+			result &= expressionsValidator.validateRealLiteralExp_checkRealType(
+				realLiteralExp, diagnostics, context);
 		return result;
 	}
 
@@ -3207,16 +3363,16 @@ public class UMLValidator
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(stateExp,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(stateExp,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateNamedElement_validateHasNoQualifiedName(stateExp,
 					diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
-					stateExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateOCLExpression_has_type(stateExp, diagnostics,
 				context);
@@ -3245,8 +3401,8 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				stringLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryProxyResolves(stringLiteralExp,
-				diagnostics, context);
+			result &= validate_EveryProxyResolves(stringLiteralExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(stringLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
@@ -3263,15 +3419,15 @@ public class UMLValidator
 				stringLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamedElement_validateHasQualifiedName(
+				.validateNamedElement_validateVisibilityNeedsOwnership(
 					stringLiteralExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateNamedElement_validateHasQualifiedName(stringLiteralExp,
+					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateNamedElement_validateHasNoQualifiedName(
-					stringLiteralExp, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
 					stringLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateOCLExpression_has_type(stringLiteralExp,
@@ -3313,8 +3469,8 @@ public class UMLValidator
 			result &= validate_EveryKeyUnique(tupleLiteralExp, diagnostics,
 				context);
 		if (result || diagnostics != null)
-			result &= validate_EveryMapEntryUnique(tupleLiteralExp,
-				diagnostics, context);
+			result &= validate_EveryMapEntryUnique(tupleLiteralExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= umlValidator.validateElement_validateHasOwner(
 				tupleLiteralExp, diagnostics, context);
@@ -3323,15 +3479,15 @@ public class UMLValidator
 				tupleLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					tupleLiteralExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(tupleLiteralExp,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateNamedElement_validateHasNoQualifiedName(
-					tupleLiteralExp, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
 					tupleLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateOCLExpression_has_type(tupleLiteralExp,
@@ -3369,8 +3525,8 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				tupleLiteralPart, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryProxyResolves(tupleLiteralPart,
-				diagnostics, context);
+			result &= validate_EveryProxyResolves(tupleLiteralPart, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(tupleLiteralPart, diagnostics, context);
 		if (result || diagnostics != null)
@@ -3387,15 +3543,15 @@ public class UMLValidator
 				tupleLiteralPart, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamedElement_validateHasQualifiedName(
+				.validateNamedElement_validateVisibilityNeedsOwnership(
 					tupleLiteralPart, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateNamedElement_validateHasQualifiedName(tupleLiteralPart,
+					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateNamedElement_validateHasNoQualifiedName(
-					tupleLiteralPart, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
 					tupleLiteralPart, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= expressionsValidator
@@ -3409,8 +3565,8 @@ public class UMLValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateTypeExp(TypeExp typeExp,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateTypeExp(TypeExp typeExp, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(typeExp, diagnostics, context))
 			return false;
 		boolean result = validate_EveryMultiplicityConforms(typeExp,
@@ -3425,7 +3581,8 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(typeExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryProxyResolves(typeExp, diagnostics, context);
+			result &= validate_EveryProxyResolves(typeExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(typeExp, diagnostics, context);
 		if (result || diagnostics != null)
@@ -3441,15 +3598,15 @@ public class UMLValidator
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(typeExp,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(typeExp,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateNamedElement_validateHasNoQualifiedName(typeExp,
-					diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(typeExp,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateOCLExpression_has_type(typeExp, diagnostics,
@@ -3468,8 +3625,8 @@ public class UMLValidator
 		if (!validate_NoCircularContainment(unspecifiedValueExp, diagnostics,
 			context))
 			return false;
-		boolean result = validate_EveryMultiplicityConforms(
-			unspecifiedValueExp, diagnostics, context);
+		boolean result = validate_EveryMultiplicityConforms(unspecifiedValueExp,
+			diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryDataValueConforms(unspecifiedValueExp,
 				diagnostics, context);
@@ -3499,15 +3656,15 @@ public class UMLValidator
 				unspecifiedValueExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					unspecifiedValueExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(
 					unspecifiedValueExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateNamedElement_validateHasNoQualifiedName(
-					unspecifiedValueExp, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
 					unspecifiedValueExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateOCLExpression_has_type(unspecifiedValueExp,
@@ -3553,6 +3710,10 @@ public class UMLValidator
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(variable,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(variable,
 					diagnostics, context);
 		if (result || diagnostics != null)
@@ -3560,12 +3721,8 @@ public class UMLValidator
 				.validateNamedElement_validateHasNoQualifiedName(variable,
 					diagnostics, context);
 		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
-					variable, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= expressionsValidator.validateVariable_checkInitType(
-				variable, diagnostics, context);
+			result &= expressionsValidator
+				.validateVariable_checkInitType(variable, diagnostics, context);
 		return result;
 	}
 
@@ -3595,16 +3752,21 @@ public class UMLValidator
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(variableExp, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryKeyUnique(variableExp, diagnostics, context);
+			result &= validate_EveryKeyUnique(variableExp, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryMapEntryUnique(variableExp, diagnostics,
 				context);
 		if (result || diagnostics != null)
-			result &= umlValidator.validateElement_validateHasOwner(
-				variableExp, diagnostics, context);
+			result &= umlValidator.validateElement_validateHasOwner(variableExp,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator.validateElement_validateNotOwnSelf(
 				variableExp, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					variableExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(variableExp,
@@ -3613,10 +3775,6 @@ public class UMLValidator
 			result &= umlValidator
 				.validateNamedElement_validateHasNoQualifiedName(variableExp,
 					diagnostics, context);
-		if (result || diagnostics != null)
-			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
-					variableExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateOCLExpression_has_type(variableExp, diagnostics,
 				context);
@@ -3669,6 +3827,10 @@ public class UMLValidator
 				templateParameterType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					templateParameterType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
 				.validateNamedElement_validateHasQualifiedName(
 					templateParameterType, diagnostics, context);
 		if (result || diagnostics != null)
@@ -3677,11 +3839,14 @@ public class UMLValidator
 					templateParameterType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamedElement_validateVisibilityNeedsOwnership(
+				.validateNamespace_validateMembersDistinguishable(
 					templateParameterType, diagnostics, context);
 		if (result || diagnostics != null)
+			result &= umlValidator.validateNamespace_validateCannotImportSelf(
+				templateParameterType, diagnostics, context);
+		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateNamespace_validateMembersDistinguishable(
+				.validateNamespace_validateCannotImportOwnedMembers(
 					templateParameterType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator
@@ -3696,11 +3861,8 @@ public class UMLValidator
 				.validateRedefinableElement_validateRedefinitionContextValid(
 					templateParameterType, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= umlValidator.validateClassifier_validateNonFinalParents(
-				templateParameterType, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= umlValidator
-				.validateClassifier_validateNoCyclesInGeneralization(
+				.validatePackageableElement_validateNamespaceNeedsVisibility(
 					templateParameterType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= umlValidator.validateClassifier_validateSpecializeType(
@@ -3708,6 +3870,13 @@ public class UMLValidator
 		if (result || diagnostics != null)
 			result &= umlValidator
 				.validateClassifier_validateMapsToGeneralizationSet(
+					templateParameterType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator.validateClassifier_validateNonFinalParents(
+				templateParameterType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateClassifier_validateNoCyclesInGeneralization(
 					templateParameterType, diagnostics, context);
 		return result;
 	}

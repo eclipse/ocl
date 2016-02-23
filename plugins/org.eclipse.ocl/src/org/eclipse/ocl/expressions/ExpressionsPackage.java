@@ -99,7 +99,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_EXPRESSION__START_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 0;
+	int OCL_EXPRESSION__START_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
@@ -110,7 +111,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_EXPRESSION__END_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 1;
+	int OCL_EXPRESSION__END_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The number of structural features of the '<em>OCL Expression</em>' class.
@@ -121,7 +123,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_EXPRESSION_FEATURE_COUNT = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 2;
+	int OCL_EXPRESSION_FEATURE_COUNT = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.CallExpImpl <em>Call Exp</em>}' class.
@@ -388,7 +391,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NAVIGATION_CALL_EXP__NAVIGATION_SOURCE = FEATURE_CALL_EXP_FEATURE_COUNT + 1;
+	int NAVIGATION_CALL_EXP__NAVIGATION_SOURCE = FEATURE_CALL_EXP_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The number of structural features of the '<em>Navigation Call Exp</em>' class.
@@ -510,7 +514,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS = NAVIGATION_CALL_EXP_FEATURE_COUNT + 0;
+	int ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS = NAVIGATION_CALL_EXP_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The number of structural features of the '<em>Association Class Call Exp</em>' class.
@@ -521,7 +526,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_CLASS_CALL_EXP_FEATURE_COUNT = NAVIGATION_CALL_EXP_FEATURE_COUNT + 1;
+	int ASSOCIATION_CLASS_CALL_EXP_FEATURE_COUNT = NAVIGATION_CALL_EXP_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.LiteralExpImpl <em>Literal Exp</em>}' class.
@@ -656,7 +662,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT + 0;
+	int BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The number of structural features of the '<em>Boolean Literal Exp</em>' class.
@@ -667,7 +674,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_LITERAL_EXP_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT + 1;
+	int BOOLEAN_LITERAL_EXP_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.CollectionLiteralPartImpl <em>Collection Literal Part</em>}' class.
@@ -690,7 +698,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_LITERAL_PART_FEATURE_COUNT = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 0;
+	int COLLECTION_LITERAL_PART_FEATURE_COUNT = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.CollectionItemImpl <em>Collection Item</em>}' class.
@@ -724,7 +733,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_ITEM_FEATURE_COUNT = COLLECTION_LITERAL_PART_FEATURE_COUNT + 1;
+	int COLLECTION_ITEM_FEATURE_COUNT = COLLECTION_LITERAL_PART_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.CollectionLiteralExpImpl <em>Collection Literal Exp</em>}' class.
@@ -847,7 +857,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_RANGE_FEATURE_COUNT = COLLECTION_LITERAL_PART_FEATURE_COUNT + 2;
+	int COLLECTION_RANGE_FEATURE_COUNT = COLLECTION_LITERAL_PART_FEATURE_COUNT
+		+ 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.EnumLiteralExpImpl <em>Enum Literal Exp</em>}' class.
@@ -1026,7 +1037,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUMERIC_LITERAL_EXP_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT + 0;
+	int NUMERIC_LITERAL_EXP_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.IntegerLiteralExpImpl <em>Integer Literal Exp</em>}' class.
@@ -1071,7 +1083,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INTEGER_LITERAL_EXP__INTEGER_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 0;
+	int INTEGER_LITERAL_EXP__INTEGER_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The feature id for the '<em><b>Extended Integer Symbol</b></em>' attribute.
@@ -1081,7 +1094,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INTEGER_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 1;
+	int INTEGER_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The feature id for the '<em><b>Long Symbol</b></em>' attribute.
@@ -1091,7 +1105,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INTEGER_LITERAL_EXP__LONG_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 2;
+	int INTEGER_LITERAL_EXP__LONG_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT
+		+ 2;
 
 	/**
 	 * The number of structural features of the '<em>Integer Literal Exp</em>' class.
@@ -1103,7 +1118,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INTEGER_LITERAL_EXP_FEATURE_COUNT = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 3;
+	int INTEGER_LITERAL_EXP_FEATURE_COUNT = NUMERIC_LITERAL_EXP_FEATURE_COUNT
+		+ 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.UnlimitedNaturalLiteralExpImpl <em>Unlimited Natural Literal Exp</em>}' class.
@@ -1148,7 +1164,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 0;
+	int UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The feature id for the '<em><b>Unlimited</b></em>' attribute.
@@ -1159,7 +1176,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 1;
+	int UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED = NUMERIC_LITERAL_EXP_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The feature id for the '<em><b>Extended Integer Symbol</b></em>' attribute.
@@ -1169,7 +1187,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 2;
+	int UNLIMITED_NATURAL_LITERAL_EXP__EXTENDED_INTEGER_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT
+		+ 2;
 
 	/**
 	 * The feature id for the '<em><b>Long Symbol</b></em>' attribute.
@@ -1179,7 +1198,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP__LONG_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 3;
+	int UNLIMITED_NATURAL_LITERAL_EXP__LONG_SYMBOL = NUMERIC_LITERAL_EXP_FEATURE_COUNT
+		+ 3;
 
 	/**
 	 * The number of structural features of the '<em>Unlimited Natural Literal Exp</em>' class.
@@ -1191,7 +1211,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP_FEATURE_COUNT = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 4;
+	int UNLIMITED_NATURAL_LITERAL_EXP_FEATURE_COUNT = NUMERIC_LITERAL_EXP_FEATURE_COUNT
+		+ 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.expressions.impl.InvalidLiteralExpImpl <em>Invalid Literal Exp</em>}' class.
@@ -1626,7 +1647,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE__START_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 0;
+	int VARIABLE__START_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
@@ -1637,7 +1659,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE__END_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 1;
+	int VARIABLE__END_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The feature id for the '<em><b>Type Start Position</b></em>' attribute.
@@ -1648,7 +1671,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE__TYPE_START_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 2;
+	int VARIABLE__TYPE_START_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 2;
 
 	/**
 	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
@@ -1659,7 +1683,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE__TYPE_END_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 3;
+	int VARIABLE__TYPE_END_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 3;
 
 	/**
 	 * The feature id for the '<em><b>Init Expression</b></em>' containment reference.
@@ -1670,7 +1695,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE__INIT_EXPRESSION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 4;
+	int VARIABLE__INIT_EXPRESSION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 4;
 
 	/**
 	 * The feature id for the '<em><b>Represented Parameter</b></em>' reference.
@@ -1681,7 +1707,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE__REPRESENTED_PARAMETER = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 5;
+	int VARIABLE__REPRESENTED_PARAMETER = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 5;
 
 	/**
 	 * The number of structural features of the '<em>Variable</em>' class.
@@ -1692,7 +1719,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_FEATURE_COUNT = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 6;
+	int VARIABLE_FEATURE_COUNT = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 6;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
@@ -2055,7 +2083,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CALL_EXP__REFERRED_OPERATION = FEATURE_CALL_EXP_FEATURE_COUNT + 1;
+	int OPERATION_CALL_EXP__REFERRED_OPERATION = FEATURE_CALL_EXP_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The feature id for the '<em><b>Operation Code</b></em>' attribute.
@@ -2176,7 +2205,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CALL_EXP__REFERRED_PROPERTY = NAVIGATION_CALL_EXP_FEATURE_COUNT + 0;
+	int PROPERTY_CALL_EXP__REFERRED_PROPERTY = NAVIGATION_CALL_EXP_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The number of structural features of the '<em>Property Call Exp</em>' class.
@@ -2308,7 +2338,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_LITERAL_EXP__STRING_SYMBOL = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT + 0;
+	int STRING_LITERAL_EXP__STRING_SYMBOL = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The number of structural features of the '<em>String Literal Exp</em>' class.
@@ -2319,7 +2350,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_LITERAL_EXP_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT + 1;
+	int STRING_LITERAL_EXP_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
@@ -2374,7 +2406,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__START_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 0;
+	int TUPLE_LITERAL_PART__START_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
@@ -2385,7 +2418,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__END_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 1;
+	int TUPLE_LITERAL_PART__END_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The feature id for the '<em><b>Type Start Position</b></em>' attribute.
@@ -2396,7 +2430,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__TYPE_START_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 2;
+	int TUPLE_LITERAL_PART__TYPE_START_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 2;
 
 	/**
 	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
@@ -2407,7 +2442,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__TYPE_END_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 3;
+	int TUPLE_LITERAL_PART__TYPE_END_POSITION = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 3;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -2418,7 +2454,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__VALUE = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 4;
+	int TUPLE_LITERAL_PART__VALUE = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 4;
 
 	/**
 	 * The feature id for the '<em><b>Attribute</b></em>' reference.
@@ -2429,7 +2466,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__ATTRIBUTE = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 5;
+	int TUPLE_LITERAL_PART__ATTRIBUTE = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 5;
 
 	/**
 	 * The number of structural features of the '<em>Tuple Literal Part</em>' class.
@@ -2440,7 +2478,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART_FEATURE_COUNT = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT + 6;
+	int TUPLE_LITERAL_PART_FEATURE_COUNT = UtilitiesPackage.TYPED_ELEMENT_FEATURE_COUNT
+		+ 6;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
@@ -2517,7 +2556,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION = OCL_EXPRESSION_FEATURE_COUNT + 0;
+	int UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION = OCL_EXPRESSION_FEATURE_COUNT
+		+ 0;
 
 	/**
 	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
@@ -2528,7 +2568,8 @@ public interface ExpressionsPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION = OCL_EXPRESSION_FEATURE_COUNT + 1;
+	int UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION = OCL_EXPRESSION_FEATURE_COUNT
+		+ 1;
 
 	/**
 	 * The number of structural features of the '<em>Unspecified Value Exp</em>' class.

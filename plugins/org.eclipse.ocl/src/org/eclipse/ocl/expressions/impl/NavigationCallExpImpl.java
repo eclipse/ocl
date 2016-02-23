@@ -32,11 +32,11 @@ import org.eclipse.ocl.expressions.OCLExpression;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.impl.NavigationCallExpImpl#getQualifier <em>Qualifier</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.impl.NavigationCallExpImpl#getNavigationSource <em>Navigation Source</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -104,14 +104,13 @@ public abstract class NavigationCallExpImpl<C, P>
 	 */
 	@SuppressWarnings("unchecked")
 	public P getNavigationSource() {
-		if (navigationSource != null && ((EObject) navigationSource).eIsProxy()) {
+		if (navigationSource != null
+			&& ((EObject) navigationSource).eIsProxy()) {
 			InternalEObject oldNavigationSource = (InternalEObject) navigationSource;
 			navigationSource = (P) eResolveProxy(oldNavigationSource);
 			if (navigationSource != oldNavigationSource) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(
-						this,
-						Notification.RESOLVE,
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
 						ExpressionsPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE,
 						oldNavigationSource, navigationSource));
 			}
@@ -152,8 +151,8 @@ public abstract class NavigationCallExpImpl<C, P>
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case ExpressionsPackage.NAVIGATION_CALL_EXP__QUALIFIER :
-				return ((InternalEList<?>) getQualifier()).basicRemove(
-					otherEnd, msgs);
+				return ((InternalEList<?>) getQualifier()).basicRemove(otherEnd,
+					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -187,8 +186,8 @@ public abstract class NavigationCallExpImpl<C, P>
 		switch (featureID) {
 			case ExpressionsPackage.NAVIGATION_CALL_EXP__QUALIFIER :
 				getQualifier().clear();
-				getQualifier().addAll(
-					(Collection<? extends OCLExpression<C>>) newValue);
+				getQualifier()
+					.addAll((Collection<? extends OCLExpression<C>>) newValue);
 				return;
 			case ExpressionsPackage.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE :
 				setNavigationSource((P) newValue);

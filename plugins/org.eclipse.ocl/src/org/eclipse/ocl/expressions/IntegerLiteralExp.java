@@ -22,11 +22,11 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.IntegerLiteralExp#getIntegerSymbol <em>Integer Symbol</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.IntegerLiteralExp#getLongSymbol <em>Long Symbol</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.expressions.ExpressionsPackage#getIntegerLiteralExp()
  * @model features="extendedIntegerSymbol" 

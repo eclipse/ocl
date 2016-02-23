@@ -33,10 +33,10 @@ import org.eclipse.uml2.uml.Parameter;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.uml.impl.VariableExpImpl#getReferredVariable <em>Referred Variable</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -83,7 +83,8 @@ public class VariableExpImpl
 	public Variable<Classifier, Parameter> getReferredVariable() {
 		if (referredVariable != null && referredVariable.eIsProxy()) {
 			InternalEObject oldReferredVariable = (InternalEObject) referredVariable;
-			referredVariable = (Variable<Classifier, Parameter>) eResolveProxy(oldReferredVariable);
+			referredVariable = (Variable<Classifier, Parameter>) eResolveProxy(
+				oldReferredVariable);
 			if (referredVariable != oldReferredVariable) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
@@ -114,8 +115,8 @@ public class VariableExpImpl
 		referredVariable = newReferredVariable;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				UMLPackage.VARIABLE_EXP__REFERRED_VARIABLE,
-				oldReferredVariable, referredVariable));
+				UMLPackage.VARIABLE_EXP__REFERRED_VARIABLE, oldReferredVariable,
+				referredVariable));
 	}
 
 	/**
@@ -195,7 +196,8 @@ public class VariableExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.VariableExp.class) {
 			switch (derivedFeatureID) {
 				case UMLPackage.VARIABLE_EXP__REFERRED_VARIABLE :
@@ -213,7 +215,8 @@ public class VariableExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.VariableExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.VARIABLE_EXP__REFERRED_VARIABLE :

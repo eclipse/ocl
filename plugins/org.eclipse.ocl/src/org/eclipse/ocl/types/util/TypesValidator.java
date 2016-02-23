@@ -206,7 +206,8 @@ public class TypesValidator
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		switch (classifierID) {
 			case TypesPackage.ANY_TYPE :
-				return validateAnyType((AnyType<?>) value, diagnostics, context);
+				return validateAnyType((AnyType<?>) value, diagnostics,
+					context);
 			case TypesPackage.BAG_TYPE :
 				return validateBagType((BagType<?, ?>) value, diagnostics,
 					context);
@@ -282,7 +283,8 @@ public class TypesValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(bagType,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryProxyResolves(bagType, diagnostics, context);
+			result &= validate_EveryProxyResolves(bagType, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(bagType, diagnostics, context);
 		if (result || diagnostics != null)
@@ -425,7 +427,8 @@ public class TypesValidator
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(messageType, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryKeyUnique(messageType, diagnostics, context);
+			result &= validate_EveryKeyUnique(messageType, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryMapEntryUnique(messageType, diagnostics,
 				context);
@@ -554,14 +557,14 @@ public class TypesValidator
 		boolean result = validate_EveryMultiplicityConforms(sequenceType,
 			diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryDataValueConforms(sequenceType,
-				diagnostics, context);
+			result &= validate_EveryDataValueConforms(sequenceType, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(sequenceType,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(
-				sequenceType, diagnostics, context);
+			result &= validate_EveryBidirectionalReferenceIsPaired(sequenceType,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(sequenceType, diagnostics,
 				context);
@@ -574,8 +577,8 @@ public class TypesValidator
 			result &= validate_EveryMapEntryUnique(sequenceType, diagnostics,
 				context);
 		if (result || diagnostics != null)
-			result &= validateSequenceType_checkCollectionTypeName(
-				sequenceType, diagnostics, context);
+			result &= validateSequenceType_checkCollectionTypeName(sequenceType,
+				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateCollectionType_checkNoInvalidValues(sequenceType,
 				diagnostics, context);
@@ -616,7 +619,8 @@ public class TypesValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(setType,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryProxyResolves(setType, diagnostics, context);
+			result &= validate_EveryProxyResolves(setType, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(setType, diagnostics, context);
 		if (result || diagnostics != null)
@@ -661,8 +665,8 @@ public class TypesValidator
 			result &= validate_EveryDataValueConforms(tupleType, diagnostics,
 				context);
 		if (result || diagnostics != null)
-			result &= validate_EveryReferenceIsContained(tupleType,
-				diagnostics, context);
+			result &= validate_EveryReferenceIsContained(tupleType, diagnostics,
+				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryBidirectionalReferenceIsPaired(tupleType,
 				diagnostics, context);

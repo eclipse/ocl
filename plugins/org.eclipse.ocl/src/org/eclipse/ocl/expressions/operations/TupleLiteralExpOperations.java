@@ -36,11 +36,11 @@ import org.eclipse.ocl.utilities.UMLReflection;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.TupleLiteralExp#checkTupleType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Tuple Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.TupleLiteralExp#checkPartsUnique(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Parts Unique</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -104,7 +104,8 @@ public class TupleLiteralExpOperations
 					// Match each property with a tuple part
 					for (TupleLiteralPart<C, P> part : tp) {
 						if ((part.getAttribute() == null)
-							|| (uml.getOwningClassifier(part.getAttribute()) != type)) {
+							|| (uml.getOwningClassifier(
+								part.getAttribute()) != type)) {
 							result = false;
 							message = OCLMessages.bind(
 								OCLMessages.TupleLiteralExpressionPart_ERROR_,
@@ -120,8 +121,8 @@ public class TupleLiteralExpOperations
 			if (diagnostics != null) {
 				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
 					ExpressionsValidator.DIAGNOSTIC_SOURCE,
-					ExpressionsValidator.TUPLE_LITERAL_EXP__TUPLE_TYPE,
-					message, new Object[]{tupleLiteralExp}));
+					ExpressionsValidator.TUPLE_LITERAL_EXP__TUPLE_TYPE, message,
+					new Object[]{tupleLiteralExp}));
 			}
 		}
 		return result;

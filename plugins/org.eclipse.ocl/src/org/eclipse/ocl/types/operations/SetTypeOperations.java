@@ -30,10 +30,10 @@ import org.eclipse.ocl.util.OCLUtil;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.types.SetType#checkCollectionTypeName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Collection Type Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -71,8 +71,8 @@ public class SetTypeOperations
 			C elementType = setType.getElementType();
 
 			if (elementType != null) {
-				String elementTypeName = env.getUMLReflection().getName(
-					elementType);
+				String elementTypeName = env.getUMLReflection()
+					.getName(elementType);
 
 				result = ("Set(" + elementTypeName + ")").equals(name); //$NON-NLS-1$ //$NON-NLS-2$
 			}
@@ -81,15 +81,15 @@ public class SetTypeOperations
 		if (!result) {
 			if (diagnostics != null) {
 				// TODO: Specific message
-				diagnostics
-					.add(new BasicDiagnostic(
-						Diagnostic.ERROR,
-						TypesValidator.DIAGNOSTIC_SOURCE,
-						TypesValidator.SET_TYPE__COLLECTION_TYPE_NAME,
-						org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE
-							.getString(
-								"_UI_GenericInvariant_diagnostic", new Object[]{"checkCollectionTypeName", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(setType, context)}), //$NON-NLS-1$ //$NON-NLS-2$
-						new Object[]{setType}));
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+					TypesValidator.DIAGNOSTIC_SOURCE,
+					TypesValidator.SET_TYPE__COLLECTION_TYPE_NAME,
+					org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString(
+						"_UI_GenericInvariant_diagnostic", //$NON-NLS-1$
+						new Object[]{"checkCollectionTypeName", //$NON-NLS-1$
+							org.eclipse.emf.ecore.util.EObjectValidator
+								.getObjectLabel(setType, context)}),
+					new Object[]{setType}));
 			}
 		}
 		return result;

@@ -35,6 +35,7 @@ import org.eclipse.ocl.util.TypeUtil;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.utilities.TypedElement#getName() <em>Get Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.utilities.TypedElement#getType() <em>Get Type</em>}</li>
@@ -43,7 +44,6 @@ import org.eclipse.ocl.util.TypeUtil;
  *   <li>{@link org.eclipse.ocl.utilities.Visitable#accept(org.eclipse.ocl.utilities.Visitor) <em>Accept</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.TupleLiteralPart#checkValueType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Value Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -64,7 +64,8 @@ public class TupleLiteralPartOperations {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public static <C, P> String getName(TupleLiteralPart<C, P> tupleLiteralPart) {
+	public static <C, P> String getName(
+			TupleLiteralPart<C, P> tupleLiteralPart) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -144,7 +145,8 @@ public class TupleLiteralPartOperations {
 					if (!TypeUtil.exactTypeMatch(env, attrType, type)) {
 						result = false;
 						String tupleLiteral = null;
-						if (tupleLiteralPart.eContainer() instanceof TupleLiteralExp<?, ?>) {
+						if (tupleLiteralPart
+							.eContainer() instanceof TupleLiteralExp<?, ?>) {
 							tupleLiteral = tupleLiteralPart.eContainer()
 								.toString();
 						}

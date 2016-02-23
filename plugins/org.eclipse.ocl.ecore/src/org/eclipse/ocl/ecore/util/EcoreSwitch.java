@@ -367,7 +367,8 @@ public class EcoreSwitch<T>
 				if (result == null)
 					result = caseEClassifier(templateParameterType);
 				if (result == null)
-					result = caseTypes_TemplateParameterType(templateParameterType);
+					result = caseTypes_TemplateParameterType(
+						templateParameterType);
 				if (result == null)
 					result = caseENamedElement(templateParameterType);
 				if (result == null)
@@ -473,15 +474,18 @@ public class EcoreSwitch<T>
 				if (result == null)
 					result = caseNavigationCallExp(associationClassCallExp);
 				if (result == null)
-					result = caseExpressions_AssociationClassCallExp(associationClassCallExp);
+					result = caseExpressions_AssociationClassCallExp(
+						associationClassCallExp);
 				if (result == null)
 					result = caseFeatureCallExp(associationClassCallExp);
 				if (result == null)
-					result = caseExpressions_NavigationCallExp(associationClassCallExp);
+					result = caseExpressions_NavigationCallExp(
+						associationClassCallExp);
 				if (result == null)
 					result = caseCallExp(associationClassCallExp);
 				if (result == null)
-					result = caseExpressions_FeatureCallExp(associationClassCallExp);
+					result = caseExpressions_FeatureCallExp(
+						associationClassCallExp);
 				if (result == null)
 					result = caseOCLExpression(associationClassCallExp);
 				if (result == null)
@@ -489,7 +493,8 @@ public class EcoreSwitch<T>
 				if (result == null)
 					result = caseETypedElement(associationClassCallExp);
 				if (result == null)
-					result = caseExpressions_OCLExpression(associationClassCallExp);
+					result = caseExpressions_OCLExpression(
+						associationClassCallExp);
 				if (result == null)
 					result = caseCallingASTNode(associationClassCallExp);
 				if (result == null)
@@ -512,11 +517,13 @@ public class EcoreSwitch<T>
 				if (result == null)
 					result = casePrimitiveLiteralExp(booleanLiteralExp);
 				if (result == null)
-					result = caseExpressions_BooleanLiteralExp(booleanLiteralExp);
+					result = caseExpressions_BooleanLiteralExp(
+						booleanLiteralExp);
 				if (result == null)
 					result = caseLiteralExp(booleanLiteralExp);
 				if (result == null)
-					result = caseExpressions_PrimitiveLiteralExp(booleanLiteralExp);
+					result = caseExpressions_PrimitiveLiteralExp(
+						booleanLiteralExp);
 				if (result == null)
 					result = caseOCLExpression(booleanLiteralExp);
 				if (result == null)
@@ -576,7 +583,8 @@ public class EcoreSwitch<T>
 				if (result == null)
 					result = caseETypedElement(collectionItem);
 				if (result == null)
-					result = caseExpressions_CollectionLiteralPart(collectionItem);
+					result = caseExpressions_CollectionLiteralPart(
+						collectionItem);
 				if (result == null)
 					result = caseENamedElement(collectionItem);
 				if (result == null)
@@ -595,7 +603,8 @@ public class EcoreSwitch<T>
 				if (result == null)
 					result = caseLiteralExp(collectionLiteralExp);
 				if (result == null)
-					result = caseExpressions_CollectionLiteralExp(collectionLiteralExp);
+					result = caseExpressions_CollectionLiteralExp(
+						collectionLiteralExp);
 				if (result == null)
 					result = caseOCLExpression(collectionLiteralExp);
 				if (result == null)
@@ -603,7 +612,8 @@ public class EcoreSwitch<T>
 				if (result == null)
 					result = caseETypedElement(collectionLiteralExp);
 				if (result == null)
-					result = caseExpressions_OCLExpression(collectionLiteralExp);
+					result = caseExpressions_OCLExpression(
+						collectionLiteralExp);
 				if (result == null)
 					result = caseENamedElement(collectionLiteralExp);
 				if (result == null)
@@ -624,7 +634,8 @@ public class EcoreSwitch<T>
 				if (result == null)
 					result = caseETypedElement(collectionLiteralPart);
 				if (result == null)
-					result = caseExpressions_CollectionLiteralPart(collectionLiteralPart);
+					result = caseExpressions_CollectionLiteralPart(
+						collectionLiteralPart);
 				if (result == null)
 					result = caseENamedElement(collectionLiteralPart);
 				if (result == null)
@@ -647,7 +658,8 @@ public class EcoreSwitch<T>
 				if (result == null)
 					result = caseETypedElement(collectionRange);
 				if (result == null)
-					result = caseExpressions_CollectionLiteralPart(collectionRange);
+					result = caseExpressions_CollectionLiteralPart(
+						collectionRange);
 				if (result == null)
 					result = caseENamedElement(collectionRange);
 				if (result == null)
@@ -751,15 +763,18 @@ public class EcoreSwitch<T>
 				if (result == null)
 					result = caseNumericLiteralExp(integerLiteralExp);
 				if (result == null)
-					result = caseExpressions_IntegerLiteralExp(integerLiteralExp);
+					result = caseExpressions_IntegerLiteralExp(
+						integerLiteralExp);
 				if (result == null)
 					result = casePrimitiveLiteralExp(integerLiteralExp);
 				if (result == null)
-					result = caseExpressions_NumericLiteralExp(integerLiteralExp);
+					result = caseExpressions_NumericLiteralExp(
+						integerLiteralExp);
 				if (result == null)
 					result = caseLiteralExp(integerLiteralExp);
 				if (result == null)
-					result = caseExpressions_PrimitiveLiteralExp(integerLiteralExp);
+					result = caseExpressions_PrimitiveLiteralExp(
+						integerLiteralExp);
 				if (result == null)
 					result = caseOCLExpression(integerLiteralExp);
 				if (result == null)
@@ -784,27 +799,34 @@ public class EcoreSwitch<T>
 			}
 			case EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP : {
 				UnlimitedNaturalLiteralExp unlimitedNaturalLiteralExp = (UnlimitedNaturalLiteralExp) theEObject;
-				T result = caseUnlimitedNaturalLiteralExp(unlimitedNaturalLiteralExp);
+				T result = caseUnlimitedNaturalLiteralExp(
+					unlimitedNaturalLiteralExp);
 				if (result == null)
 					result = caseNumericLiteralExp(unlimitedNaturalLiteralExp);
 				if (result == null)
-					result = caseExpressions_UnlimitedNaturalLiteralExp(unlimitedNaturalLiteralExp);
+					result = caseExpressions_UnlimitedNaturalLiteralExp(
+						unlimitedNaturalLiteralExp);
 				if (result == null)
-					result = casePrimitiveLiteralExp(unlimitedNaturalLiteralExp);
+					result = casePrimitiveLiteralExp(
+						unlimitedNaturalLiteralExp);
 				if (result == null)
-					result = caseExpressions_NumericLiteralExp(unlimitedNaturalLiteralExp);
+					result = caseExpressions_NumericLiteralExp(
+						unlimitedNaturalLiteralExp);
 				if (result == null)
 					result = caseLiteralExp(unlimitedNaturalLiteralExp);
 				if (result == null)
-					result = caseExpressions_PrimitiveLiteralExp(unlimitedNaturalLiteralExp);
+					result = caseExpressions_PrimitiveLiteralExp(
+						unlimitedNaturalLiteralExp);
 				if (result == null)
 					result = caseOCLExpression(unlimitedNaturalLiteralExp);
 				if (result == null)
-					result = caseExpressions_LiteralExp(unlimitedNaturalLiteralExp);
+					result = caseExpressions_LiteralExp(
+						unlimitedNaturalLiteralExp);
 				if (result == null)
 					result = caseETypedElement(unlimitedNaturalLiteralExp);
 				if (result == null)
-					result = caseExpressions_OCLExpression(unlimitedNaturalLiteralExp);
+					result = caseExpressions_OCLExpression(
+						unlimitedNaturalLiteralExp);
 				if (result == null)
 					result = caseENamedElement(unlimitedNaturalLiteralExp);
 				if (result == null)
@@ -825,7 +847,8 @@ public class EcoreSwitch<T>
 				if (result == null)
 					result = caseLiteralExp(invalidLiteralExp);
 				if (result == null)
-					result = caseExpressions_InvalidLiteralExp(invalidLiteralExp);
+					result = caseExpressions_InvalidLiteralExp(
+						invalidLiteralExp);
 				if (result == null)
 					result = caseOCLExpression(invalidLiteralExp);
 				if (result == null)
@@ -1032,7 +1055,8 @@ public class EcoreSwitch<T>
 				if (result == null)
 					result = caseFeatureCallExp(navigationCallExp);
 				if (result == null)
-					result = caseExpressions_NavigationCallExp(navigationCallExp);
+					result = caseExpressions_NavigationCallExp(
+						navigationCallExp);
 				if (result == null)
 					result = caseCallExp(navigationCallExp);
 				if (result == null)
@@ -1096,11 +1120,13 @@ public class EcoreSwitch<T>
 				if (result == null)
 					result = casePrimitiveLiteralExp(numericLiteralExp);
 				if (result == null)
-					result = caseExpressions_NumericLiteralExp(numericLiteralExp);
+					result = caseExpressions_NumericLiteralExp(
+						numericLiteralExp);
 				if (result == null)
 					result = caseLiteralExp(numericLiteralExp);
 				if (result == null)
-					result = caseExpressions_PrimitiveLiteralExp(numericLiteralExp);
+					result = caseExpressions_PrimitiveLiteralExp(
+						numericLiteralExp);
 				if (result == null)
 					result = caseOCLExpression(numericLiteralExp);
 				if (result == null)
@@ -1185,7 +1211,8 @@ public class EcoreSwitch<T>
 				if (result == null)
 					result = caseLiteralExp(primitiveLiteralExp);
 				if (result == null)
-					result = caseExpressions_PrimitiveLiteralExp(primitiveLiteralExp);
+					result = caseExpressions_PrimitiveLiteralExp(
+						primitiveLiteralExp);
 				if (result == null)
 					result = caseOCLExpression(primitiveLiteralExp);
 				if (result == null)
@@ -1261,7 +1288,8 @@ public class EcoreSwitch<T>
 				if (result == null)
 					result = caseLiteralExp(realLiteralExp);
 				if (result == null)
-					result = caseExpressions_PrimitiveLiteralExp(realLiteralExp);
+					result = caseExpressions_PrimitiveLiteralExp(
+						realLiteralExp);
 				if (result == null)
 					result = caseOCLExpression(realLiteralExp);
 				if (result == null)
@@ -1319,7 +1347,8 @@ public class EcoreSwitch<T>
 				if (result == null)
 					result = caseLiteralExp(stringLiteralExp);
 				if (result == null)
-					result = caseExpressions_PrimitiveLiteralExp(stringLiteralExp);
+					result = caseExpressions_PrimitiveLiteralExp(
+						stringLiteralExp);
 				if (result == null)
 					result = caseOCLExpression(stringLiteralExp);
 				if (result == null)
@@ -1425,7 +1454,8 @@ public class EcoreSwitch<T>
 				if (result == null)
 					result = caseOCLExpression(unspecifiedValueExp);
 				if (result == null)
-					result = caseExpressions_UnspecifiedValueExp(unspecifiedValueExp);
+					result = caseExpressions_UnspecifiedValueExp(
+						unspecifiedValueExp);
 				if (result == null)
 					result = caseETypedElement(unspecifiedValueExp);
 				if (result == null)
@@ -1502,11 +1532,13 @@ public class EcoreSwitch<T>
 				if (result == null)
 					result = caseFeatureCallExp(oppositePropertyCallExp);
 				if (result == null)
-					result = caseExpressions_NavigationCallExp(oppositePropertyCallExp);
+					result = caseExpressions_NavigationCallExp(
+						oppositePropertyCallExp);
 				if (result == null)
 					result = caseCallExp(oppositePropertyCallExp);
 				if (result == null)
-					result = caseExpressions_FeatureCallExp(oppositePropertyCallExp);
+					result = caseExpressions_FeatureCallExp(
+						oppositePropertyCallExp);
 				if (result == null)
 					result = caseOCLExpression(oppositePropertyCallExp);
 				if (result == null)
@@ -1514,7 +1546,8 @@ public class EcoreSwitch<T>
 				if (result == null)
 					result = caseETypedElement(oppositePropertyCallExp);
 				if (result == null)
-					result = caseExpressions_OCLExpression(oppositePropertyCallExp);
+					result = caseExpressions_OCLExpression(
+						oppositePropertyCallExp);
 				if (result == null)
 					result = caseCallingASTNode(oppositePropertyCallExp);
 				if (result == null)
@@ -2498,7 +2531,8 @@ public class EcoreSwitch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated NOT (generated version returns null)
 	 */
-	public <C, O> T caseTypes_BagType(org.eclipse.ocl.types.BagType<C, O> object) {
+	public <C, O> T caseTypes_BagType(
+			org.eclipse.ocl.types.BagType<C, O> object) {
 		return caseBagType_1(object);
 	}
 
@@ -2630,7 +2664,8 @@ public class EcoreSwitch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated NOT (generated version returns null)
 	 */
-	public <C, O> T caseTypes_SetType(org.eclipse.ocl.types.SetType<C, O> object) {
+	public <C, O> T caseTypes_SetType(
+			org.eclipse.ocl.types.SetType<C, O> object) {
 		return caseSetType_1(object);
 	}
 
@@ -3426,7 +3461,8 @@ public class EcoreSwitch<T>
 	 * @deprecated Since 1.3, override the {@link #caseTypes_InvalidType} method, instead.
 	 */
 	@Deprecated
-	public <O> T caseInvalidType_1(org.eclipse.ocl.types.InvalidType<O> object) {
+	public <O> T caseInvalidType_1(
+			org.eclipse.ocl.types.InvalidType<O> object) {
 		return null;
 	}
 
@@ -3478,7 +3514,8 @@ public class EcoreSwitch<T>
 	 * @deprecated Since 1.3, override the {@link #caseTypes_TupleType} method, instead.
 	 */
 	@Deprecated
-	public <O, P> T caseTupleType_1(org.eclipse.ocl.types.TupleType<O, P> object) {
+	public <O, P> T caseTupleType_1(
+			org.eclipse.ocl.types.TupleType<O, P> object) {
 		return null;
 	}
 
@@ -3486,7 +3523,8 @@ public class EcoreSwitch<T>
 	 * @deprecated Since 1.3, override the {@link #caseTypes_TypeType} method, instead.
 	 */
 	@Deprecated
-	public <C, O> T caseTypeType_1(org.eclipse.ocl.types.TypeType<C, O> object) {
+	public <C, O> T caseTypeType_1(
+			org.eclipse.ocl.types.TypeType<C, O> object) {
 		return null;
 	}
 

@@ -37,12 +37,12 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.impl.CollectionLiteralExpImpl#getKind <em>Kind</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.impl.CollectionLiteralExpImpl#getPart <em>Part</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.impl.CollectionLiteralExpImpl#isSimpleRange <em>Simple Range</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -130,7 +130,8 @@ public class CollectionLiteralExpImpl<C>
 			: newKind;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND, oldKind, kind));
+				ExpressionsPackage.COLLECTION_LITERAL_EXP__KIND, oldKind,
+				kind));
 	}
 
 	/**

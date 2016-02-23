@@ -26,10 +26,10 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.impl.TypeExpImpl#getReferredType <em>Referred Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

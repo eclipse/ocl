@@ -148,7 +148,8 @@ public class ExpressionsAdapterFactory
 		}
 
 		@Override
-		public <C> Adapter casePrimitiveLiteralExp(PrimitiveLiteralExp<C> object) {
+		public <C> Adapter casePrimitiveLiteralExp(
+				PrimitiveLiteralExp<C> object) {
 			return createPrimitiveLiteralExpAdapter();
 		}
 
@@ -180,7 +181,8 @@ public class ExpressionsAdapterFactory
 		}
 
 		@Override
-		public <C, EL> Adapter caseEnumLiteralExp(EnumLiteralExp<C, EL> object) {
+		public <C, EL> Adapter caseEnumLiteralExp(
+				EnumLiteralExp<C, EL> object) {
 			return createEnumLiteralExpAdapter();
 		}
 
@@ -247,12 +249,14 @@ public class ExpressionsAdapterFactory
 		}
 
 		@Override
-		public <C, O> Adapter caseOperationCallExp(OperationCallExp<C, O> object) {
+		public <C, O> Adapter caseOperationCallExp(
+				OperationCallExp<C, O> object) {
 			return createOperationCallExpAdapter();
 		}
 
 		@Override
-		public <C, P> Adapter casePropertyCallExp(PropertyCallExp<C, P> object) {
+		public <C, P> Adapter casePropertyCallExp(
+				PropertyCallExp<C, P> object) {
 			return createPropertyCallExpAdapter();
 		}
 
@@ -272,12 +276,14 @@ public class ExpressionsAdapterFactory
 		}
 
 		@Override
-		public <C, P> Adapter caseTupleLiteralExp(TupleLiteralExp<C, P> object) {
+		public <C, P> Adapter caseTupleLiteralExp(
+				TupleLiteralExp<C, P> object) {
 			return createTupleLiteralExpAdapter();
 		}
 
 		@Override
-		public <C, P> Adapter caseTupleLiteralPart(TupleLiteralPart<C, P> object) {
+		public <C, P> Adapter caseTupleLiteralPart(
+				TupleLiteralPart<C, P> object) {
 			return createTupleLiteralPartAdapter();
 		}
 
@@ -287,7 +293,8 @@ public class ExpressionsAdapterFactory
 		}
 
 		@Override
-		public <C> Adapter caseUnspecifiedValueExp(UnspecifiedValueExp<C> object) {
+		public <C> Adapter caseUnspecifiedValueExp(
+				UnspecifiedValueExp<C> object) {
 			return createUnspecifiedValueExpAdapter();
 		}
 

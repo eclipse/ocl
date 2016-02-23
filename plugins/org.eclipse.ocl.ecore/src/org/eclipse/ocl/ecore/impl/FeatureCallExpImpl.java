@@ -25,10 +25,10 @@ import org.eclipse.ocl.expressions.ExpressionsPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.ecore.impl.FeatureCallExpImpl#isMarkedPre <em>Marked Pre</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -162,7 +162,8 @@ public abstract class FeatureCallExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.FeatureCallExp.class) {
 			switch (derivedFeatureID) {
 				case EcorePackage.FEATURE_CALL_EXP__MARKED_PRE :
@@ -180,7 +181,8 @@ public abstract class FeatureCallExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.FeatureCallExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.FEATURE_CALL_EXP__MARKED_PRE :

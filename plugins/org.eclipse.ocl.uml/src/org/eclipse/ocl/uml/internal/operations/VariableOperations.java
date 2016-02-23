@@ -26,6 +26,7 @@ import org.eclipse.uml2.uml.internal.operations.NamedElementOperations;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.utilities.TypedElement#getName() <em>Get Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.utilities.TypedElement#getType() <em>Get Type</em>}</li>
@@ -33,7 +34,6 @@ import org.eclipse.uml2.uml.internal.operations.NamedElementOperations;
  *   <li>{@link org.eclipse.ocl.utilities.TypedElement#setType(java.lang.Object) <em>Set Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.utilities.Visitable#accept(org.eclipse.ocl.utilities.Visitor) <em>Accept</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

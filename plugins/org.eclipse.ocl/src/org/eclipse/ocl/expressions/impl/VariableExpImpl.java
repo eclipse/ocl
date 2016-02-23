@@ -29,10 +29,10 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.impl.VariableExpImpl#getReferredVariable <em>Referred Variable</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -78,7 +78,8 @@ public class VariableExpImpl<C, PM>
 	public Variable<C, PM> getReferredVariable() {
 		if (referredVariable != null && referredVariable.eIsProxy()) {
 			InternalEObject oldReferredVariable = (InternalEObject) referredVariable;
-			referredVariable = (Variable<C, PM>) eResolveProxy(oldReferredVariable);
+			referredVariable = (Variable<C, PM>) eResolveProxy(
+				oldReferredVariable);
 			if (referredVariable != oldReferredVariable) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,

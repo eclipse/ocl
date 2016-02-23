@@ -19,8 +19,6 @@ import org.eclipse.ocl.ecore.ElementType;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Element Type</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

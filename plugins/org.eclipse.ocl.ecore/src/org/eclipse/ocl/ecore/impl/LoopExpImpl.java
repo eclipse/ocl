@@ -38,11 +38,11 @@ import org.eclipse.ocl.expressions.operations.LoopExpOperations;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.ecore.impl.LoopExpImpl#getBody <em>Body</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.LoopExpImpl#getIterator <em>Iterator</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -109,7 +109,8 @@ public abstract class LoopExpImpl
 		body = newBody;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this,
-				Notification.SET, EcorePackage.LOOP_EXP__BODY, oldBody, newBody);
+				Notification.SET, EcorePackage.LOOP_EXP__BODY, oldBody,
+				newBody);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -236,9 +237,8 @@ public abstract class LoopExpImpl
 				return;
 			case EcorePackage.LOOP_EXP__ITERATOR :
 				getIterator().clear();
-				getIterator()
-					.addAll(
-						(Collection<? extends Variable<EClassifier, EParameter>>) newValue);
+				getIterator().addAll(
+					(Collection<? extends Variable<EClassifier, EParameter>>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -284,7 +284,8 @@ public abstract class LoopExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.LoopExp.class) {
 			switch (derivedFeatureID) {
 				case EcorePackage.LOOP_EXP__BODY :
@@ -304,7 +305,8 @@ public abstract class LoopExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.LoopExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.LOOP_EXP__BODY :

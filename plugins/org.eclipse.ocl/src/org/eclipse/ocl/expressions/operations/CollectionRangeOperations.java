@@ -30,10 +30,10 @@ import org.eclipse.ocl.util.TypeUtil;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.CollectionRange#checkRangeType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Check Range Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -60,9 +60,8 @@ public class CollectionRangeOperations
 	 * <!-- end-model-doc -->
 	 * @generated NOT
 	 */
-	public static <C> boolean checkRangeType(
-			CollectionRange<C> collectionRange, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
+	public static <C> boolean checkRangeType(CollectionRange<C> collectionRange,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		boolean result = true;
 		Environment<?, C, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
 			.getValidationEnvironment(collectionRange, context);
@@ -85,15 +84,15 @@ public class CollectionRangeOperations
 		if (!result) {
 			if (diagnostics != null) {
 				// TODO: Specific message
-				diagnostics
-					.add(new BasicDiagnostic(
-						Diagnostic.ERROR,
-						ExpressionsValidator.DIAGNOSTIC_SOURCE,
-						ExpressionsValidator.COLLECTION_RANGE__RANGE_TYPE,
-						org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE
-							.getString(
-								"_UI_GenericInvariant_diagnostic", new Object[]{"checkRangeType", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(collectionRange, context)}), //$NON-NLS-1$ //$NON-NLS-2$
-						new Object[]{collectionRange}));
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+					ExpressionsValidator.DIAGNOSTIC_SOURCE,
+					ExpressionsValidator.COLLECTION_RANGE__RANGE_TYPE,
+					org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE.getString(
+						"_UI_GenericInvariant_diagnostic", //$NON-NLS-1$
+						new Object[]{"checkRangeType", //$NON-NLS-1$
+							org.eclipse.emf.ecore.util.EObjectValidator
+								.getObjectLabel(collectionRange, context)}),
+					new Object[]{collectionRange}));
 			}
 		}
 		return result;

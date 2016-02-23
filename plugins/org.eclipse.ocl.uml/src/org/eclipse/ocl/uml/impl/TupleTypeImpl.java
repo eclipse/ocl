@@ -32,8 +32,6 @@ import org.eclipse.uml2.uml.internal.impl.DataTypeImpl;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Tuple Type</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

@@ -34,10 +34,10 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.ecore.impl.IterateExpImpl#getResult <em>Result</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -89,7 +89,8 @@ public class IterateExpImpl
 	 * @generated
 	 */
 	public NotificationChain basicSetResult(
-			Variable<EClassifier, EParameter> newResult, NotificationChain msgs) {
+			Variable<EClassifier, EParameter> newResult,
+			NotificationChain msgs) {
 		Variable<EClassifier, EParameter> oldResult = result;
 		result = newResult;
 		if (eNotificationRequired()) {
@@ -135,8 +136,8 @@ public class IterateExpImpl
 	 */
 	public boolean checkIterateType(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return IterateExpOperations
-			.checkIterateType(this, diagnostics, context);
+		return IterateExpOperations.checkIterateType(this, diagnostics,
+			context);
 	}
 
 	/**
@@ -239,7 +240,8 @@ public class IterateExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+	public int eBaseStructuralFeatureID(int derivedFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.IterateExp.class) {
 			switch (derivedFeatureID) {
 				case EcorePackage.ITERATE_EXP__RESULT :
@@ -257,7 +259,8 @@ public class IterateExpImpl
 	 * @generated
 	 */
 	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+	public int eDerivedStructuralFeatureID(int baseFeatureID,
+			Class<?> baseClass) {
 		if (baseClass == org.eclipse.ocl.expressions.IterateExp.class) {
 			switch (baseFeatureID) {
 				case ExpressionsPackage.ITERATE_EXP__RESULT :

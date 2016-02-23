@@ -21,12 +21,12 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.expressions.IfExp#getCondition <em>Condition</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.IfExp#getThenExpression <em>Then Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.expressions.IfExp#getElseExpression <em>Else Expression</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.expressions.ExpressionsPackage#getIfExp()
  * @model
@@ -138,6 +138,7 @@ public interface IfExp<C>
 	 * @model
 	 * @generated
 	 */
-	boolean checkIfType(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean checkIfType(DiagnosticChain diagnostics,
+			Map<Object, Object> context);
 
 } // IfExp

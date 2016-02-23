@@ -20,10 +20,10 @@ import org.eclipse.emf.ecore.EReference;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.ocl.ecore.OppositePropertyCallExp#getReferredOppositeProperty <em>Referred Opposite Property</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.ocl.ecore.EcorePackage#getOppositePropertyCallExp()
  * @model
