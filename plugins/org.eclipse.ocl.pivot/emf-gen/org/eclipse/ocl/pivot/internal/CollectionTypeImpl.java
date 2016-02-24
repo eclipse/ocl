@@ -665,13 +665,13 @@ public class CollectionTypeImpl
 			Type thatElementType = ClassUtil.nonNullEMF(thatCollectionType.getElementType());
 			boolean commonIsNullFree = this.isIsNullFree() && thatCollectionType.isIsNullFree();
 			Type commonElementType = thisElementType.getCommonType(idResolver, thatElementType);
-			if (commonInheritance instanceof CompleteInheritanceImpl) {
+			if ((commonInheritance instanceof CompleteInheritanceImpl) && !((CompleteInheritanceImpl)commonInheritance).isIsAbstract()) {
 				CollectionType commonCollectionType = (CollectionType)commonType;
 				return environment.getCollectionType(commonCollectionType, commonElementType, commonIsNullFree, null, null);
 			}
 			else {
-				if (commonType.isOrdered()) {
-					if (commonType.isUnique()) {
+				if (isOrdered() && thatCollectionType.isOrdered()) {
+					if (isUnique() && thatCollectionType.isUnique()) {
 						return environment.getOrderedSetType(commonElementType, commonIsNullFree, null, null);
 					}
 					else {
@@ -679,7 +679,7 @@ public class CollectionTypeImpl
 					}
 				}
 				else {
-					if (commonType.isUnique()) {
+					if (isUnique() && thatCollectionType.isUnique()) {
 						return environment.getSetType(commonElementType, commonIsNullFree, null, null);
 					}
 					else {
