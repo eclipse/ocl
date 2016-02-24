@@ -87,101 +87,105 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	public class RestrictedKeywordsElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RestrictedKeywords");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Keyword cAnnotationKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
-		private final Keyword cConformsToKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
-		private final Keyword cDocumentationKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
-		private final Keyword cExtendsKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
-		private final Keyword cImportKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
-		private final Keyword cInvKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
-		private final Keyword cInvalidatingKeyword_6 = (Keyword)cAlternatives.eContents().get(6);
-		private final Keyword cIterationKeyword_7 = (Keyword)cAlternatives.eContents().get(7);
-		private final Keyword cLeftKeyword_8 = (Keyword)cAlternatives.eContents().get(8);
-		private final Keyword cLibraryKeyword_9 = (Keyword)cAlternatives.eContents().get(9);
-		private final Keyword cOperationKeyword_10 = (Keyword)cAlternatives.eContents().get(10);
-		private final Keyword cPackageKeyword_11 = (Keyword)cAlternatives.eContents().get(11);
-		private final Keyword cPostKeyword_12 = (Keyword)cAlternatives.eContents().get(12);
-		private final Keyword cPreKeyword_13 = (Keyword)cAlternatives.eContents().get(13);
-		private final Keyword cPrecedenceKeyword_14 = (Keyword)cAlternatives.eContents().get(14);
-		private final Keyword cPropertyKeyword_15 = (Keyword)cAlternatives.eContents().get(15);
-		private final Keyword cRightKeyword_16 = (Keyword)cAlternatives.eContents().get(16);
-		private final Keyword cStaticKeyword_17 = (Keyword)cAlternatives.eContents().get(17);
-		private final Keyword cTypeKeyword_18 = (Keyword)cAlternatives.eContents().get(18);
-		private final Keyword cValidatingKeyword_19 = (Keyword)cAlternatives.eContents().get(19);
+		private final Keyword cAbstractKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Keyword cAnnotationKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cConformsToKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
+		private final Keyword cDocumentationKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
+		private final Keyword cExtendsKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
+		private final Keyword cImportKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
+		private final Keyword cInvKeyword_6 = (Keyword)cAlternatives.eContents().get(6);
+		private final Keyword cInvalidatingKeyword_7 = (Keyword)cAlternatives.eContents().get(7);
+		private final Keyword cIterationKeyword_8 = (Keyword)cAlternatives.eContents().get(8);
+		private final Keyword cLeftKeyword_9 = (Keyword)cAlternatives.eContents().get(9);
+		private final Keyword cLibraryKeyword_10 = (Keyword)cAlternatives.eContents().get(10);
+		private final Keyword cOperationKeyword_11 = (Keyword)cAlternatives.eContents().get(11);
+		private final Keyword cPackageKeyword_12 = (Keyword)cAlternatives.eContents().get(12);
+		private final Keyword cPostKeyword_13 = (Keyword)cAlternatives.eContents().get(13);
+		private final Keyword cPreKeyword_14 = (Keyword)cAlternatives.eContents().get(14);
+		private final Keyword cPrecedenceKeyword_15 = (Keyword)cAlternatives.eContents().get(15);
+		private final Keyword cPropertyKeyword_16 = (Keyword)cAlternatives.eContents().get(16);
+		private final Keyword cRightKeyword_17 = (Keyword)cAlternatives.eContents().get(17);
+		private final Keyword cStaticKeyword_18 = (Keyword)cAlternatives.eContents().get(18);
+		private final Keyword cTypeKeyword_19 = (Keyword)cAlternatives.eContents().get(19);
+		private final Keyword cValidatingKeyword_20 = (Keyword)cAlternatives.eContents().get(20);
 		
 		////|	'Lambda'
 		// //|	'Tuple'
 		// RestrictedKeywords:
-		//	"annotation" //|	'typeof'
-		// | "conformsTo" | "documentation" | "extends" | "import" | "inv" | "invalidating" |
-		//	"iteration" | "left" | "library" | "operation" | "package" | "post" | "pre" | "precedence" | "property" | "right" |
-		//	"static" | "type" | "validating";
+		//	"abstract" //|	'typeof'
+		// | "annotation" | "conformsTo" | "documentation" | "extends" | "import" | "inv" |
+		//	"invalidating" | "iteration" | "left" | "library" | "operation" | "package" | "post" | "pre" | "precedence" |
+		//	"property" | "right" | "static" | "type" | "validating";
 		@Override public ParserRule getRule() { return rule; }
 
-		//"annotation" //|	'typeof'
-		// | "conformsTo" | "documentation" | "extends" | "import" | "inv" | "invalidating" |
-		//"iteration" | "left" | "library" | "operation" | "package" | "post" | "pre" | "precedence" | "property" | "right" |
+		//"abstract" //|	'typeof'
+		// | "annotation" | "conformsTo" | "documentation" | "extends" | "import" | "inv" | "invalidating"
+		//| "iteration" | "left" | "library" | "operation" | "package" | "post" | "pre" | "precedence" | "property" | "right" |
 		//"static" | "type" | "validating"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
+		//"abstract"
+		public Keyword getAbstractKeyword_0() { return cAbstractKeyword_0; }
+
 		//"annotation"
-		public Keyword getAnnotationKeyword_0() { return cAnnotationKeyword_0; }
+		public Keyword getAnnotationKeyword_1() { return cAnnotationKeyword_1; }
 
 		//"conformsTo"
-		public Keyword getConformsToKeyword_1() { return cConformsToKeyword_1; }
+		public Keyword getConformsToKeyword_2() { return cConformsToKeyword_2; }
 
 		//"documentation"
-		public Keyword getDocumentationKeyword_2() { return cDocumentationKeyword_2; }
+		public Keyword getDocumentationKeyword_3() { return cDocumentationKeyword_3; }
 
 		//"extends"
-		public Keyword getExtendsKeyword_3() { return cExtendsKeyword_3; }
+		public Keyword getExtendsKeyword_4() { return cExtendsKeyword_4; }
 
 		//"import"
-		public Keyword getImportKeyword_4() { return cImportKeyword_4; }
+		public Keyword getImportKeyword_5() { return cImportKeyword_5; }
 
 		//"inv"
-		public Keyword getInvKeyword_5() { return cInvKeyword_5; }
+		public Keyword getInvKeyword_6() { return cInvKeyword_6; }
 
 		//"invalidating"
-		public Keyword getInvalidatingKeyword_6() { return cInvalidatingKeyword_6; }
+		public Keyword getInvalidatingKeyword_7() { return cInvalidatingKeyword_7; }
 
 		//"iteration"
-		public Keyword getIterationKeyword_7() { return cIterationKeyword_7; }
+		public Keyword getIterationKeyword_8() { return cIterationKeyword_8; }
 
 		//"left"
-		public Keyword getLeftKeyword_8() { return cLeftKeyword_8; }
+		public Keyword getLeftKeyword_9() { return cLeftKeyword_9; }
 
 		//"library"
-		public Keyword getLibraryKeyword_9() { return cLibraryKeyword_9; }
+		public Keyword getLibraryKeyword_10() { return cLibraryKeyword_10; }
 
 		//"operation"
-		public Keyword getOperationKeyword_10() { return cOperationKeyword_10; }
+		public Keyword getOperationKeyword_11() { return cOperationKeyword_11; }
 
 		//"package"
-		public Keyword getPackageKeyword_11() { return cPackageKeyword_11; }
+		public Keyword getPackageKeyword_12() { return cPackageKeyword_12; }
 
 		//"post"
-		public Keyword getPostKeyword_12() { return cPostKeyword_12; }
+		public Keyword getPostKeyword_13() { return cPostKeyword_13; }
 
 		//"pre"
-		public Keyword getPreKeyword_13() { return cPreKeyword_13; }
+		public Keyword getPreKeyword_14() { return cPreKeyword_14; }
 
 		//"precedence"
-		public Keyword getPrecedenceKeyword_14() { return cPrecedenceKeyword_14; }
+		public Keyword getPrecedenceKeyword_15() { return cPrecedenceKeyword_15; }
 
 		//"property"
-		public Keyword getPropertyKeyword_15() { return cPropertyKeyword_15; }
+		public Keyword getPropertyKeyword_16() { return cPropertyKeyword_16; }
 
 		//"right"
-		public Keyword getRightKeyword_16() { return cRightKeyword_16; }
+		public Keyword getRightKeyword_17() { return cRightKeyword_17; }
 
 		//"static"
-		public Keyword getStaticKeyword_17() { return cStaticKeyword_17; }
+		public Keyword getStaticKeyword_18() { return cStaticKeyword_18; }
 
 		//"type"
-		public Keyword getTypeKeyword_18() { return cTypeKeyword_18; }
+		public Keyword getTypeKeyword_19() { return cTypeKeyword_19; }
 
 		//"validating"
-		public Keyword getValidatingKeyword_19() { return cValidatingKeyword_19; }
+		public Keyword getValidatingKeyword_20() { return cValidatingKeyword_20; }
 	}
 
 	public class NameElements extends AbstractParserRuleElementFinder {
@@ -453,134 +457,144 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	public class LibClassCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LibClassCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cTypeKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameAnyNameParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Assignment cOwnedSignatureAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cOwnedSignatureTemplateSignatureCSParserRuleCall_2_0 = (RuleCall)cOwnedSignatureAssignment_2.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cColonKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cMetaclassNameAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final CrossReference cMetaclassNameMetaclassNameCSCrossReference_3_1_0 = (CrossReference)cMetaclassNameAssignment_3_1.eContents().get(0);
-		private final RuleCall cMetaclassNameMetaclassNameCSAnyNameParserRuleCall_3_1_0_1 = (RuleCall)cMetaclassNameMetaclassNameCSCrossReference_3_1_0.eContents().get(1);
+		private final Assignment cIsAbstractAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cIsAbstractAbstractKeyword_0_0 = (Keyword)cIsAbstractAssignment_0.eContents().get(0);
+		private final Keyword cTypeKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameAnyNameParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		private final Assignment cOwnedSignatureAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cOwnedSignatureTemplateSignatureCSParserRuleCall_3_0 = (RuleCall)cOwnedSignatureAssignment_3.eContents().get(0);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Keyword cConformsToKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
-		private final Assignment cOwnedSuperTypesAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cOwnedSuperTypesTypedRefCSParserRuleCall_4_1_0 = (RuleCall)cOwnedSuperTypesAssignment_4_1.eContents().get(0);
-		private final Group cGroup_4_2 = (Group)cGroup_4.eContents().get(2);
-		private final Keyword cCommaKeyword_4_2_0 = (Keyword)cGroup_4_2.eContents().get(0);
-		private final Assignment cOwnedSuperTypesAssignment_4_2_1 = (Assignment)cGroup_4_2.eContents().get(1);
-		private final RuleCall cOwnedSuperTypesTypedRefCSParserRuleCall_4_2_1_0 = (RuleCall)cOwnedSuperTypesAssignment_4_2_1.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Alternatives cAlternatives_6 = (Alternatives)cGroup.eContents().get(6);
-		private final Assignment cOwnedOperationsAssignment_6_0 = (Assignment)cAlternatives_6.eContents().get(0);
-		private final RuleCall cOwnedOperationsOperationCSParserRuleCall_6_0_0 = (RuleCall)cOwnedOperationsAssignment_6_0.eContents().get(0);
-		private final Assignment cOwnedPropertiesAssignment_6_1 = (Assignment)cAlternatives_6.eContents().get(1);
-		private final RuleCall cOwnedPropertiesLibPropertyCSParserRuleCall_6_1_0 = (RuleCall)cOwnedPropertiesAssignment_6_1.eContents().get(0);
-		private final Assignment cOwnedConstraintsAssignment_6_2 = (Assignment)cAlternatives_6.eContents().get(2);
-		private final RuleCall cOwnedConstraintsInvCSParserRuleCall_6_2_0 = (RuleCall)cOwnedConstraintsAssignment_6_2.eContents().get(0);
-		private final Assignment cOwnedAnnotationsAssignment_6_3 = (Assignment)cAlternatives_6.eContents().get(3);
-		private final RuleCall cOwnedAnnotationsAnnotationElementCSParserRuleCall_6_3_0 = (RuleCall)cOwnedAnnotationsAssignment_6_3.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Keyword cColonKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cMetaclassNameAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final CrossReference cMetaclassNameMetaclassNameCSCrossReference_4_1_0 = (CrossReference)cMetaclassNameAssignment_4_1.eContents().get(0);
+		private final RuleCall cMetaclassNameMetaclassNameCSAnyNameParserRuleCall_4_1_0_1 = (RuleCall)cMetaclassNameMetaclassNameCSCrossReference_4_1_0.eContents().get(1);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final Keyword cConformsToKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Assignment cOwnedSuperTypesAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cOwnedSuperTypesTypedRefCSParserRuleCall_5_1_0 = (RuleCall)cOwnedSuperTypesAssignment_5_1.eContents().get(0);
+		private final Group cGroup_5_2 = (Group)cGroup_5.eContents().get(2);
+		private final Keyword cCommaKeyword_5_2_0 = (Keyword)cGroup_5_2.eContents().get(0);
+		private final Assignment cOwnedSuperTypesAssignment_5_2_1 = (Assignment)cGroup_5_2.eContents().get(1);
+		private final RuleCall cOwnedSuperTypesTypedRefCSParserRuleCall_5_2_1_0 = (RuleCall)cOwnedSuperTypesAssignment_5_2_1.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Alternatives cAlternatives_7 = (Alternatives)cGroup.eContents().get(7);
+		private final Assignment cOwnedOperationsAssignment_7_0 = (Assignment)cAlternatives_7.eContents().get(0);
+		private final RuleCall cOwnedOperationsOperationCSParserRuleCall_7_0_0 = (RuleCall)cOwnedOperationsAssignment_7_0.eContents().get(0);
+		private final Assignment cOwnedPropertiesAssignment_7_1 = (Assignment)cAlternatives_7.eContents().get(1);
+		private final RuleCall cOwnedPropertiesLibPropertyCSParserRuleCall_7_1_0 = (RuleCall)cOwnedPropertiesAssignment_7_1.eContents().get(0);
+		private final Assignment cOwnedConstraintsAssignment_7_2 = (Assignment)cAlternatives_7.eContents().get(2);
+		private final RuleCall cOwnedConstraintsInvCSParserRuleCall_7_2_0 = (RuleCall)cOwnedConstraintsAssignment_7_2.eContents().get(0);
+		private final Assignment cOwnedAnnotationsAssignment_7_3 = (Assignment)cAlternatives_7.eContents().get(3);
+		private final RuleCall cOwnedAnnotationsAnnotationElementCSParserRuleCall_7_3_0 = (RuleCall)cOwnedAnnotationsAssignment_7_3.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
 		//LibClassCS:
-		//	"type" name=AnyName ownedSignature=TemplateSignatureCS? (":" metaclassName=[MetaclassNameCS|AnyName])? ("conformsTo"
-		//	ownedSuperTypes+=TypedRefCS ("," ownedSuperTypes+=TypedRefCS)*)? "{" (ownedOperations+=OperationCS |
-		//	ownedProperties+=LibPropertyCS | ownedConstraints+=InvCS | ownedAnnotations+=AnnotationElementCS)* "}";
+		//	isAbstract?="abstract"? "type" name=AnyName ownedSignature=TemplateSignatureCS? (":"
+		//	metaclassName=[MetaclassNameCS|AnyName])? ("conformsTo" ownedSuperTypes+=TypedRefCS (","
+		//	ownedSuperTypes+=TypedRefCS)*)? "{" (ownedOperations+=OperationCS | ownedProperties+=LibPropertyCS |
+		//	ownedConstraints+=InvCS | ownedAnnotations+=AnnotationElementCS)* "}";
 		@Override public ParserRule getRule() { return rule; }
 
-		//"type" name=AnyName ownedSignature=TemplateSignatureCS? (":" metaclassName=[MetaclassNameCS|AnyName])? ("conformsTo"
-		//ownedSuperTypes+=TypedRefCS ("," ownedSuperTypes+=TypedRefCS)*)? "{" (ownedOperations+=OperationCS |
-		//ownedProperties+=LibPropertyCS | ownedConstraints+=InvCS | ownedAnnotations+=AnnotationElementCS)* "}"
+		//isAbstract?="abstract"? "type" name=AnyName ownedSignature=TemplateSignatureCS? (":"
+		//metaclassName=[MetaclassNameCS|AnyName])? ("conformsTo" ownedSuperTypes+=TypedRefCS (","
+		//ownedSuperTypes+=TypedRefCS)*)? "{" (ownedOperations+=OperationCS | ownedProperties+=LibPropertyCS |
+		//ownedConstraints+=InvCS | ownedAnnotations+=AnnotationElementCS)* "}"
 		public Group getGroup() { return cGroup; }
 
+		//isAbstract?="abstract"?
+		public Assignment getIsAbstractAssignment_0() { return cIsAbstractAssignment_0; }
+
+		//"abstract"
+		public Keyword getIsAbstractAbstractKeyword_0_0() { return cIsAbstractAbstractKeyword_0_0; }
+
 		//"type"
-		public Keyword getTypeKeyword_0() { return cTypeKeyword_0; }
+		public Keyword getTypeKeyword_1() { return cTypeKeyword_1; }
 
 		//name=AnyName
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
 
 		//AnyName
-		public RuleCall getNameAnyNameParserRuleCall_1_0() { return cNameAnyNameParserRuleCall_1_0; }
+		public RuleCall getNameAnyNameParserRuleCall_2_0() { return cNameAnyNameParserRuleCall_2_0; }
 
 		//ownedSignature=TemplateSignatureCS?
-		public Assignment getOwnedSignatureAssignment_2() { return cOwnedSignatureAssignment_2; }
+		public Assignment getOwnedSignatureAssignment_3() { return cOwnedSignatureAssignment_3; }
 
 		//TemplateSignatureCS
-		public RuleCall getOwnedSignatureTemplateSignatureCSParserRuleCall_2_0() { return cOwnedSignatureTemplateSignatureCSParserRuleCall_2_0; }
+		public RuleCall getOwnedSignatureTemplateSignatureCSParserRuleCall_3_0() { return cOwnedSignatureTemplateSignatureCSParserRuleCall_3_0; }
 
 		//(":" metaclassName=[MetaclassNameCS|AnyName])?
-		public Group getGroup_3() { return cGroup_3; }
-
-		//":"
-		public Keyword getColonKeyword_3_0() { return cColonKeyword_3_0; }
-
-		//metaclassName=[MetaclassNameCS|AnyName]
-		public Assignment getMetaclassNameAssignment_3_1() { return cMetaclassNameAssignment_3_1; }
-
-		//[MetaclassNameCS|AnyName]
-		public CrossReference getMetaclassNameMetaclassNameCSCrossReference_3_1_0() { return cMetaclassNameMetaclassNameCSCrossReference_3_1_0; }
-
-		//AnyName
-		public RuleCall getMetaclassNameMetaclassNameCSAnyNameParserRuleCall_3_1_0_1() { return cMetaclassNameMetaclassNameCSAnyNameParserRuleCall_3_1_0_1; }
-
-		//("conformsTo" ownedSuperTypes+=TypedRefCS ("," ownedSuperTypes+=TypedRefCS)*)?
 		public Group getGroup_4() { return cGroup_4; }
 
+		//":"
+		public Keyword getColonKeyword_4_0() { return cColonKeyword_4_0; }
+
+		//metaclassName=[MetaclassNameCS|AnyName]
+		public Assignment getMetaclassNameAssignment_4_1() { return cMetaclassNameAssignment_4_1; }
+
+		//[MetaclassNameCS|AnyName]
+		public CrossReference getMetaclassNameMetaclassNameCSCrossReference_4_1_0() { return cMetaclassNameMetaclassNameCSCrossReference_4_1_0; }
+
+		//AnyName
+		public RuleCall getMetaclassNameMetaclassNameCSAnyNameParserRuleCall_4_1_0_1() { return cMetaclassNameMetaclassNameCSAnyNameParserRuleCall_4_1_0_1; }
+
+		//("conformsTo" ownedSuperTypes+=TypedRefCS ("," ownedSuperTypes+=TypedRefCS)*)?
+		public Group getGroup_5() { return cGroup_5; }
+
 		//"conformsTo"
-		public Keyword getConformsToKeyword_4_0() { return cConformsToKeyword_4_0; }
+		public Keyword getConformsToKeyword_5_0() { return cConformsToKeyword_5_0; }
 
 		//ownedSuperTypes+=TypedRefCS
-		public Assignment getOwnedSuperTypesAssignment_4_1() { return cOwnedSuperTypesAssignment_4_1; }
+		public Assignment getOwnedSuperTypesAssignment_5_1() { return cOwnedSuperTypesAssignment_5_1; }
 
 		//TypedRefCS
-		public RuleCall getOwnedSuperTypesTypedRefCSParserRuleCall_4_1_0() { return cOwnedSuperTypesTypedRefCSParserRuleCall_4_1_0; }
+		public RuleCall getOwnedSuperTypesTypedRefCSParserRuleCall_5_1_0() { return cOwnedSuperTypesTypedRefCSParserRuleCall_5_1_0; }
 
 		//("," ownedSuperTypes+=TypedRefCS)*
-		public Group getGroup_4_2() { return cGroup_4_2; }
+		public Group getGroup_5_2() { return cGroup_5_2; }
 
 		//","
-		public Keyword getCommaKeyword_4_2_0() { return cCommaKeyword_4_2_0; }
+		public Keyword getCommaKeyword_5_2_0() { return cCommaKeyword_5_2_0; }
 
 		//ownedSuperTypes+=TypedRefCS
-		public Assignment getOwnedSuperTypesAssignment_4_2_1() { return cOwnedSuperTypesAssignment_4_2_1; }
+		public Assignment getOwnedSuperTypesAssignment_5_2_1() { return cOwnedSuperTypesAssignment_5_2_1; }
 
 		//TypedRefCS
-		public RuleCall getOwnedSuperTypesTypedRefCSParserRuleCall_4_2_1_0() { return cOwnedSuperTypesTypedRefCSParserRuleCall_4_2_1_0; }
+		public RuleCall getOwnedSuperTypesTypedRefCSParserRuleCall_5_2_1_0() { return cOwnedSuperTypesTypedRefCSParserRuleCall_5_2_1_0; }
 
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_5() { return cLeftCurlyBracketKeyword_5; }
+		public Keyword getLeftCurlyBracketKeyword_6() { return cLeftCurlyBracketKeyword_6; }
 
 		//(ownedOperations+=OperationCS | ownedProperties+=LibPropertyCS | ownedConstraints+=InvCS |
 		//ownedAnnotations+=AnnotationElementCS)*
-		public Alternatives getAlternatives_6() { return cAlternatives_6; }
+		public Alternatives getAlternatives_7() { return cAlternatives_7; }
 
 		//ownedOperations+=OperationCS
-		public Assignment getOwnedOperationsAssignment_6_0() { return cOwnedOperationsAssignment_6_0; }
+		public Assignment getOwnedOperationsAssignment_7_0() { return cOwnedOperationsAssignment_7_0; }
 
 		//OperationCS
-		public RuleCall getOwnedOperationsOperationCSParserRuleCall_6_0_0() { return cOwnedOperationsOperationCSParserRuleCall_6_0_0; }
+		public RuleCall getOwnedOperationsOperationCSParserRuleCall_7_0_0() { return cOwnedOperationsOperationCSParserRuleCall_7_0_0; }
 
 		//ownedProperties+=LibPropertyCS
-		public Assignment getOwnedPropertiesAssignment_6_1() { return cOwnedPropertiesAssignment_6_1; }
+		public Assignment getOwnedPropertiesAssignment_7_1() { return cOwnedPropertiesAssignment_7_1; }
 
 		//LibPropertyCS
-		public RuleCall getOwnedPropertiesLibPropertyCSParserRuleCall_6_1_0() { return cOwnedPropertiesLibPropertyCSParserRuleCall_6_1_0; }
+		public RuleCall getOwnedPropertiesLibPropertyCSParserRuleCall_7_1_0() { return cOwnedPropertiesLibPropertyCSParserRuleCall_7_1_0; }
 
 		//ownedConstraints+=InvCS
-		public Assignment getOwnedConstraintsAssignment_6_2() { return cOwnedConstraintsAssignment_6_2; }
+		public Assignment getOwnedConstraintsAssignment_7_2() { return cOwnedConstraintsAssignment_7_2; }
 
 		//InvCS
-		public RuleCall getOwnedConstraintsInvCSParserRuleCall_6_2_0() { return cOwnedConstraintsInvCSParserRuleCall_6_2_0; }
+		public RuleCall getOwnedConstraintsInvCSParserRuleCall_7_2_0() { return cOwnedConstraintsInvCSParserRuleCall_7_2_0; }
 
 		//ownedAnnotations+=AnnotationElementCS
-		public Assignment getOwnedAnnotationsAssignment_6_3() { return cOwnedAnnotationsAssignment_6_3; }
+		public Assignment getOwnedAnnotationsAssignment_7_3() { return cOwnedAnnotationsAssignment_7_3; }
 
 		//AnnotationElementCS
-		public RuleCall getOwnedAnnotationsAnnotationElementCSParserRuleCall_6_3_0() { return cOwnedAnnotationsAnnotationElementCSParserRuleCall_6_3_0; }
+		public RuleCall getOwnedAnnotationsAnnotationElementCSParserRuleCall_7_3_0() { return cOwnedAnnotationsAnnotationElementCSParserRuleCall_7_3_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_7() { return cRightCurlyBracketKeyword_7; }
+		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
 	}
 
 	public class ClassCSElements extends AbstractParserRuleElementFinder {
@@ -2418,10 +2432,10 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	////|	'Lambda'
 	// //|	'Tuple'
 	// RestrictedKeywords:
-	//	"annotation" //|	'typeof'
-	// | "conformsTo" | "documentation" | "extends" | "import" | "inv" | "invalidating" |
-	//	"iteration" | "left" | "library" | "operation" | "package" | "post" | "pre" | "precedence" | "property" | "right" |
-	//	"static" | "type" | "validating";
+	//	"abstract" //|	'typeof'
+	// | "annotation" | "conformsTo" | "documentation" | "extends" | "import" | "inv" |
+	//	"invalidating" | "iteration" | "left" | "library" | "operation" | "package" | "post" | "pre" | "precedence" |
+	//	"property" | "right" | "static" | "type" | "validating";
 	public RestrictedKeywordsElements getRestrictedKeywordsAccess() {
 		return pRestrictedKeywords;
 	}
@@ -2502,9 +2516,10 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LibClassCS:
-	//	"type" name=AnyName ownedSignature=TemplateSignatureCS? (":" metaclassName=[MetaclassNameCS|AnyName])? ("conformsTo"
-	//	ownedSuperTypes+=TypedRefCS ("," ownedSuperTypes+=TypedRefCS)*)? "{" (ownedOperations+=OperationCS |
-	//	ownedProperties+=LibPropertyCS | ownedConstraints+=InvCS | ownedAnnotations+=AnnotationElementCS)* "}";
+	//	isAbstract?="abstract"? "type" name=AnyName ownedSignature=TemplateSignatureCS? (":"
+	//	metaclassName=[MetaclassNameCS|AnyName])? ("conformsTo" ownedSuperTypes+=TypedRefCS (","
+	//	ownedSuperTypes+=TypedRefCS)*)? "{" (ownedOperations+=OperationCS | ownedProperties+=LibPropertyCS |
+	//	ownedConstraints+=InvCS | ownedAnnotations+=AnnotationElementCS)* "}";
 	public LibClassCSElements getLibClassCSAccess() {
 		return pLibClassCS;
 	}

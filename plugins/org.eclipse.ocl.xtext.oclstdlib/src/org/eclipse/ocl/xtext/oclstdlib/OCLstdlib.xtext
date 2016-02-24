@@ -29,7 +29,8 @@ Identifier:
 ;
 
 RestrictedKeywords:
-	'annotation'
+	'abstract'
+|	'annotation'
 |	'conformsTo'
 |	'documentation'
 |	'extends'
@@ -92,7 +93,7 @@ AnnotationElementCS returns base::AnnotationElementCS:
 ;
 
 LibClassCS returns LibClassCS:
-	'type' name=AnyName
+	(isAbstract?='abstract')? 'type' name=AnyName
 	(ownedSignature=TemplateSignatureCS)?
 	(':' metaclassName=[MetaclassNameCS|AnyName])?
 	('conformsTo' ownedSuperTypes+=TypedRefCS (',' ownedSuperTypes+=TypedRefCS)*)?
