@@ -72,7 +72,9 @@ Workflow {
 			
 			
 			// the serialization component
-			fragment = serializer.SerializerFragment {}
+			fragment = serializer.SerializerFragment {
+				generateSupportForDeprecatedContextEObject = true
+			}
 			
 			// a custom ResourceFactory for use with EMF 
 			fragment = resourceFactory.ResourceFactoryFragment {
