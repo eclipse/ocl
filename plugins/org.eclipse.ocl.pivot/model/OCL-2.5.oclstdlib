@@ -302,7 +302,7 @@ Well-formedness rules
 	context Collection
 	inv: self->forAll(not oclIsInvalid())
 */
-type Collection(T) : CollectionType conformsTo OclAny {
+abstract type Collection(T) : CollectionType conformsTo OclAny {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='Collection');
 	/**
 	Returns any element in the e[source] collection for which e[body] evaluates to oclText[true].
@@ -1095,7 +1095,7 @@ The OrderedCollection type provides the shared functionality of the OrderedSet a
 collections for which the elements are ordered.
 The common supertype of OrderedCollection is Collection.
 **/
-type OrderedCollection(T) : CollectionType conformsTo Collection(T) {
+abstract type OrderedCollection(T) : CollectionType conformsTo Collection(T) {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='Collection');
 	/**
 	The i-th element of ordered collection.
@@ -1594,7 +1594,7 @@ The UniqueCollection type provides the shared functionality of the OrderedSet an
 collections for which the elements are unique.
 The common supertype of UniqueCollection is Collection.
 **/
-type UniqueCollection(T) : CollectionType conformsTo Collection(T) {
+abstract type UniqueCollection(T) : CollectionType conformsTo Collection(T) {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='Collection');
 	/**
 	Results in the ordered set containing all elements of the source collection.

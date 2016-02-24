@@ -786,7 +786,8 @@
       </ownedSignature>
     </ownedClasses>
     <ownedClasses xmi:id="T.ocl.Class" name="Class" superClasses="#T.ocl.OclAny"/>
-    <ownedClasses xsi:type="pivot:CollectionType" xmi:id="Collection" elementType="#t.ocl..CollectionT" name="Collection" superClasses="#T.ocl.OclAny">
+    <ownedClasses xsi:type="pivot:CollectionType" xmi:id="Collection" elementType="#t.ocl..CollectionT" isAbstract="true" name="Collection"
+        superClasses="#T.ocl.OclAny">
       <ownedAnnotations xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetails name="ClassGroup">
           <values>Collection</values>
@@ -1654,8 +1655,8 @@
         <ownedComments body="Returns oclText[null]."/>
       </ownedOperations>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:CollectionType" xmi:id="OrderedCollection" elementType="#t.ocl..OrderedCollectionT" name="OrderedCollection"
-        superClasses="#//@ownedPackages.1/@ownedClasses.65">
+    <ownedClasses xsi:type="pivot:CollectionType" xmi:id="OrderedCollection" elementType="#t.ocl..OrderedCollectionT" isAbstract="true"
+        name="OrderedCollection" superClasses="#//@ownedPackages.1/@ownedClasses.65">
       <ownedAnnotations xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetails name="ClassGroup">
           <values>Collection</values>
@@ -2155,8 +2156,8 @@
         <ownedParameters xmi:id="p0o.ocl.Type.conformsTo..ocl.Type" isRequired="false" name="type2" type="#T.ocl.Type"/>
       </ownedOperations>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:CollectionType" xmi:id="UniqueCollection" elementType="#t.ocl..UniqueCollectionT" name="UniqueCollection"
-        superClasses="#//@ownedPackages.1/@ownedClasses.84">
+    <ownedClasses xsi:type="pivot:CollectionType" xmi:id="UniqueCollection" elementType="#t.ocl..UniqueCollectionT" isAbstract="true"
+        name="UniqueCollection" superClasses="#//@ownedPackages.1/@ownedClasses.84">
       <ownedAnnotations xsi:type="pivot:Annotation" name="http://www.omg.org/ocl">
         <ownedDetails name="ClassGroup">
           <values>Collection</values>
