@@ -588,9 +588,11 @@ public class OCLstdlib extends ASResourceImpl
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Bag_T);
 			ownedClasses.add(type = _Collection_Collection_T);
+			type.setIsAbstract(true);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclAny);
 			ownedClasses.add(type = _OrderedCollection_OrderedCollection_T);
+			type.setIsAbstract(true);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_OrderedCollection_T);
 			ownedClasses.add(type = _OrderedSet_OrderedSet_T);
@@ -604,6 +606,7 @@ public class OCLstdlib extends ASResourceImpl
 			superClasses = type.getSuperClasses();
 			superClasses.add(_UniqueCollection_Set_T);
 			ownedClasses.add(type = _UniqueCollection_UniqueCollection_T);
+			type.setIsAbstract(true);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_UniqueCollection_T);
 		

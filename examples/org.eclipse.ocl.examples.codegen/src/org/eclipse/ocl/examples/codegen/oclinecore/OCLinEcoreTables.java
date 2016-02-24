@@ -164,6 +164,11 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 		else {
 			s.append("0");
 		}
+		if ((type instanceof org.eclipse.ocl.pivot.Class) && ((org.eclipse.ocl.pivot.Class)type).isIsAbstract()) {
+			s.append(" | ");
+			s.appendClassReference(ExecutorType.class);
+			s.append(".ABSTRACT");
+		}
 	}
 
 	protected void appendUpperName(@NonNull NamedElement namedElement) {

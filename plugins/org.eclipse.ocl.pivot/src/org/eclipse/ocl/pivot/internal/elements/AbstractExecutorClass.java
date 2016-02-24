@@ -139,7 +139,7 @@ public class AbstractExecutorClass extends AbstractExecutorType implements org.e
 
 	@Override
 	public boolean isIsAbstract() {
-		throw new UnsupportedOperationException();
+		return (flags & ABSTRACT) != 0;
 	}
 
 	@Override

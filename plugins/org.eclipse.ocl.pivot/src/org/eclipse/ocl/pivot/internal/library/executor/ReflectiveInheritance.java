@@ -33,10 +33,10 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
  */
 public abstract class ReflectiveInheritance extends AbstractExecutorClass
 {	
-	protected static int computeFlags(org.eclipse.ocl.pivot.@NonNull Class domainClass) {
+	protected static int computeFlags(org.eclipse.ocl.pivot.@NonNull Class asClass) {
 		int flags = 0;
-		if (domainClass instanceof CollectionType) {
-			CollectionType collectionType = (CollectionType)domainClass;
+		if (asClass instanceof CollectionType) {
+			CollectionType collectionType = (CollectionType)asClass;
 			if (collectionType.isOrdered()) {
 				flags |= ORDERED;
 			}
@@ -44,7 +44,7 @@ public abstract class ReflectiveInheritance extends AbstractExecutorClass
 				flags |= UNIQUE;
 			}
 		}
-		TypeId typeId = domainClass.getTypeId();
+		TypeId typeId = asClass.getTypeId();
 		if (typeId == TypeId.OCL_ANY){
 			flags |= OCL_ANY;
 		}
@@ -53,6 +53,9 @@ public abstract class ReflectiveInheritance extends AbstractExecutorClass
 		}
 		else if (typeId == TypeId.OCL_INVALID){
 			flags |= OCL_INVALID;
+		}
+		if (asClass.isIsAbstract()) {
+			flags |= ABSTRACT;
 		}
 		return flags;
 	}

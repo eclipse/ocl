@@ -190,6 +190,9 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 					ownedClasses = «pkge.getSymbolName()».getOwnedClasses();
 					«FOR type : ClassUtil.nullFree(pkge2classTypes.get(pkge))»
 						ownedClasses.add(type = «type.getSymbolName()»);
+						«IF type.isAbstract»
+						type.setIsAbstract(true);
+						«ENDIF»
 						«IF !(type instanceof AnyType)»
 							«type.emitSuperClasses("type")»
 						«ENDIF»
@@ -214,6 +217,9 @@ public abstract class GenerateOCLCommonXtend extends GenerateOCLCommon
 					ownedClasses = «pkge.getSymbolName()».getOwnedClasses();
 					«FOR type : ClassUtil.nullFree(pkge2collectionTypes.get(pkge))»
 						ownedClasses.add(type = «type.getSymbolName()»);
+						«IF type.isAbstract»
+						type.setIsAbstract(true);
+						«ENDIF»
 						«IF type.isNullFree»
 						type.setIsNullFree(true);
 						«ENDIF»
