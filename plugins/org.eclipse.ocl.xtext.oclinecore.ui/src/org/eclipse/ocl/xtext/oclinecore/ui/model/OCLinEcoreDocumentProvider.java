@@ -10,9 +10,8 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.oclinecore.ui.model;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +28,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
@@ -62,6 +62,7 @@ import org.eclipse.xtext.parsetree.reconstr.XtextSerializationException;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.model.XtextDocument;
 import org.eclipse.xtext.validation.IConcreteSyntaxValidator.InvalidConcreteSyntaxException;
+import org.xml.sax.InputSource;
 
 /**
  * OCLinEcoreDocumentProvider orchestrates the load and saving of optional XMI content
@@ -158,12 +159,11 @@ public class OCLinEcoreDocumentProvider extends BaseCSorASDocumentProvider
 	@Override
 	protected void setDocumentText(@NonNull XtextDocument document, @NonNull String sourceText) throws CoreException {
 		boolean reload = false;
-		ByteArrayInputStream inputStream = new ByteArrayInputStream(sourceText.getBytes());
 		@NonNull String displayText = sourceText;
 		try {
-			boolean isXML = isXML(inputStream);		
+			String xmlEncoding = URIConverter.ReadableInputStream.getEncoding(sourceText);
 			String persistAs = PERSIST_AS_OCLINECORE;
-			if (isXML) {
+			if (xmlEncoding != null) {
 				ResourceSet resourceSet = getEnvironmentFactory().getResourceSet();
 				StandaloneProjectMap projectMap = ProjectMap.getAdapter(resourceSet);
 				StandaloneProjectMap.IConflictHandler conflictHandler = StandaloneProjectMap.MapToFirstConflictHandlerWithLog.INSTANCE; //null; 			// FIXME
@@ -181,7 +181,7 @@ public class OCLinEcoreDocumentProvider extends BaseCSorASDocumentProvider
 					xmiResource.unload();
 					reload = true;
 				}
-				xmiResource.load(inputStream, null);
+				xmiResource.load(new InputSource(new StringReader(sourceText)), null);
 				EcoreUtil.resolveAll(resourceSet);
 				List<Resource.Diagnostic> allErrors = null;
 				for (Resource resource : resourceSet.getResources()) {
@@ -250,9 +250,9 @@ public class OCLinEcoreDocumentProvider extends BaseCSorASDocumentProvider
 				//		OCLinEcore CS resource with *.ecore URI, in URIResourceMap as *.ecore.oclinecore
 				//
 				csResource.updateFrom(asResource, getEnvironmentFactory());
-				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+				StringWriter writer = new StringWriter();
 				try {
-					csResource.save(outputStream, null);
+					csResource.save(new URIConverter.WriteableOutputStream(writer, xmlEncoding), null);
 				} catch (InvalidConcreteSyntaxException e) {
 					diagnoseErrors((XtextResource) csResource, e);
 				} catch (XtextSerializationException e) {
@@ -261,10 +261,10 @@ public class OCLinEcoreDocumentProvider extends BaseCSorASDocumentProvider
 				csResource.unload();
 				((BaseCSResource)csResource).dispose();
 				resourceSet.getResources().remove(csResource);
-				@SuppressWarnings("null")@NonNull String string = outputStream.toString();
+				@SuppressWarnings("null")@NonNull String string = writer.toString();
 				displayText = string;
 			}
-			else if (inputStream.available() == 0) {		// Empty document
+			else if (sourceText.length() <= 0) {		// Empty document
 				URI uri = ClassUtil.nonNullState(uriMap.get(document));
 				Resource.Factory factory = Resource.Factory.Registry.INSTANCE.getFactory(uri);
 				if (factory instanceof EcoreResourceFactoryImpl) {

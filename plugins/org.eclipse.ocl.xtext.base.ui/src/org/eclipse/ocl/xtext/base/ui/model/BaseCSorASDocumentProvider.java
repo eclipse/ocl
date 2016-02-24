@@ -11,11 +11,10 @@
 package org.eclipse.ocl.xtext.base.ui.model;
 
 import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,6 +32,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
@@ -57,6 +57,7 @@ import org.eclipse.xtext.parsetree.reconstr.XtextSerializationException;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.model.XtextDocument;
 import org.eclipse.xtext.validation.IConcreteSyntaxValidator.InvalidConcreteSyntaxException;
+import org.xml.sax.InputSource;
 
 /**
  * QVTimperativeDocumentProvider orchestrates the load and saving of optional XMI content
@@ -211,6 +212,10 @@ public abstract class BaseCSorASDocumentProvider extends BaseDocumentProvider
 		return super.isDeleted(element);
 	}
 
+	/**
+	 * @deprecated No longer used.
+	 */
+	@Deprecated
 	protected boolean isXML(@NonNull InputStream inputStream) throws IOException {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 		try {
@@ -239,12 +244,11 @@ public abstract class BaseCSorASDocumentProvider extends BaseDocumentProvider
 
 	@Override
 	protected void setDocumentText(@NonNull XtextDocument document, @NonNull String sourceText) throws CoreException {
-		final InputStream inputStream = new ByteArrayInputStream(sourceText.getBytes());
 		@NonNull String displayText = sourceText;
- 		try {
- 			boolean isXML = isXML(inputStream);		
+		try {
+			String xmlEncoding = URIConverter.ReadableInputStream.getEncoding(sourceText);
 			String persistAs = PERSIST_AS_TEXT;
-			if (isXML) {
+			if (xmlEncoding != null) {
 				ResourceSet asResourceSet = getOCL().getMetamodelManager().getASResourceSet();
 				StandaloneProjectMap projectMap = StandaloneProjectMap.getAdapter(asResourceSet);
 				StandaloneProjectMap.IConflictHandler conflictHandler = StandaloneProjectMap.MapToFirstConflictHandlerWithLog.INSTANCE; //null; 			// FIXME
@@ -261,7 +265,7 @@ public abstract class BaseCSorASDocumentProvider extends BaseDocumentProvider
 				else {
 					xmiResource.unload();
 				}
-				xmiResource.load(inputStream, null);
+				xmiResource.load(new InputSource(new StringReader(sourceText)), null);
 				EcoreUtil.resolveAll(asResourceSet);
 				List<Resource.Diagnostic> allErrors = null;
 				for (Resource resource : asResourceSet.getResources()) {
@@ -312,19 +316,19 @@ public abstract class BaseCSorASDocumentProvider extends BaseDocumentProvider
 				//		QVTimperative CS resource with *.ecore URI, in URIResourceMap as *.ecore.oclinecore
 				//
 				csResource.updateFrom(asResource, getOCL().getEnvironmentFactory());
-				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+				StringWriter writer = new StringWriter();
 				try {
-					csResource.save(outputStream, null);
+					csResource.save(new URIConverter.WriteableOutputStream(writer, xmlEncoding), null);
 				} catch (InvalidConcreteSyntaxException e) {
 					diagnoseErrors((XtextResource) csResource, e);
 				} catch (XtextSerializationException e) {
 					diagnoseErrors((XtextResource) csResource, e);
 				}
 				csResource.unload();
-				@SuppressWarnings("null")@NonNull String string = outputStream.toString();
+				@SuppressWarnings("null")@NonNull String string = writer.toString();
 				displayText = string;
 			}
-			else if (inputStream.available() == 0) {		// Empty document
+			else if (sourceText.length() <= 0) {		// Empty document
 				URI uri = ClassUtil.nonNullState(uriMap.get(document));
 				Resource.Factory factory = Resource.Factory.Registry.INSTANCE.getFactory(uri);
 				if (factory instanceof OCLASResourceFactory) {
