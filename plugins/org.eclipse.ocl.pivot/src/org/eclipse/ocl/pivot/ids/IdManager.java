@@ -208,6 +208,9 @@ public final class IdManager
      * Return the classId for aType.
      */
 	public static @NonNull ClassId getClassId(org.eclipse.ocl.pivot.@NonNull Class aType) {
+		if (aType.eIsProxy()) {
+			return getUnspecifiedTypeId(aType);		// FIXME This occurs for underspecified/wildcard types
+		}
 		String name = aType.getName();
 		assert name != null;
 		org.eclipse.ocl.pivot.Package parentPackage = aType.getOwningPackage();
