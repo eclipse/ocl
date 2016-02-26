@@ -11,15 +11,17 @@
 package org.eclipse.ocl.examples.build.utilities;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
+import org.eclipse.emf.mwe2.runtime.Mandatory;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.evaluation.tx.TransformationTechnology;
 import org.eclipse.ocl.pivot.evaluation.tx.TransformationTechnology.TransformationException;
@@ -29,39 +31,21 @@ import org.eclipse.ocl.pivot.utilities.XMIUtil;
 public  class GenerateCGedQVTiTransformation extends AbstractWorkflowComponent
 {
 	private final static @NonNull String BACKSLASH = "/";
-
-	protected static boolean isDefined(final String string) {
-		return (!Objects.equals(string, null));
-	}
 	
 	protected String projectName;
 	protected String oclFileURI;
+	protected List<String> extendedOclFileURIs = new ArrayList<String>();
 	protected ResourceSet resourceSet;
 	protected String javaFolder = "src-gen/";
 	protected String javaPackage = "";
-	protected String envClassName;
 	protected String lookupSolverClassName;
 	protected String lookupResultItfName;
 	protected String traceabilityPropName = "ast";
 	protected Map<?, ?> savingOptions;
 
 	public void checkConfiguration(final Issues issues) {
-		if (!isDefined(oclFileURI)) {
-			issues.addError(this, "OCL document URI not specified.");
-		}
-				
-		if (!isDefined(lookupSolverClassName)) {
-			issues.addError(this, "Fully qualified name of the Lookup Solver java class not specified");
-		}
-		
-		if (!isDefined(lookupResultItfName)) {
-			issues.addError(this, "Fully qualified name of the Lookup Result java interface not specified");
-		}
+		// No additional checking configuration
 	}
-	
-	 
-
-
 	
 	@Override
 	protected void invokeInternal(WorkflowContext ctx, ProgressMonitor monitor, Issues issues) {
@@ -74,14 +58,15 @@ public  class GenerateCGedQVTiTransformation extends AbstractWorkflowComponent
 			 * that already provides OCL2QVTiTransformationTechnology.
 			 */
 // FIXME	TransformationTechnology tx = OCL2QVTiTransformationTechnology.INSTANCE;
-			Map<String, Object> modelMap = new HashMap<String, Object>();
-			Map<String, Object> parametersMap = new HashMap<String, Object>();
+			Map<@NonNull String, Object> modelMap = new HashMap<@NonNull String, Object>();
+			Map<@NonNull String, Object> parametersMap = new HashMap<@NonNull String, Object>();
 			parametersMap.put("lookupSolverClassName", lookupSolverClassName);
 			parametersMap.put("lookupResultItfName", lookupResultItfName);
 			parametersMap.put("javaFolder", javaFolder);
 			parametersMap.put("javaPackage", javaPackage);
 			//
 			parametersMap.put("oclFileURI", oclFileURI);
+			parametersMap.put("extendedOclFileURIs", extendedOclFileURIs);
 			parametersMap.put("traceabilityPropName", traceabilityPropName);
 			//
 			tx.execute(ClassUtil.nonNullState(resourceSet), modelMap, parametersMap);
@@ -111,13 +96,22 @@ public  class GenerateCGedQVTiTransformation extends AbstractWorkflowComponent
 	/**
 	 * (Mandatory) The OCL document URI corresponding to the CS2AS description  
 	 */
+	@Mandatory
 	public void setOclDocURI(final String oclDocURI) {
 		this.oclFileURI = oclDocURI;
 	}
 	
 	/**
+	 * (Optional) The OCL document URI/s corresponding to the CS2AS decription
+	 * that the mandatory OCLDocURI extends. (default is an empty list)
+	 */
+	public void addExtendedOclDocURIs(final String extendedOclDocURI) {
+		this.extendedOclFileURIs.add(extendedOclDocURI);
+	}
+	/**
 	 * (Mandatory) The fully qualified class name of the Lookup Solver java class  
 	 */
+	@Mandatory
 	public void setLookupSolverClassName(final String visitorClassName) {
 		this.lookupSolverClassName = visitorClassName;
 	}
@@ -125,14 +119,15 @@ public  class GenerateCGedQVTiTransformation extends AbstractWorkflowComponent
 	/**
 	 * (Mandatory) The fully qualified interface name of the Lookup Result java class  
 	 */
+	@Mandatory
 	public void setLookupResultItfName(final String namedElementItfName) {
 		this.lookupResultItfName = namedElementItfName;
 	}
 	
 	/**
-	 * An optional ResourceSet that MWE components may share to reduce model
-	 * loading.
+	 * A mandatory ResourceSet
 	 */
+	@Mandatory
 	public void setResourceSet(final ResourceSet resourceSet) {
 		this.resourceSet = resourceSet;
 	}
@@ -151,6 +146,7 @@ public  class GenerateCGedQVTiTransformation extends AbstractWorkflowComponent
 	public void setTracePropertyName(final String tracePropName) {
 		this.traceabilityPropName = tracePropName;
 	}
+	
 	
 	
 }
