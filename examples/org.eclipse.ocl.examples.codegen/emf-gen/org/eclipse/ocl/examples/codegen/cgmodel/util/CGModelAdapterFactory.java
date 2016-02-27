@@ -251,6 +251,10 @@ public class CGModelAdapterFactory extends AdapterFactoryImpl {
 				return createCGIsInvalidExpAdapter();
 			}
 			@Override
+			public Adapter caseCGIsKindOfExp(CGIsKindOfExp object) {
+				return createCGIsKindOfExpAdapter();
+			}
+			@Override
 			public Adapter caseCGIsUndefinedExp(CGIsUndefinedExp object) {
 				return createCGIsUndefinedExpAdapter();
 			}
@@ -773,6 +777,20 @@ public class CGModelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCGIsInvalidExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.codegen.cgmodel.CGIsKindOfExp <em>CG Is Kind Of Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.codegen.cgmodel.CGIsKindOfExp
+	 * @generated
+	 */
+	public Adapter createCGIsKindOfExpAdapter() {
 		return null;
 	}
 

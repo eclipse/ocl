@@ -302,6 +302,15 @@ public interface CGModelFactory extends EFactory {
 	@NonNull CGIsInvalidExp createCGIsInvalidExp();
 
 	/**
+	 * Returns a new object of class '<em>CG Is Kind Of Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>CG Is Kind Of Exp</em>'.
+	 * @generated
+	 */
+	@NonNull CGIsKindOfExp createCGIsKindOfExp();
+
+	/**
 	 * Returns a new object of class '<em>CG Is Undefined Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

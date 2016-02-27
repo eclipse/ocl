@@ -162,6 +162,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cgmodel.ecore#//CGIsEqual2Exp/argument"/>
     </genClasses>
     <genClasses ecoreClass="cgmodel.ecore#//CGIsInvalidExp"/>
+    <genClasses ecoreClass="cgmodel.ecore#//CGIsKindOfExp">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cgmodel.ecore#//CGIsKindOfExp/executorType"/>
+    </genClasses>
     <genClasses ecoreClass="cgmodel.ecore#//CGIsUndefinedExp"/>
     <genClasses image="false" ecoreClass="cgmodel.ecore#//CGIterationCallExp">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cgmodel.ecore#//CGIterationCallExp/referredIteration"/>

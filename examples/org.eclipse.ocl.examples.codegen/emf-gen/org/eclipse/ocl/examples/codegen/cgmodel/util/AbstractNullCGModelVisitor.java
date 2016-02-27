@@ -250,6 +250,11 @@ public abstract class AbstractNullCGModelVisitor<@Nullable R, C>
 	}
 
 	@Override
+	public R visitCGIsKindOfExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGIsKindOfExp object) {
+		return null;
+	}
+
+	@Override
 	public R visitCGIsUndefinedExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGIsUndefinedExp object) {
 		return null;
 	}

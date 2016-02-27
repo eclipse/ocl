@@ -22,6 +22,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGInvalid;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsEqual2Exp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsEqualExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsInvalidExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGIsKindOfExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsUndefinedExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIterationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGLetExp;
@@ -218,6 +219,13 @@ public class AnalysisVisitor extends AbstractExtendingCGModelVisitor<Object, Cod
 		else if (cgSource.isNonInvalid()) {
 			context.setConstant(cgIsInvalidExp, context.getBoolean(false));
 		}
+		return null;
+	}
+
+	@Override
+	public Object visitCGIsKindOfExp(@NonNull CGIsKindOfExp object) {
+		super.visitCGIsKindOfExp(object);
+		// FIXME constant type conformance
 		return null;
 	}
 

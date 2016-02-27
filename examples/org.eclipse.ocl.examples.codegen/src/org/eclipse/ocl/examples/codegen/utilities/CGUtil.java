@@ -17,6 +17,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGClass;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGElement;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorType;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGModelFactory;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGParameter;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTypeId;
@@ -58,6 +59,13 @@ public class CGUtil
 			|| (elementId instanceof OclVoidTypeId)
 			|| (elementId instanceof TemplateParameterId);
 	}
+
+	public static @Nullable Boolean isKindOf(@NonNull CGValuedElement cgValue, @NonNull CGExecutorType executorType) {
+		CGTypeId referenceTypeId = executorType.getUnderlyingTypeId();
+		CGTypeId actualTypeId = cgValue.getTypeId();
+		return referenceTypeId == actualTypeId ? Boolean.TRUE : null;			// FIXME support conformance somehow
+	}
+
 
 	/**
 	 * Replace oldElement by newElement and return oldElement which is orphaned by the replacement.

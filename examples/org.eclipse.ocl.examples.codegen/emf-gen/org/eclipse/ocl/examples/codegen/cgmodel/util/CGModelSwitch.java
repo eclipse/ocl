@@ -596,6 +596,18 @@ public class CGModelSwitch<@Nullable T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case CGModelPackage.CG_IS_KIND_OF_EXP: {
+				CGIsKindOfExp cgIsKindOfExp = (CGIsKindOfExp)theEObject;
+				T result = caseCGIsKindOfExp(cgIsKindOfExp);
+				if (result == null) result = caseCGCallExp(cgIsKindOfExp);
+				if (result == null) result = caseCGValuedElement(cgIsKindOfExp);
+				if (result == null) result = caseCGTypedElement(cgIsKindOfExp);
+				if (result == null) result = caseCGNamedElement(cgIsKindOfExp);
+				if (result == null) result = caseCGElement(cgIsKindOfExp);
+				if (result == null) result = caseNameable(cgIsKindOfExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case CGModelPackage.CG_IS_UNDEFINED_EXP: {
 				CGIsUndefinedExp cgIsUndefinedExp = (CGIsUndefinedExp)theEObject;
 				T result = caseCGIsUndefinedExp(cgIsUndefinedExp);
@@ -1483,6 +1495,21 @@ public class CGModelSwitch<@Nullable T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseCGIsInvalidExp(CGIsInvalidExp object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>CG Is Kind Of Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>CG Is Kind Of Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCGIsKindOfExp(CGIsKindOfExp object) {
 		return null;
 	}
 

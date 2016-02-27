@@ -61,6 +61,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGInvalid;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsEqual2Exp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsEqualExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsInvalidExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGIsKindOfExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsUndefinedExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIterator;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGLetExp;
@@ -1131,7 +1132,7 @@ public abstract class CG2JavaVisitor<@NonNull CG extends JavaCodeGenerator> exte
 		js.append(" = ");
 		js.appendAtomicReferenceTo(requiredTypeDescriptor, source);
 		js.append(".");
-			js.append(operationAccessor);
+		js.append(operationAccessor);
 		js.append("(");
 		int iMax = Math.min(pParameters.size(), cgArguments.size());
 		for (int i = 0; i < iMax; i++) {
@@ -1645,6 +1646,24 @@ public abstract class CG2JavaVisitor<@NonNull CG extends JavaCodeGenerator> exte
 			js.appendValueName(cgSource);
 			js.append(" instanceof ");
 			js.appendClassReference(InvalidValueException.class);
+			js.append(";\n");
+		}
+		return true;
+	}
+
+	@Override
+	public @NonNull Boolean visitCGIsKindOfExp(@NonNull CGIsKindOfExp cgIsKindOfExp) {
+		CGValuedElement cgSource = getExpression(cgIsKindOfExp.getSource());
+		CGExecutorType cgType = cgIsKindOfExp.getExecutorType();
+		if (cgType != null) {
+			TypeId asTypeId = cgType.getASTypeId();
+			assert asTypeId != null;
+			TypeDescriptor typeDescriptor = context.getBoxedDescriptor(asTypeId);
+			js.appendDeclaration(cgIsKindOfExp);
+			js.append(" = ");
+			js.appendValueName(cgSource);
+			js.append(" instanceof ");
+			typeDescriptor.append(js, null);
 			js.append(";\n");
 		}
 		return true;

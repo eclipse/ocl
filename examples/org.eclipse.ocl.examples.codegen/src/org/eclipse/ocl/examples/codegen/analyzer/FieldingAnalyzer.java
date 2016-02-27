@@ -324,6 +324,13 @@ public class FieldingAnalyzer
 			return false;
 		}
 
+//		@Override
+//		public @NonNull Boolean visitCGIsKindOfExp(@NonNull CGIsKindOfExp cgElement) {
+//			rewriteAsCaught(cgElement.getSource());
+//			cgElement.setCaught(true);
+//			return false;
+//		}
+
 		@Override
 		public @NonNull Boolean visitCGIsUndefinedExp(@NonNull CGIsUndefinedExp cgElement) {
 			rewriteAsCaught(cgElement.getSource());

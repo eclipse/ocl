@@ -84,6 +84,7 @@ public interface CGModelVisitor<R>
 	R visitCGIsEqual2Exp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGIsEqual2Exp object);
 	R visitCGIsEqualExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGIsEqualExp object);
 	R visitCGIsInvalidExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGIsInvalidExp object);
+	R visitCGIsKindOfExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGIsKindOfExp object);
 	R visitCGIsUndefinedExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGIsUndefinedExp object);
 	R visitCGIterationCallExp(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGIterationCallExp object);
 	R visitCGIterator(org.eclipse.ocl.examples.codegen.cgmodel.@NonNull CGIterator object);

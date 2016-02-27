@@ -59,6 +59,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGInvalid;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsEqual2Exp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsEqualExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsInvalidExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGIsKindOfExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIsUndefinedExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIterationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIterator;
@@ -500,6 +501,9 @@ public class CGValuedElementModelSpec extends ModelSpec
 		}};
 		public static final @NonNull Con FALSE = new Con() { @Override public @NonNull String generateIsConstant(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
 			return "return false;";
+		}};
+		public static final @NonNull Con ISKND = new Con() { @Override public @NonNull String generateIsConstant(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
+			return "return source.isConstant();";
 		}};
 		public static final @NonNull Con MPART = new Con() { @Override public @NonNull String generateIsConstant(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
 			return "return key.isConstant() && value.isConstant();";
@@ -1404,6 +1408,17 @@ public interface Log {
 		}
 	};
 
+	public static final @NonNull Log ISKND = new Log() {
+		@Override public @NonNull String generateIsFalse(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
+			String cgUtilImport = ImportUtils.getAffixedName(CGUtil.class);
+			return "return (source != null) && (executorType != null) && (" + cgUtilImport + ".isKindOf(source, executorType) == Boolean.FALSE);";
+		}
+		@Override public @NonNull String generateIsTrue(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
+			String cgUtilImport = ImportUtils.getAffixedName(CGUtil.class);
+			return "return (source != null) && (executorType != null) && (" + cgUtilImport + ".isKindOf(source, executorType) == Boolean.TRUE);";
+		}
+	};
+
 	public static final @NonNull Log ISUND = new Log() {
 		@Override public @NonNull String generateIsFalse(@NonNull CGValuedElementModelSpec cgModelSpec, @NonNull GenModel genModel) {
 			return "return (source != null) && source.isNonInvalid() && source.isNonNull();";
@@ -2098,6 +2113,7 @@ public interface Log {
 		new CGValuedElementModelSpec(CGIsUndefinedExp.class, "source",				Box.ALL  , null     , Log.ISUND, Nul.NEVER, Inv.NEVER, null     , Inl.ISCON, null     , Ct.FALSE, Con.TORF , Val.DELVL, null     , null     , null     , null     , null     , null    );
 		new CGValuedElementModelSpec(CGIsEqualExp.class, null,						Box.ALL  , null     , Log.EQUAL, Nul.NEVER, Inv.EQUAL, null     , Inl.FALSE, null     , Ct.ROOT , Con.EQUAL, null     , null     , null     , null     , null     , null     , null    );
 		new CGValuedElementModelSpec(CGIsEqual2Exp.class, null,						Box.ALL  , null     , Log.EQUL2, Nul.NEVER, Inv.NEVER, null     , Inl.FALSE, null     , Ct.ROOT , Con.EQUAL, null     , null     , null     , null     , null     , null     , null    );
+		new CGValuedElementModelSpec(CGIsKindOfExp.class, null,						Box.ALL  , null     , Log.ISKND, Nul.NEVER, Inv.NEVER, null     , Inl.FALSE, null     , Ct.ROOT , Con.ISKND, null     , null     , null     , null     , null     , null     , null    );
 		new CGValuedElementModelSpec(CGThrowExp.class, "source",					Box.DELEG, null     , null     , null     , null     , null     , null     , null     , Ct.FALSE, null     , Val.DELNM, null     , null     , Ctl.THROW, null     , null     , null    );
 		new CGValuedElementModelSpec(CGUnboxExp.class, "source",					Box.UNBOX, null     , null     , null     , null     , null     , null     , null     , null    , Con.FALSE, Val.DELVL, null     , null     , null     , null     , null     , null    );
 
