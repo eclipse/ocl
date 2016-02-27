@@ -9,6 +9,7 @@ import org.eclipse.xtext.parser.antlr.AbstractInternalAntlrParser;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream.HiddenTokens;
 import org.eclipse.xtext.parser.antlr.AntlrDatatypeRuleToken;
+import org.eclipse.ocl.xtext.base.compatibility.XtextCompatibilityUtils;
 import org.eclipse.ocl.xtext.completeocl.services.CompleteOCLGrammarAccess;
 
 
@@ -20793,7 +20794,7 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
     static final char[] dfa_3 = DFA.unpackEncodedStringToUnsignedChars(dfa_3s);
     static final short[] dfa_4 = DFA.unpackEncodedString(dfa_4s);
     static final short[] dfa_5 = DFA.unpackEncodedString(dfa_5s);
-    static final short[][] dfa_6 = unpackEncodedStringArray(dfa_6s);
+    static final short[][] dfa_6 = XtextCompatibilityUtils.unpackEncodedStringArray(dfa_6s);
 
     class DFA10 extends DFA {
 
@@ -20849,7 +20850,7 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
     static final char[] dfa_9 = DFA.unpackEncodedStringToUnsignedChars(dfa_9s);
     static final short[] dfa_10 = DFA.unpackEncodedString(dfa_10s);
     static final short[] dfa_11 = DFA.unpackEncodedString(dfa_11s);
-    static final short[][] dfa_12 = unpackEncodedStringArray(dfa_12s);
+    static final short[][] dfa_12 = XtextCompatibilityUtils.unpackEncodedStringArray(dfa_12s);
 
     class DFA73 extends DFA {
 
@@ -21004,7 +21005,7 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
     static final char[] dfa_15 = DFA.unpackEncodedStringToUnsignedChars(dfa_15s);
     static final short[] dfa_16 = DFA.unpackEncodedString(dfa_16s);
     static final short[] dfa_17 = DFA.unpackEncodedString(dfa_17s);
-    static final short[][] dfa_18 = unpackEncodedStringArray(dfa_18s);
+    static final short[][] dfa_18 = XtextCompatibilityUtils.unpackEncodedStringArray(dfa_18s);
 
     class DFA76 extends DFA {
 
@@ -21111,7 +21112,7 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
     static final char[] dfa_20 = DFA.unpackEncodedStringToUnsignedChars(dfa_20s);
     static final short[] dfa_21 = DFA.unpackEncodedString(dfa_21s);
     static final short[] dfa_22 = DFA.unpackEncodedString(dfa_22s);
-    static final short[][] dfa_23 = unpackEncodedStringArray(dfa_23s);
+    static final short[][] dfa_23 = XtextCompatibilityUtils.unpackEncodedStringArray(dfa_23s);
 
     class DFA79 extends DFA {
 

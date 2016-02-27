@@ -86,8 +86,9 @@ import org.eclipse.ocl.xtext.oclstdlibcs.OCLstdlibCSPackage;
 import org.eclipse.ocl.xtext.oclstdlibcs.PrecedenceCS;
 import org.eclipse.xtext.Action;
 import org.eclipse.xtext.Parameter;
+//import org.eclipse.ocl.xtext.base.compatibility.Parameter;
 import org.eclipse.xtext.ParserRule;
-import org.eclipse.xtext.serializer.ISerializationContext;
+import org.eclipse.ocl.xtext.base.compatibility.ISerializationContext;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 
@@ -494,7 +495,7 @@ public abstract class AbstractOCLstdlibSemanticSequencer extends EssentialOCLSem
 				return; 
 			}
 		if (errorAcceptor != null)
-			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
+			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, getEObjectContext(context)));
 	}
 	
 	/**

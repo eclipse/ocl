@@ -31,19 +31,20 @@ import org.eclipse.ocl.xtext.markupcs.OCLTextElement;
 import org.eclipse.ocl.xtext.markupcs.TextElement;
 import org.eclipse.xtext.Action;
 import org.eclipse.xtext.Parameter;
+//import org.eclipse.ocl.xtext.base.compatibility.Parameter;
 import org.eclipse.xtext.ParserRule;
-import org.eclipse.xtext.serializer.ISerializationContext;
+import org.eclipse.ocl.xtext.base.compatibility.CompatibilityDelegatingSemanticSequencer;
+import org.eclipse.ocl.xtext.base.compatibility.ISerializationContext;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 
 @SuppressWarnings("all")
-public abstract class AbstractMarkupSemanticSequencer extends AbstractDelegatingSemanticSequencer {
+public abstract class AbstractMarkupSemanticSequencer extends CompatibilityDelegatingSemanticSequencer {
 
 	@Inject
 	private MarkupGrammarAccess grammarAccess;
 	
-	@Override
 	public void sequence(ISerializationContext context, EObject semanticObject) {
 		EPackage epackage = semanticObject.eClass().getEPackage();
 		ParserRule rule = context.getParserRule();
@@ -92,7 +93,7 @@ public abstract class AbstractMarkupSemanticSequencer extends AbstractDelegating
 				return; 
 			}
 		if (errorAcceptor != null)
-			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
+			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, getEObjectContext(context)));
 	}
 	
 	/**

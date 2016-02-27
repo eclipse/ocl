@@ -10,6 +10,7 @@ import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream.HiddenTokens;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.AbstractInternalContentAssistParser;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.DFA;
+import org.eclipse.ocl.xtext.base.compatibility.XtextCompatibilityUtils;
 import org.eclipse.ocl.xtext.essentialocl.services.EssentialOCLGrammarAccess;
 
 
@@ -37917,7 +37918,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
     static final char[] dfa_3 = DFA.unpackEncodedStringToUnsignedChars(dfa_3s);
     static final short[] dfa_4 = DFA.unpackEncodedString(dfa_4s);
     static final short[] dfa_5 = DFA.unpackEncodedString(dfa_5s);
-    static final short[][] dfa_6 = unpackEncodedStringArray(dfa_6s);
+    static final short[][] dfa_6 = XtextCompatibilityUtils.unpackEncodedStringArray(dfa_6s);
 
     class DFA15 extends DFA {
 
@@ -38067,7 +38068,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
     static final char[] dfa_9 = DFA.unpackEncodedStringToUnsignedChars(dfa_9s);
     static final short[] dfa_10 = DFA.unpackEncodedString(dfa_10s);
     static final short[] dfa_11 = DFA.unpackEncodedString(dfa_11s);
-    static final short[][] dfa_12 = unpackEncodedStringArray(dfa_12s);
+    static final short[][] dfa_12 = XtextCompatibilityUtils.unpackEncodedStringArray(dfa_12s);
 
     class DFA16 extends DFA {
 
@@ -38169,7 +38170,7 @@ public class InternalEssentialOCLParser extends AbstractInternalContentAssistPar
     static final char[] dfa_14 = DFA.unpackEncodedStringToUnsignedChars(dfa_14s);
     static final short[] dfa_15 = DFA.unpackEncodedString(dfa_15s);
     static final short[] dfa_16 = DFA.unpackEncodedString(dfa_16s);
-    static final short[][] dfa_17 = unpackEncodedStringArray(dfa_17s);
+    static final short[][] dfa_17 = XtextCompatibilityUtils.unpackEncodedStringArray(dfa_17s);
 
     class DFA19 extends DFA {
 

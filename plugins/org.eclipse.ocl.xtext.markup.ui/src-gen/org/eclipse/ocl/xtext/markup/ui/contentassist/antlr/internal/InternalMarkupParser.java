@@ -10,6 +10,7 @@ import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream.HiddenTokens;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.AbstractInternalContentAssistParser;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.DFA;
+import org.eclipse.ocl.xtext.base.compatibility.XtextCompatibilityUtils;
 import org.eclipse.ocl.xtext.markup.services.MarkupGrammarAccess;
 
 
@@ -9166,7 +9167,7 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
     static final char[] dfa_3 = DFA.unpackEncodedStringToUnsignedChars(dfa_3s);
     static final short[] dfa_4 = DFA.unpackEncodedString(dfa_4s);
     static final short[] dfa_5 = DFA.unpackEncodedString(dfa_5s);
-    static final short[][] dfa_6 = unpackEncodedStringArray(dfa_6s);
+    static final short[][] dfa_6 = XtextCompatibilityUtils.unpackEncodedStringArray(dfa_6s);
 
     class DFA3 extends DFA {
 
@@ -9371,7 +9372,7 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
     static final char[] dfa_10 = DFA.unpackEncodedStringToUnsignedChars(dfa_10s);
     static final short[] dfa_11 = DFA.unpackEncodedString(dfa_11s);
     static final short[] dfa_12 = DFA.unpackEncodedString(dfa_12s);
-    static final short[][] dfa_13 = unpackEncodedStringArray(dfa_13s);
+    static final short[][] dfa_13 = XtextCompatibilityUtils.unpackEncodedStringArray(dfa_13s);
 
     class DFA5 extends DFA {
 
