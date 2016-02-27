@@ -384,7 +384,10 @@ public class JavaStream
 	 */
 	//@Deprecated
 	public void appendClassReference(@NonNull TypeDescriptor typeDescriptor) {
-		typeDescriptor.append(this, null);
+		appendClassReference(null, typeDescriptor);
+	}
+	public void appendClassReference(@Nullable Boolean isRequired, @NonNull TypeDescriptor typeDescriptor) {
+		typeDescriptor.append(this, isRequired);
 	}
 
 	public void appendClassReference(@Nullable Class<?> javaClass, @NonNull Class<?>... typeParameters) {
