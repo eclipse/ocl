@@ -93,11 +93,11 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	private CompleteOCLGrammarAccess grammarAccess;
 	
 	@Override
-	public void sequence(ISerializationContext context, EObject semanticObject) {
+	public void createSequence(EObject context, EObject semanticObject) {
 		EPackage epackage = semanticObject.eClass().getEPackage();
-		ParserRule rule = context.getParserRule();
-		Action action = context.getAssignedAction();
-		Set<Parameter> parameters = context.getEnabledBooleanParameters();
+		EObject rule = context;
+		EObject action = context;
+//		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == BaseCSPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
 			case BaseCSPackage.CONSTRAINT_CS:
@@ -441,13 +441,13 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	 *         (ownedInvariants+=ConstraintCS | ownedDefinitions+=DefCS)+
 	 *     )
 	 */
-	protected void sequence_ClassifierContextDeclCS(ISerializationContext context, ClassifierContextDeclCS semanticObject) {
+	protected void sequence_ClassifierContextDeclCS(EObject context, ClassifierContextDeclCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_ClassifierContextDeclCS(EObject context, ClassifierContextDeclCS semanticObject) {
-		sequence_ClassifierContextDeclCS(createContext(context, semanticObject), semanticObject);
+	protected void sequence_ClassifierContextDeclCS2(EObject context, ClassifierContextDeclCS semanticObject) {
+		sequence_ClassifierContextDeclCS(context, semanticObject);
 	}
 	
 	/**
@@ -457,13 +457,13 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	 * Constraint:
 	 *     (ownedImports+=ImportCS+ | (ownedImports+=ImportCS+ (ownedPackages+=PackageDeclarationCS | ownedContexts+=ContextDeclCS)+))?
 	 */
-	protected void sequence_CompleteOCLDocumentCS(ISerializationContext context, CompleteOCLDocumentCS semanticObject) {
+	protected void sequence_CompleteOCLDocumentCS(EObject context, CompleteOCLDocumentCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_CompleteOCLDocumentCS(EObject context, CompleteOCLDocumentCS semanticObject) {
-		sequence_CompleteOCLDocumentCS(createContext(context, semanticObject), semanticObject);
+	protected void sequence_CompleteOCLDocumentCS2(EObject context, CompleteOCLDocumentCS semanticObject) {
+		sequence_CompleteOCLDocumentCS(context, semanticObject);
 	}
 	
 	/**
@@ -473,13 +473,13 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	 * Constraint:
 	 *     ((name=UnrestrictedName ownedMessageSpecification=SpecificationCS?)? ownedSpecification=SpecificationCS)
 	 */
-	protected void sequence_ConstraintCS(ISerializationContext context, ConstraintCS semanticObject) {
+	protected void sequence_ConstraintCS(EObject context, ConstraintCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_ConstraintCS(EObject context, ConstraintCS semanticObject) {
-		sequence_ConstraintCS(createContext(context, semanticObject), semanticObject);
+	protected void sequence_ConstraintCS2(EObject context, ConstraintCS semanticObject) {
+		sequence_ConstraintCS(context, semanticObject);
 	}
 	
 	/**
@@ -497,13 +497,13 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	 *         ownedSpecification=SpecificationCS
 	 *     )
 	 */
-	protected void sequence_DefOperationCS(ISerializationContext context, DefOperationCS semanticObject) {
+	protected void sequence_DefOperationCS(EObject context, DefOperationCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_DefOperationCS(EObject context, DefOperationCS semanticObject) {
-		sequence_DefOperationCS(createContext(context, semanticObject), semanticObject);
+	protected void sequence_DefOperationCS2(EObject context, DefOperationCS semanticObject) {
+		sequence_DefOperationCS(context, semanticObject);
 	}
 	
 	/**
@@ -513,22 +513,22 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	 * Constraint:
 	 *     (name=UnrestrictedName ownedType=TypeExpCS)
 	 */
-	protected void sequence_DefParameterCS(ISerializationContext context, ParameterCS semanticObject) {
+	protected void sequence_DefParameterCS(EObject context, ParameterCS semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, BaseCSPackage.Literals.NAMED_ELEMENT_CS__NAME) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BaseCSPackage.Literals.NAMED_ELEMENT_CS__NAME));
 			if (transientValues.isValueTransient(semanticObject, BaseCSPackage.Literals.TYPED_ELEMENT_CS__OWNED_TYPE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BaseCSPackage.Literals.TYPED_ELEMENT_CS__OWNED_TYPE));
 		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(createContext(context, semanticObject), semanticObject);
 		feeder.accept(grammarAccess.getDefParameterCSAccess().getNameUnrestrictedNameParserRuleCall_0_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getDefParameterCSAccess().getOwnedTypeTypeExpCSParserRuleCall_2_0(), semanticObject.getOwnedType());
 		feeder.finish();
 	}
 	
 	@Deprecated
-	protected void sequence_DefParameterCS(EObject context, ParameterCS semanticObject) {
-		sequence_DefParameterCS(createContext(context, semanticObject), semanticObject);
+	protected void sequence_DefParameterCS2(EObject context, ParameterCS semanticObject) {
+		sequence_DefParameterCS(context, semanticObject);
 	}
 	
 	/**
@@ -539,13 +539,13 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	 * Constraint:
 	 *     (isStatic?='static'? name=UnrestrictedName ownedType=TypeExpCS ownedSpecification=SpecificationCS)
 	 */
-	protected void sequence_DefPropertyCS(ISerializationContext context, DefPropertyCS semanticObject) {
+	protected void sequence_DefPropertyCS(EObject context, DefPropertyCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_DefPropertyCS(EObject context, DefPropertyCS semanticObject) {
-		sequence_DefPropertyCS(createContext(context, semanticObject), semanticObject);
+	protected void sequence_DefPropertyCS2(EObject context, DefPropertyCS semanticObject) {
+		sequence_DefPropertyCS(context, semanticObject);
 	}
 	
 	/**
@@ -555,13 +555,13 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	 * Constraint:
 	 *     (name=Identifier? ownedPathName=URIPathNameCS isAll?='::*'?)
 	 */
-	protected void sequence_ImportCS(ISerializationContext context, ImportCS semanticObject) {
+	protected void sequence_ImportCS(EObject context, ImportCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_ImportCS(EObject context, ImportCS semanticObject) {
-		sequence_ImportCS(createContext(context, semanticObject), semanticObject);
+	protected void sequence_ImportCS2(EObject context, ImportCS semanticObject) {
+		sequence_ImportCS(context, semanticObject);
 	}
 	
 	/**
@@ -571,13 +571,13 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	 * Constraint:
 	 *     {OCLMessageArgCS}
 	 */
-	protected void sequence_NavigatingArgExpCS(ISerializationContext context, OCLMessageArgCS semanticObject) {
+	protected void sequence_NavigatingArgExpCS(EObject context, OCLMessageArgCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_NavigatingArgExpCS(EObject context, OCLMessageArgCS semanticObject) {
-		sequence_NavigatingArgExpCS(createContext(context, semanticObject), semanticObject);
+	protected void sequence_NavigatingArgExpCS2(EObject context, OCLMessageArgCS semanticObject) {
+		sequence_NavigatingArgExpCS(context, semanticObject);
 	}
 	
 	/**
@@ -594,13 +594,13 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	 *         (ownedPreconditions+=ConstraintCS | ownedPostconditions+=ConstraintCS | ownedBodies+=SpecificationCS)*
 	 *     )
 	 */
-	protected void sequence_OperationContextDeclCS(ISerializationContext context, OperationContextDeclCS semanticObject) {
+	protected void sequence_OperationContextDeclCS(EObject context, OperationContextDeclCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_OperationContextDeclCS(EObject context, OperationContextDeclCS semanticObject) {
-		sequence_OperationContextDeclCS(createContext(context, semanticObject), semanticObject);
+	protected void sequence_OperationContextDeclCS2(EObject context, OperationContextDeclCS semanticObject) {
+		sequence_OperationContextDeclCS(context, semanticObject);
 	}
 	
 	/**
@@ -610,13 +610,13 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	 * Constraint:
 	 *     (ownedPathName=PathNameCS ownedInvariants+=ConstraintCS* ownedContexts+=ContextDeclCS*)
 	 */
-	protected void sequence_PackageDeclarationCS(ISerializationContext context, PackageDeclarationCS semanticObject) {
+	protected void sequence_PackageDeclarationCS(EObject context, PackageDeclarationCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_PackageDeclarationCS(EObject context, PackageDeclarationCS semanticObject) {
-		sequence_PackageDeclarationCS(createContext(context, semanticObject), semanticObject);
+	protected void sequence_PackageDeclarationCS2(EObject context, PackageDeclarationCS semanticObject) {
+		sequence_PackageDeclarationCS(context, semanticObject);
 	}
 	
 	/**
@@ -626,13 +626,13 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	 * Constraint:
 	 *     (name=UnrestrictedName? ownedType=TypeExpCS)
 	 */
-	protected void sequence_ParameterCS(ISerializationContext context, ParameterCS semanticObject) {
+	protected void sequence_ParameterCS(EObject context, ParameterCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_ParameterCS(EObject context, ParameterCS semanticObject) {
-		sequence_ParameterCS(createContext(context, semanticObject), semanticObject);
+	protected void sequence_ParameterCS2(EObject context, ParameterCS semanticObject) {
+		sequence_ParameterCS(context, semanticObject);
 	}
 	
 	/**
@@ -643,13 +643,13 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	 * Constraint:
 	 *     (ownedPathName=PathNameCS ownedType=TypeExpCS (ownedDerivedInvariants+=ConstraintCS | ownedDefaultExpressions+=SpecificationCS)*)
 	 */
-	protected void sequence_PropertyContextDeclCS(ISerializationContext context, PropertyContextDeclCS semanticObject) {
+	protected void sequence_PropertyContextDeclCS(EObject context, PropertyContextDeclCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_PropertyContextDeclCS(EObject context, PropertyContextDeclCS semanticObject) {
-		sequence_PropertyContextDeclCS(createContext(context, semanticObject), semanticObject);
+	protected void sequence_PropertyContextDeclCS2(EObject context, PropertyContextDeclCS semanticObject) {
+		sequence_PropertyContextDeclCS(context, semanticObject);
 	}
 	
 	/**
@@ -659,13 +659,13 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	 * Constraint:
 	 *     (ownedExpression=ExpCS | exprString=UNQUOTED_STRING)
 	 */
-	protected void sequence_SpecificationCS(ISerializationContext context, ExpSpecificationCS semanticObject) {
+	protected void sequence_SpecificationCS(EObject context, ExpSpecificationCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_SpecificationCS(EObject context, ExpSpecificationCS semanticObject) {
-		sequence_SpecificationCS(createContext(context, semanticObject), semanticObject);
+	protected void sequence_SpecificationCS2(EObject context, ExpSpecificationCS semanticObject) {
+		sequence_SpecificationCS(context, semanticObject);
 	}
 	
 	/**
@@ -675,13 +675,13 @@ public abstract class AbstractCompleteOCLSemanticSequencer extends EssentialOCLS
 	 * Constraint:
 	 *     ((ownedParameters+=TypeParameterCS ownedParameters+=TypeParameterCS*) | (ownedParameters+=TypeParameterCS ownedParameters+=TypeParameterCS*))
 	 */
-	protected void sequence_TemplateSignatureCS(ISerializationContext context, TemplateSignatureCS semanticObject) {
+	protected void sequence_TemplateSignatureCS(EObject context, TemplateSignatureCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_TemplateSignatureCS(EObject context, TemplateSignatureCS semanticObject) {
-		sequence_TemplateSignatureCS(createContext(context, semanticObject), semanticObject);
+	protected void sequence_TemplateSignatureCS2(EObject context, TemplateSignatureCS semanticObject) {
+		sequence_TemplateSignatureCS(context, semanticObject);
 	}
 	
 }

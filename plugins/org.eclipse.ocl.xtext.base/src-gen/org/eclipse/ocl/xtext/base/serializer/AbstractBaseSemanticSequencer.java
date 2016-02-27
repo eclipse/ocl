@@ -41,11 +41,11 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 	private BaseGrammarAccess grammarAccess;
 	
 	@Override
-	public void sequence(ISerializationContext context, EObject semanticObject) {
+	public void createSequence(EObject context, EObject semanticObject) {
 		EPackage epackage = semanticObject.eClass().getEPackage();
-		ParserRule rule = context.getParserRule();
-		Action action = context.getAssignedAction();
-		Set<Parameter> parameters = context.getEnabledBooleanParameters();
+		EObject rule = context;
+		EObject action = context;
+//		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == BaseCSPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
 			case BaseCSPackage.MULTIPLICITY_BOUNDS_CS:
@@ -111,19 +111,19 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 	 * Constraint:
 	 *     referredElement=[NamedElement|UnrestrictedName]
 	 */
-	protected void sequence_FirstPathElementCS(ISerializationContext context, PathElementCS semanticObject) {
+	protected void sequence_FirstPathElementCS(EObject context, PathElementCS semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, BaseCSPackage.Literals.PATH_ELEMENT_CS__REFERRED_ELEMENT) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BaseCSPackage.Literals.PATH_ELEMENT_CS__REFERRED_ELEMENT));
 		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(createContext(context, semanticObject), semanticObject);
 		feeder.accept(grammarAccess.getFirstPathElementCSAccess().getReferredElementNamedElementUnrestrictedNameParserRuleCall_0_1(), semanticObject.getReferredElement());
 		feeder.finish();
 	}
 	
 	@Deprecated
-	protected void sequence_FirstPathElementCS(EObject context, PathElementCS semanticObject) {
-		sequence_FirstPathElementCS(createContext(context, semanticObject), semanticObject);
+	protected void sequence_FirstPathElementCS2(EObject context, PathElementCS semanticObject) {
+		sequence_FirstPathElementCS(context, semanticObject);
 	}
 	
 	/**
@@ -133,13 +133,13 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 	 * Constraint:
 	 *     (lowerBound=LOWER upperBound=UPPER?)
 	 */
-	protected void sequence_MultiplicityBoundsCS(ISerializationContext context, MultiplicityBoundsCS semanticObject) {
+	protected void sequence_MultiplicityBoundsCS(EObject context, MultiplicityBoundsCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_MultiplicityBoundsCS(EObject context, MultiplicityBoundsCS semanticObject) {
-		sequence_MultiplicityBoundsCS(createContext(context, semanticObject), semanticObject);
+	protected void sequence_MultiplicityBoundsCS2(EObject context, MultiplicityBoundsCS semanticObject) {
+		sequence_MultiplicityBoundsCS(context, semanticObject);
 	}
 	
 	/**
@@ -149,13 +149,13 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 	 * Constraint:
 	 *     (lowerBound=LOWER upperBound=UPPER? isNullFree?='|1'?)
 	 */
-	protected void sequence_MultiplicityBoundsCS_MultiplicityCS(ISerializationContext context, MultiplicityBoundsCS semanticObject) {
+	protected void sequence_MultiplicityBoundsCS_MultiplicityCS(EObject context, MultiplicityBoundsCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_MultiplicityBoundsCS_MultiplicityCS(EObject context, MultiplicityBoundsCS semanticObject) {
-		sequence_MultiplicityBoundsCS_MultiplicityCS(createContext(context, semanticObject), semanticObject);
+	protected void sequence_MultiplicityBoundsCS_MultiplicityCS2(EObject context, MultiplicityBoundsCS semanticObject) {
+		sequence_MultiplicityBoundsCS_MultiplicityCS(context, semanticObject);
 	}
 	
 	/**
@@ -165,13 +165,13 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 	 * Constraint:
 	 *     ((stringBounds='*' | stringBounds='+' | stringBounds='?') isNullFree?='|1'?)
 	 */
-	protected void sequence_MultiplicityCS_MultiplicityStringCS(ISerializationContext context, MultiplicityStringCS semanticObject) {
+	protected void sequence_MultiplicityCS_MultiplicityStringCS(EObject context, MultiplicityStringCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_MultiplicityCS_MultiplicityStringCS(EObject context, MultiplicityStringCS semanticObject) {
-		sequence_MultiplicityCS_MultiplicityStringCS(createContext(context, semanticObject), semanticObject);
+	protected void sequence_MultiplicityCS_MultiplicityStringCS2(EObject context, MultiplicityStringCS semanticObject) {
+		sequence_MultiplicityCS_MultiplicityStringCS(context, semanticObject);
 	}
 	
 	/**
@@ -181,13 +181,13 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 	 * Constraint:
 	 *     (stringBounds='*' | stringBounds='+' | stringBounds='?')
 	 */
-	protected void sequence_MultiplicityStringCS(ISerializationContext context, MultiplicityStringCS semanticObject) {
+	protected void sequence_MultiplicityStringCS(EObject context, MultiplicityStringCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_MultiplicityStringCS(EObject context, MultiplicityStringCS semanticObject) {
-		sequence_MultiplicityStringCS(createContext(context, semanticObject), semanticObject);
+	protected void sequence_MultiplicityStringCS2(EObject context, MultiplicityStringCS semanticObject) {
+		sequence_MultiplicityStringCS(context, semanticObject);
 	}
 	
 	/**
@@ -197,19 +197,19 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 	 * Constraint:
 	 *     referredElement=[NamedElement|UnreservedName]
 	 */
-	protected void sequence_NextPathElementCS(ISerializationContext context, PathElementCS semanticObject) {
+	protected void sequence_NextPathElementCS(EObject context, PathElementCS semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, BaseCSPackage.Literals.PATH_ELEMENT_CS__REFERRED_ELEMENT) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BaseCSPackage.Literals.PATH_ELEMENT_CS__REFERRED_ELEMENT));
 		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(createContext(context, semanticObject), semanticObject);
 		feeder.accept(grammarAccess.getNextPathElementCSAccess().getReferredElementNamedElementUnreservedNameParserRuleCall_0_1(), semanticObject.getReferredElement());
 		feeder.finish();
 	}
 	
 	@Deprecated
-	protected void sequence_NextPathElementCS(EObject context, PathElementCS semanticObject) {
-		sequence_NextPathElementCS(createContext(context, semanticObject), semanticObject);
+	protected void sequence_NextPathElementCS2(EObject context, PathElementCS semanticObject) {
+		sequence_NextPathElementCS(context, semanticObject);
 	}
 	
 	/**
@@ -219,13 +219,13 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 	 * Constraint:
 	 *     (ownedPathElements+=FirstPathElementCS ownedPathElements+=NextPathElementCS*)
 	 */
-	protected void sequence_PathNameCS(ISerializationContext context, PathNameCS semanticObject) {
+	protected void sequence_PathNameCS(EObject context, PathNameCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_PathNameCS(EObject context, PathNameCS semanticObject) {
-		sequence_PathNameCS(createContext(context, semanticObject), semanticObject);
+	protected void sequence_PathNameCS2(EObject context, PathNameCS semanticObject) {
+		sequence_PathNameCS(context, semanticObject);
 	}
 	
 	/**
@@ -235,13 +235,13 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 	 * Constraint:
 	 *     (ownedSubstitutions+=TemplateParameterSubstitutionCS ownedSubstitutions+=TemplateParameterSubstitutionCS* ownedMultiplicity=MultiplicityCS?)
 	 */
-	protected void sequence_TemplateBindingCS(ISerializationContext context, TemplateBindingCS semanticObject) {
+	protected void sequence_TemplateBindingCS(EObject context, TemplateBindingCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_TemplateBindingCS(EObject context, TemplateBindingCS semanticObject) {
-		sequence_TemplateBindingCS(createContext(context, semanticObject), semanticObject);
+	protected void sequence_TemplateBindingCS2(EObject context, TemplateBindingCS semanticObject) {
+		sequence_TemplateBindingCS(context, semanticObject);
 	}
 	
 	/**
@@ -251,19 +251,19 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 	 * Constraint:
 	 *     ownedActualParameter=TypeRefCS
 	 */
-	protected void sequence_TemplateParameterSubstitutionCS(ISerializationContext context, TemplateParameterSubstitutionCS semanticObject) {
+	protected void sequence_TemplateParameterSubstitutionCS(EObject context, TemplateParameterSubstitutionCS semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, BaseCSPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION_CS__OWNED_ACTUAL_PARAMETER) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BaseCSPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION_CS__OWNED_ACTUAL_PARAMETER));
 		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(createContext(context, semanticObject), semanticObject);
 		feeder.accept(grammarAccess.getTemplateParameterSubstitutionCSAccess().getOwnedActualParameterTypeRefCSParserRuleCall_0(), semanticObject.getOwnedActualParameter());
 		feeder.finish();
 	}
 	
 	@Deprecated
-	protected void sequence_TemplateParameterSubstitutionCS(EObject context, TemplateParameterSubstitutionCS semanticObject) {
-		sequence_TemplateParameterSubstitutionCS(createContext(context, semanticObject), semanticObject);
+	protected void sequence_TemplateParameterSubstitutionCS2(EObject context, TemplateParameterSubstitutionCS semanticObject) {
+		sequence_TemplateParameterSubstitutionCS(context, semanticObject);
 	}
 	
 	/**
@@ -273,13 +273,13 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 	 * Constraint:
 	 *     (ownedParameters+=TypeParameterCS ownedParameters+=TypeParameterCS*)
 	 */
-	protected void sequence_TemplateSignatureCS(ISerializationContext context, TemplateSignatureCS semanticObject) {
+	protected void sequence_TemplateSignatureCS(EObject context, TemplateSignatureCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_TemplateSignatureCS(EObject context, TemplateSignatureCS semanticObject) {
-		sequence_TemplateSignatureCS(createContext(context, semanticObject), semanticObject);
+	protected void sequence_TemplateSignatureCS2(EObject context, TemplateSignatureCS semanticObject) {
+		sequence_TemplateSignatureCS(context, semanticObject);
 	}
 	
 	/**
@@ -289,13 +289,13 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 	 * Constraint:
 	 *     (name=UnrestrictedName (ownedExtends+=TypedRefCS ownedExtends+=TypedRefCS*)?)
 	 */
-	protected void sequence_TypeParameterCS(ISerializationContext context, TypeParameterCS semanticObject) {
+	protected void sequence_TypeParameterCS(EObject context, TypeParameterCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_TypeParameterCS(EObject context, TypeParameterCS semanticObject) {
-		sequence_TypeParameterCS(createContext(context, semanticObject), semanticObject);
+	protected void sequence_TypeParameterCS2(EObject context, TypeParameterCS semanticObject) {
+		sequence_TypeParameterCS(context, semanticObject);
 	}
 	
 	/**
@@ -307,13 +307,13 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 	 * Constraint:
 	 *     (ownedPathName=PathNameCS ownedBinding=TemplateBindingCS?)
 	 */
-	protected void sequence_TypedTypeRefCS(ISerializationContext context, TypedTypeRefCS semanticObject) {
+	protected void sequence_TypedTypeRefCS(EObject context, TypedTypeRefCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_TypedTypeRefCS(EObject context, TypedTypeRefCS semanticObject) {
-		sequence_TypedTypeRefCS(createContext(context, semanticObject), semanticObject);
+	protected void sequence_TypedTypeRefCS2(EObject context, TypedTypeRefCS semanticObject) {
+		sequence_TypedTypeRefCS(context, semanticObject);
 	}
 	
 	/**
@@ -324,13 +324,13 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 	 * Constraint:
 	 *     ownedExtends=TypedRefCS?
 	 */
-	protected void sequence_WildcardTypeRefCS(ISerializationContext context, WildcardTypeRefCS semanticObject) {
+	protected void sequence_WildcardTypeRefCS(EObject context, WildcardTypeRefCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_WildcardTypeRefCS(EObject context, WildcardTypeRefCS semanticObject) {
-		sequence_WildcardTypeRefCS(createContext(context, semanticObject), semanticObject);
+	protected void sequence_WildcardTypeRefCS2(EObject context, WildcardTypeRefCS semanticObject) {
+		sequence_WildcardTypeRefCS(context, semanticObject);
 	}
 	
 }
