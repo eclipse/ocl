@@ -489,7 +489,7 @@ public class JavaStream
 				s.append(className);
 			}
 			String resolvedClassName = s.toString();
-			if (isRequired == null) {
+			if ((isRequired == null) || !useNullAnnotations) {
 				append(resolvedClassName);
 			}
 			else {
