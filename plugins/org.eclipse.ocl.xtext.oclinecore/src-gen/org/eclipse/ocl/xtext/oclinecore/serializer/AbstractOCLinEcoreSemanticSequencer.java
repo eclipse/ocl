@@ -10,8 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.oclinecore.serializer;
 
-import com.google.inject.Inject;
-import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.ocl.xtext.basecs.AnnotationCS;
@@ -85,12 +83,10 @@ import org.eclipse.ocl.xtext.oclinecorecs.OCLinEcoreCSPackage;
 import org.eclipse.ocl.xtext.oclinecorecs.OCLinEcoreConstraintCS;
 import org.eclipse.ocl.xtext.oclinecorecs.SysMLCS;
 import org.eclipse.ocl.xtext.oclinecorecs.TopLevelCS;
-import org.eclipse.xtext.Action;
-import org.eclipse.xtext.Parameter;
-import org.eclipse.xtext.ParserRule;
-//import org.eclipse.xtext.serializer.ISerializationContext;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
+
+import com.google.inject.Inject;
 
 @SuppressWarnings("all")
 public abstract class AbstractOCLinEcoreSemanticSequencer extends EssentialOCLSemanticSequencer {

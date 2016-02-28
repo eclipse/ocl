@@ -10,8 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.oclstdlib.serializer;
 
-import com.google.inject.Inject;
-import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.ocl.xtext.basecs.AnnotationCS;
@@ -84,12 +82,10 @@ import org.eclipse.ocl.xtext.oclstdlibcs.LibPropertyCS;
 import org.eclipse.ocl.xtext.oclstdlibcs.LibRootPackageCS;
 import org.eclipse.ocl.xtext.oclstdlibcs.OCLstdlibCSPackage;
 import org.eclipse.ocl.xtext.oclstdlibcs.PrecedenceCS;
-import org.eclipse.xtext.Action;
-import org.eclipse.xtext.Parameter;
-import org.eclipse.xtext.ParserRule;
-import org.eclipse.xtext.serializer.ISerializationContext;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
+
+import com.google.inject.Inject;
 
 @SuppressWarnings("all")
 public abstract class AbstractOCLstdlibSemanticSequencer extends EssentialOCLSemanticSequencer {
@@ -888,13 +884,13 @@ public abstract class AbstractOCLstdlibSemanticSequencer extends EssentialOCLSem
 	 * Constraint:
 	 *     ((ownedImports+=ImportCS+ ownedPackages+=LibPackageCS+) | ownedPackages+=LibPackageCS+)?
 	 */
-	protected void sequence_Library(ISerializationContext context, LibRootPackageCS semanticObject) {
+	protected void sequence_Library(EObject context, LibRootPackageCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_Library(EObject context, LibRootPackageCS semanticObject) {
-		sequence_Library(createContext(context, semanticObject), semanticObject);
+	protected void sequence_Library2(EObject context, LibRootPackageCS semanticObject) {
+		sequence_Library(context, semanticObject);
 	}
 	
 	/**

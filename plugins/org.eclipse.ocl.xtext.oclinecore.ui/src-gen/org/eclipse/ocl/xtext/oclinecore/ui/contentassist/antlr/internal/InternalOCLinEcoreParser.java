@@ -10,6 +10,7 @@ import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream.HiddenTokens;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.AbstractInternalContentAssistParser;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.DFA;
+import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.xtext.oclinecore.services.OCLinEcoreGrammarAccess;
 
 
@@ -82201,7 +82202,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalContentAssistParse
     static final char[] dfa_3 = DFA.unpackEncodedStringToUnsignedChars(dfa_3s);
     static final short[] dfa_4 = DFA.unpackEncodedString(dfa_4s);
     static final short[] dfa_5 = DFA.unpackEncodedString(dfa_5s);
-    static final short[][] dfa_6 = unpackEncodedStringArray(dfa_6s);
+    static final short[][] dfa_6 = ElementUtil.unpackEncodedStringArray(dfa_6s);
 
     class DFA24 extends DFA {
 
@@ -82281,7 +82282,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalContentAssistParse
     static final char[] dfa_10 = DFA.unpackEncodedStringToUnsignedChars(dfa_10s);
     static final short[] dfa_11 = DFA.unpackEncodedString(dfa_11s);
     static final short[] dfa_12 = DFA.unpackEncodedString(dfa_12s);
-    static final short[][] dfa_13 = unpackEncodedStringArray(dfa_13s);
+    static final short[][] dfa_13 = ElementUtil.unpackEncodedStringArray(dfa_13s);
 
     class DFA53 extends DFA {
 
@@ -82348,7 +82349,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalContentAssistParse
             "\1\1\1\uffff\21\1\21\uffff\1\1\1\uffff\1\55\3\1\1\uffff\1\1\7\uffff\1\1\27\uffff\1\1",
             ""
     };
-    static final short[][] dfa_14 = unpackEncodedStringArray(dfa_14s);
+    static final short[][] dfa_14 = ElementUtil.unpackEncodedStringArray(dfa_14s);
 
     class DFA54 extends DFA {
 
@@ -82440,7 +82441,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalContentAssistParse
     static final char[] dfa_17 = DFA.unpackEncodedStringToUnsignedChars(dfa_17s);
     static final short[] dfa_18 = DFA.unpackEncodedString(dfa_18s);
     static final short[] dfa_19 = DFA.unpackEncodedString(dfa_19s);
-    static final short[][] dfa_20 = unpackEncodedStringArray(dfa_20s);
+    static final short[][] dfa_20 = ElementUtil.unpackEncodedStringArray(dfa_20s);
 
     class DFA58 extends DFA {
 
@@ -82631,7 +82632,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalContentAssistParse
     static final char[] dfa_23 = DFA.unpackEncodedStringToUnsignedChars(dfa_23s);
     static final short[] dfa_24 = DFA.unpackEncodedString(dfa_24s);
     static final short[] dfa_25 = DFA.unpackEncodedString(dfa_25s);
-    static final short[][] dfa_26 = unpackEncodedStringArray(dfa_26s);
+    static final short[][] dfa_26 = ElementUtil.unpackEncodedStringArray(dfa_26s);
 
     class DFA59 extends DFA {
 
@@ -82774,7 +82775,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalContentAssistParse
     static final char[] dfa_28 = DFA.unpackEncodedStringToUnsignedChars(dfa_28s);
     static final short[] dfa_29 = DFA.unpackEncodedString(dfa_29s);
     static final short[] dfa_30 = DFA.unpackEncodedString(dfa_30s);
-    static final short[][] dfa_31 = unpackEncodedStringArray(dfa_31s);
+    static final short[][] dfa_31 = ElementUtil.unpackEncodedStringArray(dfa_31s);
 
     class DFA62 extends DFA {
 
@@ -82957,7 +82958,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalContentAssistParse
             "\1\1\1\uffff\21\1\21\uffff\1\1\1\uffff\1\55\1\uffff\1\1\2\uffff\1\1\7\uffff\1\1\3\uffff\1\1\23\uffff\1\1",
             ""
     };
-    static final short[][] dfa_32 = unpackEncodedStringArray(dfa_32s);
+    static final short[][] dfa_32 = ElementUtil.unpackEncodedStringArray(dfa_32s);
 
     class DFA68 extends DFA {
 
@@ -83030,7 +83031,7 @@ public class InternalOCLinEcoreParser extends AbstractInternalContentAssistParse
     static final char[] dfa_33 = DFA.unpackEncodedStringToUnsignedChars(dfa_33s);
     static final char[] dfa_34 = DFA.unpackEncodedStringToUnsignedChars(dfa_34s);
     static final short[] dfa_35 = DFA.unpackEncodedString(dfa_35s);
-    static final short[][] dfa_36 = unpackEncodedStringArray(dfa_36s);
+    static final short[][] dfa_36 = ElementUtil.unpackEncodedStringArray(dfa_36s);
 
     class DFA123 extends DFA {
 
@@ -83180,6 +83181,4 @@ public class InternalOCLinEcoreParser extends AbstractInternalContentAssistParse
         public static final BitSet FOLLOW_125 = new BitSet(new long[]{0x0000000000000000L,0x0200000000000000L});
         public static final BitSet FOLLOW_126 = new BitSet(new long[]{0x0000000000000002L,0x0200000000000000L});
     }
-
-
 }

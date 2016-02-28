@@ -14,6 +14,7 @@ import com.google.inject.Inject;
 import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.ocl.xtext.base.services.BaseGrammarAccess;
 import org.eclipse.ocl.xtext.markup.services.MarkupGrammarAccess;
 import org.eclipse.ocl.xtext.markupcs.BulletElement;
 import org.eclipse.ocl.xtext.markupcs.FigureElement;
@@ -30,9 +31,9 @@ import org.eclipse.ocl.xtext.markupcs.OCLEvalElement;
 import org.eclipse.ocl.xtext.markupcs.OCLTextElement;
 import org.eclipse.ocl.xtext.markupcs.TextElement;
 import org.eclipse.xtext.Action;
-import org.eclipse.xtext.Parameter;
+//import org.eclipse.xtext.Parameter;
 import org.eclipse.xtext.ParserRule;
-import org.eclipse.xtext.serializer.ISerializationContext;
+//import org.eclipse.xtext.serializer.ISerializationContext;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
@@ -43,12 +44,21 @@ public abstract class AbstractMarkupSemanticSequencer extends AbstractDelegating
 	@Inject
 	private MarkupGrammarAccess grammarAccess;
 	
+	protected EObject createContext(EObject context, EObject semanticObject) {
+		return context;
+	}
+	
+	protected SequenceFeeder createSequencerFeeder(EObject createContext, EObject semanticObject) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	@Override
-	public void sequence(ISerializationContext context, EObject semanticObject) {
+	public void createSequence(EObject context, EObject semanticObject) {
 		EPackage epackage = semanticObject.eClass().getEPackage();
-		ParserRule rule = context.getParserRule();
-		Action action = context.getAssignedAction();
-		Set<Parameter> parameters = context.getEnabledBooleanParameters();
+		EObject rule = context;
+		EObject action = context;
+//		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == MarkupPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
 			case MarkupPackage.BULLET_ELEMENT:
@@ -103,13 +113,13 @@ public abstract class AbstractMarkupSemanticSequencer extends AbstractDelegating
 	 * Constraint:
 	 *     (level=INT? elements+=MarkupElement*)
 	 */
-	protected void sequence_BulletElement(ISerializationContext context, BulletElement semanticObject) {
+	protected void sequence_BulletElement(EObject context, BulletElement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_BulletElement(EObject context, BulletElement semanticObject) {
-		sequence_BulletElement(createContext(context, semanticObject), semanticObject);
+	protected void sequence_BulletElement2(EObject context, BulletElement semanticObject) {
+		sequence_BulletElement(context, semanticObject);
 	}
 	
 	/**
@@ -120,13 +130,13 @@ public abstract class AbstractMarkupSemanticSequencer extends AbstractDelegating
 	 * Constraint:
 	 *     (def=ID? src=STRING (alt=STRING (requiredWidth=INT requiredHeight=INT?)?)?)
 	 */
-	protected void sequence_FigureElement(ISerializationContext context, FigureElement semanticObject) {
+	protected void sequence_FigureElement(EObject context, FigureElement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_FigureElement(EObject context, FigureElement semanticObject) {
-		sequence_FigureElement(createContext(context, semanticObject), semanticObject);
+	protected void sequence_FigureElement2(EObject context, FigureElement semanticObject) {
+		sequence_FigureElement(context, semanticObject);
 	}
 	
 	/**
@@ -137,19 +147,19 @@ public abstract class AbstractMarkupSemanticSequencer extends AbstractDelegating
 	 * Constraint:
 	 *     ref=[FigureElement|ID]
 	 */
-	protected void sequence_FigureRefElement(ISerializationContext context, FigureRefElement semanticObject) {
+	protected void sequence_FigureRefElement(EObject context, FigureRefElement semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, MarkupPackage.Literals.FIGURE_REF_ELEMENT__REF) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MarkupPackage.Literals.FIGURE_REF_ELEMENT__REF));
 		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(createContext(context, semanticObject), semanticObject);
 		feeder.accept(grammarAccess.getFigureRefElementAccess().getRefFigureElementIDTerminalRuleCall_2_0_1(), semanticObject.getRef());
 		feeder.finish();
 	}
 	
 	@Deprecated
-	protected void sequence_FigureRefElement(EObject context, FigureRefElement semanticObject) {
-		sequence_FigureRefElement(createContext(context, semanticObject), semanticObject);
+	protected void sequence_FigureRefElement2(EObject context, FigureRefElement semanticObject) {
+		sequence_FigureRefElement(context, semanticObject);
 	}
 	
 	/**
@@ -160,13 +170,13 @@ public abstract class AbstractMarkupSemanticSequencer extends AbstractDelegating
 	 * Constraint:
 	 *     ((font='b' | font='e') elements+=MarkupElement*)
 	 */
-	protected void sequence_FontElement(ISerializationContext context, FontElement semanticObject) {
+	protected void sequence_FontElement(EObject context, FontElement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_FontElement(EObject context, FontElement semanticObject) {
-		sequence_FontElement(createContext(context, semanticObject), semanticObject);
+	protected void sequence_FontElement2(EObject context, FontElement semanticObject) {
+		sequence_FontElement(context, semanticObject);
 	}
 	
 	/**
@@ -177,13 +187,13 @@ public abstract class AbstractMarkupSemanticSequencer extends AbstractDelegating
 	 * Constraint:
 	 *     elements+=MarkupElement*
 	 */
-	protected void sequence_FootnoteElement(ISerializationContext context, FootnoteElement semanticObject) {
+	protected void sequence_FootnoteElement(EObject context, FootnoteElement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_FootnoteElement(EObject context, FootnoteElement semanticObject) {
-		sequence_FootnoteElement(createContext(context, semanticObject), semanticObject);
+	protected void sequence_FootnoteElement2(EObject context, FootnoteElement semanticObject) {
+		sequence_FootnoteElement(context, semanticObject);
 	}
 	
 	/**
@@ -194,13 +204,13 @@ public abstract class AbstractMarkupSemanticSequencer extends AbstractDelegating
 	 * Constraint:
 	 *     (level=INT? elements+=MarkupElement*)
 	 */
-	protected void sequence_HeadingElement(ISerializationContext context, HeadingElement semanticObject) {
+	protected void sequence_HeadingElement(EObject context, HeadingElement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_HeadingElement(EObject context, HeadingElement semanticObject) {
-		sequence_HeadingElement(createContext(context, semanticObject), semanticObject);
+	protected void sequence_HeadingElement2(EObject context, HeadingElement semanticObject) {
+		sequence_HeadingElement(context, semanticObject);
 	}
 	
 	/**
@@ -210,13 +220,13 @@ public abstract class AbstractMarkupSemanticSequencer extends AbstractDelegating
 	 * Constraint:
 	 *     elements+=MarkupElement+
 	 */
-	protected void sequence_Markup(ISerializationContext context, Markup semanticObject) {
+	protected void sequence_Markup(EObject context, Markup semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_Markup(EObject context, Markup semanticObject) {
-		sequence_Markup(createContext(context, semanticObject), semanticObject);
+	protected void sequence_Markup2(EObject context, Markup semanticObject) {
+		sequence_Markup(context, semanticObject);
 	}
 	
 	/**
@@ -227,19 +237,19 @@ public abstract class AbstractMarkupSemanticSequencer extends AbstractDelegating
 	 * Constraint:
 	 *     text=NL
 	 */
-	protected void sequence_NewLineElement(ISerializationContext context, NewLineElement semanticObject) {
+	protected void sequence_NewLineElement(EObject context, NewLineElement semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, MarkupPackage.Literals.NEW_LINE_ELEMENT__TEXT) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MarkupPackage.Literals.NEW_LINE_ELEMENT__TEXT));
 		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(createContext(context, semanticObject), semanticObject);
 		feeder.accept(grammarAccess.getNewLineElementAccess().getTextNLTerminalRuleCall_0(), semanticObject.getText());
 		feeder.finish();
 	}
 	
 	@Deprecated
-	protected void sequence_NewLineElement(EObject context, NewLineElement semanticObject) {
-		sequence_NewLineElement(createContext(context, semanticObject), semanticObject);
+	protected void sequence_NewLineElement2(EObject context, NewLineElement semanticObject) {
+		sequence_NewLineElement(context, semanticObject);
 	}
 	
 	/**
@@ -250,13 +260,13 @@ public abstract class AbstractMarkupSemanticSequencer extends AbstractDelegating
 	 * Constraint:
 	 *     elements+=MarkupElement*
 	 */
-	protected void sequence_NullElement(ISerializationContext context, NullElement semanticObject) {
+	protected void sequence_NullElement(EObject context, NullElement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_NullElement(EObject context, NullElement semanticObject) {
-		sequence_NullElement(createContext(context, semanticObject), semanticObject);
+	protected void sequence_NullElement2(EObject context, NullElement semanticObject) {
+		sequence_NullElement(context, semanticObject);
 	}
 	
 	/**
@@ -267,13 +277,13 @@ public abstract class AbstractMarkupSemanticSequencer extends AbstractDelegating
 	 * Constraint:
 	 *     elements+=MarkupElement*
 	 */
-	protected void sequence_OCLCodeElement(ISerializationContext context, OCLCodeElement semanticObject) {
+	protected void sequence_OCLCodeElement(EObject context, OCLCodeElement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_OCLCodeElement(EObject context, OCLCodeElement semanticObject) {
-		sequence_OCLCodeElement(createContext(context, semanticObject), semanticObject);
+	protected void sequence_OCLCodeElement2(EObject context, OCLCodeElement semanticObject) {
+		sequence_OCLCodeElement(context, semanticObject);
 	}
 	
 	/**
@@ -284,13 +294,13 @@ public abstract class AbstractMarkupSemanticSequencer extends AbstractDelegating
 	 * Constraint:
 	 *     elements+=MarkupElement*
 	 */
-	protected void sequence_OCLEvalElement(ISerializationContext context, OCLEvalElement semanticObject) {
+	protected void sequence_OCLEvalElement(EObject context, OCLEvalElement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_OCLEvalElement(EObject context, OCLEvalElement semanticObject) {
-		sequence_OCLEvalElement(createContext(context, semanticObject), semanticObject);
+	protected void sequence_OCLEvalElement2(EObject context, OCLEvalElement semanticObject) {
+		sequence_OCLEvalElement(context, semanticObject);
 	}
 	
 	/**
@@ -301,13 +311,13 @@ public abstract class AbstractMarkupSemanticSequencer extends AbstractDelegating
 	 * Constraint:
 	 *     elements+=MarkupElement*
 	 */
-	protected void sequence_OCLTextElement(ISerializationContext context, OCLTextElement semanticObject) {
+	protected void sequence_OCLTextElement(EObject context, OCLTextElement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_OCLTextElement(EObject context, OCLTextElement semanticObject) {
-		sequence_OCLTextElement(createContext(context, semanticObject), semanticObject);
+	protected void sequence_OCLTextElement2(EObject context, OCLTextElement semanticObject) {
+		sequence_OCLTextElement(context, semanticObject);
 	}
 	
 	/**
@@ -329,13 +339,13 @@ public abstract class AbstractMarkupSemanticSequencer extends AbstractDelegating
 	 *         text+=MarkupKeyword
 	 *     )
 	 */
-	protected void sequence_TextElement(ISerializationContext context, TextElement semanticObject) {
+	protected void sequence_TextElement(EObject context, TextElement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	@Deprecated
-	protected void sequence_TextElement(EObject context, TextElement semanticObject) {
-		sequence_TextElement(createContext(context, semanticObject), semanticObject);
+	protected void sequence_TextElement2(EObject context, TextElement semanticObject) {
+		sequence_TextElement(context, semanticObject);
 	}
 	
 }

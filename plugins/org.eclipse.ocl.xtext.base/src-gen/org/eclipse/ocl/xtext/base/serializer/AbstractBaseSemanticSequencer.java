@@ -27,9 +27,9 @@ import org.eclipse.ocl.xtext.basecs.TypeParameterCS;
 import org.eclipse.ocl.xtext.basecs.TypedTypeRefCS;
 import org.eclipse.ocl.xtext.basecs.WildcardTypeRefCS;
 import org.eclipse.xtext.Action;
-import org.eclipse.xtext.Parameter;
+//import org.eclipse.xtext.Parameter;
 import org.eclipse.xtext.ParserRule;
-import org.eclipse.xtext.serializer.ISerializationContext;
+//import org.eclipse.xtext.serializer.ISerializationContext;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
@@ -39,6 +39,15 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 
 	@Inject
 	private BaseGrammarAccess grammarAccess;
+	
+	protected EObject createContext(EObject context, EObject semanticObject) {
+		return context;
+	}
+	
+	protected SequenceFeeder createSequencerFeeder(EObject createContext, EObject semanticObject) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	@Override
 	public void createSequence(EObject context, EObject semanticObject) {
@@ -120,7 +129,7 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 		feeder.accept(grammarAccess.getFirstPathElementCSAccess().getReferredElementNamedElementUnrestrictedNameParserRuleCall_0_1(), semanticObject.getReferredElement());
 		feeder.finish();
 	}
-	
+
 	@Deprecated
 	protected void sequence_FirstPathElementCS2(EObject context, PathElementCS semanticObject) {
 		sequence_FirstPathElementCS(context, semanticObject);
@@ -260,7 +269,7 @@ public abstract class AbstractBaseSemanticSequencer extends AbstractDelegatingSe
 		feeder.accept(grammarAccess.getTemplateParameterSubstitutionCSAccess().getOwnedActualParameterTypeRefCSParserRuleCall_0(), semanticObject.getOwnedActualParameter());
 		feeder.finish();
 	}
-	
+
 	@Deprecated
 	protected void sequence_TemplateParameterSubstitutionCS2(EObject context, TemplateParameterSubstitutionCS semanticObject) {
 		sequence_TemplateParameterSubstitutionCS(context, semanticObject);

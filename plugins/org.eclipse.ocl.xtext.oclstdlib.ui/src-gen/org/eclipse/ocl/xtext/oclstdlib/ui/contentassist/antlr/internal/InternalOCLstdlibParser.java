@@ -1,25 +1,17 @@
 package org.eclipse.ocl.xtext.oclstdlib.ui.contentassist.antlr.internal; 
 
-import java.io.InputStream;
-import org.eclipse.xtext.*;
-import org.eclipse.xtext.parser.*;
-import org.eclipse.xtext.parser.impl.*;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.parser.antlr.XtextTokenStream;
-import org.eclipse.xtext.parser.antlr.XtextTokenStream.HiddenTokens;
+import org.antlr.runtime.BaseRecognizer;
+import org.antlr.runtime.BitSet;
+import org.antlr.runtime.IntStream;
+import org.antlr.runtime.NoViableAltException;
+import org.antlr.runtime.RecognitionException;
+import org.antlr.runtime.RecognizerSharedState;
+import org.antlr.runtime.TokenStream;
+import org.eclipse.ocl.xtext.base.utilities.ElementUtil;
+import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess;
+import org.eclipse.xtext.Grammar;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.AbstractInternalContentAssistParser;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.DFA;
-import org.eclipse.ocl.xtext.oclstdlib.services.OCLstdlibGrammarAccess;
-
-
-
-import org.antlr.runtime.*;
-import java.util.Stack;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
 /*******************************************************************************
  * Copyright (c) 2011, 2016 Willink Transformations and others.
  * All rights reserved. This program and the accompanying materials
@@ -70326,7 +70318,7 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
     static final char[] dfa_4 = DFA.unpackEncodedStringToUnsignedChars(dfa_4s);
     static final short[] dfa_5 = DFA.unpackEncodedString(dfa_5s);
     static final short[] dfa_6 = DFA.unpackEncodedString(dfa_6s);
-    static final short[][] dfa_7 = unpackEncodedStringArray(dfa_7s);
+    static final short[][] dfa_7 = ElementUtil.unpackEncodedStringArray(dfa_7s);
 
     class DFA35 extends DFA {
 
@@ -70373,7 +70365,7 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
             "\1\1\3\uffff\1\1\3\uffff\1\1\1\uffff\17\1\17\uffff\1\1\1\31\1\1\1\uffff\3\1\11\uffff\1\1\10\uffff\1\1",
             ""
     };
-    static final short[][] dfa_8 = unpackEncodedStringArray(dfa_8s);
+    static final short[][] dfa_8 = ElementUtil.unpackEncodedStringArray(dfa_8s);
 
     class DFA36 extends DFA {
 
@@ -70445,7 +70437,7 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
     static final char[] dfa_11 = DFA.unpackEncodedStringToUnsignedChars(dfa_11s);
     static final short[] dfa_12 = DFA.unpackEncodedString(dfa_12s);
     static final short[] dfa_13 = DFA.unpackEncodedString(dfa_13s);
-    static final short[][] dfa_14 = unpackEncodedStringArray(dfa_14s);
+    static final short[][] dfa_14 = ElementUtil.unpackEncodedStringArray(dfa_14s);
 
     class DFA40 extends DFA {
 
@@ -70616,7 +70608,7 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
     static final char[] dfa_17 = DFA.unpackEncodedStringToUnsignedChars(dfa_17s);
     static final short[] dfa_18 = DFA.unpackEncodedString(dfa_18s);
     static final short[] dfa_19 = DFA.unpackEncodedString(dfa_19s);
-    static final short[][] dfa_20 = unpackEncodedStringArray(dfa_20s);
+    static final short[][] dfa_20 = ElementUtil.unpackEncodedStringArray(dfa_20s);
 
     class DFA41 extends DFA {
 
@@ -70739,7 +70731,7 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
     static final char[] dfa_22 = DFA.unpackEncodedStringToUnsignedChars(dfa_22s);
     static final short[] dfa_23 = DFA.unpackEncodedString(dfa_23s);
     static final short[] dfa_24 = DFA.unpackEncodedString(dfa_24s);
-    static final short[][] dfa_25 = unpackEncodedStringArray(dfa_25s);
+    static final short[][] dfa_25 = ElementUtil.unpackEncodedStringArray(dfa_25s);
 
     class DFA44 extends DFA {
 
@@ -70902,7 +70894,7 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
             "\1\1\3\uffff\1\1\3\uffff\21\1\17\uffff\1\1\1\31\1\1\2\uffff\1\1\12\uffff\1\1\10\uffff\1\1",
             ""
     };
-    static final short[][] dfa_26 = unpackEncodedStringArray(dfa_26s);
+    static final short[][] dfa_26 = ElementUtil.unpackEncodedStringArray(dfa_26s);
 
     class DFA50 extends DFA {
 
@@ -70957,7 +70949,7 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
     static final char[] dfa_28 = DFA.unpackEncodedStringToUnsignedChars(dfa_28s);
     static final char[] dfa_29 = DFA.unpackEncodedStringToUnsignedChars(dfa_29s);
     static final short[] dfa_30 = DFA.unpackEncodedString(dfa_30s);
-    static final short[][] dfa_31 = unpackEncodedStringArray(dfa_31s);
+    static final short[][] dfa_31 = ElementUtil.unpackEncodedStringArray(dfa_31s);
 
     class DFA72 extends DFA {
 
@@ -71016,7 +71008,7 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
     static final char[] dfa_34 = DFA.unpackEncodedStringToUnsignedChars(dfa_34s);
     static final short[] dfa_35 = DFA.unpackEncodedString(dfa_35s);
     static final short[] dfa_36 = DFA.unpackEncodedString(dfa_36s);
-    static final short[][] dfa_37 = unpackEncodedStringArray(dfa_37s);
+    static final short[][] dfa_37 = ElementUtil.unpackEncodedStringArray(dfa_37s);
 
     class DFA78 extends DFA {
 
@@ -71068,7 +71060,7 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
     };
     static final char[] dfa_38 = DFA.unpackEncodedStringToUnsignedChars(dfa_38s);
     static final short[] dfa_39 = DFA.unpackEncodedString(dfa_39s);
-    static final short[][] dfa_40 = unpackEncodedStringArray(dfa_40s);
+    static final short[][] dfa_40 = ElementUtil.unpackEncodedStringArray(dfa_40s);
 
     class DFA92 extends DFA {
 
@@ -71190,6 +71182,4 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         public static final BitSet FOLLOW_97 = new BitSet(new long[]{0x0000000000000000L,0x0000002000000000L});
         public static final BitSet FOLLOW_98 = new BitSet(new long[]{0x0000000000000002L,0x0000002000000000L});
     }
-
-
 }

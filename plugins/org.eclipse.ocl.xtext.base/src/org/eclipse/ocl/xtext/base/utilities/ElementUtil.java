@@ -18,6 +18,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.antlr.runtime.DFA;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
@@ -515,5 +516,14 @@ public class ElementUtil
 			PathElementCS pathElementCS = ownedPathElements.get(size-1);
 			pathElementCS.setReferredElement(asElement);
 		}
+	}
+
+	public static short[][] unpackEncodedStringArray(String[] arr) {
+		int numStates = arr.length;
+		short[][] result = new short[numStates][];
+		for (int i = 0; i < numStates; i++) {
+			result[i] = DFA.unpackEncodedString(arr[i]);
+		}
+		return result;
 	}
 }

@@ -10,8 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.xtext.essentialocl.serializer;
 
-import com.google.inject.Inject;
-import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.ocl.xtext.base.serializer.BaseSemanticSequencer;
@@ -66,12 +64,10 @@ import org.eclipse.ocl.xtext.essentialoclcs.TupleLiteralPartCS;
 import org.eclipse.ocl.xtext.essentialoclcs.TypeLiteralExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.TypeNameExpCS;
 import org.eclipse.ocl.xtext.essentialoclcs.UnlimitedNaturalLiteralExpCS;
-import org.eclipse.xtext.Action;
-import org.eclipse.xtext.Parameter;
-import org.eclipse.xtext.ParserRule;
-//import org.eclipse.xtext.serializer.ISerializationContext;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
+
+import com.google.inject.Inject;
 
 @SuppressWarnings("all")
 public abstract class AbstractEssentialOCLSemanticSequencer extends BaseSemanticSequencer {
