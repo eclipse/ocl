@@ -157,19 +157,20 @@ public class OCLstdlibTables
 		public static final @NonNull EcoreExecutorType _Collection = new EcoreExecutorType(TypeId.COLLECTION, PACKAGE, 0 | ExecutorType.ABSTRACT, TypeParameters._Collection_T);
 		public static final @NonNull EcoreExecutorType _Integer = new EcoreExecutorType(TypeId.INTEGER, PACKAGE, 0);
 		public static final @NonNull EcoreExecutorType _Map = new EcoreExecutorType(TypeId.MAP, PACKAGE, 0, TypeParameters._Map_K, TypeParameters._Map_V);
-		public static final @NonNull EcoreExecutorType _OclAny = new EcoreExecutorType(TypeId.OCL_ANY, PACKAGE, 0);
-		public static final @NonNull EcoreExecutorType _OclComparable = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_COMPARABLE, PACKAGE, 0);
-		public static final @NonNull EcoreExecutorType _OclElement = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_ELEMENT, PACKAGE, 0);
-		public static final @NonNull EcoreExecutorInvalidType _OclInvalid = new EcoreExecutorInvalidType(TypeId.OCL_INVALID, PACKAGE, 0);
-		public static final @NonNull EcoreExecutorType _OclLambda = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_LAMBDA, PACKAGE, 0);
-		public static final @NonNull EcoreExecutorType _OclMessage = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_MESSAGE, PACKAGE, 0);
-		public static final @NonNull EcoreExecutorType _OclSelf = new EcoreExecutorType(TypeId.OCL_SELF, PACKAGE, 0);
-		public static final @NonNull EcoreExecutorType _OclState = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_STATE, PACKAGE, 0);
-		public static final @NonNull EcoreExecutorType _OclStereotype = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_STEREOTYPE, PACKAGE, 0);
-		public static final @NonNull EcoreExecutorType _OclSummable = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_SUMMABLE, PACKAGE, 0);
-		public static final @NonNull EcoreExecutorType _OclTuple = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_TUPLE, PACKAGE, 0);
-		public static final @NonNull EcoreExecutorType _OclType = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_TYPE, PACKAGE, 0);
-		public static final @NonNull EcoreExecutorVoidType _OclVoid = new EcoreExecutorVoidType(TypeId.OCL_VOID, PACKAGE, 0);
+		public static final @NonNull EcoreExecutorType _OclAny = new EcoreExecutorType(TypeId.OCL_ANY, PACKAGE, 0 | ExecutorType.ABSTRACT);
+		public static final @NonNull EcoreExecutorType _OclComparable = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_COMPARABLE, PACKAGE, 0 | ExecutorType.ABSTRACT);
+		public static final @NonNull EcoreExecutorType _OclElement = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_ELEMENT, PACKAGE, 0 | ExecutorType.ABSTRACT);
+		public static final @NonNull EcoreExecutorType _OclEnumeration = new EcoreExecutorType("OclEnumeration", PACKAGE, 0 | ExecutorType.ABSTRACT);
+		public static final @NonNull EcoreExecutorInvalidType _OclInvalid = new EcoreExecutorInvalidType(TypeId.OCL_INVALID, PACKAGE, 0 | ExecutorType.ABSTRACT);
+		public static final @NonNull EcoreExecutorType _OclLambda = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_LAMBDA, PACKAGE, 0 | ExecutorType.ABSTRACT);
+		public static final @NonNull EcoreExecutorType _OclMessage = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_MESSAGE, PACKAGE, 0 | ExecutorType.ABSTRACT);
+		public static final @NonNull EcoreExecutorType _OclSelf = new EcoreExecutorType(TypeId.OCL_SELF, PACKAGE, 0 | ExecutorType.ABSTRACT);
+		public static final @NonNull EcoreExecutorType _OclState = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_STATE, PACKAGE, 0 | ExecutorType.ABSTRACT);
+		public static final @NonNull EcoreExecutorType _OclStereotype = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_STEREOTYPE, PACKAGE, 0 | ExecutorType.ABSTRACT);
+		public static final @NonNull EcoreExecutorType _OclSummable = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_SUMMABLE, PACKAGE, 0 | ExecutorType.ABSTRACT);
+		public static final @NonNull EcoreExecutorType _OclTuple = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_TUPLE, PACKAGE, 0 | ExecutorType.ABSTRACT);
+		public static final @NonNull EcoreExecutorType _OclType = new EcoreExecutorType(OCLstdlibPackage.Literals.OCL_TYPE, PACKAGE, 0 | ExecutorType.ABSTRACT);
+		public static final @NonNull EcoreExecutorVoidType _OclVoid = new EcoreExecutorVoidType(TypeId.OCL_VOID, PACKAGE, 0 | ExecutorType.ABSTRACT);
 		public static final @NonNull EcoreExecutorType _OrderedCollection = new EcoreExecutorType(TypeId.ORDERED_COLLECTION, PACKAGE, 0 | ExecutorType.ABSTRACT, TypeParameters._OrderedCollection_T);
 		public static final @NonNull EcoreExecutorType _OrderedSet = new EcoreExecutorType(TypeId.ORDERED_SET, PACKAGE, ExecutorType.ORDERED | ExecutorType.UNIQUE, TypeParameters._OrderedSet_T);
 		public static final @NonNull EcoreExecutorType _Real = new EcoreExecutorType(TypeId.REAL, PACKAGE, 0);
@@ -188,6 +189,7 @@ public class OCLstdlibTables
 			_OclAny,
 			_OclComparable,
 			_OclElement,
+			_OclEnumeration,
 			_OclInvalid,
 			_OclLambda,
 			_OclMessage,
@@ -257,6 +259,11 @@ public class OCLstdlibTables
 
 		private static final @NonNull ExecutorFragment _OclElement__OclAny = new ExecutorFragment(Types._OclElement, OCLstdlibTables.Types._OclAny);
 		private static final @NonNull ExecutorFragment _OclElement__OclElement = new ExecutorFragment(Types._OclElement, OCLstdlibTables.Types._OclElement);
+
+		private static final @NonNull ExecutorFragment _OclEnumeration__OclAny = new ExecutorFragment(Types._OclEnumeration, OCLstdlibTables.Types._OclAny);
+		private static final @NonNull ExecutorFragment _OclEnumeration__OclElement = new ExecutorFragment(Types._OclEnumeration, OCLstdlibTables.Types._OclElement);
+		private static final @NonNull ExecutorFragment _OclEnumeration__OclEnumeration = new ExecutorFragment(Types._OclEnumeration, OCLstdlibTables.Types._OclEnumeration);
+		private static final @NonNull ExecutorFragment _OclEnumeration__OclType = new ExecutorFragment(Types._OclEnumeration, OCLstdlibTables.Types._OclType);
 
 		private static final @NonNull ExecutorFragment _OclInvalid__OclAny = new ExecutorFragment(Types._OclInvalid, OCLstdlibTables.Types._OclAny);
 		private static final @NonNull ExecutorFragment _OclInvalid__OclInvalid = new ExecutorFragment(Types._OclInvalid, OCLstdlibTables.Types._OclInvalid);
@@ -711,6 +718,9 @@ public class OCLstdlibTables
 		public static final @NonNull ExecutorOperation _OclElement__oclModelTypes = new ExecutorOperation("oclModelTypes", TypeUtil.EMPTY_PARAMETER_TYPES, Types._OclElement,
 			6, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.oclany.OclElementOclModelTypesOperation.INSTANCE);
 
+		public static final @NonNull ExecutorOperation _OclEnumeration__allInstances = new ExecutorOperation("allInstances", TypeUtil.EMPTY_PARAMETER_TYPES, Types._OclEnumeration,
+			0, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.enumeration.EnumerationAllInstancesOperation.INSTANCE);
+
 		public static final @NonNull ExecutorOperation _OclInvalid___lt__gt_ = new ExecutorOperation("<>", Parameters._OclSelf, Types._OclInvalid,
 			0, TemplateParameters.EMPTY_LIST, org.eclipse.ocl.pivot.library.oclany.OclAnyNotEqualOperation.INSTANCE);
 		public static final @NonNull ExecutorOperation _OclInvalid___eq_ = new ExecutorOperation("=", Parameters._OclSelf, Types._OclInvalid,
@@ -1138,6 +1148,15 @@ public class OCLstdlibTables
 		};
 		private static final int @NonNull [] __OclElement = { 1,1 };
 
+		private static final @NonNull ExecutorFragment @NonNull [] _OclEnumeration =
+		{
+			Fragments._OclEnumeration__OclAny /* 0 */,
+			Fragments._OclEnumeration__OclElement /* 1 */,
+			Fragments._OclEnumeration__OclType /* 2 */,
+			Fragments._OclEnumeration__OclEnumeration /* 3 */
+		};
+		private static final int @NonNull [] __OclEnumeration = { 1,1,1,1 };
+
 		private static final @NonNull ExecutorFragment @NonNull [] _OclInvalid =
 		{
 			Fragments._OclInvalid__OclAny /* 0 */,
@@ -1294,6 +1313,7 @@ public class OCLstdlibTables
 			Types._OclAny.initFragments(_OclAny, __OclAny);
 			Types._OclComparable.initFragments(_OclComparable, __OclComparable);
 			Types._OclElement.initFragments(_OclElement, __OclElement);
+			Types._OclEnumeration.initFragments(_OclEnumeration, __OclEnumeration);
 			Types._OclInvalid.initFragments(_OclInvalid, __OclInvalid);
 			Types._OclLambda.initFragments(_OclLambda, __OclLambda);
 			Types._OclMessage.initFragments(_OclMessage, __OclMessage);
@@ -1669,6 +1689,39 @@ public class OCLstdlibTables
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
 			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
+		};
+
+		private static final @NonNull ExecutorOperation @NonNull [] _OclEnumeration__OclEnumeration = {
+			OCLstdlibTables.Operations._OclEnumeration__allInstances /* allInstances() */
+		};
+		private static final @NonNull ExecutorOperation @NonNull [] _OclEnumeration__OclAny = {
+			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
+			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
+			OCLstdlibTables.Operations._OclAny__toString /* toString() */
+		};
+		private static final @NonNull ExecutorOperation @NonNull [] _OclEnumeration__OclElement = {
+			OCLstdlibTables.Operations._OclEnumeration__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[?]) */,
+			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */,
+			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
+			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
+		};
+		private static final @NonNull ExecutorOperation @NonNull [] _OclEnumeration__OclType = {
+			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
 
 		private static final @NonNull ExecutorOperation @NonNull [] _OclInvalid__OclInvalid = {
@@ -2514,6 +2567,11 @@ public class OCLstdlibTables
 			Fragments._OclElement__OclAny.initOperations(_OclElement__OclAny);
 			Fragments._OclElement__OclElement.initOperations(_OclElement__OclElement);
 
+			Fragments._OclEnumeration__OclAny.initOperations(_OclEnumeration__OclAny);
+			Fragments._OclEnumeration__OclElement.initOperations(_OclEnumeration__OclElement);
+			Fragments._OclEnumeration__OclEnumeration.initOperations(_OclEnumeration__OclEnumeration);
+			Fragments._OclEnumeration__OclType.initOperations(_OclEnumeration__OclType);
+
 			Fragments._OclInvalid__OclAny.initOperations(_OclInvalid__OclAny);
 			Fragments._OclInvalid__OclInvalid.initOperations(_OclInvalid__OclInvalid);
 			Fragments._OclInvalid__OclVoid.initOperations(_OclInvalid__OclVoid);
@@ -2633,6 +2691,13 @@ public class OCLstdlibTables
 			OCLstdlibTables.Properties._OclElement__OclElement__oclContents
 		};
 
+		private static final @NonNull ExecutorProperty @NonNull [] _OclEnumeration = {
+			OCLstdlibTables.Properties._OclElement__oclContainer,
+			OCLstdlibTables.Properties._OclElement__oclContents,
+			OCLstdlibTables.Properties._OclElement__OclElement__oclContainer,
+			OCLstdlibTables.Properties._OclElement__OclElement__oclContents
+		};
+
 		private static final @NonNull ExecutorProperty @NonNull [] _OclInvalid = {};
 
 		private static final @NonNull ExecutorProperty @NonNull [] _OclLambda = {};
@@ -2711,6 +2776,7 @@ public class OCLstdlibTables
 			Fragments._OclAny__OclAny.initProperties(_OclAny);
 			Fragments._OclComparable__OclComparable.initProperties(_OclComparable);
 			Fragments._OclElement__OclElement.initProperties(_OclElement);
+			Fragments._OclEnumeration__OclEnumeration.initProperties(_OclEnumeration);
 			Fragments._OclInvalid__OclInvalid.initProperties(_OclInvalid);
 			Fragments._OclLambda__OclLambda.initProperties(_OclLambda);
 			Fragments._OclMessage__OclMessage.initProperties(_OclMessage);

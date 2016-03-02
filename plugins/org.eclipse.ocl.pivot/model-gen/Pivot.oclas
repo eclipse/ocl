@@ -38,7 +38,7 @@
       <ownedProperties xmi:id="p.pivot.AssociationClassCallExp.referredAssociationClass" isRequired="false" name="referredAssociationClass"
           opposite="#p.pivot.AssociationClass.AssociationClassCallExp" type="#T.pivot.AssociationClass"/>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:Enumeration" xmi:id="T.pivot.AssociativityKind" name="AssociativityKind" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.Enumeration">
+    <ownedClasses xsi:type="pivot:Enumeration" xmi:id="T.pivot.AssociativityKind" name="AssociativityKind" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclEnumeration">
       <ownedLiterals name="left"/>
       <ownedLiterals name="right" value="1"/>
     </ownedClasses>
@@ -122,7 +122,7 @@
       <ownedProperties xmi:id="p.pivot.CollectionItem.ownedItem" isComposite="true" name="ownedItem" opposite="#p.pivot.OCLExpression.CollectionItem"
           type="#T.pivot.OCLExpression"/>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:Enumeration" xmi:id="T.pivot.CollectionKind" name="CollectionKind" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.Enumeration">
+    <ownedClasses xsi:type="pivot:Enumeration" xmi:id="T.pivot.CollectionKind" name="CollectionKind" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclEnumeration">
       <ownedLiterals name="Collection"/>
       <ownedLiterals name="Set" value="1"/>
       <ownedLiterals name="OrderedSet" value="2"/>
@@ -944,7 +944,7 @@
       <ownedProperties isImplicit="true" name="ConnectionPointReference" opposite="#p.pivot.ConnectionPointReference.entries" type="#//@ownedPackages.1/@ownedClasses.8"/>
       <ownedProperties isImplicit="true" name="ConnectionPointReference" opposite="#p.pivot.ConnectionPointReference.exits" type="#//@ownedPackages.1/@ownedClasses.8"/>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:Enumeration" xmi:id="T.pivot.PseudostateKind" name="PseudostateKind" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.Enumeration">
+    <ownedClasses xsi:type="pivot:Enumeration" xmi:id="T.pivot.PseudostateKind" name="PseudostateKind" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclEnumeration">
       <ownedComments body="PseudostateKind is an Enumeration type that is used to differentiate various kinds of Pseudostates."/>
       <ownedLiterals name="initial"/>
       <ownedLiterals name="deepHistory" value="1"/>
@@ -1245,7 +1245,7 @@
         <ownedComments body="Designates the target Vertex that is reached when the Transition is taken."/>
       </ownedProperties>
     </ownedClasses>
-    <ownedClasses xsi:type="pivot:Enumeration" xmi:id="T.pivot.TransitionKind" name="TransitionKind" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.Enumeration">
+    <ownedClasses xsi:type="pivot:Enumeration" xmi:id="T.pivot.TransitionKind" name="TransitionKind" superClasses="http://www.eclipse.org/ocl/2015/Library.oclas#T.ocl.OclEnumeration">
       <ownedComments body="TransitionKind is an Enumeration type used to differentiate the various kinds of Transitions."/>
       <ownedLiterals name="internal">
         <ownedComments body="Implies that the Transition, if triggered, occurs without exiting or entering the source State (i.e., it does not cause a state change). This means that the entry or exit condition of the source State will not be invoked. An internal Transition can be taken even if the SateMachine is in one or more Regions nested within the associated State."/>
