@@ -369,6 +369,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 	private @Nullable AnyType oclAnyType = null;
 	private org.eclipse.ocl.pivot.@Nullable Class oclComparableType = null;
 	private org.eclipse.ocl.pivot.@Nullable Class oclElementType = null;
+	private org.eclipse.ocl.pivot.@Nullable Class oclEnumerationType = null;
 	private @Nullable Operation oclInvalidOperation = null;
 	private @Nullable Property oclInvalidProperty = null;
 	private @Nullable InvalidType oclInvalidType = null;
@@ -653,6 +654,18 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 			oclElementType2 = oclElementType = resolveRequiredSimpleType(org.eclipse.ocl.pivot.Class.class, "OclElement");		
 		}
 		return oclElementType2;
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	@Override
+	public org.eclipse.ocl.pivot.@NonNull Class getOclEnumerationType() {
+		org.eclipse.ocl.pivot.Class oclEnumerationType2 = oclEnumerationType;
+		if (oclEnumerationType2 == null) {
+			oclEnumerationType2 = oclEnumerationType = resolveRequiredSimpleType(org.eclipse.ocl.pivot.Class.class, TypeId.OCL_ENUMERATION_NAME);		
+		}
+		return oclEnumerationType2;
 	}
 
 	@Override
@@ -951,6 +964,7 @@ public class StandardLibraryImpl extends ElementImpl implements StandardLibrary,
 		oclAnyType = null;
 		oclComparableType = null;
 		oclElementType = null;
+		oclEnumerationType = null;
 		oclInvalidOperation = null;
 		oclInvalidProperty = null;
 		oclInvalidType = null;

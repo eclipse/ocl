@@ -31,6 +31,7 @@ import org.eclipse.ocl.pivot.LambdaType;
 import org.eclipse.ocl.pivot.MapType;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.StandardLibrary;
+import org.eclipse.ocl.pivot.StandardLibrary.StandardLibraryExtension;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
@@ -57,7 +58,7 @@ import org.eclipse.ocl.pivot.values.MapTypeParameters;
 import org.eclipse.ocl.pivot.values.TemplateParameterSubstitutions;
 import org.eclipse.ocl.pivot.values.UnlimitedNaturalValue;
 
-public abstract class ExecutableStandardLibrary extends AbstractExecutorElement implements CompleteEnvironment, StandardLibrary
+public abstract class ExecutableStandardLibrary extends AbstractExecutorElement implements CompleteEnvironment, StandardLibraryExtension
 {
 	/**
 	 * Shared cache of the lazily created lazily deleted specializations of each collection type. 
@@ -250,6 +251,14 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 	@Override
 	public org.eclipse.ocl.pivot.@NonNull Class getOclElementType() {
 		return OCLstdlibTables.Types._OclElement;
+	}
+
+	/**
+	 * @since 1.1
+	 */
+	@Override
+	public org.eclipse.ocl.pivot.@NonNull Class getOclEnumerationType() {
+		return OCLstdlibTables.Types._OclEnumeration;
 	}
 
 	@Override

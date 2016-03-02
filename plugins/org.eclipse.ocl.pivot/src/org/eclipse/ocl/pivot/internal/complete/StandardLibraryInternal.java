@@ -26,7 +26,10 @@ import org.eclipse.ocl.pivot.SetType;
 import org.eclipse.ocl.pivot.StandardLibrary;
 import org.eclipse.ocl.pivot.VoidType;
 
-public interface StandardLibraryInternal extends StandardLibrary
+/**
+ * @noimplement This interface is not intended to be implemented by clients.
+ */
+public interface StandardLibraryInternal extends StandardLibrary.StandardLibraryExtension
 {
 	@Nullable Operation basicGetOclInvalidOperation();
 	@Nullable Property basicGetOclInvalidProperty();

@@ -639,7 +639,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource implements BaseC
 				addLibraryError(errors, e);
 			}
 			try {
-				standardLibrary.getEnumerationType();
+				standardLibrary.getOclEnumerationType();
 			} catch (IllegalLibraryException e) {			
 				addLibraryError(errors, e);
 			}

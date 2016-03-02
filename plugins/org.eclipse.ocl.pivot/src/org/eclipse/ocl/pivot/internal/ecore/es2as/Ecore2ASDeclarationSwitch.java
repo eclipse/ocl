@@ -308,7 +308,7 @@ public class Ecore2ASDeclarationSwitch extends EcoreSwitch<Object>
 		copyDataTypeOrEnum(pivotElement, eObject2);
 		doSwitchAll(pivotElement.getOwnedLiterals(), eObject2.getELiterals());
 //		pivotElement.getSuperClass().add(metamodelManager.getOclAnyType());
-		pivotElement.getSuperClasses().add(environmentFactory.getStandardLibrary().getEnumerationType());
+		pivotElement.getSuperClasses().add(environmentFactory.getStandardLibrary().getOclEnumerationType());
 		return pivotElement;
 	}
 

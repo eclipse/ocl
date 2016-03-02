@@ -51,6 +51,10 @@ public interface TypeId extends ElementId
 	public static final @NonNull String METACLASS_NAME = "Metaclass";
 	public static final @NonNull String OCL_ANY_NAME = "OclAny";
 	public static final @NonNull String OCL_COMPARABLE_NAME = "OclComparable";
+	/**
+	 * @since 1.1
+	 */
+	public static final @NonNull String OCL_ENUMERATION_NAME = "OclEnumeration";
 	public static final @NonNull String OCL_INVALID_NAME = "OclInvalid";
 	public static final @NonNull String OCL_SELF_NAME = "OclSelf";
 	/**
@@ -87,6 +91,10 @@ public interface TypeId extends ElementId
 	public static final @NonNull PrimitiveTypeId MAP_ENTRY = IdManager.getPrimitiveTypeId(MAP_ENTRY_NAME);
 	public static final @NonNull PrimitiveTypeId OCL_ANY = IdManager.getPrimitiveTypeId(OCL_ANY_NAME);
 	public static final @NonNull PrimitiveTypeId OCL_COMPARABLE = IdManager.getPrimitiveTypeId(OCL_COMPARABLE_NAME);
+	/**
+	 * @since 1.1
+	 */
+	public static final @NonNull PrimitiveTypeId OCL_ENUMERATION = IdManager.getPrimitiveTypeId(OCL_ENUMERATION_NAME);
 
 	/**
 	 * OclInvalid has a distinct Id that captures its conformance to everything and very limited validity.

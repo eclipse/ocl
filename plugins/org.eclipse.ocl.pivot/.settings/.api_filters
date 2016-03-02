@@ -489,6 +489,11 @@
                 <message_argument value="_OclElement__oclModelTypes"/>
             </message_arguments>
         </filter>
+        <filter comment="[488879] Introduce OclEnumeration" id="1143996420">
+            <message_arguments>
+                <message_argument value="_OclEnumeration__allInstances"/>
+            </message_arguments>
+        </filter>
         <filter id="1143996420">
             <message_arguments>
                 <message_argument value="_OclStereotype__allInstances"/>
@@ -538,6 +543,11 @@
         </filter>
     </resource>
     <resource path="emf-gen/org/eclipse/ocl/pivot/oclstdlib/OCLstdlibTables.java" type="org.eclipse.ocl.pivot.oclstdlib.OCLstdlibTables$Types">
+        <filter comment="[488879] Introduce OclEnumeration" id="1143996420">
+            <message_arguments>
+                <message_argument value="_OclEnumeration"/>
+            </message_arguments>
+        </filter>
         <filter id="1143996420">
             <message_arguments>
                 <message_argument value="_OclStereotype"/>

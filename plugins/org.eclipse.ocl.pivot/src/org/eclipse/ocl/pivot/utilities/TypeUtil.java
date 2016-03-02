@@ -27,6 +27,7 @@ import org.eclipse.ocl.pivot.ParameterTypes;
 import org.eclipse.ocl.pivot.SequenceType;
 import org.eclipse.ocl.pivot.SetType;
 import org.eclipse.ocl.pivot.StandardLibrary;
+import org.eclipse.ocl.pivot.StandardLibrary.StandardLibraryExtension;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.TupleType;
@@ -217,6 +218,9 @@ public class TypeUtil
 		}
 		else if (typeId == TypeId.OCL_COMPARABLE) {
 			return standardLibrary.getOclComparableType();
+		}
+		else if (typeId == TypeId.OCL_ENUMERATION) {
+			return (standardLibrary instanceof StandardLibraryExtension) ? ((StandardLibraryExtension)standardLibrary).getOclEnumerationType() : null;
 		}
 		else if (typeId == TypeId.OCL_SELF) {
 			return standardLibrary.getOclSelfType();

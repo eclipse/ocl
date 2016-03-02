@@ -45,6 +45,9 @@ public class PrimitiveTypeIdImpl extends UnscopedId implements PrimitiveTypeId
 		else if (this == TypeId.OCL_COMPARABLE) {
 			return "OCL_COMPARABLE";
 		}
+		else if (this == TypeId.OCL_ENUMERATION) {
+			return "OCL_ENUMERATION";
+		}
 		else if (this == TypeId.OCL_SELF) {
 			return "OCL_SELF";
 		}
