@@ -85,7 +85,7 @@
             name="lpg.runtime.java"/>
         <requirement
             name="org.objectweb.asm"
-            versionRange="[3.0.0,4.0.0)"/>
+            versionRange="[5.0.0,6.0.0)"/>
         <repositoryList
             name="Neon">
           <repository
