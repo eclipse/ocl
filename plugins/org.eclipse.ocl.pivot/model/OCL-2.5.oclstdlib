@@ -501,6 +501,7 @@ abstract type Collection(T) : CollectionType conformsTo OclAny {
 }
 
 /**
+ @Deprecated: Use OclEnumeration
  The Enumeration type is the type of an OrderedSet of EnumerationLiteral.
  **/
 type Enumeration conformsTo OclAny {
@@ -704,7 +705,7 @@ One can also use qualification by OclAny (name of the type) to explicitly refer 
 
 Operations of OclAny, where the instance of OclAny is called object.
 **/
-type OclAny : AnyType {
+abstract type OclAny : AnyType {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='OCL');
 	/**
 	True if oclText[self] is the same object as object2. Infix operator.
@@ -809,7 +810,7 @@ type OclAny : AnyType {
 The type OclComparable defines the compareTo operation used by the sortedBy iteration. Only types that provide a derived
 compareTo implementation may be sorted. 
 **/
-type OclComparable conformsTo OclAny {
+abstract type OclComparable conformsTo OclAny {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='OCL');
 	/**
 	Return -ve, 0, +ve according to whether self is less than, equal to , or greater than that.
@@ -839,7 +840,7 @@ type OclComparable conformsTo OclAny {
 The type OclElement is the implicit supertype of any user-defined type that has no explicit supertypes. Operations defined
 for OclElement are therefore applicable to all user-defined types.
 **/
-type OclElement conformsTo OclAny {
+abstract type OclElement conformsTo OclAny {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='OCL');
 	/**
 	Return a set of all instances of the type and derived types of self.
@@ -908,12 +909,27 @@ type OclElement conformsTo OclAny {
 }
 
 /**
+ The OclEnumeration type is the implicit supertype of any user Enumeration type.
+ **/
+abstract type OclEnumeration conformsTo OclType {
+	annotation 'http://www.omg.org/ocl'(ClassGroup='UML');
+	/**
+	Return a set of all enumeration values of oclText[self].
+	*/
+	static operation allInstances() : Set(OclSelf[1|1]) => 'org.eclipse.ocl.pivot.library.enumeration.EnumerationAllInstancesOperation';
+	/**
+	Evaluates to the literals of the enumeration.
+	**/
+	static property allLiterals : OrderedSet(EnumerationLiteral) => 'org.eclipse.ocl.pivot.library.enumeration.EnumerationOwnedLiteralProperty';
+}
+
+/**
 The type OclInvalid is a type that conforms to all other types.
 It has one single instance, identified as  oclText[invalid].
 Any property call applied on invalid results in oclText[invalid], except for the operations oclIsUndefined() and oclIsInvalid().
 OclInvalid is itself an instance of the metatype InvalidType.
 **/
-type OclInvalid : InvalidType conformsTo OclVoid {
+abstract type OclInvalid : InvalidType conformsTo OclVoid {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='OCL');
 	/**
 	Returns oclText[invalid].
@@ -947,7 +963,7 @@ type OclInvalid : InvalidType conformsTo OclVoid {
 The type OclLambda is the implicit supertype of all Lambda types. The operations defined for OclLambda
 therefore apply to all lambda expressions.
 **/
-type OclLambda conformsTo OclAny {
+abstract type OclLambda conformsTo OclAny {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='OCL');
 }
 
@@ -968,7 +984,7 @@ OclMessage is itself an instance of the metatype MessageType.
 
 OclMessage has a number of predefined operations, as shown in the OCL Standard Library.
 **/
-type OclMessage conformsTo OclAny {
+abstract type OclMessage conformsTo OclAny {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='UML');
 	/**
 	True if type of template parameter is an operation call, and the called operation has returned a value.
@@ -994,11 +1010,11 @@ type OclMessage conformsTo OclAny {
 The pseudo-type OclSelf denotes the statically determinate type of oclText[self] in Operation
 and Iteration signatures. Instances of OclSelf are never created. 
 **/
-type OclSelf : SelfType conformsTo OclAny {
+abstract type OclSelf : SelfType conformsTo OclAny {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='OCL');
 }
 
-type OclState conformsTo OclAny {
+abstract type OclState conformsTo OclAny {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='UML');
 }
 
@@ -1006,7 +1022,7 @@ type OclState conformsTo OclAny {
 The type OclSummable defines the sum and zero operations used by the Collection::sum iteration. Only types that provide derived
 sum and zero implementations may be summed. 
 */
-type OclSummable conformsTo OclAny {
+abstract type OclSummable conformsTo OclAny {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='OCL');
 	/**
 	Return the sum of self and that.
@@ -1026,7 +1042,7 @@ type OclSummable conformsTo OclAny {
 The type OclStereotype is the implicit supertype of any UML stereotype. Operations defined
 for OclStereotype are therefore applicable to all UML stereotypes.
 **/
-type OclStereotype conformsTo OclType {
+abstract type OclStereotype conformsTo OclType {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='OCL');
 	/**
 	Return a set of all instances of the stereotype and derived types of self.
@@ -1038,7 +1054,7 @@ type OclStereotype conformsTo OclType {
 The type OclTuple is the implicit supertype of all Tuple types. The operations defined for OclTuple
 therefore apply to all tuples.
 **/
-type OclTuple conformsTo OclAny {
+abstract type OclTuple conformsTo OclAny {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='OCL');
 	operation "="(object2 : OclSelf) : Boolean[1] precedence=EQUALITY => 'org.eclipse.ocl.pivot.library.oclany.OclAnyEqualOperation';
 	operation "<>"(object2 : OclSelf) : Boolean[1] precedence=EQUALITY => 'org.eclipse.ocl.pivot.library.oclany.OclAnyNotEqualOperation';
@@ -1048,7 +1064,7 @@ type OclTuple conformsTo OclAny {
 The type OclType is the implicit supertype of any UML type. Operations defined
 for OclType are therefore applicable to all UML types.
 **/
-type OclType conformsTo OclElement {
+abstract type OclType conformsTo OclElement {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='OCL');
 	/**
 	Returns true if type2 conforms to self.
@@ -1067,7 +1083,7 @@ If the source is the oclText[null] literal, it is implicitly converted to Bag{}.
 
 OclVoid is itself an instance of the metatype VoidType.
 **/
-type OclVoid : VoidType conformsTo OclAny {
+abstract type OclVoid : VoidType conformsTo OclAny {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='OCL');
 	/**
 	Returns oclText[Set{null}].
