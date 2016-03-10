@@ -22,7 +22,9 @@ import org.eclipse.ocl.pivot.ids.IdResolver;
 public interface Invocation
 {
 	/**
-	 * Execute the mapping invocation.
+	 * Execute the mapping invocation, returning true if successfully executed, or false if some predicate failed.
+	 * @throws InvocationFailedException if a required memory access could not be performed; a retry when ready is required
+	 * @throws ReflectiveOperationException if a Java failure occurred while constructing an Invocation object
 	 */
 	boolean execute() throws InvocationFailedException, ReflectiveOperationException;
 

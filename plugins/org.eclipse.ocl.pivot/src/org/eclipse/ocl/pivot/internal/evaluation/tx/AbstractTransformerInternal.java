@@ -50,6 +50,7 @@ import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
  * The abstract implementation of an auto-generated transformation provides the shared infrastructure for maintaining
@@ -1124,6 +1125,28 @@ public abstract class AbstractTransformerInternal implements Transformer
     		throw new IllegalStateException("Unknown model name '" + modelName + "'");
     	}
     	return models[modelIndex].getRootObjects();
+	}
+
+    /**
+     * The default handler for an exception during mapping execution rethrows an InvocationFailedException so that the
+     * caller may organize a re-exection when the reqired memory access can succeed. All other execptions are just
+     * absorbed since they may represent a predicate failure.
+     */
+    protected boolean handleExecutionFailure(@NonNull String mappingName, @NonNull Throwable e) throws InvocationFailedException {
+    	if (e instanceof InvocationFailedException) {
+    		throw (InvocationFailedException)e;
+    	}
+		// Mapping failures are just mappings that never happened.
+    	if (e instanceof InvalidValueException) {		// Multiway branch to facilitate debugger breakpoints.
+    		AbstractTransformer.EXCEPTIONS.println("Execution failure in " + mappingName + " : " + e);
+    	}
+    	else if (e instanceof NullPointerException) {
+    		AbstractTransformer.EXCEPTIONS.println("Execution failure in " + mappingName + " : " + e);
+    	}
+    	else {
+    		AbstractTransformer.EXCEPTIONS.println("Execution failure in " + mappingName + " : " + e);
+    	}
+    	return false;
 	}
 	
     /**

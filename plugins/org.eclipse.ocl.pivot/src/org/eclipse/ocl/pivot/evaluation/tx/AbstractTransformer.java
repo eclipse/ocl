@@ -28,6 +28,7 @@ import org.eclipse.ocl.pivot.utilities.TracingOption;
  */
 public abstract class AbstractTransformer extends AbstractTransformerInternal
 {	
+	public static final @NonNull TracingOption EXCEPTIONS = new TracingOption(PivotPlugin.PLUGIN_ID, "tx/exceptions");
 	public static final @NonNull TracingOption INVOCATIONS = new TracingOption(PivotPlugin.PLUGIN_ID, "tx/invocations");
 
 	protected AbstractTransformer(@NonNull Executor executor, @NonNull String @NonNull [] modelNames,
