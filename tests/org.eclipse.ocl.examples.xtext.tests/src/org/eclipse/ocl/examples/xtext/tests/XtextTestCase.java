@@ -488,7 +488,6 @@ public class XtextTestCase extends PivotTestCase
 		return true;
 	}
 	
-	@SuppressWarnings("null")
 	public @NonNull String createEcoreString(@NonNull OCL ocl, @NonNull String fileName, @NonNull String fileContent, boolean assignIds) throws IOException {
 		String inputName = fileName + ".oclinecore";
 		createOCLinEcoreFile(inputName, fileContent);

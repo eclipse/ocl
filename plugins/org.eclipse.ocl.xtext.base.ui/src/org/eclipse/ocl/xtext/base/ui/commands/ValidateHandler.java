@@ -43,7 +43,7 @@ public final class ValidateHandler implements IHandler2
 	 * A collection of objects listening to changes to this manager. This
 	 * collection is <code>null</code> if there are no listeners.
 	 */
-	private transient ListenerList listenerList = null;
+	private transient ListenerList<Object> listenerList = null;
 
 	/**
 	 * Track this base class enabled state.
@@ -87,7 +87,7 @@ public final class ValidateHandler implements IHandler2
 	 */
 	protected synchronized final void addListenerObject(final Object listener) {
 		if (listenerList == null) {
-			listenerList = new ListenerList(ListenerList.IDENTITY);
+			listenerList = new ListenerList<Object>(ListenerList.IDENTITY);
 		}
 
 		listenerList.add(listener);
@@ -225,7 +225,7 @@ public final class ValidateHandler implements IHandler2
 	 *         <code>null</code>
 	 */
 	protected final Object[] getListeners() {
-		final ListenerList list = listenerList;
+		final ListenerList<Object> list = listenerList;
 		if (list == null) {
 			return EMPTY_ARRAY;
 		}

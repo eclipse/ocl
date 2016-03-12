@@ -23,3 +23,6 @@ deresolve
 resolve
  (Lorg/eclipse/emf/common/util/URI;)Lorg/eclipse/emf/common/util/URI;
  (Lorg/eclipse/emf/common/util/URI;)L1org/eclipse/emf/common/util/URI;
+trimFragment
+ ()Lorg/eclipse/emf/common/util/URI;
+ ()L1org/eclipse/emf/common/util/URI;

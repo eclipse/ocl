@@ -35,6 +35,7 @@ import org.eclipse.emf.importer.ecore.EcoreImporter;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.internal.resource.ProjectMap;
 import org.eclipse.ocl.pivot.internal.resource.StandaloneProjectMap;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -114,7 +115,7 @@ public class GenmodelReloader extends AbstractProjectComponent
 			    URI ecoreURI = URI.createPlatformResourceURI(ecoreFile, true);
 		    	Resource ecoreResource = genModelResourceSet.getResource(ecoreURI, true);
 				ecoreResource.setURI(ecoreURI);										// change file:... to platform:...
-		    	List<EPackage> ePackages = modelImporterInstance.getEPackages();
+		    	List<@NonNull EPackage> ePackages = ClassUtil.nullFree(modelImporterInstance.getEPackages());
 		    	ecoreResource.getContents().clear();
 		    	ecoreResource.getContents().addAll(ePackages);
 		    	for (TreeIterator<EObject> tit = ecoreResource.getAllContents(); tit.hasNext(); ) {

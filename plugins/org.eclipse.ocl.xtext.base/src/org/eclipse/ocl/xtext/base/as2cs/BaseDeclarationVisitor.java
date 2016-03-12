@@ -90,7 +90,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 			for (Element reference : references) {
 				if (reference != null) {
 					ModelElementRefCS csRef = BaseCSFactory.eINSTANCE.createModelElementRefCS();
-					@SuppressWarnings("null") @NonNull PathNameCS csPathName = BaseCSFactory.eINSTANCE.createPathNameCS();
+					PathNameCS csPathName = BaseCSFactory.eINSTANCE.createPathNameCS();
 					csRef.setOwnedPathName(csPathName);
 					context.refreshPathName(csPathName, reference, context.getScope());
 					csReferences.add(csRef);

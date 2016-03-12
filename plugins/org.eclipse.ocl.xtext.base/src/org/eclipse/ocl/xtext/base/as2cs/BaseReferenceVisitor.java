@@ -52,7 +52,7 @@ public class BaseReferenceVisitor extends AbstractExtendingVisitor<ElementCS, AS
 		Type type = PivotUtil.getUnspecializedTemplateableElement(object);
 		PathNameCS csPathName = csRef.getOwnedPathName();
 		if (csPathName == null) {
-			@SuppressWarnings("null") @NonNull PathNameCS csPathName2 = BaseCSFactory.eINSTANCE.createPathNameCS();
+			PathNameCS csPathName2 = BaseCSFactory.eINSTANCE.createPathNameCS();
 			csPathName = csPathName2;
 			csRef.setOwnedPathName(csPathName);
 		}
@@ -114,7 +114,7 @@ public class BaseReferenceVisitor extends AbstractExtendingVisitor<ElementCS, AS
 		TypedTypeRefCS csRef = BaseCSFactory.eINSTANCE.createTypedTypeRefCS();
 		PathNameCS csPathName = csRef.getOwnedPathName();
 		if (csPathName == null) {
-			@SuppressWarnings("null") @NonNull PathNameCS csPathName2 = BaseCSFactory.eINSTANCE.createPathNameCS();
+			PathNameCS csPathName2 = BaseCSFactory.eINSTANCE.createPathNameCS();
 			csPathName = csPathName2;
 			csRef.setOwnedPathName(csPathName);
 		}

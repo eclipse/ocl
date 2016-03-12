@@ -31,8 +31,7 @@ import org.eclipse.ocl.pivot.util.Visitable;
 public class AS2UML extends AbstractConversion
 {
 	public static List<EObject> createResource(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Resource asResource) {
-		@SuppressWarnings("null")
-		@NonNull List<EObject> pivotModels = asResource.getContents();
+		List<@NonNull EObject> pivotModels = asResource.getContents();
 		AS2UML converter = new AS2UML(environmentFactory);
 		return converter.convertAll(pivotModels);
 	}

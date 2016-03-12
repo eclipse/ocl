@@ -52,7 +52,7 @@ public class MarkupTests extends XtextTestCase
 		ResourceSet resourceSet = ocl.getResourceSet();
 		Resource resource = resourceSet.createResource(URI.createURI("string.markupocl"));
 		resource.load(inputStream, null);
-		@SuppressWarnings("null") @NonNull Markup markup = (Markup) resource.getContents().get(0);
+		Markup markup = (Markup) resource.getContents().get(0);
 		Iterable<Diagnostic> parseErrors = resource.getErrors();
 		StringBuilder s = null;
 		for (Diagnostic parseError : parseErrors) {

@@ -27,6 +27,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.pivot.internal.ecore.as2es.AS2Ecore;
 import org.eclipse.ocl.pivot.uml.internal.as2es.AS2UML;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.xtext.base.cs2as.CS2AS;
 import org.eclipse.ocl.xtext.base.ui.model.BaseDocument;
@@ -95,7 +96,7 @@ public class OCLinEcoreDocument extends BaseDocument
 						if (asResource != null) {
 							CS2AS cs2as = ((BaseCSResource)resource).findCS2AS();
 							if (cs2as != null) {
-								List<EObject> umlContents = AS2UML.createResource(cs2as.getEnvironmentFactory(), asResource);
+								List<@NonNull EObject> umlContents = ClassUtil.nullFree(AS2UML.createResource(cs2as.getEnvironmentFactory(), asResource));
 								ResourceSetImpl resourceSet = new ResourceSetImpl();
 				//				URI umlURI = URI.createURI("internal.uml");
 								UMLResource umlResource = (UMLResource) resourceSet.createResource(umlURI);

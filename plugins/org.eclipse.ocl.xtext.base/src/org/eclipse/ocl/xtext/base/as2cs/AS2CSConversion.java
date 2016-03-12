@@ -161,7 +161,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 				for (String alias : aliases) {
 					ImportCS importCS = BaseCSFactory.eINSTANCE.createImportCS();
 					importCS.setName(alias);
-					@SuppressWarnings("null") @NonNull PathNameCS csPathName = BaseCSFactory.eINSTANCE.createPathNameCS();
+					PathNameCS csPathName = BaseCSFactory.eINSTANCE.createPathNameCS();
 					importCS.setOwnedPathName(csPathName);
 					List<PathElementCS> csPath = csPathName.getOwnedPathElements();
 					PathElementWithURICS csSimpleRef = BaseCSFactory.eINSTANCE.createPathElementWithURICS();
@@ -573,7 +573,7 @@ public class AS2CSConversion extends AbstractConversion implements PivotConstant
 		importedNamespaces = new HashMap<Namespace, List<String>>();
 		Resource asResource = converter.getASResource(csResource);
 		if (asResource != null) {
-			List<PackageCS> list = visitDeclarations(PackageCS.class, asResource.getContents(), null);
+			List<@NonNull PackageCS> list = visitDeclarations(PackageCS.class, asResource.getContents(), null);
 			refreshList(csResource.getContents(), list);
 			if (importedNamespaces != null) {
 				defaultDeclarationVisitor.postProcess(csResource, importedNamespaces);

@@ -87,8 +87,8 @@ public class CSSplitter extends AbstractWorkflowComponent
 		ResourceUtils.checkResource(resource);
 		EcoreUtil.resolveAll(resourceSet);
 		ResourceUtils.checkResourceSet(resourceSet);
-		Map<EPackage, URI> inclusions = new HashMap<EPackage, URI>();
-		Map<EPackage, URI> exclusions = new HashMap<EPackage, URI>();
+		Map<@NonNull EPackage, @NonNull URI> inclusions = new HashMap<@NonNull EPackage, @NonNull URI>();
+		Map<@NonNull EPackage, @NonNull URI> exclusions = new HashMap<@NonNull EPackage, @NonNull URI>();
 		gatherEPackages(ClassUtil.nonNullEMF(resource.getContents()), inclusions, exclusions);
 		List<Resource> resources = new ArrayList<Resource>();
 		for (EPackage ePackage : inclusions.keySet()) {
@@ -97,7 +97,7 @@ public class CSSplitter extends AbstractWorkflowComponent
 			includedResource.getContents().add(ePackage);
 			resources.add(includedResource);
 		}
-		for (EPackage ePackage : exclusions.keySet()) {
+		for (@NonNull EPackage ePackage : exclusions.keySet()) {
 			URI uri = exclusions.get(ePackage);
 			Resource excludedResource = resourceSet.createResource(uri);
 			excludedResource.getContents().add(ePackage);
