@@ -52,7 +52,7 @@ public class ImplementationManager
 	/**
 	 * ClassLoaders that may be able to load a library implementation.
 	 */
-	private List<ClassLoader> classLoaders = null;
+	private List<@NonNull ClassLoader> classLoaders = null;
 	
 	public ImplementationManager(@NonNull EnvironmentFactoryInternal environmentFactory) {
 		this.environmentFactory = environmentFactory;
@@ -67,11 +67,13 @@ public class ImplementationManager
 		}
 	}
 
-	public @NonNull List<ClassLoader> getClassLoaders() {
-		List<ClassLoader> classLoaders2 = classLoaders;
+	public @NonNull List<@NonNull ClassLoader> getClassLoaders() {
+		List<@NonNull ClassLoader> classLoaders2 = classLoaders;
 		if (classLoaders2 == null) {
-			classLoaders2 = classLoaders = new ArrayList<ClassLoader>();
-			classLoaders2.add(metamodelManager.getClass().getClassLoader());
+			classLoaders2 = classLoaders = new ArrayList<@NonNull ClassLoader>();
+			ClassLoader classLoader = metamodelManager.getClass().getClassLoader();
+			assert classLoader != null;
+			classLoaders2.add(classLoader);
 		}
 		return classLoaders2;
 	}
@@ -209,7 +211,7 @@ public class ImplementationManager
 					addClassLoader(featureClassLoader);
 				}
 				ClassNotFoundException e = null;
-				for (ClassLoader classLoader : getClassLoaders()) {
+				for (@NonNull ClassLoader classLoader : getClassLoaders()) {
 					try {
 						theClass = classLoader.loadClass(implementationClassName);
 						e = null;

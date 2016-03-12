@@ -24,12 +24,14 @@ import org.eclipse.ocl.pivot.internal.values.BagImpl;
 import org.eclipse.ocl.pivot.library.AbstractSimpleUnaryOperation;
 import org.eclipse.ocl.pivot.library.LibraryConstants;
 import org.eclipse.ocl.pivot.resource.ASResource;
+import org.eclipse.ocl.pivot.resource.BasicProjectManager;
 import org.eclipse.ocl.pivot.uml.UMLStandaloneSetup;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.Bag;
 import org.eclipse.ocl.pivot.values.Value;
+import org.eclipse.ocl.xtext.base.services.BaseLinkingService;
 
 import bug477283.a.Bug477283APackage;
 import bug477283.b.Bug477283BPackage;
@@ -64,7 +66,7 @@ public class ImportTests extends XtextTestCase
 
 	protected @NonNull TestOCL createOCL() {
 		TestCaseAppender.INSTANCE.uninstall();
-		return new TestOCL("ImportTests", getName(), OCL.NO_PROJECTS);
+		return new TestOCL("ImportTests", getName(), new BasicProjectManager());
 	}
 
 	protected void createTestImport_OCLinEcore_Bug353793_Files()
@@ -177,6 +179,23 @@ public class ImportTests extends XtextTestCase
 		Bag<String> bag = new BagImpl<String>();
 		bag.add(StringUtil.bind(PivotMessagesInternal.UnresolvedOperation_ERROR_, "Real", "toString"));
 		doBadLoadFromString(ocl, "string.ocl", testFile, bag);
+		ocl.dispose();
+	}
+	
+	public void testImport_CompleteOCL_custom_OCLstdlib_eval() throws Exception {
+		BaseLinkingService.DEBUG_RETRY.setState(true);
+		TestOCL ocl = createOCL();
+		String customLibrary =
+			"library lib : lib = 'http://custom.oclstdlib' {\n" + 
+			"	type Real : PrimitiveType {\n" + 
+			"		operation spacedOut() : String => 'org.eclipse.ocl.examples.test.xtext.ImportTests$SpacedOut';\n" + 
+			"	}\n" + 
+			"}";
+		ClassLoader classLoader = org.eclipse.ocl.examples.test.xtext.ImportTests.SpacedOut.class.getClassLoader();
+		assert classLoader != null;
+		ocl.getMetamodelManager().addClassLoader(classLoader);
+		doLoadFromString(ocl, "custom.oclstdlib", customLibrary);
+		ocl.assertQueryEquals(null, "42", "42.spacedOut()");
 		ocl.dispose();
 	}
 	

@@ -61,12 +61,21 @@ import com.google.common.collect.Iterables;
  */
 public class JavaClassScope extends AbstractJavaClassScope
 {
-//	private static final Logger logger = Logger.getLogger(JavaClassScope.class);
+	public static boolean SUPPRESS_WORK_THREAD = false;		// Set true to avoid WorkerThread delay when testing
 
 	public static @NonNull JavaClassScope getAdapter(@NonNull BaseCSResource csResource, @NonNull ClassLoader classLoader) {
 		AbstractJavaClassScope adapter = ClassUtil.getAdapter(AbstractJavaClassScope.class, csResource);
 		if (adapter == null) {
 			adapter = new JavaClassScope(classLoader);
+			csResource.eAdapters().add(adapter);
+		}
+		return (JavaClassScope) adapter;
+	}
+
+	public static @NonNull JavaClassScope getAdapter(@NonNull BaseCSResource csResource, @NonNull List<@NonNull ClassLoader> classLoaders) {
+		AbstractJavaClassScope adapter = ClassUtil.getAdapter(AbstractJavaClassScope.class, csResource);
+		if (adapter == null) {
+			adapter = new JavaClassScope(classLoaders);
 			csResource.eAdapters().add(adapter);
 		}
 		return (JavaClassScope) adapter;
@@ -82,9 +91,9 @@ public class JavaClassScope extends AbstractJavaClassScope
 	}
 
 	/**
-	 * ClassLoader to help resolve references in a non Eclipse context.
+	 * ClassLoaders to help resolve references.
 	 */
-	private final @Nullable ClassLoader classLoader;
+	private final @NonNull List<@NonNull ClassLoader> classLoaders = new ArrayList<@NonNull ClassLoader>();
 
 	/**
 	 * IProject to help resolve references in an Eclipse context.
@@ -98,20 +107,66 @@ public class JavaClassScope extends AbstractJavaClassScope
 	
 	private boolean doneFullScan = false;
 	
+	/* @deprecated use Iterable argument */
+	@Deprecated
 	public JavaClassScope(@NonNull ClassLoader classLoader) {
-		this.classLoader = classLoader;
+		this.classLoaders.add(classLoader);
 		this.project = null;
 	}
 
+	public JavaClassScope(@NonNull Iterable<@NonNull ClassLoader> classLoaders) {
+		this.project = null;
+		addClassLoaders(classLoaders);
+	}
+
 	public JavaClassScope(@NonNull IProject project) {
-		this.classLoader = null;
 		this.project = project;
 	}
 
 	@Override
+	public void addClassLoaders(@NonNull Iterable<@NonNull ClassLoader> classLoaders) {
+		for (@NonNull ClassLoader classLoader : classLoaders) {
+			if (!this.classLoaders.contains(classLoader)) {
+				this.classLoaders.add(classLoader);
+			}
+		}
+	}
+
+	private void doFullScan() {
+		Set<@NonNull String> classNames = new HashSet<@NonNull String>(65536);
+		for (@NonNull ClassLoader classLoader : classLoaders) {
+			if (classLoader instanceof BundleReference) {
+				Bundle bundle = ((BundleReference)classLoader).getBundle();
+				IProject iProject = ResourcesPlugin.getWorkspace().getRoot().getProject(bundle.getSymbolicName());
+				IJavaProject javaProject = JavaCore.create(iProject);
+				try {
+					IPackageFragmentRoot[] packageFragmentRoots = javaProject.getAllPackageFragmentRoots();
+					scanJavaElements(packageFragmentRoots, classNames);
+				} catch (JavaModelException e) {
+				}
+			}
+		}
+		if (project != null) {
+			IJavaProject javaProject = JavaCore.create(project);
+			try {
+				IPackageFragmentRoot[] packageFragmentRoots = javaProject.getAllPackageFragmentRoots();
+				scanJavaElements(packageFragmentRoots, classNames);
+			} catch (JavaModelException e) {
+			}
+		}
+//		else {
+//			scanClassPath(classNames);
+//			scanBundles(classNames);
+//		}
+		for (@NonNull String className : classNames) {
+			getEObjectDescription(className);
+		}
+	}
+
+	@Override
 	public void getAdapter(@NonNull BaseCSResource importedResource) {
-		if (classLoader != null) {
-			getAdapter(importedResource, classLoader);
+		if (classLoaders.size() > 0) {
+			getAdapter(importedResource, classLoaders);
 		}
 		else if (project != null) {
 			getAdapter(importedResource, project);
@@ -121,6 +176,10 @@ public class JavaClassScope extends AbstractJavaClassScope
 	@Override
 	protected Iterable<IEObjectDescription> getAllLocalElements() {
 		List<IEObjectDescription> results = new ArrayList<IEObjectDescription>();
+		if (SUPPRESS_WORK_THREAD && !doneFullScan) {
+			doneFullScan = true;
+			doFullScan();
+		}
 		if (!doneFullScan) {
 			doneFullScan = true;
 			Thread thread = new Thread("OCLstdlib ClassPath Scan") {
@@ -143,32 +202,6 @@ public class JavaClassScope extends AbstractJavaClassScope
 			}
 		}
 		return results;
-	}
-
-	private void doFullScan() {
-		Set<@NonNull String> classNames = new HashSet<@NonNull String>(65536);
-		if (classLoader instanceof BundleReference) {
-			Bundle bundle = ((BundleReference)classLoader).getBundle();
-			IProject iProject = ResourcesPlugin.getWorkspace().getRoot().getProject(bundle.getSymbolicName());
-			IJavaProject javaProject = JavaCore.create(iProject);
-			try {
-				IPackageFragmentRoot[] packageFragmentRoots = javaProject.getAllPackageFragmentRoots();
-				scanJavaElements(packageFragmentRoots, classNames);
-			} catch (JavaModelException e) {
-			}
-		}
-		else if (project != null) {
-			IJavaProject javaProject = JavaCore.create(project);
-			try {
-				IPackageFragmentRoot[] packageFragmentRoots = javaProject.getAllPackageFragmentRoots();
-				scanJavaElements(packageFragmentRoots, classNames);
-			} catch (JavaModelException e) {
-			}
-		}
-		else {
-//			scanClassPath(classNames);
-//			scanBundles(classNames);
-		}
 	}
 
 	protected IEObjectDescription getEObjectDescription(@NonNull String name) {
@@ -224,28 +257,27 @@ public class JavaClassScope extends AbstractJavaClassScope
 		}
 		JavaClassCS csJavaClass = name2class.get(name);
 		if (csJavaClass == null) {
-			ClassLoader classLoader2 = classLoader;
-			if (classLoader2 != null) {
+			Class<?> loadClass = null;
+			IType type = null;
+			for (@NonNull ClassLoader classLoader : classLoaders) {
 				try {
-					Class<?> loadClass = classLoader2.loadClass(name);
-					if (loadClass == null) {
-						return null;
+					loadClass = classLoader.loadClass(name);
+					if (loadClass != null) {
+						break;
 					}
-				} catch (ClassNotFoundException e) {
-					return null;
-				}
+				} catch (ClassNotFoundException e) {}
 			}
 			IProject project2 = project;
 			if (project2 != null) {
 				IJavaProject javaProject = JavaCore.create(project2);
 				try {
-					IType type = javaProject.findType(name);
-					if (type == null) {
-						return null;
-					}
+					type = javaProject.findType(name);
 				} catch (JavaModelException e) {
 					return null;
 				}
+			}
+			if ((loadClass == null) && (type == null)) {
+				return null;
 			}
 		}
 		return getEObjectDescription(name);

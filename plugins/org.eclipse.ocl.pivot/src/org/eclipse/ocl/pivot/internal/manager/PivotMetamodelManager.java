@@ -1298,6 +1298,13 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 				}
 			}
 			if (implementation == null) {
+				try {
+					implementation = getImplementation((Feature) operation);
+				} catch (ClassNotFoundException | SecurityException
+						| NoSuchFieldException | IllegalArgumentException
+						| IllegalAccessException e) {}
+			}
+			if (implementation == null) {
 				implementation = UnsupportedOperation.INSTANCE;
 			}
 			operation.setImplementation(implementation);

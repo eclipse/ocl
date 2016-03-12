@@ -29,6 +29,7 @@ import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.xtext.oclinecore.ui.OCLinEcoreUiModule;
 import org.eclipse.ocl.xtext.oclinecore.ui.internal.OCLinEcoreActivator;
+import org.eclipse.ocl.xtext.oclstdlib.scoping.JavaClassScope;
 import org.eclipse.ocl.xtext.oclstdlib.ui.OCLstdlibUiModule;
 import org.eclipse.ocl.xtext.oclstdlib.ui.internal.OCLstdlibActivator;
 import org.eclipse.ui.IWorkbench;
@@ -178,7 +179,8 @@ public class CompletionProposalTests extends XtextTestCase
 	
 	@Override
 	protected void setUp() throws Exception {
-		TestUIUtil.suppressGitPrefixPopUp();    		
+		JavaClassScope.SUPPRESS_WORK_THREAD = true;
+		TestUIUtil.suppressGitPrefixPopUp();
 		super.setUp();
 	}
 

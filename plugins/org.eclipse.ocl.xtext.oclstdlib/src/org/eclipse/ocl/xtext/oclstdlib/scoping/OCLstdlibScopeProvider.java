@@ -13,11 +13,16 @@
  */
 package org.eclipse.ocl.xtext.oclstdlib.scoping;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.internal.resource.EnvironmentFactoryAdapter;
 import org.eclipse.ocl.xtext.base.scoping.AbstractJavaClassScope;
 import org.eclipse.ocl.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.xtext.essentialocl.scoping.EssentialOCLScopeProvider;
@@ -47,9 +52,21 @@ public class OCLstdlibScopeProvider extends EssentialOCLScopeProvider
 			if (csResource instanceof BaseCSResource) {
 				AbstractJavaClassScope adapter = JavaClassScope.findAdapter((BaseCSResource)csResource);
 				if (adapter == null) {
-					// Should already be there so this fall-back classLoader is not used.
-					@SuppressWarnings("null")@NonNull ClassLoader classLoader = csResource.getClass().getClassLoader();
-					adapter = JavaClassScope.getAdapter((BaseCSResource)csResource, classLoader);
+					EnvironmentFactoryAdapter environmentFactoryAdapter = EnvironmentFactoryAdapter.find(csResource);
+					if (environmentFactoryAdapter == null) {
+						ResourceSet csResourceSet = csResource.getResourceSet();
+						if (csResourceSet != null) {
+							environmentFactoryAdapter = EnvironmentFactoryAdapter.find(csResourceSet);
+						}
+					}
+					List<@NonNull ClassLoader> classLoaders;
+					if (environmentFactoryAdapter != null) {
+						classLoaders = environmentFactoryAdapter.getMetamodelManager().getImplementationManager().getClassLoaders();
+					}
+					else {
+						classLoaders = Collections.emptyList();
+					}
+					adapter = JavaClassScope.getAdapter((BaseCSResource)csResource, classLoaders);
 				}
 				return adapter;
 			}

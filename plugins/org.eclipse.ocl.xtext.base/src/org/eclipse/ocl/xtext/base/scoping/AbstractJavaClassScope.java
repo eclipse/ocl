@@ -22,7 +22,7 @@ import org.eclipse.xtext.scoping.impl.AbstractScope;
 
 /**
  * An AbstractJavaClassScope provides the abstract support for ClassName lookup in the base plugin. The real
- * lookup is opnly appropriate for OCLstdlib whether the derived JavaClassScope resides.
+ * lookup is only appropriate for OCLstdlib where the derived JavaClassScope resides.
  */
 public abstract class AbstractJavaClassScope extends AbstractScope implements Adapter
 {
@@ -35,6 +35,8 @@ public abstract class AbstractJavaClassScope extends AbstractScope implements Ad
 	protected AbstractJavaClassScope() {
 		super(IScope.NULLSCOPE, false);
 	}
+
+	public abstract void addClassLoaders(@NonNull Iterable<@NonNull ClassLoader> classLoaders);
 
 	public abstract void getAdapter(@NonNull BaseCSResource importedResource);
 
