@@ -94,7 +94,7 @@ public class JavaClassScope extends AbstractJavaClassScope
 	/**
 	 * Map from known class names to their allocated EObjects.
 	 */
-	private final @NonNull Map<String, JavaClassCS> name2class = new HashMap<String, JavaClassCS>();
+	private final @NonNull Map<@NonNull String, @NonNull JavaClassCS> name2class = new HashMap<@NonNull String, @NonNull JavaClassCS>();
 	
 	private boolean doneFullScan = false;
 	
@@ -120,48 +120,55 @@ public class JavaClassScope extends AbstractJavaClassScope
 
 	@Override
 	protected Iterable<IEObjectDescription> getAllLocalElements() {
-//		if (true) throw new UnsupportedOperationException();
-		Set<String> classNames;
-		if (doneFullScan) {
-			classNames = name2class.keySet();
+		List<IEObjectDescription> results = new ArrayList<IEObjectDescription>();
+		if (!doneFullScan) {
+			doneFullScan = true;
+			Thread thread = new Thread("OCLstdlib ClassPath Scan") {
+				@Override
+				public void run() {
+					doFullScan();
+				}
+			};
+			thread.start();
+			String name = "Try again once worker thread class path scan has completed.";
+			JavaClassCS csJavaClass = OCLstdlibCSFactory.eINSTANCE.createJavaClassCS();
+			csJavaClass.setName(name);
+			results.add(EObjectDescription.create(name, csJavaClass));
 		}
 		else {
-			doneFullScan = true;
-			classNames = new HashSet<String>(65536);
-			if (classLoader instanceof BundleReference) {
-				Bundle bundle = ((BundleReference)classLoader).getBundle();
-				IProject iProject = ResourcesPlugin.getWorkspace().getRoot().getProject(bundle.getSymbolicName());
-				IJavaProject javaProject = JavaCore.create(iProject);
-				try {
-//					IClasspathEntry[] resolvedClasspath = javaProject.getResolvedClasspath(true);
-//					scanClassPath(resolvedClasspath, classNames);
-					IPackageFragmentRoot[] packageFragmentRoots = javaProject.getAllPackageFragmentRoots();
-					scanJavaElements(packageFragmentRoots, classNames);
-				} catch (JavaModelException e) {
-				}
-			}
-			else if (project != null) {
-				IJavaProject javaProject = JavaCore.create(project);
-				try {
-					IPackageFragmentRoot[] packageFragmentRoots = javaProject.getAllPackageFragmentRoots();
-					scanJavaElements(packageFragmentRoots, classNames);
-				} catch (JavaModelException e) {
-				}
-			}
-			else {
-//				scanClassPath(classNames);
-//				scanBundles(classNames);
-			}
-		}
-		List<String> sortedNames = new ArrayList<String>(classNames);
-		Collections.sort(sortedNames);
-		List<IEObjectDescription> results = new ArrayList<IEObjectDescription>();
-		for (String className : sortedNames) {
-			if (className != null) {
+			List<@NonNull String> sortedNames = new ArrayList<@NonNull String>(name2class.keySet());
+			Collections.sort(sortedNames);
+			for (@NonNull String className : sortedNames) {
 				results.add(getEObjectDescription(className));
 			}
 		}
 		return results;
+	}
+
+	private void doFullScan() {
+		Set<@NonNull String> classNames = new HashSet<@NonNull String>(65536);
+		if (classLoader instanceof BundleReference) {
+			Bundle bundle = ((BundleReference)classLoader).getBundle();
+			IProject iProject = ResourcesPlugin.getWorkspace().getRoot().getProject(bundle.getSymbolicName());
+			IJavaProject javaProject = JavaCore.create(iProject);
+			try {
+				IPackageFragmentRoot[] packageFragmentRoots = javaProject.getAllPackageFragmentRoots();
+				scanJavaElements(packageFragmentRoots, classNames);
+			} catch (JavaModelException e) {
+			}
+		}
+		else if (project != null) {
+			IJavaProject javaProject = JavaCore.create(project);
+			try {
+				IPackageFragmentRoot[] packageFragmentRoots = javaProject.getAllPackageFragmentRoots();
+				scanJavaElements(packageFragmentRoots, classNames);
+			} catch (JavaModelException e) {
+			}
+		}
+		else {
+//			scanClassPath(classNames);
+//			scanBundles(classNames);
+		}
 	}
 
 	protected IEObjectDescription getEObjectDescription(@NonNull String name) {
