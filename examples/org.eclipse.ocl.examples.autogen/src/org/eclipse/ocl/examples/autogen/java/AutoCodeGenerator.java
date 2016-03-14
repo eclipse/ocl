@@ -36,14 +36,22 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.java.CG2JavaPreVisitor;
 import org.eclipse.ocl.examples.codegen.java.ImportUtils;
 import org.eclipse.ocl.examples.codegen.java.JavaCodeGenerator;
+import org.eclipse.ocl.examples.codegen.library.NativeProperty;
 import org.eclipse.ocl.examples.codegen.oclinecore.OCLinEcoreGenModelGeneratorAdapter;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LanguageExpression;
+import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Property;
+import org.eclipse.ocl.pivot.Type;
+import org.eclipse.ocl.pivot.ids.IdManager;
+import org.eclipse.ocl.pivot.ids.RootPackageId;
+import org.eclipse.ocl.pivot.internal.manager.Orphanage;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
 import org.eclipse.ocl.pivot.utilities.ParserException;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 /**
  * AutoCodeGenerator supports generation of the content of a JavaClassFile to
@@ -116,7 +124,21 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 
 	protected abstract @NonNull List<CGPackage> createCGPackages() throws ParserException;
 	
+	protected org.eclipse.ocl.pivot.@NonNull Package createASPackage(@NonNull String packageName) {
+		String nsURI = "java://"+packageName;		// java: has no significance other than diagnostic readability
+		org.eclipse.ocl.pivot.Package asPackage = PivotUtil.createPackage(packageName, "viz", nsURI, IdManager.getRootPackageId(nsURI));
+		Model asRoot = PivotUtil.createModel(nsURI + ".java");
+		asRoot.getOwnedPackages().add(asPackage);
+		metamodelManager.installRoot(asRoot);
+		return asPackage;
+	}
 
+	protected org.eclipse.ocl.pivot.@NonNull Class createASClass(org.eclipse.ocl.pivot.@NonNull Package asPackage, @NonNull String className) {
+		org.eclipse.ocl.pivot.Class asVisitorClass = PivotUtil.createClass(className);
+		asPackage.getOwnedClasses().add(asVisitorClass);
+		return asVisitorClass;
+	}
+	
 	@Override
 	protected @NonNull AutoCodeGenOptions createOptions() {
 		return new AutoCodeGenOptions();
@@ -249,5 +271,34 @@ public abstract class AutoCodeGenerator extends JavaCodeGenerator
 	 * @return the CG IdResolver variable
 	 */
 	abstract public @NonNull CGValuedElement getIdResolverVariable();
+	
+	protected @NonNull Property createNativeProperty(@NonNull String name, @NonNull Type asElementType, 
+			boolean isReadOnly, boolean isRequired) {
+		Property asProperty = PivotUtil.createProperty(name, asElementType);
+		asProperty.setImplementation(NativeProperty.INSTANCE);
+		asProperty.setIsReadOnly(isReadOnly);
+		asProperty.setIsRequired(isReadOnly);
+		return asProperty;
+	}
+
+	protected @NonNull Property createNativeProperty(@NonNull String name, @NonNull Class<?> javaClass, 
+			boolean isReadOnly, boolean isRequired) {
+		Package javaPackage = javaClass.getPackage();
+		@SuppressWarnings("null")@NonNull String packageName = javaPackage.getName();
+		@SuppressWarnings("null")@NonNull String className = javaClass.getSimpleName();
+		RootPackageId javaPackageId = IdManager.getRootPackageId(packageName);
+		Orphanage orphanage = metamodelManager.getCompleteModel().getOrphanage();
+		org.eclipse.ocl.pivot.Package asPackage = NameUtil.getNameable(orphanage.getOwnedPackages(), packageName);
+		if (asPackage == null) {
+			asPackage = PivotUtil.createPackage(packageName, packageName, packageName, javaPackageId);
+			orphanage.getOwnedPackages().add(asPackage);
+		}
+		org.eclipse.ocl.pivot.Class asType = NameUtil.getNameable(asPackage.getOwnedClasses(), className);
+		if (asType == null) {
+			asType = PivotUtil.createClass(className);
+			asPackage.getOwnedClasses().add(asType);
+		}
+		return createNativeProperty(name, asType, isReadOnly, isRequired);
+	}
 }
 

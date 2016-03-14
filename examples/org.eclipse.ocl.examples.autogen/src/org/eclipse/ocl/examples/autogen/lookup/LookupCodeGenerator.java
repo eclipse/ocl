@@ -11,6 +11,7 @@
  *******************************************************************************/
 package org.eclipse.ocl.examples.autogen.lookup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
@@ -18,8 +19,14 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.Class;
+import org.eclipse.ocl.pivot.Model;
+import org.eclipse.ocl.pivot.Operation;
+import org.eclipse.ocl.pivot.Package;
+import org.eclipse.ocl.pivot.PivotPackage;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibPackage;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 /**
@@ -59,16 +66,42 @@ public class LookupCodeGenerator
 					throw new IllegalStateException("No super-GenPackage found in UsedGenPackages for " + baseProjectPrefix);
 				}
 			}
+		
+			for (String unqualifiedOpName : gatherUnqualifiedEnvOpNames(oclDocPackage)) {
+				new LookupUnqualifiedCodeGenerator(environmentFactory, oclDocPackage, asSuperPackage, basePackage, 
+					genPackage,superGenPackage, baseGenPackage, unqualifiedOpName).saveSourceFile();	
+			}
 			
-			new LookupUnqualifiedCodeGenerator(environmentFactory, oclDocPackage, asSuperPackage, basePackage, 
-				genPackage,superGenPackage, baseGenPackage).saveSourceFile();
-			new LookupQualifiedCodeGenerator(environmentFactory, oclDocPackage, asSuperPackage, basePackage, 
-				genPackage,superGenPackage, baseGenPackage).saveSourceFile();
 			new LookupExportedVisitorCodeGenerator(environmentFactory, oclDocPackage, asSuperPackage, basePackage, 
 				genPackage,superGenPackage, baseGenPackage).saveSourceFile();
 			new LookupFilterGenerator(environmentFactory, oclDocPackage, asSuperPackage, basePackage,
 				genPackage,	superGenPackage, baseGenPackage,
 				lookupPackageName, superLookupPackageName, baseLookupPackage).saveSourceFile();
 		}
+	}
+	
+	private static List<@NonNull String> gatherUnqualifiedEnvOpNames(Package oclDocPackage) {
+		
+		List<@NonNull String> result = new ArrayList<@NonNull String>();
+		
+		Model model = (Model) oclDocPackage.eContainer();
+		for (Package pPackage : model.getOwnedPackages()) {
+			String uri = pPackage.getURI();
+			if (uri.equals(OCLstdlibPackage.eNS_URI)
+				|| uri.equals(PivotPackage.eNS_URI)) { // FIXME
+				for (Class pClass : pPackage.getOwnedClasses()) {
+					for (Operation op : pClass.getOwnedOperations()) {
+						String opName = op.getName();
+						if (opName != null && opName.startsWith(LookupVisitorsClassContext.UNQUALIFIED_ENV_NAME)) {
+							result.add(opName);
+						}
+					}
+				}
+			}
+		}
+		if (result.isEmpty()) {
+			result.add(LookupVisitorsClassContext.UNQUALIFIED_ENV_NAME);
+		}
+		return result;
 	}
 }

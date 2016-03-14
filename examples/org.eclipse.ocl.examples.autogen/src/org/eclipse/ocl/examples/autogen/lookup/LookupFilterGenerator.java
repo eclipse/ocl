@@ -36,12 +36,10 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGProperty;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.java.CG2JavaPreVisitor;
 import org.eclipse.ocl.examples.codegen.java.JavaConstants;
-import org.eclipse.ocl.examples.codegen.library.NativeProperty;
 import org.eclipse.ocl.examples.codegen.utilities.RereferencingCopier;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LetExp;
-import org.eclipse.ocl.pivot.Model;
 import org.eclipse.ocl.pivot.NullLiteralExp;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
@@ -52,10 +50,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.evaluation.Executor;
-import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.IdResolver;
-import org.eclipse.ocl.pivot.ids.RootPackageId;
-import org.eclipse.ocl.pivot.internal.manager.Orphanage;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.NameUtil;
@@ -290,21 +285,7 @@ public class LookupFilterGenerator extends AutoCodeGenerator
 		cgSuperClass.getTemplateParameters().add(getExternalClass(filteredType));
 		cgClass.getSuperTypes().add(cgSuperClass);
 	}
-
-	protected org.eclipse.ocl.pivot.@NonNull Package createASPackage(@NonNull String packageName) {
-		String nsURI = "java://"+packageName;		// java: has no significance other than diagnostic readability
-		org.eclipse.ocl.pivot.Package asPackage = PivotUtil.createPackage(packageName, "viz", nsURI, IdManager.getRootPackageId(nsURI));
-		Model asRoot = PivotUtil.createModel(nsURI + ".java");
-		asRoot.getOwnedPackages().add(asPackage);
-		metamodelManager.installRoot(asRoot);
-		return asPackage;
-	}
-	protected org.eclipse.ocl.pivot.@NonNull Class createASClass(org.eclipse.ocl.pivot.@NonNull Package asPackage, @NonNull String className) {
-		org.eclipse.ocl.pivot.Class asVisitorClass = PivotUtil.createClass(className);
-		asPackage.getOwnedClasses().add(asVisitorClass);
-		return asVisitorClass;
-	}
-
+	
 	@Override
 	protected @NonNull LookupFilterCG2JavaVisitor createCG2JavaVisitor(@NonNull CGPackage cgPackage, @Nullable List<CGValuedElement> sortedGlobals) {
 		return new LookupFilterCG2JavaVisitor(this, cgPackage, sortedGlobals);
@@ -326,34 +307,7 @@ public class LookupFilterGenerator extends AutoCodeGenerator
 		return new ArrayList<CGPackage>(cgModel.getPackages());
 	}
 
-	protected @NonNull Property createNativeProperty(@NonNull String name, @NonNull Type asElementType, 
-			boolean isReadOnly, boolean isRequired) {
-		Property asProperty = PivotUtil.createProperty(name, asElementType);
-		asProperty.setImplementation(NativeProperty.INSTANCE);
-		asProperty.setIsReadOnly(isReadOnly);
-		asProperty.setIsRequired(isReadOnly);
-		return asProperty;
-	}
 
-	protected @NonNull Property createNativeProperty(@NonNull String name, @NonNull Class<?> javaClass, 
-			boolean isReadOnly, boolean isRequired) {
-		Package javaPackage = javaClass.getPackage();
-		@SuppressWarnings("null")@NonNull String packageName = javaPackage.getName();
-		@SuppressWarnings("null")@NonNull String className = javaClass.getSimpleName();
-		RootPackageId javaPackageId = IdManager.getRootPackageId(packageName);
-		Orphanage orphanage = metamodelManager.getCompleteModel().getOrphanage();
-		org.eclipse.ocl.pivot.Package asPackage = NameUtil.getNameable(orphanage.getOwnedPackages(), packageName);
-		if (asPackage == null) {
-			asPackage = PivotUtil.createPackage(packageName, packageName, packageName, javaPackageId);
-			orphanage.getOwnedPackages().add(asPackage);
-		}
-		org.eclipse.ocl.pivot.Class asType = NameUtil.getNameable(asPackage.getOwnedClasses(), className);
-		if (asType == null) {
-			asType = PivotUtil.createClass(className);
-			asPackage.getOwnedClasses().add(asType);
-		}
-		return createNativeProperty(name, asType, isReadOnly, isRequired);
-	}
 
 	protected @NonNull VariableExp createThisVariableExp(@NonNull Variable thisVariable) {
 		return PivotUtil.createVariableExp(thisVariable);
@@ -363,39 +317,6 @@ public class LookupFilterGenerator extends AutoCodeGenerator
 	protected @NonNull NullLiteralExp createNullLiteralExp() {
 		return metamodelManager.createNullLiteralExp();
 	}
-
-
-	
-	/**
-	 * Convert  'Element'::_env(child : Element) : Environment 
-	 * to AutoPivotLookupVisitor::visit'Element'(element : 'Element') : Environment
-	 * 
-	 * with 
-	 *     - self accessed as element.
-	 *     - child accessed as this.child.
-	 * @throws ParserException 
-	 */
-//	protected @NonNull Operation createUnqualifiedVisitOperationDeclaration(@NonNull Map<Element, Element> reDefinitions, @NonNull Operation envOperation, @NonNull Property asChildProperty) throws ParserException {
-//		LanguageExpression envSpecification = ClassUtil.nonNullState(envOperation.getBodyExpression());
-//		ExpressionInOCL envExpressionInOCL = metamodelManager.parseSpecification(envSpecification);
-//		//
-//		org.eclipse.ocl.pivot.Class asType = ClassUtil.nonNullState(envOperation.getOwningClass());
-//		Variable asElement = PivotUtil.createVariable(LookupVisitorsClassContext.ELEMENT_NAME, asType, true, null);
-//		reDefinitions.put(envExpressionInOCL.getOwnedContext(), asElement);
-//		//
-//		VariableExp asChildSource = createThisVariableExp(asThisVariable);
-//		PropertyCallExp asChildAccess = PivotUtil.createPropertyCallExp(asChildSource, asChildProperty);
-//		Variable asChild = PivotUtil.createVariable(LookupVisitorsClassContext.CHILD_NAME, asChildAccess);
-//		reDefinitions.put(envExpressionInOCL.getOwnedParameters().get(0), asChild);
-//		//
-//		String visitorName = "visit" + asType.getName();
-//		Operation asOperation = PivotFactory.eINSTANCE.createOperation();
-//		asOperation.setName(visitorName);
-//		asOperation.setImplementation(NativeVisitorOperation.INSTANCE);
-//		asOperation.setType(envOperation.getType());
-//		reDefinitions.put(envOperation, asOperation);
-//		return asOperation;
-//	}
 	
 	public @NonNull CGValuedElement getEvaluatorVariable() {
 		// When generating lookup visitors for derived languages, the common lookup visitor is no

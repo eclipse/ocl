@@ -21,7 +21,7 @@ public class LookupVisitorsClassContext extends AutoGlobalContext<LookupVisitors
 	public static final @NonNull String CHILD_NAME = "child";
 	public static final @NonNull String CONTEXT_NAME = "context";
 	public static final @NonNull String ELEMENT_NAME = "element";
-	public static final @NonNull String ENV_NAME = "_env";	
+	public static final @NonNull String UNQUALIFIED_ENV_NAME = "_unqualified_env";	
 	public static final @NonNull String EXPORTED_ENV_NAME = "_exported_env";
 	public static final @NonNull String HAS_FINAL_RESULT_NAME = "hasFinalResult";
 	public static final @NonNull String INMPORTER_NAME = "importer";

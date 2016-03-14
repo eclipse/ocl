@@ -78,14 +78,26 @@ public class LookupUnqualifiedCodeGenerator extends LookupVisitorsCodeGenerator 
 			@NonNull Package asBasePackage, @NonNull GenPackage genPackage,
 			@Nullable GenPackage superGenPackage,
 			@Nullable GenPackage baseGenPackage) {
+		this(environmentFactory, asPackage, asSuperPackage, asBasePackage, genPackage,
+			superGenPackage, baseGenPackage, LookupVisitorsClassContext.UNQUALIFIED_ENV_NAME);
+	}
+	
+	protected LookupUnqualifiedCodeGenerator(
+			@NonNull EnvironmentFactoryInternal environmentFactory,
+			@NonNull Package asPackage, @Nullable Package asSuperPackage,
+			@NonNull Package asBasePackage, @NonNull GenPackage genPackage,
+			@Nullable GenPackage superGenPackage,
+			@Nullable GenPackage baseGenPackage,
+			@NonNull String envOperationName) {
 		super(environmentFactory, asPackage, asSuperPackage, asBasePackage, genPackage,
-			superGenPackage, baseGenPackage);
+			superGenPackage, baseGenPackage, envOperationName);
 		
 		ParametersId emptyParametersId = IdManager.getParametersId();
 		org.eclipse.ocl.pivot.Class asOclElement = metamodelManager.getStandardLibrary().getOclElementType();
 		CompleteClass asElementCompleteClass = metamodelManager.getCompletePackage(metamodelManager.getStandardLibrary().getPackage()).getCompleteClass(asOclElement);
 
-		OperationId parentEnvOperationId = asOclElement.getTypeId().getOperationId(0, LookupVisitorsClassContext.PARENT_ENV_NAME, emptyParametersId);
+		String parentEnvOpName = ClassUtil.nonNull(envOperationName.replace(LookupVisitorsClassContext.UNQUALIFIED_ENV_NAME, LookupVisitorsClassContext.PARENT_ENV_NAME));
+		OperationId parentEnvOperationId = asOclElement.getTypeId().getOperationId(0, parentEnvOpName , emptyParametersId);
 		this.asElementParentEnvOperation = ClassUtil.nonNullState(asElementCompleteClass.getOperation(parentEnvOperationId));
 		CompleteClass asEnvironmentCompleteClass = metamodelManager.getCompleteClass(asEnvironmentType);
 		OperationId nestedEnvOperationId = asEnvironmentType.getTypeId().getOperationId(0, LookupVisitorsClassContext.NESTED_ENV_NAME, emptyParametersId);
@@ -93,7 +105,6 @@ public class LookupUnqualifiedCodeGenerator extends LookupVisitorsCodeGenerator 
 		OperationId hasFinalResultOperationId = asEnvironmentType.getTypeId().getOperationId(0, LookupVisitorsClassContext.HAS_FINAL_RESULT_NAME, emptyParametersId);
 		this.asEnvironmentHasFinalResultOperation = ClassUtil.nonNullState(asEnvironmentCompleteClass.getOperation(hasFinalResultOperationId));
 	}
-	
 	
 	@Override
 	protected @NonNull AutoCG2JavaVisitor<@NonNull ? extends AutoCodeGenerator> createCG2JavaVisitor(
@@ -105,13 +116,16 @@ public class LookupUnqualifiedCodeGenerator extends LookupVisitorsCodeGenerator 
 	@Override
 	@NonNull
 	protected String getLookupVisitorClassName(@NonNull String prefix) {
-		return prefix + "UnqualifiedLookupVisitor";
+		// Extract type name.
+		boolean isGeneralLookup = envOperationName.equals(LookupVisitorsClassContext.UNQUALIFIED_ENV_NAME);		
+		String typeName = isGeneralLookup ? "" : envOperationName.substring(LookupVisitorsClassContext.UNQUALIFIED_ENV_NAME.length() + 1 /*extra underscore */); 
+		return prefix + "Unqualified" + typeName + "LookupVisitor";
 	}
 	
 	@Override
 	protected List<Property> createAdditionalASProperties() {
 		Type asOclElement = metamodelManager.getStandardLibrary().getOclElementType(); 
-		this.asChildProperty = createNativeProperty(LookupVisitorsClassContext.CHILD_NAME, asOclElement, false);
+		this.asChildProperty = createNativeProperty(LookupVisitorsClassContext.CHILD_NAME, asOclElement, false, true);
 		return Collections.singletonList(asChildProperty);
 	}
 	
@@ -119,7 +133,7 @@ public class LookupUnqualifiedCodeGenerator extends LookupVisitorsCodeGenerator 
 	protected Collection<? extends Operation> createAdditionalASOperations() {
 		List<Operation> result = new ArrayList<Operation>(); 
 		Type asOclElement = metamodelManager.getStandardLibrary().getOclElementType();
-		this.asVisitorEnvOperation = PivotUtil.createOperation(LookupVisitorsClassContext.ENV_NAME, asEnvironmentType, null, null);
+		this.asVisitorEnvOperation = PivotUtil.createOperation(envOperationName, asEnvironmentType, null, null);
 		asVisitorEnvOperation.getOwnedParameters().add(PivotUtil.createParameter(LookupVisitorsClassContext.ELEMENT_NAME, asOclElement, true));
 		asVisitorEnvOperation.getOwnedParameters().add(PivotUtil.createParameter(LookupVisitorsClassContext.CHILD_NAME, asOclElement, false));
 		this.asVisitorParentEnvOperation = PivotUtil.createOperation(LookupVisitorsClassContext.PARENT_ENV_NAME, asEnvironmentType, null, null);
@@ -240,7 +254,7 @@ public class LookupUnqualifiedCodeGenerator extends LookupVisitorsCodeGenerator 
 
 	@Override
 	protected boolean isRewrittenOperation(Operation operation) {
-		return LookupVisitorsClassContext.ENV_NAME.equals(operation.getName())
+		return envOperationName.equals(operation.getName())
 			&& operation != asElementEnvOperation
 			&& operation.getOwnedParameters().size() ==1;
 	}

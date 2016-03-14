@@ -22,7 +22,6 @@ import org.eclipse.ocl.examples.autogen.java.AutoCodeGenerator;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGProperty;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
-import org.eclipse.ocl.pivot.CompleteClass;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
 import org.eclipse.ocl.pivot.LetExp;
@@ -35,16 +34,12 @@ import org.eclipse.ocl.pivot.ShadowExp;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VariableExp;
-import org.eclipse.ocl.pivot.ids.IdManager;
-import org.eclipse.ocl.pivot.ids.OperationId;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 public class LookupExportedVisitorCodeGenerator extends LookupVisitorsCodeGenerator{
-
-	protected final @NonNull Operation asElementExportedEnvOperation;
 	
 	protected Property asImporterProperty;
 	
@@ -56,12 +51,19 @@ public class LookupExportedVisitorCodeGenerator extends LookupVisitorsCodeGenera
 			@NonNull Package asBasePackage, @NonNull GenPackage genPackage,
 			@Nullable GenPackage superGenPackage,
 			@Nullable GenPackage baseGenPackage) {
+		this(environmentFactory, asPackage, asSuperPackage, asBasePackage, genPackage,
+			superGenPackage, baseGenPackage, LookupVisitorsClassContext.EXPORTED_ENV_NAME);
+	}
+	
+	protected LookupExportedVisitorCodeGenerator(
+			@NonNull EnvironmentFactoryInternal environmentFactory,
+			@NonNull Package asPackage, @Nullable Package asSuperPackage,
+			@NonNull Package asBasePackage, @NonNull GenPackage genPackage,
+			@Nullable GenPackage superGenPackage,
+			@Nullable GenPackage baseGenPackage,
+			@NonNull String envOpName) {
 		super(environmentFactory, asPackage, asSuperPackage, asBasePackage, genPackage,
-			superGenPackage, baseGenPackage);
-		org.eclipse.ocl.pivot.Class asOclElement = metamodelManager.getStandardLibrary().getOclElementType();
-		CompleteClass asElementCompleteClass = metamodelManager.getCompletePackage(metamodelManager.getStandardLibrary().getPackage()).getCompleteClass(asOclElement);
-		OperationId exportedEnvOperationId = asOclElement.getTypeId().getOperationId(0, LookupVisitorsClassContext.EXPORTED_ENV_NAME, IdManager.getParametersId(asOclElement.getTypeId()));
-		asElementExportedEnvOperation = ClassUtil.nonNullState(asElementCompleteClass.getOperation(exportedEnvOperationId));
+			superGenPackage, baseGenPackage, envOpName);
 	}
 	
 	@Override
@@ -79,15 +81,15 @@ public class LookupExportedVisitorCodeGenerator extends LookupVisitorsCodeGenera
 	@Override
 	protected List<Property> createAdditionalASProperties() {
 		Type asOclElement = metamodelManager.getStandardLibrary().getOclElementType(); 
-		this.asImporterProperty = createNativeProperty(LookupVisitorsClassContext.INMPORTER_NAME, asOclElement, true);
+		this.asImporterProperty = createNativeProperty(LookupVisitorsClassContext.INMPORTER_NAME, asOclElement, true, true);
 		return Collections.singletonList(asImporterProperty);
 	}
 
 	
 	@Override
 	protected boolean isRewrittenOperation(Operation operation) {
-		return LookupVisitorsClassContext.EXPORTED_ENV_NAME.equals(operation.getName())
-				&& operation != asElementExportedEnvOperation
+		return envOperationName.equals(operation.getName())
+				&& operation != asElementEnvOperation
 				&& operation.getOwnedParameters().size() == 1;
 	}
 

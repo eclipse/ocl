@@ -43,7 +43,7 @@ public class LookupQualifiedCodeGenerator extends LookupVisitorsCodeGenerator {
 			@Nullable GenPackage superGenPackage,
 			@Nullable GenPackage baseGenPackage) {
 		super(environmentFactory, asPackage, asSuperPackage, asBasePackage, genPackage,
-			superGenPackage, baseGenPackage);
+			superGenPackage, baseGenPackage, LookupVisitorsClassContext.QUALIFIED_ENV_NAME);
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class LookupQualifiedCodeGenerator extends LookupVisitorsCodeGenerator {
 	
 	@Override
 	protected boolean isRewrittenOperation(Operation operation) {
-		return LookupVisitorsClassContext.QUALIFIED_ENV_NAME.equals(operation.getName())
+		return envOperationName.equals(operation.getName())
 				&& operation.getOwnedParameters().size() == 0;
 	}
 	
@@ -92,9 +92,5 @@ public class LookupQualifiedCodeGenerator extends LookupVisitorsCodeGenerator {
 		Operation asOperation = createVisitorOperation("visit" + asType.getName(), operation.getType());
 		reDefinitions.put(operation, asOperation);
 		return asOperation;
-			
-
 	}
-
-
 }
