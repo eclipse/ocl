@@ -16,7 +16,7 @@
         </ownedAttribute>
         <ownedAttribute xmi:id="OCL-OCL_Associations-Property-implicit" name="isImplicit" type="OCL-OCL_Associations-Boolean">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiA37VEeOu79LxSz8Ylw"/>
-          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_XpdiBH7VEeOu79LxSz8Ylw" value="false"/>
+          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_XpdiBH7VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="OCL-OCL_Associations-A_associationClass_unownedAttribute" name="A_associationClass_unownedAttribute" memberEnd="OCL-OCL_Associations-AssociationClass-unownedAttribute OCL-OCL_Associations-Property-associationClass"/>
@@ -52,7 +52,7 @@
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiBn7VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
         <ownedAttribute xmi:id="_4bQI0BswEeSM9LreJtBwBg" name="isComposite" type="OCL-OCL_PrimitiveTypes-Boolean">
-          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_DkEQUBsxEeSM9LreJtBwBg" value="false"/>
+          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_DkEQUBsxEeSM9LreJtBwBg"/>
         </ownedAttribute>
         <ownedAttribute xmi:id="_j4eg8BszEeSM9LreJtBwBg" name="defaultValueString" type="OCL-OCL_PrimitiveTypes-String">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qZBc0BszEeSM9LreJtBwBg"/>
@@ -102,10 +102,10 @@
         <generalization xmi:id="_XpdiSH7VEeOu79LxSz8Ylw" general="_vJ60ABu3EeSIos3S87O_rg"/>
         <ownedAttribute xmi:id="OCL-OCL_Types-CollectionType-elementType" name="elementType" type="_2vtgsBu3EeSIos3S87O_rg"/>
         <ownedAttribute xmi:id="_0hdJcPrfEeSaDrogyTMIhA" name="isNullFree" type="_PHnfsBu4EeSIos3S87O_rg">
-          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_0hdJcfrfEeSaDrogyTMIhA" value="false"/>
+          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_0hdJcfrfEeSaDrogyTMIhA"/>
         </ownedAttribute>
         <ownedAttribute xmi:id="OCL-OCL_Types-CollectionType-lower" name="lower" type="_8LvrkBu3EeSIos3S87O_rg">
-          <defaultValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiRn7VEeOu79LxSz8Ylw" value="0"/>
+          <defaultValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiRn7VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
         <ownedAttribute xmi:id="OCL-OCL_Types-CollectionType-upper" name="upper" type="_8LvrkRu3EeSIos3S87O_rg">
           <defaultValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XpdiR37VEeOu79LxSz8Ylw" value="*"/>
@@ -300,11 +300,11 @@
         </ownedAttribute>
         <ownedAttribute xmi:id="OCL-OCL_Expressions-CallExp-implicit" name="isImplicit" type="OCL-OCL_PrimitiveTypes-Boolean">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiFn7VEeOu79LxSz8Ylw"/>
-          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_XpdiF37VEeOu79LxSz8Ylw" value="false"/>
+          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_XpdiF37VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
         <ownedAttribute xmi:id="_uTnWwNe3EeS7E5NpdyPCEw" name="isSafe" type="OCL-OCL_PrimitiveTypes-Boolean">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_uTnWwde3EeS7E5NpdyPCEw"/>
-          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_uTnWwte3EeS7E5NpdyPCEw" value="false"/>
+          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_uTnWwte3EeS7E5NpdyPCEw"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-EnumLiteralExp" name="EnumLiteralExp">
@@ -332,7 +332,7 @@
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-FeatureCallExp" name="FeatureCallExp" isAbstract="true">
         <generalization xmi:id="_XpnTKn7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-CallExp"/>
         <ownedAttribute xmi:id="OCL-OCL_Expressions-FeatureCallExp-isPre" name="isPre" type="OCL-OCL_PrimitiveTypes-Boolean">
-          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_XpdiL37VEeOu79LxSz8Ylw" value="false"/>
+          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_XpdiL37VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-IfExp" name="IfExp">
@@ -394,6 +394,9 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="OCL-OCL_Expressions-OperationCallExp" name="OperationCallExp">
         <generalization xmi:id="_XpnTHn7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-FeatureCallExp"/>
+        <ownedAttribute xmi:id="_sBPwkO0OEeWoV6-G38bwJA" name="isVirtual" type="OCL-OCL_PrimitiveTypes-Boolean">
+          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_sBPwke0OEeWoV6-G38bwJA" value="true"/>
+        </ownedAttribute>
         <ownedAttribute xmi:id="OCL-OCL_Expressions-OperationCallExp-argument" name="ownedArguments" type="OCL-OCL_Expressions-OCLExpression" isOrdered="true" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiI37VEeOu79LxSz8Ylw"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XpdiJH7VEeOu79LxSz8Ylw" value="*"/>
@@ -476,7 +479,7 @@
         <generalization xmi:id="_XpnTGX7VEeOu79LxSz8Ylw" general="OCL-OCL_Expressions-OCLExpression"/>
         <ownedAttribute xmi:id="OCL-OCL_Variables-VariableExp-implicit" name="isImplicit" type="OCL-OCL_PrimitiveTypes-Boolean">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpnTDn7VEeOu79LxSz8Ylw"/>
-          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_XpnTD37VEeOu79LxSz8Ylw" value="false"/>
+          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_XpnTD37VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
         <ownedAttribute xmi:id="OCL-OCL_Expressions-VariableExp-referredVariable" name="referredVariable" type="OCL-OCL_Expressions-VariableDeclaration">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiHn7VEeOu79LxSz8Ylw"/>
@@ -672,7 +675,7 @@
         <generalization xmi:id="_Xpwc9n7VEeOu79LxSz8Ylw" general="OCL-OCL_Variables-VariableDeclaration"/>
         <ownedAttribute xmi:id="OCL-OCL_Variables-Variable-implicit" name="isImplicit" type="OCL-OCL_PrimitiveTypes-Boolean">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpnTDH7VEeOu79LxSz8Ylw"/>
-          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_XpnTDX7VEeOu79LxSz8Ylw" value="false"/>
+          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_XpnTDX7VEeOu79LxSz8Ylw"/>
         </ownedAttribute>
         <ownedAttribute xmi:id="OCL-OCL_Expressions-Variable-initExpression" name="ownedInit" type="_BSdooBsGEeSM9LreJtBwBg" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XpdiGn7VEeOu79LxSz8Ylw"/>
