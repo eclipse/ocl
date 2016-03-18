@@ -12,7 +12,6 @@ package org.eclipse.ocl.pivot.evaluation.tx;
 
 import java.util.Collection;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
@@ -25,9 +24,9 @@ import org.eclipse.jdt.annotation.Nullable;
  */
 public interface TypedModelInstance
 {
-	@NonNull Collection<@NonNull EObject> getAllObjects();
+	@NonNull Collection<@NonNull ? extends Object> getAllObjects();
 	@Nullable String getName();
-	@NonNull Collection<@NonNull EObject> getObjectsOfKind(org.eclipse.ocl.pivot.@NonNull Class type);
-	@NonNull Collection<@NonNull EObject> getObjectsOfType(org.eclipse.ocl.pivot.@NonNull Class type);
-	@NonNull Collection<@NonNull EObject> getRootObjects();
+	@NonNull Collection<@NonNull ? extends Object> getObjectsOfKind(org.eclipse.ocl.pivot.@NonNull Class type);
+	@NonNull Collection<@NonNull ? extends Object> getObjectsOfType(org.eclipse.ocl.pivot.@NonNull Class type);
+	@NonNull Collection<@NonNull ? extends Object> getRootObjects();
 }

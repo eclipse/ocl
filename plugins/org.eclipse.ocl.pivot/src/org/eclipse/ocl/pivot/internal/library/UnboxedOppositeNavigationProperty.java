@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -41,17 +40,18 @@ public class UnboxedOppositeNavigationProperty extends AbstractProperty
 	public @Nullable Object evaluate(@NonNull Executor executor, @NonNull TypeId returnTypeId, @Nullable Object sourceValue) {
 		IdResolver idResolver = executor.getIdResolver();
 		Property oppositeProperty = idResolver.getProperty(oppositePropertyId);		
-		ModelManager modelManager = executor.getModelManager();
+		ModelManager.ModelManagerExtension modelManager = (ModelManager.ModelManagerExtension)executor.getModelManager();
 		Type thatType = ClassUtil.nonNullModel(oppositeProperty.getType());
 		if (thatType instanceof CollectionType) {
 			thatType = ((CollectionType)thatType).getElementType();
 		}
 		List<Object> results = new ArrayList<Object>();
 		if (thatType instanceof org.eclipse.ocl.pivot.Class) {
-			for (EObject eObject : modelManager.get((org.eclipse.ocl.pivot.Class)thatType)) {	// FIXME Use a cache
-				EClass eClass = eObject.eClass();
+			for (@NonNull Object eObject : modelManager.get((org.eclipse.ocl.pivot.Class)thatType)) {	// FIXME Use a cache
+				EClass eClass = modelManager.eClass(eObject);
 				EStructuralFeature eFeature = eClass.getEStructuralFeature(oppositeProperty.getName());
-				Object eGet = eObject.eGet(eFeature);
+				assert eFeature != null;
+				Object eGet = modelManager.eGet(eObject, eFeature);
 				if (eGet == sourceValue) {
 					results.add(eObject);
 				}

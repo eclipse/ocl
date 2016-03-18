@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.ocl.pivot.evaluation.tx;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -26,14 +25,14 @@ public interface SlotState extends ExecutionVisitable
 	/**
 	 * Update the SlotState as a result of an assignment of ecoreValue to the eFeature of eObject.
 	 */
-	void assigned(@NonNull EObject eObject, @NonNull EStructuralFeature eFeature, @Nullable Object ecoreValue);
+	void assigned(@NonNull Object eObject, @NonNull EStructuralFeature eFeature, @Nullable Object ecoreValue);
 
 	void block(@NonNull Invocation invocation);
 
 	/**
 	 * Throw an InvocationFailedException if the eFeature of eObject has not been assigned.
 	 */
-	void getting(@NonNull EObject eObject, @NonNull EStructuralFeature eFeature) throws InvocationFailedException;
+	void getting(@NonNull Object eObject, @NonNull EStructuralFeature eFeature) throws InvocationFailedException;
 
 	public interface Incremental extends SlotState
 	{
