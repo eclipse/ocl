@@ -44,6 +44,7 @@ public interface OperationCallExp
 	 * If the meaning of the '<em>Is Virtual</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Is Virtual</em>' attribute.
 	 * @see #setIsVirtual(boolean)
@@ -55,6 +56,7 @@ public interface OperationCallExp
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.pivot.OperationCallExp#isIsVirtual <em>Is Virtual</em>}' attribute.
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Virtual</em>' attribute.
 	 * @see #isIsVirtual()

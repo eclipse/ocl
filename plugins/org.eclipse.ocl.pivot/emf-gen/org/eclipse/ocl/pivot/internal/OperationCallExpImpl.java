@@ -78,6 +78,7 @@ public class OperationCallExpImpl
 	/**
 	 * The default value of the '{@link #isIsVirtual() <em>Is Virtual</em>}' attribute.
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @see #isIsVirtual()
 	 * @generated
@@ -88,6 +89,7 @@ public class OperationCallExpImpl
 	/**
 	 * The flag representing the value of the '{@link #isIsVirtual() <em>Is Virtual</em>}' attribute.
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @see #isIsVirtual()
 	 * @generated
@@ -137,9 +139,11 @@ public class OperationCallExpImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsVirtual()
 	{
 		return (eFlags & IS_VIRTUAL_EFLAG) != 0;
@@ -147,9 +151,11 @@ public class OperationCallExpImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsVirtual(boolean newIsVirtual)
 	{
 		boolean oldIsVirtual = (eFlags & IS_VIRTUAL_EFLAG) != 0;
@@ -509,18 +515,12 @@ public class OperationCallExpImpl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String toString()
 	{
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (isVirtual: "); //$NON-NLS-1$
-		result.append((eFlags & IS_VIRTUAL_EFLAG) != 0);
-		result.append(')');
-		return result.toString();
+		return super.toString();
 	}
 
 	@Override

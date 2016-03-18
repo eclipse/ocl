@@ -3135,9 +3135,11 @@ public class PivotPackageImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getOperationCallExp_IsVirtual()
 	{
 		return (EAttribute)operationCallExpEClass.getEStructuralFeatures().get(0);
