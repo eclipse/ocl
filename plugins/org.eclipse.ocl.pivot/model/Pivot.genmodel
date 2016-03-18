@@ -539,6 +539,7 @@
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="Pivot.ecore#//OperationCallExp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pivot.ecore#//OperationCallExp/isVirtual"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pivot.ecore#//OperationCallExp/ownedArguments"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pivot.ecore#//OperationCallExp/referredOperation"/>
       <genOperations ecoreOperation="Pivot.ecore#//OperationCallExp/validateArgumentCount">

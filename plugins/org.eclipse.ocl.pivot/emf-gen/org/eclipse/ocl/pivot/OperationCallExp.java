@@ -25,6 +25,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.eclipse.ocl.pivot.OperationCallExp#isIsVirtual <em>Is Virtual</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.OperationCallExp#getOwnedArguments <em>Owned Arguments</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.OperationCallExp#getReferredOperation <em>Referred Operation</em>}</li>
  * </ul>
@@ -34,6 +35,32 @@ import org.eclipse.jdt.annotation.NonNull;
  */
 public interface OperationCallExp
 		extends FeatureCallExp, ReferringElement {
+
+	/**
+	 * Returns the value of the '<em><b>Is Virtual</b></em>' attribute.
+	 * The default value is <code>"true"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Virtual</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Virtual</em>' attribute.
+	 * @see #setIsVirtual(boolean)
+	 * @see org.eclipse.ocl.pivot.PivotPackage#getOperationCallExp_IsVirtual()
+	 * @generated
+	 */
+	boolean isIsVirtual();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.pivot.OperationCallExp#isIsVirtual <em>Is Virtual</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Virtual</em>' attribute.
+	 * @see #isIsVirtual()
+	 * @generated
+	 */
+	void setIsVirtual(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Arguments</b></em>' containment reference list.

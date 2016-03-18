@@ -787,6 +787,9 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="Ppivot.TOperationCallExp" name="OperationCallExp">
     <generalization xmi:id="Ppivot.TOperationCallExp.g0" general="Ppivot.TFeatureCallExp"/>
+    <ownedAttribute xmi:id="Ppivot.TOperationCallExp.PisVirtual" name="isVirtual" visibility="public" type="Ppivot.TBoolean" isOrdered="true">
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="Ppivot.TOperationCallExp.PisVirtual.dlV" value="true"/>
+    </ownedAttribute>
     <ownedAttribute xmi:id="Ppivot.TOperationCallExp.PownedArguments" name="ownedArguments" type="Ppivot.TOCLExpression" isOrdered="true"
         aggregation="composite" association="Ppivot.A_ownedArguments_OperationCallExp">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Ppivot.TOperationCallExp.PownedArguments.lV"/>

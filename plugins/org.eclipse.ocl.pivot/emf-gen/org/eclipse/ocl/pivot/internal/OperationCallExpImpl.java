@@ -64,6 +64,7 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.eclipse.ocl.pivot.internal.OperationCallExpImpl#isIsVirtual <em>Is Virtual</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.OperationCallExpImpl#getOwnedArguments <em>Owned Arguments</em>}</li>
  *   <li>{@link org.eclipse.ocl.pivot.internal.OperationCallExpImpl#getReferredOperation <em>Referred Operation</em>}</li>
  * </ul>
@@ -73,6 +74,26 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
 public class OperationCallExpImpl
 		extends FeatureCallExpImpl
 		implements OperationCallExp {
+
+	/**
+	 * The default value of the '{@link #isIsVirtual() <em>Is Virtual</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsVirtual()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_VIRTUAL_EDEFAULT = true;
+
+	/**
+	 * The flag representing the value of the '{@link #isIsVirtual() <em>Is Virtual</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsVirtual()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int IS_VIRTUAL_EFLAG = 1 << 12;
 
 	/**
 	 * The cached value of the '{@link #getOwnedArguments() <em>Owned Arguments</em>}' containment reference list.
@@ -101,6 +122,7 @@ public class OperationCallExpImpl
 	 */
 	protected OperationCallExpImpl() {
 		super();
+		eFlags |= IS_VIRTUAL_EFLAG;
 	}
 
 	/**
@@ -111,6 +133,29 @@ public class OperationCallExpImpl
 	@Override
 	protected EClass eStaticClass() {
 		return PivotPackage.Literals.OPERATION_CALL_EXP;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isIsVirtual()
+	{
+		return (eFlags & IS_VIRTUAL_EFLAG) != 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsVirtual(boolean newIsVirtual)
+	{
+		boolean oldIsVirtual = (eFlags & IS_VIRTUAL_EFLAG) != 0;
+		if (newIsVirtual) eFlags |= IS_VIRTUAL_EFLAG; else eFlags &= ~IS_VIRTUAL_EFLAG;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.OPERATION_CALL_EXP__IS_VIRTUAL, oldIsVirtual, newIsVirtual));
 	}
 
 	/**
@@ -233,6 +278,8 @@ public class OperationCallExpImpl
 				return getOwnedSource();
 			case PivotPackage.OPERATION_CALL_EXP__IS_PRE:
 				return isIsPre();
+			case PivotPackage.OPERATION_CALL_EXP__IS_VIRTUAL:
+				return isIsVirtual();
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_ARGUMENTS:
 				return getOwnedArguments();
 			case PivotPackage.OPERATION_CALL_EXP__REFERRED_OPERATION:
@@ -292,6 +339,9 @@ public class OperationCallExpImpl
 			case PivotPackage.OPERATION_CALL_EXP__IS_PRE:
 				setIsPre((Boolean)newValue);
 				return;
+			case PivotPackage.OPERATION_CALL_EXP__IS_VIRTUAL:
+				setIsVirtual((Boolean)newValue);
+				return;
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_ARGUMENTS:
 				getOwnedArguments().clear();
 				getOwnedArguments().addAll((Collection<? extends OCLExpression>)newValue);
@@ -348,6 +398,9 @@ public class OperationCallExpImpl
 			case PivotPackage.OPERATION_CALL_EXP__IS_PRE:
 				setIsPre(IS_PRE_EDEFAULT);
 				return;
+			case PivotPackage.OPERATION_CALL_EXP__IS_VIRTUAL:
+				setIsVirtual(IS_VIRTUAL_EDEFAULT);
+				return;
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_ARGUMENTS:
 				getOwnedArguments().clear();
 				return;
@@ -393,6 +446,8 @@ public class OperationCallExpImpl
 				return ownedSource != null;
 			case PivotPackage.OPERATION_CALL_EXP__IS_PRE:
 				return ((eFlags & IS_PRE_EFLAG) != 0) != IS_PRE_EDEFAULT;
+			case PivotPackage.OPERATION_CALL_EXP__IS_VIRTUAL:
+				return ((eFlags & IS_VIRTUAL_EFLAG) != 0) != IS_VIRTUAL_EDEFAULT;
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_ARGUMENTS:
 				return ownedArguments != null && !ownedArguments.isEmpty();
 			case PivotPackage.OPERATION_CALL_EXP__REFERRED_OPERATION:
@@ -449,6 +504,23 @@ public class OperationCallExpImpl
 				return validateSafeSourceCanBeNull((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return eDynamicInvoke(operationID, arguments);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString()
+	{
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (isVirtual: "); //$NON-NLS-1$
+		result.append((eFlags & IS_VIRTUAL_EFLAG) != 0);
+		result.append(')');
+		return result.toString();
 	}
 
 	@Override

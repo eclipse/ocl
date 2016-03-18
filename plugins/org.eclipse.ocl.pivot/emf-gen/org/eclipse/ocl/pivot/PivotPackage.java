@@ -14579,13 +14579,22 @@ public interface PivotPackage
 	int OPERATION_CALL_EXP__IS_PRE = FEATURE_CALL_EXP__IS_PRE;
 
 	/**
+	 * The feature id for the '<em><b>Is Virtual</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CALL_EXP__IS_VIRTUAL = FEATURE_CALL_EXP_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Owned Arguments</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CALL_EXP__OWNED_ARGUMENTS = FEATURE_CALL_EXP_FEATURE_COUNT + 0;
+	int OPERATION_CALL_EXP__OWNED_ARGUMENTS = FEATURE_CALL_EXP_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Referred Operation</b></em>' reference.
@@ -14594,7 +14603,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CALL_EXP__REFERRED_OPERATION = FEATURE_CALL_EXP_FEATURE_COUNT + 1;
+	int OPERATION_CALL_EXP__REFERRED_OPERATION = FEATURE_CALL_EXP_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Operation Call Exp</em>' class.
@@ -14603,7 +14612,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CALL_EXP_FEATURE_COUNT = FEATURE_CALL_EXP_FEATURE_COUNT + 2;
+	int OPERATION_CALL_EXP_FEATURE_COUNT = FEATURE_CALL_EXP_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>All Owned Elements</em>' operation.
@@ -24833,6 +24842,17 @@ public interface PivotPackage
 	EClass getOperationCallExp();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.OperationCallExp#isIsVirtual <em>Is Virtual</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Virtual</em>'.
+	 * @see org.eclipse.ocl.pivot.OperationCallExp#isIsVirtual()
+	 * @see #getOperationCallExp()
+	 * @generated
+	 */
+	EAttribute getOperationCallExp_IsVirtual();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.pivot.OperationCallExp#getOwnedArguments <em>Owned Arguments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -29616,6 +29636,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EClass OPERATION_CALL_EXP = eINSTANCE.getOperationCallExp();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Virtual</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OPERATION_CALL_EXP__IS_VIRTUAL = eINSTANCE.getOperationCallExp_IsVirtual();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Arguments</b></em>' containment reference list feature.

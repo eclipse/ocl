@@ -739,6 +739,7 @@
       <ownedInvariants xmi:id="cipivot.OperationCallExp.validateSafeSourceCanBeNull" isCallable="true" name="validateSafeSourceCanBeNull">
         <ownedSpecification xsi:type="pivot:ExpressionInOCL" body="(ownedSource &lt;> null) and isSafe implies not ownedSource?.isRequired&#xA;"/>
       </ownedInvariants>
+      <ownedProperties xmi:id="p.pivot.OperationCallExp.isVirtual" defaultValueString="true" name="isVirtual" type="#Boolean"/>
       <ownedProperties xmi:id="p.pivot.OperationCallExp.ownedArguments" isComposite="true" name="ownedArguments" opposite="#p.pivot.OCLExpression.OperationCallExp"
           type="#//@ownedPackages.1/@ownedClasses.132"/>
       <ownedProperties xmi:id="p.pivot.OperationCallExp.referredOperation" isRequired="false" name="referredOperation" opposite="#p.pivot.Operation.OperationCallExp"

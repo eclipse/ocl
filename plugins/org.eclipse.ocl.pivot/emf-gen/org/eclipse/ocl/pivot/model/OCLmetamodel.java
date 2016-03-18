@@ -1972,6 +1972,7 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull Property pr_Operation_Operation_redefinedOperations = createProperty("Operation", _Bag_Operation);
 		private final @NonNull Property pr_Operation_OperationCallExp_referredOperation = createProperty("OperationCallExp", _Bag_OperationCallExp);
 		private final @NonNull Property pr_Operation_PrimitiveType_coercions = createProperty("PrimitiveType", _Bag_PrimitiveType);
+		private final @NonNull Property pr_OperationCallExp_isVirtual = createProperty(PivotPackage.Literals.OPERATION_CALL_EXP__IS_VIRTUAL, _Boolean);
 		private final @NonNull Property pr_OperationCallExp_ownedArguments = createProperty(PivotPackage.Literals.OPERATION_CALL_EXP__OWNED_ARGUMENTS, _OrderedSet_OCLExpression);
 		private final @NonNull Property pr_OperationCallExp_referredOperation = createProperty(PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION, _Operation);
 		private final @NonNull Property pr_OppositePropertyCallExp_referredProperty = createProperty(PivotPackage.Literals.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_PROPERTY, _Property);
@@ -3027,6 +3028,8 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setOpposite(pr_PrimitiveType_coercions);
 		
 			ownedProperties = _OperationCallExp.getOwnedProperties();
+			ownedProperties.add(property = pr_OperationCallExp_isVirtual);
+			property.setIsResolveProxies(true);
 			ownedProperties.add(property = pr_OperationCallExp_ownedArguments);
 			property.setIsComposite(true);
 			property.setIsResolveProxies(true);
