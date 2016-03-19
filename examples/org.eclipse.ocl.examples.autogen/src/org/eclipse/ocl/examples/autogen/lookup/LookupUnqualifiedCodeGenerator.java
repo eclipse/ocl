@@ -116,9 +116,8 @@ public class LookupUnqualifiedCodeGenerator extends LookupVisitorsCodeGenerator 
 	@Override
 	@NonNull
 	protected String getLookupVisitorClassName(@NonNull String prefix) {
-		// Extract type name.
-		boolean isGeneralLookup = envOperationName.equals(LookupVisitorsClassContext.UNQUALIFIED_ENV_NAME);		
-		String typeName = isGeneralLookup ? "" : envOperationName.substring(LookupVisitorsClassContext.UNQUALIFIED_ENV_NAME.length() + 1 /*extra underscore */); 
+		// Extract type name.				
+		String typeName = extractTypeNameFromEnvOp(LookupVisitorsClassContext.UNQUALIFIED_ENV_NAME); 
 		return prefix + "Unqualified" + typeName + "LookupVisitor";
 	}
 	

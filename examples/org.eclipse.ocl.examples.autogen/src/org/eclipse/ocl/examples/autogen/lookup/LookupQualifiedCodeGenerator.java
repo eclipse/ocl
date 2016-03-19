@@ -42,8 +42,19 @@ public class LookupQualifiedCodeGenerator extends LookupVisitorsCodeGenerator {
 			@NonNull Package asBasePackage, @NonNull GenPackage genPackage,
 			@Nullable GenPackage superGenPackage,
 			@Nullable GenPackage baseGenPackage) {
-		super(environmentFactory, asPackage, asSuperPackage, asBasePackage, genPackage,
+		this(environmentFactory, asPackage, asSuperPackage, asBasePackage, genPackage,
 			superGenPackage, baseGenPackage, LookupVisitorsClassContext.QUALIFIED_ENV_NAME);
+	}
+	
+	protected LookupQualifiedCodeGenerator(
+			@NonNull EnvironmentFactoryInternal environmentFactory,
+			@NonNull Package asPackage, @Nullable Package asSuperPackage,
+			@NonNull Package asBasePackage, @NonNull GenPackage genPackage,
+			@Nullable GenPackage superGenPackage,
+			@Nullable GenPackage baseGenPackage,
+			@NonNull String envOpName) {
+		super(environmentFactory, asPackage, asSuperPackage, asBasePackage, genPackage,
+			superGenPackage, baseGenPackage, envOpName);
 	}
 
 	@Override
@@ -55,7 +66,8 @@ public class LookupQualifiedCodeGenerator extends LookupVisitorsCodeGenerator {
 	
 	@Override
 	protected @NonNull String getLookupVisitorClassName(@NonNull String prefix) {
-		return prefix + "QualifiedLookupVisitor";
+		String typeName = extractTypeNameFromEnvOp(LookupVisitorsClassContext.QUALIFIED_ENV_NAME);
+		return prefix + "Qualified" + typeName + "LookupVisitor";
 	}
 	
 	@Override

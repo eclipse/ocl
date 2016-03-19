@@ -75,7 +75,8 @@ public class LookupExportedVisitorCodeGenerator extends LookupVisitorsCodeGenera
 	
 	@Override
 	protected @NonNull String getLookupVisitorClassName(@NonNull String prefix) {
-		return prefix + "ExportedLookupVisitor";
+		String typeName = extractTypeNameFromEnvOp(LookupVisitorsClassContext.EXPORTED_ENV_NAME);
+		return prefix + "Exported" + typeName + "LookupVisitor";
 	}
 	
 	@Override

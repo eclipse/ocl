@@ -320,6 +320,12 @@ public abstract class LookupVisitorsCodeGenerator extends AutoVisitorsCodeGenera
 	protected @NonNull String getSuperSourcePackageName() {
 		return getSuperVisitorPackageName();
 	}
+	
+	@SuppressWarnings("null")
+	protected @NonNull String extractTypeNameFromEnvOp(@NonNull String envOpName) {
+		boolean isGeneralLookup = envOperationName.equals(envOpName);		
+		return isGeneralLookup ? "" : envOperationName.substring(envOpName.length() + 1 /*extra underscore */);
+	}
 
 	/**
 	 * Copy all the visitXXX operation bodies from the _env bodies replacing references to redefined parameters.

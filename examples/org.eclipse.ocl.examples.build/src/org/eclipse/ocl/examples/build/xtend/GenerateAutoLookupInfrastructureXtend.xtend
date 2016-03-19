@@ -373,8 +373,13 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateVisitorsXtend
 	«FOR typeName : lookupOps.getLookupTypeNames("Unqualified")»
 	import «visitorPackageName».«projectPrefix»Unqualified«typeName»LookupVisitor;
 	«ENDFOR»
-	import «visitorPackageName».«projectPrefix»QualifiedLookupVisitor;
-	import «visitorPackageName».«projectPrefix»ExportedLookupVisitor;
+	«FOR typeName : lookupOps.getLookupTypeNames("Exported")»
+	import «visitorPackageName».«projectPrefix»Exported«typeName»LookupVisitor;
+	«ENDFOR»
+	«FOR typeName : lookupOps.getLookupTypeNames("Qualified")»
+	import «visitorPackageName».«projectPrefix»Qualified«typeName»LookupVisitor;
+	«ENDFOR»
+	
 	«IF isDerived»
 	import «superLookupPackageName».util.«superClassName»;
 	import «baseLookupPackageName».util.«basePackage.prefix»LookupResult;
@@ -559,8 +564,8 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateVisitorsXtend
 	
 	private def String getLookupVisitorName(Operation op, String typeName) {
 
-		if (op.name.contains("Qualified")) '''«projectPrefix»QualifiedLookupVisitor'''
-		else if (op.name.contains("Exported")) '''«projectPrefix»ExportedLookupVisitor'''
+		if (op.name.contains("Qualified")) '''«projectPrefix»Qualified«typeName»LookupVisitor'''
+		else if (op.name.contains("Exported")) '''«projectPrefix»Exported«typeName»LookupVisitor'''
 		else '''«projectPrefix»Unqualified«typeName»LookupVisitor''';	
 	}
 

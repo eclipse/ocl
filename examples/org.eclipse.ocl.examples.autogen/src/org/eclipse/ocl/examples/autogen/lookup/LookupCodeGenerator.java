@@ -67,20 +67,29 @@ public class LookupCodeGenerator
 				}
 			}
 		
-			for (String unqualifiedOpName : gatherUnqualifiedEnvOpNames(oclDocPackage)) {
+			for (String unqualifiedOpName : gatherEnvOpNames(oclDocPackage, LookupVisitorsClassContext.UNQUALIFIED_ENV_NAME)) {
 				new LookupUnqualifiedCodeGenerator(environmentFactory, oclDocPackage, asSuperPackage, basePackage, 
 					genPackage,superGenPackage, baseGenPackage, unqualifiedOpName).saveSourceFile();	
 			}
 			
-			new LookupExportedVisitorCodeGenerator(environmentFactory, oclDocPackage, asSuperPackage, basePackage, 
-				genPackage,superGenPackage, baseGenPackage).saveSourceFile();
+			for (String exportedEnvOpName : gatherEnvOpNames(oclDocPackage, LookupVisitorsClassContext.EXPORTED_ENV_NAME)) {
+				new LookupExportedVisitorCodeGenerator(environmentFactory, oclDocPackage, asSuperPackage, basePackage, 
+					genPackage,superGenPackage, baseGenPackage, exportedEnvOpName).saveSourceFile();	
+			}
+			
+			for (String qualifiedEnvOpName : gatherEnvOpNames(oclDocPackage, LookupVisitorsClassContext.QUALIFIED_ENV_NAME)) {
+				new LookupQualifiedCodeGenerator(environmentFactory, oclDocPackage, asSuperPackage, basePackage, 
+					genPackage,superGenPackage, baseGenPackage, qualifiedEnvOpName).saveSourceFile();	
+			}
+			
 			new LookupFilterGenerator(environmentFactory, oclDocPackage, asSuperPackage, basePackage,
 				genPackage,	superGenPackage, baseGenPackage,
 				lookupPackageName, superLookupPackageName, baseLookupPackage).saveSourceFile();
 		}
 	}
 	
-	private static List<@NonNull String> gatherUnqualifiedEnvOpNames(Package oclDocPackage) {
+	
+	private static List<@NonNull String> gatherEnvOpNames(@NonNull Package oclDocPackage, @NonNull String envOpNamePrefix) {
 		
 		List<@NonNull String> result = new ArrayList<@NonNull String>();
 		
@@ -92,7 +101,7 @@ public class LookupCodeGenerator
 				for (Class pClass : pPackage.getOwnedClasses()) {
 					for (Operation op : pClass.getOwnedOperations()) {
 						String opName = op.getName();
-						if (opName != null && opName.startsWith(LookupVisitorsClassContext.UNQUALIFIED_ENV_NAME)) {
+						if (opName != null && opName.startsWith(envOpNamePrefix)) {
 							result.add(opName);
 						}
 					}
@@ -100,7 +109,7 @@ public class LookupCodeGenerator
 			}
 		}
 		if (result.isEmpty()) {
-			result.add(LookupVisitorsClassContext.UNQUALIFIED_ENV_NAME);
+			result.add(envOpNamePrefix);
 		}
 		return result;
 	}
