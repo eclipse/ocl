@@ -204,21 +204,19 @@ public class GlobalPlace extends AbstractPlace
 //		System.out.println(prefix + "getStructuralHashCode " + ClassUtil.debugSimpleName(cgElement) + " " + cgElement.toString());
 		int structuralHashCode = cgElement.getClass().getName().hashCode();
 //		System.out.println(prefix + "  class " + structuralHashCode);
-		List<Object> referencedObjects = cgElement.accept(referencesVisitor);
-		if (referencedObjects != null) {
-			for (Object referencedObject : referencedObjects) {
-				int referenceHashCode = 0;
-				if (referencedObject != null) {
-					if (referencedObject instanceof CGElement) {
-						referenceHashCode = getStructuralHashCode((CGElement) referencedObject, prefix + "  ");
-					}
-					else {
-						referenceHashCode = referencedObject.hashCode();
-					}
-//					System.out.println(prefix + "  ref " + referenceHashCode + " " + ClassUtil.debugSimpleName(referencedObject) + " " + referencedObject.toString());
+		List<@Nullable Object> referencedObjects = cgElement.accept(referencesVisitor);
+		for (@Nullable Object referencedObject : referencedObjects) {
+			int referenceHashCode = 1;
+			if (referencedObject != null) {
+				if (referencedObject instanceof CGElement) {
+					referenceHashCode = getStructuralHashCode((CGElement) referencedObject, prefix + "  ");
 				}
-				structuralHashCode = 3 * structuralHashCode + referenceHashCode;
+				else {
+					referenceHashCode = referencedObject.hashCode();
+				}
+//				System.out.println(prefix + "  ref " + referenceHashCode + " " + ClassUtil.debugSimpleName(referencedObject) + " " + referencedObject.toString());
 			}
+			structuralHashCode = 3 * structuralHashCode + referenceHashCode;
 		}
 //		System.out.println(prefix + "  = " + structuralHashCode + " " + ClassUtil.debugSimpleName(cgElement) + " " + cgElement.toString());
 		return structuralHashCode;

@@ -1898,6 +1898,7 @@ public class CGModelPackageImpl extends EPackageImpl implements CGModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCGIsKindOfExp_ExecutorType() {
 		return (EReference)cgIsKindOfExpEClass.getEStructuralFeatures().get(0);
 	}

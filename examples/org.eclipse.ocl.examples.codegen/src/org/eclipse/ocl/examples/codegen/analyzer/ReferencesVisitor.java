@@ -15,6 +15,7 @@ import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGCastExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstant;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGConstantExp;
@@ -24,6 +25,10 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGElementId;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorOperation;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorProperty;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGExecutorType;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGIsEqual2Exp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGIsEqualExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGIsInvalidExp;
+import org.eclipse.ocl.examples.codegen.cgmodel.CGIsKindOfExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGIterationCallExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGNamedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGOperationCallExp;
@@ -33,26 +38,25 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGTypeExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGTypedElement;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGVariableExp;
 import org.eclipse.ocl.examples.codegen.cgmodel.util.AbstractExtendingCGModelVisitor;
+import org.eclipse.ocl.pivot.Element;
+import org.eclipse.ocl.pivot.OperationCallExp;
 
 /**
  * The ReferencesVisitor compute a list of objects referenced by (but not contained by or containing) the visited object
  * that contribute to that objects identity. The computed list may contain null elements to ensure that the returned lists
- * by two different objects exhibit positioanl equivalence.
+ * by two different objects exhibit positional equivalence.
  */
-public class ReferencesVisitor extends AbstractExtendingCGModelVisitor<List<Object>, Object>
+public class ReferencesVisitor extends AbstractExtendingCGModelVisitor<@NonNull List<@Nullable Object>, @Nullable Object>
 {
-	public static final @NonNull ReferencesVisitor INSTANCE = new ReferencesVisitor(new Object());
+	public static final @NonNull ReferencesVisitor INSTANCE = new ReferencesVisitor(null);
 	
-	protected ReferencesVisitor(@NonNull Object context) {
+	protected ReferencesVisitor(@Nullable Object context) {
 		super(context);
 	}
 
-	protected @Nullable List<Object> append(@Nullable List<Object> iterables, Object... objects) {
+	protected @NonNull List<@Nullable Object> append(@NonNull List<@Nullable Object> iterables, @Nullable Object... objects) {
 		if (objects != null) {
-			if (iterables == null) {
-				iterables = new ArrayList<Object>();
-			}
-			for (Object object : objects) {
+			for (@Nullable Object object : objects) {
 				iterables.add(object);			// Nulls too to preserve positional equivalence between alternate lists
 			}
 		}
@@ -60,92 +64,139 @@ public class ReferencesVisitor extends AbstractExtendingCGModelVisitor<List<Obje
 	}
 
 	@Override
-	public @Nullable List<Object> visiting(@NonNull CGElement visitable) {
+	public @NonNull List<@Nullable Object> visiting(@NonNull CGElement visitable) {
 		throw new UnsupportedOperationException("Unsupported " + getClass().getName() + " visit");
 	}
 
 	@Override
-	public @Nullable List<Object> visitCGCastExp(@NonNull CGCastExp cgElement) {
+	public @NonNull List<@Nullable Object> visitCGCallExp(@NonNull CGCallExp cgElement) {
+		return append(super.visitCGCallExp(cgElement), cgElement.getSource());
+	}
+
+	@Override
+	public @NonNull List<@Nullable Object> visitCGCastExp(@NonNull CGCastExp cgElement) {
 		return append(super.visitCGCastExp(cgElement), cgElement.getExecutorType());
 	}
 
 	@Override
-	public @Nullable List<Object> visitCGConstant(@NonNull CGConstant cgElement) {
+	public @NonNull List<@Nullable Object> visitCGConstant(@NonNull CGConstant cgElement) {
 		return append(super.visitCGConstant(cgElement), cgElement.getConstantValue());
 	}
 
 	@Override
-	public @Nullable List<Object> visitCGConstantExp(@NonNull CGConstantExp cgElement) {
+	public @NonNull List<@Nullable Object> visitCGConstantExp(@NonNull CGConstantExp cgElement) {
 		return append(super.visitCGConstantExp(cgElement), cgElement.getReferredConstant());
 	}
 
 	@Override
-	public @Nullable List<Object> visitCGEcoreOperation(@NonNull CGEcoreOperation cgElement) {
+	public @NonNull List<@Nullable Object> visitCGEcoreOperation(@NonNull CGEcoreOperation cgElement) {
 		return append(super.visitCGEcoreOperation(cgElement), cgElement.getEOperation());
 	}
 
 	@Override
-	public @Nullable List<Object> visitCGElement(@NonNull CGElement cgElement) {
-		return null;
+	public @NonNull List<@Nullable Object> visitCGElement(@NonNull CGElement cgElement) {
+		return new ArrayList<@Nullable Object>();
 	}
 
 	@Override
-	public @Nullable List<Object> visitCGElementId(@NonNull CGElementId cgElement) {
+	public @NonNull List<@Nullable Object> visitCGElementId(@NonNull CGElementId cgElement) {
 		return append(super.visitCGElementId(cgElement), cgElement.getASTypeId());
 	}
 
 	@Override
-	public @Nullable List<Object> visitCGExecutorOperation(@NonNull CGExecutorOperation cgElement) {
+	public @NonNull List<@Nullable Object> visitCGExecutorOperation(@NonNull CGExecutorOperation cgElement) {
 		return append(super.visitCGExecutorOperation(cgElement), cgElement.getUnderlyingOperationId());
 	}
 
 	@Override
-	public @Nullable List<Object> visitCGExecutorProperty(@NonNull CGExecutorProperty cgElement) {
+	public @NonNull List<@Nullable Object> visitCGExecutorProperty(@NonNull CGExecutorProperty cgElement) {
 		return append(super.visitCGExecutorProperty(cgElement), cgElement.getUnderlyingPropertyId());
 	}
 
 	@Override
-	public @Nullable List<Object> visitCGExecutorType(@NonNull CGExecutorType cgElement) {
+	public @NonNull List<@Nullable Object> visitCGExecutorType(@NonNull CGExecutorType cgElement) {
 		return append(super.visitCGExecutorType(cgElement), cgElement.getUnderlyingTypeId());
 	}
 
 	@Override
-	public @Nullable List<Object> visitCGNamedElement(@NonNull CGNamedElement cgElement) {
+	public @NonNull List<@Nullable Object> visitCGIsEqual2Exp(@NonNull CGIsEqual2Exp cgElement) {
+		List<@Nullable Object> elements = super.visitCGIsEqual2Exp(cgElement);
+		Element ast = cgElement.getAst();
+		if (ast instanceof OperationCallExp) {
+			elements.add(((OperationCallExp)ast).getReferredOperation());
+		}
+		return elements;
+	}
+
+	@Override
+	public @NonNull List<@Nullable Object> visitCGIsEqualExp(@NonNull CGIsEqualExp cgElement) {
+		List<@Nullable Object> elements = super.visitCGIsEqualExp(cgElement);
+		Element ast = cgElement.getAst();
+		if (ast instanceof OperationCallExp) {
+			elements.add(((OperationCallExp)ast).getReferredOperation());
+		}
+		return elements;
+	}
+
+	@Override
+	public @NonNull List<@Nullable Object> visitCGIsInvalidExp(@NonNull CGIsInvalidExp cgElement) {
+		List<@Nullable Object> elements = super.visitCGIsInvalidExp(cgElement);
+		Element ast = cgElement.getAst();
+		if (ast instanceof OperationCallExp) {
+			elements.add(((OperationCallExp)ast).getReferredOperation());
+		}
+		return elements;
+	}
+
+	@Override
+	public @NonNull List<@Nullable Object> visitCGIsKindOfExp(@NonNull CGIsKindOfExp cgElement) {
+		List<@Nullable Object> elements = super.visitCGIsKindOfExp(cgElement);
+		Element ast = cgElement.getAst();
+		if (ast instanceof OperationCallExp) {		// FIXME on the fly CG trees have no AS
+			elements.add(((OperationCallExp)ast).getReferredOperation());
+		}
+		return elements;
+	}
+
+	@Override
+	public @NonNull List<@Nullable Object> visitCGIterationCallExp(@NonNull CGIterationCallExp cgElement) {
+		return append(super.visitCGIterationCallExp(cgElement), cgElement.getReferredIteration(), cgElement.getBody());
+	}
+
+	@Override
+	public @NonNull List<@Nullable Object> visitCGNamedElement(@NonNull CGNamedElement cgElement) {
 		return append(super.visitCGNamedElement(cgElement), cgElement.getName());
 	}
 
 	@Override
-	public @Nullable List<Object> visitCGIterationCallExp(@NonNull CGIterationCallExp cgElement) {
-		return append(super.visitCGIterationCallExp(cgElement), cgElement.getReferredIteration());
+	public @NonNull List<@Nullable Object> visitCGOperationCallExp(@NonNull CGOperationCallExp cgElement) {
+		List<@Nullable Object> elements = append(super.visitCGOperationCallExp(cgElement), cgElement.getReferredOperation());
+		elements.addAll(cgElement.getArguments());
+		return elements;
 	}
 
 	@Override
-	public @Nullable List<Object> visitCGOperationCallExp(@NonNull CGOperationCallExp cgElement) {
-		return append(super.visitCGOperationCallExp(cgElement), cgElement.getReferredOperation());
-	}
-
-	@Override
-	public @Nullable List<Object> visitCGOppositePropertyCallExp(@NonNull CGOppositePropertyCallExp cgElement) {
+	public @NonNull List<@Nullable Object> visitCGOppositePropertyCallExp(@NonNull CGOppositePropertyCallExp cgElement) {
 		return append(super.visitCGOppositePropertyCallExp(cgElement), cgElement.getReferredProperty());
 	}
 
 	@Override
-	public @Nullable List<Object> visitCGPropertyCallExp(@NonNull CGPropertyCallExp cgElement) {
+	public @NonNull List<@Nullable Object> visitCGPropertyCallExp(@NonNull CGPropertyCallExp cgElement) {
 		return append(super.visitCGPropertyCallExp(cgElement), cgElement.getReferredProperty());
 	}
 
 	@Override
-	public @Nullable List<Object> visitCGTypeExp(@NonNull CGTypeExp cgElement) {
+	public @NonNull List<@Nullable Object> visitCGTypeExp(@NonNull CGTypeExp cgElement) {
 		return append(super.visitCGTypeExp(cgElement), cgElement.getASTypeId());
 	}
 
 	@Override
-	public @Nullable List<Object> visitCGTypedElement(@NonNull CGTypedElement cgElement) {
+	public @NonNull List<@Nullable Object> visitCGTypedElement(@NonNull CGTypedElement cgElement) {
 		return append(super.visitCGTypedElement(cgElement), cgElement.getASTypeId());
 	}
 
 	@Override
-	public @Nullable List<Object> visitCGVariableExp(@NonNull CGVariableExp cgElement) {
+	public @NonNull List<@Nullable Object> visitCGVariableExp(@NonNull CGVariableExp cgElement) {
 		return append(super.visitCGVariableExp(cgElement), cgElement.getReferredVariable());
 	}
 }
