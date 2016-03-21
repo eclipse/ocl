@@ -996,7 +996,7 @@ public class JavaStream
 			return false;
 		}
 		TypeDescriptor typeDescriptor = codeGenerator.getTypeDescriptor(cgValue);
-		Class<?> javaClass = typeDescriptor.getJavaClass();
+		Class<?> javaClass = typeDescriptor.getJavaClass();		// FIXME Rationalize with TypeDescriptor.isPrimitive()
 		if ((javaClass == boolean.class) || ((javaClass == Boolean.class) && cgValue.isNonNull())) {
 			return true;
 		}

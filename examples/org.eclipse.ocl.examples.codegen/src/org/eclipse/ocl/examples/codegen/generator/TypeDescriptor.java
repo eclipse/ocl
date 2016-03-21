@@ -145,4 +145,10 @@ public interface TypeDescriptor
 	 * Return true if an instance described by this typeDescriptor may be assigned to a javaClass.
 	 */
 	boolean isAssignableTo(@NonNull Class<?> javaClass);
+
+	/**
+	 * Return true is this is a built-in primitive type such as boolean or int.
+	 * Such types cannot have @NonNull annotations.
+	 */
+	boolean isPrimitive();
 }

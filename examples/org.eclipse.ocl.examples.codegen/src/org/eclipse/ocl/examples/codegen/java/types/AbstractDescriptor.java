@@ -402,6 +402,22 @@ public abstract class AbstractDescriptor implements TypeDescriptor
 		Type oclTypeType = metamodelManager.getStandardLibrary().getOclTypeType();
 		return metamodelManager.conformsTo(type, TemplateParameterSubstitutions.EMPTY, oclTypeType, TemplateParameterSubstitutions.EMPTY);
 	}
+	
+	@Override
+	public boolean isPrimitive() {			// FIXME move to derived classes
+		Class<?> javaClass = getJavaClass();
+		if ((javaClass == boolean.class)
+		 || (javaClass == byte.class)
+		 || (javaClass == char.class)
+		 || (javaClass == double.class)
+		 || (javaClass == float.class)
+		 || (javaClass == int.class)
+		 || (javaClass == long.class)
+		 || (javaClass == short.class)) {
+			return true;
+		}
+		return false;
+	}
 
 	@Override
 	public @NonNull String toString() {
