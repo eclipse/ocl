@@ -633,7 +633,7 @@ public class IncrementalObjectManager extends AbstractObjectManager
 	}
 
 	@Override
-	public synchronized void assigned(@NonNull Object eObject, /*@NonNull*/ EStructuralFeature eFeature, @Nullable Object ecoreValue) {
+	public synchronized void assigned(@NonNull Object eObject, /*@NonNull*/ EStructuralFeature eFeature, @Nullable Object ecoreValue, @Nullable Object childKey) {
 		assert eFeature != null;
 		if (debugTracing) {
 			AbstractTransformer.INVOCATIONS.println("assigned " + eFeature.getEContainingClass().getName() + "::" + eFeature.getName() + " for " + eObject + " = " + ecoreValue);
@@ -703,8 +703,8 @@ public class IncrementalObjectManager extends AbstractObjectManager
 	}
 
 	@Override
-	public void assigned(Invocation.@NonNull Incremental invocation, @NonNull Object eObject, EStructuralFeature eFeature, @Nullable Object ecoreValue) {
-		assigned(eObject, eFeature, ecoreValue);
+	public void assigned(Invocation.@NonNull Incremental invocation, @NonNull Object eObject, EStructuralFeature eFeature, @Nullable Object ecoreValue, @Nullable Object childKey) {
+		assigned(eObject, eFeature, ecoreValue, childKey);
 		assert eFeature != null;
 		BasicSlotState slotState = getSlotState(eObject, eFeature);
 		invocation.addWriteSlot(slotState);

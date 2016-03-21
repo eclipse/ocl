@@ -63,13 +63,18 @@ public class LazyObjectManager extends AbstractObjectManager
 		}
 
 		@Override
+		public EClass getEContainingClass() {
+			return getEOpposite().getEReferenceType();
+		}
+
+		@Override
 		public EGenericType getEGenericType() {
 			throw new UnsupportedOperationException();
 		}
 
 		@Override
 		public EClass getEReferenceType() {
-			throw new UnsupportedOperationException();
+			return getEOpposite().getEContainingClass();
 		}
 
 		@Override
@@ -84,7 +89,7 @@ public class LazyObjectManager extends AbstractObjectManager
 
 		@Override
 		public String getName() {
-			throw new UnsupportedOperationException();
+			return "«opposite»" + getEOpposite().getName();
 		}
 
 		@Override
@@ -218,18 +223,9 @@ public class LazyObjectManager extends AbstractObjectManager
 			s.append("@");
 			s.append(Integer.toHexString(System.identityHashCode(this)));
 			s.append("[");
-			if (debug_eFeature instanceof EOppositeReferenceImpl) {
-				EReference eOpposite = ((EOppositeReferenceImpl) debug_eFeature).getEOpposite();
-				s.append("opposite-of ");
-				s.append(eOpposite.getEContainingClass().getName());
-				s.append("::");
-				s.append(eOpposite.getName());
-			}
-			else {
-				s.append(debug_eFeature.getEContainingClass().getName());
-				s.append("::");
-				s.append(debug_eFeature.getName());
-			}
+			s.append(debug_eFeature.getEContainingClass().getName());
+			s.append("::");
+			s.append(debug_eFeature.getName());
 			s.append(" for ");
 			s.append(debug_eObject);
 			s.append("]");
@@ -732,7 +728,7 @@ public class LazyObjectManager extends AbstractObjectManager
 	}
 
 	@Override
-	public synchronized void assigned(@NonNull Object eObject, /*@NonNull*/ EStructuralFeature eFeature, @Nullable Object ecoreValue) {
+	public synchronized void assigned(@NonNull Object eObject, /*@NonNull*/ EStructuralFeature eFeature, @Nullable Object ecoreValue, @Nullable Object childKey) {
 		assert eFeature != null;
 		if (debugTracing) {
 			AbstractTransformer.INVOCATIONS.println("assigned " + eFeature.getEContainingClass().getName() + "::" + eFeature.getName() + " for " + eObject + " = " + ecoreValue);
@@ -817,8 +813,8 @@ public class LazyObjectManager extends AbstractObjectManager
 	}
 
 	@Override
-	public void assigned(Invocation.@NonNull Incremental invocation, @NonNull Object eObject, EStructuralFeature eFeature, @Nullable Object ecoreValue) {
-		assigned(eObject, eFeature, ecoreValue);		// Delegate incremental API to non-incremental API
+	public void assigned(Invocation.@NonNull Incremental invocation, @NonNull Object eObject, EStructuralFeature eFeature, @Nullable Object ecoreValue, @Nullable Object childKey) {
+		assigned(eObject, eFeature, ecoreValue, childKey);		// Delegate incremental API to non-incremental API
 	}
 
 	@NonNull SlotState createManyToManySlotState(
