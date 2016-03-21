@@ -823,7 +823,7 @@ public class IncrementalObjectManager extends AbstractObjectManager
 	}
 
 	@Override
-	public synchronized void getting(@NonNull Object eObject, /*@NonNull*/ EStructuralFeature eFeature) {
+	public synchronized void getting(@NonNull Object eObject, /*@NonNull*/ EStructuralFeature eFeature, boolean isOpposite) {
 		assert eFeature != null;
 		if (debugTracing) {
 			AbstractTransformer.INVOCATIONS.println("getting " + eFeature.getEContainingClass().getName() + "::" + eFeature.getName() + " for " + eObject);

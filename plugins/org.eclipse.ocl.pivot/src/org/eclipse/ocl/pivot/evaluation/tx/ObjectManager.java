@@ -46,8 +46,9 @@ public interface ObjectManager extends ExecutionVisitable
 	
 	/**
 	 * Throw an InvocationFailedException if the eFeature of eObject has not yet been assigned.
+	 * If isOpposite, the eFeature's opposite is to be be assessed.
 	 */
-	void getting(@NonNull Object eObject, /*@NonNull*/ EStructuralFeature eFeature) throws InvocationFailedException;
+	void getting(@NonNull Object eObject, /*@NonNull*/ EStructuralFeature eFeature, boolean isOpposite) throws InvocationFailedException;
 	
 	/**
 	 * Identify that the read of eFeature of eObject return ecoreValue.
