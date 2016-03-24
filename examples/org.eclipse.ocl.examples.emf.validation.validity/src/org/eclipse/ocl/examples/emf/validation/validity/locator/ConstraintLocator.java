@@ -47,7 +47,7 @@ public interface ConstraintLocator
 	/**
 	 * Return all typeURIs for a given type; typically this returns the supertype closure.
 	 */
-	@NonNull Set<TypeURI> getAllTypes(@NonNull ValidityManager validityManager, @NonNull EObject constrainingObject);
+	@NonNull Set<@NonNull TypeURI> getAllTypes(@NonNull ValidityManager validityManager, @NonNull EObject constrainingObject);
 
 	/**
 	 * Return the RH constraining type that supplies the constrainingObject to the constrainedType.
@@ -65,8 +65,8 @@ public interface ConstraintLocator
 	 * Return a constrainedType-to-constraint map for all types in the given resources that have an ePackage whose URI complies with
 	 * the registration of this ConstraintLocator. The validityModel is used to create the LeafConstrainingNodes for each constraint.
 	 */
-	@Nullable Map<EObject, @NonNull List<LeafConstrainingNode>> getConstraints(@NonNull ValidityModel validityModel, @NonNull EPackage ePackage,
-			@NonNull Set<Resource> resources, @NonNull Monitor monitor);
+	@Nullable Map<@NonNull EObject, @NonNull List<@NonNull LeafConstrainingNode>> getConstraints(@NonNull ValidityModel validityModel, @NonNull EPackage ePackage,
+			@NonNull Set<@NonNull Resource> resources, @NonNull Monitor monitor);
 
 	/**
 	 * Return an icon to identify this kind of ConstraintLocator.
@@ -76,10 +76,10 @@ public interface ConstraintLocator
 	/**
 	 * Return any resources imported from within resource.
 	 */
-	@Nullable Collection<Resource> getImports(@NonNull EPackage ePackage, @NonNull Resource resource);
+	@Nullable Collection<@NonNull Resource> getImports(@NonNull EPackage ePackage, @NonNull Resource resource);
 
 	/**
-	 * Return the singleton instance of this ConstraintLOcator to avoid duplicate registrations.
+	 * Return the singleton instance of this ConstraintLocator to avoid duplicate registrations.
 	 */
 	@NonNull ConstraintLocator getInstance();
 
@@ -113,7 +113,7 @@ public interface ConstraintLocator
 	/**
 	 * Return the type URIs of all 'types' that provide constraints for validatableObject.
 	 */
-	@Nullable Set<TypeURI> getTypeURIs(@NonNull ValidityManager validityManager, @NonNull EObject validatableObject);
+	@Nullable Set<@NonNull TypeURI> getTypeURIs(@NonNull ValidityManager validityManager, @NonNull EObject validatableObject);
 	
 	/**
 	 * Update the validation result to include the verdict of the validation using validityManager to provide shared services.

@@ -42,9 +42,9 @@ public class EClassConstraintLocator extends AbstractConstraintLocator
 {
 	public static @NonNull EClassConstraintLocator INSTANCE = new EClassConstraintLocator();
 	
-	public @Nullable Map<EObject, @NonNull List<LeafConstrainingNode>> getConstraints(@NonNull ValidityModel validityModel,
-			@NonNull EPackage ePackage, @NonNull Set<Resource> resources, @NonNull Monitor monitor) {
-		Map<EObject, @NonNull List<LeafConstrainingNode>> map = null;
+	public @Nullable Map<@NonNull EObject, @NonNull List<@NonNull LeafConstrainingNode>> getConstraints(@NonNull ValidityModel validityModel,
+			@NonNull EPackage ePackage, @NonNull Set<@NonNull Resource> resources, @NonNull Monitor monitor) {
+		Map<@NonNull EObject, @NonNull List<@NonNull LeafConstrainingNode>> map = null;
 		for (@SuppressWarnings("null")@NonNull EClassifier eClassifier : ePackage.getEClassifiers()) {
 			if (monitor.isCanceled()) {
 				return null;
@@ -66,7 +66,7 @@ public class EClassConstraintLocator extends AbstractConstraintLocator
 				}
 				if (constraints != null) {
 					if (map == null) {
-						map = new HashMap<EObject, @NonNull List<LeafConstrainingNode>>();
+						map = new HashMap<@NonNull EObject, @NonNull List<@NonNull LeafConstrainingNode>>();
 					}
 					map.put(eClass, constraints);
 				}

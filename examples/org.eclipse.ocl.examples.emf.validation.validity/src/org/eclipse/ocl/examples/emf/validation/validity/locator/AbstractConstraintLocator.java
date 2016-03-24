@@ -51,14 +51,14 @@ public abstract class AbstractConstraintLocator implements ConstraintLocator, Co
 		ValidityManager.addConstraintLocator(null, EValidatorConstraintLocator.INSTANCE);
 	}
 
-	protected @NonNull Map<EObject, @NonNull List<LeafConstrainingNode>> createLeafConstrainingNode(@Nullable Map<EObject, @NonNull List<LeafConstrainingNode>> map,
+	protected @NonNull Map<@NonNull EObject, @NonNull List<@NonNull LeafConstrainingNode>> createLeafConstrainingNode(@Nullable Map<@NonNull EObject, @NonNull List<@NonNull LeafConstrainingNode>> map,
 			@NonNull ValidityModel validityModel, @NonNull EObject constrainingType, @NonNull Object constrainingObject, @NonNull String label) {
 		LeafConstrainingNode constraint = validityModel.createLeafConstrainingNode();
 		constraint.setConstraintLocator(this);
 		constraint.setLabel(label);
 		constraint.setConstrainingObject(constrainingObject);
 		if (map == null) {
-			map = new HashMap<EObject, @NonNull List<LeafConstrainingNode>>();
+			map = new HashMap<@NonNull EObject, @NonNull List<@NonNull LeafConstrainingNode>>();
 		}
 /*		EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.findEnvironmentFactory(constrainingType);
 		if (environmentFactory != null) {
@@ -81,17 +81,17 @@ public abstract class AbstractConstraintLocator implements ConstraintLocator, Co
 				}
 			} catch (ParserException e) {}
 		} */
-		List<LeafConstrainingNode> constraints = map.get(constrainingType);
+		List<@NonNull LeafConstrainingNode> constraints = map.get(constrainingType);
 		if (constraints == null) {
-			constraints = new ArrayList<LeafConstrainingNode>();
+			constraints = new ArrayList<@NonNull LeafConstrainingNode>();
 			map.put(constrainingType, constraints);
 		}
 		constraints.add(constraint);
 		return map;
 	}
 
-	public @NonNull Set<TypeURI> getAllTypes(@NonNull ValidityManager validityManager, @NonNull EObject constrainingObject) {
-		Set<TypeURI> allTypes = new HashSet<TypeURI>();
+	public @NonNull Set<@NonNull TypeURI> getAllTypes(@NonNull ValidityManager validityManager, @NonNull EObject constrainingObject) {
+		Set<@NonNull TypeURI> allTypes = new HashSet<@NonNull TypeURI>();
 		allTypes.add(validityManager.getTypeURI(constrainingObject));
 		if (constrainingObject instanceof EClass) {
 			for (EClass eSuperClass : ((EClass)constrainingObject).getEAllSuperTypes()) {
@@ -127,7 +127,7 @@ public abstract class AbstractConstraintLocator implements ConstraintLocator, Co
 		return null;
 	}
 
-	public @Nullable Collection<Resource> getImports(@NonNull EPackage ePackage, @NonNull Resource resource) {
+	public @Nullable Collection<@NonNull Resource> getImports(@NonNull EPackage ePackage, @NonNull Resource resource) {
 		return null;
 	}
 
@@ -181,7 +181,7 @@ public abstract class AbstractConstraintLocator implements ConstraintLocator, Co
 	}
 
 	@Override
-	public @Nullable Set<TypeURI> getTypeURIs(@NonNull ValidityManager validityManager, @NonNull EObject validatableObject) {
+	public @Nullable Set<@NonNull TypeURI> getTypeURIs(@NonNull ValidityManager validityManager, @NonNull EObject validatableObject) {
 		return null;
 	}
 

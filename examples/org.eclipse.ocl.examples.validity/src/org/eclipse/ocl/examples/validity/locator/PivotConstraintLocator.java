@@ -53,11 +53,11 @@ public class PivotConstraintLocator extends AbstractConstraintLocator
 	public static @NonNull PivotConstraintLocator INSTANCE = new PivotConstraintLocator();
 
 	@Override
-	public @NonNull Set<TypeURI> getAllTypes(@NonNull ValidityManager validityManager, @NonNull EObject constrainingObject) {
+	public @NonNull Set<@NonNull TypeURI> getAllTypes(@NonNull ValidityManager validityManager, @NonNull EObject constrainingObject) {
 		if (constrainingObject instanceof org.eclipse.ocl.pivot.Class) {
 			EnvironmentFactory environmentFactory = PivotUtilInternal.findEnvironmentFactory(constrainingObject);
 			if (environmentFactory != null) {
-				Set<TypeURI> allTypes = new HashSet<TypeURI>();
+				Set<@NonNull TypeURI> allTypes = new HashSet<@NonNull TypeURI>();
 				CompleteClass completeClass = environmentFactory.getCompleteModel().getCompleteClass((org.eclipse.ocl.pivot.Class)constrainingObject);
 				for (CompleteClass superCompleteClass : completeClass.getSuperCompleteClasses()) {
 					for (org.eclipse.ocl.pivot.Class partialClass : superCompleteClass.getPartialClasses()) {
@@ -92,10 +92,10 @@ public class PivotConstraintLocator extends AbstractConstraintLocator
 	}
 
 	@Override
-	public @Nullable Map<EObject, @NonNull List<LeafConstrainingNode>> getConstraints(@NonNull ValidityModel validityModel,
-		@NonNull EPackage ePackage, @NonNull Set<Resource> resources, @NonNull Monitor monitor) {
-		Map<EObject, @NonNull List<LeafConstrainingNode>> map = null;
-		for (Resource resource : resources) {
+	public @Nullable Map<@NonNull EObject, @NonNull List<@NonNull LeafConstrainingNode>> getConstraints(@NonNull ValidityModel validityModel,
+		@NonNull EPackage ePackage, @NonNull Set<@NonNull Resource> resources, @NonNull Monitor monitor) {
+		Map<@NonNull EObject, @NonNull List<@NonNull LeafConstrainingNode>> map = null;
+		for (@NonNull Resource resource : resources) {
 			if (monitor.isCanceled()) {
 				return null;
 			}

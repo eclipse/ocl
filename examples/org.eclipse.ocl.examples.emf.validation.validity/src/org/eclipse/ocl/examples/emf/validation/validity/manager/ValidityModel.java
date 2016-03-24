@@ -54,6 +54,7 @@ import org.eclipse.ocl.examples.emf.validation.validity.utilities.IVisibilityFil
 import org.eclipse.ocl.examples.emf.validation.validity.utilities.SeveritiesVisibilityFilter;
 import org.eclipse.ocl.pivot.labels.ILabelGenerator;
 import org.eclipse.ocl.pivot.util.DerivedConstants;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 public class ValidityModel
 {
@@ -71,18 +72,18 @@ public class ValidityModel
 			WORK_FOR_LOCATE_CONSTRAINTS + WORK_FOR_CREATE_RESULTS +
 			WORK_FOR_SORT_CONSTRAINING_NODES + WORK_FOR_SORT_VALIDATABLE_NODES;
 	
-	private static @NonNull Comparator<AbstractNode> labelComparator = new Comparator<AbstractNode>()
+	private static @NonNull Comparator<@NonNull AbstractNode> labelComparator = new Comparator<@NonNull AbstractNode>()
 	{
-		public int compare(AbstractNode o1, AbstractNode o2) {
+		public int compare(@NonNull AbstractNode o1, @NonNull AbstractNode o2) {
 			String l1 = o1.getLabel();
 			String l2 = o2.getLabel();
 			return l1.compareTo(l2);
 		}
 	};
 	
-	private static @NonNull Comparator<AbstractNode> natureComparator = new Comparator<AbstractNode>()
+	private static @NonNull Comparator<@NonNull AbstractNode> natureComparator = new Comparator<@NonNull AbstractNode>()
 	{
-		public int compare(AbstractNode o1, AbstractNode o2) {
+		public int compare(@NonNull AbstractNode o1, @NonNull AbstractNode o2) {
 			EClass c1 = o1.eClass();
 			EClass c2 = o2.eClass();
 			if (c1 == c2) {
@@ -94,26 +95,26 @@ public class ValidityModel
 		}
 	};
 	
-	private static @Nullable Set<ConstraintLocator> badConstraintLocators = null;
+	private static @Nullable Set<@NonNull ConstraintLocator> badConstraintLocators = null;
 	
 	protected final @NonNull ValidityManager validityManager;
-	private final @SuppressWarnings("null")@NonNull RootNode rootNode = ValidityFactory.eINSTANCE.createRootNode();
-	private final @NonNull Map<ConstrainingURI, ConstrainingNode> allConstrainingNodes = new HashMap<ConstrainingURI, ConstrainingNode>();
-	private final @NonNull Map<ValidatableURI, ValidatableNode> allValidatableNodes = new HashMap<ValidatableURI, ValidatableNode>();
+	private final @NonNull RootNode rootNode = ValidityFactory.eINSTANCE.createRootNode();
+	private final @NonNull Map<@NonNull ConstrainingURI, @NonNull ConstrainingNode> allConstrainingNodes = new HashMap<@NonNull ConstrainingURI, @NonNull ConstrainingNode>();
+	private final @NonNull Map<@NonNull ValidatableURI, @NonNull ValidatableNode> allValidatableNodes = new HashMap<@NonNull ValidatableURI, @NonNull ValidatableNode>();
 
-	private final @NonNull Set<IVisibilityFilter> validatableFilters = new HashSet<IVisibilityFilter>();
-	private final @NonNull Set<IVisibilityFilter> constrainingFilters = new HashSet<IVisibilityFilter>();
+	private final @NonNull Set<@NonNull IVisibilityFilter> validatableFilters = new HashSet<@NonNull IVisibilityFilter>();
+	private final @NonNull Set<@NonNull IVisibilityFilter> constrainingFilters = new HashSet<@NonNull IVisibilityFilter>();
 	
 	private final @NonNull SeveritiesVisibilityFilter constrainingNodesFilterByKind = new SeveritiesVisibilityFilter();
 	private final @NonNull SeveritiesVisibilityFilter validatableNodesFilterByKind = new SeveritiesVisibilityFilter();
 	
-	private final @NonNull Map<TypeURI, Set<TypeURI>> typeClosures = new HashMap<TypeURI, Set<TypeURI>>();
-	private final @NonNull Collection<Resource> resources;
+	private final @NonNull Map<@NonNull TypeURI, @NonNull Set<@NonNull TypeURI>> typeClosures = new HashMap<@NonNull TypeURI, @NonNull Set<@NonNull TypeURI>>();
+	private final @NonNull Collection<@NonNull Resource> resources;
 
 	/**
 	 * Map from the URI of a type to be validated to the Constraining URIs of the types that provide constraints on instances of the type.
 	 */
-	private final @NonNull Map<TypeURI, List<ConstrainingURI>> type2constrainingType = new HashMap<TypeURI, List<ConstrainingURI>>();
+	private final @NonNull Map<@NonNull TypeURI, List<@NonNull ConstrainingURI>> type2constrainingType = new HashMap<@NonNull TypeURI, @NonNull List<@NonNull ConstrainingURI>>();
 	
 	/**
 	 * The Constructor.
@@ -123,16 +124,16 @@ public class ValidityModel
 	 * @param newResources
 	 *            All resources found in the resourceSet
 	 */
-	public ValidityModel(@NonNull ValidityManager validityManager, @NonNull Collection<Resource> newResources) {
+	public ValidityModel(@NonNull ValidityManager validityManager, @NonNull Collection<@NonNull Resource> newResources) {
 		this.validityManager = validityManager;
 		this.resources = newResources;
 	}
 
-	public @Nullable Set<ConstrainingURI> accumulateConstrainingURIs(@Nullable Set<ConstrainingURI> constrainingURIs, @NonNull TypeURI typeURI) {
-		List<ConstrainingURI> moreConstrainingURIs = type2constrainingType.get(typeURI);
+	public @Nullable Set<@NonNull ConstrainingURI> accumulateConstrainingURIs(@Nullable Set<@NonNull ConstrainingURI> constrainingURIs, @NonNull TypeURI typeURI) {
+		List<@NonNull ConstrainingURI> moreConstrainingURIs = type2constrainingType.get(typeURI);
 		if (moreConstrainingURIs != null) {
 			if (constrainingURIs == null) {
-				constrainingURIs = new HashSet<ConstrainingURI>();
+				constrainingURIs = new HashSet<@NonNull ConstrainingURI>();
 			}
 			constrainingURIs.addAll(moreConstrainingURIs);
 		}
@@ -161,19 +162,19 @@ public class ValidityModel
 	 *            the Collection of all resources in the resourceSet
 	 * @return a map containing all EPackages of all resources
 	 */
-	protected @NonNull Map<EPackage,Set<Resource>> analyzeResources(@NonNull Collection<Resource> resources, @NonNull Monitor monitor, int worked) {
+	protected @NonNull Map<@NonNull EPackage, @NonNull Set<@NonNull Resource>> analyzeResources(@NonNull Collection<@NonNull Resource> resources, @NonNull Monitor monitor, int worked) {
 		monitor.setTaskName("Analyzing Resources");
 		MonitorStep monitorStep = new MonitorStep(monitor, worked);
 		try {
-			List<Resource> allResources = new ArrayList<Resource>(resources);
-			Map<EPackage,Set<Resource>> ePackage2resources = new HashMap<EPackage,Set<Resource>>();
+			List<@NonNull Resource> allResources = new ArrayList<@NonNull Resource>(resources);
+			Map<@NonNull EPackage, @NonNull Set<@NonNull Resource>> ePackage2resources = new HashMap<@NonNull EPackage, @NonNull Set<@NonNull Resource>>();
 			int allResourcesCount = allResources.size();
 			for (int i = 0; i < allResourcesCount; i++) {
-				Resource resource = allResources.get(i);
+				Resource resource = ClassUtil.nonNull(allResources.get(i));
 				@NonNull String uri = String.valueOf(resource.getURI());
 				monitor.subTask("'" + uri + "'");
 				ValidityManager.ANALYZE_RESOURCE.println(uri);
-				Set<EClass> eClasses;
+				Set<@NonNull EClass> eClasses;
 				ResourceSet resourceSet = resource.getResourceSet();
 				if (resourceSet != null) {
 					synchronized (resourceSet) {	// See Bug 405072 for rationale that avoids CMEs as UML stereotypes are discovered lazily
@@ -183,28 +184,28 @@ public class ValidityModel
 				else {
 					eClasses = analyzeResource(resource);
 				}
-				Set<EPackage> ePackages = new HashSet<EPackage>();
-				for (@SuppressWarnings("null")@NonNull EClass eClass : eClasses) {
-					ePackages.add(eClass.getEPackage());
-					for (@SuppressWarnings("null")@NonNull EClass eSuperClass : eClass.getEAllSuperTypes()) {
-						ePackages.add(eSuperClass.getEPackage());
+				Set<@NonNull EPackage> ePackages = new HashSet<@NonNull EPackage>();
+				for (@NonNull EClass eClass : eClasses) {
+					ePackages.add(ClassUtil.nonNull(eClass.getEPackage()));
+					for (@NonNull EClass eSuperClass : ClassUtil.nullFree(eClass.getEAllSuperTypes())) {
+						ePackages.add(ClassUtil.nonNull(eSuperClass.getEPackage()));
 					}
 				}
-				for (@SuppressWarnings("null")@NonNull EPackage ePackage : ePackages) {
-					Set<Resource> ePackageResources = ePackage2resources.get(ePackage);
+				for (@NonNull EPackage ePackage : ePackages) {
+					Set<@NonNull Resource> ePackageResources = ePackage2resources.get(ePackage);
 					if (ePackageResources == null) {
-						ePackageResources = new HashSet<Resource>();
+						ePackageResources = new HashSet<@NonNull Resource>();
 						ePackage2resources.put(ePackage, ePackageResources);
 					}
 					ePackageResources.add(resource);
 					String nsURI = ePackage.getNsURI();
 					if (nsURI !=null) {
 						ValidityManager.ANALYZE_RESOURCE.println(" -> " + nsURI);
-						Iterable<ConstraintLocator> list = getConstraintLocators(nsURI);
+						Iterable<@NonNull ConstraintLocator> list = getConstraintLocators(nsURI);
 						if (list != null) {
 							for (ConstraintLocator constraintLocator : list) {
 								try {
-									Collection<Resource> moreResources = constraintLocator.getImports(ePackage, resource);
+									Collection<@NonNull Resource> moreResources = constraintLocator.getImports(ePackage, resource);
 									if (moreResources != null) {
 										for (Resource anotherResource : moreResources) {
 											if (!allResources.contains(anotherResource)) {
@@ -214,10 +215,10 @@ public class ValidityModel
 									}
 								}
 								catch (Exception e) {
-									Set<ConstraintLocator> badConstraintLocators2 = badConstraintLocators;
+									Set<@NonNull ConstraintLocator> badConstraintLocators2 = badConstraintLocators;
 									if (badConstraintLocators2 == null) {
 										synchronized (this) {
-											badConstraintLocators = badConstraintLocators2 = new HashSet<ConstraintLocator>();
+											badConstraintLocators = badConstraintLocators2 = new HashSet<@NonNull ConstraintLocator>();
 										}
 									}
 									if (!badConstraintLocators2.contains(constraintLocator)) {
@@ -240,8 +241,8 @@ public class ValidityModel
 		}
 	}
 
-	protected Set<EClass> analyzeResource(Resource resource) {
-		Set<EClass> eClasses = new HashSet<EClass>();
+	protected @NonNull Set<@NonNull EClass> analyzeResource(Resource resource) {
+		Set<@NonNull EClass> eClasses = new HashSet<@NonNull EClass>();
 		for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
 			@SuppressWarnings("null")@NonNull EObject eObject = tit.next();
 			@SuppressWarnings("null")@NonNull EClass eClass = eObject.eClass();
@@ -253,16 +254,16 @@ public class ValidityModel
 	/**
 	 * Return all types that may provide constraints to an instance of aType.
 	 */
-	protected @NonNull Set<TypeURI> buildTypeClosure(@NonNull EObject constrainingObject) {
+	protected @NonNull Set<@NonNull TypeURI> buildTypeClosure(@NonNull EObject constrainingObject) {
 		TypeURI typeURI = validityManager.getTypeURI(constrainingObject);
-		Set<TypeURI> typeClosure = typeClosures.get(typeURI);
+		Set<@NonNull TypeURI> typeClosure = typeClosures.get(typeURI);
 		if (typeClosure == null) {
-			typeClosure = new HashSet<TypeURI>();
+			typeClosure = new HashSet<@NonNull TypeURI>();
 			typeClosures.put(typeURI, typeClosure);
 		}
 		String nsURI = constrainingObject.eClass().getEPackage().getNsURI();
 		if (nsURI != null) {
-			Iterable<ConstraintLocator> constraintLocators = ValidityManager.getConstraintLocators(nsURI);
+			Iterable<@NonNull ConstraintLocator> constraintLocators = ValidityManager.getConstraintLocators(nsURI);
 			if (constraintLocators != null) {
 				for (ConstraintLocator constraintLocator : constraintLocators) {
 					StringBuilder s = null;
@@ -271,8 +272,8 @@ public class ValidityModel
 						s.append("PackageURI \"" + nsURI + "\" using \"" + constraintLocator.getName() + "\"");
 						s.append("\n  ConstraintURI \"" + validityManager.getConstrainingURI(constrainingObject) + "\" applies to");
 					}
-					Set<TypeURI> allTypes = constraintLocator.getAllTypes(validityManager, constrainingObject);
-					for (TypeURI aType : allTypes) {
+					Set<@NonNull TypeURI> allTypes = constraintLocator.getAllTypes(validityManager, constrainingObject);
+					for (@NonNull TypeURI aType : allTypes) {
 						if (s != null) {
 							s.append("\n    TypeURI \"" + aType + "\"");
 						}
@@ -292,7 +293,6 @@ public class ValidityModel
 	 * 
 	 * @return the created ConstrainingNode
 	 */
-	@SuppressWarnings("null")
 	protected @NonNull ConstrainingNode createConstrainingNode() {
 		return ValidityFactory.eINSTANCE.createConstrainingNode();
 	}
@@ -302,7 +302,6 @@ public class ValidityModel
 	 * 
 	 * @return the created LeafConstrainingNode
 	 */
-	@SuppressWarnings("null")
 	public @NonNull LeafConstrainingNode createLeafConstrainingNode() {
 		return ValidityFactory.eINSTANCE.createLeafConstrainingNode();
 	}
@@ -325,7 +324,6 @@ public class ValidityModel
 	 * 
 	 * @return the created ResultConstrainingNode
 	 */
-	@SuppressWarnings("null")
 	protected @NonNull ResultConstrainingNode createResultConstrainingNode() {
 		return ValidityFactory.eINSTANCE.createResultConstrainingNode();
 	}
@@ -337,12 +335,12 @@ public class ValidityModel
 	 * @param resources
 	 *            the resources
 	 */
-	protected void createResultNodes(@NonNull Collection<Resource> resources, @NonNull Monitor monitor, int worked) {
+	protected void createResultNodes(@NonNull Collection<@NonNull Resource> resources, @NonNull Monitor monitor, int worked) {
 		monitor.setTaskName("Create Result Nodes");
 		MonitorStep monitorStep = new MonitorStep(monitor, worked);
 		try {
 			int resourcesCount = resources.size();
-			for (Resource resource : resources) {
+			for (@NonNull Resource resource : resources) {
 				monitor.subTask("'" + resource.getURI() + "'");
 				ConstraintLocator constraintLocator = ValidityManager.getConstraintLocator(resource);	// Get a resource-specific locator, e.g. the UML stereotype application handler
 				for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {		// FIXME there is a CME hazard here
@@ -350,16 +348,16 @@ public class ValidityModel
 						return;
 					}
 					@SuppressWarnings("null")@NonNull EObject validatableObject = tit.next();
-					Set<ConstrainingURI> allConstrainingURIs = null;
-					Set<TypeURI> allTypeURIs = null;
+					Set<@NonNull ConstrainingURI> allConstrainingURIs = null;
+					Set<@NonNull TypeURI> allTypeURIs = null;
 //					if (validatableObject instanceof DynamicEObjectImpl) {
 //						allConstrainingURIs = null;
 //					}
 					if (constraintLocator != null) {
 						allTypeURIs = constraintLocator.getTypeURIs(validityManager, validatableObject);
 						if (allTypeURIs != null) {
-							for (TypeURI typeURI : allTypeURIs) {
-								Set<TypeURI> typeURIs = typeClosures.get(typeURI);
+							for (@NonNull TypeURI typeURI : allTypeURIs) {
+								Set<@NonNull TypeURI> typeURIs = typeClosures.get(typeURI);
 								if (typeURIs == null) {
 //									buildTypeClosure(eClass);
 									List<TypeURI> typeURIkeys = new ArrayList<TypeURI>(typeClosures.keySet());
@@ -367,7 +365,7 @@ public class ValidityModel
 //									typeURIs = buildTypeClosure(eClass);
 								}
 								if (typeURIs != null) {
-									for (TypeURI typeURI2 : typeURIs) {
+									for (@NonNull TypeURI typeURI2 : typeURIs) {
 										if (typeURI2 != null) {
 											allConstrainingURIs = accumulateConstrainingURIs(allConstrainingURIs, typeURI2);
 										}
@@ -380,24 +378,24 @@ public class ValidityModel
 						EClass eClass = validatableObject.eClass();
 						if (eClass != null) {
 							TypeURI typeURI = validityManager.getTypeURI(eClass);
-							Set<TypeURI> typeURIs = typeClosures.get(typeURI);
+							Set<@NonNull TypeURI> typeURIs = typeClosures.get(typeURI);
 							if (typeURIs == null) {
 								buildTypeClosure(eClass);
-								List<TypeURI> typeURIkeys = new ArrayList<TypeURI>(typeClosures.keySet());
+								List<@NonNull TypeURI> typeURIkeys = new ArrayList<@NonNull TypeURI>(typeClosures.keySet());
 								Collections.sort(typeURIkeys);
 								typeURIs = buildTypeClosure(eClass);
 							}
 							if (typeURIs != null) {
-								for (@SuppressWarnings("null")@NonNull TypeURI typeURI2 : typeURIs) {
+								for (@NonNull TypeURI typeURI2 : typeURIs) {
 									allConstrainingURIs = accumulateConstrainingURIs(allConstrainingURIs, typeURI2);
 								}
 							}
 						}
 					}
 					if (allConstrainingURIs != null) {
-						List<ConstrainingURI> sortedURIs = new ArrayList<ConstrainingURI>(allConstrainingURIs);
+						List<@NonNull ConstrainingURI> sortedURIs = new ArrayList<@NonNull ConstrainingURI>(allConstrainingURIs);
 						Collections.sort(sortedURIs);
-						for (ConstrainingURI constrainingURI : sortedURIs) {
+						for (@NonNull ConstrainingURI constrainingURI : sortedURIs) {
 							if (constrainingURI != null) {
 								createResultNodes(validatableObject, constrainingURI);
 							}
@@ -429,9 +427,9 @@ public class ValidityModel
 	}
 
 	protected void createResultNodes(@NonNull ValidatableNode validatable, @NonNull ConstrainingNode constrainingNode) {
-		List<ConstrainingNode> children = constrainingNode.getChildren();
+		List<@NonNull ConstrainingNode> children = ClassUtil.nullFree(constrainingNode.getChildren());
 		if (children.size() > 0) {
-			for (@SuppressWarnings("null")@NonNull ConstrainingNode childConstrainingNode : children) {
+			for (@NonNull ConstrainingNode childConstrainingNode : children) {
 				if (childConstrainingNode instanceof LeafConstrainingNode) {
 					ResultConstrainingNode resultConstrainingNode = createResultConstrainingNode();
 					ResultValidatableNode resultValidatableNode = createResultValidatableNode();
@@ -454,7 +452,6 @@ public class ValidityModel
 	 * 
 	 * @return the created ResultSet
 	 */
-	@SuppressWarnings("null")
 	protected @NonNull ResultSet createResultSet() {
 		return ValidityFactory.eINSTANCE.createResultSet();
 	}
@@ -470,8 +467,8 @@ public class ValidityModel
 	 */
 	public /*synchronized*/ @Nullable ResultSet createResultSet(@Nullable IProgressMonitor monitor) {
 		ResultSet resultSet = createResultSet();
-		List<Result> results = resultSet.getResults();
-		if (!createResults(results, rootNode.getValidatableNodes(), monitor)) {
+		List<@NonNull Result> results = ClassUtil.nullFree(resultSet.getResults());
+		if (!createResults(results, ClassUtil.nullFree(rootNode.getValidatableNodes()), monitor)) {
 			return null;
 		}
 		else {
@@ -485,7 +482,6 @@ public class ValidityModel
 	 * 
 	 * @return the created ResultValidatableNode
 	 */
-	@SuppressWarnings("null")
 	protected @NonNull ResultValidatableNode createResultValidatableNode() {
 		return ValidityFactory.eINSTANCE.createResultValidatableNode();
 	}
@@ -501,9 +497,9 @@ public class ValidityModel
 	 *            the corresponding monitor
 	 * @return true if the results are created well, false otherwise
 	 */
-	protected boolean createResults(@NonNull List<Result> results, @NonNull List<? extends ValidatableNode> validatableNodes, @Nullable IProgressMonitor monitor) {
+	protected boolean createResults(@NonNull List<@NonNull Result> results, @NonNull List<@NonNull ? extends ValidatableNode> validatableNodes, @Nullable IProgressMonitor monitor) {
 		for (int i = 0; i < validatableNodes.size(); i++) {		// Avoid CME from domain growth
-			ValidatableNode validatable = validatableNodes.get(i);
+			ValidatableNode validatable = ClassUtil.nonNull(validatableNodes.get(i));
 			AbstractNode parent = validatable.getParent();
 			if (validatable.isEnabled() && (parent == null || parent.isEnabled())) {
 				if (validatable instanceof ResultValidatableNode) {
@@ -524,7 +520,7 @@ public class ValidityModel
 					}
 				}
 			}
-			if (!createResults(results, validatable.getChildren(), monitor)) {
+			if (!createResults(results, ClassUtil.nullFree(validatable.getChildren()), monitor)) {
 				return false;
 			}
 		}
@@ -534,7 +530,6 @@ public class ValidityModel
 	/**
 	 * @return the created RootConstrainingNode
 	 */
-	@SuppressWarnings("null")
 	protected @NonNull RootConstrainingNode createRootConstrainingNode() {
 		return ValidityFactory.eINSTANCE.createRootConstrainingNode();
 	}
@@ -542,7 +537,6 @@ public class ValidityModel
 	/**
 	 * @return the created RootValidatableNode
 	 */
-	@SuppressWarnings("null")
 	protected @NonNull RootValidatableNode createRootValidatableNode() {
 		return ValidityFactory.eINSTANCE.createRootValidatableNode();
 	}
@@ -553,22 +547,22 @@ public class ValidityModel
 	 * @param allConstraints
 	 *            the map from each model element to the LeafConstrainingNode of each of its constraints
 	 */
-	protected void createTypeConstrainingNodes(@NonNull Map<EObject, List<LeafConstrainingNode>> allConstraints, @NonNull Monitor monitor) {	// FIXME rename
-		Set<ConstrainingNode> allTypeConstrainingNodes = new HashSet<ConstrainingNode>();
-		for (@SuppressWarnings("null")@NonNull EObject constrainingType : allConstraints.keySet()) {
+	protected void createTypeConstrainingNodes(@NonNull Map<@NonNull EObject, @NonNull List<@NonNull LeafConstrainingNode>> allConstraints, @NonNull Monitor monitor) {	// FIXME rename
+		Set<@NonNull ConstrainingNode> allTypeConstrainingNodes = new HashSet<@NonNull ConstrainingNode>();
+		for (@NonNull EObject constrainingType : allConstraints.keySet()) {
 			if (monitor.isCanceled()) {
 				break;
 			}
 			buildTypeClosure(constrainingType);
 			TypeURI typeURI = validityManager.getTypeURI(constrainingType);
-			List<ConstrainingURI> typeURIconstrainingURIs = type2constrainingType.get(typeURI);
+			List<@NonNull ConstrainingURI> typeURIconstrainingURIs = type2constrainingType.get(typeURI);
 			if (typeURIconstrainingURIs == null) {
-				typeURIconstrainingURIs = new ArrayList<ConstrainingURI>();
+				typeURIconstrainingURIs = new ArrayList<@NonNull ConstrainingURI>();
 				type2constrainingType.put(typeURI, typeURIconstrainingURIs);
 			}
-			List<LeafConstrainingNode> leafConstrainingNodes = allConstraints.get(constrainingType);
+			List<@NonNull LeafConstrainingNode> leafConstrainingNodes = allConstraints.get(constrainingType);
 			if (leafConstrainingNodes != null) {
-				for (LeafConstrainingNode leafConstrainingNode : leafConstrainingNodes) {
+				for (@NonNull LeafConstrainingNode leafConstrainingNode : leafConstrainingNodes) {
 					Object constrainingObject = leafConstrainingNode.getConstrainingObject();
 					if (constrainingObject != null) {
 						ConstraintLocator constraintLocator = leafConstrainingNode.getConstraintLocator();
@@ -590,7 +584,6 @@ public class ValidityModel
 	/**
 	 * @return the created ValidatableNode
 	 */
-	@SuppressWarnings("null")
 	protected @NonNull ValidatableNode createValidatableNode() {
 		return ValidityFactory.eINSTANCE.createValidatableNode();
 	}
@@ -635,7 +628,7 @@ public class ValidityModel
 		return constrainingNode;
 	}
 	
-	protected @NonNull Iterable<ConstraintLocator> getConstraintLocators(@NonNull String nsURI) {
+	protected @NonNull Iterable<@NonNull ConstraintLocator> getConstraintLocators(@NonNull String nsURI) {
 		return validityManager.getActiveConstraintLocators(nsURI);
 	}
 
@@ -735,9 +728,9 @@ public class ValidityModel
 	public void init(@NonNull Monitor monitor) {
 //		long start = System.currentTimeMillis();
 //		System.out.format(Thread.currentThread().getName() + " %3.3f analyzeResources\n", (System.currentTimeMillis() - start) * 0.001);
-		Map<EPackage,Set<Resource>> ePackage2resources = analyzeResources(resources, monitor, WORK_FOR_ANALYZE_RESOURCES);			//	Find all EClasses and EPackages in the source Resources
+		Map<@NonNull EPackage, @NonNull Set<@NonNull Resource>> ePackage2resources = analyzeResources(resources, monitor, WORK_FOR_ANALYZE_RESOURCES);			//	Find all EClasses and EPackages in the source Resources
 //		System.out.format(Thread.currentThread().getName() + " %3.3f locateConstraints\n", (System.currentTimeMillis() - start) * 0.001);
-		Map<EObject, List<LeafConstrainingNode>> allConstraints = locateConstraints(ePackage2resources, monitor, WORK_FOR_LOCATE_CONSTRAINTS);
+		Map<@NonNull EObject, @NonNull List<@NonNull LeafConstrainingNode>> allConstraints = locateConstraints(ePackage2resources, monitor, WORK_FOR_LOCATE_CONSTRAINTS);
 		if (monitor.isCanceled()) {
 			return;
 		}
@@ -755,14 +748,16 @@ public class ValidityModel
 		}
 		monitor.setTaskName("Sorting Constraints");
 //		System.out.format(Thread.currentThread().getName() + " %3.3f sort ConstrainingNodes\n", (System.currentTimeMillis() - start) * 0.001);
-		sortNodes(rootNode.getConstrainingNodes(), labelComparator);
+		@SuppressWarnings("null")EList<@NonNull RootConstrainingNode> constrainingNodes = rootNode.getConstrainingNodes();
+		sortNodes(constrainingNodes, labelComparator);
 		monitor.worked(WORK_FOR_SORT_CONSTRAINING_NODES);
 		if (monitor.isCanceled()) {
 			return;
 		}
 		monitor.setTaskName("Sorting Model Elements");
 //		System.out.format(Thread.currentThread().getName() + " %3.3f sort ValidatableNodes\n", (System.currentTimeMillis() - start) * 0.001);
-		sortNodes(rootNode.getValidatableNodes(), natureComparator);
+		@SuppressWarnings("null")EList<@NonNull RootValidatableNode> validatableNodes = rootNode.getValidatableNodes();
+		sortNodes(validatableNodes, natureComparator);
 		monitor.worked(WORK_FOR_SORT_VALIDATABLE_NODES);
 	}
 
@@ -773,14 +768,14 @@ public class ValidityModel
 	 *            the map of all ePackages and their resources
 	 * @return all constraints for each EClass
 	 */
-	protected @Nullable Map<EObject, List<LeafConstrainingNode>> locateConstraints(@NonNull Map<EPackage,Set<Resource>> ePackage2resources, @NonNull Monitor monitor, int worked) {
+	protected @Nullable Map<@NonNull EObject, @NonNull List<@NonNull LeafConstrainingNode>> locateConstraints(@NonNull Map<@NonNull EPackage, @NonNull Set<@NonNull Resource>> ePackage2resources, @NonNull Monitor monitor, int worked) {
 		monitor.setTaskName("Locating Constraints");
 		MonitorStep monitorStep = new MonitorStep(monitor, worked);
 		try {
-			Map<EObject, List<LeafConstrainingNode>> allConstraints = new HashMap<EObject, List<LeafConstrainingNode>>();
-			Set<EPackage> ePackages = ePackage2resources.keySet();
+			Map<@NonNull EObject, @NonNull List<@NonNull LeafConstrainingNode>> allConstraints = new HashMap<@NonNull EObject, @NonNull List<@NonNull LeafConstrainingNode>>();
+			Set<@NonNull EPackage> ePackages = ePackage2resources.keySet();
 			int ePackagesCount = ePackages.size();
-			for (@SuppressWarnings("null")@NonNull EPackage ePackage : ePackages) {
+			for (@NonNull EPackage ePackage : ePackages) {
 				if (monitor.isCanceled()) {
 					return null;
 				}
@@ -799,10 +794,10 @@ public class ValidityModel
 							monitor.subTask(subTaskName);
 							ValidityManager.LOCATE_RESOURCE.println(subTaskName);
 							try {
-								Map<EObject, List<LeafConstrainingNode>> availableConstraints = constraintLocator.getConstraints(this, ePackage, ePackageResources, monitor);
+								Map<@NonNull EObject, @NonNull List<@NonNull LeafConstrainingNode>> availableConstraints = constraintLocator.getConstraints(this, ePackage, ePackageResources, monitor);
 								if (availableConstraints != null) {
 									assert !availableConstraints.containsKey(null);
-									for (@SuppressWarnings("null")@NonNull EObject constrainedType : availableConstraints.keySet()) {
+									for (@NonNull EObject constrainedType : availableConstraints.keySet()) {
 										List<LeafConstrainingNode> typeConstraints = allConstraints.get(constrainedType);
 										if (typeConstraints == null) {
 											typeConstraints = new ArrayList<LeafConstrainingNode>();
@@ -818,10 +813,10 @@ public class ValidityModel
 								}
 							}
 							catch (Exception e) {
-								Set<ConstraintLocator> badConstraintLocators2 = badConstraintLocators;
+								Set<@NonNull ConstraintLocator> badConstraintLocators2 = badConstraintLocators;
 								if (badConstraintLocators2 == null) {
 									synchronized (this) {
-										badConstraintLocators = badConstraintLocators2 = new HashSet<ConstraintLocator>();
+										badConstraintLocators = badConstraintLocators2 = new HashSet<@NonNull ConstraintLocator>();
 									}
 								}
 								if (!badConstraintLocators2.contains(constraintLocator)) {
@@ -843,39 +838,39 @@ public class ValidityModel
 		}
 	}
 
-	public void refreshModel(@Nullable List<AbstractNode> grayedValidatableNodes,
-			@Nullable List<AbstractNode> grayedConstrainingNodes) {
+	public void refreshModel(@Nullable List<@NonNull AbstractNode> grayedValidatableNodes,
+			@Nullable List<@NonNull AbstractNode> grayedConstrainingNodes) {
 		RootNode rootNode = validityManager.getRootNode();
 		if (rootNode != null) {
 //			long start = System.currentTimeMillis();
-			@NonNull List<RootValidatableNode> validatableNodes = new ArrayList<RootValidatableNode>(rootNode.getValidatableNodes());  // Avoid CME
-			@NonNull List<RootConstrainingNode> constrainingNodes = new ArrayList<RootConstrainingNode>(rootNode.getConstrainingNodes());  // Avoid CME
+			@NonNull List<@NonNull RootValidatableNode> validatableNodes = new ArrayList<@NonNull RootValidatableNode>(ClassUtil.nullFree(rootNode.getValidatableNodes()));  // Avoid CME
+			@NonNull List<@NonNull RootConstrainingNode> constrainingNodes = new ArrayList<@NonNull RootConstrainingNode>(ClassUtil.nullFree(rootNode.getConstrainingNodes()));  // Avoid CME
 //			System.out.format(Thread.currentThread().getName() + " %3.3f revisible ValidatableNodes\n", (System.currentTimeMillis() - start) * 0.001);
-			for (AbstractNode aNode : validatableNodes) {
+			for (@NonNull AbstractNode aNode : validatableNodes) {
 				aNode.refreshVisibleChildren(validatableFilters);
 			}
 //			System.out.format(Thread.currentThread().getName() + " %3.3f revisible ConstrainingNodes\n", (System.currentTimeMillis() - start) * 0.001);
-			for (AbstractNode aNode : constrainingNodes) {
+			for (@NonNull AbstractNode aNode : constrainingNodes) {
 				aNode.refreshVisibleChildren(constrainingFilters);
 			}
 //			System.out.format(Thread.currentThread().getName() + " %3.3f regray ValidatableNodes\n", (System.currentTimeMillis() - start) * 0.001);
-			for (AbstractNode aNode : validatableNodes) {
+			for (@NonNull AbstractNode aNode : validatableNodes) {
 				aNode.refreshGrayed();
 			}
 //			System.out.format(Thread.currentThread().getName() + " %3.3f regray ConstrainingNodes\n", (System.currentTimeMillis() - start) * 0.001);
-			for (AbstractNode aNode : constrainingNodes) {
+			for (@NonNull AbstractNode aNode : constrainingNodes) {
 				aNode.refreshGrayed();
 			}
-			List<AbstractNode> grayedValidatableNodes2 = grayedValidatableNodes;
+			List<@NonNull AbstractNode> grayedValidatableNodes2 = grayedValidatableNodes;
 			if (grayedValidatableNodes2 != null) {
 //				System.out.format(Thread.currentThread().getName() + " %3.3f Redraw compute grays\n", (System.currentTimeMillis() - start) * 0.001);
-				for (AbstractNode abstractNode : validatableNodes) {
+				for (@NonNull AbstractNode abstractNode : validatableNodes) {
 					abstractNode.getGrayedElements(grayedValidatableNodes2);
 				}
 			}
-			List<AbstractNode> grayedConstrainingNodes2 = grayedConstrainingNodes;
+			List<@NonNull AbstractNode> grayedConstrainingNodes2 = grayedConstrainingNodes;
 			if (grayedConstrainingNodes2 != null) {
-				for (AbstractNode abstractNode : constrainingNodes) {
+				for (@NonNull AbstractNode abstractNode : constrainingNodes) {
 					abstractNode.getGrayedElements(grayedConstrainingNodes2);
 				}
 			}
@@ -905,7 +900,7 @@ public class ValidityModel
 	 * @param nodes
 	 *            the list of nodes needing to be sorted.
 	 */
-	protected <T extends AbstractNode> void sortEList(@NonNull EList<T> nodes, @NonNull Comparator<AbstractNode> comparator) {
+	protected <@NonNull T extends AbstractNode> void sortEList(@NonNull EList<T> nodes, @NonNull Comparator<@NonNull AbstractNode> comparator) {
 		List<T> sortedList = new ArrayList<T>(nodes);
 		Collections.sort(sortedList, comparator);
 		for (int i = 0; i < sortedList.size(); i++) {
@@ -919,10 +914,10 @@ public class ValidityModel
 	 * @param nodes
 	 *            the list of nodes needing to be sorted.
 	 */
-	protected <T extends AbstractNode> void sortNodes(@NonNull EList<T> nodes, @NonNull Comparator<AbstractNode> comparator) {
+	protected <@NonNull T extends AbstractNode> void sortNodes(@NonNull EList<T> nodes, @NonNull Comparator<@NonNull AbstractNode> comparator) {
 		sortEList(nodes, comparator);
-		for (AbstractNode node : nodes) {
-			sortNodes(node.getChildren(), comparator);
+		for (@NonNull AbstractNode node : nodes) {
+			sortNodes(ClassUtil.nullFree(node.getChildren()), comparator);
 		}
 	}
 }

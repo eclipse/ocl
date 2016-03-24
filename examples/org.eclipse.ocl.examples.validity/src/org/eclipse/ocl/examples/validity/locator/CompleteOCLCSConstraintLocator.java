@@ -44,10 +44,10 @@ public class CompleteOCLCSConstraintLocator extends PivotConstraintLocator
 	public static @NonNull CompleteOCLCSConstraintLocator INSTANCE = new CompleteOCLCSConstraintLocator();
 
 	@Override
-	public @Nullable Map<EObject, @NonNull List<LeafConstrainingNode>> getConstraints(@NonNull ValidityModel validityModel,
-		@NonNull EPackage ePackage, @NonNull Set<Resource> resources, @NonNull Monitor monitor) {
-		Map<EObject, @NonNull List<LeafConstrainingNode>> map = null;
-		for (Resource resource : resources) {
+	public @Nullable Map<@NonNull EObject, @NonNull List<@NonNull LeafConstrainingNode>> getConstraints(@NonNull ValidityModel validityModel,
+		@NonNull EPackage ePackage, @NonNull Set<@NonNull Resource> resources, @NonNull Monitor monitor) {
+		Map<@NonNull EObject, @NonNull List<@NonNull LeafConstrainingNode>> map = null;
+		for (@NonNull Resource resource : resources) {
 			if (monitor.isCanceled()) {
 				return null;
 			}

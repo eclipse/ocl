@@ -49,15 +49,15 @@ public class IDEValidityManager extends ValidityManager
 {
 	public static final int FAST_REFRESH_DELAY = 250;		// 250 ms delay to aggregate refresh new changes
 	public static final int SLOW_REFRESH_DELAY = 2500;		// 2500 ms delay to aggregate refresh changes when busy
-	private static final @NonNull List<Job> validityJobs = new ArrayList<Job>();
+	private static final @NonNull List<@NonNull Job> validityJobs = new ArrayList<@NonNull Job>();
 
 	public static void stopValidation() {
 		while (!validityJobs.isEmpty()) {
-			ArrayList<Job> jobs;
+			ArrayList<@NonNull Job> jobs;
 			synchronized (validityJobs) {
-				jobs = new ArrayList<Job>(validityJobs);
+				jobs = new ArrayList<@NonNull Job>(validityJobs);
 			}
-			for (Job job : jobs) {
+			for (@NonNull Job job : jobs) {
 				job.cancel();
 			}
 		}
@@ -65,7 +65,7 @@ public class IDEValidityManager extends ValidityManager
 	
 	protected class IDEValidityModel extends ValidityModel
 	{
-		public IDEValidityModel(@NonNull IDEValidityManager validityManager, @NonNull Collection<Resource> newResources) {
+		public IDEValidityModel(@NonNull IDEValidityManager validityManager, @NonNull Collection<@NonNull Resource> newResources) {
 			super(validityManager, newResources);
  		}
 
@@ -183,9 +183,9 @@ public class IDEValidityManager extends ValidityManager
 			}
 		}
 
-		private  @NonNull List<ConstrainingNode> getConstrainingNodeAncestors(@NonNull ConstrainingNode constraining) {
+		private  @NonNull List<@NonNull ConstrainingNode> getConstrainingNodeAncestors(@NonNull ConstrainingNode constraining) {
 			ConstrainingNode ancestor = constraining.getParent();
-			List<ConstrainingNode> ancestors = new ArrayList<ConstrainingNode>();
+			List<@NonNull ConstrainingNode> ancestors = new ArrayList<@NonNull ConstrainingNode>();
 			while (ancestor != null) {
 				ancestors.add(ancestor);
 				ancestor = ancestor.getParent();
@@ -265,7 +265,7 @@ public class IDEValidityManager extends ValidityManager
 	}
 
 	@Override
-	protected @NonNull ValidityModel createModel(@NonNull Collection<Resource> newResources) {
+	protected @NonNull ValidityModel createModel(@NonNull Collection<@NonNull Resource> newResources) {
 		ValidityModel contents = new IDEValidityModel(this, newResources);
 		RootNode rootNode = contents.getRootNode();
 		installAdapters(rootNode.getConstrainingNodes());

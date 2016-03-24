@@ -11,6 +11,7 @@
 package org.eclipse.ocl.examples.emf.validation.validity;
 
 import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.jdt.annotation.NonNull;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,7 +36,7 @@ public interface ValidityFactory extends EFactory {
 	 * @return a new object of class '<em>Constraining Node</em>'.
 	 * @generated
 	 */
-	ConstrainingNode createConstrainingNode();
+	@NonNull ConstrainingNode createConstrainingNode();
 
 	/**
 	 * Returns a new object of class '<em>Leaf Constraining Node</em>'.
@@ -44,7 +45,7 @@ public interface ValidityFactory extends EFactory {
 	 * @return a new object of class '<em>Leaf Constraining Node</em>'.
 	 * @generated
 	 */
-	LeafConstrainingNode createLeafConstrainingNode();
+	@NonNull LeafConstrainingNode createLeafConstrainingNode();
 
 	/**
 	 * Returns a new object of class '<em>Result</em>'.
@@ -53,7 +54,7 @@ public interface ValidityFactory extends EFactory {
 	 * @return a new object of class '<em>Result</em>'.
 	 * @generated
 	 */
-	Result createResult();
+	@NonNull Result createResult();
 
 	/**
 	 * Returns a new object of class '<em>Result Constraining Node</em>'.
@@ -62,7 +63,7 @@ public interface ValidityFactory extends EFactory {
 	 * @return a new object of class '<em>Result Constraining Node</em>'.
 	 * @generated
 	 */
-	ResultConstrainingNode createResultConstrainingNode();
+	@NonNull ResultConstrainingNode createResultConstrainingNode();
 
 	/**
 	 * Returns a new object of class '<em>Result Set</em>'.
@@ -71,7 +72,7 @@ public interface ValidityFactory extends EFactory {
 	 * @return a new object of class '<em>Result Set</em>'.
 	 * @generated
 	 */
-	ResultSet createResultSet();
+	@NonNull ResultSet createResultSet();
 
 	/**
 	 * Returns a new object of class '<em>Result Validatable Node</em>'.
@@ -80,7 +81,7 @@ public interface ValidityFactory extends EFactory {
 	 * @return a new object of class '<em>Result Validatable Node</em>'.
 	 * @generated
 	 */
-	ResultValidatableNode createResultValidatableNode();
+	@NonNull ResultValidatableNode createResultValidatableNode();
 
 	/**
 	 * Returns a new object of class '<em>Root Node</em>'.
@@ -89,7 +90,7 @@ public interface ValidityFactory extends EFactory {
 	 * @return a new object of class '<em>Root Node</em>'.
 	 * @generated
 	 */
-	RootNode createRootNode();
+	@NonNull RootNode createRootNode();
 
 	/**
 	 * Returns a new object of class '<em>Root Constraining Node</em>'.
@@ -98,7 +99,7 @@ public interface ValidityFactory extends EFactory {
 	 * @return a new object of class '<em>Root Constraining Node</em>'.
 	 * @generated
 	 */
-	RootConstrainingNode createRootConstrainingNode();
+	@NonNull RootConstrainingNode createRootConstrainingNode();
 
 	/**
 	 * Returns a new object of class '<em>Root Validatable Node</em>'.
@@ -107,7 +108,7 @@ public interface ValidityFactory extends EFactory {
 	 * @return a new object of class '<em>Root Validatable Node</em>'.
 	 * @generated
 	 */
-	RootValidatableNode createRootValidatableNode();
+	@NonNull RootValidatableNode createRootValidatableNode();
 
 	/**
 	 * Returns a new object of class '<em>Validatable Node</em>'.
@@ -116,7 +117,7 @@ public interface ValidityFactory extends EFactory {
 	 * @return a new object of class '<em>Validatable Node</em>'.
 	 * @generated
 	 */
-	ValidatableNode createValidatableNode();
+	@NonNull ValidatableNode createValidatableNode();
 
 	/**
 	 * Returns the package supported by this factory.

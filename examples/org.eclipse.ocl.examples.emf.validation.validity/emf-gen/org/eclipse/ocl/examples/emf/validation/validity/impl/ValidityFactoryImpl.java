@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.examples.emf.validation.validity.*;
 
 
@@ -117,7 +118,7 @@ public class ValidityFactoryImpl extends EFactoryImpl implements ValidityFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConstrainingNode createConstrainingNode() {
+	public @NonNull ConstrainingNode createConstrainingNode() {
 		ConstrainingNodeImpl constrainingNode = new ConstrainingNodeImpl();
 		return constrainingNode;
 	}
@@ -127,7 +128,7 @@ public class ValidityFactoryImpl extends EFactoryImpl implements ValidityFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LeafConstrainingNode createLeafConstrainingNode() {
+	public @NonNull LeafConstrainingNode createLeafConstrainingNode() {
 		LeafConstrainingNodeImpl leafConstrainingNode = new LeafConstrainingNodeImpl();
 		return leafConstrainingNode;
 	}
@@ -137,7 +138,7 @@ public class ValidityFactoryImpl extends EFactoryImpl implements ValidityFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Result createResult() {
+	public @NonNull Result createResult() {
 		ResultImpl result = new ResultImpl();
 		return result;
 	}
@@ -147,7 +148,7 @@ public class ValidityFactoryImpl extends EFactoryImpl implements ValidityFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResultConstrainingNode createResultConstrainingNode() {
+	public @NonNull ResultConstrainingNode createResultConstrainingNode() {
 		ResultConstrainingNodeImpl resultConstrainingNode = new ResultConstrainingNodeImpl();
 		return resultConstrainingNode;
 	}
@@ -157,7 +158,7 @@ public class ValidityFactoryImpl extends EFactoryImpl implements ValidityFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResultSet createResultSet() {
+	public @NonNull ResultSet createResultSet() {
 		ResultSetImpl resultSet = new ResultSetImpl();
 		return resultSet;
 	}
@@ -167,7 +168,7 @@ public class ValidityFactoryImpl extends EFactoryImpl implements ValidityFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResultValidatableNode createResultValidatableNode() {
+	public @NonNull ResultValidatableNode createResultValidatableNode() {
 		ResultValidatableNodeImpl resultValidatableNode = new ResultValidatableNodeImpl();
 		return resultValidatableNode;
 	}
@@ -177,7 +178,7 @@ public class ValidityFactoryImpl extends EFactoryImpl implements ValidityFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RootNode createRootNode() {
+	public @NonNull RootNode createRootNode() {
 		RootNodeImpl rootNode = new RootNodeImpl();
 		return rootNode;
 	}
@@ -187,7 +188,7 @@ public class ValidityFactoryImpl extends EFactoryImpl implements ValidityFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RootConstrainingNode createRootConstrainingNode() {
+	public @NonNull RootConstrainingNode createRootConstrainingNode() {
 		RootConstrainingNodeImpl rootConstrainingNode = new RootConstrainingNodeImpl();
 		return rootConstrainingNode;
 	}
@@ -197,7 +198,7 @@ public class ValidityFactoryImpl extends EFactoryImpl implements ValidityFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RootValidatableNode createRootValidatableNode() {
+	public @NonNull RootValidatableNode createRootValidatableNode() {
 		RootValidatableNodeImpl rootValidatableNode = new RootValidatableNodeImpl();
 		return rootValidatableNode;
 	}
@@ -207,7 +208,7 @@ public class ValidityFactoryImpl extends EFactoryImpl implements ValidityFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValidatableNode createValidatableNode() {
+	public @NonNull ValidatableNode createValidatableNode() {
 		ValidatableNodeImpl validatableNode = new ValidatableNodeImpl();
 		return validatableNode;
 	}

@@ -71,9 +71,9 @@ public class UMLConstraintLocator extends AbstractPivotConstraintLocator
 	}
 
 	@Override
-	public @NonNull Set<TypeURI> getAllTypes(@NonNull ValidityManager validityManager, @NonNull EObject constrainingType) {
+	public @NonNull Set<@NonNull TypeURI> getAllTypes(@NonNull ValidityManager validityManager, @NonNull EObject constrainingType) {
 		if (constrainingType instanceof org.eclipse.uml2.uml.Class) {
-			Set<TypeURI> allTypes = new HashSet<TypeURI>();
+			Set<@NonNull TypeURI> allTypes = new HashSet<@NonNull TypeURI>();
 			allTypes.add(validityManager.getTypeURI(constrainingType));
 			if (constrainingType instanceof org.eclipse.uml2.uml.Class) {
 				getAllTypes(allTypes, validityManager, ((org.eclipse.uml2.uml.Class)constrainingType).getSuperClasses());
@@ -85,7 +85,7 @@ public class UMLConstraintLocator extends AbstractPivotConstraintLocator
 		}
 	}
 
-	private void getAllTypes(Set<TypeURI> knownTypes, @NonNull ValidityManager validityManager, Iterable<org.eclipse.uml2.uml.Class> moreTypes) {
+	private void getAllTypes(Set<@NonNull TypeURI> knownTypes, @NonNull ValidityManager validityManager, Iterable<org.eclipse.uml2.uml.Class> moreTypes) {
 		for (org.eclipse.uml2.uml.Class anotherType : moreTypes) {
 			if ((anotherType != null) && knownTypes.add(validityManager.getTypeURI(anotherType))) {
 				getAllTypes(knownTypes, validityManager, anotherType.getSuperClasses());
@@ -134,10 +134,10 @@ public class UMLConstraintLocator extends AbstractPivotConstraintLocator
 	}
 
 	@Override
-	public @Nullable Map<EObject, @NonNull List<LeafConstrainingNode>> getConstraints(@NonNull ValidityModel validityModel,
-		@NonNull EPackage ePackage, @NonNull Set<Resource> resources, @NonNull Monitor monitor) {
-			Map<EObject, @NonNull List<LeafConstrainingNode>> map = null;
-			for (Resource resource : resources) {
+	public @Nullable Map<@NonNull EObject, @NonNull List<@NonNull LeafConstrainingNode>> getConstraints(@NonNull ValidityModel validityModel,
+		@NonNull EPackage ePackage, @NonNull Set<@NonNull Resource> resources, @NonNull Monitor monitor) {
+			Map<@NonNull EObject, @NonNull List<@NonNull LeafConstrainingNode>> map = null;
+			for (@NonNull Resource resource : resources) {
 				if (monitor.isCanceled()) {
 					return null;
 				}
@@ -176,10 +176,10 @@ public class UMLConstraintLocator extends AbstractPivotConstraintLocator
 		}
 
 	@Override
-	public @Nullable Collection<Resource> getImports(@NonNull EPackage ePackage, @NonNull Resource resource) {
-		Set<Resource> imports = new HashSet<Resource>();
+	public @Nullable Collection<@NonNull Resource> getImports(@NonNull EPackage ePackage, @NonNull Resource resource) {
+		Set<@NonNull Resource> imports = new HashSet<@NonNull Resource>();
 		for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
-			@SuppressWarnings("null")@NonNull EObject eObject = tit.next();
+			EObject eObject = tit.next();
 			if (eObject instanceof PackageImport) {
 				PackageImport umlPackageImport = (PackageImport)eObject;
 				Package importedPackage = umlPackageImport.getImportedPackage();
@@ -285,14 +285,14 @@ public class UMLConstraintLocator extends AbstractPivotConstraintLocator
 	}
 
 	@Override
-	public @Nullable Set<TypeURI> getTypeURIs(@NonNull ValidityManager validityManager, @NonNull EObject validatableObject) {
+	public @Nullable Set<@NonNull TypeURI> getTypeURIs(@NonNull ValidityManager validityManager, @NonNull EObject validatableObject) {
 		EClass eClass = validatableObject.eClass();
 		if (eClass != null) {
 			EAnnotation eAnnotation = eClass.getEAnnotation("http://www.eclipse.org/uml2/2.0.0/UML");
 			if ((eAnnotation != null) && (eAnnotation.getReferences().size() > 0)) { // Stereotype application
 				EObject umlClass = eAnnotation.getReferences().get(0);
 				if (umlClass != null) {
-					Set<TypeURI> allTypeURIs = new HashSet<TypeURI>();
+					Set<@NonNull TypeURI> allTypeURIs = new HashSet<@NonNull TypeURI>();
 					TypeURI typeURI = validityManager.getTypeURI(umlClass);
 					allTypeURIs.add(typeURI);
 					return allTypeURIs;
@@ -300,7 +300,7 @@ public class UMLConstraintLocator extends AbstractPivotConstraintLocator
 			}
 		}
 		if (validatableObject instanceof InstanceSpecification) {
-			Set<TypeURI> allTypeURIs = new HashSet<TypeURI>();
+			Set<@NonNull TypeURI> allTypeURIs = new HashSet<@NonNull TypeURI>();
 			for (org.eclipse.uml2.uml.Classifier umlClassifier : ((InstanceSpecification)validatableObject).getClassifiers()) {
 				if (umlClassifier != null) {
 					TypeURI typeURI = validityManager.getTypeURI(umlClassifier);

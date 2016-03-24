@@ -52,13 +52,14 @@ import org.eclipse.ocl.examples.emf.validation.validity.locator.ConstraintLocato
 import org.eclipse.ocl.examples.emf.validation.validity.plugin.ValidityPlugin;
 import org.eclipse.ocl.examples.emf.validation.validity.utilities.IVisibilityFilter;
 import org.eclipse.ocl.pivot.labels.ILabelGenerator;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.LabelUtil;
 import org.eclipse.ocl.pivot.utilities.TracingOption;
 
 public class ValidityManager
 {	
-	private static final @NonNull Map<String, List<ConstraintLocator.Descriptor>> constraintLocatorDescriptors = new HashMap<String, List<ConstraintLocator.Descriptor>>();
-	private static final @NonNull Map<String, List<ConstraintLocator>> constraintLocators = new HashMap<String, List<ConstraintLocator>>();
+	private static final @NonNull Map<@Nullable String, @NonNull List<ConstraintLocator.@NonNull Descriptor>> constraintLocatorDescriptors = new HashMap<@Nullable String, @NonNull List<ConstraintLocator.@NonNull Descriptor>>();
+	private static final @NonNull Map<@NonNull String, @NonNull List<@NonNull ConstraintLocator>> constraintLocators = new HashMap<@NonNull String, @NonNull List<@NonNull ConstraintLocator>>();
 
 	public static final @NonNull TracingOption ANALYZE_RESOURCE = new TracingOption(ValidityPlugin.PLUGIN_ID, "analyze/resource");
 	public static final @NonNull TracingOption BUILD_TYPE = new TracingOption(ValidityPlugin.PLUGIN_ID, "build/type");
@@ -67,14 +68,14 @@ public class ValidityManager
 	public static final @NonNull TracingOption CREATE_VALIDATABLE = new TracingOption(ValidityPlugin.PLUGIN_ID, "create/validatable");
 	public static final @NonNull TracingOption LOCATE_RESOURCE = new TracingOption(ValidityPlugin.PLUGIN_ID, "locate/resource");
 	
-	public static final @NonNull Map<ILabelGenerator.Option<?>, Object> LABEL_OPTIONS = new HashMap<ILabelGenerator.Option<?>, Object>();
+	public static final @NonNull Map<ILabelGenerator.@NonNull Option<?>, @Nullable Object> LABEL_OPTIONS = new HashMap<ILabelGenerator.@NonNull Option<?>, @Nullable Object>();
 	static {
 		LABEL_OPTIONS.put(ILabelGenerator.Builder.SHOW_QUALIFIER, null);
 	}
 
-	private final @NonNull LinkedHashSet<Resource> newResources = new LinkedHashSet<Resource>();
+	private final @NonNull LinkedHashSet<@NonNull Resource> newResources = new LinkedHashSet<@NonNull Resource>();
 
-	private final @NonNull Set<Resource> oldResources = new HashSet<Resource>();
+	private final @NonNull Set<@NonNull Resource> oldResources = new HashSet<@NonNull Resource>();
 	
 	/**
 	 * This add the corresponding constraint locator if it exists in the list of
@@ -86,9 +87,9 @@ public class ValidityManager
 	 *            the corresponding constraint locator
 	 */
 	public static synchronized void addConstraintLocator(/*@NonNull*/ String nsURI, ConstraintLocator.@NonNull Descriptor constraintLocator) {
-		List<ConstraintLocator.Descriptor> list = constraintLocatorDescriptors.get(nsURI);
+		List<ConstraintLocator.@NonNull Descriptor> list = constraintLocatorDescriptors.get(nsURI);
 		if (list == null) {
-			list = new ArrayList<ConstraintLocator.Descriptor>();
+			list = new ArrayList<ConstraintLocator.@NonNull Descriptor>();
 			constraintLocatorDescriptors.put(nsURI, list);
 		}
 		if (!list.contains(constraintLocator)) {
@@ -103,14 +104,14 @@ public class ValidityManager
 
 	public static synchronized @Nullable ConstraintLocator getConstraintLocator(@Nullable Resource validatableResource) {
 		if (validatableResource != null) {
-			for (EObject validatableObject : validatableResource.getContents()) {
+			for (@NonNull EObject validatableObject : validatableResource.getContents()) {
 				EClass eClass = validatableObject.eClass();
 				if (eClass != null) {
 					EPackage ePackage = eClass.getEPackage();
 					if (ePackage != null) {
 						String nsURI = ePackage.getNsURI();
 						if (nsURI != null) {
-							List<ConstraintLocator> list = getConstraintLocators(nsURI);
+							List<@NonNull ConstraintLocator> list = getConstraintLocators(nsURI);
 							if ((list != null) && (list.size() > 0)) {
 								return list.get(0);
 							}
@@ -122,17 +123,17 @@ public class ValidityManager
 		return null;
 	}
 
-	public static synchronized @NonNull List<ConstraintLocator> getConstraintLocators(@NonNull String nsURI) {
-		List<ConstraintLocator> list = constraintLocators.get(nsURI);
+	public static synchronized @NonNull List<@NonNull ConstraintLocator> getConstraintLocators(@NonNull String nsURI) {
+		List<@NonNull ConstraintLocator> list = constraintLocators.get(nsURI);
 		if (list == null) {
-			list = new ArrayList<ConstraintLocator>();
+			list = new ArrayList<@NonNull ConstraintLocator>();
 			constraintLocators.put(nsURI, list);
-			List<ConstraintLocator.Descriptor> descriptors = constraintLocatorDescriptors.get(nsURI);
+			List<ConstraintLocator.@NonNull Descriptor> descriptors = constraintLocatorDescriptors.get(nsURI);
 			if (descriptors == null) {
 				descriptors = constraintLocatorDescriptors.get(null);
 			}
 			if (descriptors != null) {
-				for (ConstraintLocator.Descriptor descriptor : descriptors) {
+				for (ConstraintLocator.@NonNull Descriptor descriptor : descriptors) {
 					ConstraintLocator constraintLocator = descriptor.getConstraintLocator();
 					ConstraintLocator constraintLocatorInstance = constraintLocator.getInstance();
 					if (!list.contains(constraintLocatorInstance)) {
@@ -145,7 +146,7 @@ public class ValidityManager
 	}
 	
 	protected final @NonNull ComposedAdapterFactory adapterFactory;
-	protected final @NonNull Map<ResultValidatableNode, Result> resultsMap = new HashMap<ResultValidatableNode, Result>();
+	protected final @NonNull Map<@NonNull ResultValidatableNode, @NonNull Result> resultsMap = new HashMap<@NonNull ResultValidatableNode, @NonNull Result>();
 	protected final @SuppressWarnings("null")@NonNull Map<Object, Object> context = Diagnostician.INSTANCE.createDefaultContext();
 	private @Nullable ValidityModel model = null;
 	protected @Nullable ResultSet lastResultSet = null;
@@ -216,7 +217,7 @@ public class ValidityManager
 		return Diagnostician.INSTANCE.createDefaultDiagnostic(eObject);
 	}
 
-	protected @NonNull ValidityModel createModel(@NonNull Collection<Resource> newResources) {
+	protected @NonNull ValidityModel createModel(@NonNull Collection<@NonNull Resource> newResources) {
 		return new ValidityModel(this, newResources);
 	}
 
@@ -231,15 +232,15 @@ public class ValidityManager
 		resultsMap.clear();
 	}
 	
-	protected @Nullable Set<ConstraintLocator> gatherConstraintLocators(@Nullable Set<ConstraintLocator> set, @NonNull List<ConstraintLocator> list) {
+	protected @Nullable Set<@NonNull ConstraintLocator> gatherConstraintLocators(@Nullable Set<@NonNull ConstraintLocator> set, @NonNull List<@NonNull ConstraintLocator> list) {
 		if (set == null) {
-			set = new HashSet<ConstraintLocator>();
+			set = new HashSet<@NonNull ConstraintLocator>();
 		}
 		set.addAll(list);
 		return set;
 	}
 
-	public @NonNull Iterable<ConstraintLocator> getActiveConstraintLocators(@NonNull String nsURI) {
+	public @NonNull Iterable<@NonNull ConstraintLocator> getActiveConstraintLocators(@NonNull String nsURI) {
 		return getConstraintLocators(nsURI);
 	}
 
@@ -259,8 +260,8 @@ public class ValidityManager
 		return model2.getConstrainingNode(eObject);
 	}
 
-	public @NonNull List<Result> getConstrainingNodeResults(@NonNull ConstrainingNode element) {
-		List<Result> results = new ArrayList<Result>();
+	public @NonNull List<@NonNull Result> getConstrainingNodeResults(@NonNull ConstrainingNode element) {
+		List<@NonNull Result> results = new ArrayList<@NonNull Result>();
 		if (element.getLabel().startsWith("EOperation")) {
 			getAllConstrainingNodeResults(results, element);
 		}
@@ -284,11 +285,11 @@ public class ValidityManager
 				return uri;
 			}
 		}
-		@SuppressWarnings("null")@NonNull URI uri = EcoreUtil.getURI(eObject);
+		@NonNull URI uri = EcoreUtil.getURI(eObject);
 		return new ConstrainingURI(uri);
 	}
 
-	private void getAllConstrainingNodeResults(List<Result> results, @NonNull ConstrainingNode element) {
+	private void getAllConstrainingNodeResults(@NonNull List<@NonNull Result> results, @NonNull ConstrainingNode element) {
 		if (element instanceof ResultConstrainingNode) {
 			ResultValidatableNode resultValidatableNode = ((ResultConstrainingNode)element).getResultValidatableNode();
 			Result result = resultsMap.get(resultValidatableNode);
@@ -297,13 +298,13 @@ public class ValidityManager
 			}
 		}
 		else {
-			for (@SuppressWarnings("null")@NonNull ConstrainingNode child : element.getChildren()) {
+			for (@NonNull ConstrainingNode child : ClassUtil.nullFree(element.getChildren())) {
 				getAllConstrainingNodeResults(results, child);
 			}
 		}
 	}
 
-	private void getAllValidatableNodeResults(List<Result> results, @NonNull ValidatableNode element) {
+	private void getAllValidatableNodeResults(@NonNull List<@NonNull Result> results, @NonNull ValidatableNode element) {
 		if (element instanceof ResultValidatableNode) {
 			ResultValidatableNode resultValidatableNode = (ResultValidatableNode)element;
 			Result result = resultsMap.get(resultValidatableNode);
@@ -312,7 +313,7 @@ public class ValidityManager
 			}
 		}
 		else {
-			for (@SuppressWarnings("null")@NonNull ValidatableNode child : element.getChildren()) {
+			for (@NonNull ValidatableNode child : ClassUtil.nullFree(element.getChildren())) {
 				getAllValidatableNodeResults(results, child);
 			}
 		}
@@ -346,7 +347,7 @@ public class ValidityManager
 					Resource eResource = constrainingEPackage.eResource();
 					if (eResource != null) {
 						String fragment = eResource.getURIFragment(constrainingObject);
-						@NonNull URI uri = URI.createURI(nsURI).appendFragment(fragment);
+						URI uri = URI.createURI(nsURI).appendFragment(fragment);
 						return new TypeURI(uri);
 					}
 				}
@@ -358,9 +359,9 @@ public class ValidityManager
 			if (ePackage != null) {
 				String nsURI = ePackage.getNsURI();
 				if (nsURI != null) {
-					List<ConstraintLocator> constraintLocators = getConstraintLocators(nsURI);
+					List<@NonNull ConstraintLocator> constraintLocators = getConstraintLocators(nsURI);
 					if (constraintLocators != null) {
-						for (ConstraintLocator constraintLocator : constraintLocators) {
+						for (@NonNull ConstraintLocator constraintLocator : constraintLocators) {
 							TypeURI uri = constraintLocator.getTypeURI(constrainingObject);
 							if (uri != null) {
 								return uri;
@@ -370,7 +371,7 @@ public class ValidityManager
 				}
 			}
 		}
-		@SuppressWarnings("null")@NonNull URI uri = EcoreUtil.getURI(constrainingObject);
+		@NonNull URI uri = EcoreUtil.getURI(constrainingObject);
 		return new TypeURI(uri);
 	}
 
@@ -401,8 +402,8 @@ public class ValidityManager
 		return s.toString();
 	}
 
-	public List<Result> getValidatableNodeResults(@NonNull ValidatableNode element) {
-		List<Result> results = new ArrayList<Result>();
+	public @NonNull List<@NonNull Result> getValidatableNodeResults(@NonNull ValidatableNode element) {
+		List<@NonNull Result> results = new ArrayList<@NonNull Result>();
 		getAllValidatableNodeResults(results, element);
 		return results;
 	}
@@ -414,7 +415,7 @@ public class ValidityManager
 	 * @return the eObject uri
 	 */
 	public @NonNull ValidatableURI getValidatableURI(@NonNull EObject eObject) {
-		@SuppressWarnings("null")@NonNull URI uri = EcoreUtil.getURI(eObject);
+		@NonNull URI uri = EcoreUtil.getURI(eObject);
 		return new ValidatableURI(uri);
 	}
 
@@ -442,18 +443,19 @@ public class ValidityManager
 		
 	} */
 
-	protected @Nullable List<Result> installResultSet(@NonNull ResultSet resultSet, @NonNull IProgressMonitor monitor) {
+	protected @Nullable List<@NonNull Result> installResultSet(@NonNull ResultSet resultSet, @NonNull IProgressMonitor monitor) {
 		lastResultSet = resultSet;
 		resultsMap.clear();
 		RootNode rootNode = getRootNode();
 		if (rootNode == null) {
 			return null;
 		}
-		resetResults(rootNode.getValidatableNodes());
-		resetResults(rootNode.getConstrainingNodes());
-		List<Result> results = resultSet.getResults();
-		for (Result result : results) {
+		resetResults(ClassUtil.nullFree(rootNode.getValidatableNodes()));
+		resetResults(ClassUtil.nullFree(rootNode.getConstrainingNodes()));
+		List<@NonNull Result> results = ClassUtil.nullFree(resultSet.getResults());
+		for (@NonNull Result result : results) {
 			ResultValidatableNode resultValidatableNode = result.getResultValidatableNode();
+			assert resultValidatableNode != null;
 			resultsMap.put(resultValidatableNode, result);
 			if (monitor.isCanceled()) {
 				return null;
@@ -483,9 +485,9 @@ public class ValidityManager
 		}
 	}
 
-	private void resetResults(@NonNull List<? extends AbstractNode> nodes) {
-		for (AbstractNode node : nodes) {
-			resetResults(node.getChildren());
+	private void resetResults(@NonNull List<@NonNull ? extends AbstractNode> nodes) {
+		for (@NonNull AbstractNode node : nodes) {
+			resetResults(ClassUtil.nullFree(node.getChildren()));
 			node.setWorstResult(null);
 		}	
 	}
@@ -515,9 +517,9 @@ public class ValidityManager
 			selectedResource = (Resource) newInput;
 			selectedResourceSet = selectedResource.getResourceSet();
 			if (selectedResourceSet == null) {
-				List<EObject> eContents = selectedResource.getContents();
+				List<@NonNull EObject> eContents = selectedResource.getContents();
 				for (int j = 0; j < eContents.size(); j++) {		// Tolerate domain growth without a CME
-					EObject eObject = eContents.get(j);
+					EObject eObject = ClassUtil.nonNull(eContents.get(j));
 					EcoreUtil.resolveAll(eObject);
 				}
 				newResources.add(selectedResource);
@@ -532,16 +534,16 @@ public class ValidityManager
 
 		if (selectedResourceSet != null) {
 			synchronized (selectedResourceSet) {
-				List<Resource> selectedResources = selectedResourceSet.getResources();
+				List<@NonNull Resource> selectedResources = ClassUtil.nullFree(selectedResourceSet.getResources());
 				for (int i = 0; i < selectedResources.size(); i++) {	// Tolerate domain growth without a CME
-					Resource eResource = selectedResources.get(i);
+					Resource eResource = ClassUtil.nonNull(selectedResources.get(i));
 					List<EObject> eContents = eResource.getContents();
 					for (int j = 0; j < eContents.size(); j++) {		// Tolerate domain growth without a CME
 						EObject eObject = eContents.get(j);
 						EcoreUtil.resolveAll(eObject);
 					}
 				}
-				newResources.addAll(selectedResourceSet.getResources());
+				newResources.addAll(ClassUtil.nullFree(selectedResourceSet.getResources()));
 			}
 		}
 		

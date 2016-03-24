@@ -45,9 +45,9 @@ public class EValidatorConstraintLocator extends AbstractConstraintLocator
 {
 	public static @NonNull EValidatorConstraintLocator INSTANCE = new EValidatorConstraintLocator();
 	
-	public @Nullable Map<EObject, @NonNull List<LeafConstrainingNode>> getConstraints(@NonNull ValidityModel validityModel,
-			@NonNull EPackage ePackage, @NonNull Set<Resource> resources, @NonNull Monitor monitor) {
-		Map<EObject, @NonNull List<LeafConstrainingNode>> map = null;
+	public @Nullable Map<@NonNull EObject, @NonNull List<@NonNull LeafConstrainingNode>> getConstraints(@NonNull ValidityModel validityModel,
+			@NonNull EPackage ePackage, @NonNull Set<@NonNull Resource> resources, @NonNull Monitor monitor) {
+		Map<@NonNull EObject, @NonNull List<@NonNull LeafConstrainingNode>> map = null;
 		Object object = EValidator.Registry.INSTANCE.get(ePackage);
 		if (object instanceof EValidator) {
 			map = getConstraints(map, validityModel, ePackage, (EValidator) object, monitor);
@@ -79,7 +79,7 @@ public class EValidatorConstraintLocator extends AbstractConstraintLocator
 		return map;
 	}
 
-	protected @Nullable Map<EObject, @NonNull List<LeafConstrainingNode>> getConstraints(@Nullable Map<EObject, @NonNull List<LeafConstrainingNode>> map,
+	protected @Nullable Map<@NonNull EObject, @NonNull List<@NonNull LeafConstrainingNode>> getConstraints(@Nullable Map<@NonNull EObject, @NonNull List<@NonNull LeafConstrainingNode>> map,
 			@NonNull ValidityModel validityModel, @NonNull EPackage ePackage, @NonNull EValidator eValidator, @NonNull Monitor monitor) {
 		if (eValidator instanceof ComposedEValidator) {
 			for (@SuppressWarnings("null")@NonNull EValidator child : ((ComposedEValidator) eValidator).getChildren()) {
@@ -88,7 +88,7 @@ public class EValidatorConstraintLocator extends AbstractConstraintLocator
 			return map;
 		}
 //		Map<String, EClassifier> name2eClassifier = new HashMap<String, EClassifier>();
-		Map<Class<?>, List<EClassifier>> javaClass2eClassifiers = new HashMap<Class<?>, List<EClassifier>>();
+		Map<@NonNull Class<?>, @NonNull List<@NonNull EClassifier>> javaClass2eClassifiers = new HashMap<@NonNull Class<?>, @NonNull List<@NonNull EClassifier>>();
 		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
 			if (monitor.isCanceled()) {
 				return null;
@@ -96,9 +96,9 @@ public class EValidatorConstraintLocator extends AbstractConstraintLocator
 //			name2eClassifier.put(eClassifier.getName(), eClassifier);
 			Class<?> javaClass = eClassifier.getInstanceClass();
 			if (javaClass != null) {
-				List<EClassifier> eClassifiers = javaClass2eClassifiers.get(javaClass);
+				List<@NonNull EClassifier> eClassifiers = javaClass2eClassifiers.get(javaClass);
 				if (eClassifiers == null) {
-					eClassifiers = new ArrayList<EClassifier>();
+					eClassifiers = new ArrayList<@NonNull EClassifier>();
 					javaClass2eClassifiers.put(javaClass, eClassifiers);
 				}
 				eClassifiers.add(eClassifier);
@@ -114,9 +114,9 @@ public class EValidatorConstraintLocator extends AbstractConstraintLocator
 			 && (DiagnosticChain.class == parameterTypes[1])
 			 && (Map.class == parameterTypes[2])) {
 				String name = method.getName();
-				List<EClassifier> eClassifiers = javaClass2eClassifiers.get(parameterTypes[0]);
+				List<@NonNull EClassifier> eClassifiers = javaClass2eClassifiers.get(parameterTypes[0]);
 				if (eClassifiers != null) {
-					for (EClassifier eClassifier : eClassifiers) {
+					for (@NonNull EClassifier eClassifier : eClassifiers) {
 						String eClassifierName = eClassifier.getName();
 						int index = name.indexOf(eClassifierName);
 						if (index > 0) {
