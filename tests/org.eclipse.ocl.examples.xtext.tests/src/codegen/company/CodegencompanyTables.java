@@ -26,7 +26,6 @@ package codegen.company;
 import codegen.company.CodegencompanyTables;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.ParameterTypes;
-import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.TemplateParameters;
 import org.eclipse.ocl.pivot.internal.library.ecore.EcoreExecutorEnumeration;
 import org.eclipse.ocl.pivot.internal.library.ecore.EcoreExecutorEnumerationLiteral;
@@ -184,20 +183,11 @@ public class CodegencompanyTables
 		private static final @NonNull ExecutorFragment _Company__OclAny = new ExecutorFragment(Types._Company, OCLstdlibTables.Types._OclAny);
 		private static final @NonNull ExecutorFragment _Company__OclElement = new ExecutorFragment(Types._Company, OCLstdlibTables.Types._OclElement);
 
-		private static final @NonNull ExecutorFragment _CompanySizeKind__Class = new ExecutorFragment(Types._CompanySizeKind, PivotTables.Types._Class);
 		private static final @NonNull ExecutorFragment _CompanySizeKind__CompanySizeKind = new ExecutorFragment(Types._CompanySizeKind, CodegencompanyTables.Types._CompanySizeKind);
-		private static final @NonNull ExecutorFragment _CompanySizeKind__DataType = new ExecutorFragment(Types._CompanySizeKind, PivotTables.Types._DataType);
-		private static final @NonNull ExecutorFragment _CompanySizeKind__Element = new ExecutorFragment(Types._CompanySizeKind, PivotTables.Types._Element);
-		private static final @NonNull ExecutorFragment _CompanySizeKind__Enumeration = new ExecutorFragment(Types._CompanySizeKind, PivotTables.Types._Enumeration);
-		private static final @NonNull ExecutorFragment _CompanySizeKind__Nameable = new ExecutorFragment(Types._CompanySizeKind, PivotTables.Types._Nameable);
-		private static final @NonNull ExecutorFragment _CompanySizeKind__NamedElement = new ExecutorFragment(Types._CompanySizeKind, PivotTables.Types._NamedElement);
-		private static final @NonNull ExecutorFragment _CompanySizeKind__Namespace = new ExecutorFragment(Types._CompanySizeKind, PivotTables.Types._Namespace);
 		private static final @NonNull ExecutorFragment _CompanySizeKind__OclAny = new ExecutorFragment(Types._CompanySizeKind, OCLstdlibTables.Types._OclAny);
 		private static final @NonNull ExecutorFragment _CompanySizeKind__OclElement = new ExecutorFragment(Types._CompanySizeKind, OCLstdlibTables.Types._OclElement);
+		private static final @NonNull ExecutorFragment _CompanySizeKind__OclEnumeration = new ExecutorFragment(Types._CompanySizeKind, OCLstdlibTables.Types._OclEnumeration);
 		private static final @NonNull ExecutorFragment _CompanySizeKind__OclType = new ExecutorFragment(Types._CompanySizeKind, OCLstdlibTables.Types._OclType);
-		private static final @NonNull ExecutorFragment _CompanySizeKind__TemplateableElement = new ExecutorFragment(Types._CompanySizeKind, PivotTables.Types._TemplateableElement);
-		private static final @NonNull ExecutorFragment _CompanySizeKind__Type = new ExecutorFragment(Types._CompanySizeKind, PivotTables.Types._Type);
-		private static final @NonNull ExecutorFragment _CompanySizeKind__Visitable = new ExecutorFragment(Types._CompanySizeKind, PivotTables.Types._Visitable);
 
 		private static final @NonNull ExecutorFragment _Employee__Employee = new ExecutorFragment(Types._Employee, CodegencompanyTables.Types._Employee);
 		private static final @NonNull ExecutorFragment _Employee__OclAny = new ExecutorFragment(Types._Employee, OCLstdlibTables.Types._OclAny);
@@ -324,20 +314,11 @@ public class CodegencompanyTables
 		{
 			Fragments._CompanySizeKind__OclAny /* 0 */,
 			Fragments._CompanySizeKind__OclElement /* 1 */,
-			Fragments._CompanySizeKind__Nameable /* 2 */,
 			Fragments._CompanySizeKind__OclType /* 2 */,
-			Fragments._CompanySizeKind__Visitable /* 2 */,
-			Fragments._CompanySizeKind__Element /* 3 */,
-			Fragments._CompanySizeKind__NamedElement /* 4 */,
-			Fragments._CompanySizeKind__TemplateableElement /* 4 */,
-			Fragments._CompanySizeKind__Namespace /* 5 */,
-			Fragments._CompanySizeKind__Type /* 5 */,
-			Fragments._CompanySizeKind__Class /* 6 */,
-			Fragments._CompanySizeKind__DataType /* 7 */,
-			Fragments._CompanySizeKind__Enumeration /* 8 */,
-			Fragments._CompanySizeKind__CompanySizeKind /* 9 */
+			Fragments._CompanySizeKind__OclEnumeration /* 3 */,
+			Fragments._CompanySizeKind__CompanySizeKind /* 4 */
 		};
-		private static final int @NonNull [] __CompanySizeKind = { 1,1,3,1,2,2,1,1,1,1 };
+		private static final int @NonNull [] __CompanySizeKind = { 1,1,1,1,1 };
 
 		private static final @NonNull ExecutorFragment @NonNull [] _Employee =
 		{
@@ -389,12 +370,17 @@ public class CodegencompanyTables
 			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
 			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 		private static final @NonNull ExecutorOperation @NonNull [] _Bug418716__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[?]) */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
-			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
+			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */,
+			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
+			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
 		};
 
 		private static final @NonNull ExecutorOperation @NonNull [] _Company__Company = {};
@@ -412,27 +398,20 @@ public class CodegencompanyTables
 			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
 			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 		private static final @NonNull ExecutorOperation @NonNull [] _Company__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[?]) */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
-			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
+			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */,
+			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
+			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
 		};
 
 		private static final @NonNull ExecutorOperation @NonNull [] _CompanySizeKind__CompanySizeKind = {};
-		private static final @NonNull ExecutorOperation @NonNull [] _CompanySizeKind__Class = {};
-		private static final @NonNull ExecutorOperation @NonNull [] _CompanySizeKind__DataType = {};
-		private static final @NonNull ExecutorOperation @NonNull [] _CompanySizeKind__Element = {
-			PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */,
-			PivotTables.Operations._Element__getValue /* getValue(Type[1],String[1]) */
-		};
-		private static final @NonNull ExecutorOperation @NonNull [] _CompanySizeKind__Enumeration = {
-			PivotTables.Operations._Enumeration__allInstances /* allInstances() */
-		};
-		private static final @NonNull ExecutorOperation @NonNull [] _CompanySizeKind__Nameable = {};
-		private static final @NonNull ExecutorOperation @NonNull [] _CompanySizeKind__NamedElement = {};
-		private static final @NonNull ExecutorOperation @NonNull [] _CompanySizeKind__Namespace = {};
 		private static final @NonNull ExecutorOperation @NonNull [] _CompanySizeKind__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
@@ -447,25 +426,24 @@ public class CodegencompanyTables
 			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
 			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 		private static final @NonNull ExecutorOperation @NonNull [] _CompanySizeKind__OclElement = {
-			PivotTables.Operations._Enumeration__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclEnumeration__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[?]) */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
-			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
+			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */,
+			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
+			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
+		};
+		private static final @NonNull ExecutorOperation @NonNull [] _CompanySizeKind__OclEnumeration = {
+			OCLstdlibTables.Operations._OclEnumeration__allInstances /* allInstances() */
 		};
 		private static final @NonNull ExecutorOperation @NonNull [] _CompanySizeKind__OclType = {
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
-		private static final @NonNull ExecutorOperation @NonNull [] _CompanySizeKind__TemplateableElement = {};
-		private static final @NonNull ExecutorOperation @NonNull [] _CompanySizeKind__Type = {
-			PivotTables.Operations._Type__conformsTo /* conformsTo(Type[?]) */,
-			PivotTables.Operations._Type__flattenedType /* flattenedType() */,
-			PivotTables.Operations._Type__isClass /* isClass() */,
-			PivotTables.Operations._Type__isTemplateParameter /* isTemplateParameter() */,
-			PivotTables.Operations._Type__specializeIn /* specializeIn(CallExp[1],Type[1]) */
-		};
-		private static final @NonNull ExecutorOperation @NonNull [] _CompanySizeKind__Visitable = {};
 
 		private static final @NonNull ExecutorOperation @NonNull [] _Employee__Employee = {
 			CodegencompanyTables.Operations._Employee__hasNameAsOperation /* hasNameAsOperation() */,
@@ -485,12 +463,17 @@ public class CodegencompanyTables
 			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
 			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
 		private static final @NonNull ExecutorOperation @NonNull [] _Employee__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[?]) */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
-			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
+			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */,
+			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[?]) */,
+			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
+			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
 		};
 
 		/*
@@ -505,20 +488,11 @@ public class CodegencompanyTables
 			Fragments._Company__OclAny.initOperations(_Company__OclAny);
 			Fragments._Company__OclElement.initOperations(_Company__OclElement);
 
-			Fragments._CompanySizeKind__Class.initOperations(_CompanySizeKind__Class);
 			Fragments._CompanySizeKind__CompanySizeKind.initOperations(_CompanySizeKind__CompanySizeKind);
-			Fragments._CompanySizeKind__DataType.initOperations(_CompanySizeKind__DataType);
-			Fragments._CompanySizeKind__Element.initOperations(_CompanySizeKind__Element);
-			Fragments._CompanySizeKind__Enumeration.initOperations(_CompanySizeKind__Enumeration);
-			Fragments._CompanySizeKind__Nameable.initOperations(_CompanySizeKind__Nameable);
-			Fragments._CompanySizeKind__NamedElement.initOperations(_CompanySizeKind__NamedElement);
-			Fragments._CompanySizeKind__Namespace.initOperations(_CompanySizeKind__Namespace);
 			Fragments._CompanySizeKind__OclAny.initOperations(_CompanySizeKind__OclAny);
 			Fragments._CompanySizeKind__OclElement.initOperations(_CompanySizeKind__OclElement);
+			Fragments._CompanySizeKind__OclEnumeration.initOperations(_CompanySizeKind__OclEnumeration);
 			Fragments._CompanySizeKind__OclType.initOperations(_CompanySizeKind__OclType);
-			Fragments._CompanySizeKind__TemplateableElement.initOperations(_CompanySizeKind__TemplateableElement);
-			Fragments._CompanySizeKind__Type.initOperations(_CompanySizeKind__Type);
-			Fragments._CompanySizeKind__Visitable.initOperations(_CompanySizeKind__Visitable);
 
 			Fragments._Employee__Employee.initOperations(_Employee__Employee);
 			Fragments._Employee__OclAny.initOperations(_Employee__OclAny);
