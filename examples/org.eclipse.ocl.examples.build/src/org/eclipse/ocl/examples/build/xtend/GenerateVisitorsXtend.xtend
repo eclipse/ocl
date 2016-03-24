@@ -88,7 +88,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 			/**
 			 * An AbstractDelegating«visitorClassName» delegates all visits.
 			 */
-			public abstract class AbstractDelegating«visitorClassName»<R, C, D extends «visitorClassName»<R>>
+			public abstract class AbstractDelegating«visitorClassName»<R, C, @NonNull D extends «visitorClassName»<R>>
 				extends «IF isDerived»«superVisitorPackageName».AbstractDelegating«superVisitorClassName»<R, C, D>«ELSE»«IF isDerived»«superVisitorClassName»«ELSE»Abstract«visitorClassName»«ENDIF»<R, C>«ENDIF»
 				implements «visitorClassName»<R>
 			{
@@ -97,7 +97,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 					super(delegate, context);
 				}
 				«ELSE»
-				protected final D delegate;
+				protected final @NonNull D delegate;
 				
 				protected AbstractDelegating«visitorClassName»(@NonNull D delegate, C context) {
 					super(context);
@@ -118,7 +118,6 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				 * 
 				 * @return my decorated visitor
 				 */
-				@SuppressWarnings("null")
 				protected final @NonNull D getDelegate() {
 					return delegate;
 				}
@@ -601,7 +600,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 			/**
 			 * An AbstractWrapping«visitorClassName» delegates all visits wrapping the delegation in a call to a preVisit function and a postVisit function.
 			 */
-			public abstract class AbstractWrapping«visitorClassName»<R, C, D extends «visitorClassName»<R>, P>
+			public abstract class AbstractWrapping«visitorClassName»<R, C, @NonNull D extends «visitorClassName»<R>, P>
 				extends «IF isDerived»«superVisitorPackageName».AbstractWrapping«superVisitorClassName»<R, C, D, P>«ELSE»«IF isDerived»«superVisitorClassName»«ELSE»Abstract«visitorClassName»«ENDIF»<R, C>«ENDIF»
 				implements «visitorClassName»<R>
 			{
@@ -610,7 +609,7 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 					super(delegate, context);
 				}
 				«ELSE»
-				protected final D delegate;
+				protected final @NonNull D delegate;
 				
 				protected AbstractWrapping«visitorClassName»(@NonNull D delegate, C context) {
 					super(context);
@@ -638,7 +637,6 @@ public abstract class GenerateVisitorsXtend extends GenerateVisitors
 				 * 
 				 * @return my wrapped visitor
 				 */
-				@SuppressWarnings("null")
 				protected @NonNull D getDelegate() {
 					return delegate;
 				}

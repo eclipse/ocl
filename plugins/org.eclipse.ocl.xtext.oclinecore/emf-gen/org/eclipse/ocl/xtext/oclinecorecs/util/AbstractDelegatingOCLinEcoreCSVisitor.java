@@ -20,7 +20,7 @@ import org.eclipse.jdt.annotation.NonNull;
 /**
  * An AbstractDelegatingOCLinEcoreCSVisitor delegates all visits.
  */
-public abstract class AbstractDelegatingOCLinEcoreCSVisitor<R, C, D extends OCLinEcoreCSVisitor<R>>
+public abstract class AbstractDelegatingOCLinEcoreCSVisitor<R, C, @NonNull D extends OCLinEcoreCSVisitor<R>>
 	extends org.eclipse.ocl.xtext.essentialoclcs.util.AbstractDelegatingEssentialOCLCSVisitor<R, C, D>
 	implements OCLinEcoreCSVisitor<R>
 {

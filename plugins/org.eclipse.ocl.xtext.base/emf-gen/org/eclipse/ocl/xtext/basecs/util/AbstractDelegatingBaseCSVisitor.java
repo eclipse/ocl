@@ -20,11 +20,11 @@ import org.eclipse.jdt.annotation.NonNull;
 /**
  * An AbstractDelegatingBaseCSVisitor delegates all visits.
  */
-public abstract class AbstractDelegatingBaseCSVisitor<R, C, D extends BaseCSVisitor<R>>
+public abstract class AbstractDelegatingBaseCSVisitor<R, C, @NonNull D extends BaseCSVisitor<R>>
 	extends AbstractBaseCSVisitor<R, C>
 	implements BaseCSVisitor<R>
 {
-	protected final D delegate;
+	protected final @NonNull D delegate;
 	
 	protected AbstractDelegatingBaseCSVisitor(@NonNull D delegate, C context) {
 		super(context);
@@ -45,7 +45,6 @@ public abstract class AbstractDelegatingBaseCSVisitor<R, C, D extends BaseCSVisi
 	 * 
 	 * @return my decorated visitor
 	 */
-	@SuppressWarnings("null")
 	protected final @NonNull D getDelegate() {
 		return delegate;
 	}
