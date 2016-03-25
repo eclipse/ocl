@@ -485,10 +485,10 @@ public class CompletePackageImpl extends NamedElementImpl implements CompletePac
 
 	@Override
 	public @NonNull Iterable<org.eclipse.ocl.pivot.@NonNull Class> getAllClasses() {
-		return Iterables.transform(getOwnedCompleteClasses(), new Function<CompleteClass, org.eclipse.ocl.pivot.Class>()
+		return Iterables.transform(ClassUtil.nullFree(getOwnedCompleteClasses()), new Function<@NonNull CompleteClass, org.eclipse.ocl.pivot.@NonNull Class>()
 			{
 				@Override
-				public org.eclipse.ocl.pivot.Class apply(CompleteClass input) {
+				public org.eclipse.ocl.pivot.@NonNull Class apply(@NonNull CompleteClass input) {
 					return input.getPrimaryClass();
 				}
 			});

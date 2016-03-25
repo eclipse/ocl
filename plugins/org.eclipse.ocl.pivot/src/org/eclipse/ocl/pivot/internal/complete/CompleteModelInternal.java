@@ -39,11 +39,11 @@ public interface CompleteModelInternal extends CompleteModel
 	void didAddCompletePackage(@NonNull CompletePackageInternal completePackage);
 	void didRemoveCompletePackage(@NonNull CompletePackageInternal completePackage);
 	void didRemoveClass(org.eclipse.ocl.pivot.@NonNull Class partialClass);
-	@Nullable CollectionType findCollectionType(@NonNull CompleteClassInternal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters);
-	@Nullable MapType findMapType(@NonNull CompleteClassInternal completeClass, @NonNull MapTypeParameters<Type, Type> typeParameters);
+	@Nullable CollectionType findCollectionType(@NonNull CompleteClassInternal completeClass, @NonNull CollectionTypeParameters<@NonNull Type> typeParameters);
+	@Nullable MapType findMapType(@NonNull CompleteClassInternal completeClass, @NonNull MapTypeParameters<@NonNull Type, @NonNull Type> typeParameters);
 	@Override
-	@NonNull Iterable<CompletePackageInternal> getAllCompletePackages();
-	@NonNull CollectionType getCollectionType(@NonNull CompleteClassInternal completeClass, @NonNull CollectionTypeParameters<Type> typeParameters);
+	@NonNull Iterable<@NonNull CompletePackageInternal> getAllCompletePackages();
+	@NonNull CollectionType getCollectionType(@NonNull CompleteClassInternal completeClass, @NonNull CollectionTypeParameters<@NonNull Type> typeParameters);
 	@Override
 	@NonNull CompleteClassInternal getCompleteClass(@NonNull Type partialClass);
 	@Override
@@ -52,9 +52,9 @@ public interface CompleteModelInternal extends CompleteModel
 	@Nullable CompletePackageInternal getCompletePackageByURI(@NonNull String packageURI);
 	@NonNull CompleteURIs getCompleteURIs();
 	@NonNull EnvironmentFactoryInternal getEnvironmentFactory();
-	@NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<? extends Type> parameterTypes, @NonNull Type resultType,
+	@NonNull LambdaType getLambdaType(@NonNull String typeName, @NonNull Type contextType, @NonNull List<@NonNull ? extends Type> parameterTypes, @NonNull Type resultType,
 			@Nullable TemplateParameterSubstitutions bindings);
-	@NonNull MapType getMapType(@NonNull CompleteClassInternal completeClass, @NonNull MapTypeParameters<Type, Type> typeParameters);
+	@NonNull MapType getMapType(@NonNull CompleteClassInternal completeClass, @NonNull MapTypeParameters<@NonNull Type, @NonNull Type> typeParameters);
 	@NonNull PivotMetamodelManager getMetamodelManager();
 	@Override
 	@NonNull OrphanCompletePackageImpl getOrphanCompletePackage();
@@ -63,7 +63,7 @@ public interface CompleteModelInternal extends CompleteModel
 	@Override
 	@NonNull PrimitiveCompletePackageImpl getPrimitiveCompletePackage();
 	@NonNull Type getSpecializedType(@NonNull Type type, @Nullable TemplateParameterSubstitutions substitutions);
-	@NonNull TupleType getTupleType(@NonNull String typeName, @NonNull Collection<? extends TypedElement> parts,
+	@NonNull TupleType getTupleType(@NonNull String typeName, @NonNull Collection<@NonNull ? extends TypedElement> parts,
 			@Nullable TemplateParameterSubstitutions bindings);	
 
 	void resolveSuperClasses(org.eclipse.ocl.pivot.@NonNull Class specializedClass, org.eclipse.ocl.pivot.@NonNull Class unspecializedClass);

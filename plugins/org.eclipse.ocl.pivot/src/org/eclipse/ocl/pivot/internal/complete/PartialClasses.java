@@ -72,7 +72,7 @@ import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 
-public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.@NonNull Class> implements ClassListeners.IClassListener
+public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.Class> implements ClassListeners.IClassListener
 {
 	private static final long serialVersionUID = 1L;
 	public static final @NonNull TracingOption PARTIAL_CLASSES = new TracingOption(PivotPlugin.PLUGIN_ID, "partialClasses");
@@ -144,14 +144,14 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 	}
 
 	@Override
-	public void addUnique(org.eclipse.ocl.pivot.@NonNull Class partialClass) {
+	public void addUnique(org.eclipse.ocl.pivot.Class partialClass) {
 		assert partialClass != null;
 		didAdd(partialClass);
 		super.addUnique(partialClass);
 	}
 
 	@Override
-	public void addUnique(int index, org.eclipse.ocl.pivot.@NonNull Class partialClass) {
+	public void addUnique(int index, org.eclipse.ocl.pivot.Class partialClass) {
 		assert partialClass != null;
 		didAdd(partialClass);
 		super.addUnique(index, partialClass);
@@ -266,7 +266,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 	}
 
 	@Override
-	protected void didRemove(int index, org.eclipse.ocl.pivot.@NonNull Class partialClass) {
+	protected void didRemove(int index, org.eclipse.ocl.pivot.Class partialClass) {
 		assert partialClass != null;
 		if (PARTIAL_CLASSES.isActive()) {
 			PARTIAL_CLASSES.println("Do-didRemove " + this + " " + partialClass);
@@ -457,7 +457,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 	}
 
 	public @NonNull Iterable<@NonNull ? extends CompleteInheritance> getInitialSuperInheritances() {
-		final @NonNull Iterator<@NonNull CompleteClassInternal> iterator = computeSuperCompleteClasses().iterator();			// FIXME Use local cache
+		final @NonNull Iterator<@NonNull CompleteClassInternal> iterator = ClassUtil.nonNull(computeSuperCompleteClasses().iterator());			// FIXME Use local cache
 		return new Iterable<@NonNull CompleteInheritance>()
 		{
 			@Override
@@ -758,10 +758,10 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 //				allSuperCompleteClasses.add(superCompleteClass);
 //			}
 			for (@NonNull CompleteClass superCompleteClass : getSuperCompleteClasses()) {
-				for (org.eclipse.ocl.pivot.@NonNull Class superType : superCompleteClass.getPartialClasses()) {
+				for (org.eclipse.ocl.pivot.@NonNull Class superType : ClassUtil.nullFree(superCompleteClass.getPartialClasses())) {
 					org.eclipse.ocl.pivot.Class unspecializedType = PivotUtil.getUnspecializedTemplateableElement(superType);
 					CompleteClass unspecializedCompleteClass = getCompleteModel().getCompleteClass(unspecializedType);
-					for (org.eclipse.ocl.pivot.@NonNull Class unspecializedPartialType : unspecializedCompleteClass.getPartialClasses()) {
+					for (org.eclipse.ocl.pivot.@NonNull Class unspecializedPartialType : ClassUtil.nullFree(unspecializedCompleteClass.getPartialClasses())) {
 						assert unspecializedPartialType != null;
 						initMemberOperationsFrom(unspecializedPartialType);
 					}
@@ -793,7 +793,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 			Set<@NonNull Stereotype> extendingStereotypes = null;
 			Set<@NonNull Type> extendedTypes = null;
 			for (@NonNull CompleteClass superCompleteClass : getSuperCompleteClasses()) {
-				for (org.eclipse.ocl.pivot.@NonNull Class superType : superCompleteClass.getPartialClasses()) {
+				for (org.eclipse.ocl.pivot.@NonNull Class superType : ClassUtil.nullFree(superCompleteClass.getPartialClasses())) {
 					org.eclipse.ocl.pivot.Class unspecializedType = PivotUtil.getUnspecializedTemplateableElement(superType);
 					List<StereotypeExtender> extendedBys = unspecializedType.getExtenders();
 					if (extendedBys.size() > 0) {
@@ -822,7 +822,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 						}
 					}
 					CompleteClass unspecializedCompleteClass = getCompleteModel().getCompleteClass(unspecializedType);
-					for (org.eclipse.ocl.pivot.@NonNull Class unspecializedPartialType : unspecializedCompleteClass.getPartialClasses()) {
+					for (org.eclipse.ocl.pivot.@NonNull Class unspecializedPartialType : ClassUtil.nullFree(unspecializedCompleteClass.getPartialClasses())) {
 						initMemberPropertiesFrom(unspecializedPartialType);
 						List<@NonNull ElementExtension> extensions = ClassUtil.nullFree(unspecializedPartialType.getOwnedExtensions());
 						if (extensions.size() > 0) {

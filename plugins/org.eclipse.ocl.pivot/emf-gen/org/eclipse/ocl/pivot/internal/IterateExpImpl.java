@@ -591,7 +591,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 		                final /*@Thrown*/ org.eclipse.ocl.pivot.values.@NonNull OrderedSetValue BOXED_ownedIterators = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Variable, ownedIterators);
 		                final /*@Thrown*/ org.eclipse.ocl.pivot.values.@NonNull OrderedSetValue safe_null_sources = (OrderedSetValue)CollectionExcludingOperation.INSTANCE.evaluate(BOXED_ownedIterators, null);
 		                /*@Thrown*/ java.lang.@Nullable Object accumulator = ValueUtil.FALSE_VALUE;
-		                @NonNull Iterator<?> ITERATOR__1 = safe_null_sources.iterator();
+		                @NonNull Iterator<Object> ITERATOR__1 = safe_null_sources.iterator();
 		                /*@Thrown*/ boolean exists;
 		                while (true) {
 		                    if (!ITERATOR__1.hasNext()) {
@@ -859,7 +859,7 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 		            final /*@Thrown*/ org.eclipse.ocl.pivot.values.@NonNull OrderedSetValue BOXED_ownedIterators = idResolver.createOrderedSetOfAll(PivotTables.ORD_CLSSid_Variable, ownedIterators);
 		            final /*@Thrown*/ org.eclipse.ocl.pivot.values.@NonNull OrderedSetValue safe_null_sources = (OrderedSetValue)CollectionExcludingOperation.INSTANCE.evaluate(BOXED_ownedIterators, null);
 		            /*@Thrown*/ java.lang.@Nullable Object accumulator = ValueUtil.TRUE_VALUE;
-		            @NonNull Iterator<?> ITERATOR__1 = safe_null_sources.iterator();
+		            @NonNull Iterator<Object> ITERATOR__1 = safe_null_sources.iterator();
 		            /*@Thrown*/ boolean forAll;
 		            while (true) {
 		                if (!ITERATOR__1.hasNext()) {

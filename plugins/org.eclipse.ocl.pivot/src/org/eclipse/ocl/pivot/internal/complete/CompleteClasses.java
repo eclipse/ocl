@@ -46,7 +46,7 @@ import org.eclipse.ocl.pivot.values.CollectionTypeParameters;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.MapTypeParameters;
 
-public class CompleteClasses extends EObjectContainmentWithInverseEList<@NonNull CompleteClass>
+public class CompleteClasses extends EObjectContainmentWithInverseEList<CompleteClass>
 {
 	private static final Logger logger = Logger.getLogger(CompleteClasses.class);
 
@@ -263,7 +263,7 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<@NonNull
 	}
 
 	@Override
-	protected void didAdd(int index, @NonNull CompleteClass completeClass) {
+	protected void didAdd(int index, CompleteClass completeClass) {
 		assert completeClass != null;
 		super.didAdd(index, completeClass);
 		didAdd((CompleteClassInternal) completeClass);
@@ -299,7 +299,7 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<@NonNull
 	}
 
 	@Override
-	protected void didRemove(int index, @NonNull CompleteClass completeClass) {
+	protected void didRemove(int index, CompleteClass completeClass) {
 		assert completeClass != null;
 		didRemove(completeClass);
 		super.didRemove(index, completeClass);
@@ -421,7 +421,7 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<@NonNull
 	}
 
 	@Override
-	public @NonNull Iterator<@NonNull CompleteClass> iterator() {
+	public @NonNull Iterator<CompleteClass> iterator() {
 		if (name2completeClass == null) {
 			doRefreshPartialClasses();
 		}
@@ -429,7 +429,7 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<@NonNull
 	}
 
 	@Override
-	public @NonNull ListIterator<@NonNull CompleteClass> listIterator() {
+	public @NonNull ListIterator<CompleteClass> listIterator() {
 		if (name2completeClass == null) {
 			doRefreshPartialClasses();
 		}
@@ -437,7 +437,7 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<@NonNull
 	}
 
 	@Override
-	public @NonNull ListIterator<@NonNull CompleteClass> listIterator(int index) {
+	public @NonNull ListIterator<CompleteClass> listIterator(int index) {
 		if (name2completeClass == null) {
 			doRefreshPartialClasses();
 		}

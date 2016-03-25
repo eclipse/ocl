@@ -24,7 +24,7 @@ import org.eclipse.ocl.pivot.internal.NamedElementImpl;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
 import org.eclipse.ocl.pivot.utilities.TracingOption;
 
-public abstract class AbstractCompletePackages extends EObjectContainmentWithInverseEList<@NonNull CompletePackage>
+public abstract class AbstractCompletePackages extends EObjectContainmentWithInverseEList<CompletePackage>
 {
 	public static final @NonNull TracingOption COMPLETE_PACKAGES = new TracingOption(PivotPlugin.PLUGIN_ID, "completePackages");
 //	static { COMPLETE_PACKAGES.setState(true); }
@@ -43,14 +43,14 @@ public abstract class AbstractCompletePackages extends EObjectContainmentWithInv
 	}
 	
 	@Override
-	public void addUnique(@NonNull CompletePackage completePackage) {
+	public void addUnique(CompletePackage completePackage) {
 		assert completePackage != null;
 		super.addUnique(completePackage);
 		didAdd(completePackage);
 	}
 
 	@Override
-	public void addUnique(int index, @NonNull CompletePackage completePackage) {
+	public void addUnique(int index, CompletePackage completePackage) {
 		assert completePackage != null;
 		super.addUnique(index, completePackage);
 		didAdd(completePackage);
@@ -97,7 +97,7 @@ public abstract class AbstractCompletePackages extends EObjectContainmentWithInv
 	}
 
 	@Override
-	protected void didRemove(int index, @NonNull CompletePackage completePackage) {
+	protected void didRemove(int index, CompletePackage completePackage) {
 		assert completePackage != null;
 		CompletePackageInternal completePackageInternal = (CompletePackageInternal)completePackage;
 		super.didRemove(index, completePackageInternal);

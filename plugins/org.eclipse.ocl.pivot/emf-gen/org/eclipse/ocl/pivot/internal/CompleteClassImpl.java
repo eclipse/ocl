@@ -46,6 +46,7 @@ import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.util.Visitor;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.FeatureFilter;
 import org.eclipse.ocl.pivot.values.CollectionTypeParameters;
 import org.eclipse.ocl.pivot.values.MapTypeParameters;
@@ -261,7 +262,7 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 				return;
 			case PivotPackage.COMPLETE_CLASS__PARTIAL_CLASSES:
 				getPartialClasses().clear();
-				getPartialClasses().addAll((Collection<? extends org.eclipse.ocl.pivot.@NonNull Class>)newValue);
+				getPartialClasses().addAll((Collection<? extends org.eclipse.ocl.pivot.Class>)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -412,7 +413,7 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 
 	@Override
 	public org.eclipse.ocl.pivot.@NonNull Class getBehavioralClass() {
-		for (org.eclipse.ocl.pivot.@NonNull Class partialClass : partialClasses) {
+		for (org.eclipse.ocl.pivot.@NonNull Class partialClass : ClassUtil.nullFree(partialClasses)) {
 			if (partialClass instanceof DataType) {
 				org.eclipse.ocl.pivot.Class behavioralClass = ((DataType)partialClass).getBehavioralClass();
 				if (behavioralClass != null) {
@@ -495,7 +496,7 @@ public class CompleteClassImpl extends NamedElementImpl implements CompleteClass
 
 	@Override
 	public org.eclipse.ocl.pivot.@NonNull Class getPrimaryClass() {
-		for (org.eclipse.ocl.pivot.@NonNull Class partialClass : partialClasses) {
+		for (org.eclipse.ocl.pivot.@NonNull Class partialClass : ClassUtil.nullFree(partialClasses)) {
 			return partialClass;
 		}
 		throw new IllegalStateException();

@@ -635,7 +635,7 @@ public class OperationCallExpImpl
 		        final /*@Thrown*/ org.eclipse.ocl.pivot.values.@NonNull IntegerRange RNG = ValueUtil.createRange(PivotTables.INT_1, size);
 		        final /*@Thrown*/ org.eclipse.ocl.pivot.values.@NonNull SequenceValue Sequence = ValueUtil.createSequenceRange(PivotTables.SEQ_PRIMid_Integer, RNG);
 		        /*@Thrown*/ java.lang.@Nullable Object accumulator = ValueUtil.TRUE_VALUE;
-		        @NonNull Iterator<?> ITERATOR_i = Sequence.iterator();
+		        @NonNull Iterator<Object> ITERATOR_i = Sequence.iterator();
 		        /*@Thrown*/ boolean forAll;
 		        while (true) {
 		            if (!ITERATOR_i.hasNext()) {

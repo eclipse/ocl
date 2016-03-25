@@ -134,18 +134,18 @@ public class TypeUtil
 	 * @deprecated add isNullFree argument
 	 */
 	@Deprecated
-	public static @NonNull CollectionTypeParameters<Type> createCollectionTypeParameters(@NonNull Type elementType,
+	public static @NonNull CollectionTypeParameters<@NonNull Type> createCollectionTypeParameters(@NonNull Type elementType,
 		@Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
-		return new CollectionTypeParametersImpl<Type>(elementType, false, lower, upper);
+		return new CollectionTypeParametersImpl<@NonNull Type>(elementType, false, lower, upper);
 	}
 
-	public static @NonNull CollectionTypeParameters<Type> createCollectionTypeParameters(@NonNull Type elementType, boolean isNullFree,
+	public static @NonNull CollectionTypeParameters<@NonNull Type> createCollectionTypeParameters(@NonNull Type elementType, boolean isNullFree,
 		@Nullable IntegerValue lower, @Nullable UnlimitedNaturalValue upper) {
-		return new CollectionTypeParametersImpl<Type>(elementType, isNullFree, lower, upper);
+		return new CollectionTypeParametersImpl<@NonNull Type>(elementType, isNullFree, lower, upper);
 	}
 
-	public static @NonNull MapTypeParameters<Type, Type> createMapTypeParameters(@NonNull Type keyType, @NonNull Type valueType) {
-		return new MapTypeParametersImpl<Type, Type>(keyType, valueType);
+	public static @NonNull MapTypeParameters<@NonNull Type, @NonNull Type> createMapTypeParameters(@NonNull Type keyType, @NonNull Type valueType) {
+		return new MapTypeParametersImpl<@NonNull Type, @NonNull Type>(keyType, valueType);
 	}
 
 	public static @NonNull ParameterTypes createParameterTypes(@NonNull Type @NonNull ... parameterTypes) {
@@ -156,7 +156,7 @@ public class TypeUtil
 		return new TemplateParametersImpl(parameters);
 	}
 
-	public static @NonNull TemplateParameters createTemplateParameters(@NonNull List<? extends Type> parameters) {
+	public static @NonNull TemplateParameters createTemplateParameters(@NonNull List<@NonNull ? extends Type> parameters) {
 		return new TemplateParametersImpl(parameters);
 	}
 
