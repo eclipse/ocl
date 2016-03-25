@@ -209,13 +209,13 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 
 //	public static final @NonNull TracingOption CREATE_MUTABLE_CLONE = new TracingOption(PivotPlugin.PLUGIN_ID, "mm/createMutableClone");
 	
-	public static final @NonNull List<Constraint> EMPTY_CONSTRAINT_LIST = Collections.<Constraint>emptyList();
-	public static final @NonNull List<Element> EMPTY_ELEMENT_LIST = Collections.<Element>emptyList();
-	public static final @NonNull List<Operation> EMPTY_OPERATION_LIST = Collections.<Operation>emptyList();
-	public static final @NonNull List<Property> EMPTY_PROPERTY_LIST = Collections.<Property>emptyList();
-	public static final @NonNull List<State> EMPTY_STATE_LIST = Collections.<State>emptyList();
-	public static final @NonNull List<TemplateParameter> EMPTY_TEMPLATE_PARAMETER_LIST = Collections.<TemplateParameter>emptyList();
-	public static final @NonNull List<Type> EMPTY_TYPE_LIST = Collections.<Type>emptyList();
+	public static final @NonNull List<@NonNull Constraint> EMPTY_CONSTRAINT_LIST = Collections.<@NonNull Constraint>emptyList();
+	public static final @NonNull List<@NonNull Element> EMPTY_ELEMENT_LIST = Collections.<@NonNull Element>emptyList();
+	public static final @NonNull List<@NonNull Operation> EMPTY_OPERATION_LIST = Collections.<@NonNull Operation>emptyList();
+	public static final @NonNull List<@NonNull Property> EMPTY_PROPERTY_LIST = Collections.<@NonNull Property>emptyList();
+	public static final @NonNull List<@NonNull State> EMPTY_STATE_LIST = Collections.<@NonNull State>emptyList();
+	public static final @NonNull List<@NonNull TemplateParameter> EMPTY_TEMPLATE_PARAMETER_LIST = Collections.<@NonNull TemplateParameter>emptyList();
+	public static final @NonNull List<@NonNull Type> EMPTY_TYPE_LIST = Collections.<@NonNull Type>emptyList();
 
 	/**
 	 * Leak debugging aid. Set non-null to diagnose MetamodelManager construction and finalization.
@@ -856,7 +856,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 		Set<Constraint> knownInvariants = new HashSet<Constraint>();
 		for (CompleteClass superType : getAllSuperCompleteClasses(pivotType)) {
 			if (superType != null) {
-				for (@SuppressWarnings("null")org.eclipse.ocl.pivot.@NonNull Class partialSuperType : superType.getPartialClasses()) {
+				for (org.eclipse.ocl.pivot.@NonNull Class partialSuperType : superType.getPartialClasses()) {
 					org.eclipse.ocl.pivot.Package partialPackage = partialSuperType.getOwningPackage();
 					if (!(partialPackage instanceof PackageImpl) || !((PackageImpl)partialPackage).isIgnoreInvariants()) {
 						knownInvariants.addAll(partialSuperType.getOwnedInvariants());

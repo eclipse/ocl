@@ -104,8 +104,8 @@ public abstract class ExecutorType extends AbstractExecutorClass implements Exec
 	}
 	
 	@Override
-	public @NonNull Iterable<InheritanceFragment> getFragments() {
-		return new ArrayIterable<InheritanceFragment>(fragments);
+	public @NonNull Iterable<@NonNull InheritanceFragment> getFragments() {
+		return new ArrayIterable<@NonNull InheritanceFragment>(fragments);
 	}
 
 	@Override

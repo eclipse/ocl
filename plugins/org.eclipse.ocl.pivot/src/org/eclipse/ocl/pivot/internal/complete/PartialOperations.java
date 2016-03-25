@@ -49,45 +49,43 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 	 * An OverloadsList is a non-empty list of Operations sharing the same name and parameter types.
 	 * It can be sorted into most-derived first order.
 	 */
-	private static class OverloadsList extends ArrayList<Operation> implements Comparator<Integer>
+	private static class OverloadsList extends ArrayList<@NonNull Operation> implements Comparator<@NonNull Integer>
 	{
 		private static final long serialVersionUID = 1L;
 
-		private Integer[] keys;
-		private Integer[] metrics;
+		private @NonNull Integer[] keys;
+		private @NonNull Integer[] metrics;
 
 		public OverloadsList() {
 			super(4);
 		}
 
 		@Override
-		public int compare(Integer o1, Integer o2) {
-			Integer m1 = metrics[o1];
-			Integer m2 = metrics[o2];
+		public int compare(@NonNull Integer o1, @NonNull Integer o2) {
+			@NonNull Integer m1 = metrics[o1];
+			@NonNull Integer m2 = metrics[o2];
 			return m2 - m1;
 		}
 
 		public void sort(@NonNull EnvironmentFactory environmentFactory) {
 			StandardLibrary standardLibrary = environmentFactory.getStandardLibrary();
 			int size = size();
-			keys = new Integer[size];
-			metrics = new Integer[size];
-			Integer index = 0;
-			for (Operation operation : this) {
-				keys[index] = index;
+			@NonNull Integer @NonNull [] keys2 = keys = new @NonNull Integer[size];
+			metrics = new @NonNull Integer[size];
+			@NonNull Integer index = 0;
+			for (@NonNull Operation operation : this) {
+				keys2[index] = index;
 				int metric = 0;
-				if (operation != null) {
-					org.eclipse.ocl.pivot.Class owningClass = operation.getOwningClass();
-					CompleteInheritance inheritance = owningClass.getInheritance(standardLibrary);
-					int depth = inheritance.getDepth();
-//					int isRedefinition = (operation instanceof Operation) && (((Operation)operation).getRedefinedOperation().size() > 0) ? 1 : 0;
-					metric = depth;
-				}
+				org.eclipse.ocl.pivot.Class owningClass = operation.getOwningClass();
+				CompleteInheritance inheritance = owningClass.getInheritance(standardLibrary);
+				int depth = inheritance.getDepth();
+//				int isRedefinition = (operation instanceof Operation) && (((Operation)operation).getRedefinedOperation().size() > 0) ? 1 : 0;
+				metric = depth;
 				metrics[index] = metric;
 				index++;
 			}
 			Arrays.sort(keys, this);
-			List<Operation> savedOperations = new ArrayList<Operation>(this);
+			List<@NonNull Operation> savedOperations = new ArrayList<@NonNull Operation>(this);
 			clear();
 			for (int i = 0; i < size; i++) {
 				add(savedOperations.get(keys[i]));
@@ -101,7 +99,7 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 	 * Overloads maintains the distinct OverloadsLists for static and non-static operations
 	 * that share the same name and parameter types.
 	 */
-	private class Overloads implements Iterable<Operation>
+	private class Overloads implements Iterable<@NonNull Operation>
 	{
 		private @Nullable OverloadsList staticOperations = null;
 		private @Nullable OverloadsList nonStaticOperations = null;
@@ -148,7 +146,7 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 		}
 
 		@Override
-		public Iterator<Operation> iterator() {
+		public @NonNull Iterator<@NonNull Operation> iterator() {
 			OverloadsList staticOperations2 = staticOperations;
 			OverloadsList nonStaticOperations2 = nonStaticOperations;
 			if (staticOperations2 != null) {
@@ -202,7 +200,7 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 
 	protected final @NonNull CompleteClassInternal completeClass;
 	protected final @NonNull String name;
-	private final @NonNull Map<ParametersId, Object> map = new HashMap<ParametersId, Object>();
+	private final @NonNull Map<@NonNull ParametersId, Object> map = new HashMap<@NonNull ParametersId, Object>();
 	
 	public PartialOperations(@NonNull CompleteClassInternal completeClass, @NonNull String name) {
 		this.completeClass = completeClass;
@@ -259,8 +257,8 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 			if (featureFilter == null) {
 				return bestOperation;
 			}
-			for (Operation operation : overloads) {
-				if ((operation != null) && featureFilter.accept(operation)) {
+			for (@NonNull Operation operation : overloads) {
+				if (featureFilter.accept(operation)) {
 					return operation;
 				}
 			}
@@ -275,8 +273,7 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 		}
 	}
 
-	@SuppressWarnings("null")
-	public @NonNull Iterable<Operation> getOperationOverloads(@NonNull ParametersId parametersId, final @Nullable FeatureFilter featureFilter) {
+	public @NonNull Iterable<@NonNull Operation> getOperationOverloads(@NonNull ParametersId parametersId, final @Nullable FeatureFilter featureFilter) {
 		Object partials = map.get(parametersId);
 		if (partials instanceof Overloads) {
 			Overloads overloads = (Overloads)partials;
@@ -284,10 +281,10 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 			if (featureFilter == null) {
 				return overloads;
 			}
-			return Iterables.filter(overloads, new Predicate<Operation>()
+			return Iterables.filter(overloads, new Predicate<@NonNull Operation>()
 				{
 					@Override
-					public boolean apply(Operation input) {
+					public boolean apply(@NonNull Operation input) {
 						return featureFilter.accept(input);
 					}
 				});
@@ -301,30 +298,28 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 		return Collections.emptyList();
 	}
 
-	@SuppressWarnings("null")
-	public @NonNull Iterable<Operation> getOperationOverloads(final @Nullable FeatureFilter featureFilter) {
-		Iterable<Operation> unfilteredOverloads = Iterables.concat(Iterables.transform(map.keySet(), new Function<ParametersId, Iterable<Operation>>()
+	public @NonNull Iterable<@NonNull Operation> getOperationOverloads(final @Nullable FeatureFilter featureFilter) {
+		Iterable<@NonNull Operation> unfilteredOverloads = Iterables.concat(Iterables.transform(map.keySet(), new Function<@NonNull ParametersId, @NonNull Iterable<@NonNull Operation>>()
 		{
 			@Override
-			public Iterable<Operation> apply(ParametersId parametersId) {
-				assert parametersId != null;
+			public @NonNull Iterable<@NonNull Operation> apply(@NonNull ParametersId parametersId) {
 				return getOperationOverloads(parametersId, featureFilter);
 			}
 		}));
 		if (featureFilter == null) {
 			return unfilteredOverloads;
 		}
-		return Iterables.filter(unfilteredOverloads, new Predicate<Operation>()
+		return Iterables.filter(unfilteredOverloads, new Predicate<@NonNull Operation>()
 		{
 			@Override
-			public boolean apply(Operation input) {
+			public boolean apply(@NonNull Operation input) {
 				return featureFilter.accept(input);
 			}
 		});
 	}
 
 	@SuppressWarnings("null")
-	public @NonNull Iterable<? extends Operation> getOperations(final @Nullable FeatureFilter featureFilter) {
+	public @NonNull Iterable<@NonNull ? extends Operation> getOperations(final @Nullable FeatureFilter featureFilter) {
 //		if (featureFilter == FeatureFilter.SELECT_NON_STATIC) {
 //			return 
 //		}
@@ -337,12 +332,11 @@ public class PartialOperations //extends HashMap<ParametersId, List<DomainOperat
 		});
 	}
 
-	@SuppressWarnings("null")
-	private @NonNull Iterable<Iterable<Operation>> getOperationsInternal(final @Nullable FeatureFilter featureFilter) {
-		return Iterables.transform(map.keySet(), new Function<ParametersId, Iterable<Operation>>()
+	private @NonNull Iterable<@NonNull Iterable<@NonNull Operation>> getOperationsInternal(final @Nullable FeatureFilter featureFilter) {
+		return Iterables.transform(map.keySet(), new Function<ParametersId, @NonNull Iterable<@NonNull Operation>>()
 		{
 			@Override
-			public Iterable<Operation> apply(ParametersId parametersId) {
+			public @NonNull Iterable<@NonNull Operation> apply(ParametersId parametersId) {
 				assert parametersId != null;
 				return getOperationOverloads(parametersId, featureFilter);
 			}

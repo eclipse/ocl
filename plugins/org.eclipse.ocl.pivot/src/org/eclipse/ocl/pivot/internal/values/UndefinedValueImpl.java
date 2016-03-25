@@ -57,7 +57,7 @@ public abstract class UndefinedValueImpl extends EvaluationException implements 
 {	
 	private static final long serialVersionUID = 1L;
 
-	private static class Iterator implements java.util.Iterator<Object>
+	private static class Iterator implements java.util.Iterator<@Nullable Object>
 	{
 		@Override
 		public boolean hasNext() {

@@ -166,7 +166,7 @@ public abstract class ReflectiveInheritance extends AbstractExecutorClass
 	}
 	
 	@Override
-	public @NonNull Iterable<InheritanceFragment> getFragments() {
+	public @NonNull Iterable<@NonNull InheritanceFragment> getFragments() {
 		@NonNull InheritanceFragment[] fragments2 = fragments;
 		if (fragments2 == null) {
 			initialize();
@@ -193,7 +193,7 @@ public abstract class ReflectiveInheritance extends AbstractExecutorClass
 	/**
 	 * Return the immediate superinheritances without reference to the fragments.
 	 */
-	protected abstract @NonNull Iterable<? extends CompleteInheritance> getInitialSuperInheritances();
+	protected abstract @NonNull Iterable<@NonNull ? extends CompleteInheritance> getInitialSuperInheritances();
 
 	@Override
 	public @NonNull InheritanceFragment getSelfFragment() {

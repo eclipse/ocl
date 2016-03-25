@@ -56,7 +56,7 @@ public interface CompletePackage extends NamedElement
 	 * @see org.eclipse.ocl.pivot.CompleteClass#getOwningCompletePackage
 	 * @generated
 	 */
-	@NonNull List<CompleteClass> getOwnedCompleteClasses();
+	@NonNull List<@NonNull CompleteClass> getOwnedCompleteClasses();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Complete Packages</b></em>' containment reference list.
@@ -71,7 +71,7 @@ public interface CompletePackage extends NamedElement
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getCompletePackage_OwnedCompletePackages()
 	 * @generated NOT
 	 */
-	@NonNull List<CompletePackage> getOwnedCompletePackages();
+	@NonNull List<@NonNull CompletePackage> getOwnedCompletePackages();
 
 	/**
 	 * Returns the value of the '<em><b>Owning Complete Model</b></em>' container reference.
@@ -145,7 +145,7 @@ public interface CompletePackage extends NamedElement
 
 	@NonNull CompleteModel getCompleteModel();
 	
-	@NonNull Iterable<org.eclipse.ocl.pivot.Class> getAllClasses();
+	@NonNull Iterable<org.eclipse.ocl.pivot.@NonNull Class> getAllClasses();
 	@Nullable CompletePackage getOwningCompletePackage();
 
 	/**

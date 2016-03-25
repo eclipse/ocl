@@ -49,7 +49,7 @@ import org.eclipse.ocl.pivot.values.ValuesPackage;
 /**
  * @generated NOT
  */
-public abstract class CollectionValueImpl extends ValueImpl implements CollectionValue, Iterable<Object>
+public abstract class CollectionValueImpl extends ValueImpl implements CollectionValue, Iterable<@Nullable Object>
 {
 	@SuppressWarnings("serial")
 	private static final class UnmodifiableEcoreObjects extends EcoreEList.UnmodifiableEList<Object>
@@ -159,7 +159,7 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 	 * Optimized iterator over a List for use in OCL contents where the list is known to be stable
 	 * and any call to next() is guarded by hasNext().
 	 */
-	private static class NullIterator implements Iterator<Object>
+	private static class NullIterator implements Iterator<@Nullable Object>
 	{
 		/**
 		 * Returns new array iterator over the given object array
@@ -635,7 +635,7 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 	}
 
 	@Override
-	public @NonNull Iterator<Object> iterator() {
+	public @NonNull Iterator<@Nullable Object> iterator() {
 		if (elements instanceof BasicEList) {
 			@SuppressWarnings("unchecked")
 			BasicEList<Object> castElements = (BasicEList<Object>)elements;
@@ -644,10 +644,10 @@ public abstract class CollectionValueImpl extends ValueImpl implements Collectio
 		}
 		if (elements instanceof List<?>) {
 			@SuppressWarnings("unchecked")
-			List<Object> castElements = (List<Object>)elements;
-			return new ListIterator<Object>(castElements);
+			List<@Nullable Object> castElements = (List<@Nullable Object>)elements;
+			return new ListIterator<@Nullable Object>(castElements);
 		}
-		@SuppressWarnings({"null", "unchecked"}) @NonNull Iterator<Object> result = (Iterator<Object>)elements.iterator();
+		@SuppressWarnings({"null", "unchecked"}) @NonNull Iterator<@Nullable Object> result = (Iterator<@Nullable Object>)elements.iterator();
 		return result;
 	}
 

@@ -24,7 +24,7 @@ import org.eclipse.ocl.pivot.internal.NamedElementImpl;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
 import org.eclipse.ocl.pivot.utilities.TracingOption;
 
-public abstract class AbstractCompletePackages extends EObjectContainmentWithInverseEList<CompletePackage>
+public abstract class AbstractCompletePackages extends EObjectContainmentWithInverseEList<@NonNull CompletePackage>
 {
 	public static final @NonNull TracingOption COMPLETE_PACKAGES = new TracingOption(PivotPlugin.PLUGIN_ID, "completePackages");
 //	static { COMPLETE_PACKAGES.setState(true); }
@@ -33,7 +33,7 @@ public abstract class AbstractCompletePackages extends EObjectContainmentWithInv
 	/**
 	 * Map of (nested) package-name to package server.
 	 */
-	private final @NonNull Map<String, CompletePackageInternal> name2completePackage = new HashMap<String, CompletePackageInternal>();
+	private final @NonNull Map<@NonNull String, @Nullable CompletePackageInternal> name2completePackage = new HashMap<@NonNull String, @Nullable CompletePackageInternal>();
 
 	public AbstractCompletePackages(Class<?> dataClass, @NonNull NamedElementImpl owner, int featureID, int inverseFeatureID) {
 		super(dataClass, owner, featureID, inverseFeatureID);
@@ -43,14 +43,14 @@ public abstract class AbstractCompletePackages extends EObjectContainmentWithInv
 	}
 	
 	@Override
-	public void addUnique(CompletePackage completePackage) {
+	public void addUnique(@NonNull CompletePackage completePackage) {
 		assert completePackage != null;
 		super.addUnique(completePackage);
 		didAdd(completePackage);
 	}
 
 	@Override
-	public void addUnique(int index, CompletePackage completePackage) {
+	public void addUnique(int index, @NonNull CompletePackage completePackage) {
 		assert completePackage != null;
 		super.addUnique(index, completePackage);
 		didAdd(completePackage);
@@ -97,7 +97,7 @@ public abstract class AbstractCompletePackages extends EObjectContainmentWithInv
 	}
 
 	@Override
-	protected void didRemove(int index, CompletePackage completePackage) {
+	protected void didRemove(int index, @NonNull CompletePackage completePackage) {
 		assert completePackage != null;
 		CompletePackageInternal completePackageInternal = (CompletePackageInternal)completePackage;
 		super.didRemove(index, completePackageInternal);

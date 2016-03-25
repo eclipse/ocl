@@ -57,14 +57,14 @@ public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 	}
 
 	@Override
-	public @NonNull Iterable<? extends CompleteInheritance> getInitialSuperInheritances() {
-		Iterable<? extends org.eclipse.ocl.pivot.Class> superClasses = domainClass.getSuperClasses();
-		final Iterator<? extends org.eclipse.ocl.pivot.Class> iterator = superClasses.iterator();
-		return new Iterable<CompleteInheritance>()
+	public @NonNull Iterable<@NonNull ? extends CompleteInheritance> getInitialSuperInheritances() {
+		Iterable<? extends org.eclipse.ocl.pivot.@NonNull Class> superClasses = ClassUtil.nullFree(domainClass.getSuperClasses());
+		final Iterator<? extends org.eclipse.ocl.pivot.@NonNull Class> iterator = superClasses.iterator();
+		return new Iterable<@NonNull CompleteInheritance>()
 		{
 			@Override
-			public Iterator<CompleteInheritance> iterator() {
-				return new Iterator<CompleteInheritance>()
+			public Iterator<@NonNull CompleteInheritance> iterator() {
+				return new Iterator<@NonNull CompleteInheritance>()
 				{
 					private @NonNull StandardLibrary standardLibrary = evaluationPackage.getStandardLibrary();
 					private boolean gotOne = false;
@@ -75,7 +75,7 @@ public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 					}
 
 					@Override
-					public CompleteInheritance next() {
+					public @NonNull CompleteInheritance next() {
 						org.eclipse.ocl.pivot.Class next = null;
 						if (!gotOne) {
 							gotOne = true;
@@ -84,7 +84,7 @@ public class DomainReflectiveType extends AbstractReflectiveInheritanceType
 							}
 						}
 						if (next == null) {
-							next = iterator.next();
+							next = ClassUtil.nonNull(iterator.next());
 						}
 						return next.getInheritance(standardLibrary);
 					}

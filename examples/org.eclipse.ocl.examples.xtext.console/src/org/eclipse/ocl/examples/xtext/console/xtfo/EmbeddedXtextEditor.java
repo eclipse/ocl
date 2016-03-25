@@ -502,10 +502,10 @@ public class EmbeddedXtextEditor
 	private IOverviewRuler createOverviewRuler(ISharedTextColors sharedColors) {
 		IOverviewRuler ruler= new OverviewRuler(getAnnotationAccess(), VERTICAL_RULER_WIDTH, sharedColors);
 
-		Iterator<?> e= fAnnotationPreferences.getAnnotationPreferences().iterator();
+		Iterator<?> e = fAnnotationPreferences.getAnnotationPreferences().iterator();
 		while (e.hasNext()) {
-			AnnotationPreference preference= (AnnotationPreference) e.next();
-			if (preference.contributesToHeader())
+			AnnotationPreference preference = (AnnotationPreference) e.next();
+			if ((preference != null) && preference.contributesToHeader())
 				ruler.addHeaderAnnotationType(preference.getAnnotationType());
 		}
 		return ruler;

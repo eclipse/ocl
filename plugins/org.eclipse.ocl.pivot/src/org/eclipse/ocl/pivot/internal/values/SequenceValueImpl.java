@@ -22,6 +22,7 @@ import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.CollectionValue;
 import org.eclipse.ocl.pivot.values.IntegerValue;
@@ -105,12 +106,12 @@ public abstract class SequenceValueImpl extends CollectionValueImpl implements S
 		if (!(obj instanceof SequenceValue) || (obj instanceof OrderedSetValue)) {
 			return false;
 		}
-		Iterator<? extends Object> theseElements = iterator();
-		Iterator<? extends Object> thoseElements = ((SequenceValue)obj).iterator();
+		Iterator<@Nullable ? extends Object> theseElements = iterator();
+		Iterator<@Nullable ? extends Object> thoseElements = ((SequenceValue)obj).iterator();
 		while (theseElements.hasNext() && thoseElements.hasNext()) {
 			Object thisValue = theseElements.next();
 			Object thatValue = thoseElements.next();
-			if (!thisValue.equals(thatValue)) {
+			if (!ClassUtil.safeEquals(thisValue, thatValue)) {
 				return false;
 			}
 		}

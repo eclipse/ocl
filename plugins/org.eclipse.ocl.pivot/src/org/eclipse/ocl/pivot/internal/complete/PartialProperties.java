@@ -27,14 +27,14 @@ import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 
 import com.google.common.collect.Iterators;
 
-public class PartialProperties implements Iterable<Property>
+public class PartialProperties implements Iterable<@NonNull Property>
 {
 	//resolution = null, partials = null or empty => empty
 	// resolution = X, partials = null or empty or [X} => X
 	// resolution = null, partials not empty => lazy unresolved 'ambiguity'
 	private boolean isResolved = false;
 	private @Nullable Property resolution = null;
-	private @Nullable List<Property> partials = null;
+	private @Nullable List<@NonNull Property> partials = null;
 	protected final @NonNull EnvironmentFactoryInternal environmentFactory;
 
 	public PartialProperties(@NonNull EnvironmentFactoryInternal environmentFactory) {
@@ -42,33 +42,35 @@ public class PartialProperties implements Iterable<Property>
 	}
 
 	public synchronized void didAddProperty(@NonNull Property pivotProperty) {
-		List<Property> partials2 = partials;
+		List<@NonNull Property> partials2 = partials;
+		@Nullable
+		Property resolution2 = resolution;
 		if (partials2 == null) {
-			if (resolution == null) {
-				resolution = pivotProperty;
+			if (resolution2 == null) {
+				resolution2 = resolution = pivotProperty;
 				isResolved = true;
 			}
 			else {
-				partials = partials2 = new ArrayList<Property>();
-				partials2.add(resolution);
-				if (resolution != pivotProperty) {
+				partials = partials2 = new ArrayList<@NonNull Property>();
+				partials2.add(resolution2);
+				if (resolution2 != pivotProperty) {
 					partials2.add(pivotProperty);
 				}
-				resolution = null;
+				resolution2 = resolution = null;
 				isResolved = false;
 			}
 		}
 		else if (partials2.isEmpty()) {
-			if (resolution == null) {
-				resolution = pivotProperty;
+			if (resolution2 == null) {
+				resolution2 = resolution = pivotProperty;
 				isResolved = true;
 			}
 			else {
-				partials2.add(resolution);
-				if (resolution != pivotProperty) {
+				partials2.add(resolution2);
+				if (resolution2 != pivotProperty) {
 					partials2.add(pivotProperty);
 				}
-				resolution = null;
+				resolution2 = resolution = null;
 				isResolved = false;
 			}
 		}
@@ -76,7 +78,7 @@ public class PartialProperties implements Iterable<Property>
 			if (!partials2.contains(pivotProperty)) {
 				partials2.add(pivotProperty);
 			}
-			resolution = null;
+			resolution2 = resolution = null;
 			isResolved = false;
 		}
 	}
@@ -94,16 +96,14 @@ public class PartialProperties implements Iterable<Property>
 		if (isResolved) {
 			return resolution;
 		}
-		List<Property> values = new ArrayList<Property>(partials);
-		Map<Type, Property> primaryProperties = new HashMap<Type, Property>();
-		for (Property property : values) {
-			if (property != null) {
-				org.eclipse.ocl.pivot.Class owningType = property.getOwningClass();
-				if (owningType != null) {
-					Type domainType = environmentFactory.getMetamodelManager().getPrimaryType(owningType);
-					if (!primaryProperties.containsKey(domainType)) {
-						primaryProperties.put(domainType, property);	// FIXME something more deterministic than first
-					}
+		List<@NonNull Property> values = new ArrayList<@NonNull Property>(partials);
+		Map<@NonNull Type, @NonNull Property> primaryProperties = new HashMap<@NonNull Type, @NonNull Property>();
+		for (@NonNull Property property : values) {
+			org.eclipse.ocl.pivot.Class owningType = property.getOwningClass();
+			if (owningType != null) {
+				Type domainType = environmentFactory.getMetamodelManager().getPrimaryType(owningType);
+				if (!primaryProperties.containsKey(domainType)) {
+					primaryProperties.put(domainType, property);	// FIXME something more deterministic than first
 				}
 			}
 		}
@@ -129,8 +129,7 @@ public class PartialProperties implements Iterable<Property>
 	}
 
 	@Override
-	@SuppressWarnings("null")
-	public @NonNull Iterator<Property> iterator() {
+	public @NonNull Iterator<@NonNull Property> iterator() {
 		if (!isResolved) {
 			resolve();
 		}

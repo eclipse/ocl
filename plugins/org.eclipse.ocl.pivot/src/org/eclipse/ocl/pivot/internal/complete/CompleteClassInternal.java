@@ -32,5 +32,5 @@ public interface CompleteClassInternal extends CompleteClass
 	CompletePackageInternal getOwningCompletePackage();
 	@Override
 	@NonNull PartialClasses getPartialClasses();
-	@NonNull Iterable<org.eclipse.ocl.pivot.Class> getProperSuperClasses();
+	@NonNull Iterable<org.eclipse.ocl.pivot.@NonNull Class> getProperSuperClasses();
 } // CompleteClass

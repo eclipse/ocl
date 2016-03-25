@@ -94,14 +94,14 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 	}
 
 	@Override
-	public @NonNull Iterable<? extends CompleteInheritance> getInitialSuperInheritances() {
+	public @NonNull Iterable<@NonNull ? extends CompleteInheritance> getInitialSuperInheritances() {
 		List<EClass> eSuperTypes = eClassifier instanceof EClass ? ((EClass)eClassifier).getESuperTypes() : Collections.<EClass>emptyList();
 		final Iterator<EClass> iterator = eSuperTypes.iterator();
-		return new Iterable<CompleteInheritance>()
+		return new Iterable<@NonNull CompleteInheritance>()
 		{
 			@Override
-			public Iterator<CompleteInheritance> iterator() {
-				return new Iterator<CompleteInheritance>()
+			public Iterator<@NonNull CompleteInheritance> iterator() {
+				return new Iterator<@NonNull CompleteInheritance>()
 				{
 					private boolean gotOne = false;
 					
@@ -111,7 +111,7 @@ public class EcoreReflectiveType extends AbstractReflectiveInheritanceType
 					}
 
 					@Override
-					public CompleteInheritance next() {
+					public @NonNull CompleteInheritance next() {
 						if (!gotOne) {
 							gotOne = true;
 							if (!iterator.hasNext()) {

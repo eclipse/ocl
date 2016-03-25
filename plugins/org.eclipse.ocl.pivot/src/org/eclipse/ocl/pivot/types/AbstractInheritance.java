@@ -28,9 +28,9 @@ import org.eclipse.ocl.pivot.utilities.IndexableIterable;
 
 public abstract class AbstractInheritance extends AbstractExecutorNamedElement implements CompleteInheritance
 {
-	public static class FragmentIterable implements IndexableIterable<InheritanceFragment>
+	public static class FragmentIterable implements IndexableIterable<@NonNull InheritanceFragment>
 	{
-		protected class Iterator implements java.util.Iterator<InheritanceFragment>
+		protected class Iterator implements java.util.Iterator<@NonNull InheritanceFragment>
 		{
 			private int index = firstIndex;
 			
@@ -40,7 +40,7 @@ public abstract class AbstractInheritance extends AbstractExecutorNamedElement i
 			}
 
 			@Override
-			public InheritanceFragment next() {
+			public @NonNull InheritanceFragment next() {
 				return array[index++];
 			}
 
@@ -50,7 +50,7 @@ public abstract class AbstractInheritance extends AbstractExecutorNamedElement i
 			}
 		}
 		
-		private final InheritanceFragment[] array;
+		private final @NonNull InheritanceFragment @NonNull [] array;
 		private final int firstIndex;
 		private final int lastIndex;
 		
@@ -72,7 +72,7 @@ public abstract class AbstractInheritance extends AbstractExecutorNamedElement i
 		}
 		
 		@Override
-		public java.util.@NonNull Iterator<InheritanceFragment> iterator() {
+		public java.util.@NonNull Iterator<@NonNull InheritanceFragment> iterator() {
 			return new Iterator();
 		}
 

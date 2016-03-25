@@ -45,12 +45,12 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 	}
 
 	@Override
-	public @NonNull Iterable<InheritanceFragment> getAllProperSuperFragments() {
+	public @NonNull Iterable<@NonNull InheritanceFragment> getAllProperSuperFragments() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public @NonNull Iterable<InheritanceFragment> getAllSuperFragments() {
+	public @NonNull Iterable<@NonNull InheritanceFragment> getAllSuperFragments() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -66,7 +66,7 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 
 	@Override
 
-	public @NonNull Iterable<InheritanceFragment> getFragments() {
+	public @NonNull Iterable<@NonNull InheritanceFragment> getFragments() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -117,7 +117,7 @@ public class AbstractExecutorType extends AbstractInheritance implements Type
 	}
 
 	@Override
-	public @NonNull IndexableIterable<InheritanceFragment> getSuperFragments(int depth) {
+	public @NonNull IndexableIterable<@NonNull InheritanceFragment> getSuperFragments(int depth) {
 		throw new UnsupportedOperationException();
 	}
 

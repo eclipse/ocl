@@ -22,7 +22,7 @@ import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TupleTypeId;
 
-public interface CollectionValue extends Value, Iterable<Object>
+public interface CollectionValue extends Value, Iterable<@Nullable Object>
 {
 	/**
 	 * @generated NOT
@@ -146,7 +146,7 @@ public interface CollectionValue extends Value, Iterable<Object>
 	 * @generated NOT
 	 */
 	@Override
-	@NonNull Iterator<Object> iterator();
+	@NonNull Iterator<@Nullable Object> iterator();
 
 	/**
 	 * @generated NOT

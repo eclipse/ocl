@@ -39,13 +39,14 @@ import org.eclipse.ocl.pivot.internal.CompletePackageImpl;
 import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.manager.Orphanage;
 import org.eclipse.ocl.pivot.util.PivotPlugin;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.TracingOption;
 import org.eclipse.ocl.pivot.values.CollectionTypeParameters;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.MapTypeParameters;
 
-public class CompleteClasses extends EObjectContainmentWithInverseEList<CompleteClass>
+public class CompleteClasses extends EObjectContainmentWithInverseEList<@NonNull CompleteClass>
 {
 	private static final Logger logger = Logger.getLogger(CompleteClasses.class);
 
@@ -63,19 +64,19 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 		// FIXME tests fail if keys are weak since GC is too aggressive across tests
 		// The actual types are weak keys so that parameterizations using stale types are garbage collected. 
 		//
-		private @Nullable /*WeakHash*/Map<CollectionTypeParameters<Type>, WeakReference<CollectionType>> collections = null;
+		private @Nullable /*WeakHash*/Map<@NonNull CollectionTypeParameters<@NonNull Type>, @NonNull WeakReference<@NonNull CollectionType>> collections = null;
 		
-		protected @NonNull CollectionType createSpecialization(@NonNull CollectionTypeParameters<Type> typeParameters) {
+		protected @NonNull CollectionType createSpecialization(@NonNull CollectionTypeParameters<@NonNull Type> typeParameters) {
 			org.eclipse.ocl.pivot.Class unspecializedType = getPrimaryClass();
 			String typeName = unspecializedType.getName();
 			TemplateSignature templateSignature = unspecializedType.getOwnedSignature();
-			List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
+			List<@NonNull TemplateParameter> templateParameters = ClassUtil.nullFree(templateSignature.getOwnedParameters());
 			EClass eClass = unspecializedType.eClass();
 			EFactory eFactoryInstance = eClass.getEPackage().getEFactoryInstance();
 			CollectionType specializedType = (CollectionType) eFactoryInstance.create(eClass);		
 			specializedType.setName(typeName);
 			TemplateBinding templateBinding = PivotFactory.eINSTANCE.createTemplateBinding();
-			TemplateParameter formalParameter = templateParameters.get(0);
+			TemplateParameter formalParameter = ClassUtil.nonNull(templateParameters.get(0));
 			assert formalParameter != null;
 			Type elementType = typeParameters.getElementType();
 			TemplateParameterSubstitution templateParameterSubstitution = CompleteInheritanceImpl.createTemplateParameterSubstitution(formalParameter, elementType);
@@ -103,9 +104,9 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 		}
 		
 		@Override
-		public synchronized @Nullable CollectionType findCollectionType(@NonNull CollectionTypeParameters<Type> typeParameters) {
+		public synchronized @Nullable CollectionType findCollectionType(@NonNull CollectionTypeParameters<@NonNull Type> typeParameters) {
 			TemplateSignature templateSignature = getPrimaryClass().getOwnedSignature();
-			List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
+			List<@NonNull TemplateParameter> templateParameters = ClassUtil.nullFree(templateSignature.getOwnedParameters());
 			if (templateParameters.size() != 1) {
 				return null;
 			}
@@ -130,25 +131,25 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 		}
 		
 		@Override
-		public synchronized @NonNull CollectionType getCollectionType(@NonNull CollectionTypeParameters<Type> typeParameters) {
-			Map<CollectionTypeParameters<Type>, WeakReference<CollectionType>> specializations2 = collections;
+		public synchronized @NonNull CollectionType getCollectionType(@NonNull CollectionTypeParameters<@NonNull Type> typeParameters) {
+			Map<@NonNull CollectionTypeParameters<@NonNull Type>, @NonNull WeakReference<@NonNull CollectionType>> specializations2 = collections;
 			if (specializations2 == null) {
 				synchronized(this) {
 					specializations2 = collections;
 					if (specializations2 == null) {
-						specializations2 = collections = new /*Weak*/HashMap<CollectionTypeParameters<Type>, WeakReference<CollectionType>>();
+						specializations2 = collections = new /*Weak*/HashMap<@NonNull CollectionTypeParameters<@NonNull Type>, @NonNull WeakReference<@NonNull CollectionType>>();
 					}
 				}
 			}
 			synchronized (specializations2) {
 				CollectionType specializedType = null;
-				WeakReference<CollectionType> weakReference = specializations2.get(typeParameters);
+				WeakReference<@NonNull CollectionType> weakReference = specializations2.get(typeParameters);
 				if (weakReference != null) {
 					specializedType = weakReference.get();
 				}
 				if (specializedType == null) {
 					specializedType = createSpecialization(typeParameters);
-					specializations2.put(typeParameters, new WeakReference<CollectionType>(specializedType));
+					specializations2.put(typeParameters, new WeakReference<@NonNull CollectionType>(specializedType));
 				}
 				return specializedType;
 			}
@@ -165,9 +166,9 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 		// FIXME tests fail if keys are weak since GC is too aggressive across tests
 		// The actual types are weak keys so that parameterizations using stale types are garbage collected. 
 		//
-		private @Nullable /*WeakHash*/Map<MapTypeParameters<Type, Type>, WeakReference<MapType>> maps = null;
+		private @Nullable /*WeakHash*/Map<@NonNull MapTypeParameters<@NonNull Type, @NonNull Type>, @NonNull WeakReference<@NonNull MapType>> maps = null;
 		
-		protected @NonNull MapType createSpecialization(@NonNull MapTypeParameters<Type, Type> typeParameters) {
+		protected @NonNull MapType createSpecialization(@NonNull MapTypeParameters<@NonNull Type, @NonNull Type> typeParameters) {
 			org.eclipse.ocl.pivot.Class unspecializedType = getPrimaryClass();
 			String typeName = unspecializedType.getName();
 			TemplateSignature templateSignature = unspecializedType.getOwnedSignature();
@@ -200,13 +201,13 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 		}
 		
 		@Override
-		public synchronized @Nullable MapType findMapType(@NonNull MapTypeParameters<Type, Type> typeParameters) {
+		public synchronized @Nullable MapType findMapType(@NonNull MapTypeParameters<@NonNull Type, @NonNull Type> typeParameters) {
 			TemplateSignature templateSignature = getPrimaryClass().getOwnedSignature();
 			List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
 			if (templateParameters.size() != 1) {
 				return null;
 			}
-			Map<MapTypeParameters<Type, Type>, WeakReference<MapType>> specializations2 = maps;
+			Map<@NonNull MapTypeParameters<@NonNull Type, @NonNull Type>, @NonNull WeakReference<@NonNull MapType>> specializations2 = maps;
 			if (specializations2 == null) {
 				return null;
 			}
@@ -227,25 +228,25 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 		}
 		
 		@Override
-		public synchronized @NonNull MapType getMapType(@NonNull MapTypeParameters<Type, Type> typeParameters) {
-			Map<MapTypeParameters<Type, Type>, WeakReference<MapType>> specializations2 = maps;
+		public synchronized @NonNull MapType getMapType(@NonNull MapTypeParameters<@NonNull Type, @NonNull Type> typeParameters) {
+			Map<@NonNull MapTypeParameters<@NonNull Type, @NonNull Type>, @NonNull WeakReference<@NonNull MapType>> specializations2 = maps;
 			if (specializations2 == null) {
 				synchronized(this) {
 					specializations2 = maps;
 					if (specializations2 == null) {
-						specializations2 = maps = new /*Weak*/HashMap<MapTypeParameters<Type, Type>, WeakReference<MapType>>();
+						specializations2 = maps = new /*Weak*/HashMap<@NonNull MapTypeParameters<@NonNull Type, @NonNull Type>, @NonNull WeakReference<@NonNull MapType>>();
 					}
 				}
 			}
 			synchronized (specializations2) {
 				MapType specializedType = null;
-				WeakReference<MapType> weakReference = specializations2.get(typeParameters);
+				WeakReference<@NonNull MapType> weakReference = specializations2.get(typeParameters);
 				if (weakReference != null) {
 					specializedType = weakReference.get();
 				}
 				if (specializedType == null) {
 					specializedType = createSpecialization(typeParameters);
-					specializations2.put(typeParameters, new WeakReference<MapType>(specializedType));
+					specializations2.put(typeParameters, new WeakReference<@NonNull MapType>(specializedType));
 				}
 				return specializedType;
 			}
@@ -262,7 +263,7 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 	}
 
 	@Override
-	protected void didAdd(int index, CompleteClass completeClass) {
+	protected void didAdd(int index, @NonNull CompleteClass completeClass) {
 		assert completeClass != null;
 		super.didAdd(index, completeClass);
 		didAdd((CompleteClassInternal) completeClass);
@@ -298,7 +299,7 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 	}
 
 	@Override
-	protected void didRemove(int index, CompleteClass completeClass) {
+	protected void didRemove(int index, @NonNull CompleteClass completeClass) {
 		assert completeClass != null;
 		didRemove(completeClass);
 		super.didRemove(index, completeClass);
@@ -408,7 +409,7 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 
 	@SuppressWarnings("null")
 	public @NonNull CompletePackageInternal getCompletePackage() {
-		return (CompletePackageInternal) owner;
+		return (@NonNull CompletePackageInternal) owner;
 	}
 
 	public @Nullable CompleteClassInternal getOwnedCompleteClass(String name) {
@@ -420,7 +421,7 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 	}
 
 	@Override
-	public Iterator<CompleteClass> iterator() {
+	public @NonNull Iterator<@NonNull CompleteClass> iterator() {
 		if (name2completeClass == null) {
 			doRefreshPartialClasses();
 		}
@@ -428,7 +429,7 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 	}
 
 	@Override
-	public ListIterator<CompleteClass> listIterator() {
+	public @NonNull ListIterator<@NonNull CompleteClass> listIterator() {
 		if (name2completeClass == null) {
 			doRefreshPartialClasses();
 		}
@@ -436,7 +437,7 @@ public class CompleteClasses extends EObjectContainmentWithInverseEList<Complete
 	}
 
 	@Override
-	public ListIterator<CompleteClass> listIterator(int index) {
+	public @NonNull ListIterator<@NonNull CompleteClass> listIterator(int index) {
 		if (name2completeClass == null) {
 			doRefreshPartialClasses();
 		}

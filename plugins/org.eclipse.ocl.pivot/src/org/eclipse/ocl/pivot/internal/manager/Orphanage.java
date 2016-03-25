@@ -308,7 +308,7 @@ public class Orphanage extends PackageImpl
 //		}
 
 		@Override
-		public Iterator<T> iterator() {
+		public @NonNull Iterator<T> iterator() {
 			return listIterator();
 		}
 

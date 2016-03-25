@@ -33,12 +33,12 @@ public interface CompleteInheritance extends Nameable
 	/**
 	 * Return a depth ordered, OclAny-first, OclSelf-last, Iterable of all the super-adapters excluding this one.
 	 */
-	@NonNull Iterable<InheritanceFragment> getAllProperSuperFragments();
+	@NonNull Iterable<@NonNull InheritanceFragment> getAllProperSuperFragments();
 	
 	/**
 	 * Return a depth ordered, OclAny-first, OclSelf-last, Iterable of all the super-adapters including this one.
 	 */
-	@NonNull Iterable<InheritanceFragment> getAllSuperFragments();
+	@NonNull Iterable<@NonNull InheritanceFragment> getAllSuperFragments();
 
 	@NonNull CompleteInheritance getCommonInheritance(@NonNull CompleteInheritance inheritance);
 
@@ -48,7 +48,7 @@ public interface CompleteInheritance extends Nameable
 	int getDepth();
 	
 	@Nullable InheritanceFragment getFragment(@NonNull CompleteInheritance thatInheritance);
-	@NonNull Iterable<InheritanceFragment> getFragments();
+	@NonNull Iterable<@NonNull InheritanceFragment> getFragments();
 	/*@Nullable*/ InheritanceFragment getFragment(int fragmentNumber);
 	int getIndex(int fragmentNumber);
 	int getIndexes();
@@ -62,7 +62,7 @@ public interface CompleteInheritance extends Nameable
 	/**
 	 * Return an Iterable of all the super-inheritances at a specified depth, between 0 and getDepth() inclusive.
 	 */
-	@NonNull IndexableIterable<InheritanceFragment> getSuperFragments(int depth);
+	@NonNull IndexableIterable<@NonNull InheritanceFragment> getSuperFragments(int depth);
 
 	@Deprecated // Use getPivotClass
 	org.eclipse.ocl.pivot.@NonNull Class getType();

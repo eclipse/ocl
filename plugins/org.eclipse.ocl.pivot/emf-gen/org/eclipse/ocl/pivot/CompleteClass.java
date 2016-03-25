@@ -77,31 +77,31 @@ public interface CompleteClass extends NamedElement
 	 * @see org.eclipse.ocl.pivot.PivotPackage#getCompleteClass_PartialClasses()
 	 * @generated
 	 */
-	@NonNull List<org.eclipse.ocl.pivot.Class> getPartialClasses();
+	@NonNull List<org.eclipse.ocl.pivot.@NonNull Class> getPartialClasses();
 
 	boolean conformsTo(@NonNull Type elementType);
 	boolean conformsTo(@NonNull CompleteClass thatCompleteClass);
 	
 	org.eclipse.ocl.pivot.@NonNull Class getPrimaryClass();
 
-	@Nullable CollectionType findCollectionType(@NonNull CollectionTypeParameters<Type> typeParameters);
-	@Nullable MapType findMapType(@NonNull MapTypeParameters<Type, Type> typeParameters);
-	@NonNull CollectionType getCollectionType(@NonNull CollectionTypeParameters<Type> typeParameters);
+	@Nullable CollectionType findCollectionType(@NonNull CollectionTypeParameters<@NonNull Type> typeParameters);
+	@Nullable MapType findMapType(@NonNull MapTypeParameters<@NonNull Type, @NonNull Type> typeParameters);
+	@NonNull CollectionType getCollectionType(@NonNull CollectionTypeParameters<@NonNull Type> typeParameters);
 	org.eclipse.ocl.pivot.@NonNull Class getBehavioralClass();
 	@NonNull CompleteInheritance getCompleteInheritance();
-	@NonNull MapType getMapType(@NonNull MapTypeParameters<Type, Type> typeParameters);
+	@NonNull MapType getMapType(@NonNull MapTypeParameters<@NonNull Type, @NonNull Type> typeParameters);
 	@Nullable Operation getOperation(@NonNull OperationId operationId);
 	@Nullable Operation getOperation(@NonNull Operation operationId);
-	@Nullable Iterable<Operation> getOperationOverloads(@NonNull Operation pivotOperation);
-	@NonNull Iterable<Operation> getOperations(final @Nullable FeatureFilter featureFilter);
-	@NonNull Iterable<Operation> getOperations(final @Nullable FeatureFilter featureFilter, @Nullable String name);
-	@NonNull Iterable<CompleteClass> getProperSuperCompleteClasses();
-	@Nullable Iterable<Property> getProperties(@NonNull Property pivotProperty);
-	@Nullable Iterable<Property> getProperties(@Nullable String propertyName);
-	@NonNull Iterable<Property> getProperties(final @Nullable FeatureFilter featureFilter);
-	@NonNull Iterable<Property> getProperties(final @Nullable FeatureFilter featureFilter, @Nullable String name);
+	@Nullable Iterable<@NonNull Operation> getOperationOverloads(@NonNull Operation pivotOperation);
+	@NonNull Iterable<@NonNull Operation> getOperations(final @Nullable FeatureFilter featureFilter);
+	@NonNull Iterable<@NonNull Operation> getOperations(final @Nullable FeatureFilter featureFilter, @Nullable String name);
+	@NonNull Iterable<@NonNull CompleteClass> getProperSuperCompleteClasses();
+	@Nullable Iterable<@NonNull Property> getProperties(@NonNull Property pivotProperty);
+	@Nullable Iterable<@NonNull Property> getProperties(@Nullable String propertyName);
+	@NonNull Iterable<@NonNull Property> getProperties(final @Nullable FeatureFilter featureFilter);
+	@NonNull Iterable<@NonNull Property> getProperties(final @Nullable FeatureFilter featureFilter, @Nullable String name);
 	@Nullable Property getProperty(@Nullable String propertyName);
-	@NonNull Iterable<State>  getStates();
-	@NonNull Iterable<State>  getStates(@Nullable String name);
-	@NonNull Iterable<CompleteClass> getSuperCompleteClasses();
+	@NonNull Iterable<@NonNull State>  getStates();
+	@NonNull Iterable<@NonNull State>  getStates(@Nullable String name);
+	@NonNull Iterable<@NonNull CompleteClass> getSuperCompleteClasses();
 } // CompleteClass

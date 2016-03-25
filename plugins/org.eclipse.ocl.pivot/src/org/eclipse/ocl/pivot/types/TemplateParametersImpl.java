@@ -38,7 +38,7 @@ public class TemplateParametersImpl implements TemplateParameters
 		hashCode = hash;
 	}
 	
-	public TemplateParametersImpl(@NonNull List<? extends Type> parameters) {
+	public TemplateParametersImpl(@NonNull List<@NonNull ? extends Type> parameters) {
 		typeParameters = new @NonNull Type[parameters.size()];
 		int hash = 0;
 		for (int i = 0; i < typeParameters.length; i++) {

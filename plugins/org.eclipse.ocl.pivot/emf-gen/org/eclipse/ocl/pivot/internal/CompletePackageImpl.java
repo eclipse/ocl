@@ -299,7 +299,6 @@ public class CompletePackageImpl extends NamedElementImpl implements CompletePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("null")
 	@Override
 	public boolean eIsSet(int featureID)
 	{
@@ -485,8 +484,7 @@ public class CompletePackageImpl extends NamedElementImpl implements CompletePac
 	}
 
 	@Override
-	@SuppressWarnings("null")
-	public @NonNull Iterable<org.eclipse.ocl.pivot.Class> getAllClasses() {
+	public @NonNull Iterable<org.eclipse.ocl.pivot.@NonNull Class> getAllClasses() {
 		return Iterables.transform(getOwnedCompleteClasses(), new Function<CompleteClass, org.eclipse.ocl.pivot.Class>()
 			{
 				@Override
