@@ -750,7 +750,7 @@ public abstract class CG2JavaVisitor<@NonNull CG extends JavaCodeGenerator> exte
 		//
 		js.appendIsRequired(cgIterator.isRequired());
 		js.append(" ");
-		js.appendClassReference(Iterator.class); //, getJavaClass(cgIterator));
+		js.appendClassReference(Iterator.class, false, Object.class); //, getJavaClass(cgIterator));
 		js.append(" " + iteratorName + " = ");
 		js.appendAtomicReferenceTo(cgSource);
 		js.append(".iterator();\n");
