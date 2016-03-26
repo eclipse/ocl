@@ -13,6 +13,7 @@ package org.eclipse.ocl.pivot.internal.complete;
 import java.lang.ref.WeakReference;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.Property;
 
@@ -30,8 +31,8 @@ public class ClassListeners<L extends ClassListeners.IClassListener> extends Abs
 
 	public synchronized void didAddOperation(@NonNull Operation partialOperation) {
 		boolean doFlush = false;
-		for (WeakReference<L> ref : listeners) {
-			L listener = ref.get();
+		for (@NonNull WeakReference<L> ref : listeners) {
+			@Nullable L listener = ref.get();
 			if (listener != null) {
 				listener.didAddOperation(partialOperation);
 			}
@@ -46,8 +47,8 @@ public class ClassListeners<L extends ClassListeners.IClassListener> extends Abs
 
 	public synchronized void didAddProperty(@NonNull Property partialProperty) {
 		boolean doFlush = false;
-		for (WeakReference<L> ref : listeners) {
-			L listener = ref.get();
+		for (@NonNull WeakReference<L> ref : listeners) {
+			@Nullable L listener = ref.get();
 			if (listener != null) {
 				listener.didAddProperty(partialProperty);
 			}
@@ -62,8 +63,8 @@ public class ClassListeners<L extends ClassListeners.IClassListener> extends Abs
 
 	public synchronized void didAddSuperClass(org.eclipse.ocl.pivot.@NonNull Class partialClass) {
 		boolean doFlush = false;
-		for (WeakReference<L> ref : listeners) {
-			L listener = ref.get();
+		for (@NonNull WeakReference<L> ref : listeners) {
+			@Nullable L listener = ref.get();
 			if (listener != null) {
 				listener.didAddSuperClass(partialClass);
 			}
@@ -78,8 +79,8 @@ public class ClassListeners<L extends ClassListeners.IClassListener> extends Abs
 
 	public synchronized void didRemoveOperation(@NonNull Operation partialOperation) {
 		boolean doFlush = false;
-		for (WeakReference<L> ref : listeners) {
-			L listener = ref.get();
+		for (@NonNull WeakReference<L> ref : listeners) {
+			@Nullable L listener = ref.get();
 			if (listener != null) {
 				listener.didRemoveOperation(partialOperation);
 			}
@@ -94,8 +95,8 @@ public class ClassListeners<L extends ClassListeners.IClassListener> extends Abs
 
 	public synchronized void didRemoveProperty(@NonNull Property partialProperty) {
 		boolean doFlush = false;
-		for (WeakReference<L> ref : listeners) {
-			L listener = ref.get();
+		for (@NonNull WeakReference<L> ref : listeners) {
+			@Nullable L listener = ref.get();
 			if (listener != null) {
 				listener.didRemoveProperty(partialProperty);
 			}
@@ -110,8 +111,8 @@ public class ClassListeners<L extends ClassListeners.IClassListener> extends Abs
 
 	public synchronized void didRemoveSuperClass(org.eclipse.ocl.pivot.@NonNull Class partialClass) {
 		boolean doFlush = false;
-		for (WeakReference<L> ref : listeners) {
-			L listener = ref.get();
+		for (@NonNull WeakReference<L> ref : listeners) {
+			@Nullable L listener = ref.get();
 			if (listener != null) {
 				listener.didRemoveSuperClass(partialClass);
 			}

@@ -15,16 +15,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 
 public abstract class AbstractListeners<L extends AbstractListeners.IAbstractListener>
 {
 	public static interface IAbstractListener {}
 	
-	protected final @NonNull List<WeakReference<L>> listeners = new ArrayList<WeakReference<L>>();
+	protected final @NonNull List<@NonNull WeakReference<L>> listeners = new ArrayList<@NonNull WeakReference<L>>();
 
 	public synchronized void addListener(@NonNull L aListener) {
-		for (WeakReference<L> ref : listeners) {
-			L listener = ref.get();
+		for (@NonNull WeakReference<L> ref : listeners) {
+			@Nullable L listener = ref.get();
 			if (listener == aListener) {
 				return;
 			}
@@ -34,7 +35,7 @@ public abstract class AbstractListeners<L extends AbstractListeners.IAbstractLis
 
 	protected void doFlush() {				// FIXME automate as part of custom lister-list
 		for (int i = listeners.size(); --i >= 0; ) {
-			L completeListener = listeners.get(i).get();
+			@Nullable L completeListener = listeners.get(i).get();
 			if (completeListener == null) {
 				listeners.remove(i);
 			}
@@ -45,8 +46,8 @@ public abstract class AbstractListeners<L extends AbstractListeners.IAbstractLis
 	 * Remove a listener and return trie if there are no listeners left.
 	 */
 	public synchronized boolean removeListener(@NonNull L aListener) {
-		for (WeakReference<L> ref : listeners) {
-			L listener = ref.get();
+		for (@NonNull WeakReference<L> ref : listeners) {
+			@Nullable L listener = ref.get();
 			if (listener == aListener) {
 				listeners.remove(ref);
 				break;

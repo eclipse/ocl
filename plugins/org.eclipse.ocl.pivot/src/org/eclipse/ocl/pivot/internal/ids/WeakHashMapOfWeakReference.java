@@ -15,6 +15,7 @@ import java.util.Iterator;
 import java.util.WeakHashMap;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.ids.ElementId;
 
 public abstract class WeakHashMapOfWeakReference<K,V extends ElementId> extends WeakHashMap<K,WeakReference<V>> 
@@ -22,7 +23,7 @@ public abstract class WeakHashMapOfWeakReference<K,V extends ElementId> extends 
 	public @NonNull V getId(@NonNull K key) {
 		WeakReference<V> ref = get(key);
 		if (ref != null) {
-			V oldId = ref.get();
+			@Nullable V oldId = ref.get();
 			if (oldId != null) {
 				return oldId;
 			}
@@ -30,7 +31,7 @@ public abstract class WeakHashMapOfWeakReference<K,V extends ElementId> extends 
 		synchronized (this) {
 			ref = get(key);
 			if (ref != null) {
-				V oldId = ref.get();
+				@Nullable V oldId = ref.get();
 				if (oldId != null) {
 					return oldId;
 				}
@@ -52,7 +53,7 @@ public abstract class WeakHashMapOfWeakReference<K,V extends ElementId> extends 
 			java.util.Map.Entry<K, WeakReference<V>> e = i.next();
 			WeakReference<V> ref = e.getValue();
 			if (ref != null) {
-				V value = ref.get();
+				@Nullable V value = ref.get();
 				if (value != null) {
 					K key = e.getKey();
 					if (key == this)

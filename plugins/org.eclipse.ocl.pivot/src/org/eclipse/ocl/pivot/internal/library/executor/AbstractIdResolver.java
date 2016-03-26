@@ -1789,7 +1789,7 @@ public abstract class AbstractIdResolver implements IdResolver.IdResolverExtensi
 		if (ref == null) {
 			return null;
 		}
-		V value = ref.get();
+		@Nullable V value = ref.get();
 		if (value == null) {
 			map.remove(key);
 		}

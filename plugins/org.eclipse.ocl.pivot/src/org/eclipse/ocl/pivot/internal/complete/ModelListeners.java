@@ -13,6 +13,7 @@ package org.eclipse.ocl.pivot.internal.complete;
 import java.lang.ref.WeakReference;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 
 public class ModelListeners<L extends ModelListeners.IModelListener> extends AbstractListeners<L>
 {
@@ -24,8 +25,8 @@ public class ModelListeners<L extends ModelListeners.IModelListener> extends Abs
 
 	public synchronized void didAddPackage(org.eclipse.ocl.pivot.@NonNull Package partialPackage) {
 		boolean doFlush = false;
-		for (WeakReference<L> ref : listeners) {
-			L listener = ref.get();
+		for (@NonNull WeakReference<L> ref : listeners) {
+			@Nullable L listener = ref.get();
 			if (listener != null) {
 				listener.didAddPackage(partialPackage);
 			}
@@ -40,8 +41,8 @@ public class ModelListeners<L extends ModelListeners.IModelListener> extends Abs
 
 	public synchronized void didRemovePackage(org.eclipse.ocl.pivot.@NonNull Package partialPackage) {
 		boolean doFlush = false;
-		for (WeakReference<L> ref : listeners) {
-			L listener = ref.get();
+		for (@NonNull WeakReference<L> ref : listeners) {
+			@Nullable L listener = ref.get();
 			if (listener != null) {
 				listener.didRemovePackage(partialPackage);
 			}

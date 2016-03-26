@@ -513,7 +513,7 @@ public abstract class ExecutableStandardLibrary extends AbstractExecutorElement 
 		if (ref == null) {
 			return null;
 		}
-		V value = ref.get();
+		@Nullable V value = ref.get();
 		if (value == null) {
 			map.remove(key);
 		}

@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.WeakHashMap;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 
 public abstract class WeakHashMapOfListOfWeakReference4<K1, K2, K3, K4, V extends WeakHashMapOfListOfWeakReference4.MatchableId<K2, K3, K4>> extends WeakHashMap<K1,List<WeakReference<V>>> 
 {
@@ -31,7 +32,7 @@ public abstract class WeakHashMapOfListOfWeakReference4<K1, K2, K3, K4, V extend
 			put(key1, ids);
 		}
 		for (WeakReference<V> ref : ids) {
-			V oldId = ref.get();
+			@Nullable V oldId = ref.get();
 			if (oldId != null) {
 				if (oldId.matches(key2, key3, key4)) {
 					return oldId;
