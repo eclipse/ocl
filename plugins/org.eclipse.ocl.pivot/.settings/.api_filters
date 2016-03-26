@@ -75,6 +75,12 @@
         </filter>
     </resource>
     <resource path="emf-gen/org/eclipse/ocl/pivot/internal/lookup/LookupEnvironment.java" type="org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment">
+        <filter id="305365105">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment"/>
+                <message_argument value="org.eclipse.ocl.pivot_1.1.0"/>
+            </message_arguments>
+        </filter>
         <filter comment="new internal API whose API doesn't need to be respected. See Bug 471114" id="403804204">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.pivot.internal.lookup.LookupEnvironment"/>
