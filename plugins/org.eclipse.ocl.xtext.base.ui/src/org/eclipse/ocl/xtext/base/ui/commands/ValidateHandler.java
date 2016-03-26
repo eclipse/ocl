@@ -43,7 +43,8 @@ public final class ValidateHandler implements IHandler2
 	 * A collection of objects listening to changes to this manager. This
 	 * collection is <code>null</code> if there are no listeners.
 	 */
-	private transient ListenerList<Object> listenerList = null;
+	@SuppressWarnings("rawtypes")		// pre-Neon compatibility; Neon adds generics
+	private transient ListenerList listenerList = null;
 
 	/**
 	 * Track this base class enabled state.
@@ -85,9 +86,10 @@ public final class ValidateHandler implements IHandler2
 	 * @param listener
 	 *            The listener to be added; must not be <code>null</code>.
 	 */
+	@SuppressWarnings({"rawtypes", "unchecked"})		// pre-Neon compatibility; Neon adds generics
 	protected synchronized final void addListenerObject(final Object listener) {
 		if (listenerList == null) {
-			listenerList = new ListenerList<Object>(ListenerList.IDENTITY);
+			listenerList = new ListenerList(ListenerList.IDENTITY);
 		}
 
 		listenerList.add(listener);
@@ -225,7 +227,8 @@ public final class ValidateHandler implements IHandler2
 	 *         <code>null</code>
 	 */
 	protected final Object[] getListeners() {
-		final ListenerList<Object> list = listenerList;
+		@SuppressWarnings("rawtypes")		// pre-Neon compatibility; Neon adds generics
+		final ListenerList list = listenerList;
 		if (list == null) {
 			return EMPTY_ARRAY;
 		}
