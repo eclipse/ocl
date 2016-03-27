@@ -342,7 +342,12 @@ public abstract class AbstractDescriptor implements TypeDescriptor
 		UnboxedDescriptor unboxedTypeDescriptor = getUnboxedDescriptor(js.getCodeGenerator());
 		CollectionDescriptor collectionDescriptor = unboxedTypeDescriptor.asCollectionDescriptor();
 		if (collectionDescriptor != null) {
-			throw new UnsupportedOperationException(getClass().getSimpleName() + " should be UnboxedValuesDescriptor");
+			System.err.println(getClass().getSimpleName() + " should be UnboxedValuesDescriptor");		// FIXME should be redundant
+			js.appendDeclaration(cgUnboxExp);;
+			js.append(" = ");
+			js.appendValueName(boxedValue);
+			js.append(";\n");
+			return true;
 		}
 		else {
 			js.appendDeclaration(cgUnboxExp);

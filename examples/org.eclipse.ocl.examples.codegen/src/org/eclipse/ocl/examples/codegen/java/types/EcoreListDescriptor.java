@@ -27,7 +27,7 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
 /**
  * An EcoreListDescriptor describes a collection type represented as an Ecore List.
  */
-public class EcoreListDescriptor extends AbstractCollectionDescriptor implements EcoreDescriptor
+public class EcoreListDescriptor extends AbstractCollectionDescriptor implements EcoreDescriptor, UnboxedDescriptor
 {
 	protected final @NonNull StandardLibrary standardLibrary;
 	protected final @NonNull Type type;

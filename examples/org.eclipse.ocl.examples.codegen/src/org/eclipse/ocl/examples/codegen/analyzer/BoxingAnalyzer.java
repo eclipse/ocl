@@ -257,7 +257,7 @@ public class BoxingAnalyzer extends AbstractExtendingCGModelVisitor<Object, Code
 				EClassifier eClassifier = cgChild.getEcoreClassifier();
 				Class<?> instanceClass = eClassifier != null ? eClassifier.getInstanceClass() : null;
 				EcoreDescriptor ecoreDescriptor = boxedDescriptor.getEcoreDescriptor(codeGenerator, instanceClass);
-				if (unboxedDescriptor == ecoreDescriptor) {
+				if ((unboxedDescriptor == ecoreDescriptor) || (ecoreDescriptor instanceof UnboxedDescriptor)) {
 					return cgChild;
 				}
 			}
