@@ -75,6 +75,7 @@ import org.eclipse.ocl.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.pivot.utilities.PivotStandaloneSetup;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.StringUtil;
+import org.eclipse.ocl.pivot.utilities.TracingOption;
 import org.eclipse.ocl.pivot.values.Bag;
 import org.eclipse.ocl.pivot.values.Value;
 import org.eclipse.ocl.xtext.base.BaseStandaloneSetup;
@@ -102,6 +103,7 @@ import junit.framework.TestCase;
 public class PivotTestCase extends TestCase
 {
 	public static final @NonNull String PLUGIN_ID = "org.eclipse.ocl.examples.xtext.tests";
+	public static final @NonNull TracingOption TEST_START = new TracingOption(PLUGIN_ID, "test/start");
 //	private static StandaloneProjectMap projectMap = null;
 	private static Writer testLog = null;
 	
@@ -127,9 +129,7 @@ public class PivotTestCase extends TestCase
 				try {
 					if (context instanceof EObject) {
 						URI contextURI = EcoreUtil.getURI((EObject)context);
-						if (contextURI != null) {
-							testLog.append("\"" + contextURI.toString().replace("\"", "\"\"") + "\"");
-						}
+						testLog.append("\"" + contextURI.toString().replace("\"", "\"\"") + "\"");
 					}
 				} catch(Throwable e) {
 					testLog.append("\"null\"");
@@ -741,6 +741,7 @@ public class PivotTestCase extends TestCase
 		if (DEBUG_ID) {
 			PivotUtilInternal.debugPrintln("-----Starting " + getClass().getSimpleName() + "." + getName() + "-----");
 		}
+		TEST_START.println("-----Starting " + getClass().getSimpleName() + "." + getName() + "-----");
 		EcorePackage.eINSTANCE.getClass();						// Workaround Bug 425841
 //		EPackage.Registry.INSTANCE.put(UML302UMLResource.STANDARD_PROFILE_NS_URI, L2Package.eINSTANCE);
 	}
