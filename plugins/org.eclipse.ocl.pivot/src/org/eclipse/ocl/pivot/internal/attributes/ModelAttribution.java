@@ -35,16 +35,14 @@ public class ModelAttribution extends AbstractAttribution
 				Namespace namespace = anImport.getImportedNamespace();
 				if ((namespace != null) && !namespace.eIsProxy()) {
 					String importName = anImport.getName();
-					if (importName == null) {
-						if (namespace instanceof org.eclipse.ocl.pivot.Package) {
-							environmentView.addAllPackages((org.eclipse.ocl.pivot.Package)namespace);
-						}
-						else if (namespace instanceof Model) {
-							environmentView.addAllPackages((Model)namespace);
-						}
+					if (importName != null) {
+						environmentView.addElement(importName, namespace);
+					}
+					else if (namespace instanceof Model) {
+						environmentView.addAllPackages((Model)namespace);
 					}
 					else {
-						environmentView.addElement(importName, namespace);
+						environmentView.addNamedElement(namespace);
 					}
 				}
 			}
