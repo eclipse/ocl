@@ -35,6 +35,57 @@ Workflow {
     	scanClassPath = true
     }
     bean = EcoreGenModelSetup { resourceSet = resourceSet }
+
+    component = CopyAndRename {
+    	script = "org.eclipse.ocl.examples.build.GenerateAutoCSModels.mwe2"
+    	fromProject = "../../../org.eclipse.qvtd/plugins/org.eclipse.qvtd.runtime/src"
+    	toProject = "../../../org.eclipse.ocl/plugins/org.eclipse.ocl.pivot/src-gen"
+    	packageCopy = {
+    		from = "org.eclipse.qvtd.runtime.evaluation"
+    		to = "org.eclipse.ocl.pivot.evaluation.tx"
+    	}
+    	packageCopy = {
+    		from = "org.eclipse.qvtd.runtime.internal.evaluation"
+    		to = "org.eclipse.ocl.pivot.internal.evaluation.tx"
+    	}
+    	packageCopy = {
+    		from = "org.eclipse.qvtd.runtime.labels"
+    		to = "org.eclipse.ocl.pivot.internal.labels"
+    	}
+    	packageCopy = {
+    		from = "org.eclipse.qvtd.runtime.library.model"
+    		to = "org.eclipse.ocl.pivot.library.model"
+    	}
+    	packageRename = {
+    		from = "org.eclipse.qvtd.runtime.internal.cs2as"
+    		to = "org.eclipse.ocl.xtext.base.cs2as.tx"
+    	}
+    }
+    component = CopyAndRename {
+    	script = "org.eclipse.ocl.examples.build.GenerateAutoCSModels.mwe2"
+    	fromProject = "../../../org.eclipse.qvtd/plugins/org.eclipse.qvtd.runtime/src"
+    	toProject = "../../../org.eclipse.ocl/plugins/org.eclipse.ocl.xtext.base/src-gen"
+    	packageCopy = {
+    		from = "org.eclipse.qvtd.runtime.internal.cs2as"
+    		to = "org.eclipse.ocl.xtext.base.cs2as.tx"
+    	}
+    	packageRename = {
+    		from = "org.eclipse.qvtd.runtime.evaluation"
+    		to = "org.eclipse.ocl.pivot.evaluation.tx"
+    	}
+    	packageRename = {
+    		from = "org.eclipse.qvtd.runtime.internal.evaluation"
+    		to = "org.eclipse.ocl.pivot.internal.evaluation.tx"
+    	}
+    	packageRename = {
+    		from = "org.eclipse.qvtd.runtime.labels"
+    		to = "org.eclipse.ocl.pivot.internal.labels"
+    	}
+    	packageRename = {
+    		from = "org.eclipse.qvtd.runtime.library.model"
+    		to = "org.eclipse.ocl.pivot.library.model"
+    	}
+    }
     
     //  Generate the CS2AS CGed transformation for BaseCS
     component = org.eclipse.ocl.examples.build.utilities.GenerateCGedQVTiTransformation auto-inject { 
