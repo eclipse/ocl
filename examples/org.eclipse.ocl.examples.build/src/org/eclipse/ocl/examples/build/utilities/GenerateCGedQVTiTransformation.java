@@ -23,10 +23,10 @@ import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe2.runtime.Mandatory;
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.ocl.pivot.evaluation.tx.TransformationTechnology;
-import org.eclipse.ocl.pivot.evaluation.tx.TransformationTechnology.TransformationException;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.XMIUtil;
+import org.eclipse.qvtd.runtime.internal.evaluation.TransformationTechnology;
+import org.eclipse.qvtd.runtime.internal.evaluation.TransformationTechnology.TransformationException;
 
 public  class GenerateCGedQVTiTransformation extends AbstractWorkflowComponent
 {
