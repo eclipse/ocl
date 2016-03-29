@@ -25,8 +25,8 @@ import org.eclipse.emf.mwe2.runtime.Mandatory;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.XMIUtil;
-import org.eclipse.qvtd.runtime.internal.evaluation.TransformationTechnology;
-import org.eclipse.qvtd.runtime.internal.evaluation.TransformationTechnology.TransformationException;
+import org.eclipse.qvtd.runtime.invocation.TransformationTechnology;
+import org.eclipse.qvtd.runtime.invocation.TransformationTechnology.TransformationException;
 
 public  class GenerateCGedQVTiTransformation extends AbstractWorkflowComponent
 {
