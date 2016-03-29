@@ -91,8 +91,16 @@ Workflow {
     component = org.eclipse.ocl.examples.build.utilities.GenerateCGedQVTiTransformation auto-inject { 
 		oclDocURI = "platform:/resource/org.eclipse.ocl.xtext.base/model/BaseCS2AS.ocl"
 		// FIXME the following only works if the output project are in the same FS folder. Better use a projectName and improve generator 
-		javaFolder = "../org.eclipse.ocl.xtext.base/src-gen"
+		javaFolder = "../../plugins/org.eclipse.ocl.xtext.base/src-gen"
 		javaPackage = "org.eclipse.ocl.xtext.base.cs2as"
+    	packageRename = {
+    		from = "org.eclipse.qvtd.runtime.library.model"
+    		to = "org.eclipse.ocl.pivot.library.model"
+    	}
+    	packageRename = {
+    		from = "org.eclipse.qvtd.runtime.internal.cs2as"
+    		to = "org.eclipse.ocl.xtext.base.cs2as.tx"
+    	}
 	}
 	
 	// Generate the CS2AS CGed transformation for EssentialOCLCS
@@ -102,5 +110,13 @@ Workflow {
 		// FIXME the following only works if the output project are in the same FS folder. Better use a projectName and improve generator 
 		javaFolder = "../../plugins/org.eclipse.ocl.xtext.essentialocl/src-gen"
 		javaPackage = "org.eclipse.ocl.xtext.essentialocl.cs2as"
+    	packageRename = {
+    		from = "org.eclipse.qvtd.runtime.library.model"
+    		to = "org.eclipse.ocl.pivot.library.model"
+    	}
+    	packageRename = {
+    		from = "org.eclipse.qvtd.runtime.internal.cs2as"
+    		to = "org.eclipse.ocl.xtext.base.cs2as.tx"
+    	}
 	}
 }

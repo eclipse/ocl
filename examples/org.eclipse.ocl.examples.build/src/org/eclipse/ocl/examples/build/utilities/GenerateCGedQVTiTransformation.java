@@ -21,6 +21,7 @@ import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
+import org.eclipse.emf.mwe.utils.Mapping;
 import org.eclipse.emf.mwe2.runtime.Mandatory;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
@@ -42,6 +43,14 @@ public  class GenerateCGedQVTiTransformation extends AbstractWorkflowComponent
 	protected String lookupResultItfName;
 	protected String traceabilityPropName = "ast";
 	protected Map<?, ?> savingOptions;
+	private final @NonNull Map<String, String> packageRenameMap = new HashMap<String, String>();
+
+	/**
+	 * Defines a package rename only from some package to another package.
+	 */
+	public void addPackageRename(Mapping mapping) {
+		packageRenameMap.put(mapping.getFrom(), mapping.getTo());
+	}
 
 	public void checkConfiguration(final Issues issues) {
 		// No additional checking configuration
@@ -68,6 +77,7 @@ public  class GenerateCGedQVTiTransformation extends AbstractWorkflowComponent
 			parametersMap.put("oclFileURI", oclFileURI);
 			parametersMap.put("extendedOclFileURIs", extendedOclFileURIs);
 			parametersMap.put("traceabilityPropName", traceabilityPropName);
+			parametersMap.put("packageRenames", packageRenameMap);
 			//
 			tx.execute(ClassUtil.nonNullState(resourceSet), modelMap, parametersMap);
 		} catch (TransformationException e) {
