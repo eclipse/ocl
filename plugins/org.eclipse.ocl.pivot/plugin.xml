@@ -158,10 +158,6 @@
       	class="org.eclipse.ocl.pivot.internal.labels.NumberLabelGenerator"/>
       <generator for="java.lang.String"
       	class="org.eclipse.ocl.pivot.internal.labels.StringLabelGenerator"/>
-      <generator for="org.eclipse.ocl.pivot.evaluation.tx.TransformationInstance"
-      	class="org.eclipse.ocl.pivot.internal.labels.TransformationInstanceLabelGenerator"/>
-      <generator for="org.eclipse.ocl.pivot.evaluation.tx.TypedModelInstance"
-      	class="org.eclipse.ocl.pivot.internal.labels.TypedModelInstanceLabelGenerator"/>
       <generator for="org.eclipse.ocl.pivot.values.Value"
       	class="org.eclipse.ocl.pivot.internal.labels.ValueLabelGenerator"/>
    </extension>

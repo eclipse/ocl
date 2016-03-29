@@ -643,4 +643,11 @@
             </message_arguments>
         </filter>
     </resource>
+    <resource path="src-gen/org/eclipse/ocl/pivot/internal/labels/LabelGeneratorRegistry.java" type="org.eclipse.ocl.pivot.internal.labels.LabelGeneratorRegistry">
+        <filter id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.internal.labels.LabelGeneratorRegistry"/>
+            </message_arguments>
+        </filter>
+    </resource>
 </component>
