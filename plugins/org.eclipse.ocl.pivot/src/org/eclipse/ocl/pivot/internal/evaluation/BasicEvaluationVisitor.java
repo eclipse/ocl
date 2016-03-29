@@ -71,7 +71,6 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.pivot.evaluation.EvaluationHaltedException;
 import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.IterationManager;
-import org.eclipse.ocl.pivot.evaluation.tx.InvocationFailedException;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.TuplePartId;
 import org.eclipse.ocl.pivot.internal.messages.PivotMessagesInternal;
@@ -415,9 +414,6 @@ public class BasicEvaluationVisitor extends AbstractEvaluationVisitor
 		catch (InvalidValueException e) {
 			throw e;
 		}
-		catch (InvocationFailedException e) {
-			throw e;
-		}
 		catch (Exception e) {
 			// This is a backstop. Library iterations should catch their own exceptions
 			//  and produce a better reason as a result.
@@ -490,9 +486,6 @@ public class BasicEvaluationVisitor extends AbstractEvaluationVisitor
 			result = implementation.evaluateIteration(iterationManager);
 		}
 		catch (InvalidValueException e) {
-			throw e;
-		}
-		catch (InvocationFailedException e) {
 			throw e;
 		}
 		catch (Exception e) {
@@ -638,9 +631,6 @@ public class BasicEvaluationVisitor extends AbstractEvaluationVisitor
 			catch (InvalidValueException e) {
 				throw e;
 			}
-			catch (InvocationFailedException e) {
-				throw e;
-			}
 			catch (Exception e) {
 				// This is a backstop. Library operations should catch their own exceptions
 				//  and produce a better reason as a result.
@@ -666,9 +656,6 @@ public class BasicEvaluationVisitor extends AbstractEvaluationVisitor
 				return result;
 			}
 			catch (InvalidValueException e) {
-				throw e;
-			}
-			catch (InvocationFailedException e) {
 				throw e;
 			}
 			catch (Exception e) {

@@ -29,7 +29,6 @@ import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.pivot.evaluation.Evaluator;
 import org.eclipse.ocl.pivot.evaluation.IndentingLogger;
 import org.eclipse.ocl.pivot.evaluation.ModelManager;
-import org.eclipse.ocl.pivot.evaluation.tx.InvocationFailedException;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.IdResolver.IdResolverExtension;
 import org.eclipse.ocl.pivot.internal.manager.MetamodelManagerInternal;
@@ -284,9 +283,6 @@ public abstract class AbstractExecutor implements ExecutorInternal
 			return implementation.evaluate(this, navigationCallExp.getTypeId(), sourceValue);
 		}
 		catch (InvalidValueException e) {
-			throw e;
-		}
-		catch (InvocationFailedException e) {
 			throw e;
 		}
 		catch (Exception e) {
