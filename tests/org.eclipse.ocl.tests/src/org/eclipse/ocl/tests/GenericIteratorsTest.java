@@ -320,6 +320,37 @@ public abstract class GenericIteratorsTest<E extends EObject, PK extends E, T ex
 
         assertQueryEquals(pkg1, expected2, "%nestedPackage->collectNested(%nestedPackage)");
     }
+    
+    /**
+     * Tests the collect() iterator return type.
+     */
+    public void test_collect_returns_490982() {
+		Collection<Boolean> expected1 = createBag(false, true, true);
+		Collection<Boolean> expected2 = createSequence(true, false, true);
+
+        assertQueryEquals(null, expected1, "Bag{1,2,3}->collect(p | (p.mod(2)) <> 0)");
+        assertQueryEquals(null, expected2, "OrderedSet{1,2,3}->collect(p | (p.mod(2)) <> 0)");
+        assertQueryEquals(null, expected2, "Sequence{1,2,3}->collect(p | (p.mod(2)) <> 0)");
+        assertQueryEquals(null, expected1, "Set{1,2,3}->collect(p | (p.mod(2)) <> 0)");
+    }
+    
+    /**
+     * Tests the collectNested() iterator return type.
+     */
+    public void test_collectNested_returns_490982() {
+		Collection<Boolean> expected1 = createBag(false, true, true);
+		Collection<Boolean> expected2 = createSequence(true, false, true);
+        assertQueryEquals(null, false, "OrderedSet{1,2,3}->collectNested(p | (p.mod(2)) <> 0)->at(2)");
+
+        assertQueryEquals(null, expected1, "Bag{1,2,3}->collectNested(p | (p.mod(2)) <> 0)");
+        assertQueryEquals(null, expected2, "OrderedSet{1,2,3}->collectNested(p | (p.mod(2)) <> 0)");
+        assertQueryEquals(null, expected2, "Sequence{1,2,3}->collectNested(p | (p.mod(2)) <> 0)");
+        assertQueryEquals(null, expected1, "Set{1,2,3}->collectNested(p | (p.mod(2)) <> 0)");
+//        assertQueryEquals(null, expected1, "Bag{1,2,3}->collectNested(p | (p.mod(2)) <> 0)->at(2)");
+        assertQueryEquals(null, false, "OrderedSet{1,2,3}->collectNested(p | (p.mod(2)) <> 0)->at(2)");
+        assertQueryEquals(null, false, "Sequence{1,2,3}->collectNested(p | (p.mod(2)) <> 0)->at(2)");
+//        assertQueryEquals(null, expected1, "Set{1,2,3}->collectNested(p | (p.mod(2)) <> 0)");
+    }
 
     /**
      * Tests the sortedBy() iterator.
