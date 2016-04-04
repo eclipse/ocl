@@ -11,7 +11,6 @@
 package org.eclipse.ocl.pivot.utilities;
 
 import java.util.Comparator;
-import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Property;
@@ -27,14 +26,12 @@ import org.eclipse.ocl.pivot.util.Visitable;
  */
 public class ASSaverNormalizeVisitor extends AbstractExtendingVisitor<Object, ASSaver>
 {
-	protected static final class PropertyComparator implements Comparator<Property>
+	protected static final class PropertyComparator implements Comparator<@NonNull Property>
 	{
-		public static final @NonNull Comparator<Property> INSTANCE = new PropertyComparator();
+		public static final @NonNull Comparator<@NonNull Property> INSTANCE = new PropertyComparator();
 
 		@Override
-		public int compare(Property o1, Property o2) {
-			assert o1 != null;
-			assert o2 != null;
+		public int compare(@NonNull Property o1, @NonNull Property o2) {
 			int l1 = o1.isIsImplicit() ? 1 : 0;
 			int l2 = o2.isIsImplicit() ? 1 : 0;
 			if (l1 != l2) {
@@ -48,14 +45,12 @@ public class ASSaverNormalizeVisitor extends AbstractExtendingVisitor<Object, AS
 		}
 	}
 	
-	protected static final class TypeComparator implements Comparator<org.eclipse.ocl.pivot.Class>
+	protected static final class TypeComparator implements Comparator<org.eclipse.ocl.pivot.@NonNull Class>
 	{
-		public static final @NonNull Comparator<org.eclipse.ocl.pivot.Class> INSTANCE = new TypeComparator();
+		public static final @NonNull Comparator<org.eclipse.ocl.pivot.@NonNull Class> INSTANCE = new TypeComparator();
 
 		@Override
-		public int compare(org.eclipse.ocl.pivot.Class o1, org.eclipse.ocl.pivot.Class o2) {
-			assert o1 != null;
-			assert o2 != null;
+		public int compare(org.eclipse.ocl.pivot.@NonNull Class o1, org.eclipse.ocl.pivot.@NonNull Class o2) {
 			String n1 = AS2Moniker.toString(o1);
 			String n2 = AS2Moniker.toString(o2);
 			return n1.compareTo(n2);
@@ -68,16 +63,14 @@ public class ASSaverNormalizeVisitor extends AbstractExtendingVisitor<Object, AS
 
 	@Override
 	public Object visitClass(org.eclipse.ocl.pivot.@NonNull Class object) {
-		List<Property> ownedAttributes = object.getOwnedProperties();
-		ClassUtil.sort(ownedAttributes, PropertyComparator.INSTANCE);
+		ClassUtil.sort(ClassUtil.nullFree(object.getOwnedProperties()), PropertyComparator.INSTANCE);
 		return null;
 	}
 
 	@Override
 	public Object visitPackage(org.eclipse.ocl.pivot.@NonNull Package object) {
 		if (!(object instanceof Orphanage)) {			// The Orphanage is not assignable/sortable
-			@NonNull List<org.eclipse.ocl.pivot.Class> ownedTypes = object.getOwnedClasses();
-			ClassUtil.sort(ownedTypes, TypeComparator.INSTANCE);
+			ClassUtil.sort(ClassUtil.nullFree(object.getOwnedClasses()), TypeComparator.INSTANCE);
 		}
 		return null;
 	}

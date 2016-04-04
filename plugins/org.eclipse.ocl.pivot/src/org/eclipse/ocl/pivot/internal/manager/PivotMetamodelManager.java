@@ -472,7 +472,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 		return completeModel.conformsTo(firstType, firstSubstitutions, secondType, secondSubstitutions);
 	}
 
-	public @NonNull BooleanLiteralExp createBooleanLiteralExp(boolean booleanSymbol) {		// FIXME move to AbstractEnvironmentFactory
+	public @NonNull BooleanLiteralExp createBooleanLiteralExp(boolean booleanSymbol) {		// FIXME move to PivotHelper
 		BooleanLiteralExp asBoolean = PivotFactory.eINSTANCE.createBooleanLiteralExp();
 		asBoolean.setBooleanSymbol(booleanSymbol);
 		asBoolean.setType(standardLibrary.getBooleanType());
@@ -488,7 +488,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 	/**
 	 * @since 1.1
 	 */
-	public @NonNull IfExp createIfExp(@NonNull OCLExpression asCondition, @NonNull OCLExpression asThen, @NonNull OCLExpression asElse) {		// FIXME move to AbstractEnvironmentFactory
+	public @NonNull IfExp createIfExp(@NonNull OCLExpression asCondition, @NonNull OCLExpression asThen, @NonNull OCLExpression asElse) {		// FIXME move to PivotHelper
 		Type commonType = getCommonType(ClassUtil.nonNullState(asThen.getType()), TemplateParameterSubstitutions.EMPTY,
 			ClassUtil.nonNullState(asElse.getType()), TemplateParameterSubstitutions.EMPTY);
 		IfExp asIf = PivotFactory.eINSTANCE.createIfExp();
@@ -500,7 +500,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 		return asIf;
 	}
 
-	public @NonNull IntegerLiteralExp createIntegerLiteralExp(@NonNull Number integerSymbol) {		// FIXME move to AbstractEnvironmentFactory
+	public @NonNull IntegerLiteralExp createIntegerLiteralExp(@NonNull Number integerSymbol) {		// FIXME move to PivotHelper
 		IntegerLiteralExp asInteger = PivotFactory.eINSTANCE.createIntegerLiteralExp();
 		asInteger.setIntegerSymbol(integerSymbol);
 		asInteger.setType(standardLibrary.getIntegerType());
@@ -508,7 +508,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 		return asInteger;
 	}
 
-	public @NonNull InvalidLiteralExp createInvalidExpression(/*Object object, String boundMessage, Throwable e*/) {		// FIXME move to AbstractEnvironmentFactory
+	public @NonNull InvalidLiteralExp createInvalidExpression(/*Object object, String boundMessage, Throwable e*/) {		// FIXME move to PivotHelper
 		InvalidLiteralExp invalidLiteralExp = PivotFactory.eINSTANCE.createInvalidLiteralExp();
 		invalidLiteralExp.setType(standardLibrary.getOclInvalidType());
 //		invalidLiteralExp.setObject(object);
@@ -517,7 +517,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 		return invalidLiteralExp;
 	}
 
-	public @NonNull NullLiteralExp createNullLiteralExp() {		// FIXME move to AbstractEnvironmentFactory
+	public @NonNull NullLiteralExp createNullLiteralExp() {		// FIXME move to PivotHelper
 		NullLiteralExp asNull = PivotFactory.eINSTANCE.createNullLiteralExp();
 		asNull.setType(standardLibrary.getOclVoidType());
 		asNull.setIsRequired(false);
@@ -653,7 +653,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 		return precedenceManager;
 	}
 
-	public @NonNull RealLiteralExp createRealLiteralExp(@NonNull Number realSymbol) {		// FIXME move to AbstractEnvironmentFactory
+	public @NonNull RealLiteralExp createRealLiteralExp(@NonNull Number realSymbol) {		// FIXME move to PivotHelper
 		RealLiteralExp asReal = PivotFactory.eINSTANCE.createRealLiteralExp();
 		asReal.setRealSymbol(realSymbol);
 		asReal.setType(standardLibrary.getRealType());
@@ -661,7 +661,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 		return asReal;
 	}
 
-	public @NonNull StringLiteralExp createStringLiteralExp(@NonNull String stringSymbol) {		// FIXME move to AbstractEnvironmentFactory
+	public @NonNull StringLiteralExp createStringLiteralExp(@NonNull String stringSymbol) {		// FIXME move to PivotHelper
 		StringLiteralExp asString = PivotFactory.eINSTANCE.createStringLiteralExp();
 		asString.setStringSymbol(stringSymbol);
 		asString.setType(standardLibrary.getStringType());
@@ -669,7 +669,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 		return asString;
 	}
 
-	public @NonNull UnlimitedNaturalLiteralExp createUnlimitedNaturalLiteralExp(@NonNull Number unlimitedNaturalSymbol) {		// FIXME move to AbstractEnvironmentFactory
+	public @NonNull UnlimitedNaturalLiteralExp createUnlimitedNaturalLiteralExp(@NonNull Number unlimitedNaturalSymbol) {		// FIXME move to PivotHelper
 		UnlimitedNaturalLiteralExp asUnlimitedNatural = PivotFactory.eINSTANCE.createUnlimitedNaturalLiteralExp();
 		asUnlimitedNatural.setUnlimitedNaturalSymbol(unlimitedNaturalSymbol);
 		asUnlimitedNatural.setType(standardLibrary.getUnlimitedNaturalType());
@@ -677,7 +677,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 		return asUnlimitedNatural;
 	}
 
-	public @NonNull WildcardType createWildcardType(org.eclipse.ocl.pivot.@Nullable Class lowerBound, org.eclipse.ocl.pivot.@Nullable Class upperBound) {		// FIXME move to AbstractEnvironmentFactory
+	public @NonNull WildcardType createWildcardType(org.eclipse.ocl.pivot.@Nullable Class lowerBound, org.eclipse.ocl.pivot.@Nullable Class upperBound) {		// FIXME move to PivotHelper
 		WildcardType wildcardType = PivotFactory.eINSTANCE.createWildcardType();
 		wildcardType.setName("?");			// Name is not significant
 		wildcardType.setLowerBound(lowerBound != null ? lowerBound : standardLibrary.getOclAnyType());

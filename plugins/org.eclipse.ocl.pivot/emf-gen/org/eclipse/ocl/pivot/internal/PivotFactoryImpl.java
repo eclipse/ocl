@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Annotation;
 import org.eclipse.ocl.pivot.AnyType;
 import org.eclipse.ocl.pivot.AssociationClass;
@@ -362,7 +363,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public Annotation createAnnotation() {
+	public @NonNull Annotation createAnnotation() {
 		AnnotationImpl annotation = new AnnotationImpl();
 		return annotation;
 	}
@@ -373,7 +374,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public org.eclipse.ocl.pivot.Class createClass() {
+	public org.eclipse.ocl.pivot.@NonNull Class createClass() {
 		ClassImpl class_ = new ClassImpl();
 		return class_;
 	}
@@ -384,7 +385,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public TemplateBinding createTemplateBinding() {
+	public @NonNull TemplateBinding createTemplateBinding() {
 		TemplateBindingImpl templateBinding = new TemplateBindingImpl();
 		return templateBinding;
 	}
@@ -395,7 +396,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public TemplateSignature createTemplateSignature() {
+	public @NonNull TemplateSignature createTemplateSignature() {
 		TemplateSignatureImpl templateSignature = new TemplateSignatureImpl();
 		return templateSignature;
 	}
@@ -406,7 +407,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public Transition createTransition()
+	public @NonNull Transition createTransition()
 	{
 		TransitionImpl transition = new TransitionImpl();
 		return transition;
@@ -418,7 +419,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public Trigger createTrigger()
+	public @NonNull Trigger createTrigger()
 	{
 		TriggerImpl trigger = new TriggerImpl();
 		return trigger;
@@ -430,7 +431,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public TemplateParameter createTemplateParameter() {
+	public @NonNull TemplateParameter createTemplateParameter() {
 		TemplateParameterImpl templateParameter = new TemplateParameterImpl();
 		return templateParameter;
 	}
@@ -441,7 +442,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public TemplateParameterSubstitution createTemplateParameterSubstitution() {
+	public @NonNull TemplateParameterSubstitution createTemplateParameterSubstitution() {
 		TemplateParameterSubstitutionImpl templateParameterSubstitution = new TemplateParameterSubstitutionImpl();
 		return templateParameterSubstitution;
 	}
@@ -452,7 +453,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public org.eclipse.ocl.pivot.Package createPackage() {
+	public org.eclipse.ocl.pivot.@NonNull Package createPackage() {
 		PackageImpl package_ = new PackageImpl();
 		return package_;
 	}
@@ -463,7 +464,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public Precedence createPrecedence() {
+	public @NonNull Precedence createPrecedence() {
 		PrecedenceImpl precedence = new PrecedenceImpl();
 		return precedence;
 	}
@@ -474,7 +475,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public PrimitiveCompletePackage createPrimitiveCompletePackage()
+	public @NonNull PrimitiveCompletePackage createPrimitiveCompletePackage()
 	{
 		PrimitiveCompletePackageImpl primitiveCompletePackage = new PrimitiveCompletePackageImpl();
 		return primitiveCompletePackage;
@@ -486,7 +487,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public Property createProperty() {
+	public @NonNull Property createProperty() {
 		PropertyImpl property = new PropertyImpl();
 		return property;
 	}
@@ -497,7 +498,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public AssociationClass createAssociationClass() {
+	public @NonNull AssociationClass createAssociationClass() {
 		AssociationClassImpl associationClass = new AssociationClassImpl();
 		return associationClass;
 	}
@@ -508,7 +509,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public Operation createOperation() {
+	public @NonNull Operation createOperation() {
 		OperationImpl operation = new OperationImpl();
 		return operation;
 	}
@@ -519,7 +520,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public Parameter createParameter() {
+	public @NonNull Parameter createParameter() {
 		ParameterImpl parameter = new ParameterImpl();
 		return parameter;
 	}
@@ -530,7 +531,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public OppositePropertyCallExp createOppositePropertyCallExp()
+	public @NonNull OppositePropertyCallExp createOppositePropertyCallExp()
 	{
 		OppositePropertyCallExpImpl oppositePropertyCallExp = new OppositePropertyCallExpImpl();
 		return oppositePropertyCallExp;
@@ -542,7 +543,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public Comment createComment() {
+	public @NonNull Comment createComment() {
 		CommentImpl comment = new CommentImpl();
 		return comment;
 	}
@@ -553,7 +554,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public CompleteClass createCompleteClass()
+	public @NonNull CompleteClass createCompleteClass()
 	{
 		CompleteClassImpl completeClass = new CompleteClassImpl();
 		return completeClass;
@@ -565,7 +566,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public CompleteEnvironment createCompleteEnvironment()
+	public @NonNull CompleteEnvironment createCompleteEnvironment()
 	{
 		CompleteEnvironmentImpl completeEnvironment = new CompleteEnvironmentImpl();
 		return completeEnvironment;
@@ -577,7 +578,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public CompleteModel createCompleteModel()
+	public @NonNull CompleteModel createCompleteModel()
 	{
 		CompleteModelImpl completeModel = new CompleteModelImpl();
 		return completeModel;
@@ -589,7 +590,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public CompletePackage createCompletePackage()
+	public @NonNull CompletePackage createCompletePackage()
 	{
 		CompletePackageImpl completePackage = new CompletePackageImpl();
 		return completePackage;
@@ -601,7 +602,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public ConnectionPointReference createConnectionPointReference()
+	public @NonNull ConnectionPointReference createConnectionPointReference()
 	{
 		ConnectionPointReferenceImpl connectionPointReference = new ConnectionPointReferenceImpl();
 		return connectionPointReference;
@@ -613,7 +614,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public Constraint createConstraint() {
+	public @NonNull Constraint createConstraint() {
 		ConstraintImpl constraint = new ConstraintImpl();
 		return constraint;
 	}
@@ -624,7 +625,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public Detail createDetail() {
+	public @NonNull Detail createDetail() {
 		DetailImpl detail = new DetailImpl();
 		return detail;
 	}
@@ -635,7 +636,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public DynamicBehavior createDynamicBehavior()
+	public @NonNull DynamicBehavior createDynamicBehavior()
 	{
 		DynamicBehaviorImpl dynamicBehavior = new DynamicBehaviorImpl();
 		return dynamicBehavior;
@@ -647,7 +648,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public DynamicElement createDynamicElement()
+	public @NonNull DynamicElement createDynamicElement()
 	{
 		DynamicElementImpl dynamicElement = new DynamicElementImpl();
 		return dynamicElement;
@@ -659,7 +660,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public DynamicProperty createDynamicProperty()
+	public @NonNull DynamicProperty createDynamicProperty()
 	{
 		DynamicPropertyImpl dynamicProperty = new DynamicPropertyImpl();
 		return dynamicProperty;
@@ -671,7 +672,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public DynamicType createDynamicType()
+	public @NonNull DynamicType createDynamicType()
 	{
 		DynamicTypeImpl dynamicType = new DynamicTypeImpl();
 		return dynamicType;
@@ -683,7 +684,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public DynamicValueSpecification createDynamicValueSpecification()
+	public @NonNull DynamicValueSpecification createDynamicValueSpecification()
 	{
 		DynamicValueSpecificationImpl dynamicValueSpecification = new DynamicValueSpecificationImpl();
 		return dynamicValueSpecification;
@@ -695,7 +696,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public ElementExtension createElementExtension()
+	public @NonNull ElementExtension createElementExtension()
 	{
 		ElementExtensionImpl elementExtension = new ElementExtensionImpl();
 		return elementExtension;
@@ -707,7 +708,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public AnyType createAnyType() {
+	public @NonNull AnyType createAnyType() {
 		AnyTypeImpl anyType = new AnyTypeImpl();
 		return anyType;
 	}
@@ -718,7 +719,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public AssociationClassCallExp createAssociationClassCallExp() {
+	public @NonNull AssociationClassCallExp createAssociationClassCallExp() {
 		AssociationClassCallExpImpl associationClassCallExp = new AssociationClassCallExpImpl();
 		return associationClassCallExp;
 	}
@@ -729,7 +730,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public BagType createBagType() {
+	public @NonNull BagType createBagType() {
 		BagTypeImpl bagType = new BagTypeImpl();
 		return bagType;
 	}
@@ -740,7 +741,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public CollectionType createCollectionType() {
+	public @NonNull CollectionType createCollectionType() {
 		CollectionTypeImpl collectionType = new CollectionTypeImpl();
 		return collectionType;
 	}
@@ -751,7 +752,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public DataType createDataType() {
+	public @NonNull DataType createDataType() {
 		DataTypeImpl dataType = new DataTypeImpl();
 		return dataType;
 	}
@@ -762,7 +763,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public BooleanLiteralExp createBooleanLiteralExp() {
+	public @NonNull BooleanLiteralExp createBooleanLiteralExp() {
 		BooleanLiteralExpImpl booleanLiteralExp = new BooleanLiteralExpImpl();
 		return booleanLiteralExp;
 	}
@@ -773,7 +774,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public CallOperationAction createCallOperationAction() {
+	public @NonNull CallOperationAction createCallOperationAction() {
 		CallOperationActionImpl callOperationAction = new CallOperationActionImpl();
 		return callOperationAction;
 	}
@@ -784,7 +785,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public CollectionItem createCollectionItem() {
+	public @NonNull CollectionItem createCollectionItem() {
 		CollectionItemImpl collectionItem = new CollectionItemImpl();
 		return collectionItem;
 	}
@@ -795,7 +796,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public CollectionLiteralExp createCollectionLiteralExp() {
+	public @NonNull CollectionLiteralExp createCollectionLiteralExp() {
 		CollectionLiteralExpImpl collectionLiteralExp = new CollectionLiteralExpImpl();
 		return collectionLiteralExp;
 	}
@@ -806,7 +807,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public CollectionRange createCollectionRange() {
+	public @NonNull CollectionRange createCollectionRange() {
 		CollectionRangeImpl collectionRange = new CollectionRangeImpl();
 		return collectionRange;
 	}
@@ -817,7 +818,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public EnumLiteralExp createEnumLiteralExp() {
+	public @NonNull EnumLiteralExp createEnumLiteralExp() {
 		EnumLiteralExpImpl enumLiteralExp = new EnumLiteralExpImpl();
 		return enumLiteralExp;
 	}
@@ -828,7 +829,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public EnumerationLiteral createEnumerationLiteral() {
+	public @NonNull EnumerationLiteral createEnumerationLiteral() {
 		EnumerationLiteralImpl enumerationLiteral = new EnumerationLiteralImpl();
 		return enumerationLiteral;
 	}
@@ -839,7 +840,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public ExpressionInOCL createExpressionInOCL()
+	public @NonNull ExpressionInOCL createExpressionInOCL()
 	{
 		ExpressionInOCLImpl expressionInOCL = new ExpressionInOCLImpl();
 		return expressionInOCL;
@@ -851,7 +852,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public FinalState createFinalState()
+	public @NonNull FinalState createFinalState()
 	{
 		FinalStateImpl finalState = new FinalStateImpl();
 		return finalState;
@@ -863,7 +864,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public Enumeration createEnumeration() {
+	public @NonNull Enumeration createEnumeration() {
 		EnumerationImpl enumeration = new EnumerationImpl();
 		return enumeration;
 	}
@@ -874,7 +875,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public Variable createVariable() {
+	public @NonNull Variable createVariable() {
 		VariableImpl variable = new VariableImpl();
 		return variable;
 	}
@@ -885,7 +886,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public IfExp createIfExp() {
+	public @NonNull IfExp createIfExp() {
 		IfExpImpl ifExp = new IfExpImpl();
 		return ifExp;
 	}
@@ -896,7 +897,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public Import createImport()
+	public @NonNull Import createImport()
 	{
 		ImportImpl import_ = new ImportImpl();
 		return import_;
@@ -908,7 +909,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public InstanceSpecification createInstanceSpecification()
+	public @NonNull InstanceSpecification createInstanceSpecification()
 	{
 		InstanceSpecificationImpl instanceSpecification = new InstanceSpecificationImpl();
 		return instanceSpecification;
@@ -920,7 +921,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public IntegerLiteralExp createIntegerLiteralExp() {
+	public @NonNull IntegerLiteralExp createIntegerLiteralExp() {
 		IntegerLiteralExpImpl integerLiteralExp = new IntegerLiteralExpImpl();
 		return integerLiteralExp;
 	}
@@ -931,7 +932,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public InvalidLiteralExp createInvalidLiteralExp() {
+	public @NonNull InvalidLiteralExp createInvalidLiteralExp() {
 		InvalidLiteralExpImpl invalidLiteralExp = new InvalidLiteralExpImpl();
 		return invalidLiteralExp;
 	}
@@ -942,7 +943,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public InvalidType createInvalidType() {
+	public @NonNull InvalidType createInvalidType() {
 		InvalidTypeImpl invalidType = new InvalidTypeImpl();
 		return invalidType;
 	}
@@ -953,7 +954,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public IterateExp createIterateExp()
+	public @NonNull IterateExp createIterateExp()
 	{
 		IterateExpImpl iterateExp = new IterateExpImpl();
 		return iterateExp;
@@ -965,7 +966,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public Iteration createIteration()
+	public @NonNull Iteration createIteration()
 	{
 		IterationImpl iteration = new IterationImpl();
 		return iteration;
@@ -977,7 +978,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public IteratorExp createIteratorExp()
+	public @NonNull IteratorExp createIteratorExp()
 	{
 		IteratorExpImpl iteratorExp = new IteratorExpImpl();
 		return iteratorExp;
@@ -989,7 +990,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public LambdaType createLambdaType()
+	public @NonNull LambdaType createLambdaType()
 	{
 		LambdaTypeImpl lambdaType = new LambdaTypeImpl();
 		return lambdaType;
@@ -1001,7 +1002,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public LetExp createLetExp() {
+	public @NonNull LetExp createLetExp() {
 		LetExpImpl letExp = new LetExpImpl();
 		return letExp;
 	}
@@ -1012,7 +1013,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public Library createLibrary()
+	public @NonNull Library createLibrary()
 	{
 		LibraryImpl library = new LibraryImpl();
 		return library;
@@ -1024,7 +1025,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public MapLiteralExp createMapLiteralExp()
+	public @NonNull MapLiteralExp createMapLiteralExp()
 	{
 		MapLiteralExpImpl mapLiteralExp = new MapLiteralExpImpl();
 		return mapLiteralExp;
@@ -1036,7 +1037,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public MapLiteralPart createMapLiteralPart()
+	public @NonNull MapLiteralPart createMapLiteralPart()
 	{
 		MapLiteralPartImpl mapLiteralPart = new MapLiteralPartImpl();
 		return mapLiteralPart;
@@ -1048,7 +1049,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public MapType createMapType()
+	public @NonNull MapType createMapType()
 	{
 		MapTypeImpl mapType = new MapTypeImpl();
 		return mapType;
@@ -1060,7 +1061,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public MessageExp createMessageExp() {
+	public @NonNull MessageExp createMessageExp() {
 		MessageExpImpl messageExp = new MessageExpImpl();
 		return messageExp;
 	}
@@ -1071,7 +1072,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public SendSignalAction createSendSignalAction() {
+	public @NonNull SendSignalAction createSendSignalAction() {
 		SendSignalActionImpl sendSignalAction = new SendSignalActionImpl();
 		return sendSignalAction;
 	}
@@ -1082,7 +1083,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public Signal createSignal() {
+	public @NonNull Signal createSignal() {
 		SignalImpl signal = new SignalImpl();
 		return signal;
 	}
@@ -1093,7 +1094,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public Slot createSlot()
+	public @NonNull Slot createSlot()
 	{
 		SlotImpl slot = new SlotImpl();
 		return slot;
@@ -1105,7 +1106,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public StandardLibrary createStandardLibrary()
+	public @NonNull StandardLibrary createStandardLibrary()
 	{
 		StandardLibraryImpl standardLibrary = new StandardLibraryImpl();
 		return standardLibrary;
@@ -1117,7 +1118,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public MessageType createMessageType() {
+	public @NonNull MessageType createMessageType() {
 		MessageTypeImpl messageType = new MessageTypeImpl();
 		return messageType;
 	}
@@ -1128,7 +1129,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public Model createModel()
+	public @NonNull Model createModel()
 	{
 		ModelImpl model = new ModelImpl();
 		return model;
@@ -1140,7 +1141,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public NullLiteralExp createNullLiteralExp() {
+	public @NonNull NullLiteralExp createNullLiteralExp() {
 		NullLiteralExpImpl nullLiteralExp = new NullLiteralExpImpl();
 		return nullLiteralExp;
 	}
@@ -1151,7 +1152,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public OperationCallExp createOperationCallExp() {
+	public @NonNull OperationCallExp createOperationCallExp() {
 		OperationCallExpImpl operationCallExp = new OperationCallExpImpl();
 		return operationCallExp;
 	}
@@ -1162,7 +1163,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public OrderedSetType createOrderedSetType() {
+	public @NonNull OrderedSetType createOrderedSetType() {
 		OrderedSetTypeImpl orderedSetType = new OrderedSetTypeImpl();
 		return orderedSetType;
 	}
@@ -1173,7 +1174,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public OrphanCompletePackage createOrphanCompletePackage()
+	public @NonNull OrphanCompletePackage createOrphanCompletePackage()
 	{
 		OrphanCompletePackageImpl orphanCompletePackage = new OrphanCompletePackageImpl();
 		return orphanCompletePackage;
@@ -1185,7 +1186,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public PrimitiveType createPrimitiveType() {
+	public @NonNull PrimitiveType createPrimitiveType() {
 		PrimitiveTypeImpl primitiveType = new PrimitiveTypeImpl();
 		return primitiveType;
 	}
@@ -1196,7 +1197,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public Profile createProfile()
+	public @NonNull Profile createProfile()
 	{
 		ProfileImpl profile = new ProfileImpl();
 		return profile;
@@ -1208,7 +1209,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public ProfileApplication createProfileApplication()
+	public @NonNull ProfileApplication createProfileApplication()
 	{
 		ProfileApplicationImpl profileApplication = new ProfileApplicationImpl();
 		return profileApplication;
@@ -1220,7 +1221,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public PropertyCallExp createPropertyCallExp() {
+	public @NonNull PropertyCallExp createPropertyCallExp() {
 		PropertyCallExpImpl propertyCallExp = new PropertyCallExpImpl();
 		return propertyCallExp;
 	}
@@ -1231,7 +1232,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public Pseudostate createPseudostate()
+	public @NonNull Pseudostate createPseudostate()
 	{
 		PseudostateImpl pseudostate = new PseudostateImpl();
 		return pseudostate;
@@ -1243,7 +1244,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public RealLiteralExp createRealLiteralExp() {
+	public @NonNull RealLiteralExp createRealLiteralExp() {
 		RealLiteralExpImpl realLiteralExp = new RealLiteralExpImpl();
 		return realLiteralExp;
 	}
@@ -1254,7 +1255,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public Region createRegion()
+	public @NonNull Region createRegion()
 	{
 		RegionImpl region = new RegionImpl();
 		return region;
@@ -1266,7 +1267,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public SelfType createSelfType()
+	public @NonNull SelfType createSelfType()
 	{
 		SelfTypeImpl selfType = new SelfTypeImpl();
 		return selfType;
@@ -1278,7 +1279,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public SequenceType createSequenceType() {
+	public @NonNull SequenceType createSequenceType() {
 		SequenceTypeImpl sequenceType = new SequenceTypeImpl();
 		return sequenceType;
 	}
@@ -1289,7 +1290,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public SetType createSetType() {
+	public @NonNull SetType createSetType() {
 		SetTypeImpl setType = new SetTypeImpl();
 		return setType;
 	}
@@ -1300,7 +1301,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public ShadowExp createShadowExp()
+	public @NonNull ShadowExp createShadowExp()
 	{
 		ShadowExpImpl shadowExp = new ShadowExpImpl();
 		return shadowExp;
@@ -1312,7 +1313,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public ShadowPart createShadowPart()
+	public @NonNull ShadowPart createShadowPart()
 	{
 		ShadowPartImpl shadowPart = new ShadowPartImpl();
 		return shadowPart;
@@ -1324,7 +1325,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public State createState() {
+	public @NonNull State createState() {
 		StateImpl state = new StateImpl();
 		return state;
 	}
@@ -1335,7 +1336,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public StateExp createStateExp() {
+	public @NonNull StateExp createStateExp() {
 		StateExpImpl stateExp = new StateExpImpl();
 		return stateExp;
 	}
@@ -1346,7 +1347,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public StateMachine createStateMachine()
+	public @NonNull StateMachine createStateMachine()
 	{
 		StateMachineImpl stateMachine = new StateMachineImpl();
 		return stateMachine;
@@ -1358,7 +1359,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public Stereotype createStereotype()
+	public @NonNull Stereotype createStereotype()
 	{
 		StereotypeImpl stereotype = new StereotypeImpl();
 		return stereotype;
@@ -1370,7 +1371,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public StereotypeExtender createStereotypeExtender()
+	public @NonNull StereotypeExtender createStereotypeExtender()
 	{
 		StereotypeExtenderImpl stereotypeExtender = new StereotypeExtenderImpl();
 		return stereotypeExtender;
@@ -1382,7 +1383,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public StringLiteralExp createStringLiteralExp() {
+	public @NonNull StringLiteralExp createStringLiteralExp() {
 		StringLiteralExpImpl stringLiteralExp = new StringLiteralExpImpl();
 		return stringLiteralExp;
 	}
@@ -1393,7 +1394,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public TupleLiteralExp createTupleLiteralExp() {
+	public @NonNull TupleLiteralExp createTupleLiteralExp() {
 		TupleLiteralExpImpl tupleLiteralExp = new TupleLiteralExpImpl();
 		return tupleLiteralExp;
 	}
@@ -1404,7 +1405,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public TupleLiteralPart createTupleLiteralPart() {
+	public @NonNull TupleLiteralPart createTupleLiteralPart() {
 		TupleLiteralPartImpl tupleLiteralPart = new TupleLiteralPartImpl();
 		return tupleLiteralPart;
 	}
@@ -1415,7 +1416,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public TupleType createTupleType() {
+	public @NonNull TupleType createTupleType() {
 		TupleTypeImpl tupleType = new TupleTypeImpl();
 		return tupleType;
 	}
@@ -1426,7 +1427,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public TypeExp createTypeExp() {
+	public @NonNull TypeExp createTypeExp() {
 		TypeExpImpl typeExp = new TypeExpImpl();
 		return typeExp;
 	}
@@ -1437,7 +1438,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public UnlimitedNaturalLiteralExp createUnlimitedNaturalLiteralExp() {
+	public @NonNull UnlimitedNaturalLiteralExp createUnlimitedNaturalLiteralExp() {
 		UnlimitedNaturalLiteralExpImpl unlimitedNaturalLiteralExp = new UnlimitedNaturalLiteralExpImpl();
 		return unlimitedNaturalLiteralExp;
 	}
@@ -1448,7 +1449,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public UnspecifiedValueExp createUnspecifiedValueExp() {
+	public @NonNull UnspecifiedValueExp createUnspecifiedValueExp() {
 		UnspecifiedValueExpImpl unspecifiedValueExp = new UnspecifiedValueExpImpl();
 		return unspecifiedValueExp;
 	}
@@ -1459,7 +1460,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public VariableExp createVariableExp() {
+	public @NonNull VariableExp createVariableExp() {
 		VariableExpImpl variableExp = new VariableExpImpl();
 		return variableExp;
 	}
@@ -1470,7 +1471,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public VoidType createVoidType() {
+	public @NonNull VoidType createVoidType() {
 		VoidTypeImpl voidType = new VoidTypeImpl();
 		return voidType;
 	}
@@ -1481,7 +1482,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public WildcardType createWildcardType()
+	public @NonNull WildcardType createWildcardType()
 	{
 		WildcardTypeImpl wildcardType = new WildcardTypeImpl();
 		return wildcardType;

@@ -276,10 +276,10 @@ public class ClassUtil
 	/**
 	 * Sort aList using comparator, using an Ecollections.sort if aLIst is an EList.
 	 */
-	public static <T> void sort(@NonNull List<T> aList, @NonNull Comparator<T> comparator) {
+	public static <T> void sort(@NonNull List<? extends T> aList, @NonNull Comparator<T> comparator) {
 		if (aList.size() > 1) {
 			if (aList instanceof EList<?>) {
-				ECollections.sort((EList<T>)aList, comparator);
+				ECollections.sort((EList<? extends T>)aList, comparator);
 			}
 			else {
 				Collections.sort(aList, comparator);

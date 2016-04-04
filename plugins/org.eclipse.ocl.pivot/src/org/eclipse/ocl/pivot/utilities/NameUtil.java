@@ -59,7 +59,7 @@ public class NameUtil
 		}
 	}
 
-	public static final NameableComparator NAMEABLE_COMPARATOR = NameableComparator.INSTANCE;
+	public static final @NonNull NameableComparator NAMEABLE_COMPARATOR = NameableComparator.INSTANCE;
 
 	public static String debugFullName(Object object) {
 		if (object == null) {

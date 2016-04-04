@@ -204,7 +204,7 @@ public class PivotUtil
 		return createCollectionType(PivotFactory.eINSTANCE.createCollectionType(), unspecializedType, elementType);
 	}
 
-	protected static @NonNull  <T extends CollectionType> T createCollectionType(/*@NonNull*/ T specializedType, @NonNull T unspecializedType, @NonNull Type instanceType) {
+	protected static @NonNull <@NonNull T extends CollectionType> T createCollectionType(/*@NonNull*/ T specializedType, @NonNull T unspecializedType, @NonNull Type instanceType) {
 		specializedType.setName(unspecializedType.getName());
 		specializedType.setLower(unspecializedType.getLower());
 		specializedType.setUpper(unspecializedType.getUpper());
@@ -267,7 +267,7 @@ public class PivotUtil
 	}
 
 	public static @NonNull ExpressionInOCL createExpressionInOCLError(@NonNull String string) {
-		@SuppressWarnings("null")@NonNull ExpressionInOCL expressionInOCL = PivotFactory.eINSTANCE.createExpressionInOCL();
+		ExpressionInOCL expressionInOCL = PivotFactory.eINSTANCE.createExpressionInOCL();
 		StringLiteralExp stringLiteral = PivotFactory.eINSTANCE.createStringLiteralExp();
 		stringLiteral.setStringSymbol(string); //createTupleValuedConstraint("false", null, string));
 		expressionInOCL.setOwnedBody(stringLiteral);
@@ -322,7 +322,7 @@ public class PivotUtil
 		return createMapType(PivotFactory.eINSTANCE.createMapType(), unspecializedType, keyType, valueType);
 	}
 
-	protected static @NonNull  <T extends MapType> T createMapType(/*@NonNull*/ T specializedType, @NonNull T unspecializedType, @NonNull Type keyType, @NonNull Type valueType) {
+	protected static @NonNull <@NonNull T extends MapType> T createMapType(T specializedType, T unspecializedType, @NonNull Type keyType, @NonNull Type valueType) {
 		specializedType.setName(unspecializedType.getName());
 		specializedType.setUnspecializedElement(unspecializedType);
 		specializedType.setKeyType(keyType);
