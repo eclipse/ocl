@@ -75,6 +75,11 @@ public class ASSaver
 	 * The extra package for copies of specializations.
 	 */
 	private /*@LazyNonNull*/ org.eclipse.ocl.pivot.Class orphanageClass = null;
+	
+	/**
+	 * The appropriate normalization visitor for each Resource.
+	 */
+	private /*@LazyNonNull*/ Map<@NonNull Resource, @NonNull ASSaverNormalizeVisitor> resource2normalizeVisitor = null;
 
 	public void addSpecializingElement(@NonNull Element object) {
 		specializingElements.add(object);
@@ -115,11 +120,21 @@ public class ASSaver
 
 	protected @NonNull ASSaverNormalizeVisitor getNormalizeVisitor(@NonNull EObject eObject) {
 		Resource resource = eObject.eResource();
-		if (resource instanceof ASResource) {
-			return ((ASResource)resource).getASResourceFactory().createASSaverNormalizeVisitor(this);
-		}
-		else if (resource == null) {
+		if (resource == null) {
 			throw new IllegalStateException("Cannot locate " + ASSaverLocateVisitor.class.getName() + " for resource-less " + eObject.eClass().getName());
+		}
+		if (resource2normalizeVisitor == null) {
+			resource2normalizeVisitor = new HashMap<@NonNull Resource, @NonNull ASSaverNormalizeVisitor>();
+		}
+		ASSaverNormalizeVisitor visitor = resource2normalizeVisitor.get(resource);
+		if (visitor != null) {
+			return visitor;
+		}
+		if (resource instanceof ASResource) {
+			ASResource asResource = (ASResource)resource;
+			visitor = asResource.getASResourceFactory().createASSaverNormalizeVisitor(this);
+			resource2normalizeVisitor.put(resource, visitor);
+			return visitor;
 		}
 		else {
 			throw new IllegalStateException("Cannot locate " + ASSaverLocateVisitor.class.getName() + " for non-OCL " + resource.getClass().getName());
@@ -251,10 +266,10 @@ public class ASSaver
 	}
 
 	public void normalizeContents() {
-		for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
-			@SuppressWarnings("null")@NonNull EObject eObject = tit.next();
-			ASSaverNormalizeVisitor normalizeVisitor = getNormalizeVisitor(eObject);
+		for (@NonNull TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
+			EObject eObject = tit.next();
 			if (eObject instanceof Visitable) {
+				ASSaverNormalizeVisitor normalizeVisitor = getNormalizeVisitor(eObject);
 				normalizeVisitor.safeVisit((Visitable) eObject);
 			}
 		}
