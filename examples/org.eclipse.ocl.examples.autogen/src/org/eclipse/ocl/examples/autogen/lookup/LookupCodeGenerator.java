@@ -107,10 +107,7 @@ public class LookupCodeGenerator
 					}
 				}
 			}
-		}
-		if (result.isEmpty()) {
-			result.add(envOpNamePrefix);
-		}
+		}		
 		return result;
 	}
 }
