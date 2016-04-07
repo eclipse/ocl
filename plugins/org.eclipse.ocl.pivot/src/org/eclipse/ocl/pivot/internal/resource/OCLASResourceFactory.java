@@ -73,39 +73,41 @@ public class OCLASResourceFactory extends AbstractASResourceFactory
 
 	@Override
 	public Resource createResource(URI uri) {
+		URI nonASuri = uri.trimFileExtension();
+		String oclasExtension = nonASuri.fileExtension();
+		ASResourceFactory asResourceFactory = ASResourceFactoryRegistry.INSTANCE.getASResourceFactoryForExtension(oclasExtension);
 //		String fileExtension = uri.fileExtension();
 //		if (fileExtension == null) {			// Must be an Ecore Package registration
 //			return EcoreASResourceFactory.INSTANCE.createResource(uri);
 //		}
-		//
-		//	If *.oclas exists use it.
-		//
-		if (uri.isFile() && URIConverter.INSTANCE.exists(uri, null)) {
-			return super.createResource(uri);
-		}
-		else if (uri.isPlatform()) {
-			if (URIConverter.INSTANCE.exists(uri, null)) {
+		if ((asResourceFactory == null) || !nonASuri.isFile()) {					// If it's not a known double extension
+			//
+			//	If *.oclas exists use it.
+			//
+			if (uri.isFile() && URIConverter.INSTANCE.exists(uri, null)) {
 				return super.createResource(uri);
 			}
-			if (uri.isPlatformResource() && EMFPlugin.IS_ECLIPSE_RUNNING) {
-				URI deresolvedURI = uri.deresolve(URI.createPlatformResourceURI("/", true));
-				URI pluginURI = deresolvedURI.resolve(URI.createPlatformPluginURI("/", true));
-				if (URIConverter.INSTANCE.exists(pluginURI, null)) {
-					return super.createResource(pluginURI);
+			else if (uri.isPlatform()) {
+				if (URIConverter.INSTANCE.exists(uri, null)) {
+					return super.createResource(uri);
+				}
+				if (uri.isPlatformResource() && EMFPlugin.IS_ECLIPSE_RUNNING) {
+					URI deresolvedURI = uri.deresolve(URI.createPlatformResourceURI("/", true));
+					URI pluginURI = deresolvedURI.resolve(URI.createPlatformPluginURI("/", true));
+					if (URIConverter.INSTANCE.exists(pluginURI, null)) {
+						return super.createResource(pluginURI);
+					}
 				}
 			}
 		}
 		//
 		//	Otherwise trim *.oclas and create a *.oclas by converting the trimmed resource to OCL AS.
 		//
-		URI nonASuri = uri.trimFileExtension();
 		@SuppressWarnings("null")@NonNull String nonASuriString = nonASuri.toString();
 		StandardLibraryContribution standardLibraryContribution = StandardLibraryContribution.REGISTRY.get(nonASuriString);
 		if (standardLibraryContribution != null) {
 			return standardLibraryContribution.getResource();
 		}
-		String oclasExtension = nonASuri.fileExtension();
-		ASResourceFactory asResourceFactory = ASResourceFactoryRegistry.INSTANCE.getASResourceFactoryForExtension(oclasExtension);
 		if (asResourceFactory == null) {			// Must be an Ecore Package registration possibly with a confusing 'extension'
 			asResourceFactory = EcoreASResourceFactory.getInstance();
 		}

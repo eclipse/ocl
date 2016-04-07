@@ -144,7 +144,6 @@ public class PivotUtilInternal //extends PivotUtil
 		return null;
 	}
 
-	@SuppressWarnings("null")
 	public static @NonNull URI getASURI(@NonNull URI uri) {
 		if (uri.fragment() != null) {
 			logger.error("Unexpected fragment ignored for '" + uri.toString() + "'");
@@ -202,7 +201,6 @@ public class PivotUtilInternal //extends PivotUtil
 	/**
 	 * Trim a surrounding "result=(...)" to convert a UML BodyCondition to an OCL BodyExpression.
 	 */
-	@SuppressWarnings("null")
 	public static @NonNull String getBodyExpression(@NonNull String umlBody) {
 		String s = umlBody.trim();
 		if (s.startsWith(PivotConstants.RESULT_NAME)) {
@@ -274,7 +272,6 @@ public class PivotUtilInternal //extends PivotUtil
 		return null;
 	}
 
-	@SuppressWarnings("null")
 	public static @NonNull URI getNonASURI(@NonNull URI uri) {
 		assert isASURI(uri);
 		return uri.trimFileExtension();
@@ -599,7 +596,7 @@ public class PivotUtilInternal //extends PivotUtil
 		}
 		for (int k = newElements.size(); k-- > 0; ) {
 			T newElement = newElements.get(k);
-			if (newElement.eIsProxy()) {
+			if ((newElement != null) && newElement.eIsProxy()) {
 				oldElements.remove(newElement);			// Lose oldContent before adding possible 'duplicates'
 			}
 		}
