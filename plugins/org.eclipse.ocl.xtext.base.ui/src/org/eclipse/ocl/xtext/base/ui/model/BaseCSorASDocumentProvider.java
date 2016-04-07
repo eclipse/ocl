@@ -14,6 +14,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.ArrayList;
@@ -39,6 +40,7 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.edit.ui.util.EditUIUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.ocl.pivot.Model;
@@ -51,6 +53,8 @@ import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.xtext.base.ui.BaseUiModule;
 import org.eclipse.ocl.xtext.base.ui.BaseUiPluginHelper;
+import org.eclipse.ocl.xtext.base.ui.messages.BaseUIMessages;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.xtext.parsetree.reconstr.XtextSerializationException;
@@ -349,6 +353,19 @@ public abstract class BaseCSorASDocumentProvider extends BaseDocumentProvider
 //			throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, "Failed to load", e));
 		} catch (IOException e) {
 			throw new CoreException(new Status(IStatus.ERROR, BaseUiModule.PLUGIN_ID, "Failed to load", e));
+		} catch (Throwable e) {
+			Runnable displayRefresh = new Runnable() {
+				@Override
+				public void run() {
+					StringWriter stringWriter = new StringWriter();
+					PrintWriter pw = new PrintWriter(stringWriter);
+					e.printStackTrace(pw);
+					String string = stringWriter.toString().replace("\r", "");
+					MessageDialog.openError(null, BaseUIMessages.LoadError_Title, string);
+				}
+			};
+			Display.getDefault().asyncExec(displayRefresh);
+			displayText = "/* Load failed */";
 		}
 		superSetDocumentText(document, displayText);
 	}

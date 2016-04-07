@@ -21,6 +21,8 @@ public class BaseUIMessages
 	static {
 		NLS.initializeMessages(BaseUIMessages.class.getName(), BaseUIMessages.class);
 	}
+	
+	public static String LoadError_Title;
 
 	public static String NewWizardPage_errorTitle;
 	public static String NewWizardPage_file;
