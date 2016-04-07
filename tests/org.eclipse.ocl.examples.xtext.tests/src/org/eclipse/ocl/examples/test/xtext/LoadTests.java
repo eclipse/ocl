@@ -1374,8 +1374,8 @@ public class LoadTests extends XtextTestCase
 		//
 		//	Save the *.oclas and cache that the xmi:ids
 		//
-		URI asURI = getProjectFileURI(ecoreFileName + ".oclas");
-		asResource.setURI(asURI);
+		URI esasURI = getProjectFileURI(ecoreFileName + ".oclas");
+		asResource.setURI(esasURI);
 		Map<String, Object> options = new HashMap<String, Object>();
 		options.put(ASResource.OPTION_INTERNAL_UUIDS, Boolean.TRUE);
 		asResource.save(options);
@@ -1397,6 +1397,8 @@ public class LoadTests extends XtextTestCase
 		//
 		//	Save the *.oclas again and check that the xmi:ids are consistent
 		//
+		URI asURI = esasURI.trimFileExtension().trimFileExtension().appendFileExtension("oclas");
+		asResource.setURI(asURI);
 		asResource.save(null);		// Bug 418412 gave a duplicate xmi:id ISE failure here.		
 		for (TreeIterator<EObject> tit = asResource.getAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();

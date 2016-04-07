@@ -167,7 +167,7 @@ public class ClassUtil
 		if (resource == null) {
 			return false;
 		}
-		return resource.getResourceSet() == null;
+		return resource.getResourceSet() == null;		// FIXME searching resource.getContents() for a derived EPackageImpl with an init() method is solider.
 	}
 
 	/**

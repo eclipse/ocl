@@ -207,6 +207,13 @@ public class Ecore2AS extends AbstractExternal2AS
 	protected final Ecore2ASDeclarationSwitch declarationPass = new Ecore2ASDeclarationSwitch(this);	
 	protected final Ecore2ASReferenceSwitch referencePass = new Ecore2ASReferenceSwitch(this);
 	private HashMap<EClassifier, Type> ecore2asMap = null;
+	
+	/**
+	 * The loadableURI of the ecoreResource, which may differ from ecoreResource.getURI() when
+	 * ecoreResource is an installed package whose nsURI may not be globally registered. The accessible
+	 * URI is used for the AS URI to ensure that the saved serialized XMI is loadable using the source
+	 * *.ecore's rather than the missing nsURI regisyrations.
+	 */
 	private URI ecoreURI = null;
 	
 	/**
@@ -270,6 +277,9 @@ public class Ecore2AS extends AbstractExternal2AS
 	}
 
 	protected @NonNull URI createPivotURI() {
+		if (ecoreURI != null) {
+			return PivotUtilInternal.getASURI(ecoreURI.trimFragment());
+		}
 		URI uri = ecoreResource.getURI();
 		if (uri == null) {
 			throw new IllegalStateException("Missing resource URI");
@@ -494,7 +504,7 @@ public class Ecore2AS extends AbstractExternal2AS
 //		}
 		List<Diagnostic> errors2 = errors;
 		if (errors2 != null) {
-			asResource.getErrors().addAll(errors2);
+			asResource.getErrors().addAll(ClassUtil.nullFree(errors2));
 		}
 		return pivotModel2;
 	}
@@ -845,6 +855,9 @@ public class Ecore2AS extends AbstractExternal2AS
 		return pivotElement; */
 	}
 
+	/**
+	 * Define the loadableURI to be used to form the AS URI that is then used as part of the serialized XMI.
+	 */
 	public void setEcoreURI(URI ecoreURI) {
 		this.ecoreURI = ecoreURI;
 	}

@@ -23,6 +23,9 @@ deresolve
 resolve
  (Lorg/eclipse/emf/common/util/URI;)Lorg/eclipse/emf/common/util/URI;
  (Lorg/eclipse/emf/common/util/URI;)L1org/eclipse/emf/common/util/URI;
+segment
+ (I)Ljava/lang/String;
+ (I)L1java/lang/String;
 trimFileExtension
  ()Lorg/eclipse/emf/common/util/URI;
  ()L1org/eclipse/emf/common/util/URI;

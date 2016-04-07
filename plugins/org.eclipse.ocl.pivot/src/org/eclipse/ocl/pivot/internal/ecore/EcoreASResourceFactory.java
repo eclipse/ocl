@@ -87,7 +87,7 @@ public final class EcoreASResourceFactory extends AbstractASResourceFactory
 	@Override
 	public @Nullable Element importFromResource(@NonNull EnvironmentFactoryInternal environmentFactory, @NonNull Resource ecoreResource, @Nullable URI uri) {
 		Ecore2AS conversion = Ecore2AS.getAdapter(ecoreResource, environmentFactory);
-		conversion.setEcoreURI(uri);
+		conversion.setEcoreURI(uri != null ? uri.trimFragment() : null);
 		Model pivotModel = conversion.getASModel();
 		String uriFragment = uri != null ? uri.fragment() : null;
 		if (uriFragment == null) {
