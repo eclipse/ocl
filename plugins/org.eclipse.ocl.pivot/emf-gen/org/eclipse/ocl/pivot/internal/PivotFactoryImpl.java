@@ -374,7 +374,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public org.eclipse.ocl.pivot.@NonNull Class createClass() {
+	public org.eclipse.ocl.pivot.Class createClass() {
 		ClassImpl class_ = new ClassImpl();
 		return class_;
 	}
@@ -453,7 +453,7 @@ public class PivotFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public org.eclipse.ocl.pivot.@NonNull Package createPackage() {
+	public org.eclipse.ocl.pivot.Package createPackage() {
 		PackageImpl package_ = new PackageImpl();
 		return package_;
 	}

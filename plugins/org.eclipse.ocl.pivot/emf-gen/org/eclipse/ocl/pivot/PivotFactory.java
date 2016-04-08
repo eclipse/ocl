@@ -48,7 +48,7 @@ public interface PivotFactory
 	 * @return a new object of class '<em>Class</em>'.
 	 * @generated
 	 */
-	@NonNull Class createClass();
+	Class createClass();
 
 	/**
 	 * Returns a new object of class '<em>Template Binding</em>'.
@@ -111,7 +111,7 @@ public interface PivotFactory
 	 * @return a new object of class '<em>Package</em>'.
 	 * @generated
 	 */
-	@NonNull Package createPackage();
+	Package createPackage();
 
 	/**
 	 * Returns a new object of class '<em>Precedence</em>'.
