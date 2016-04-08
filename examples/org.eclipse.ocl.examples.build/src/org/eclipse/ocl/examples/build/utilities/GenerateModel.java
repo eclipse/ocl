@@ -77,9 +77,10 @@ public class GenerateModel extends AbstractWorkflowComponent {
 	}
 
 	@Override
-	public void invokeInternal(WorkflowContext ctx, ProgressMonitor arg1,
-			Issues issues) {
-		GeneratorAdapterFactory.Descriptor.Registry.INSTANCE.addDescriptor(GenModelPackage.eNS_URI, OCLinEcoreGeneratorAdapterFactory.DESCRIPTOR);
+	public void invokeInternal(WorkflowContext ctx, ProgressMonitor arg1, Issues issues) {
+		if (!GeneratorAdapterFactory.Descriptor.Registry.INSTANCE.getDescriptors(GenModelPackage.eNS_URI).contains(OCLinEcoreGeneratorAdapterFactory.DESCRIPTOR)) {
+			GeneratorAdapterFactory.Descriptor.Registry.INSTANCE.addDescriptor(GenModelPackage.eNS_URI, OCLinEcoreGeneratorAdapterFactory.DESCRIPTOR);
+		}
 		URI fileURI = URI.createPlatformResourceURI(genModel, true);
 		log.info("Generating Ecore Model using '" + fileURI + "'");
 		ResourceSet resourceSet = getResourceSet();
