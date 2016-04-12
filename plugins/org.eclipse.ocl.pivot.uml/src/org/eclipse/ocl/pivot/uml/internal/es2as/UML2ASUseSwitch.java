@@ -112,6 +112,11 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 	}
 
 	@Override
+	public Object caseAssociationClass(org.eclipse.uml2.uml.AssociationClass umlAssociationClass) {
+		return caseClass(umlAssociationClass);
+	}
+
+	@Override
 	public org.eclipse.ocl.pivot.Class caseClass(org.eclipse.uml2.uml.Class umlClass) {
 		assert umlClass != null;
 		org.eclipse.ocl.pivot.Class pivotElement = converter.getCreated(org.eclipse.ocl.pivot.Class.class, umlClass);

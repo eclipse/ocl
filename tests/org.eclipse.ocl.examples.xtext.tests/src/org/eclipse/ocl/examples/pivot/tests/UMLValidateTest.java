@@ -282,6 +282,42 @@ public class UMLValidateTest extends AbstractValidateTests
 		ocl.dispose();
 	}
 
+	public void test_umlValidation_423905() {
+		OCL ocl = OCL.newInstance(getProjectMap());
+		ResourceSet resourceSet = ocl.getResourceSet(); //createResourceSet();
+		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {
+			assertNull(UML2AS.initialize(resourceSet));
+		}
+		else {
+			UMLResourcesUtil.init(resourceSet);
+		}
+		URI uri = getProjectFileURI("Bug423905.uml");
+		Resource umlResource = ClassUtil.nonNullState(resourceSet.getResource(uri, true));
+		assertNoResourceErrors("Loading", umlResource);
+		assertValidationDiagnostics("Loading", umlResource);
+		URI oclURI = getProjectFileURI("Bug423905.ocl");
+		LoaderWithLog helper = new LoaderWithLog(ocl.getEnvironmentFactory());
+		EnvironmentFactory environmentFactory = helper.getEnvironmentFactory();
+		ProjectManager projectMap = environmentFactory.getProjectManager();
+		projectMap.configure(environmentFactory.getResourceSet(), StandaloneProjectMap.LoadGeneratedPackageStrategy.INSTANCE, StandaloneProjectMap.MapToFirstConflictHandler.INSTANCE);
+		@SuppressWarnings("unused")Resource oclResource = helper.loadResource(oclURI);
+		if (!helper.loadMetamodels()) {
+			fail("Failed to loadMetamodels :\n" + helper.toString());
+		}
+		//
+		//	Load all the documents
+		//
+		if (!helper.loadDocument(oclURI)) {
+			fail("Failed to loadDocument '" + oclURI + "'");
+		}
+		helper.installPackages();
+//BUG 437450				assertValidationDiagnostics("Loading", umlResource);
+		//
+//		disposeResourceSet(resourceSet);
+		helper.dispose();
+		ocl.dispose();
+	}
+
 	public void test_umlValidation_432920() {
 		resetRegistries();
 		CommonOptions.DEFAULT_DELEGATION_MODE.setDefaultValue(PivotConstants.OCL_DELEGATE_URI_PIVOT);

@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.ecore.util.FeatureMap.Entry;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.AssociationClass;
 import org.eclipse.ocl.pivot.Comment;
 import org.eclipse.ocl.pivot.ConnectionPointReference;
 import org.eclipse.ocl.pivot.Constraint;
@@ -136,8 +137,25 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 				}
 			}
 		} */
+		if (umlAssociation.getOwnedRules().size() > 0) {
+			converter.queueUse(umlAssociation);	// constraints
+		}
 		converter.queueReference(umlAssociation);	// opposites
 		return this;
+	}
+
+	@Override
+	public Object caseAssociationClass(org.eclipse.uml2.uml.AssociationClass umlAssociationClass) {
+		assert umlAssociationClass != null;
+		AssociationClass asAssociationClass = converter.refreshNamedElement(org.eclipse.ocl.pivot.AssociationClass.class, PivotPackage.Literals.ASSOCIATION_CLASS, umlAssociationClass);
+//		System.out.println("Class " + umlClass.getName() + " => " + ClassUtil.debugSimpleName(pivotElement));
+		copyClass(asAssociationClass, umlAssociationClass);
+		@SuppressWarnings("null") @NonNull List<org.eclipse.uml2.uml.Property> ownedEnds = umlAssociationClass.getOwnedEnds();
+		for (org.eclipse.uml2.uml.Property umlProperty : ownedEnds) {
+			doSwitch(umlProperty);
+		}
+		converter.queueReference(umlAssociationClass);		// superClasses
+		return asAssociationClass;
 	}
 
 	@Override
@@ -842,17 +860,22 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 		else {
 			pivotElement.getOwnedProfileApplications().clear();
 		}
+		List<org.eclipse.ocl.pivot.@NonNull Class> asClasses = new ArrayList<org.eclipse.ocl.pivot.@NonNull Class>();
 		if (umlTypes != null) {
-			doSwitchAll(pivotElement.getOwnedClasses(), umlTypes, null);
+			doSwitchAll(asClasses, umlTypes, null);
 		}
 		else {
-			pivotElement.getOwnedClasses().clear();
+			asClasses.clear();
 		}
 		if (umlAssociations != null) {
 			for (org.eclipse.uml2.uml.Association umlAssociation : umlAssociations) {
-				doSwitch(umlAssociation);
+				Object asAssociation = doSwitch(umlAssociation);
+				if (asAssociation instanceof AssociationClass) {
+					asClasses.add((AssociationClass)asAssociation);
+				}
 			}
 		}
+		converter.refreshList(pivotElement.getOwnedClasses(), asClasses);
 		if (umlConstraints != null) {
 			doSwitchAll(pivotElement.getOwnedConstraints(), umlConstraints, null);
 		}
