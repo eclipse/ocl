@@ -59,6 +59,18 @@
             </message_arguments>
         </filter>
     </resource>
+    <resource path="emf-gen/org/eclipse/ocl/pivot/PivotTables.java" type="org.eclipse.ocl.pivot.PivotTables">
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="BAG_CLSSid_OCLExpression"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="BAG_CLSSid_VariableDeclaration"/>
+            </message_arguments>
+        </filter>
+    </resource>
     <resource path="emf-gen/org/eclipse/ocl/pivot/PivotTables.java" type="org.eclipse.ocl.pivot.PivotTables$Parameters">
         <filter comment="See Bug 471118, symbol is logically internal" id="338755678">
             <message_arguments>
@@ -71,6 +83,16 @@
         <filter id="1143996420">
             <message_arguments>
                 <message_argument value="_OperationCallExp__isVirtual"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="_Type__OCLExpression__typeValue"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="_Type__VariableDeclaration__typeValue"/>
             </message_arguments>
         </filter>
     </resource>
@@ -640,13 +662,6 @@
         <filter id="1110441988">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.pivot.util.PivotUnqualifiedLookupVisitor"/>
-            </message_arguments>
-        </filter>
-    </resource>
-    <resource path="src-gen/org/eclipse/ocl/pivot/internal/labels/LabelGeneratorRegistry.java" type="org.eclipse.ocl.pivot.internal.labels.LabelGeneratorRegistry">
-        <filter id="1110441988">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.pivot.internal.labels.LabelGeneratorRegistry"/>
             </message_arguments>
         </filter>
     </resource>

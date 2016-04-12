@@ -337,6 +337,7 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull BagType _Bag_MapType = createBagType(_Bag, _MapType);
 		private final @NonNull BagType _Bag_MessageType = createBagType(_Bag, _MessageType);
 		private final @NonNull BagType _Bag_NavigationCallExp = createBagType(_Bag, _NavigationCallExp);
+		private final @NonNull BagType _Bag_OCLExpression = createBagType(_Bag, _OCLExpression);
 		private final @NonNull BagType _Bag_Operation = createBagType(_Bag, _Operation);
 		private final @NonNull BagType _Bag_OperationCallExp = createBagType(_Bag, _OperationCallExp);
 		private final @NonNull BagType _Bag_OppositePropertyCallExp = createBagType(_Bag, _OppositePropertyCallExp);
@@ -357,6 +358,7 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull BagType _Bag_TypeExp = createBagType(_Bag, _TypeExp);
 		private final @NonNull BagType _Bag_TypedElement = createBagType(_Bag, _TypedElement);
 		private final @NonNull BagType _Bag_Variable = createBagType(_Bag, _Variable);
+		private final @NonNull BagType _Bag_VariableDeclaration = createBagType(_Bag, _VariableDeclaration);
 		private final @NonNull BagType _Bag_VariableExp = createBagType(_Bag, _VariableExp);
 		private final @NonNull BagType _Bag_WildcardType = createBagType(_Bag, _WildcardType);
 		private final @NonNull CollectionType _Collection_Annotation = createCollectionType(_Collection, _Annotation);
@@ -421,6 +423,7 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull CollectionType _Collection_TypedElement = createCollectionType(_Collection, _TypedElement);
 		private final @NonNull CollectionType _Collection_ValueSpecification = createCollectionType(_Collection, _ValueSpecification);
 		private final @NonNull CollectionType _Collection_Variable = createCollectionType(_Collection, _Variable);
+		private final @NonNull CollectionType _Collection_VariableDeclaration = createCollectionType(_Collection, _VariableDeclaration);
 		private final @NonNull CollectionType _Collection_VariableExp = createCollectionType(_Collection, _VariableExp);
 		private final @NonNull CollectionType _Collection_Vertex = createCollectionType(_Collection, _Vertex);
 		private final @NonNull CollectionType _Collection_WildcardType = createCollectionType(_Collection, _WildcardType);
@@ -1075,6 +1078,9 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedClasses.add(type = _Bag_NavigationCallExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_NavigationCallExp);
+			ownedClasses.add(type = _Bag_OCLExpression);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Collection_OCLExpression);
 			ownedClasses.add(type = _Bag_Operation);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Operation);
@@ -1135,6 +1141,9 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedClasses.add(type = _Bag_Variable);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_Variable);
+			ownedClasses.add(type = _Bag_VariableDeclaration);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Collection_VariableDeclaration);
 			ownedClasses.add(type = _Bag_VariableExp);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_Collection_VariableExp);
@@ -1325,6 +1334,9 @@ public class OCLmetamodel extends ASResourceImpl
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
 			ownedClasses.add(type = _Collection_Variable);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclElement);
+			ownedClasses.add(type = _Collection_VariableDeclaration);
 			superClasses = type.getSuperClasses();
 			superClasses.add(_OclElement);
 			ownedClasses.add(type = _Collection_VariableExp);
@@ -2122,10 +2134,12 @@ public class OCLmetamodel extends ASResourceImpl
 		private final @NonNull Property pr_Type_LambdaType_resultType = createProperty("LambdaType", _Bag_LambdaType);
 		private final @NonNull Property pr_Type_MapType_keyType = createProperty("MapType", _Bag_MapType);
 		private final @NonNull Property pr_Type_MapType_valueType = createProperty("MapType", _Bag_MapType);
+		private final @NonNull Property pr_Type_OCLExpression_typeValue = createProperty("OCLExpression", _Bag_OCLExpression);
 		private final @NonNull Property pr_Type_Operation_raisedExceptions = createProperty("Operation", _Bag_Operation);
 		private final @NonNull Property pr_Type_TemplateParameterSubstitution_actual = createProperty("TemplateParameterSubstitution", _Bag_TemplateParameterSubstitution);
 		private final @NonNull Property pr_Type_TypeExp_referredType = createProperty("TypeExp", _Bag_TypeExp);
 		private final @NonNull Property pr_Type_TypedElement_type = createProperty("TypedElement", _Bag_TypedElement);
+		private final @NonNull Property pr_Type_VariableDeclaration_typeValue = createProperty("VariableDeclaration", _Bag_VariableDeclaration);
 		private final @NonNull Property pr_Type_WildcardType_lowerBound = createProperty("WildcardType", _Bag_WildcardType);
 		private final @NonNull Property pr_Type_WildcardType_upperBound = createProperty("WildcardType", _Bag_WildcardType);
 		private final @NonNull Property pr_TypeExp_referredType = createProperty(PivotPackage.Literals.TYPE_EXP__REFERRED_TYPE, _Type);
@@ -2872,7 +2886,7 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedProperties = _OCLExpression.getOwnedProperties();
 			ownedProperties.add(property = pr_OCLExpression_typeValue);
 			property.setIsRequired(false);
-			property.setIsTransient(true);
+			property.setOpposite(pr_Type_OCLExpression_typeValue);
 			ownedProperties.add(property = pr_OCLExpression_CallExp_ownedSource);
 			property.setIsImplicit(true);
 			property.setIsRequired(false);
@@ -3661,6 +3675,10 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_MapType_valueType);
+			ownedProperties.add(property = pr_Type_OCLExpression_typeValue);
+			property.setIsImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_OCLExpression_typeValue);
 			ownedProperties.add(property = pr_Type_Operation_raisedExceptions);
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
@@ -3677,6 +3695,10 @@ public class OCLmetamodel extends ASResourceImpl
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
 			property.setOpposite(pr_TypedElement_type);
+			ownedProperties.add(property = pr_Type_VariableDeclaration_typeValue);
+			property.setIsImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_VariableDeclaration_typeValue);
 			ownedProperties.add(property = pr_Type_WildcardType_lowerBound);
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
@@ -3764,7 +3786,7 @@ public class OCLmetamodel extends ASResourceImpl
 			ownedProperties = _VariableDeclaration.getOwnedProperties();
 			ownedProperties.add(property = pr_VariableDeclaration_typeValue);
 			property.setIsRequired(false);
-			property.setIsTransient(true);
+			property.setOpposite(pr_Type_VariableDeclaration_typeValue);
 			ownedProperties.add(property = pr_VariableDeclaration_VariableExp_referredVariable);
 			property.setIsImplicit(true);
 			property.setIsResolveProxies(true);
@@ -3854,6 +3876,8 @@ public class OCLmetamodel extends ASResourceImpl
 				createTemplateParameterSubstitution(_Bag_T, _MessageType)));
 			_Bag_NavigationCallExp.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _NavigationCallExp)));
+			_Bag_OCLExpression.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(_Bag_T, _OCLExpression)));
 			_Bag_Operation.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _Operation)));
 			_Bag_OperationCallExp.getOwnedBindings().add(createTemplateBinding(
@@ -3894,6 +3918,8 @@ public class OCLmetamodel extends ASResourceImpl
 				createTemplateParameterSubstitution(_Bag_T, _TypedElement)));
 			_Bag_Variable.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _Variable)));
+			_Bag_VariableDeclaration.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(_Bag_T, _VariableDeclaration)));
 			_Bag_VariableExp.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Bag_T, _VariableExp)));
 			_Bag_WildcardType.getOwnedBindings().add(createTemplateBinding(
@@ -4022,6 +4048,8 @@ public class OCLmetamodel extends ASResourceImpl
 				createTemplateParameterSubstitution(_Collection_T, _ValueSpecification)));
 			_Collection_Variable.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _Variable)));
+			_Collection_VariableDeclaration.getOwnedBindings().add(createTemplateBinding(
+				createTemplateParameterSubstitution(_Collection_T, _VariableDeclaration)));
 			_Collection_VariableExp.getOwnedBindings().add(createTemplateBinding(
 				createTemplateParameterSubstitution(_Collection_T, _VariableExp)));
 			_Collection_Vertex.getOwnedBindings().add(createTemplateBinding(
