@@ -105,10 +105,13 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 	public Object caseAssociation(org.eclipse.uml2.uml.Association umlAssociation) {
 		assert umlAssociation != null;
 //		System.out.println("Association " + umlAssociation.getName());
-		@SuppressWarnings("null") @NonNull List<org.eclipse.uml2.uml.Property> ownedEnds = umlAssociation.getOwnedEnds();
-		for (org.eclipse.uml2.uml.Property umlProperty : ownedEnds) {
-			doSwitch(umlProperty);
+		Object pivotElement = this;									// Dummy return value to inhibit super search.
+		if (umlAssociation.getOwnedRules().size() > 0) {			// If we need an AssociationClass
+			AssociationClass asAssociationClass = converter.refreshNamedElement(org.eclipse.ocl.pivot.AssociationClass.class, PivotPackage.Literals.ASSOCIATION_CLASS, umlAssociation);
+			converter.queueUse(umlAssociation);	// constraints
+			pivotElement = asAssociationClass;
 		}
+		copyAssociationEnds(umlAssociation.getOwnedEnds());
 /*		@SuppressWarnings("null") @NonNull List<org.eclipse.uml2.uml.Property> memberEnds = umlAssociation.getMemberEnds();
 //		boolean isSubsetted = false;
 		boolean isUnnamed = false;
@@ -137,23 +140,17 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 				}
 			}
 		} */
-		if (umlAssociation.getOwnedRules().size() > 0) {
-			converter.queueUse(umlAssociation);	// constraints
-		}
 		converter.queueReference(umlAssociation);	// opposites
-		return this;
+		return pivotElement;
 	}
 
 	@Override
 	public Object caseAssociationClass(org.eclipse.uml2.uml.AssociationClass umlAssociationClass) {
 		assert umlAssociationClass != null;
-		AssociationClass asAssociationClass = converter.refreshNamedElement(org.eclipse.ocl.pivot.AssociationClass.class, PivotPackage.Literals.ASSOCIATION_CLASS, umlAssociationClass);
+		AssociationClass asAssociationClass = converter.refreshNamedElement(AssociationClass.class, PivotPackage.Literals.ASSOCIATION_CLASS, umlAssociationClass);
 //		System.out.println("Class " + umlClass.getName() + " => " + ClassUtil.debugSimpleName(pivotElement));
 		copyClass(asAssociationClass, umlAssociationClass);
-		@SuppressWarnings("null") @NonNull List<org.eclipse.uml2.uml.Property> ownedEnds = umlAssociationClass.getOwnedEnds();
-		for (org.eclipse.uml2.uml.Property umlProperty : ownedEnds) {
-			doSwitch(umlProperty);
-		}
+		copyAssociationEnds(umlAssociationClass.getOwnedEnds());
 		converter.queueReference(umlAssociationClass);		// superClasses
 		return asAssociationClass;
 	}
@@ -608,6 +605,12 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 					pivotAnnotations.add(pivotAnnotation);
 				}
 			}
+		}
+	}
+
+	private void copyAssociationEnds(List<org.eclipse.uml2.uml.Property> ownedEnds) {
+		for (org.eclipse.uml2.uml.Property umlProperty : ownedEnds) {
+			doSwitch(umlProperty);
 		}
 	}
 

@@ -308,7 +308,7 @@ public class UMLValidateTest extends AbstractValidateTests
 		//	Load all the documents
 		//
 		if (!helper.loadDocument(oclURI)) {
-			fail("Failed to loadDocument '" + oclURI + "'");
+			fail("Failed to loadDocument '" + oclURI + "'\n" + helper);
 		}
 		helper.installPackages();
 //BUG 437450				assertValidationDiagnostics("Loading", umlResource);

@@ -14,7 +14,6 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.ocl.pivot.PivotPackage;
-import org.eclipse.ocl.pivot.internal.attributes.AssociationClassAttribution;
 import org.eclipse.ocl.pivot.internal.attributes.ClassAttribution;
 import org.eclipse.ocl.pivot.internal.attributes.DataTypeAttribution;
 import org.eclipse.ocl.pivot.internal.attributes.EnumerationAttribution;
@@ -36,7 +35,6 @@ public class PivotScoping
 {	
 	public static void init() {
 		Map<EClassifier, Attribution> registry = Attribution.REGISTRY;
-		registry.put(PivotPackage.Literals.ASSOCIATION_CLASS, AssociationClassAttribution.INSTANCE);
 		registry.put(PivotPackage.Literals.CLASS, ClassAttribution.INSTANCE);
 		registry.put(PivotPackage.Literals.DATA_TYPE, DataTypeAttribution.INSTANCE);
 		registry.put(PivotPackage.Literals.ELEMENT, EmptyAttribution.INSTANCE);

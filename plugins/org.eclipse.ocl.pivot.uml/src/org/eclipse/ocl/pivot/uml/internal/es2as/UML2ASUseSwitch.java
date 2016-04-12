@@ -26,6 +26,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.AssociationClass;
 import org.eclipse.ocl.pivot.BooleanLiteralExp;
+import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.EnumLiteralExp;
@@ -53,6 +54,7 @@ import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.External2AS;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.values.Unlimited;
 //import org.eclipse.uml2.uml.ValueSpecification;
 import org.eclipse.uml2.uml.util.UMLSwitch;
@@ -90,29 +92,30 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 				if (asPackage != null) {
 					asAssociationClass = PivotFactory.eINSTANCE.createAssociationClass();
 					asAssociationClass.setName(umlAssociation.getName());
-//			 		pivotElement.setIsImplicit(true);
-					for (@SuppressWarnings("null")org.eclipse.uml2.uml.@NonNull Property umlProperty : umlAssociation.getMemberEnds()) {
-						Property asProperty = converter.getCreated(Property.class, umlProperty);
-						if (asProperty != null) {
-							asAssociationClass.getUnownedAttributes().add(asProperty);
-						}
-					}
 					org.eclipse.ocl.pivot.Class oclElementType = standardLibrary.getOclElementType();
 					asAssociationClass.getSuperClasses().add(oclElementType);
 					asPackage.getOwnedClasses().add(asAssociationClass);
 				}
 			}
 		}
-		if (asAssociationClass != null) {
+		else {
 			List<org.eclipse.uml2.uml.Constraint> invariants = umlAssociation.getOwnedRules();
 			doSwitchAll(Constraint.class, ClassUtil.nullFree(asAssociationClass.getOwnedInvariants()), invariants);
 			copyConstraints(asAssociationClass, umlAssociation, invariants);
+		}
+		if (asAssociationClass != null) {
+			createAssociationClassProperties(asAssociationClass, umlAssociation);
 		}
 		return asAssociationClass;
 	}
 
 	@Override
 	public Object caseAssociationClass(org.eclipse.uml2.uml.AssociationClass umlAssociationClass) {
+		assert umlAssociationClass != null;
+		AssociationClass asAssociationClass = converter.getCreated(AssociationClass.class, umlAssociationClass);
+		if (asAssociationClass != null) {
+			createAssociationClassProperties(asAssociationClass, umlAssociationClass);
+		}
 		return caseClass(umlAssociationClass);
 	}
 
@@ -121,11 +124,6 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 		assert umlClass != null;
 		org.eclipse.ocl.pivot.Class pivotElement = converter.getCreated(org.eclipse.ocl.pivot.Class.class, umlClass);
 		if (pivotElement != null) {
-//			doSwitchAll(Type.class, pivotElement.getSuperClass(), umlClass.getSuperClasses());
-//			if (pivotElement.getSuperClass().isEmpty()) {
-//				org.eclipse.ocl.pivot.Class oclElementType = metamodelManager.getOclElementType();
-//				pivotElement.getSuperClass().add(oclElementType);
-//			}
 			List<org.eclipse.uml2.uml.Constraint> invariants = umlClass.getOwnedRules();
 			doSwitchAll(Constraint.class, ClassUtil.nullFree(pivotElement.getOwnedInvariants()), invariants);
 			copyConstraints(pivotElement, umlClass, invariants);
@@ -498,6 +496,39 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 			ownedRules.removeAll(exclusions);
 		}
 		doSwitchAll(Constraint.class, ClassUtil.nullFree(pivotElement.getOwnedConstraints()), ownedRules);
+	}
+
+	private void createAssociationClassProperties(@NonNull AssociationClass asAssociationClass, org.eclipse.uml2.uml.@NonNull Association umlAssociation) {
+		for (org.eclipse.uml2.uml.Property umlProperty : umlAssociation.getMemberEnds()) {
+			if (umlProperty != null) {
+				Property asProperty = converter.getCreated(Property.class, umlProperty);
+				if (asProperty != null) {
+					asProperty.setAssociationClass(asAssociationClass);
+					Type asEndType = asProperty.getType();
+					boolean isMany = false;
+					while (asEndType instanceof CollectionType) {
+						asEndType = ((CollectionType)asEndType).getElementType();
+						isMany = true;
+					}
+					assert asEndType instanceof org.eclipse.ocl.pivot.Class;
+					Type asAssociationClassEndType;
+					if (isMany) {
+						asAssociationClassEndType = environmentFactory.getMetamodelManager().getCollectionType(false, true, asAssociationClass, true, null, null);
+					}
+					else {
+						asAssociationClassEndType = asAssociationClass;
+					}
+					Property asEnd2AssociationClassProperty = PivotUtil.createProperty(ClassUtil.nonNullState(asAssociationClass.getName()), asAssociationClassEndType);
+					asEnd2AssociationClassProperty.setIsRequired(true);
+					Property asAssociationClass2EndProperty = PivotUtil.createProperty(ClassUtil.nonNullState(asProperty.getName()), asEndType);
+					asAssociationClass2EndProperty.setIsRequired(true);
+					asEnd2AssociationClassProperty.setOpposite(asAssociationClass2EndProperty);
+					asAssociationClass2EndProperty.setOpposite(asEnd2AssociationClassProperty);
+					asAssociationClass.getOwnedProperties().add(asAssociationClass2EndProperty);
+					((org.eclipse.ocl.pivot.Class)asEndType).getOwnedProperties().add(asEnd2AssociationClassProperty);
+				}
+			}
+		}
 	}
 
 	public Object doInPackageSwitch(EObject eObject) {

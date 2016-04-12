@@ -7,8 +7,8 @@ context B
 inv ClassConstraintComplete:
 	self.a->forAll(a | self.value < a.value) 
 	
---inv ClassConstraintComplete2:
---	self.MyAssociationClass.a_c->forAll(a | self.value < a.value)
+inv ClassConstraintComplete2:
+	self.MyAssociationClass->forAll(self.value < a_ac.value)
 
 context MyAssociationClass
 inv AssociationClassConstraintComplete:

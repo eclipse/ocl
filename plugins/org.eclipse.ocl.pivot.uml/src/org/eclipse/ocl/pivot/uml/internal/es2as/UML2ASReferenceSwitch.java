@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.ocl.pivot.AssociationClass;
 import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Profile;
@@ -41,8 +40,8 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.uml2.uml.util.UMLSwitch;
 
 //
-//	Originally everthing was in the Reference pass but the Stereotype resolution preceded it and got steadily more complicated
-//  so all activities were moved to a new last Use pass. Simple reference resolving activities can be moved from the Use pass to the REference pass.
+//	Originally everything was in the Reference pass but the Stereotype resolution preceded it and got steadily more complicated
+//  so all activities were moved to a new last Use pass. Simple reference resolving activities can be moved from the Use pass to the Reference pass.
 //
 public class UML2ASReferenceSwitch extends UMLSwitch<Object>
 {
@@ -62,51 +61,14 @@ public class UML2ASReferenceSwitch extends UMLSwitch<Object>
 	@Override
 	public Object caseAssociation(org.eclipse.uml2.uml.Association umlAssociation) {
 		assert umlAssociation != null;
-		List<org.eclipse.uml2.uml.Property> memberEnds = umlAssociation.getMemberEnds();
-		if (memberEnds.size() == 2) {
-			org.eclipse.uml2.uml.Property firstEnd = memberEnds.get(0);
-			org.eclipse.uml2.uml.Property secondEnd = memberEnds.get(1);
-			if ((firstEnd != null) && (secondEnd != null)) {
-				Property firstProperty = converter.getCreated(Property.class, firstEnd);
-				Property secondProperty = converter.getCreated(Property.class, secondEnd);
-				if ((firstProperty != null) && (secondProperty != null)) {
-					firstProperty.setOpposite(secondProperty);
-					secondProperty.setOpposite(firstProperty);
-				}
-			}
-		}
+		joinAssociationEnds(umlAssociation);
 		return this;
 	}
 
 	@Override
 	public Object caseAssociationClass(org.eclipse.uml2.uml.AssociationClass umlAssociationClass) {
 		assert umlAssociationClass != null;
-		AssociationClass asAssociationClass = converter.getCreated(AssociationClass.class, umlAssociationClass);
-		if (asAssociationClass != null) {
-			List<org.eclipse.uml2.uml.Property> memberEnds = umlAssociationClass.getMemberEnds();
-			if (memberEnds.size() == 2) {
-				org.eclipse.uml2.uml.Property firstEnd = memberEnds.get(0);
-				org.eclipse.uml2.uml.Property secondEnd = memberEnds.get(1);
-				if ((firstEnd != null) && (secondEnd != null)) {
-					Property firstProperty = converter.getCreated(Property.class, firstEnd);
-					Property secondProperty = converter.getCreated(Property.class, secondEnd);
-					if ((firstProperty != null) && (secondProperty != null)) {
-						firstProperty.setOpposite(secondProperty);
-						secondProperty.setOpposite(firstProperty);
-					}
-				}
-			}
-			List<@NonNull Property> asProperties = new ArrayList<@NonNull Property>();
-			for (org.eclipse.uml2.uml.Property memberEnd : memberEnds) {
-				if (memberEnd != null) {
-					Property asProperty = converter.getCreated(Property.class, memberEnd);
-					if (asProperty != null) {
-						asProperties.add(asProperty);
-					}
-				}
-			}
-			converter.refreshList(asAssociationClass.getUnownedAttributes(), asProperties);
-		}
+		joinAssociationEnds(umlAssociationClass);
 		return caseClass(umlAssociationClass);
 	}
 
@@ -340,5 +302,21 @@ public class UML2ASReferenceSwitch extends UMLSwitch<Object>
 			}
 		}
 		return null;
+	}
+
+	private void joinAssociationEnds(org.eclipse.uml2.uml.@NonNull Association umlAssociation) {
+		List<org.eclipse.uml2.uml.Property> memberEnds = umlAssociation.getMemberEnds();
+		if (memberEnds.size() == 2) {
+			org.eclipse.uml2.uml.Property firstEnd = memberEnds.get(0);
+			org.eclipse.uml2.uml.Property secondEnd = memberEnds.get(1);
+			if ((firstEnd != null) && (secondEnd != null)) {
+				Property firstProperty = converter.getCreated(Property.class, firstEnd);
+				Property secondProperty = converter.getCreated(Property.class, secondEnd);
+				if ((firstProperty != null) && (secondProperty != null)) {
+					firstProperty.setOpposite(secondProperty);
+					secondProperty.setOpposite(firstProperty);
+				}
+			}
+		}
 	}
 }

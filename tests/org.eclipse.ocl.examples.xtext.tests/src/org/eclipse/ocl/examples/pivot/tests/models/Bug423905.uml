@@ -31,11 +31,11 @@
     </ownedRule>
     <ownedEnd xmi:id="_J9QsoAB8EeaHL6zj352TSA" name="b" type="_JGrC4AB8EeaHL6zj352TSA" association="_J9PegAB8EeaHL6zj352TSA">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XJoAQAB8EeaHL6zj352TSA"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XJrDkAB8EeaHL6zj352TSA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XJrDkAB8EeaHL6zj352TSA" value="*"/>
     </ownedEnd>
     <ownedEnd xmi:id="_J9QFkgB8EeaHL6zj352TSA" name="a" type="_JZNkYAB8EeaHL6zj352TSA" association="_J9PegAB8EeaHL6zj352TSA">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XzXg0AB8EeaHL6zj352TSA"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XzbLMAB8EeaHL6zj352TSA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XzbLMAB8EeaHL6zj352TSA" value="*"/>
     </ownedEnd>
   </packagedElement>
   <packagedElement xmi:type="uml:AssociationClass" xmi:id="_Mu8xIAB8EeaHL6zj352TSA" name="MyAssociationClass" memberEnd="_Mu-mUAB8EeaHL6zj352TSA _Mu_0cAB8EeaHL6zj352TSA">
@@ -47,11 +47,11 @@
     </ownedRule>
     <ownedEnd xmi:id="_Mu_0cAB8EeaHL6zj352TSA" name="b_ac" type="_JGrC4AB8EeaHL6zj352TSA" association="_Mu8xIAB8EeaHL6zj352TSA">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qA8EgAB8EeaHL6zj352TSA"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qA95sAB8EeaHL6zj352TSA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qA95sAB8EeaHL6zj352TSA" value="*"/>
     </ownedEnd>
     <ownedEnd xmi:id="_Mu-mUAB8EeaHL6zj352TSA" name="a_ac" type="_JZNkYAB8EeaHL6zj352TSA" association="_Mu8xIAB8EeaHL6zj352TSA">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vw0_gAB8EeaHL6zj352TSA"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vw4p4AB8EeaHL6zj352TSA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vw4p4AB8EeaHL6zj352TSA" value="*"/>
     </ownedEnd>
   </packagedElement>
 </uml:Model>
