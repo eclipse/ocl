@@ -38,7 +38,7 @@ import com.google.common.base.Function;
  */
 public class CompleteInheritanceImpl extends ReflectiveInheritance implements CompleteInheritance
 {
-	public static final @NonNull List<CompleteInheritanceImpl> EMPTY_LIST = Collections.<CompleteInheritanceImpl>emptyList();
+	public static final @NonNull List<@NonNull CompleteInheritanceImpl> EMPTY_LIST = Collections.<@NonNull CompleteInheritanceImpl>emptyList();
 
 	public static final class BestOperation implements Function<List<Operation>, Operation> {
 

@@ -25,6 +25,7 @@ import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.WorkflowComponentWithModelSlot;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -45,21 +46,21 @@ public class PackageAlphabetizer extends WorkflowComponentWithModelSlot
 	}
 
 	public void alphabeticize(@NonNull Resource resource) {
-		List<List<? extends NamedElement>> listOfLists = new ArrayList<List<? extends NamedElement>>();
+		List<@NonNull List<@NonNull ? extends NamedElement>> listOfLists = new ArrayList<@NonNull List<@NonNull ? extends NamedElement>>();
 		for (Iterator<EObject> it = resource.getAllContents(); it.hasNext(); ) {
 			EObject eObject = it.next();
 			if (eObject instanceof org.eclipse.uml2.uml.Package) {
 				org.eclipse.uml2.uml.Package package_ = (org.eclipse.uml2.uml.Package) eObject;
-				listOfLists.add(package_.getNestedPackages());
-				listOfLists.add(package_.getOwnedTypes());
+				listOfLists.add(ClassUtil.nullFree(package_.getNestedPackages()));
+				listOfLists.add(ClassUtil.nullFree(package_.getOwnedTypes()));
 			}
 		}
-		for (List<? extends NamedElement> list : listOfLists) {
+		for (List<@NonNull ? extends NamedElement> list : listOfLists) {
 			sortList(list);
 		}
 	}
 
-	protected <T extends NamedElement> void sortList(List<T> list) {
+	protected <@NonNull T extends NamedElement> void sortList(List< T> list) {
 		List<T> newList = new ArrayList<T>(list);
 		Collections.sort(newList, new Comparator<T>()
 		{

@@ -2024,7 +2024,7 @@ public class EssentialOCLCSLeft2RightVisitor extends AbstractEssentialOCLCSLeft2
 				context.visitLeft2Right(TupleLiteralPart.class, csPart);
 			}
 			String tupleTypeName = "Tuple"; //ownedCollectionType.getName();
-			List<TupleLiteralPart> parts = expression.getOwnedParts();
+			List<@NonNull TupleLiteralPart> parts = ClassUtil.nullFree(expression.getOwnedParts());
 			assert parts != null;
 			Type type = standardLibrary.getCompleteModel().getTupleType(tupleTypeName, parts, null);
 			context.setType(expression, type, true, null);

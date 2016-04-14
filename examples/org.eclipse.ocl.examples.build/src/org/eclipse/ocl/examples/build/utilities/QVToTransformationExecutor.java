@@ -151,7 +151,7 @@ public class QVToTransformationExecutor extends AbstractWorkflowComponent
 		}
 		
 		ResourceSet resourceSet = getResourceSet();
-		List<ModelExtent> modelExtents = new ArrayList<ModelExtent>();
+		List<@NonNull ModelExtent> modelExtents = new ArrayList<@NonNull ModelExtent>();
 		for (String in : ins) {
 			URI inURI = URI.createURI(in, true);
 			logger.info("Loading '" + inURI + "'");

@@ -14,11 +14,11 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 
-public interface StandardLibraryContribution extends RegisteredContribution<StandardLibraryContribution>
+public interface StandardLibraryContribution extends RegisteredContribution<@NonNull StandardLibraryContribution>
 {
-	static @NonNull Registry<StandardLibraryContribution> REGISTRY = new AbstractRegistry<StandardLibraryContribution>();
+	static @NonNull Registry<@NonNull StandardLibraryContribution> REGISTRY = new AbstractRegistry<@NonNull StandardLibraryContribution>();
 
-	static class Descriptor extends AbstractDescriptor<StandardLibraryContribution> implements StandardLibraryContribution
+	static class Descriptor extends AbstractDescriptor<@NonNull StandardLibraryContribution> implements StandardLibraryContribution
 	{
 		protected StandardLibraryContribution contribution;
 
@@ -27,8 +27,9 @@ public interface StandardLibraryContribution extends RegisteredContribution<Stan
 		}
 
 		@Override
-		protected StandardLibraryContribution createContribution() {
+		protected @NonNull StandardLibraryContribution createContribution() {
 			Object createInstance = createInstance();
+			assert createInstance != null;
 			return (StandardLibraryContribution) createInstance;
 		}
 

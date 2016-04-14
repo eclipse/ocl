@@ -815,9 +815,6 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 		if (es2as == null) {
 			es2as = Ecore2AS.getAdapter(metamodel, environmentFactory);
 		}
-		if (es2as == null) {
-			return null;
-		}
 		return es2as.getCreated(pivotClass, eObject);
 	}
 
@@ -856,7 +853,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 		Set<Constraint> knownInvariants = new HashSet<Constraint>();
 		for (CompleteClass superType : getAllSuperCompleteClasses(pivotType)) {
 			if (superType != null) {
-				for (org.eclipse.ocl.pivot.@NonNull Class partialSuperType : superType.getPartialClasses()) {
+				for (org.eclipse.ocl.pivot.@NonNull Class partialSuperType : ClassUtil.nullFree(superType.getPartialClasses())) {
 					org.eclipse.ocl.pivot.Package partialPackage = partialSuperType.getOwningPackage();
 					if (!(partialPackage instanceof PackageImpl) || !((PackageImpl)partialPackage).isIgnoreInvariants()) {
 						knownInvariants.addAll(partialSuperType.getOwnedInvariants());
@@ -1124,7 +1121,7 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 				return asElementExtension;
 			}
 		}
-		@SuppressWarnings("null")@NonNull ElementExtension asElementExtension = PivotFactory.eINSTANCE.createElementExtension();
+		@NonNull ElementExtension asElementExtension = PivotFactory.eINSTANCE.createElementExtension();
 		asElementExtension.setStereotype(asStereotype);
 		String name = environmentFactory.getTechnology().getExtensionName(asStereotypedElement);
 		asElementExtension.setName(name + "$" + asStereotype.getName());
@@ -1352,12 +1349,12 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 	public @NonNull List<Library> getLibraries() { return asLibraries; }
 	public @Nullable Resource getLibraryResource() { return asLibraryResource; }
 
-	public org.eclipse.ocl.pivot.@Nullable Class getLibraryType(@NonNull String string, @NonNull List<? extends Type> templateArguments) {
+	public org.eclipse.ocl.pivot.@Nullable Class getLibraryType(@NonNull String string, @NonNull List<@NonNull ? extends Type> templateArguments) {
 		org.eclipse.ocl.pivot.Class libraryType = standardLibrary.getRequiredLibraryType(string);
 		return getLibraryType(libraryType, templateArguments);
 	}
 
-	public @NonNull <T extends org.eclipse.ocl.pivot.Class> T getLibraryType(@NonNull T libraryType, @NonNull List<? extends Type> templateArguments) {
+	public @NonNull <T extends org.eclipse.ocl.pivot.Class> T getLibraryType(@NonNull T libraryType, @NonNull List<@NonNull ? extends Type> templateArguments) {
 //		assert !(libraryType instanceof CollectionType);
 		assert libraryType == PivotUtil.getUnspecializedTemplateableElement(libraryType);
 		TemplateSignature templateSignature = libraryType.getOwnedSignature();
@@ -1377,15 +1374,15 @@ public class PivotMetamodelManager implements MetamodelManagerInternal.Metamodel
 		if (pivotClass instanceof CollectionType) {
 			assert pivotClass instanceof CollectionType;
 			assert templateArguments.size() == 1;
-			@SuppressWarnings("null")@NonNull Type templateArgument = templateArguments.get(0);
+			@NonNull Type templateArgument = templateArguments.get(0);
 			@SuppressWarnings("unchecked") T specializedType = (T) completeModel.getCollectionType(libraryCompleteClass, TypeUtil.createCollectionTypeParameters(templateArgument, false, null, null));
 			return specializedType;
 		}
 		else if (pivotClass instanceof MapType) {
 			assert pivotClass instanceof MapType;
 			assert templateArguments.size() == 2;
-			@SuppressWarnings("null")@NonNull Type keyTemplateArgument = templateArguments.get(0);
-			@SuppressWarnings("null")@NonNull Type valueTemplateArgument = templateArguments.get(1);
+			@NonNull Type keyTemplateArgument = templateArguments.get(0);
+			@NonNull Type valueTemplateArgument = templateArguments.get(1);
 			@SuppressWarnings("unchecked") T specializedType = (T) completeModel.getMapType(libraryCompleteClass, TypeUtil.createMapTypeParameters(keyTemplateArgument, valueTemplateArgument));
 			return specializedType;
 		}

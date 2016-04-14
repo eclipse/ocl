@@ -19,6 +19,7 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.Bag;
 
@@ -139,7 +140,7 @@ public class BagImpl<E> extends AbstractCollection<E> implements Bag<E>
 			private Iterator<E> it;
 			private int offset;
 			private int maxOffset;
-			private E curr;
+			private @Nullable E curr;
 			
 			public MyIterator() {
 				it = coll.keySet().iterator();
@@ -156,7 +157,8 @@ public class BagImpl<E> extends AbstractCollection<E> implements Bag<E>
 			public E next() {
 				if (offset < maxOffset) {
 					offset++;
-					return curr;
+					@SuppressWarnings("null") E curr2 = (E)curr;
+					return curr2;
 				}
 				if (!it.hasNext())
 					throw new NoSuchElementException();
@@ -165,7 +167,8 @@ public class BagImpl<E> extends AbstractCollection<E> implements Bag<E>
 				assert count != null;
 				offset = 0;
 				maxOffset = count.i - 1;
-				return curr;
+				@SuppressWarnings("null") E curr2 = (E)curr;
+				return curr2;
 			}
 
 			@Override

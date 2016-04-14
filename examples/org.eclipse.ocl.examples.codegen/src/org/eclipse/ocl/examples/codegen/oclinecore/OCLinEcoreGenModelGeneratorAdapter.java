@@ -391,42 +391,40 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 				Resource ecoreResource = ecorePackage.eResource();
 				if (ecoreResource != null) {
 					Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metamodelManager.getEnvironmentFactory());
-					if (ecore2as != null) {
-						for (GenClass genClass : genPackage.getGenClasses()) {
-							EClass eClass = genClass.getEcoreClass();
-							if (eClass != null) {
-								List<EAnnotation> obsoleteAnnotations = null;
-								for (EAnnotation eAnnotation : eClass.getEAnnotations()) {
-									String source = eAnnotation.getSource();
-									if (OCLCommon.isDelegateURI(source)) {
-										@SuppressWarnings("deprecation")
-										String messageAnnotationDetailSuffix = PivotConstantsInternal.MESSAGE_ANNOTATION_DETAIL_SUFFIX;
-										EMap<String, String> details = eAnnotation.getDetails();
-										for (String key : details.keySet()) {
-											if ((key != null) && !key.endsWith(messageAnnotationDetailSuffix)) {
-												String expression = details.get(key);
-												String messageExpression = details.get(key + messageAnnotationDetailSuffix);
-												if (expression != null) {
-													convertConstraintToOperation(ecore2as, genModel, eClass, key, expression, messageExpression);
-												}
+					for (GenClass genClass : genPackage.getGenClasses()) {
+						EClass eClass = genClass.getEcoreClass();
+						if (eClass != null) {
+							List<EAnnotation> obsoleteAnnotations = null;
+							for (EAnnotation eAnnotation : eClass.getEAnnotations()) {
+								String source = eAnnotation.getSource();
+								if (OCLCommon.isDelegateURI(source)) {
+									@SuppressWarnings("deprecation")
+									String messageAnnotationDetailSuffix = PivotConstantsInternal.MESSAGE_ANNOTATION_DETAIL_SUFFIX;
+									EMap<String, String> details = eAnnotation.getDetails();
+									for (String key : details.keySet()) {
+										if ((key != null) && !key.endsWith(messageAnnotationDetailSuffix)) {
+											String expression = details.get(key);
+											String messageExpression = details.get(key + messageAnnotationDetailSuffix);
+											if (expression != null) {
+												convertConstraintToOperation(ecore2as, genModel, eClass, key, expression, messageExpression);
 											}
 										}
-										if (obsoleteAnnotations == null) {
-											obsoleteAnnotations = new ArrayList<EAnnotation>();
-										}
-										obsoleteAnnotations.add(eAnnotation);
 									}
-								    if (EcorePackage.eNS_URI.equals(source)) {
-										removeEAnnotationDetail(eAnnotation, "constraints");
-								    }
-								}
-								if (obsoleteAnnotations != null) {
-									for (EAnnotation eAnnotation : obsoleteAnnotations) {
-										removeEAnnotation(eAnnotation);
+									if (obsoleteAnnotations == null) {
+										obsoleteAnnotations = new ArrayList<EAnnotation>();
 									}
+									obsoleteAnnotations.add(eAnnotation);
 								}
-								genClass.initialize(eClass);
+							    if (EcorePackage.eNS_URI.equals(source)) {
+									removeEAnnotationDetail(eAnnotation, "constraints");
+							    }
 							}
+							if (obsoleteAnnotations != null) {
+								for (EAnnotation eAnnotation : obsoleteAnnotations) {
+									removeEAnnotation(eAnnotation);
+								}
+							}
+							genClass.initialize(eClass);
 						}
 					}
 				}
@@ -482,16 +480,14 @@ public class OCLinEcoreGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 				Resource ecoreResource = ecorePackage.eResource();
 				if (ecoreResource != null) {
 					Ecore2AS ecore2as = Ecore2AS.getAdapter(ecoreResource, metamodelManager.getEnvironmentFactory());
-					if (ecore2as != null) {
-						for (GenClass genClass : genPackage.getGenClasses()) {
-							EClass eClass = genClass.getEcoreClass();
-							if (eClass != null) {
-								for (@SuppressWarnings("null")@NonNull EOperation eOperation : eClass.getEOperations()) {
-									installOperation(ecore2as, eOperation, results);
-								}
-								for (@SuppressWarnings("null")@NonNull EStructuralFeature eFeature : eClass.getEStructuralFeatures()) {
-									installProperty(ecore2as, eFeature, results);
-								}
+					for (GenClass genClass : genPackage.getGenClasses()) {
+						EClass eClass = genClass.getEcoreClass();
+						if (eClass != null) {
+							for (@SuppressWarnings("null")@NonNull EOperation eOperation : eClass.getEOperations()) {
+								installOperation(ecore2as, eOperation, results);
+							}
+							for (@SuppressWarnings("null")@NonNull EStructuralFeature eFeature : eClass.getEStructuralFeatures()) {
+								installProperty(ecore2as, eFeature, results);
 							}
 						}
 					}

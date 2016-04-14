@@ -299,7 +299,7 @@ public class MainTab extends AbstractMainTab implements OCLLaunchConstants
 			String constraintUri = configuration.getAttribute(CONSTRAINT_URI, "");
 			if (constraintUri.length() > 0) {
 				URI constraintURI = URI.createURI(constraintUri);
-				@SuppressWarnings("null")@NonNull URI oclASURI = constraintURI.trimFragment();
+				@NonNull URI oclASURI = constraintURI.trimFragment();
 				URI oclNonASURI = PivotUtilInternal.getNonASURI(oclASURI);
 				oclPath.setText(oclNonASURI.toString());
 				EObject eObject = getEnvironmentFactory().getMetamodelManager().getASResourceSet().getEObject(constraintURI, true);

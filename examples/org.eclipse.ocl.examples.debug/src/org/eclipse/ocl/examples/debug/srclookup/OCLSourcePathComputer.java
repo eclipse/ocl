@@ -45,9 +45,9 @@ public class OCLSourcePathComputer extends VMSourcePathComputer
 			String moduleFileName = configuration.getAttribute(OCLLaunchConstants.CONSTRAINT_URI, ""); //$NON-NLS-1$
 			uri = URI.createURI(moduleFileName);
 		}
-	@SuppressWarnings("null")@NonNull URI trimFragment = uri.trimFragment();
-      URI moduleURI = PivotUtilInternal.getNonASURI(trimFragment);
-      return moduleURI;
+		@NonNull URI trimFragment = uri.trimFragment();
+		URI moduleURI = PivotUtilInternal.getNonASURI(trimFragment);
+		return moduleURI;
 //      IFile moduleFile = getWorkspaceFile(moduleUri);
 //      if (moduleFile == null) {
       	//IStatus errorStatus = MiscUtil.makeErrorStatus( 

@@ -75,10 +75,10 @@ import org.eclipse.ocl.pivot.utilities.PivotUtil;
  */
 public class EnvironmentView
 {
-	public static abstract class Disambiguator<@NonNull T> implements Comparator<T>
+	public static abstract class Disambiguator</*@NonNull*/ T> implements Comparator<T>
 	{
 	    @Override
-		public int compare(@NonNull T o1, @NonNull T o2) {
+		public int compare(/*@NonNull*/ T o1, /*@NonNull*/ T o2) {
 		    throw new UnsupportedOperationException();
 	    }
 	    
@@ -212,7 +212,7 @@ public class EnvironmentView
 		addDisambiguator(Property.class, new PropertyDisambiguator());
 	}
 	
-	public static synchronized <T> void addDisambiguator(@NonNull Class<T> targetClass, @NonNull Comparator<T> disambiguator) {
+	public static synchronized <T> void addDisambiguator(/*@NonNull*/ Class<T> targetClass, @NonNull Comparator<T> disambiguator) {
 		List<Comparator<Object>> disambiguators = disambiguatorMap.get(targetClass);
 		if (disambiguators == null) {
 			disambiguators = new ArrayList<Comparator<Object>>();

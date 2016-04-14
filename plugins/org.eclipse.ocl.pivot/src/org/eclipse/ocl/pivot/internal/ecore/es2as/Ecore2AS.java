@@ -75,7 +75,7 @@ import org.eclipse.ocl.pivot.utilities.PivotUtil;
 
 public class Ecore2AS extends AbstractExternal2AS
 {
-	public static Ecore2AS getAdapter(@NonNull Resource resource, @NonNull EnvironmentFactoryInternal environmentFactory) {
+	public static @NonNull Ecore2AS getAdapter(@NonNull Resource resource, @NonNull EnvironmentFactoryInternal environmentFactory) {
 		External2AS adapter = findAdapter(resource, environmentFactory);
 		Ecore2AS castAdapter = (Ecore2AS) adapter;
 		if (castAdapter == null) {
@@ -177,7 +177,7 @@ public class Ecore2AS extends AbstractExternal2AS
 	/**
 	 * Mapping of source Ecore objects to their resulting pivot element in a previous conversion.
 	 */
-	private Map<String, Element> oldIdMap = null;
+	private Map<@NonNull String, @NonNull Element> oldIdMap = null;
 
 	/**
 	 * Mapping of source Ecore objects to their resulting pivot element in the current conversion.
@@ -187,26 +187,26 @@ public class Ecore2AS extends AbstractExternal2AS
 	/**
 	 * Set of all Ecore objects requiring further work during the reference pass.
 	 */
-	private Set<EObject> referencers = null;
+	private Set<@NonNull EObject> referencers = null;
 	
 	/**
 	 * Set of all converters used during session.
 	 */
-	private Set<Ecore2AS> allConverters = new HashSet<Ecore2AS>();
+	private Set<@NonNull Ecore2AS> allConverters = new HashSet<@NonNull Ecore2AS>();
 	
 	/**
 	 * List of all generic types.
 	 */
-	private List<EGenericType> genericTypes = null;
+	private List<@NonNull EGenericType> genericTypes = null;
 	
-	private List<Resource.Diagnostic> errors = null;
+	private List<Resource.@NonNull Diagnostic> errors = null;
 	
 	protected final @NonNull Resource ecoreResource;
 	
 	protected Model pivotModel = null;						// Set by importResource
 	protected final Ecore2ASDeclarationSwitch declarationPass = new Ecore2ASDeclarationSwitch(this);	
 	protected final Ecore2ASReferenceSwitch referencePass = new Ecore2ASReferenceSwitch(this);
-	private HashMap<EClassifier, Type> ecore2asMap = null;
+	private HashMap</*@NonNull*/ EClassifier, @NonNull Type> ecore2asMap = null;
 	
 	/**
 	 * The loadableURI of the ecoreResource, which may differ from ecoreResource.getURI() when
@@ -290,7 +290,7 @@ public class Ecore2AS extends AbstractExternal2AS
 	@Override
 	public void error(@Nullable String message) {
 		if (errors == null) {
-			errors = new ArrayList<Resource.Diagnostic>();
+			errors = new ArrayList<Resource.@NonNull Diagnostic>();
 		}
 		errors.add(new XMIException(message));
 	}
@@ -432,9 +432,9 @@ public class Ecore2AS extends AbstractExternal2AS
 	}
 
 	public @NonNull Map<EClassifier, Type> getEcore2ASMap() {
-		HashMap<EClassifier, Type> ecore2asMap2 = ecore2asMap;
+		HashMap</*@NonNull*/ EClassifier, @NonNull Type> ecore2asMap2 = ecore2asMap;
 		if (ecore2asMap2 == null) {
-			ecore2asMap2 = ecore2asMap = new HashMap<EClassifier, Type>();
+			ecore2asMap2 = ecore2asMap = new HashMap<@NonNull EClassifier, @NonNull Type>();
 			initializeEcore2ASMap();
 		}
 		return ecore2asMap2;
@@ -725,7 +725,7 @@ public class Ecore2AS extends AbstractExternal2AS
 	} */
 
 	@Override
-	public @NonNull <T extends NamedElement> T refreshElement(@NonNull Class<T> pivotClass, EClass pivotEClass, @NonNull EModelElement eModelElement) {
+	public <@NonNull T extends NamedElement> T refreshElement(@NonNull Class<T> pivotClass, EClass pivotEClass, @NonNull EModelElement eModelElement) {
 		EObject pivotElement = null;
 		if (oldIdMap != null) {
 			String id = ((XMLResource)eModelElement.eResource()).getID(eModelElement);
@@ -768,11 +768,13 @@ public class Ecore2AS extends AbstractExternal2AS
 		if (unspecializedPivotType == null) {
 			return null;
 		}
- 		List<Type> templateArguments = new ArrayList<Type>();
+ 		List<@NonNull Type> templateArguments = new ArrayList<@NonNull Type>();
 		for (EGenericType eTypeArgument : eTypeArguments) {
 			if (eTypeArgument != null) {
 				Type typeArgument = resolveType(resolvedSpecializations, eTypeArgument);
-				templateArguments.add(typeArgument);
+				if (typeArgument != null) {
+					templateArguments.add(typeArgument);
+				}
 			}
 		}
 		org.eclipse.ocl.pivot.Class unspecializedPivotClass = unspecializedPivotType.isClass(); 
@@ -873,8 +875,8 @@ public class Ecore2AS extends AbstractExternal2AS
 
 	public void update(@NonNull Resource asResource, @NonNull Collection<EObject> ecoreContents) {
 		newCreateMap = new HashMap<@NonNull EObject, @NonNull Element>();
-		referencers = new HashSet<EObject>();
-		genericTypes = new ArrayList<EGenericType>();
+		referencers = new HashSet<@NonNull EObject>();
+		genericTypes = new ArrayList<@NonNull EGenericType>();
 		PivotUtilInternal.refreshList(asResource.getContents(), Collections.singletonList(ClassUtil.nonNull(pivotModel)));
 		List<org.eclipse.ocl.pivot.Package> newPackages = new ArrayList<org.eclipse.ocl.pivot.Package>();
 		for (EObject eObject : ecoreContents) {
@@ -893,13 +895,11 @@ public class Ecore2AS extends AbstractExternal2AS
 			}
 		}
 		PivotUtilInternal.refreshList(pivotModel.getOwnedPackages(), newPackages);
-		Map<String, Type> resolvedSpecializations = new HashMap<String, Type>();
-		for (EGenericType eGenericType : genericTypes) {
-			if (eGenericType != null) {
-				Type pivotType = resolveType(resolvedSpecializations, eGenericType);
-				if (pivotType != null) {
-					newCreateMap.put(eGenericType, pivotType);
-				}
+		Map<@NonNull String, @NonNull Type> resolvedSpecializations = new HashMap<@NonNull String, @NonNull Type>();
+		for (@NonNull EGenericType eGenericType : genericTypes) {
+			Type pivotType = resolveType(resolvedSpecializations, eGenericType);
+			if (pivotType != null) {
+				newCreateMap.put(eGenericType, pivotType);
 			}
 		}
 		for (EObject eObject : referencers) {
@@ -918,7 +918,7 @@ public class Ecore2AS extends AbstractExternal2AS
 		}
 		referencers = null;
 		genericTypes = null;
-		oldIdMap = new HashMap<String, Element>();
+		oldIdMap = new HashMap<@NonNull String, @NonNull Element>();
 		for (EObject ecoreContent : ecoreContents) {
 			Resource resource = ecoreContent.eResource();
 			if (resource instanceof XMLResource) {

@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.PivotTables;
 import org.eclipse.ocl.pivot.ids.CollectionTypeId;
 import org.eclipse.ocl.pivot.ids.IdManager;
@@ -83,12 +84,12 @@ public class EvaluateTupleOperationsTest4 extends PivotTestSuite
 		TestOCL ocl = createOCL();
 		TuplePartId aTuplePartId = IdManager.getTuplePartId(0, "a", TypeId.INTEGER);
 		@SuppressWarnings("null") TupleTypeId aTupleTypeId = IdManager.getTupleTypeId("Tuple", Collections.singletonList(aTuplePartId));
-		Map<TuplePartId, Object> aValues = new HashMap<TuplePartId, Object>();
+		Map<@NonNull TuplePartId, @Nullable Object> aValues = new HashMap<@NonNull TuplePartId, @Nullable Object>();
 		aValues.put(aTuplePartId, ValueUtil.integerValueOf(3));
 		TupleValue aValue = ValueUtil.createTupleValue(aTupleTypeId, aValues);
 		TuplePartId bTuplePartId = IdManager.getTuplePartId(0, "b", TypeId.INTEGER);
 		@SuppressWarnings("null") TupleTypeId bTupleTypeId = IdManager.getTupleTypeId("Tuple", Collections.singletonList(bTuplePartId));
-		Map<TuplePartId, Object> bValues = new HashMap<TuplePartId, Object>();
+		Map<@NonNull TuplePartId, @Nullable Object> bValues = new HashMap<@NonNull TuplePartId, @Nullable Object>();
 		bValues.put(bTuplePartId, ValueUtil.integerValueOf(4));
 		TupleValue bValue = ValueUtil.createTupleValue(bTupleTypeId, bValues);
 		CollectionTypeId collectionTypeId = TypeId.SET.getSpecializedId(TypeId.OCL_ANY);

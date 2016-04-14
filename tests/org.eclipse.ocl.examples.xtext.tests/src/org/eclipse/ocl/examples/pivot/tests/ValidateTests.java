@@ -171,6 +171,7 @@ public class ValidateTests extends AbstractValidateTests
 		@NonNull List<Diagnostic> diagnostics = doValidateOCLinEcore(ocl1, "Bug418552",
 			StringUtil.bind(PivotMessages.ValidationConstraintIsNotSatisfied_ERROR_, PivotTables.STR_Property_c_c_CompatibleDefaultExpression, "temp::Tester::total"));
 		Object property = diagnostics.get(0).getData().get(0);
+		assert property != null;
 		assertEquals(PivotPackage.Literals.PROPERTY, ((EObject)property).eClass());
 		ModelElementCS csElement = ElementUtil.getCsElement((Element) property);
 		ICompositeNode node = NodeModelUtils.getNode(csElement);

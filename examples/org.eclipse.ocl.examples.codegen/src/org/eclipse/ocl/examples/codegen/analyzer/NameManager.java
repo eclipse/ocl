@@ -860,7 +860,7 @@ public class NameManager
 	}
 
 	protected String getStringNameHint(@NonNull String aString) {
-		@SuppressWarnings("null") @NonNull String string = aString.length() > STRING_NAME_HINT_LIMIT ? aString.substring(0, STRING_NAME_HINT_LIMIT) : aString;
+		@NonNull String string = aString.length() > STRING_NAME_HINT_LIMIT ? aString.substring(0, STRING_NAME_HINT_LIMIT) : aString;
 		return STRING_NAME_HINT_PREFIX + getValidJavaIdentifier(string, STRING_NAME_HINT_PREFIX.length() > 0, aString);
 	}
 

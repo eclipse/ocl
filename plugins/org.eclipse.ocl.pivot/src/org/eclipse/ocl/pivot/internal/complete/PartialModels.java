@@ -109,7 +109,7 @@ public class PartialModels extends EObjectResolvingEList<Model> implements Model
 	protected @NonNull Iterable<org.eclipse.ocl.pivot.Package> getNestedPartialPackages() {
 		PartialModels partialModels = getCompleteModel().getPartialModels();
 		Iterable<Iterable<org.eclipse.ocl.pivot.Package>> roots_packages = Iterables.transform(partialModels, model2RootOwnedPackages);
-		@SuppressWarnings("null")@NonNull Iterable<Package> allPackages = Iterables.concat(roots_packages);
+		@NonNull Iterable<Package> allPackages = Iterables.concat(roots_packages);
 		return allPackages;
 	}
 }

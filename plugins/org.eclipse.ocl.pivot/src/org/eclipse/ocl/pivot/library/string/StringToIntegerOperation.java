@@ -26,7 +26,7 @@ public class StringToIntegerOperation extends AbstractSimpleUnaryOperation
 	@Override
 	public @NonNull IntegerValue evaluate(@Nullable Object sourceVal) {
 		String sourceString = asString(sourceVal);
-		@SuppressWarnings("null") @NonNull String result = sourceString.trim();
+		@NonNull String result = sourceString.trim();
 		return ValueUtil.integerValueOf(result);
 	}
 }

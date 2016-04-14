@@ -289,7 +289,7 @@ public final class DebugAction extends Action
     	BaseDocument editorDocument = oclConsolePage.getEditorDocument();
     	String text = editorDocument.get();
 		String expression = text.trim();
-		if ((expression == null) || (expression.length() <= 0)) {
+		if (expression.length() <= 0) {
 			MessageDialog.openError(shell, ConsoleMessages.Debug_Starter, ConsoleMessages.Debug_FailStart_NoOCL);
 			return null;
 		}

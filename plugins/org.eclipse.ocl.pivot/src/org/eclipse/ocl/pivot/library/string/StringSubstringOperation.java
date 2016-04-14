@@ -33,7 +33,7 @@ public class StringSubstringOperation extends AbstractSimpleTernaryOperation
 		int lower = startInteger.intValue();
 		int upper = endInteger.intValue();
 		if ((0 < lower) && (lower <= upper) && (upper <= size)) {
-			@SuppressWarnings("null")@NonNull String result = sourceString.substring(lower-1, upper);
+			@NonNull String result = sourceString.substring(lower-1, upper);
 			return result;
 		}
 		else {

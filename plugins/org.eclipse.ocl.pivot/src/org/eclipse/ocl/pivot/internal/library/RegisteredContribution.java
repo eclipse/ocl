@@ -18,12 +18,12 @@ import org.eclipse.emf.ecore.plugin.RegistryReader.PluginClassDescriptor;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
-public interface RegisteredContribution<C extends RegisteredContribution<C>> {
+public interface RegisteredContribution<@NonNull C extends RegisteredContribution<C>> {
 
 	/**
 	 * A registry of contributions.
 	 */
-	interface Registry<C extends RegisteredContribution<C>> {
+	interface Registry<@NonNull C extends RegisteredContribution<C>> {
 		@Nullable C get(@NonNull String key);
 		@Nullable C put(@NonNull String key, @NonNull C contribution);
 		@Nullable C remove(@NonNull String key);
@@ -33,14 +33,14 @@ public interface RegisteredContribution<C extends RegisteredContribution<C>> {
 	 * A <code>Factory</code> wrapper that is used by the
 	 * {@link Registry}.
 	 */
-	interface Descriptor<C extends RegisteredContribution<C>> extends RegisteredContribution<C> {
+	interface Descriptor<@NonNull C extends RegisteredContribution<C>> extends RegisteredContribution<C> {
 
 		IConfigurationElement getElement();
 	}
 
-	abstract class AbstractDescriptor<C extends RegisteredContribution<C>> extends PluginClassDescriptor implements Descriptor<C>
+	abstract class AbstractDescriptor<@NonNull C extends RegisteredContribution<C>> extends PluginClassDescriptor implements Descriptor<C>
 	{
-		protected C contribution;
+		protected @Nullable C contribution;
 
 		public AbstractDescriptor(IConfigurationElement e, String attrName) {
 			super(e, attrName);
@@ -55,14 +55,16 @@ public interface RegisteredContribution<C extends RegisteredContribution<C>> {
 		
 		@Override
 		public C getContribution() {
-			if (contribution == null) {
-				contribution = createContribution();
+			@Nullable
+			C contribution2 = contribution;
+			if (contribution2 == null) {
+				contribution2 = contribution = createContribution();
 			}
-			return contribution;
+			return contribution2;
 		}
 	}	
 
-	class AbstractRegistry<C extends RegisteredContribution<C>> implements Registry<C>
+	class AbstractRegistry<@NonNull C extends RegisteredContribution<C>> implements Registry<C>
 	{
 		private final @NonNull Map<String, C>  map = new HashMap<String, C>();
 

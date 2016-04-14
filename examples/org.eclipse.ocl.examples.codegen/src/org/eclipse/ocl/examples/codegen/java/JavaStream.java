@@ -476,7 +476,7 @@ public class JavaStream
 			StringBuilder s = new StringBuilder();
 			int dollar = className.indexOf("$");
 			if (dollar > 0) {
-				@SuppressWarnings("null")@NonNull String importClassName = className.substring(0, dollar);
+				@NonNull String importClassName = className.substring(0, dollar);
 				s.append(ImportUtils.getAffixedName(importClassName));
 				cg2java.addImport(importClassName);
 				s.append(className.substring(dollar).replace('$',  '.'));

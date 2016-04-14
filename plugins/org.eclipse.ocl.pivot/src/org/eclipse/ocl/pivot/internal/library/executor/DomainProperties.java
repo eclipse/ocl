@@ -43,7 +43,6 @@ public class DomainProperties
 		if (featureFilter == null) {
 			return values;
 		}
-		@SuppressWarnings("null")
 		@NonNull Iterable<Property> subItOps = Iterables.filter(values,
 			new Predicate<Property>()
 			{

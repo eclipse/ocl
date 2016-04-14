@@ -135,11 +135,9 @@ public class LabelUtil
     	for (Map.Entry<EObject, Collection<EStructuralFeature.Setting>> entry : map.entrySet()) {
     		EObject key = entry.getKey();
     		URI uri = EcoreUtil.getURI(key);
-			if (uri != null) {
-				String uriString = uri.toString();
-				if (!unresolvedURIs.containsKey(uriString))
-					unresolvedURIs.put(uriString, entry);
-			}
+			String uriString = uri.toString();
+			if (!unresolvedURIs.containsKey(uriString))
+				unresolvedURIs.put(uriString, entry);
     	}
     	StringBuilder s = new StringBuilder();
 		s.append("Unresolved URIs in '" + String.valueOf(contextURI) + "' :");

@@ -316,7 +316,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 			LambdaType lambdaType = (LambdaType)type;
 			String typeName = ClassUtil.nonNullModel(lambdaType.getName());
 			Type specializedContextType = specializeType(ClassUtil.nonNullModel(lambdaType.getContextType()));
-			List<Type> specializedParameterTypes = new ArrayList<Type>();
+			List<@NonNull Type> specializedParameterTypes = new ArrayList<@NonNull Type>();
 			for (Type parameterType : lambdaType.getParameterType()) {
 				if (parameterType != null) {
 					specializedParameterTypes.add(specializeType(parameterType));
@@ -333,7 +333,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 			org.eclipse.ocl.pivot.Class unspecializedType = PivotUtil.getUnspecializedTemplateableElement(partiallySpecializedType);
 			List<TemplateBinding> ownedTemplateBindings = partiallySpecializedType.getOwnedBindings();
 			if (ownedTemplateBindings.size() > 0) {
-				List<Type> templateArguments = new ArrayList<Type>();
+				List<@NonNull Type> templateArguments = new ArrayList<@NonNull Type>();
 				for (TemplateBinding ownedTemplateBinding : ownedTemplateBindings) {
 					for (TemplateParameterSubstitution ownedTemplateParameterSubstitution : ownedTemplateBinding.getOwnedSubstitutions()) {
 						Type actualType = ownedTemplateParameterSubstitution.getActual();
@@ -347,7 +347,7 @@ public class TemplateParameterSubstitutionVisitor extends AbstractExtendingVisit
 			}
 			TemplateSignature ownedTemplateSignature = partiallySpecializedType.getOwnedSignature();
 			if (ownedTemplateSignature != null) {
-				List<Type> templateArguments = new ArrayList<Type>();
+				List<@NonNull Type> templateArguments = new ArrayList<@NonNull Type>();
 				for (@SuppressWarnings("null")@NonNull TemplateParameter ownedTemplateParameter : ownedTemplateSignature.getOwnedParameters()) {
 					Type actualType = specializeType(ownedTemplateParameter);
 					templateArguments.add(actualType);

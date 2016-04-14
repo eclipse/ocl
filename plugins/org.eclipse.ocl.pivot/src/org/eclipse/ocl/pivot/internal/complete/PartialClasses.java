@@ -655,7 +655,7 @@ public class PartialClasses extends EObjectResolvingEList<org.eclipse.ocl.pivot.
 		return partials.get();
 	}
 
-	public synchronized org.eclipse.ocl.pivot.@NonNull Class getSpecializedType(@NonNull List<? extends Type> templateArguments) {
+	public synchronized org.eclipse.ocl.pivot.@NonNull Class getSpecializedType(@NonNull List<@NonNull ? extends Type> templateArguments) {
 		return getSpecializedType(TypeUtil.createTemplateParameters(templateArguments));
 	}
 

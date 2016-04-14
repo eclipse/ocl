@@ -1609,7 +1609,9 @@ public class DelegatesTest extends PivotTestCaseWithAutoTearDown
 		List<?> data = diagnostic.getData();
 		int size = data.size();
 		if (size == 2)	{				// EMF 2.10.0M3 and later
-			assertEquals("Validation of '" + constraintName + "' exception:", exceptionClass, data.get(1).getClass());
+			Object data1 = data.get(1);
+			assert data1 != null;
+			assertEquals("Validation of '" + constraintName + "' exception:", exceptionClass, data1.getClass());
 		}
 		else if (size != 1) {			// EMF 2.10.0M2 and earlier
 			fail("Validation of '" + constraintName + "' child count: " + size);

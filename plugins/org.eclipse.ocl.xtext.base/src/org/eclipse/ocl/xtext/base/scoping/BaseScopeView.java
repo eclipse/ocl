@@ -362,9 +362,6 @@ public class BaseScopeView extends AbstractScope implements IScopeView
 		if (uri == null) {
 			uri = EcoreUtil.getURI(object);
 		}
-		if (uri == null) {
-			return null;
-		}
 		if (PivotUtilInternal.isASURI(uri)) {
 			uri = PivotUtilInternal.getNonASURI(uri);
 		}

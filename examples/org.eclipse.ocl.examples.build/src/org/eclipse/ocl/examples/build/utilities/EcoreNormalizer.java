@@ -146,9 +146,9 @@ public class EcoreNormalizer extends WorkflowComponentWithModelSlot
 
 	protected <T extends ENamedElement> void sortList(List<T> list) {
 		List<T> newList = new ArrayList<T>(list);
-		Collections.sort(newList, new Comparator<T>()
+		Collections.sort(newList, new Comparator<@NonNull T>()
 		{
-			public int compare(T o1, T o2) {
+			public int compare(@NonNull T o1, @NonNull T o2) {
 				EClass e1 = o1.eClass();
 				EClass e2 = o2.eClass();
 				if (e1 != e2) {

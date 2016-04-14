@@ -66,7 +66,7 @@ public class SetNsURI extends WorkflowComponentWithModelSlot
 ///		ctx.set(getModelSlot(), newResource);
 	}
 
-	protected <T extends ENamedElement> void sortList(List<T> list) {
+	protected <@NonNull T extends ENamedElement> void sortList(List<T> list) {
 		List<T> newList = new ArrayList<T>(list);
 		Collections.sort(newList, new Comparator<T>()
 		{

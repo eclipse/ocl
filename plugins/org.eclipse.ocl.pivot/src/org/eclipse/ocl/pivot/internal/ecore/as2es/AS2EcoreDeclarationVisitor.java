@@ -486,12 +486,12 @@ public class AS2EcoreDeclarationVisitor
 		}
 		context.defer(pivotClass);		// Defer superclass resolution
 		@SuppressWarnings("null")@NonNull List<EOperation> eOperations = eClass.getEOperations();
-		@SuppressWarnings("null")@NonNull Iterable<Constraint> nonDuplicateConstraints = Iterables.filter(pivotClass.getOwnedInvariants(), nonDuplicateConstraintsFilter);
+		@NonNull Iterable<Constraint> nonDuplicateConstraints = Iterables.filter(pivotClass.getOwnedInvariants(), nonDuplicateConstraintsFilter);
 //		safeVisitAll(eOperations, nonDuplicateConstraints);
-		@SuppressWarnings("null")@NonNull Iterable<Operation> nonDuplicateOperations = Iterables.filter(pivotClass.getOwnedOperations(), nonDuplicateOperationsFilter);
+		@NonNull Iterable<Operation> nonDuplicateOperations = Iterables.filter(pivotClass.getOwnedOperations(), nonDuplicateOperationsFilter);
 		safeVisitAll(eOperations, nonDuplicateOperations);
 		@SuppressWarnings("null")@NonNull List<EStructuralFeature> eStructuralFeatures = eClass.getEStructuralFeatures();
-		@SuppressWarnings("null")@NonNull Iterable<Property> nonDuplicateProperties = Iterables.filter(pivotClass.getOwnedProperties(), nonDuplicatePropertiesFilter);
+		@NonNull Iterable<Property> nonDuplicateProperties = Iterables.filter(pivotClass.getOwnedProperties(), nonDuplicatePropertiesFilter);
 		safeVisitAll(eStructuralFeatures, nonDuplicateProperties);
 		Map<String, Object> options = context.getOptions();
 		String invariantPrefix = AS2Ecore.getInvariantPrefix(options);
@@ -509,7 +509,7 @@ public class AS2EcoreDeclarationVisitor
 		}
 		if (!context.isSuppressDuplicates()) {
 			List<ETypedElement> eDuplicates = null;
-			@SuppressWarnings("null")@NonNull Iterable<Constraint> duplicateConstraints = Iterables.filter(pivotClass.getOwnedInvariants(), duplicateConstraintsFilter);
+			@NonNull Iterable<Constraint> duplicateConstraints = Iterables.filter(pivotClass.getOwnedInvariants(), duplicateConstraintsFilter);
 			for (Constraint asConstraint : duplicateConstraints) {
 				if (eDuplicates == null) {
 					eDuplicates = new ArrayList<ETypedElement>();
@@ -524,7 +524,7 @@ public class AS2EcoreDeclarationVisitor
 					context.defer(asConstraint);		// Defer references
 				}
 			}
-			@SuppressWarnings("null")@NonNull Iterable<Operation> duplicateOperations = Iterables.filter(pivotClass.getOwnedOperations(), duplicateOperationsFilter);
+			@NonNull Iterable<Operation> duplicateOperations = Iterables.filter(pivotClass.getOwnedOperations(), duplicateOperationsFilter);
 			for (Operation asOperation : duplicateOperations) {
 				if (eDuplicates == null) {
 					eDuplicates = new ArrayList<ETypedElement>();
@@ -534,7 +534,7 @@ public class AS2EcoreDeclarationVisitor
 					eDuplicates.add((EOperation)eOperation);
 				}
 			}
-			@SuppressWarnings("null")@NonNull Iterable<Property> duplicateProperties = Iterables.filter(pivotClass.getOwnedProperties(), duplicatePropertiesFilter);
+			@NonNull Iterable<Property> duplicateProperties = Iterables.filter(pivotClass.getOwnedProperties(), duplicatePropertiesFilter);
 			for (Property asProperty : duplicateProperties) {
 				if (eDuplicates == null) {
 					eDuplicates = new ArrayList<ETypedElement>();
@@ -589,7 +589,7 @@ public class AS2EcoreDeclarationVisitor
 			instanceClass = Collection.class;
 		}
 		@SuppressWarnings("null")@NonNull List<EStructuralFeature> eStructuralFeatures = eClass.getEStructuralFeatures();
-		@SuppressWarnings("null")@NonNull Iterable<Property> nonDuplicateProperties = Iterables.filter(pivotCollectionType.getOwnedProperties(), nonDuplicatePropertiesFilter);
+		@NonNull Iterable<Property> nonDuplicateProperties = Iterables.filter(pivotCollectionType.getOwnedProperties(), nonDuplicatePropertiesFilter);
 		safeVisitAll(eStructuralFeatures, nonDuplicateProperties);
 		eClass.setInstanceClass(instanceClass);
 		eClass.setAbstract(true);

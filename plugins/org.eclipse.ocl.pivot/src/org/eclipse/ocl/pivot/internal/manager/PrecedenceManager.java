@@ -30,9 +30,9 @@ import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 public class PrecedenceManager
 {	
 	
-	public static @SuppressWarnings("null")@NonNull Precedence NULL_PRECEDENCE = PivotFactory.eINSTANCE.createPrecedence();
-	public static @SuppressWarnings("null")@NonNull Precedence NAVIGATION_PRECEDENCE = PivotFactory.eINSTANCE.createPrecedence();
-	public static @SuppressWarnings("null")@NonNull Precedence LEAF_PRECEDENCE = PivotFactory.eINSTANCE.createPrecedence();
+	public static @NonNull Precedence NULL_PRECEDENCE = PivotFactory.eINSTANCE.createPrecedence();
+	public static @NonNull Precedence NAVIGATION_PRECEDENCE = PivotFactory.eINSTANCE.createPrecedence();
+	public static @NonNull Precedence LEAF_PRECEDENCE = PivotFactory.eINSTANCE.createPrecedence();
 	static {
 		NULL_PRECEDENCE.setName("NULL");
 		NULL_PRECEDENCE.setOrder(Integer.MAX_VALUE/2);			// Small enough to avoid wrap around during comparison

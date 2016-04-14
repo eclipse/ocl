@@ -160,45 +160,35 @@ public class SimpleAnalysis extends AbstractAnalysis
 		ReferencesVisitor referencesVisitor = globalPlace.getReferencesVisitor();
 		List<Object> theseObjects = this.cgElement.accept(referencesVisitor);
 		List<Object> thoseObjects = that.cgElement.accept(referencesVisitor);
-		if (theseObjects == null) {
-			if (thoseObjects != null) {
-				return false;
-			}
+		if (theseObjects.size() != thoseObjects.size()) {
+			return false;
 		}
-		else {
-			if (thoseObjects == null) {
-				return false;
+		for (int i = 0; i < theseObjects.size(); i++) {
+			Object thisObject = theseObjects.get(i);
+			Object thatObject = thoseObjects.get(i);
+			if (thisObject == null) {
+				if (thatObject != null) {
+					return false;
+				}
 			}
-			if (theseObjects.size() != thoseObjects.size()) {
-				return false;
-			}
-			for (int i = 0; i < theseObjects.size(); i++) {
-				Object thisObject = theseObjects.get(i);
-				Object thatObject = thoseObjects.get(i);
-				if (thisObject == null) {
-					if (thatObject != null) {
-						return false;
+			else {
+				if (thatObject == null) {
+					return false;
+				}
+				else if ((thisObject instanceof CGElement) && (thatObject instanceof CGElement)) {
+					SimpleAnalysis thisAnalysis = globalPlace.getSimpleAnalysis(thisObject);
+					SimpleAnalysis thatAnalysis = globalPlace.getSimpleAnalysis(thatObject);
+					if ((thisAnalysis != null) && (thatAnalysis != null)) {
+						if (!thisAnalysis.isStructurallyEqualTo(thatAnalysis)) {
+							return false;
+						}
+//						else {
+//							logger.error("Missing analysis");
+//						}
 					}
 				}
-				else {
-					if (thatObject == null) {
-						return false;
-					}
-					else if ((thisObject instanceof CGElement) && (thatObject instanceof CGElement)) {
-						SimpleAnalysis thisAnalysis = globalPlace.getSimpleAnalysis(thisObject);
-						SimpleAnalysis thatAnalysis = globalPlace.getSimpleAnalysis(thatObject);
-						if ((thisAnalysis != null) && (thatAnalysis != null)) {
-							if (!thisAnalysis.isStructurallyEqualTo(thatAnalysis)) {
-								return false;
-							}
-//							else {
-//								logger.error("Missing analysis");
-//							}
-						}
-					}
-					else if (!thisObject.equals(thatObject)) {
-						return false;
-					}
+				else if (!thisObject.equals(thatObject)) {
+					return false;
 				}
 			}
 		}

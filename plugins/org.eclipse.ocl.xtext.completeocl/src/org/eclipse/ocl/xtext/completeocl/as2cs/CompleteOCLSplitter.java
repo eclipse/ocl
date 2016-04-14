@@ -109,7 +109,7 @@ public class CompleteOCLSplitter
 		public EObject caseClass(org.eclipse.ocl.pivot.Class object) {
 			org.eclipse.ocl.pivot.Package parent = object.getOwningPackage();
 			org.eclipse.ocl.pivot.Package separateParent = getSeparate(parent);
-			List<org.eclipse.ocl.pivot.Class> separateSiblings = separateParent.getOwnedClasses();
+			List<org.eclipse.ocl.pivot.@NonNull Class> separateSiblings = ClassUtil.nullFree(separateParent.getOwnedClasses());
 			return cloneNamedElement(separateSiblings, object);
 		}
 
@@ -239,11 +239,11 @@ public class CompleteOCLSplitter
 //			return cloneNamedElement(separateSiblings, object);
 //		}
 
-		protected <T extends NamedElement> T cloneNamedElement(List<T> separateSiblings, T object) {
+		protected <@NonNull T extends NamedElement> T cloneNamedElement(List<T> separateSiblings, T object) {
 			String name = object.getName();
 			@Nullable T separateObject = NameUtil.getNameable(separateSiblings, name);
 			if (separateObject == null) {
-				@SuppressWarnings({"unchecked", "null"})@NonNull T castObject = (T) object.eClass().getEPackage().getEFactoryInstance().create(object.eClass());
+				@SuppressWarnings("unchecked")@NonNull T castObject = (T) object.eClass().getEPackage().getEFactoryInstance().create(object.eClass());
 				separateObject = castObject;
 				separateObject.setName(name);
 				separateSiblings.add(separateObject);

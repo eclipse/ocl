@@ -770,10 +770,10 @@ public class BasicEvaluationVisitor extends AbstractEvaluationVisitor
 	@Override
     public Object visitTupleLiteralExp(@NonNull TupleLiteralExp tl) {
 		Type type = ClassUtil.nonNullModel(tl.getType());
-		Map<TuplePartId, Object> propertyValues = new HashMap<TuplePartId, Object>();		
-		for (TupleLiteralPart part : tl.getOwnedParts()) {
+		Map<@NonNull TuplePartId, @Nullable Object> propertyValues = new HashMap<@NonNull TuplePartId, @Nullable Object>();		
+		for (@NonNull TupleLiteralPart part : ClassUtil.nullFree(tl.getOwnedParts())) {
 			// Set the tuple field with the value of the init expression
-			propertyValues.put(part.getPartId(), part.accept(undecoratedVisitor));
+			propertyValues.put(ClassUtil.nonNull(part.getPartId()), part.accept(undecoratedVisitor));
 		}
 //		TupleType tupleType = metamodelManager.getTupleType(type.getName(), propertyValues.keySet());
 		return ValueUtil.createTupleValue(((TupleType) type).getTupleTypeId(), propertyValues);

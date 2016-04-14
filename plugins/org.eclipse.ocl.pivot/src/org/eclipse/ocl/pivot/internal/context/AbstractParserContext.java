@@ -157,7 +157,7 @@ public abstract class AbstractParserContext /*extends AdapterImpl*/ implements P
 			return expressionInOCL;
 		} catch (IOException e) {
 //				throw new ParserException("Failed to load expression", e);
-			@SuppressWarnings("null")@NonNull ExpressionInOCL specification = PivotFactory.eINSTANCE.createExpressionInOCL();
+			@NonNull ExpressionInOCL specification = PivotFactory.eINSTANCE.createExpressionInOCL();
 			OCLExpression invalidValueBody = getMetamodelManager().createInvalidExpression();
 			PivotUtil.setBody(specification, invalidValueBody, null);
 			return specification;

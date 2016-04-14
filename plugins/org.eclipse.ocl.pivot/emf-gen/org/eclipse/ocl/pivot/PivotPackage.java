@@ -31,7 +31,6 @@ import org.eclipse.jdt.annotation.NonNull;
  *   <li>and each data type</li>
  * </ul>
  * @noimplement This interface is not intended to be implemented by clients.
- * @noreference This class is not intended to be referenced by clients.
  * <!-- end-user-doc -->
  * @see org.eclipse.ocl.pivot.PivotFactory
  * @generated
@@ -14583,6 +14582,7 @@ public interface PivotPackage
 	/**
 	 * The feature id for the '<em><b>Is Virtual</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -24846,6 +24846,7 @@ public interface PivotPackage
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.pivot.OperationCallExp#isIsVirtual <em>Is Virtual</em>}'.
 	 * <!-- begin-user-doc -->
+	 * @since 1.1
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Virtual</em>'.
 	 * @see org.eclipse.ocl.pivot.OperationCallExp#isIsVirtual()

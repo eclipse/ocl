@@ -130,10 +130,12 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 			Type resultType = PivotUtil.getPivot(Type.class, csElement.getOwnedResultType());
 			String name = csElement.getName();
 			if ((contextType != null) && (resultType != null) && (name != null)) {
-				List<Type> parameterTypes = new ArrayList<Type>();
+				List<@NonNull Type> parameterTypes = new ArrayList<@NonNull Type>();
 				for (TypedRefCS csParameterType : csElement.getOwnedParameterTypes()) {
 					Type parameterType = PivotUtil.getPivot(Type.class, csParameterType);
-					parameterTypes.add(parameterType);
+					if (parameterType != null) {
+						parameterTypes.add(parameterType);
+					}
 				}
 				LambdaType lambdaType = context.getMetamodelManager().getCompleteModel().getLambdaType(name, contextType, parameterTypes, resultType, null);
 				context.installPivotTypeWithMultiplicity(lambdaType, csElement);
@@ -386,7 +388,7 @@ public class BaseCSPreOrderVisitor extends AbstractExtendingBaseCSVisitor<Contin
 		public BasicContinuation<?> execute() {
 			String name = csElement.getName();
 			if (name != null) {
-				List<TypedElement> parts = new ArrayList<TypedElement>();
+				List<@NonNull TypedElement> parts = new ArrayList<@NonNull TypedElement>();
 				for (@SuppressWarnings("null")@NonNull TuplePartCS csTuplePart : csElement.getOwnedParts()) {
 					String partName = csTuplePart.getName();
 					if (partName != null) {

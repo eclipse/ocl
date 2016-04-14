@@ -513,7 +513,7 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 	}
 
 	/**
-	 * @since 1.0
+	 * @since 1.1
 	 */
 	@Override
 	public Signal caseSignal(org.eclipse.uml2.uml.Signal umlSignal) {

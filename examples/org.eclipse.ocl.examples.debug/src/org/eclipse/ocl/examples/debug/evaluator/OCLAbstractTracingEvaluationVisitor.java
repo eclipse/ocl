@@ -162,7 +162,7 @@ public abstract class OCLAbstractTracingEvaluationVisitor extends OCLVMEvaluatio
 				if (value instanceof Collection<?>) {
 					int size = ((Collection<?>)value).size(); 
 					if (size > 0) {
-						line += "[" + ((EObject)((Iterable<?>) value).iterator().next()).eClass().getName() + "] x " + size;
+						line += "[" + ((EObject)((Iterable<@NonNull ?>) value).iterator().next()).eClass().getName() + "] x " + size;
 					} else {
 						line += "[ ]";
 					}
@@ -204,7 +204,7 @@ public abstract class OCLAbstractTracingEvaluationVisitor extends OCLVMEvaluatio
 				if (value instanceof Collection<?>) {
 					int size = ((Collection<?>)value).size(); 
 					if (size > 0) {
-						line += "[" + ((EObject)((Iterable<?>) value).iterator().next()).eClass().getName() + "] x " + size;
+						line += "[" + ((EObject)((Iterable<@NonNull ?>) value).iterator().next()).eClass().getName() + "] x " + size;
 					} else {
 						line += "[ ]";
 					}

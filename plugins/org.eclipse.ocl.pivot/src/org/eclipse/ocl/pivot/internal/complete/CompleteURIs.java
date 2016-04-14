@@ -40,7 +40,7 @@ public class CompleteURIs
 	/**
 	 * Map from Complete URI to Complete Package. 
 	 */
-	private final @NonNull Map<String, CompletePackageInternal> completeURI2completePackage = new HashMap<String, CompletePackageInternal>();
+	private final @NonNull Map<String, @NonNull CompletePackageInternal> completeURI2completePackage = new HashMap<String, @NonNull CompletePackageInternal>();
 
 	public CompleteURIs(@NonNull CompleteModelInternal completeModel) {
 		this.completeModel = completeModel;
@@ -105,7 +105,7 @@ public class CompleteURIs
 		completeURI2completePackage.clear();
 	}
 
-	public @NonNull Iterable<CompletePackageInternal> getAllCompletePackages() {
+	public @NonNull Iterable<@NonNull CompletePackageInternal> getAllCompletePackages() {
 		return completeURI2completePackage.values();
 	}
 
@@ -154,7 +154,7 @@ public class CompleteURIs
 	public @Nullable CompletePackageInternal getCompletePackageByURI(@NonNull String packageURI) {
 		int lastIndex = packageURI.lastIndexOf("#/");
 		if (lastIndex > 0) {
-			@SuppressWarnings("null") @NonNull String substring = packageURI.substring(0, lastIndex);
+			@NonNull String substring = packageURI.substring(0, lastIndex);
 			packageURI = substring;
 		}
 		String completeURI = getCompleteURI(packageURI);

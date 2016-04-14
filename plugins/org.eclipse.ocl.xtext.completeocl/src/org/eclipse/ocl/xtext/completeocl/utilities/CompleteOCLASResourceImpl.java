@@ -49,7 +49,7 @@ public class CompleteOCLASResourceImpl extends ASResourceImpl
 
 	@Override
 	public void load(Map<?, ?> options) throws IOException {
-		@SuppressWarnings("null")@NonNull URI oclURI = uri.trimFileExtension();
+		@NonNull URI oclURI = uri.trimFileExtension();
 		EnvironmentFactoryInternal environmentFactory = PivotUtilInternal.getEnvironmentFactory(this);
 		BaseCSResource csResource = (BaseCSResource) environmentFactory.getResourceSet().createResource(oclURI);
 		assert csResource != null;

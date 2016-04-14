@@ -560,7 +560,6 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	}
 
 	@Override
-	@SuppressWarnings("null")
 	public @NonNull OrphanCompletePackageImpl getOrphanCompletePackage()
 	{
 		OrphanCompletePackage orphanCompletePackage2 = orphanCompletePackage;
@@ -656,7 +655,6 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 	}
 	
 	@Override
-	@SuppressWarnings("null")
 	public @NonNull PrimitiveCompletePackageImpl getPrimitiveCompletePackage()
 	{
 		PrimitiveCompletePackage primitiveCompletePackage2 = primitiveCompletePackage;
@@ -770,9 +768,12 @@ public class CompleteModelImpl extends NamedElementImpl implements CompleteModel
 					}
 				}
 				else {
-					List<Type> superTemplateArgumentList = new ArrayList<Type>(superSpecializedTemplateParameterSubstitutions.size());
+					List<@NonNull Type> superTemplateArgumentList = new ArrayList<@NonNull Type>(superSpecializedTemplateParameterSubstitutions.size());
 					for (TemplateParameterSubstitution superSpecializedTemplateParameterSubstitution : superSpecializedTemplateParameterSubstitutions) {
-						superTemplateArgumentList.add(superSpecializedTemplateParameterSubstitution.getActual());
+						Type actual = superSpecializedTemplateParameterSubstitution.getActual();
+						if (actual != null) {
+							superTemplateArgumentList.add(actual);
+						}
 					}
 					CompleteInheritanceImpl superCompleteInheritance = superCompleteClass.getCompleteInheritance();
 					org.eclipse.ocl.pivot.Class specializedSuperType = superCompleteInheritance.getCompleteClass().getPartialClasses().getSpecializedType(superTemplateArgumentList);

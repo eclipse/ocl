@@ -867,9 +867,9 @@ public class CompleteEnvironmentImpl extends ElementImpl implements CompleteEnvi
 			//
 			TemplateSignature templateSignature = unspecializedType.getOwnedSignature();
 			if (templateSignature != null) {
-				List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
-				List<Type> templateArguments = new ArrayList<Type>(templateParameters.size());
-				for (TemplateParameter templateParameter : templateParameters) {
+				List<@NonNull TemplateParameter> templateParameters = ClassUtil.nullFree(templateSignature.getOwnedParameters());
+				List<@NonNull Type> templateArguments = new ArrayList<@NonNull Type>(templateParameters.size());
+				for (@NonNull TemplateParameter templateParameter : templateParameters) {
 					Type templateArgument = substitutions.get(templateParameter);
 					templateArguments.add(templateArgument != null ? templateArgument : templateParameter);
 				}

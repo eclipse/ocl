@@ -181,7 +181,7 @@ public final class PartialPackages extends EObjectResolvingEList<org.eclipse.ocl
 	protected @NonNull Iterable<org.eclipse.ocl.pivot.Package> getNestedPartialPackages() {
 		PartialPackages partialPackages = getCompletePackage().getPartialPackages();
 		Iterable<Iterable<org.eclipse.ocl.pivot.Package>> roots_packages = Iterables.transform(partialPackages, package2PackageOwnedPackages);
-		@SuppressWarnings("null")@NonNull Iterable<Package> allPackages = Iterables.concat(roots_packages);
+		@NonNull Iterable<Package> allPackages = Iterables.concat(roots_packages);
 		return allPackages;
 	}
 

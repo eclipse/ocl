@@ -1238,10 +1238,12 @@ public class CS2ASConversion extends AbstractBase2ASConversion
 				specializedPivotElement = templateArgument != null ? completeEnvironment.getCollectionType((CollectionType) unspecializedPivotElement, templateArgument, isNullFree, null, null) : unspecializedPivotElement;
 			}
 			else {
-				List<Type> templateArguments = new ArrayList<Type>();
+				List<@NonNull Type> templateArguments = new ArrayList<@NonNull Type>();
 				for (TemplateParameterSubstitutionCS csTemplateParameterSubstitution : ownedTemplateBinding.getOwnedSubstitutions()) {
 					Type templateArgument = PivotUtil.getPivot(Type.class, csTemplateParameterSubstitution.getOwnedActualParameter());
-					templateArguments.add(templateArgument);
+					if (templateArgument != null) {
+						templateArguments.add(templateArgument);
+					}
 				}
 				specializedPivotElement = metamodelManager.getLibraryType(unspecializedPivotElement, templateArguments);
 			}

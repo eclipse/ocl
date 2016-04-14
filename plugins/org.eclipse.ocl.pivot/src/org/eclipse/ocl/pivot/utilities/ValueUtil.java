@@ -621,7 +621,7 @@ public abstract class ValueUtil
 		return new SetValueImpl(typeId, boxedValues);
 	}
 
-	public static @NonNull TupleValue createTupleValue(@NonNull TupleTypeId typeId, @NonNull Map<? extends TuplePartId, Object> values) {
+	public static @NonNull TupleValue createTupleValue(@NonNull TupleTypeId typeId, @NonNull Map<@NonNull ? extends TuplePartId, @Nullable Object> values) {
 		return new TupleValueImpl(typeId, values);
 	}
 

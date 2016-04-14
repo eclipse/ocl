@@ -143,8 +143,8 @@ public class ValidityViewRefreshJob extends Job
 			refreshQueue.clear();
 		}
 		
-		List<AbstractNode> grayedValidatableNodes = new ArrayList<AbstractNode>();
-		List<AbstractNode> grayedConstrainingNodes = new ArrayList<AbstractNode>();
+		List<@NonNull AbstractNode> grayedValidatableNodes = new ArrayList<@NonNull AbstractNode>();
+		List<@NonNull AbstractNode> grayedConstrainingNodes = new ArrayList<@NonNull AbstractNode>();
 		model.refreshModel(grayedValidatableNodes, grayedConstrainingNodes);
 		
 		displayRefresh = new DisplayRefresh(monitor, grayedValidatableNodes, grayedConstrainingNodes);

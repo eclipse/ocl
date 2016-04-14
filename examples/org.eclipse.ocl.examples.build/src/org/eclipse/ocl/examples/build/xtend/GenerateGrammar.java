@@ -219,9 +219,9 @@ public abstract class GenerateGrammar extends AbstractWorkflowComponent
 				abstractRules.add(type.cast(eObject));
 			}
 		}
-		Collections.sort(abstractRules, new Comparator<AR>()
+		Collections.sort(abstractRules, new Comparator<@NonNull AR>()
 		{
-			public int compare(AR o1, AR o2) {
+			public int compare(@NonNull AR o1, @NonNull AR o2) {
 				return ClassUtil.safeCompareTo(o1.getName(), o2.getName());
 			}
 		});

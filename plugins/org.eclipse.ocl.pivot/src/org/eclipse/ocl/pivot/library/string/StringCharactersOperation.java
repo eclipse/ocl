@@ -33,7 +33,7 @@ public class StringCharactersOperation extends AbstractSimpleUnaryOperation
 		String sourceString = asString(sourceVal);
 		List<Object> results = new ArrayList<Object>(sourceString.length());
 		for (int i = 0; i < sourceString.length(); i++) {
-			@SuppressWarnings("null") @NonNull String s = sourceString.substring(i, i+1);
+			@NonNull String s = sourceString.substring(i, i+1);
 			results.add(s);
 		}
 		return createSequenceValue(SEQ_STRING, results);

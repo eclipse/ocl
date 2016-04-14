@@ -1110,7 +1110,7 @@ public class StandaloneProjectMap implements ProjectManager
 		}
 
 		@Override
-		public EList<EObject> getContents() {
+		public EList<@NonNull EObject> getContents() {
 			return eResource != null ? eResource.getContents() : EMPTY_LIST;
 		}
 

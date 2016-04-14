@@ -104,7 +104,7 @@ public class ValidityManager
 
 	public static synchronized @Nullable ConstraintLocator getConstraintLocator(@Nullable Resource validatableResource) {
 		if (validatableResource != null) {
-			for (@NonNull EObject validatableObject : validatableResource.getContents()) {
+			for (@NonNull EObject validatableObject : ClassUtil.nullFree(validatableResource.getContents())) {
 				EClass eClass = validatableObject.eClass();
 				if (eClass != null) {
 					EPackage ePackage = eClass.getEPackage();
@@ -517,7 +517,7 @@ public class ValidityManager
 			selectedResource = (Resource) newInput;
 			selectedResourceSet = selectedResource.getResourceSet();
 			if (selectedResourceSet == null) {
-				List<@NonNull EObject> eContents = selectedResource.getContents();
+				List<@NonNull EObject> eContents = ClassUtil.nullFree(selectedResource.getContents());
 				for (int j = 0; j < eContents.size(); j++) {		// Tolerate domain growth without a CME
 					EObject eObject = ClassUtil.nonNull(eContents.get(j));
 					EcoreUtil.resolveAll(eObject);

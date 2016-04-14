@@ -46,6 +46,29 @@
             </message_arguments>
         </filter>
     </resource>
+    <resource path="emf-gen/org/eclipse/ocl/pivot/PivotPackage.java" type="org.eclipse.ocl.pivot.PivotPackage">
+        <filter id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.PivotPackage"/>
+                <message_argument value="OPERATION_CALL_EXP_FEATURE_COUNT"/>
+                <message_argument value="15"/>
+            </message_arguments>
+        </filter>
+        <filter id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.PivotPackage"/>
+                <message_argument value="OPERATION_CALL_EXP__OWNED_ARGUMENTS"/>
+                <message_argument value="13"/>
+            </message_arguments>
+        </filter>
+        <filter id="388194388">
+            <message_arguments>
+                <message_argument value="org.eclipse.ocl.pivot.PivotPackage"/>
+                <message_argument value="OPERATION_CALL_EXP__REFERRED_OPERATION"/>
+                <message_argument value="14"/>
+            </message_arguments>
+        </filter>
+    </resource>
     <resource path="emf-gen/org/eclipse/ocl/pivot/PivotPackage.java" type="org.eclipse.ocl.pivot.PivotPackage$Literals">
         <filter id="403767336">
             <message_arguments>
@@ -640,13 +663,6 @@
         <filter id="1110441988">
             <message_arguments>
                 <message_argument value="org.eclipse.ocl.pivot.util.PivotUnqualifiedLookupVisitor"/>
-            </message_arguments>
-        </filter>
-    </resource>
-    <resource path="src-gen/org/eclipse/ocl/pivot/internal/labels/LabelGeneratorRegistry.java" type="org.eclipse.ocl.pivot.internal.labels.LabelGeneratorRegistry">
-        <filter id="1110441988">
-            <message_arguments>
-                <message_argument value="org.eclipse.ocl.pivot.internal.labels.LabelGeneratorRegistry"/>
             </message_arguments>
         </filter>
     </resource>

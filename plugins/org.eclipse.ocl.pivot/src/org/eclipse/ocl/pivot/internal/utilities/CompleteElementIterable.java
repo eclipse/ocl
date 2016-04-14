@@ -124,7 +124,7 @@ public abstract class CompleteElementIterable<O,I> implements Iterable<I>
 			@SuppressWarnings("unchecked")
 			List<O> list = (List<O>)iterables;
 			if (list.size() == 0) {
-				@SuppressWarnings("null") @NonNull UnmodifiableIterator<I> result = Iterators.<I>emptyIterator();
+				@NonNull UnmodifiableIterator<I> result = Iterators.<I>emptyIterator();
 				return result;
 			}
 			else if (list.size() == 1) {
@@ -136,7 +136,7 @@ public abstract class CompleteElementIterable<O,I> implements Iterable<I>
 						return result;
 					}
 				}
-				@SuppressWarnings("null") @NonNull UnmodifiableIterator<I> result = Iterators.<I>emptyIterator();
+				@NonNull UnmodifiableIterator<I> result = Iterators.<I>emptyIterator();
 				return result;
 			}
 		}

@@ -13,10 +13,12 @@ package org.eclipse.ocl.pivot.internal.utilities;
 import java.util.Map;
 import java.util.WeakHashMap;
 
+import org.eclipse.jdt.annotation.NonNull;
+
 /**
  * LiveInstances assists in debugging memory leaks by reporting creation/deletion/exuistence of selected class instances.
  */
-public class LiveInstances<T>
+public class LiveInstances<@NonNull T>
 {
 	protected final Class<T> liveClass;
 	private Map<T,Object> instances = new WeakHashMap<T, Object>();

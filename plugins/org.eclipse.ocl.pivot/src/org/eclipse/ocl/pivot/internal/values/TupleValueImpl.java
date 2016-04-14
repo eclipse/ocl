@@ -51,10 +51,10 @@ public class TupleValueImpl extends ValueImpl implements TupleValue
      * @param tupleTypeId my type
      * @param values my parts
      */
-    public TupleValueImpl(@NonNull TupleTypeId tupleTypeId, @NonNull Map<? extends TuplePartId, Object> values) {
+    public TupleValueImpl(@NonNull TupleTypeId tupleTypeId, @NonNull Map<@NonNull ? extends TuplePartId, @Nullable Object> values) {
 		this.tupleTypeId = tupleTypeId;
 	    partValues = new @Nullable Object[tupleTypeId.getPartIds().length];
-        for (Map.Entry<? extends TuplePartId, Object> entry : values.entrySet()) {
+        for (Map.Entry<@NonNull ? extends TuplePartId, @Nullable Object> entry : values.entrySet()) {
         	partValues[entry.getKey().getIndex()] = entry.getValue();
         }
     }

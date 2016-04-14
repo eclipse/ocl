@@ -93,7 +93,7 @@ public class OCLinEcoreTables extends OCLinEcoreTablesUtils
 				int k = constants.indexOf("%>", j+2);
 				if (k >= 0) {
 					s.append(constants.substring(i, j));
-					@SuppressWarnings("null")@NonNull String referencedClass = constants.substring(j+2, k);
+					@NonNull String referencedClass = constants.substring(j+2, k);
 					s.appendClassReference(referencedClass);
 					i = k+2;
 				}

@@ -738,9 +738,7 @@ public class PropertyImpl
 			}
 			else if (newDefaultValue instanceof EObject) {
 				URI uri = EcoreUtil.getURI((EObject)newDefaultValue);
-				if (uri != null) {
-					newDefaultValueString = uri.toString(); 		// FIXME resolve to parent base URI
-				}
+				newDefaultValueString = uri.toString(); 		// FIXME resolve to parent base URI
 			}
 			else {
 				newDefaultValueString = newDefaultValue.toString();	

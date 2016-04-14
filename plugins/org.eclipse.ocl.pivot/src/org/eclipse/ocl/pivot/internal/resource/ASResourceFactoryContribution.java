@@ -15,9 +15,9 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.internal.library.RegisteredContribution;
 
-public interface ASResourceFactoryContribution extends RegisteredContribution<ASResourceFactory>
+public interface ASResourceFactoryContribution extends RegisteredContribution<@NonNull ASResourceFactory>
 {
-	public static class Descriptor extends AbstractDescriptor<ASResourceFactory> implements ASResourceFactoryContribution
+	public static class Descriptor extends AbstractDescriptor<@NonNull ASResourceFactory> implements ASResourceFactoryContribution
 	{
 		protected final @Nullable Integer priority;
 
@@ -32,7 +32,7 @@ public interface ASResourceFactoryContribution extends RegisteredContribution<AS
 		}
 
 		@Override
-		public ASResourceFactory createContribution() {
+		public @NonNull ASResourceFactory createContribution() {
 			Object createInstance = createInstance();
 			return ((ASResourceFactory) createInstance).getASResourceFactory();
 		}

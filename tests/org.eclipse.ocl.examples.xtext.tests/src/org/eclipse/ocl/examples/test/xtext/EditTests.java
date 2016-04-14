@@ -955,7 +955,7 @@ public class EditTests extends XtextTestCase
 		//
 		Type myType = ClassUtil.nonNullState(metamodelManager.getPrimaryType(LibraryConstants.STDLIB_URI, "MyType"));
 		SequenceType sequenceType = ocl.getStandardLibrary().getSequenceType();
-		CollectionTypeParameters<Type> typeParameters = new CollectionTypeParametersImpl<Type>(myType, false, null, null);
+		CollectionTypeParameters<@NonNull Type> typeParameters = new CollectionTypeParametersImpl<@NonNull Type>(myType, false, null, null);
 		CompleteClassInternal sequenceCompleteClass = metamodelManager.getCompleteClass(sequenceType);
 		WeakReference<Type> sequenceMyType = new WeakReference<Type>(completeModel.findCollectionType(sequenceCompleteClass, typeParameters));
 		assertNull(sequenceMyType.get()); 
