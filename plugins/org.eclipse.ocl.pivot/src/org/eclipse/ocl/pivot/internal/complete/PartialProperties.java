@@ -182,7 +182,7 @@ public class PartialProperties implements Iterable<@NonNull Property>
 						if (disambiguators != null) {
 							for (Comparator<Object> comparator : disambiguators) {
 								if (comparator instanceof Disambiguator<?>) {
-									verdict = ((Disambiguator<Object>)comparator).compare(environmentFactory, iValue, jValue);
+									verdict = ((Disambiguator<@NonNull Object>)comparator).compare(environmentFactory, iValue, jValue);
 								}
 								else {
 									verdict = comparator.compare(iValue, jValue);

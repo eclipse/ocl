@@ -38,6 +38,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIException;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.AssociationClass;
 import org.eclipse.ocl.pivot.CompleteModel;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
@@ -365,7 +366,7 @@ public abstract class UML2AS extends AbstractExternal2AS
 		}
 
 		@Override
-		public @Nullable Map<EObject, Element> getCreatedMap() {
+		public @Nullable Map<@NonNull EObject, @NonNull Element> getCreatedMap() {
 			return root.getCreatedMap();
 		}
 		
@@ -404,7 +405,7 @@ public abstract class UML2AS extends AbstractExternal2AS
 		/**
 		 * Mapping of source UML objects to their resulting pivot element.
 		 */
-		private @NonNull Map<EObject, Element> createMap = new HashMap<EObject, Element>();
+		private @NonNull Map<@NonNull EObject, @NonNull Element> createMap = new HashMap<@NonNull EObject, @NonNull Element>();
 
 		/**
 		 * Set of all UML objects requiring further work during the reference pass.
@@ -442,7 +443,7 @@ public abstract class UML2AS extends AbstractExternal2AS
 		@Override
 		public void addCreated(@NonNull EObject eObject, @NonNull Element pivotElement) {
 //			if ((eObject instanceof ENamedElement) && "EnglishClass".equals(((ENamedElement)eObject).getName())) {
-//				System.out.println("Define " + ClassUtil.debugSimpleName(eObject) + " => " + ClassUtil.debugSimpleName(pivotElement));
+//				System.out.println("Define " + NameUtil.debugSimpleName(eObject) + " => " + NameUtil.debugSimpleName(pivotElement) + " in " + NameUtil.debugSimpleName(createMap));
 //			}
 //			else if ((eObject instanceof org.eclipse.uml2.uml.NamedElement) && "EnglishClass".equals(((org.eclipse.uml2.uml.NamedElement)eObject).getName())) {
 //				System.out.println("Define " + ClassUtil.debugSimpleName(eObject) + " => " + ClassUtil.debugSimpleName(pivotElement));
@@ -678,7 +679,7 @@ public abstract class UML2AS extends AbstractExternal2AS
 		}
 
 		@Override
-		public @Nullable Map<EObject, Element> getCreatedMap() {
+		public @Nullable Map<@NonNull EObject, @NonNull Element> getCreatedMap() {
 			return createMap;
 		}
 		
@@ -745,9 +746,14 @@ public abstract class UML2AS extends AbstractExternal2AS
 							metamodelManager.installResource(asResource);
 						}
 						else {
-							Map<EObject, Element> importedCreatedMap = adapter.getCreatedMap();
+							Map<@NonNull EObject, @NonNull Element> importedCreatedMap = adapter.getCreatedMap();
 							if (importedCreatedMap != null) {
 								createMap.putAll(importedCreatedMap);
+//								for (@NonNull EObject key : importedCreatedMap.keySet()) {
+//									Element value = importedCreatedMap.get(key);
+//									assert value != null;
+//									addCreated(key, value);
+//								}
 							}
 						}
 					}
@@ -937,7 +943,8 @@ public abstract class UML2AS extends AbstractExternal2AS
 	
 	protected final @NonNull Resource umlResource;	
 	protected Model pivotModel = null;	// Set by installDeclarations
-	private URI umlURI = null;;
+	private URI umlURI = null;
+	private final @NonNull Map<@NonNull AssociationClass, @NonNull AssociationClassProperties> association2properties = new HashMap<@NonNull AssociationClass, @NonNull AssociationClassProperties>();
 	
 	protected UML2AS(@NonNull Resource umlResource, @NonNull EnvironmentFactoryInternal environmentFactory) {
 		super(environmentFactory);
@@ -952,6 +959,10 @@ public abstract class UML2AS extends AbstractExternal2AS
 		completeModel.addPackageURI2completeURI(ClassUtil.nonNullEMF(UMLPackage.eNS_URI), PivotConstants.UML_METAMODEL_NAME);
 		completeModel.addPackageURI2completeURI(ClassUtil.nonNullEMF(TypesPackage.eNS_URI), PivotConstants.TYPES_METAMODEL_NAME);		// FIXME All known synonyms
 		// FIXME All known synonyms
+	}
+	
+	/*public*/ void addAssociationClassProperties(@NonNull AssociationClass asAssociationClass, @NonNull AssociationClassProperties asProperties) {
+		association2properties.put(asAssociationClass, asProperties);
 	}
 	
 	public abstract void addCreated(@NonNull EObject umlElement, @NonNull Element pivotElement);
@@ -1011,6 +1022,14 @@ public abstract class UML2AS extends AbstractExternal2AS
 	public abstract void error(@NonNull String message);
 	
 	public abstract @Nullable Type getASType(@NonNull EObject eObject);
+	
+	/**
+	 * Return all the pivot properties with which asAssociationClass supports umlProperties in an order that
+	 * is positionally consistent with the order of umlProperties.
+	 */
+	/*public*/ @Nullable AssociationClassProperties getAssociationClassProperties(@NonNull AssociationClass asAssociationClass) {
+		return association2properties.get(asAssociationClass);
+	}
 
 	public abstract @NonNull UML2ASDeclarationSwitch getDeclarationPass();
 	
@@ -1020,6 +1039,26 @@ public abstract class UML2AS extends AbstractExternal2AS
 	}
 	
 	public abstract @NonNull Outer getRoot();
+	
+	/*public*/ @NonNull List<org.eclipse.uml2.uml.@NonNull Property> getSafeMemberEnds(org.eclipse.uml2.uml.@NonNull Association umlAssociation) { // FIXME workaround for BUG 491587
+		List<org.eclipse.uml2.uml.@NonNull Property> safeMemberEnds = new ArrayList<org.eclipse.uml2.uml.@NonNull Property>();
+		for (org.eclipse.uml2.uml.Property umlProperty : umlAssociation.getMemberEnds()) {
+			if (umlProperty != null) {
+				String name = umlProperty.getName();
+				boolean isSafe = true;
+				for (org.eclipse.uml2.uml.@NonNull Property umlSafeProperty : safeMemberEnds) {
+					if (ClassUtil.safeEquals(name, umlSafeProperty.getName())) {
+						isSafe = false;
+						break;
+					}
+				}
+				if (isSafe) {
+					safeMemberEnds.add(umlProperty);
+				}
+			}
+		}
+		return safeMemberEnds;
+	}
 
 	@Override
 	public @NonNull URI getURI() {

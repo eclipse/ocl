@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.ocl.pivot.AssociationClass;
 import org.eclipse.ocl.pivot.DataType;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.Profile;
@@ -34,9 +35,12 @@ import org.eclipse.ocl.pivot.StereotypeExtender;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypedElement;
 import org.eclipse.ocl.pivot.internal.complete.StandardLibraryInternal;
+import org.eclipse.ocl.pivot.internal.manager.PivotMetamodelManager;
 import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.External2AS;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.uml2.uml.util.UMLSwitch;
 
 //
@@ -61,29 +65,33 @@ public class UML2ASReferenceSwitch extends UMLSwitch<Object>
 	@Override
 	public Object caseAssociation(org.eclipse.uml2.uml.Association umlAssociation) {
 		assert umlAssociation != null;
-		joinAssociationEnds(umlAssociation);
-		return this;
+		AssociationClass asAssociationClass = createAssociationClassProperties(umlAssociation);
+		List<org.eclipse.ocl.pivot.Class> asSuperClasses = asAssociationClass.getSuperClasses();
+		if (asSuperClasses.isEmpty()) {
+			asSuperClasses.add(standardLibrary.getOclElementType());
+		}
+		return asAssociationClass;
 	}
 
 	@Override
 	public Object caseAssociationClass(org.eclipse.uml2.uml.AssociationClass umlAssociationClass) {
 		assert umlAssociationClass != null;
-		joinAssociationEnds(umlAssociationClass);
+		createAssociationClassProperties(umlAssociationClass);
 		return caseClass(umlAssociationClass);
 	}
 
 	@Override
 	public org.eclipse.ocl.pivot.Class caseClass(org.eclipse.uml2.uml.Class umlClass) {
 		assert umlClass != null;
-		org.eclipse.ocl.pivot.Class pivotElement = converter.getCreated(org.eclipse.ocl.pivot.Class.class, umlClass);
-		if (pivotElement != null) {
-			doSwitchAll(org.eclipse.ocl.pivot.Class.class, ClassUtil.nullFree(pivotElement.getSuperClasses()), umlClass.getSuperClasses());
-			if (pivotElement.getSuperClasses().isEmpty()) {
-				org.eclipse.ocl.pivot.Class oclElementType = standardLibrary.getOclElementType();
-				pivotElement.getSuperClasses().add(oclElementType);
+		org.eclipse.ocl.pivot.Class asClass = converter.getCreated(org.eclipse.ocl.pivot.Class.class, umlClass);
+		if (asClass != null) {
+			List<org.eclipse.ocl.pivot.@NonNull Class> asSuperClasses = ClassUtil.nullFree(asClass.getSuperClasses());
+			doSwitchAll(org.eclipse.ocl.pivot.Class.class, asSuperClasses, umlClass.getSuperClasses());
+			if (asSuperClasses.isEmpty()) {
+				asSuperClasses.add(standardLibrary.getOclElementType());
 			}
 		}
-		return pivotElement;
+		return asClass;
 	}
 
 	@Override
@@ -112,8 +120,20 @@ public class UML2ASReferenceSwitch extends UMLSwitch<Object>
 
 	@Override
 	public Object caseExtension(org.eclipse.uml2.uml.Extension umlExtension) {
-		caseAssociation(umlExtension);
 		assert umlExtension != null;
+		List<org.eclipse.uml2.uml.Property> memberEnds = umlExtension.getMemberEnds();		// FIXME re-implement using/emulating createAssociationClassProperties
+		if (memberEnds.size() == 2) {
+			org.eclipse.uml2.uml.Property firstEnd = memberEnds.get(0);
+			org.eclipse.uml2.uml.Property secondEnd = memberEnds.get(1);
+			if ((firstEnd != null) && (secondEnd != null)) {
+				Property firstProperty = converter.getCreated(Property.class, firstEnd);
+				Property secondProperty = converter.getCreated(Property.class, secondEnd);
+				if ((firstProperty != null) && (secondProperty != null)) {
+					firstProperty.setOpposite(secondProperty);
+					secondProperty.setOpposite(firstProperty);
+				}
+			}
+		}
 		StereotypeExtender asTypeExtension = converter.getCreated(StereotypeExtender.class, umlExtension);
 		if (asTypeExtension != null) {
 			org.eclipse.uml2.uml.Class umlMetaclass = umlExtension.getMetaclass();
@@ -152,6 +172,8 @@ public class UML2ASReferenceSwitch extends UMLSwitch<Object>
 	@Override
 	public Object caseProperty(org.eclipse.uml2.uml.Property umlProperty) {
 		assert umlProperty != null;
+		org.eclipse.uml2.uml.Association umlAssociation = umlProperty.getAssociation();
+		assert (umlAssociation == null) || (umlAssociation instanceof org.eclipse.uml2.uml.Extension);
 		caseTypedElement(umlProperty);
 		Property asProperty = converter.getCreated(Property.class, umlProperty);
 		if (asProperty != null) {
@@ -165,7 +187,6 @@ public class UML2ASReferenceSwitch extends UMLSwitch<Object>
 				}
 			}
 			org.eclipse.ocl.pivot.Class pivotType = null;
-			org.eclipse.uml2.uml.Association umlAssociation = umlProperty.getAssociation();
 			if (umlAssociation != null) {
 				if (umlProperty.getOwningAssociation() != null) {
 					asProperty.setIsImplicit(true);
@@ -233,6 +254,83 @@ public class UML2ASReferenceSwitch extends UMLSwitch<Object>
 		return pivotElement;
 	}
 
+	private @NonNull AssociationClass createAssociationClassProperties(org.eclipse.uml2.uml.@NonNull Association umlAssociation) {
+//		System.out.println("Association " + umlAssociation.getName() + ", " + NameUtil.debugSimpleName(umlAssociation) + " in " + NameUtil.debugSimpleName(converter.getCreatedMap()) + " ? ");
+		AssociationClass asAssociationClass = converter.getCreated(AssociationClass.class, umlAssociation);
+		assert asAssociationClass != null;
+		List<org.eclipse.uml2.uml.@NonNull Property> umlMemberEnds = converter.getSafeMemberEnds(umlAssociation);
+		AssociationClassProperties asAssociationClassProperties = new AssociationClassProperties(umlMemberEnds);
+		String associationName = asAssociationClass.getName();
+		if (associationName != null) {						// Null name suppresses navigation to Association; see BUG 413766 comments
+			//
+			//	Create mutually opposite pairs of Property between each UML member end's referenced type and the AssociationClass.
+			//
+			for (int i = 0; i < umlMemberEnds.size(); i++) {
+				org.eclipse.uml2.uml.Property umlMemberProperty = umlMemberEnds.get(i);
+				org.eclipse.uml2.uml.Type umlMemberType = umlMemberProperty.getType();
+				if (umlMemberType != null) {
+					org.eclipse.ocl.pivot.Class asMemberClass = converter.getCreated(org.eclipse.ocl.pivot.Class.class, umlMemberType);
+					if (asMemberClass != null) {
+						Type asAssociationClassEndType = getToAssociationEndType(asAssociationClass, umlMemberProperty, umlMemberEnds);
+						Property asMember2AssociationProperty = PivotUtil.createProperty(associationName, asAssociationClassEndType);
+						Property asAssociation2MemberProperty = PivotUtil.createProperty(getEndName(umlMemberProperty), asMemberClass);
+						//
+						asMember2AssociationProperty.setIsRequired(getToAssociationEndIsRequired(umlMemberProperty, umlMemberEnds));
+						asMember2AssociationProperty.setIsImplicit(!(umlAssociation instanceof AssociationClass));
+						asMember2AssociationProperty.setOpposite(asAssociation2MemberProperty);
+						converter.addProperty(asAssociationClass, asAssociation2MemberProperty);
+						asAssociationClassProperties.put(null, umlMemberProperty, asAssociation2MemberProperty);
+						//
+						asAssociation2MemberProperty.setIsRequired(true);
+						asAssociation2MemberProperty.setIsImplicit(false);
+						asAssociation2MemberProperty.setOpposite(asMember2AssociationProperty);
+						converter.addProperty(asMemberClass, asMember2AssociationProperty);
+						asAssociationClassProperties.put(umlMemberProperty, null, asMember2AssociationProperty);
+					}
+				}
+			}
+		}
+		//
+		//	Create mutually opposite pairs of Property between the types referenced by each pair of UML member ends.
+		//
+		for (int iThis2That = 0; iThis2That < umlMemberEnds.size(); iThis2That++) {
+			org.eclipse.uml2.uml.Property umlThis2ThatProperty = umlMemberEnds.get(iThis2That);
+			org.eclipse.uml2.uml.Type umlThatType = umlThis2ThatProperty.getType();
+			if (umlThatType != null) {
+				org.eclipse.ocl.pivot.Class asThatClass = converter.getCreated(org.eclipse.ocl.pivot.Class.class, umlThatType);
+				if (asThatClass != null) {
+					for (int iThat2This = iThis2That+1; iThat2This < umlMemberEnds.size(); iThat2This++) {
+						org.eclipse.uml2.uml.Property umlThat2ThisProperty = umlMemberEnds.get(iThat2This);
+						org.eclipse.uml2.uml.Type umlThisType = umlThat2ThisProperty.getType();
+						if (umlThisType != null) {
+							org.eclipse.ocl.pivot.Class asThisClass = converter.getCreated(org.eclipse.ocl.pivot.Class.class, umlThisType);
+							if (asThisClass != null) {
+								Type asThatEndType = getInterMemberEndType(asThatClass, umlThis2ThatProperty, umlMemberEnds);
+								Type asThisEndType = getInterMemberEndType(asThisClass, umlThat2ThisProperty, umlMemberEnds);
+								Property asThis2ThatProperty = PivotUtil.createProperty(getEndName(umlThis2ThatProperty), asThatEndType);
+								Property asThat2ThisProperty = PivotUtil.createProperty(getEndName(umlThat2ThisProperty), asThisEndType);
+								//
+								asThis2ThatProperty.setIsRequired(getEndIsRequired(umlThis2ThatProperty));
+								asThis2ThatProperty.setIsImplicit(umlThis2ThatProperty.getOwningAssociation() != null);
+								asThis2ThatProperty.setOpposite(asThat2ThisProperty);
+								converter.addProperty(asThisClass, asThis2ThatProperty);
+								asAssociationClassProperties.put(umlThis2ThatProperty, umlThat2ThisProperty, asThis2ThatProperty);
+								//
+								asThat2ThisProperty.setIsRequired(getEndIsRequired(umlThat2ThisProperty));
+								asThat2ThisProperty.setIsImplicit(umlThat2ThisProperty.getOwningAssociation() != null);
+								asThat2ThisProperty.setOpposite(asThis2ThatProperty);
+								converter.addProperty(asThatClass, asThat2ThisProperty);
+								asAssociationClassProperties.put(umlThat2ThisProperty, umlThis2ThatProperty, asThat2ThisProperty);
+							}
+						}
+					}
+				}
+			}
+		}
+		converter.addAssociationClassProperties(asAssociationClass, asAssociationClassProperties);
+		return asAssociationClass;
+	}
+
 	public Object doInPackageSwitch(EObject eObject) {
 		int classifierID = eObject.eClass().getClassifierID();
 		return doSwitch(classifierID, eObject);
@@ -276,12 +374,80 @@ public class UML2ASReferenceSwitch extends UMLSwitch<Object>
 		}
 	}
 
+	private boolean getEndIsRequired(org.eclipse.uml2.uml.@NonNull Property umlProperty) {
+		return umlProperty.getLower() != 0;
+	}
+
+	private @NonNull String getEndName(org.eclipse.uml2.uml.@NonNull Property umlProperty) {
+		String name = umlProperty.getName();
+		if (name != null) {
+			return name;
+		}
+		else {
+			return ClassUtil.nonNullState(umlProperty.getType().getName());
+		}
+	}
+
+	private @NonNull Type getInterMemberEndType(org.eclipse.ocl.pivot.@NonNull Class asClass, org.eclipse.uml2.uml.@NonNull Property umlProperty, @NonNull List<org.eclipse.uml2.uml.@NonNull Property> umlMemberEnds) {
+		if (!umlProperty.isMultivalued()) {
+			return asClass;
+		}
+		boolean isOrdered = umlProperty.isOrdered();
+		boolean isUnique = umlProperty.isUnique();
+		if (umlMemberEnds.size() > 2) {
+			for (org.eclipse.uml2.uml.@NonNull Property umlOtherProperty : umlMemberEnds) {
+				if (umlOtherProperty != umlProperty) {
+					if (!umlOtherProperty.isOrdered()) {
+						isOrdered = false;
+					}
+				}
+			}
+		}
+		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+		return metamodelManager.getCollectionType(isOrdered, isUnique, asClass, true, ValueUtil.integerValueOf(umlProperty.getLower()), null);
+	}
+
+	private boolean getToAssociationEndIsRequired(org.eclipse.uml2.uml.@NonNull Property umlProperty, @NonNull List<org.eclipse.uml2.uml.@NonNull Property> umlMemberEnds) {
+		return umlProperty.getLower() != 0;
+//		for (org.eclipse.uml2.uml.@NonNull Property umlOtherProperty : umlMemberEnds) {
+//			if (umlOtherProperty != umlProperty) {
+//				if (umlOtherProperty.getLower() != 0) {
+//					return true;
+//				}
+//			}
+//		}
+//		return false;
+	}
+
+	private @NonNull Type getToAssociationEndType(org.eclipse.ocl.pivot.@NonNull Class asClass, org.eclipse.uml2.uml.@NonNull Property umlProperty, @NonNull List<org.eclipse.uml2.uml.@NonNull Property> umlMemberEnds) {
+		if (!umlProperty.isMultivalued()) {
+			return asClass;
+		}
+		boolean isMultivalued = false;
+		boolean isOrdered = true;
+		for (org.eclipse.uml2.uml.@NonNull Property umlOtherProperty : umlMemberEnds) {
+			if (umlOtherProperty != umlProperty) {
+				if (umlOtherProperty.isMultivalued()) {
+					isMultivalued = true;
+				}
+				if (!umlOtherProperty.isOrdered()) {
+					isOrdered = false;
+				}
+			}
+		}
+		if (!isMultivalued) {
+			return asClass;
+		}
+		PivotMetamodelManager metamodelManager = environmentFactory.getMetamodelManager();
+		return metamodelManager.getCollectionType(isOrdered, true, asClass, true, ValueUtil.integerValueOf(umlProperty.getLower()), null);
+	}
+
 	protected org.eclipse.uml2.uml.Property getOtherEnd(org.eclipse.uml2.uml.@NonNull Property umlProperty) {
 		org.eclipse.uml2.uml.Property otherEnd = umlProperty.getOtherEnd();
 		if (otherEnd != null) {
 			return otherEnd;
 		}
-		// Workaround problem whereby UML has three ends two of them duplicates with distinct Class/Association ownership.
+		// Workaround BUG 491587 whereby UML has three ends two of them duplicates with distinct Class/Association ownership.
 		org.eclipse.uml2.uml.Association association = umlProperty.getAssociation();
 		if (association != null) {
 			List<org.eclipse.uml2.uml.Property> memberEnds = new ArrayList<org.eclipse.uml2.uml.Property>(association.getMemberEnds());
@@ -302,21 +468,5 @@ public class UML2ASReferenceSwitch extends UMLSwitch<Object>
 			}
 		}
 		return null;
-	}
-
-	private void joinAssociationEnds(org.eclipse.uml2.uml.@NonNull Association umlAssociation) {
-		List<org.eclipse.uml2.uml.Property> memberEnds = umlAssociation.getMemberEnds();
-		if (memberEnds.size() == 2) {
-			org.eclipse.uml2.uml.Property firstEnd = memberEnds.get(0);
-			org.eclipse.uml2.uml.Property secondEnd = memberEnds.get(1);
-			if ((firstEnd != null) && (secondEnd != null)) {
-				Property firstProperty = converter.getCreated(Property.class, firstEnd);
-				Property secondProperty = converter.getCreated(Property.class, secondEnd);
-				if ((firstProperty != null) && (secondProperty != null)) {
-					firstProperty.setOpposite(secondProperty);
-					secondProperty.setOpposite(firstProperty);
-				}
-			}
-		}
 	}
 }

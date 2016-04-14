@@ -16,6 +16,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
@@ -26,7 +27,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.AssociationClass;
 import org.eclipse.ocl.pivot.BooleanLiteralExp;
-import org.eclipse.ocl.pivot.CollectionType;
 import org.eclipse.ocl.pivot.Constraint;
 import org.eclipse.ocl.pivot.Element;
 import org.eclipse.ocl.pivot.EnumLiteralExp;
@@ -54,7 +54,6 @@ import org.eclipse.ocl.pivot.internal.utilities.EnvironmentFactoryInternal;
 import org.eclipse.ocl.pivot.internal.utilities.External2AS;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
 import org.eclipse.ocl.pivot.utilities.ClassUtil;
-import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.values.Unlimited;
 //import org.eclipse.uml2.uml.ValueSpecification;
 import org.eclipse.uml2.uml.util.UMLSwitch;
@@ -85,26 +84,11 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 	public Object caseAssociation(org.eclipse.uml2.uml.Association umlAssociation) {
 		assert umlAssociation != null;
 		AssociationClass asAssociationClass = converter.getCreated(AssociationClass.class, umlAssociation);
-		if (asAssociationClass == null) {
-			org.eclipse.uml2.uml.Element owner = umlAssociation.getOwner();
-			if (owner != null) {
-				org.eclipse.ocl.pivot.Package asPackage = converter.getCreated(org.eclipse.ocl.pivot.Package.class, owner);
-				if (asPackage != null) {
-					asAssociationClass = PivotFactory.eINSTANCE.createAssociationClass();
-					asAssociationClass.setName(umlAssociation.getName());
-					org.eclipse.ocl.pivot.Class oclElementType = standardLibrary.getOclElementType();
-					asAssociationClass.getSuperClasses().add(oclElementType);
-					asPackage.getOwnedClasses().add(asAssociationClass);
-				}
-			}
-		}
-		else {
+		if (asAssociationClass != null) {
+			markRedefinitions(umlAssociation);
 			List<org.eclipse.uml2.uml.Constraint> invariants = umlAssociation.getOwnedRules();
 			doSwitchAll(Constraint.class, ClassUtil.nullFree(asAssociationClass.getOwnedInvariants()), invariants);
 			copyConstraints(asAssociationClass, umlAssociation, invariants);
-		}
-		if (asAssociationClass != null) {
-			createAssociationClassProperties(asAssociationClass, umlAssociation);
 		}
 		return asAssociationClass;
 	}
@@ -112,10 +96,7 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 	@Override
 	public Object caseAssociationClass(org.eclipse.uml2.uml.AssociationClass umlAssociationClass) {
 		assert umlAssociationClass != null;
-		AssociationClass asAssociationClass = converter.getCreated(AssociationClass.class, umlAssociationClass);
-		if (asAssociationClass != null) {
-			createAssociationClassProperties(asAssociationClass, umlAssociationClass);
-		}
+		markRedefinitions(umlAssociationClass);
 		return caseClass(umlAssociationClass);
 	}
 
@@ -498,39 +479,6 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 		doSwitchAll(Constraint.class, ClassUtil.nullFree(pivotElement.getOwnedConstraints()), ownedRules);
 	}
 
-	private void createAssociationClassProperties(@NonNull AssociationClass asAssociationClass, org.eclipse.uml2.uml.@NonNull Association umlAssociation) {
-		for (org.eclipse.uml2.uml.Property umlProperty : umlAssociation.getMemberEnds()) {
-			if (umlProperty != null) {
-				Property asProperty = converter.getCreated(Property.class, umlProperty);
-				if (asProperty != null) {
-					asProperty.setAssociationClass(asAssociationClass);
-					Type asEndType = asProperty.getType();
-					boolean isMany = false;
-					while (asEndType instanceof CollectionType) {
-						asEndType = ((CollectionType)asEndType).getElementType();
-						isMany = true;
-					}
-					assert asEndType instanceof org.eclipse.ocl.pivot.Class;
-					Type asAssociationClassEndType;
-					if (isMany) {
-						asAssociationClassEndType = environmentFactory.getMetamodelManager().getCollectionType(false, true, asAssociationClass, true, null, null);
-					}
-					else {
-						asAssociationClassEndType = asAssociationClass;
-					}
-					Property asEnd2AssociationClassProperty = PivotUtil.createProperty(ClassUtil.nonNullState(asAssociationClass.getName()), asAssociationClassEndType);
-					asEnd2AssociationClassProperty.setIsRequired(true);
-					Property asAssociationClass2EndProperty = PivotUtil.createProperty(ClassUtil.nonNullState(asProperty.getName()), asEndType);
-					asAssociationClass2EndProperty.setIsRequired(true);
-					asEnd2AssociationClassProperty.setOpposite(asAssociationClass2EndProperty);
-					asAssociationClass2EndProperty.setOpposite(asEnd2AssociationClassProperty);
-					asAssociationClass.getOwnedProperties().add(asAssociationClass2EndProperty);
-					((org.eclipse.ocl.pivot.Class)asEndType).getOwnedProperties().add(asEnd2AssociationClassProperty);
-				}
-			}
-		}
-	}
-
 	public Object doInPackageSwitch(EObject eObject) {
 		int classifierID = eObject.eClass().getClassifierID();
 		return doSwitch(classifierID, eObject);
@@ -602,12 +550,50 @@ public class UML2ASUseSwitch extends UMLSwitch<Object>
 		}
 	}
 
-	public org.eclipse.uml2.uml.@Nullable Property getOtherEnd(@NonNull List<org.eclipse.uml2.uml.Property> umlMemberEnds, org.eclipse.uml2.uml.@NonNull Property umlProperty) {
-		for (org.eclipse.uml2.uml.Property umlMemberEnd : umlMemberEnds) {
-			if (umlMemberEnd != umlProperty) {
-				return umlMemberEnd;
+	private void markRedefinitions(org.eclipse.uml2.uml.@NonNull Association umlAssociation) {
+		AssociationClass asAssociationClass = converter.getCreated(AssociationClass.class, umlAssociation);
+		if (asAssociationClass != null) {
+			AssociationClassProperties asAssociationClassProperties = null;
+			List<org.eclipse.uml2.uml.@NonNull Property> umlMemberEnds = converter.getSafeMemberEnds(umlAssociation);
+			List<org.eclipse.uml2.uml.@NonNull Association> umlRedefinedAssociations = null;
+			for (org.eclipse.uml2.uml.@NonNull Property umlMemberProperty : umlMemberEnds) {
+				for (org.eclipse.uml2.uml.Property redefinedProperty : umlMemberProperty.getRedefinedProperties()) {
+					org.eclipse.uml2.uml.Association umlRedefinedAssociation = redefinedProperty.getAssociation();
+					if (umlRedefinedAssociation != null) {
+						if (umlRedefinedAssociations == null) {
+							umlRedefinedAssociations = new ArrayList<org.eclipse.uml2.uml.@NonNull Association>();
+						}
+						if (!umlRedefinedAssociations.contains(umlRedefinedAssociation)) {
+							umlRedefinedAssociations.add(umlRedefinedAssociation);
+							AssociationClass asRedefinedAssociationClass = converter.getCreated(AssociationClass.class, umlRedefinedAssociation);
+							if (asRedefinedAssociationClass != null) {
+								if (asAssociationClassProperties == null) {
+									asAssociationClassProperties = converter.getAssociationClassProperties(asAssociationClass);
+								}
+								AssociationClassProperties asRedefinedAssociationClassProperties = converter.getAssociationClassProperties(asRedefinedAssociationClass);
+								if ((asAssociationClassProperties != null) && (asRedefinedAssociationClassProperties != null)) {
+									Map<org.eclipse.uml2.uml.@NonNull Property, org.eclipse.uml2.uml.@NonNull Property> umlProperty2redefinedProperty = asAssociationClassProperties.getPropertyToRedefinedPropertyMapping(asRedefinedAssociationClassProperties);
+									for (int i = -1; i < umlMemberEnds.size(); i++) {
+										org.eclipse.uml2.uml.Property umlFromProperty = i < 0 ? null : umlMemberEnds.get(i);
+										for (int j = -1; j < umlMemberEnds.size(); j++) {
+											if (j != i) {
+												org.eclipse.uml2.uml.Property umlToProperty = j < 0 ? null : umlMemberEnds.get(j);
+												Property asAssociationClassProperty = asAssociationClassProperties.get(umlFromProperty, umlToProperty);
+												org.eclipse.uml2.uml.Property umlFromRedefinedProperty = umlFromProperty != null ? umlProperty2redefinedProperty.get(umlFromProperty) : null;
+												org.eclipse.uml2.uml.Property umlToRedefinedProperty = umlToProperty != null ? umlProperty2redefinedProperty.get(umlToProperty) : null;
+												Property asRedefinedAssociationClassProperty = asRedefinedAssociationClassProperties.get(umlFromRedefinedProperty, umlToRedefinedProperty);
+												assert asAssociationClassProperty != asRedefinedAssociationClassProperty;
+												asAssociationClassProperty.getRedefinedProperties().add(asRedefinedAssociationClassProperty);
+											}
+										}
+									}
+								}
+							}
+						}
+						break;
+					}
+				}
 			}
 		}
-		return null;
 	}
 }

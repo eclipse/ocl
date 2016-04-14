@@ -182,7 +182,7 @@ public class Ecore2AS extends AbstractExternal2AS
 	/**
 	 * Mapping of source Ecore objects to their resulting pivot element in the current conversion.
 	 */
-	private Map<EObject, Element> newCreateMap = null;
+	private Map<@NonNull EObject, @NonNull Element> newCreateMap = null;
 
 	/**
 	 * Set of all Ecore objects requiring further work during the reference pass.
@@ -232,7 +232,7 @@ public class Ecore2AS extends AbstractExternal2AS
 		this.environmentFactory.addExternal2AS(this);
 	}
 	
-	protected void addCreated(EObject eObject, Element pivotElement) {
+	protected void addCreated(@NonNull EObject eObject, @NonNull Element pivotElement) {
 		@SuppressWarnings("unused")
 		Element oldElement = newCreateMap.put(eObject, pivotElement);
 //		if (eObject instanceof ENamedElement) {
@@ -306,7 +306,7 @@ public class Ecore2AS extends AbstractExternal2AS
 				Ecore2AS converter = getAdapter(resource, environmentFactory);
 				if (allConverters.add(converter)) {
 					converter.getASModel();
-					for (Map.Entry<EObject, Element> entry : converter.newCreateMap.entrySet()) {
+					for (Map.Entry<@NonNull EObject, @NonNull Element> entry : converter.newCreateMap.entrySet()) {
 						newCreateMap.put(entry.getKey(), entry.getValue());
 					}
 				}
@@ -374,7 +374,7 @@ public class Ecore2AS extends AbstractExternal2AS
 						converter.getASModel();
 	//					allEClassifiers.addAll(converter.allEClassifiers);
 	//					allNames.addAll(converter.allNames);
-						for (Map.Entry<EObject, Element> entry : converter.newCreateMap.entrySet()) {
+						for (Map.Entry<@NonNull EObject, @NonNull Element> entry : converter.newCreateMap.entrySet()) {
 							newCreateMap.put(entry.getKey(), entry.getValue());
 						}
 					}
@@ -427,7 +427,7 @@ public class Ecore2AS extends AbstractExternal2AS
 	}
 
 	@Override
-	public @Nullable Map<EObject, Element> getCreatedMap() {
+	public @Nullable Map<@NonNull EObject, @NonNull Element> getCreatedMap() {
 		return newCreateMap;
 	}
 
@@ -457,7 +457,7 @@ public class Ecore2AS extends AbstractExternal2AS
 	public @NonNull Model importObjects(@NonNull Collection<EObject> ecoreContents, @NonNull URI pivotURI) {
 		EPackage libraryEPackage = isLibrary(ecoreContents);
 		if (libraryEPackage != null) {
-			newCreateMap = new HashMap<EObject, Element>();
+			newCreateMap = new HashMap<@NonNull EObject, @NonNull Element>();
 			org.eclipse.ocl.pivot.Package asLibrary = standardLibrary.getPackage();
 			newCreateMap.put(libraryEPackage, asLibrary);
 			List<org.eclipse.ocl.pivot.Class> ownedType = asLibrary.getOwnedClasses();
@@ -465,7 +465,9 @@ public class Ecore2AS extends AbstractExternal2AS
 			for (@SuppressWarnings("null")@NonNull EClassifier eClassifier : libraryEPackage.getEClassifiers()) {
 				String name = environmentFactory.getTechnology().getOriginalName(eClassifier); //.substring(prefix);
 				Type asType = NameUtil.getNameable(ownedType, name);
-				newCreateMap.put(eClassifier, asType);
+				if (asType != null) {
+					newCreateMap.put(eClassifier, asType);
+				}
 			}
 			Model containingRoot = PivotUtil.getContainingModel(asLibrary);
 			return ClassUtil.nonNullModel(containingRoot);
@@ -812,7 +814,9 @@ public class Ecore2AS extends AbstractExternal2AS
 			assert eGenericType.getETypeArguments().isEmpty();
 			pivotType = resolveSimpleType(eClassifier);
 		}
-		newCreateMap.put(eGenericType, pivotType);
+		if (pivotType != null) {
+			newCreateMap.put(eGenericType, pivotType);
+		}
 		return pivotType;
 	}
 
@@ -868,7 +872,7 @@ public class Ecore2AS extends AbstractExternal2AS
 	}
 
 	public void update(@NonNull Resource asResource, @NonNull Collection<EObject> ecoreContents) {
-		newCreateMap = new HashMap<EObject, Element>();
+		newCreateMap = new HashMap<@NonNull EObject, @NonNull Element>();
 		referencers = new HashSet<EObject>();
 		genericTypes = new ArrayList<EGenericType>();
 		PivotUtilInternal.refreshList(asResource.getContents(), Collections.singletonList(ClassUtil.nonNull(pivotModel)));
@@ -893,7 +897,9 @@ public class Ecore2AS extends AbstractExternal2AS
 		for (EGenericType eGenericType : genericTypes) {
 			if (eGenericType != null) {
 				Type pivotType = resolveType(resolvedSpecializations, eGenericType);
-				newCreateMap.put(eGenericType, pivotType);
+				if (pivotType != null) {
+					newCreateMap.put(eGenericType, pivotType);
+				}
 			}
 		}
 		for (EObject eObject : referencers) {

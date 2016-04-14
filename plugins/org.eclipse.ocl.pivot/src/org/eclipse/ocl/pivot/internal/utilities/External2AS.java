@@ -26,7 +26,7 @@ public interface External2AS
 	void dispose();
 	@NonNull Model getASModel() throws ParserException;
 	@Nullable <T extends Element> T getCreated(@NonNull Class<T> requiredClass, @NonNull EObject eObject);
-	@Nullable Map<EObject, Element> getCreatedMap();
+	@Nullable Map<@NonNull EObject, @NonNull Element> getCreatedMap();
 	@Nullable Resource getResource();
 	@NonNull URI getURI();
 }

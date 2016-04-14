@@ -75,10 +75,10 @@ import org.eclipse.ocl.pivot.utilities.PivotUtil;
  */
 public class EnvironmentView
 {
-	public static abstract class Disambiguator<T> implements Comparator<T>
+	public static abstract class Disambiguator<@NonNull T> implements Comparator<T>
 	{
 	    @Override
-		public int compare(T o1, T o2) {
+		public int compare(@NonNull T o1, @NonNull T o2) {
 		    throw new UnsupportedOperationException();
 	    }
 	    
@@ -306,17 +306,17 @@ public class EnvironmentView
 			CompleteClass completeClass = environmentFactory.getMetamodelManager().getCompleteClass(type);
 			String name2 = name;
 			if (name2 != null) {
-				for (Operation operation : completeClass.getOperations(featureFilter, name2)) {
-					if ((operation != null) /*&& (operation.isStatic() == selectStatic)*/) {
+				for (@NonNull Operation operation : completeClass.getOperations(featureFilter, name2)) {
+//					if ((operation != null) /*&& (operation.isStatic() == selectStatic)*/) {
 						addElement(name2, operation);
-					}
+//					}
 				}
 			}
 			else {
-				for (Operation operation : completeClass.getOperations(featureFilter)) {
-					if ((operation != null) /*&& (operation.isStatic() == selectStatic)*/) {
+				for (@NonNull Operation operation : completeClass.getOperations(featureFilter)) {
+//					if ((operation != null) /*&& (operation.isStatic() == selectStatic)*/) {
 						addNamedElement(operation);
-					}
+//					}
 				}
 			}
 		}
@@ -409,17 +409,16 @@ public class EnvironmentView
 			CompleteClass completeClass = environmentFactory.getMetamodelManager().getCompleteClass(type);
 			String name2 = name;
 			if (name2 != null) {
-				for (Property property : completeClass.getProperties(featureFilter, name2)) {
-					if (property != null) {
-						addNamedElement(property);
-					}
+				if ("region".equals(name2)) {
+					name2 = name;
+				}
+				for (@NonNull Property property : completeClass.getProperties(featureFilter, name2)) {
+					addNamedElement(property);
 				}
 			}
 			else {
-				for (Property property : completeClass.getProperties(featureFilter)) {
-					if (property != null) {
-						addNamedElement(property);
-					}
+				for (@NonNull Property property : completeClass.getProperties(featureFilter)) {
+					addNamedElement(property);
 				}
 			}
 		}
@@ -431,17 +430,13 @@ public class EnvironmentView
 			CompleteClass completeClass = environmentFactory.getCompleteModel().getCompleteClass(type);
 			String name2 = name;
 			if (name2 != null) {
-				for (State state : completeClass.getStates(name2)) {
-					if (state != null) {
-						addNamedElement(state);
-					}
+				for (@NonNull State state : completeClass.getStates(name2)) {
+					addNamedElement(state);
 				}
 			}
 			else {
-				for (State state : completeClass.getStates()) {
-					if (state != null) {
-						addNamedElement(state);
-					}
+				for (@NonNull State state : completeClass.getStates()) {
+					addNamedElement(state);
 				}
 			}
 		}
@@ -851,7 +846,7 @@ public class EnvironmentView
 								if (key.isAssignableFrom(iClass) && key.isAssignableFrom(jClass)) {
 									for (Comparator<Object> comparator : disambiguatorMap.get(key)) {
 										if (comparator instanceof Disambiguator<?>) {
-											verdict = ((Disambiguator<Object>)comparator).compare(environmentFactory, iValue, jValue);
+											verdict = ((Disambiguator<@NonNull Object>)comparator).compare(environmentFactory, iValue, jValue);
 										}
 										else {
 											verdict = comparator.compare(iValue, jValue);

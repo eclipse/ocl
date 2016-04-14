@@ -104,54 +104,26 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 	@Override
 	public Object caseAssociation(org.eclipse.uml2.uml.Association umlAssociation) {
 		assert umlAssociation != null;
-//		System.out.println("Association " + umlAssociation.getName());
-		Object pivotElement = this;									// Dummy return value to inhibit super search.
-		if (umlAssociation.getOwnedRules().size() > 0) {			// If we need an AssociationClass
-			AssociationClass asAssociationClass = converter.refreshNamedElement(org.eclipse.ocl.pivot.AssociationClass.class, PivotPackage.Literals.ASSOCIATION_CLASS, umlAssociation);
-			converter.queueUse(umlAssociation);	// constraints
-			pivotElement = asAssociationClass;
-		}
-		copyAssociationEnds(umlAssociation.getOwnedEnds());
-/*		@SuppressWarnings("null") @NonNull List<org.eclipse.uml2.uml.Property> memberEnds = umlAssociation.getMemberEnds();
-//		boolean isSubsetted = false;
-		boolean isUnnamed = false;
-		for (org.eclipse.uml2.uml.Property memberEnd : memberEnds) {
-//			if (memberEnd.getSubsettedProperties().size() > 0) {
-//				isSubsetted = true;
-//			}
-			if (memberEnd.getName() == null) {
-				isUnnamed = true;
-			}
-		}
-		converter.addProperties(memberEnds, null);
-		Property firstPivotElement = null;
-		for (org.eclipse.uml2.uml.Property umlProperty : memberEnds) {
-			Property pivotElement = (Property) doSwitch(umlProperty);
-			if (!isUnnamed) { //isSubsetted) {
-	//			converter.copyProperty(pivotElement, umlProperty, null);
-	//			pivotElement.setImplicit(umlProperty.getAssociation() != null);
-	//			converter.queueReference(umlAssociation);				// For opposite installation
-				if (firstPivotElement == null) {
-					firstPivotElement = pivotElement;
-				}
-				else {
-					firstPivotElement.setOpposite(pivotElement);
-					pivotElement.setOpposite(firstPivotElement);
-				}
-			}
-		} */
-		converter.queueReference(umlAssociation);	// opposites
-		return pivotElement;
+		//
+		//	It would be nice to create Pivot AssociationClass instances lazily, but UML defines these objects and it is hard
+		//	to be lazy; the proxies could be nearly as costly as their trurths.
+		//
+		AssociationClass asAssociationClass = converter.refreshNamedElement(org.eclipse.ocl.pivot.AssociationClass.class, PivotPackage.Literals.ASSOCIATION_CLASS, umlAssociation);
+//		System.out.println("Association " + umlAssociation.getName() + ", " + NameUtil.debugSimpleName(umlAssociation) + " => " + NameUtil.debugSimpleName(asAssociationClass));
+		copyNamedElement(asAssociationClass, umlAssociation);
+		converter.queueReference(umlAssociation);			// properties, superClasses
+		converter.queueUse(umlAssociation);					// redefinitions, constraints
+		return asAssociationClass;
 	}
 
 	@Override
 	public Object caseAssociationClass(org.eclipse.uml2.uml.AssociationClass umlAssociationClass) {
 		assert umlAssociationClass != null;
 		AssociationClass asAssociationClass = converter.refreshNamedElement(AssociationClass.class, PivotPackage.Literals.ASSOCIATION_CLASS, umlAssociationClass);
-//		System.out.println("Class " + umlClass.getName() + " => " + ClassUtil.debugSimpleName(pivotElement));
+//		System.out.println("AssociationClass " + umlAssociationClass.getName() + " => " + NameUtil.debugSimpleName(asAssociationClass));
 		copyClass(asAssociationClass, umlAssociationClass);
-		copyAssociationEnds(umlAssociationClass.getOwnedEnds());
-		converter.queueReference(umlAssociationClass);		// superClasses
+		converter.queueReference(umlAssociationClass);		// properties, superClasses
+		converter.queueUse(umlAssociationClass);			// redefinitions, constraints
 		return asAssociationClass;
 	}
 
@@ -314,7 +286,7 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 			}
 		}
 		converter.queueReference(umlExtension);		// stereotype, type, opposites
-		return this;
+		return asTypeExtension;
 	}
 
 /*	@Override
@@ -492,8 +464,17 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 	}
 
 	@Override
-	public Property caseProperty(org.eclipse.uml2.uml.Property umlProperty) {
+	public Object caseProperty(org.eclipse.uml2.uml.Property umlProperty) {
 		assert umlProperty != null;
+		org.eclipse.uml2.uml.Association umlAssociation = umlProperty.getAssociation();
+		if (umlAssociation != null) {
+			if (umlAssociation instanceof org.eclipse.uml2.uml.Extension) {
+				// FIXME regularize by handling Extension properties as part of the Extension
+			}
+			else {
+				return this;		// Association Properties are handled by the Association
+			}
+		}
 //		if ((umlProperty.getName() != null) && umlProperty.getName().startsWith(UML2AS.STEREOTYPE_BASE_PREFIX)) {
 //			System.out.println("Got it");
 //		}
@@ -605,12 +586,6 @@ public class UML2ASDeclarationSwitch extends UMLSwitch<Object>
 					pivotAnnotations.add(pivotAnnotation);
 				}
 			}
-		}
-	}
-
-	private void copyAssociationEnds(List<org.eclipse.uml2.uml.Property> ownedEnds) {
-		for (org.eclipse.uml2.uml.Property umlProperty : ownedEnds) {
-			doSwitch(umlProperty);
 		}
 	}
 
