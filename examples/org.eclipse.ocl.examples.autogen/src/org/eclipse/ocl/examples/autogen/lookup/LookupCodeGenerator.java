@@ -12,7 +12,9 @@
 package org.eclipse.ocl.examples.autogen.lookup;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.ecore.EPackage;
@@ -89,9 +91,9 @@ public class LookupCodeGenerator
 	}
 	
 	
-	private static List<@NonNull String> gatherEnvOpNames(@NonNull Package oclDocPackage, @NonNull String envOpNamePrefix) {
+	private static Set<@NonNull String> gatherEnvOpNames(@NonNull Package oclDocPackage, @NonNull String envOpNamePrefix) {
 		
-		List<@NonNull String> result = new ArrayList<@NonNull String>();
+		Set<@NonNull String> result = new LinkedHashSet<@NonNull String>();
 		
 		Model model = (Model) oclDocPackage.eContainer();
 		for (Package pPackage : model.getOwnedPackages()) {
