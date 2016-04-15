@@ -436,6 +436,8 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateVisitorsXtend
 		writer.append('''
 	«ePackage.generateHeaderWithTemplate(visitorPackageName)»
 	import org.eclipse.jdt.annotation.NonNull;
+	import org.eclipse.jdt.annotation.Nullable;
+	
 	import «baseLookupPackageName».LookupEnvironment;
 	import «visitablePackageName».«visitableClassName»;
 	«IF isDerived»	
@@ -443,10 +445,10 @@ public class GenerateAutoLookupInfrastructureXtend extends GenerateVisitorsXtend
 	«ENDIF»	
 	
 	public abstract class «visitorName»
-		extends «superClassName»<LookupEnvironment, LookupEnvironment> {
+		extends «superClassName»<@Nullable LookupEnvironment, @NonNull LookupEnvironment> {
 	
 		«IF isDerived»private «superVisitorName» delegate;«ENDIF»
-		protected «visitorName»(LookupEnvironment context) {
+		protected «visitorName»(@NonNull LookupEnvironment context) {
 			super(context);
 			«IF isDerived»this.delegate = createSuperLangVisitor();«ENDIF»
 		}

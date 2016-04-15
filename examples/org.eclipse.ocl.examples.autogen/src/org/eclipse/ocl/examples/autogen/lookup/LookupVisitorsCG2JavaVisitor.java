@@ -20,6 +20,7 @@ import org.eclipse.ocl.examples.codegen.cgmodel.CGClass;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGPackage;
 import org.eclipse.ocl.examples.codegen.cgmodel.CGValuedElement;
 import org.eclipse.ocl.examples.codegen.java.JavaConstants;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
 
 
 /**
@@ -45,7 +46,9 @@ public abstract class LookupVisitorsCG2JavaVisitor<@NonNull C extends LookupVisi
 		js.append(") {\n");
 		js.pushIndentation(null);
 		js.append("super(" + LookupVisitorsClassContext.CONTEXT_NAME + ");\n");
-		js.append("this." + JavaConstants.EXECUTOR_NAME + " = " + LookupVisitorsClassContext.CONTEXT_NAME + ".getExecutor();\n");
+		js.append("this." + JavaConstants.EXECUTOR_NAME + " = ");
+		js.appendClassReference(ClassUtil.class);
+		js.append(".nonNull(" + LookupVisitorsClassContext.CONTEXT_NAME + ".getExecutor());\n");
 		js.append("this." + JavaConstants.ID_RESOLVER_NAME + " = " + JavaConstants.EXECUTOR_NAME + ".getIdResolver();\n");
 		doAdditionalFieldsInitialization(cgClass);
 		js.popIndentation();
