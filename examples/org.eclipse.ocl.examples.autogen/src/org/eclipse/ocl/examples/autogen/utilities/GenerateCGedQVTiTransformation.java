@@ -8,7 +8,7 @@
  * Contributors:
  *     Adolfo Sanchez-Barbudo Herrera (University of York) - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.build.utilities;
+package org.eclipse.ocl.examples.autogen.utilities;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

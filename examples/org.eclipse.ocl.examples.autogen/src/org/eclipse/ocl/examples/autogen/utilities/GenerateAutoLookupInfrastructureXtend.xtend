@@ -8,7 +8,7 @@
  * Contributors:
  *     Adolfo Sanchez-Barbudo Herrera (University of York) - initial API and implementation
  *******************************************************************************/
-package org.eclipse.ocl.examples.build.xtend
+package org.eclipse.ocl.examples.autogen.utilities
 
 import java.util.ArrayList
 import java.util.List
@@ -27,12 +27,14 @@ import org.eclipse.ocl.pivot.utilities.ClassUtil
 import org.eclipse.ocl.pivot.utilities.EnvironmentFactory
 import org.eclipse.ocl.pivot.CollectionType
 import org.eclipse.ocl.pivot.utilities.OCL
-import org.eclipse.ocl.examples.autogen.utilities.GenPackageHelper
 import org.eclipse.ocl.examples.autogen.lookup.LookupCodeGenerator
-import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup
 import org.eclipse.ocl.pivot.model.OCLstdlib
 import java.util.Set
 import org.eclipse.ocl.examples.autogen.lookup.LookupCGUtil
+import org.eclipse.ocl.examples.build.xtend.GenerateVisitorsXtend
+import org.eclipse.ocl.examples.build.xtend.MergeWriter
+import org.eclipse.ocl.examples.build.utilities.GenPackageHelper
+import org.eclipse.ocl.xtext.completeocl.CompleteOCLStandaloneSetup;
 
 public class GenerateAutoLookupInfrastructureXtend extends GenerateVisitorsXtend
 {

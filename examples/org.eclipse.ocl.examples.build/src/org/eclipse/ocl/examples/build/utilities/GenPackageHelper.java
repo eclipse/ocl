@@ -8,7 +8,7 @@
  * Contributors:
  *   Adolfo Sanchez-Barbudo Herrera
  *******************************************************************************/
-package org.eclipse.ocl.examples.autogen.utilities;
+package org.eclipse.ocl.examples.build.utilities;
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenAnnotation;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
