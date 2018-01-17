@@ -1,5 +1,0 @@
-PrimitiveTypes.xmi		UML 2.5 Beta2 PrimitiveTypes.xmi unedited
-UML.xmi					UML 2.5 Beta2 UML.xmi unedited
-
-OCL.uml 				Working MDT/OCL file
-MDTOCL.uml				Working MDT/OCL file

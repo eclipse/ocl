@@ -1,1 +1,0 @@
-OCLinEcore x#y fails to resolve y if x is a Set(Y)

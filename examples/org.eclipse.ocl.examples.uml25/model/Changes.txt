@@ -1,9 +1,0 @@
-Bug 433189 unresolved proxies
-Bug 433194 Issue 18972 Lifeline::interaction_uses_share_lifetime Boolean::implies(Bag(...))
-Bug 433195 Issue ? TypeElement/TypedElement typo
-Bug 433204 Issue ? Set/OrderedSet retyurns
-
-
-b) many result.is(1, 1) => result.is(1, 1.oclAsType(UnlimitedNatural))
-
-c) many constraints have no leading result=

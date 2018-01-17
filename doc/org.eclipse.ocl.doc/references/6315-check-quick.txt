@@ -1,9 +1,0 @@
-// Copied from org.eclipse.ocl.examples.test.xtext.PivotDocumentationExamples.java
-
-		// only print the set of book categories for valid libraries
-		for (Library next : constraintEval.selectEcore(libraries)) {
-		    @SuppressWarnings("unchecked")
-		    Set<BookCategory> categories = (Set<BookCategory>) queryEval.evaluateUnboxed(next);
-		    
-		    debugPrintf("%s: %s%n\n", next.getName(), categories);
-		}

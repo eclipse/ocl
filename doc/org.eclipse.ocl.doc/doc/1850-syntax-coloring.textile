@@ -1,4 +1,0 @@
-
-h3(#SyntaxColoring). Syntax Coloring
-
-The standard Xtext syntax coloring facilities are provided for each of the OCL editors.

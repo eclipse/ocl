@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ecoreTest:Eclass1 xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecoreTest="http://eclipse.org/ocl/debug/test/ecoreTest" eAttribute1="e1Att1" eAttribute2="e1Att2">
-  <classes2 eAttribute3="1">
-    <classes3 eAttribute5="e2Att1"/>
-    <classes3 eAttribute5="e2Att2"/>
-  </classes2>
-  <classes2 eAttribute3="2"/>
-</ecoreTest:Eclass1>

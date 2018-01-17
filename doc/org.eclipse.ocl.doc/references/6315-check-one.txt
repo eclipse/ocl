@@ -1,7 +1,0 @@
-// Copied from org.eclipse.ocl.examples.test.xtext.PivotDocumentationExamples.java
-	
-		// check a single library
-		Library lib = getLibrary(resourceSet);  // hypothetical source of a library
-
-		// check whether it satisfies the constraint
-		debugPrintf("%s valid: %b\n", lib.getName(), ocl.check(lib, invariant));

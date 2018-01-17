@@ -1,8 +1,0 @@
-package wildcards : wild = 'http://wildcards'
-{
-	abstract class EClassifier
-	{
-		attribute instanceClass : EJavaClass<?>[?] { ordered derived readonly transient volatile };
-	}
-	datatype EJavaClass<T> : 'java.lang.Class' { serializable };
-}

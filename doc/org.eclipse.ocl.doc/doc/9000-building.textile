@@ -1,5 +1,0 @@
-
-h1. Building the OCL Project
-
-This section contains some details on the way in which the OCL project is built. This should only be of interest to users creating extension of the project.
-

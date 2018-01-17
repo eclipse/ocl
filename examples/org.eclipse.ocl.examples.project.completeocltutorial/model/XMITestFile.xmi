@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="ASCII"?>
-<pfx:BadClass xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:pfx="platform:/resource/org.eclipse.ocl.examples.project.completeocltutorial/model/Bad.ecore"
-    xsi:schemaLocation="platform:/resource/org.eclipse.ocl.examples.project.completeocltutorial/model/Bad.ecore EcoreTestFile.ecore"/>

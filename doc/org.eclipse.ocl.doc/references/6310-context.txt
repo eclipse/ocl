@@ -1,7 +1,0 @@
-// Copied from org.eclipse.ocl.examples.test.xtext.PivotDocumentationExamples.java
-
-		EClass contextEClass = EXTLibraryPackage.Literals.LIBRARY;
-		ExpressionInOCL invariant = ocl.createInvariant(contextEClass,
-		    "books->forAll(b1, b2 | b1 <> b2 implies b1.title <> b2.title)");
-		ExpressionInOCL query = ocl.createQuery(contextEClass,
-		    "books->collect(b : Book | b.category)->asSet()");
